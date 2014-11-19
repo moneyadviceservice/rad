@@ -8,3 +8,12 @@ source 'https://rubygems.org'
 # 4. Only use version specifiers where appropriate
 
 gem 'rails', '4.1.8'
+
+gem 'mysql2'
+gem 'uglifier', '>= 1.3.0'
+
+group :assets do
+  gem 'coffee-rails', '~> 4.0.0'
+  gem 'jquery-rails'
+  gem 'sass-rails', '~> 4.0.4'
+end
