@@ -17,3 +17,7 @@ group :assets do
   gem 'jquery-rails'
   gem 'sass-rails', '~> 4.0.4'
 end
+
+group :test, :development do
+  gem 'rspec-rails'
+end
