@@ -18,7 +18,7 @@ A directory to help people nearing retirement find an Independent Financial Advi
 Clone the repository:
 
 ```sh
-$ git clone https://github.com/moneyadviceservice/ifa-directory.git
+$ git clone https://github.com/moneyadviceservice/rad.git
 ```
 
 Make sure all dependencies are available to the application:
