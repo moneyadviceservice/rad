@@ -1,3 +1,5 @@
 .bundle
 /log/*.log
 /tmp
+/vendor/assets/bower_components
+bower.json

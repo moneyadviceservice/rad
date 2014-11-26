@@ -1,3 +1,19 @@
+GIT
+  remote: git://github.com/moneyadviceservice/bowndler.git
+  revision: f836a295f0eac8ba02a6dc4733d000a7f1fc8a00
+  specs:
+    bowndler (1.0.2)
+      thor
+
+GIT
+  remote: git://github.com/moneyadviceservice/dough.git
+  revision: bc5f79550769ec436a1398bd378a8af78185651a
+  specs:
+    dough-ruby (4.0.0)
+      activesupport
+      rails (>= 3.2)
+      sass-rails
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -114,7 +130,9 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bowndler!
   coffee-rails (~> 4.0.0)
+  dough-ruby!
   jquery-rails
   pg
   rails (= 4.1.8)

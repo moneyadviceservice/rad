@@ -25,6 +25,7 @@ Make sure all dependencies are available to the application:
 
 ```sh
 $ bundle install
+$ bowndler update
 ```
 
 Make sure PostgreSQL is running.
