@@ -10,7 +10,7 @@ A directory to help people nearing retirement find an Independent Financial Advi
 * [Rubygems 2.2.2](http://rubygems.org)
 * [Node.js](http://nodejs.org/)
 * [Bundler](http://bundler.io)
-* [MySQL](http://www.mysql.com/)
+* [PostgreSQL](http://www.postgresql.org/)
 
 
 ## Installation
@@ -27,7 +27,7 @@ Make sure all dependencies are available to the application:
 $ bundle install
 ```
 
-Make sure MySQL is running.
+Make sure PostgreSQL is running.
 
 Setup the database:
 
