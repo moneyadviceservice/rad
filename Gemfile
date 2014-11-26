@@ -9,6 +9,7 @@ source 'https://rubygems.org'
 
 gem 'rails', '4.1.8'
 
+gem 'dough-ruby', github: 'moneyadviceservice/dough', require: 'dough'
 gem 'pg'
 gem 'uglifier', '>= 1.3.0'
 
@@ -19,5 +20,6 @@ group :assets do
 end
 
 group :test, :development do
+  gem 'bowndler', github: 'moneyadviceservice/bowndler'
   gem 'rspec-rails'
 end

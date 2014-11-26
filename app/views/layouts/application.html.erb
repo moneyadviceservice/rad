@@ -1,9 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>IfaDirectory</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <title>Retirement Advisor Directory</title>
+  <%= stylesheet_link_tag 'dough/assets/stylesheets/basic' %>
+  <%= stylesheet_link_tag 'dough/assets/stylesheets/font_files' %>
+
+  <script>
+    <%= raw Rails.application.assets['modernizr/modernizr'] %>
+  </script>
+
   <%= csrf_meta_tags %>
 </head>
 <body>
