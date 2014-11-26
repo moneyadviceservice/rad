@@ -6,6 +6,8 @@ Rails.application.config.assets.version = '1.0'
 # Precompile additional assets.
 # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
 Rails.application.config.assets.precompile += %w(
+  enhanced_fixed.css
+  enhanced_responsive.css
   dough/assets/js/**/*.js
   dough/assets/stylesheets/basic.css
   dough/assets/stylesheets/font_files.css
