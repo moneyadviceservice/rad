@@ -33,6 +33,11 @@ Make sure PostgreSQL is running.
 Setup the database:
 
 ```sh
+cp config/database.example.yml config/database.yml
+```
+Be sure to remove or modify the `username` attribute.
+
+```sh
 bundle exec rake db:create && bundle exec rake db:schema:load
 ```
 
