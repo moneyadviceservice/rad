@@ -2,6 +2,7 @@
 
 A directory to help people nearing retirement find an Independent Financial Advisor.
 
+![Build Status](https://travis-ci.org/moneyadviceservice/rad.svg?branch=master)
 
 ## Prerequisites
 
