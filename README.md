@@ -7,7 +7,7 @@ A directory to help people nearing retirement find an Independent Financial Advi
 ## Prerequisites
 
 * [Git](http://git-scm.com)
-* [Ruby 2.1.2](http://www.ruby-lang.org/en)
+* [Ruby 2.1.5](http://www.ruby-lang.org/en)
 * [Rubygems 2.2.2](http://rubygems.org)
 * [Node.js](http://nodejs.org/)
 * [Bundler](http://bundler.io)
