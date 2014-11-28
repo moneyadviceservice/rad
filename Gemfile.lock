@@ -43,8 +43,15 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.1)
       tzinfo (~> 1.1)
+    addressable (2.3.6)
     arel (5.0.1.20140414130214)
     builder (3.2.2)
+    capybara (2.4.4)
+      mime-types (>= 1.16)
+      nokogiri (>= 1.3.3)
+      rack (>= 1.0.0)
+      rack-test (>= 0.5.4)
+      xpath (~> 2.0)
     coffee-rails (4.0.1)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0, < 5.0)
@@ -61,11 +68,16 @@ GEM
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
     json (1.8.1)
+    launchy (2.4.3)
+      addressable (~> 2.3)
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
     mime-types (2.4.3)
+    mini_portile (0.6.1)
     minitest (5.4.3)
     multi_json (1.10.1)
+    nokogiri (1.6.4.1)
+      mini_portile (~> 0.6.0)
     pg (0.17.1)
     rack (1.5.2)
     rack-test (0.6.2)
@@ -108,6 +120,9 @@ GEM
       sass (~> 3.2.2)
       sprockets (~> 2.8, < 2.12)
       sprockets-rails (~> 2.0)
+    site_prism (2.6)
+      addressable (~> 2.3.3)
+      capybara (>= 2.1, < 3.0)
     sprockets (2.11.3)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -125,17 +140,22 @@ GEM
     uglifier (2.5.3)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
+    xpath (2.0.0)
+      nokogiri (~> 1.3)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
   bowndler!
+  capybara
   coffee-rails (~> 4.0.0)
   dough-ruby!
   jquery-rails
+  launchy
   pg
   rails (= 4.1.8)
   rspec-rails
   sass-rails (~> 4.0.4)
+  site_prism
   uglifier (>= 1.3.0)
