@@ -1,4 +1,4 @@
-class PreRegistrationForm
+class PreQualificationForm
   include ActiveModel::Model
 
   attr_accessor :question_1, :question_2, :question_3

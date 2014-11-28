@@ -1,4 +1,4 @@
-RSpec.describe PreRegistrationForm, '#valid?', type: :model do
+RSpec.describe PreQualificationForm, '#valid?', type: :model do
   let(:params) { nil }
 
   subject { described_class.new(params).valid? }
