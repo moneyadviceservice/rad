@@ -4,6 +4,8 @@ require_relative '../config/environment'
 
 require 'rspec/rails'
 
+Dir[File.join(File.dirname(__FILE__), 'support', '**', '*.rb')].each { |f| require f }
+
 RSpec.configure do |c|
   c.include Rails.application.routes.url_helpers
 
