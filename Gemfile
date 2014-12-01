@@ -21,6 +21,7 @@ end
 
 group :test, :development do
   gem 'bowndler', github: 'moneyadviceservice/bowndler'
+  gem 'pry'
 end
 
 group :test do
