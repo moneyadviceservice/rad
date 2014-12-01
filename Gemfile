@@ -14,6 +14,7 @@ gem 'rails', '4.1.8'
 gem 'bowndler', github: 'moneyadviceservice/bowndler'
 gem 'dough-ruby', github: 'moneyadviceservice/dough', require: 'dough'
 gem 'pg'
+gem 'sidekiq'
 gem 'uglifier', '>= 1.3.0'
 
 group :assets do
