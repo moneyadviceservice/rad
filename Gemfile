@@ -13,6 +13,7 @@ gem 'devise'
 gem 'dough-ruby', github: 'moneyadviceservice/dough', require: 'dough'
 gem 'pg'
 gem 'sidekiq'
+gem 'sinatra', '>= 1.3.0', require: false  # for Sidekiq UI
 gem 'uglifier', '>= 1.3.0'
 
 group :assets do
