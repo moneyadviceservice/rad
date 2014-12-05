@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+ruby '2.1.5'
+
 # RULES OF THE GEMFILE
 #
 # 1. Consult contributors before adding a dependency
@@ -9,6 +11,7 @@ source 'https://rubygems.org'
 
 gem 'rails', '4.1.8'
 
+gem 'bowndler', github: 'moneyadviceservice/bowndler'
 gem 'dough-ruby', github: 'moneyadviceservice/dough', require: 'dough'
 gem 'pg'
 gem 'uglifier', '>= 1.3.0'
@@ -20,7 +23,6 @@ group :assets do
 end
 
 group :test, :development do
-  gem 'bowndler', github: 'moneyadviceservice/bowndler'
   gem 'pry'
 end
 
