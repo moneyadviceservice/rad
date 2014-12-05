@@ -24,7 +24,7 @@ group :assets do
 end
 
 group :test, :development do
-  gem 'pry'
+  gem 'pry-rails'
 end
 
 group :test do
