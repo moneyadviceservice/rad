@@ -9,17 +9,19 @@ module Import
     end
 
     def import
-      rows_excluding_headers.map do |row|
-        mapper.call(row)
-      end
+      rows_excluding_headers.map(&mapper)
     end
 
     protected
+
+    def mapper
+      @mapper.method(:call)
+    end
 
     def rows_excluding_headers
       CSV.open(csv_path, csv_opts).tap(&:shift)
     end
 
-    attr_reader :csv_path, :mapper, :csv_opts
+    attr_reader :csv_path, :csv_opts
   end
 end
