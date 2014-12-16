@@ -1,33 +1,33 @@
-<main role="main">
-  <div class="l-constrained">
-    <a href="" class=""><%= t('advisor_sign_in') %></a>
+<div class="l-constrained">
+  <a href="" class="l-advisor-sign-in"><%= t('advisor_sign_in') %></a>
 
-    <%= heading_tag(t('registration.heading'), level: 1, class: '') %>
-    <p><%= t('registration.subheading') %></p>
+  <section class="l-pre-qualification-questions">
+    <%= heading_tag(t('registration.heading'), level: 1, class: 'l-pre-qualification-questions__heading') %>
+    <p class="l-pre-qualification-questions__subheading"><%= t('registration.subheading') %></p>
 
-    <form>
-      <fieldset>
-        <legend><%= t('registration.question_one.heading') %></legend>
+    <form class="l-pre-qualification-questions__form">
+      <fieldset class="l-pre-qualification-questions__question-group">
+        <legend class="l-pre-qualification-questions__question"><%= t('registration.question_one.heading') %></legend>
         <p><%= t('registration.question_one.explanation') %></p>
-        <label><input type="radio" name="question_one_group" checked="checked"/><%= t('registration.answer_yes') %></label>
-        <label><input type="radio" name="question_one_group" /><%= t('registration.answer_no') %></label>
+        <label class="l-pre-qualification-questions__label"><input class="l-pre-qualification-questions__input" type="radio" name="question_one_group" checked="checked"/><%= t('registration.answer_yes') %></label>
+        <label class="l-pre-qualification-questions__label"><input class="l-pre-qualification-questions__input" type="radio" name="question_one_group" /><%= t('registration.answer_no') %></label>
       </fieldset>
 
-      <fieldset>
-        <legend><%= t('registration.question_two.heading') %></legend>
+      <fieldset class="l-pre-qualification-questions__question-group">
+        <legend class="l-pre-qualification-questions__question"><%= t('registration.question_two.heading') %></legend>
         <p><%= t('registration.question_two.explanation') %></p>
-        <label><input type="radio" name="question_two_group" checked="checked"/><%= t('registration.answer_yes') %></label>
-        <label><input type="radio" name="question_two_group" /><%= t('registration.answer_no') %></label>
+        <label class="l-pre-qualification-questions__label"><input class="l-pre-qualification-questions__input" type="radio" name="question_two_group" checked="checked"/><%= t('registration.answer_yes') %></label>
+        <label class="l-pre-qualification-questions__label"><input class="l-pre-qualification-questions__input" type="radio" name="question_two_group" /><%= t('registration.answer_no') %></label>
       </fieldset>
 
-      <fieldset>
-        <legend><%= t('registration.question_three.heading') %></legend>
+      <fieldset class="l-pre-qualification-questions__question-group">
+        <legend class="l-pre-qualification-questions__question"><%= t('registration.question_three.heading') %></legend>
         <p><%= t('registration.question_three.explanation') %></p>
-        <label><input type="radio" name="question_three_group" checked="checked"/><%= t('registration.answer_yes') %></label>
-        <label><input type="radio" name="question_three_group" /><%= t('registration.answer_no') %></label>
+        <label class="l-pre-qualification-questions__label"><input class="l-pre-qualification-questions__input" type="radio" name="question_three_group" checked="checked"/><%= t('registration.answer_yes') %></label>
+        <label class="l-pre-qualification-questions__label"><input class="l-pre-qualification-questions__input" type="radio" name="question_three_group" /><%= t('registration.answer_no') %></label>
       </fieldset>
     </form>
 
     <%= button_primary t('registration.button_next') %>
-  </div>
-</main>
+  </section
+</div>
