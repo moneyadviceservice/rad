@@ -1,23 +1,17 @@
-# Files in the config/locales directory are used for internationalization
-# and are automatically loaded by Rails. If you want to use locales other
-# than English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t 'hello'
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t('hello') %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# To learn more, please read the Rails Internationalization guide
-# available at http://guides.rubyonrails.org/i18n.html.
-
 en:
-  hello: "Hello world"
+  advisor_sign_in: Sign in to advisor account
+  registration:
+    heading: Register your firm
+    subheading: Register your firm on our Retirement Adviser Directory
+    button_next: Next
+    answer_yes: "Yes"
+    answer_no: "No"
+    question_one:
+      heading: Is your firm active in the retirement planning market?
+      explanation: This could include either 'at retirement' or 'post retirement'
+    question_two:
+      heading: Is your firm's primary business model regulated advice?
+      explanation: This could be full or focused advice but must be fully covered by the Financial ombudsman and the Financial Services Compensation Scheme
+    question_three:
+      heading: Does your firm offer a whole of market service?
+      explanation: This means that your firm is not restricted in the number of providers you are able to access for a given product
