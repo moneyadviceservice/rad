@@ -1,6 +1,6 @@
 RSpec.feature 'Principal answers pre-qualification questions' do
   let(:pre_qualification_page) { PreQualificationPage.new }
-  let(:verification_page) { VerificationPage.new }
+  let(:identification_page) { IdentificationPage.new }
 
   before do
     pre_qualification_page.load
@@ -26,7 +26,7 @@ RSpec.feature 'Principal answers pre-qualification questions' do
   end
 
   def then_i_am_able_to_proceed_to_verify_my_identity
-    expect(verification_page).to be_displayed
+    expect(identification_page).to be_displayed
   end
 
   def given_i_answer_a_question_no

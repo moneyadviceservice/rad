@@ -1,6 +1,6 @@
 class PreQualificationPage < SitePrism::Page
-  set_url '/prequalification'
-  set_url_matcher /prequalification/
+  set_url '/principal/prequalify'
+  set_url_matcher /prequalify/
 
   element :question_1, '.t-question-1'
   element :question_2, '.t-question-2'

@@ -2,7 +2,7 @@
   <div class="l-constrained">
     <div class="l-constrained__padded">
 
-      <%= form_for @prequalification, url: prequalification_path do |f| %>
+      <%= form_for @prequalification, url: prequalify_principal_path do |f| %>
         <div class="t-question-1">
           <p>First question</p>
           <%= f.radio_button :question_1, 1 %>
