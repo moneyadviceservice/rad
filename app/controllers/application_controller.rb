@@ -9,6 +9,12 @@ class ApplicationController < ActionController::Base
 
   helper_method :display_search_box_in_header?
 
+  def display_auth_in_header?
+    false
+  end
+
+  helper_method :display_auth_in_header?
+
   def display_primary_footer?
     false
   end
