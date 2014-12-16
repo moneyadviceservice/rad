@@ -1,4 +1,4 @@
-RSpec.feature 'Adviser pre-qualification' do
+RSpec.feature 'Principal answers pre-qualification questions' do
   let(:pre_qualification_page) { PreQualificationPage.new }
   let(:verification_page) { VerificationPage.new }
 
