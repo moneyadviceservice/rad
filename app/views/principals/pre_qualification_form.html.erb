@@ -1,0 +1,34 @@
+<main role="main">
+  <div class="l-constrained">
+    <div class="l-constrained__padded">
+
+      <%= form_for @prequalification, url: prequalify_principal_path do |f| %>
+        <div class="t-question-1">
+          <p>First question</p>
+          <%= f.radio_button :question_1, 1 %>
+          <%= f.label :question_1_1, 'Yes' %>
+          <%= f.radio_button :question_1, 0 %>
+          <%= f.label :question_1_0, 'No' %>
+        </div>
+        <div class="t-question-2">
+          <p>Second question</p>
+          <%= f.radio_button :question_2, 1 %>
+          <%= f.label :question_2_1, 'Yes' %>
+          <%= f.radio_button :question_2, 0 %>
+          <%= f.label :question_2_0, 'No' %>
+        </div>
+        <div class="t-question-3">
+          <p>Third question</p>
+          <%= f.radio_button :question_3, 1 %>
+          <%= f.label :question_3_1, 'Yes' %>
+          <%= f.radio_button :question_3, 0 %>
+          <%= f.label :question_3_0, 'No' %>
+        </div>
+        <div>
+          <%= button_primary 'Submit' %>
+        </div>
+      <% end %>
+
+    </div>
+  </div>
+</main>
