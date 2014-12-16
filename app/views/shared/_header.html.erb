@@ -1,5 +1,47 @@
-<header class="l-header">
+<header class="l-header" role="banner">
   <div class="l-constrained">
+    <div class="mas-logo">
+      <a class="mas-logo__link" href="https://www.moneyadviceservice.org.uk/en">
+        <img alt="Money Advice Service" class="mas-logo__img" src="https://6716c801720b2d014ddd-90dd74bb468e514261468bbc28ae4817.ssl.cf3.rackcdn.com/a/logo-sprite-en-2af50b7bcc1be59e7b73b24de1ea78ae.png" />
+      </a>
+    </div>
 
+    <ul class="mobile-nav">
+      <li class="mobile-nav__item mobile-nav__item--search">
+        <a class="mobile-nav__link mobile-nav__link--search" href="#search-bar">
+          <span class="icon icon--search-white"></span>
+          <span class="visually-hidden">Search</span>
+        </a>
+      </li>
+    </ul>
+
+    <ul class="authentication <% unless display_search_box_in_header? %>l-authentication<% end %>">
+      <li class="authentication__item l-language-link  authentication__item--last">
+        <a href="https://www.moneyadviceservice.org.uk/cy/empty" lang="cy">
+          <span class="icon icon--globe"></span>
+          Cymraeg
+        </a>
+      </li>
+    </ul>
+
+    <% if display_search_box_in_header? %>
+    <div class="l-search" id="search-bar">
+      <form data-dough-component="ClearInput" action="https://www.moneyadviceservice.org.uk/en/search" method="get" role="search" class="search">
+        <label class="visually-hidden" for="search">Search the Money Advice Service</label>
+        <input data-dough-clear-input class="search__input" id="search" required type="search" name="query" value="" autocomplete="off"
+        placeholder="Search" />
+
+        <button data-dough-clear-input-button type="reset" class="search__clear">
+          <span class="icon icon--clear"></span>
+          <span class="visually-hidden">clear the search field</span>
+        </button>
+
+        <button class="search__submit search__submit--green" type="submit">
+          <span class="icon icon--search"></span>
+          <span class="visually-hidden">Search</span>
+        </button>
+      </form>
+    </div>
+    <% end %>
   </div>
 </header>
