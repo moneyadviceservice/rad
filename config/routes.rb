@@ -7,4 +7,6 @@ Rails.application.routes.draw do
 
     get 'identify', action: 'identification_form'
   end
+
+  resource :contact, only: :create
 end
