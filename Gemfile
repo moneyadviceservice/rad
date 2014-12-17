@@ -27,6 +27,7 @@ group :assets do
 end
 
 group :test, :development do
+  gem 'factory_girl_rails'
   gem 'pry-rails'
 end
 
