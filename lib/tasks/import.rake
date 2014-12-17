@@ -7,8 +7,8 @@ namespace :import do
       puts 'Importing Firms, this may take a while...'
 
       Import::Importer.new(
-        csv_path: csv_path,
-        mapper: Import::Mappers::FirmMapper.new(Lookup::Firm)
+        csv_path,
+        Import::Mappers::FirmMapper.new(Lookup::Firm)
       ).import
 
       puts 'Done!'
