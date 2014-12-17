@@ -1,0 +1,17 @@
+<div class="l-constrained">
+  <section class="l-pre-qualification-questions">
+    <%= heading_tag(t('registration.heading'), level: 1, class: 'l-pre-qualification-questions__heading') %>
+    <p class="l-pre-qualification-questions__subheading"><%= t('rejection.subheading') %></p>
+
+    <% t('rejection.reasons').each do |item| %>
+      <%= heading_tag(item[:heading], level: 2, class: 'l-pre-qualification-questions__question') %>
+      <%= item[:explanation] %>
+    <% end %>
+
+    <form>
+      <label class="l-pre-qualification-questions__textarea-label"><%= t('rejection.input_label') %></label>
+      <textarea class="l-pre-qualification-questions__textarea" cols="30" rows="10"></textarea>
+      <%= button_primary t('rejection.submit_button') %>
+    </form>
+  </section>
+</div>
