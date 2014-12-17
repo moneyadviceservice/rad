@@ -15,7 +15,8 @@ gem 'bowndler', github: 'moneyadviceservice/bowndler'
 gem 'dough-ruby',
   github: 'moneyadviceservice/dough',
   require: 'dough',
-  branch: 'heading-helper'
+  branch: 'heading-helper',
+  ref: 'aa45a67'
 gem 'pg'
 gem 'sidekiq'
 gem 'uglifier', '>= 1.3.0'
