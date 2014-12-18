@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root 'pages#home'
+  root 'principals#pre_qualification_form'
 
   resource :principal do
     get 'prequalify', action: 'pre_qualification_form'

@@ -1,0 +1,41 @@
+.l-pre-qualification-questions {
+  @include column(12);
+  margin-bottom: $baseline-unit*8;
+
+  @include respond-to($mq-m) {
+    @include column(7);
+  }
+}
+
+.l-pre-qualification-questions__form {
+  margin-bottom: $baseline-unit*8;
+}
+
+.l-pre-qualification-questions__heading {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.l-pre-qualification-questions__subheading {
+  margin-top: $baseline-unit*0.5;
+  font-weight: 500;
+}
+
+.l-pre-qualification-questions__question {
+  @include body(22,30);
+  font-weight: 700;
+  color: $color-heading-default;
+  margin-bottom: 0;
+}
+
+.l-pre-qualification-questions__question-group {
+  margin-top: $baseline-unit*6;
+}
+
+.l-pre-qualification-questions__input {
+  margin-right: $baseline-unit*2;
+}
+
+.l-pre-qualification-questions__label {
+  margin-right: $baseline-unit*2;
+}

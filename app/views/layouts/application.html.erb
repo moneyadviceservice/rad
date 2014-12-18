@@ -5,6 +5,8 @@
   <%= stylesheet_link_tag 'dough/assets/stylesheets/basic' %>
   <%= stylesheet_link_tag 'dough/assets/stylesheets/font_files' %>
 
+  <%= render 'layouts/mas_head' %>
+
   <!--[if ( gte IE 7 ) & ( lte IE 8 ) & (!IEMobile) ]>
     <%= stylesheet_link_tag 'enhanced_fixed', media: 'all' %>
     <script>var responsiveStyle = false;</script>
@@ -23,11 +25,13 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
+<%= render 'shared/skip_links' %>
 <%= render 'shared/header' %>
 <%= render 'shared/alerts' %>
 
-<%= yield %>
+<main role="main">
+  <%= yield %>
+</main>
 
 <%= render 'shared/footer' %>
 

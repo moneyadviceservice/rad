@@ -1,0 +1,113 @@
+<link href="https://6716c801720b2d014ddd-90dd74bb468e514261468bbc28ae4817.ssl.cf3.rackcdn.com/a/dough/assets/stylesheets/basic-ea7670b1f707d74ea3995dc089465c3a.css" media="screen" rel="stylesheet" />
+
+<!--[if ( gte IE 7 ) & ( lte IE 8 ) & (!IEMobile) ]>
+<link href="https://6716c801720b2d014ddd-90dd74bb468e514261468bbc28ae4817.ssl.cf3.rackcdn.com/a/dough/assets/stylesheets/font_files-ff703b1d1494bc230ea71275731abdde.css" media="screen" rel="stylesheet" />
+<link href="https://6716c801720b2d014ddd-90dd74bb468e514261468bbc28ae4817.ssl.cf3.rackcdn.com/a/enhanced_fixed-ec3120ee9d7ff3a43394b5e68669525f.css" media="all" rel="stylesheet" />
+<script src="https://6716c801720b2d014ddd-90dd74bb468e514261468bbc28ae4817.ssl.cf3.rackcdn.com/a/html5shiv/dist/html5shiv-fee07e49a2d47f6e8f4f18d64a93ed5e.js"></script>
+<script>var responsiveStyle = false;</script>
+<![endif]-->
+
+<!--[if ( !IE ) | ( gte IE 9 ) ]><!-->
+<link href="https://6716c801720b2d014ddd-90dd74bb468e514261468bbc28ae4817.ssl.cf3.rackcdn.com/a/enhanced_responsive-e961ca6aeb46eb0281e5dc595ac08510.css" media="only all" rel="stylesheet" />
+<script>var responsiveStyle = true;</script>
+<!--<![endif]-->
+
+<script type="text/javascript">
+var dataLayer = window.dataLayer || [];
+dataLayer.push({
+  'Responsive page': 'Yes',
+  'event': 'Responsive page'
+});
+
+var require = {
+  config: {
+    globals: (function(w, d) {
+      var html, appendFile, bootstrap, fonts, supports;
+
+      appendFile = function(tag, src, content) {
+        var position = d.getElementsByTagName('script')[0],
+        file = d.createElement(tag);
+        if (tag === 'script') {
+          file.async = true;
+          file.type = "text/javascript";
+        }
+        if (src) file.src = src;
+        if (content) file.innerHTML = content;
+        position.parentNode.insertBefore(file, position);
+      };
+
+      html = d.getElementsByTagName('html')[0];
+
+      bootstrap = {
+        env: 'production',
+        timestamp: new Date().getTime(),
+        i18nLocale: 'en',
+        googleApiCx: '011931388747222259444:qxgwfm5hlog'
+      };
+
+      fonts = {
+        url: 'https://6716c801720b2d014ddd-90dd74bb468e514261468bbc28ae4817.ssl.cf3.rackcdn.com/a/dough/assets/stylesheets/font_base64-348ce9151db29f9a692d5d63f1b30b36.css',
+        cacheName: 'MAS.fonts',
+        loadClass: 'wf-museosans-n4-active fontsLoaded',
+        localstorage: undefined,
+        loadWithJS: responsiveStyle
+      };
+
+      supports = (function() {
+        var S = {};
+
+        function supportTest(prop, context) {
+          try {
+            return prop in context && context[prop] !== null;
+          } catch (e) {
+            return false;
+          }
+        }
+
+        S.js = supportTest('querySelector', d) && supportTest('localStorage', w) && supportTest('addEventListener', w) ? 'advanced' : 'basic';
+        S.touch = supportTest('ontouchstart', w) || supportTest('onmsgesturechange', w);
+        S.localstorage = supportTest('localStorage', w);
+        S.svg = (function() {
+          return !!d.createElementNS && !!d.createElementNS('http://www.w3.org/2000/svg', "svg").createSVGRect
+        })();
+        S.test = supportTest;
+
+        return S
+      })();
+
+
+      if (supports.localstorage && localStorage.getItem(fonts.cacheName) !== null) {
+        html.className = html.className += (' ' + fonts.loadClass);
+        appendFile('style', false, localStorage.getItem(fonts.cacheName));
+        fonts.localstorage = true;
+      }
+
+      html.className = html.className.replace('supports-js', 'supports-js js js-' + supports.js);
+
+      setTimeout(function() {
+        var src = d.location.protocol + "//dnn506yrbagrg.cloudfront.net/pages/scripts/0018/4438.js?" + Math.floor(new Date().getTime() / 3600000);
+        appendFile('script', src);
+      }, 1);
+
+      var vp, ua, gs, sf;
+      vp = d.querySelector && d.querySelector('meta[name="viewport"]');
+      ua = navigator.userAgent;
+      sf = function() {
+        if (vp && /iPhone|iPad|iPod/.test(ua) && !/Opera Mini/.test(ua)) {
+          vp.content = "width=device-width, minimum-scale=1.0, maximum-scale=1.0";
+          d.addEventListener("gesturestart", gs, false);
+        }
+      };
+      gs = function() {
+        vp.content = "width=device-width, minimum-scale=0.25, maximum-scale=1.6";
+      };
+
+      return {
+        bootstrap: bootstrap,
+        fonts: fonts,
+        supports: supports
+      };
+    })(window, document)
+  }
+};
+</script>
