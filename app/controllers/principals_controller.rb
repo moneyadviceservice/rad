@@ -16,4 +16,7 @@ class PrincipalsController < ApplicationController
 
   def identification_form
   end
+
+  def rejection_form
+  end
 end

@@ -6,6 +6,8 @@ Rails.application.routes.draw do
     post 'prequalify', action: 'pre_qualification'
 
     get 'identify', action: 'identification_form'
+
+    get 'rejection', action: 'rejection_form'
   end
 
   resource :contact, only: :create
