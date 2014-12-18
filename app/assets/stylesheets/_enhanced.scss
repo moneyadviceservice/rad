@@ -3,8 +3,9 @@
 @import 'dough/assets/stylesheets/optional';
 @import 'yeast/assets/lib/all';
 
-@import 'base/paragraphs';
-@import 'base/form';
+@import 'settings';
+
+@import 'components/button';
 @import 'layouts/constrained';
 @import 'layouts/pre_qualification_questions';
-@import 'layouts/advisor_sign_in';
+@import 'layouts/adviser_sign_in';
