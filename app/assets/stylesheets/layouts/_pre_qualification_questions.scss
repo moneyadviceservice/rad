@@ -37,14 +37,24 @@
   margin-right: $baseline-unit*2;
 }
 
-.l-pre-qualification-questions__textarea {
-  margin-top: $baseline-unit*4;
-  margin-bottom: $baseline-unit*4;
+.l-pre-qualification-questions__contact-form {
+  margin-top: $baseline-unit*10;
+
+  input,
+  textarea {
+    margin-top: $baseline-unit;
+    margin-bottom: $baseline-unit*4;
+  }
 }
 
-.l-pre-qualification-questions__textarea-label {
+.l-pre-qualification-questions__contact-form-label {
   display: block;
-  margin-top: $baseline-unit*10;
+  margin-top: $baseline-unit*2;
+
+  & > input {
+    margin-top: $baseline-unit;
+    margin-bottom: $baseline-unit*2;
+  }
 }
 
 .l-pre-qualification-questions__checkbox {

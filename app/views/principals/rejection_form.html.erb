@@ -5,12 +5,13 @@
 
     <% t('rejection.reasons').each do |item| %>
       <%= heading_tag(item[:heading], level: 2, class: 'l-pre-qualification-questions__question') %>
-      <%= item[:explanation] %>
+      <p><%= item[:explanation] %></p>
     <% end %>
 
-    <form>
-      <label class="l-pre-qualification-questions__textarea-label"><%= t('rejection.input_label') %></label>
-      <textarea class="l-pre-qualification-questions__textarea" cols="30" rows="10"></textarea>
+    <form class="l-pre-qualification-questions__contact-form">
+      <p class="l-pre-qualification-questions__contact-form-label"><%= t('rejection.input_label') %></p>
+      <label class="l-pre-qualification-questions__contact-form-label"><%= t('rejection.email_address') %><input type="email"></label>
+      <label class="l-pre-qualification-questions__contact-form-label"><%= t('rejection.message') %><textarea class="l-pre-qualification-questions__textarea" cols="30" rows="10"></textarea></label>
       <%= button_primary t('rejection.submit_button') %>
     </form>
   </section>

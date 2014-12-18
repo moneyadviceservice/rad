@@ -37,5 +37,7 @@ en:
        explanation: This could be full or focused advice but must be fully covered by the financial services authority.
      - heading: You offer a whole market service
        explanation: This means that you are not restricted in the number of providers you are able to access for a given product.
+   email_address: Please enter your email address (this is a required field)
+   message: Please enter your message below
    input_label: If you believe you've been excluded in error, please send us an explanatory message and we will be in touch with you.
    submit_button: Send message
