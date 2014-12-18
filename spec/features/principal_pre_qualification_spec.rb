@@ -1,6 +1,7 @@
 RSpec.feature 'Principal answers pre-qualification questions' do
   let(:pre_qualification_page) { PreQualificationPage.new }
   let(:identification_page) { IdentificationPage.new }
+  let(:rejection_page) { RejectionPage.new }
 
   before do
     pre_qualification_page.load
@@ -13,8 +14,9 @@ RSpec.feature 'Principal answers pre-qualification questions' do
 
   scenario 'Answering any questions "No"' do
     given_i_answer_a_question_no
-    then_i_am_immediately_notified_i_cannot_proceed
-    and_i_am_able_to_modify_my_original_answer
+    then_i_am_notified_i_cannot_proceed
+    and_i_am_able_to_send_a_message_to_the_administrator
+    and_i_am_able_to_go_back_and_modify_my_answers
   end
 
 
@@ -36,11 +38,16 @@ RSpec.feature 'Principal answers pre-qualification questions' do
     pre_qualification_page.submit.click
   end
 
-  def then_i_am_immediately_notified_i_cannot_proceed
-    expect(pre_qualification_page).to have_error_message
+  def then_i_am_notified_i_cannot_proceed
+    expect(rejection_page).to be_displayed
   end
 
-  def and_i_am_able_to_modify_my_original_answer
+  def and_i_am_able_to_send_a_message_to_the_administrator
+    expect(rejection_page.administrator_message).to be_present
+  end
+
+  def and_i_am_able_to_go_back_and_modify_my_answers
+    rejection_page.go_back.click
     expect(pre_qualification_page).to be_displayed
   end
 end
