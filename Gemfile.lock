@@ -7,9 +7,8 @@ GIT
 
 GIT
   remote: git://github.com/moneyadviceservice/dough.git
-  revision: aa45a67cbd3cdb372dee583c3cd1edd4d37e71da
-  ref: aa45a67
-  branch: heading-helper
+  revision: a0a625fbd7a32cd0f8049a885b004c64a44ca99e
+  ref: a0a625f
   specs:
     dough-ruby (5.0.0)
       activesupport
