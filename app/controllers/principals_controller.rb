@@ -9,9 +9,11 @@ class PrincipalsController < ApplicationController
     if @prequalification.valid?
       redirect_to identify_principal_path
     else
-      flash[:error] = 'Must answer yes'
-      render :pre_qualification_form, status: :bad_request
+      redirect_to reject_principal_path
     end
+  end
+
+  def rejection_form
   end
 
   def identification_form

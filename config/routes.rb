@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resource :principal do
     get 'prequalify', action: 'pre_qualification_form'
     post 'prequalify', action: 'pre_qualification'
+    get 'reject', action: 'rejection_form'
 
     get 'identify', action: 'identification_form'
   end
