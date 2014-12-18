@@ -1,5 +1,6 @@
 en:
   adviser_sign_in: Sign in to adviser account
+  required: "*Required"
   registration:
     heading: Register your firm
     subheading: Register your firm on our Retirement Adviser Directory
@@ -15,6 +16,18 @@ en:
     question_three:
       heading: Does your firm offer a whole of market service?
       explanation: This means that your firm is not restricted in the number of providers you are able to access for a given product
+    firm:
+        heading: Firm FCA information
+        reference_number: Firm reference number *
+        website_address: Website address
+    principal:
+      heading: Signed by
+      first_name: First name *
+      last_name: Last name *
+      job_title: Job title *
+      email_address: Email address *
+      telephone_number: Telephone number *
+      disclaimer: By registering your firm with the Money Advice Service, you are confirming that these details and any responses you give to our registration questions are true and accurate. --- *Add 30 minute statement here.
   rejection:
    subheading: "Unfortunately your firm can't be listed on our directory unless you:"
    reasons:

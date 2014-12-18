@@ -46,3 +46,17 @@
   display: block;
   margin-top: $baseline-unit*10;
 }
+
+.l-pre-qualification-questions__checkbox {
+  margin-top: 5px;
+  float: left;
+}
+
+.l-pre-qualification-questions__disclaimer-label {
+  margin-left: $baseline-unit*4;
+  display: block;
+}
+
+.l-pre-qualification-questions__hr {
+  margin-top: $baseline-unit*6;
+}
