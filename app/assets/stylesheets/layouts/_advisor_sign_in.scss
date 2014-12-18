@@ -4,9 +4,4 @@
   margin-bottom: $baseline-unit*2;
   text-align: right;
   display: block;
-
-  @include respond-to($mq-m) {
-    position: relative;
-    top: 46px;
-  }
 }
