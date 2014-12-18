@@ -27,7 +27,9 @@ group :assets do
 end
 
 group :test, :development do
+  gem 'factory_girl_rails'
   gem 'pry-rails'
+  gem 'timecop'
 end
 
 group :test do

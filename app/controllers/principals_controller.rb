@@ -1,4 +1,6 @@
 class PrincipalsController < ApplicationController
+  before_action :authenticate, except: [:pre_qualification_form, :pre_qualification, :identification_form]
+
   def pre_qualification_form
     @prequalification = PreQualificationForm.new
   end

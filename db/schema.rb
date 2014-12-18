@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141211110031) do
+ActiveRecord::Schema.define(version: 20141216142455) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,5 +24,14 @@ ActiveRecord::Schema.define(version: 20141211110031) do
   end
 
   add_index "lookup_firms", ["fca_number"], name: "index_lookup_firms_on_fca_number", unique: true, using: :btree
+
+  create_table "principals", force: true do |t|
+    t.string   "token",           limit: 32, null: false
+    t.datetime "last_sign_in_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "principals", ["token"], name: "index_principals_on_token", unique: true, using: :btree
 
 end
