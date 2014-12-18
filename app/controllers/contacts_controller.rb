@@ -1,4 +1,6 @@
 class ContactsController < ApplicationController
+  before_action :authenticate, except: [:create]
+
   def create
     if ContactForm.new(params[:contact]).valid?
       AdminContact.perform_async(
