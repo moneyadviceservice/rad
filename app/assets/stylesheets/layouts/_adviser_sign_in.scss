@@ -1,4 +1,8 @@
-.l-advisor-sign-in {
+.l-adviser-sign-in {
+  background-color: $background-color--light;
+}
+
+.l-adviser-sign-in__link {
   @include column(12);
   margin-top: $baseline-unit*2;
   margin-bottom: $baseline-unit*2;
