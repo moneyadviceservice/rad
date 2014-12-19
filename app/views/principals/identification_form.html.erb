@@ -13,7 +13,7 @@
 
       <div class="l-identity__field-group">
         <label class="l-identity__label"><%= t('registration.firm.website_address') %></label>
-        <input type="text" class="l-identity__input"/>
+        <input type="url" class="l-identity__input"/>
       </div>
 
       <hr class="l-identity__hr">
@@ -38,12 +38,12 @@
 
       <div class="l-identity__field-group">
         <label class="l-identity__label"><%= t('registration.principal.email_address') %></label>
-        <input type="text" class="l-identity__input l-identity__input--long"/>
+        <input type="email" class="l-identity__input l-identity__input--long"/>
       </div>
 
       <div class="l-identity__field-group">
         <label class="l-identity__label"><%= t('registration.principal.telephone_number') %></label>
-        <input type="text" class="l-identity__input"/>
+        <input type="tel" class="l-identity__input"/>
       </div>
 
       <div class="l-identity__disclaimer">
@@ -52,7 +52,6 @@
       </div>
 
       <%= button_primary t('registration.register_button') %>
-
     </form>
   </section>
 </div>
