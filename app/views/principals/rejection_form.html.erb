@@ -10,11 +10,17 @@
       <p><%= item[:explanation] %></p>
     <% end %>
 
-    <form class="l-pre-qualification-questions__contact-form">
+    <%= form_for @message, url: contact_path, as: :contact, html: { class: 'l-pre-qualification-questions__contact-form' },
+      builder: Dough::Forms::Builders::Validation do |f| %>
+      <%= f.validation_summary %>
       <p class="l-pre-qualification-questions__contact-form-label"><%= t('rejection.input_label') %></p>
-      <label><%= t('rejection.email_address') %><input class="l-pre-qualification-questions__contact-form-input" type="email"></label>
-      <label><%= t('rejection.message') %><textarea class="l-pre-qualification-questions__contact-form-textarea t-message" cols="30" rows="10"></textarea></label>
+      <label><%= t('rejection.email_address') %>
+        <%= f.email_field :email, class: 'l-pre-qualification-questions__contact-form-input t-email' %>
+      </label>
+      <label><%= t('rejection.message') %>
+        <%= f.text_area :message, cols: 30, rows: 10, class: 'l-pre-qualification-questions__contact-form-textarea t-message' %>
+      </label>
       <%= button_primary t('rejection.submit_button') %>
-    </form>
+    <% end %>
   </section>
 </div>
