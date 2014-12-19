@@ -20,4 +20,10 @@ class ApplicationController < ActionController::Base
   end
 
   helper_method :display_primary_footer?
+
+  def display_adviser_sign_in?
+    false
+  end
+
+  helper_method :display_adviser_sign_in?
 end
