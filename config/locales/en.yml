@@ -32,6 +32,7 @@ en:
     register_button: Register my firm
   rejection:
     contact_sent: Your message has been sent and we will respond shortly.
+    heading: Sorry...
     try_again: Go back and try again
     subheading: "Unfortunately your firm can't be listed on our directory unless you:"
     reasons:
