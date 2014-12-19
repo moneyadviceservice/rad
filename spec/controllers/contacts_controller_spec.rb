@@ -6,7 +6,7 @@ RSpec.describe ContactsController, '#create', type: :controller do
 
   context 'with valid params' do
     before do
-      expect(AdminContact).to receive(:perform_async).with(email, message)
+      expect(AdminContactWorker).to receive(:perform_async).with(email, message)
       post :create, contact: { email: email, message: message }
     end
 
@@ -15,7 +15,7 @@ RSpec.describe ContactsController, '#create', type: :controller do
 
   context 'with invalid params' do
     before do
-      expect(AdminContact).to_not receive(:perform_async)
+      expect(AdminContactWorker).to_not receive(:perform_async)
       post :create
     end
 

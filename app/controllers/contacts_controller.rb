@@ -1,7 +1,7 @@
 class ContactsController < ApplicationController
   def create
     if ContactForm.new(params[:contact]).valid?
-      AdminContact.perform_async(
+      AdminContactWorker.perform_async(
         params[:contact][:email],
         params[:contact][:message]
       )
