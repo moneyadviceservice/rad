@@ -1,6 +1,6 @@
 en:
   adviser_sign_in: Sign in to adviser account
-  required: "* Required"
+  required: "* indicates required fields"
   registration:
     heading: Register your firm
     subheading: Register your firm on our Retirement Adviser Directory
