@@ -7,4 +7,8 @@ class RejectionPage < SitePrism::Page
   element :send_message, '.button--primary'
 
   element :go_back, '.t-back'
+
+  def valid?
+    has_css?('validation-summary--hidden')
+  end
 end

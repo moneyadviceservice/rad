@@ -8,7 +8,11 @@ RSpec.feature 'Principal contacts Administrator' do
     and_i_am_notified
   end
 
-  scenario 'Attempting to send an invalid message'
+  scenario 'Attempting to send an invalid message' do
+    given_i_have_failed_pre_qualification
+    when_i_attempt_to_submit_an_empty_message
+    then_i_am_told_to_provide_a_message
+  end
 
 
   def given_i_have_failed_pre_qualification
@@ -29,5 +33,13 @@ RSpec.feature 'Principal contacts Administrator' do
 
   def and_i_am_notified
     expect(rejection_page).to have_content('Your message has been sent')
+  end
+
+  def when_i_attempt_to_submit_an_empty_message
+    rejection_page.send_message.click
+  end
+
+  def then_i_am_told_to_provide_a_message
+    expect(rejection_page).to_not be_valid
   end
 end
