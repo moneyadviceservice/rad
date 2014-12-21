@@ -18,7 +18,10 @@ RSpec.describe Principal do
 
     describe 'FCA number' do
       it 'must be a 6 digit number' do
-        expect(build(:principal, fca_number: 'DERPER')).to_not be_valid
+        build(:principal).tap do |p|
+          p.fca_number = 12345
+          expect(p).to_not be_valid
+        end
       end
 
       it 'must match a `Lookup::Firm`' do
