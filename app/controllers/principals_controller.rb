@@ -18,5 +18,10 @@ class PrincipalsController < ApplicationController
   end
 
   def identification_form
+    @principal = Principal.new
+  end
+
+  def create
+    head :created
   end
 end
