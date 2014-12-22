@@ -25,6 +25,26 @@ class PrincipalsController < ApplicationController
   end
 
   def create
-    head :created
+    @principal = Principal.new(principal_params)
+
+    @principal.save
+
+    redirect_to @principal
+  end
+
+  private
+
+  def principal_params
+    params.require(:principal)
+      .permit(
+        :fca_number,
+        :website_address,
+        :first_name,
+        :last_name,
+        :job_title,
+        :email_address,
+        :telephone_number,
+        :confirmed_disclaimer
+      )
   end
 end

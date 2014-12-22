@@ -1,5 +1,6 @@
 RSpec.feature 'Principal provides identifying information' do
   let(:identification_page) { IdentificationPage.new }
+  let(:identity_confirmed_page) { IdentityConfirmedPage.new }
 
   scenario 'Identifying as a Firm Principal' do
     given_i_have_passed_the_pre_qualification_step
@@ -38,9 +39,10 @@ RSpec.feature 'Principal provides identifying information' do
   end
 
   def and_i_am_shown_a_confirmation_message
-    skip
+    expect(identity_confirmed_page).to be_displayed
   end
 
   def and_i_am_sent_a_verification_email
+    skip
   end
 end
