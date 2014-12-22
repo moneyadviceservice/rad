@@ -15,12 +15,6 @@ class ApplicationController < ActionController::Base
 
   helper_method :display_auth_in_header?
 
-  def display_primary_footer?
-    false
-  end
-
-  helper_method :display_primary_footer?
-
   def display_adviser_sign_in?
     false
   end
