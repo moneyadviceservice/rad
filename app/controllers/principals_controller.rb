@@ -28,7 +28,7 @@ class PrincipalsController < ApplicationController
     @principal = Principal.new(principal_params)
 
     @principal.save
-
+    IdentificationEmailWorker.perform_async(@principal.to_param)
     redirect_to @principal
   end
 

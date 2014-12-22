@@ -43,6 +43,6 @@ RSpec.feature 'Principal provides identifying information' do
   end
 
   def and_i_am_sent_a_verification_email
-    skip
+    expect(ActionMailer::Base.deliveries).to_not be_empty
   end
 end
