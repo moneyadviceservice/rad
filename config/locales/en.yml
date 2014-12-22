@@ -1,6 +1,12 @@
 en:
   adviser_sign_in: Sign in to adviser account
   required: "* indicates required fields"
+  success:
+    heading: Thank you
+    message_html: |
+      <p>An email will be sent to you shortly with further instructions.</p>
+      <p>If you do not receive an email from us within 15 minutes, please contact <a href="mailto:IFADirectoryQueries@moneyadviceservice.org.uk">IFADirectoryQueries@moneyadviceservice.org.uk</a>.</p>
+      <p>You can close this window now.</p>
   registration:
     heading: Register your firm
     subheading: Register your firm on our Retirement Adviser Directory
