@@ -13,13 +13,20 @@
     <%= form_for @message, url: contact_path, as: :contact, html: { class: 'l-pre-qualification-questions__contact-form' },
       builder: Dough::Forms::Builders::Validation do |f| %>
       <%= f.validation_summary %>
-      <p class="l-pre-qualification-questions__contact-form-label"><%= t('rejection.input_label') %></p>
-      <label><%= t('rejection.email_address') %>
-        <%= f.email_field :email, class: 'l-pre-qualification-questions__contact-form-input t-email' %>
-      </label>
-      <label><%= t('rejection.message') %>
-        <%= f.text_area :message, cols: 30, rows: 10, class: 'l-pre-qualification-questions__contact-form-textarea t-message' %>
-      </label>
+      <p class="form__label-heading"><%= t('rejection.input_label') %></p>
+
+      <%= f.form_row :email do %>
+        <%= f.errors_for :email %>
+        <label class="form__label-heading"><%= t('rejection.email_address') %></label>
+        <%= f.email_field :email, class: 't-email' %>
+      <% end %>
+      
+      <%= f.form_row :message do %>
+        <%= f.errors_for :message %>
+        <label class="form__label-heading"><%= t('rejection.message') %></label>
+        <%= f.text_area :message, cols: 30, rows: 10, class: 't-message' %>
+      <% end %>
+
       <%= button_primary t('rejection.submit_button') %>
     <% end %>
   </section>
