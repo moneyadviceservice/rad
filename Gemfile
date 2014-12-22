@@ -28,6 +28,9 @@ end
 
 group :test, :development do
   gem 'pry-rails'
+  gem 'capistrano'
+  gem 'capistrano-bundler'
+  gem 'capistrano-rails'
 end
 
 group :test do
