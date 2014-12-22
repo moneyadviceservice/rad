@@ -3,7 +3,7 @@
     <%= heading_tag(t('registration.heading'), level: 1, class: 'l-pre-qualification-questions__heading') %>
     <p class="l-pre-qualification-questions__subheading"><%= t('registration.subheading') %></p>
 
-    <%= form_for @prequalification, url: prequalify_principal_path, html: { class: 'l-pre-qualification-questions__form' } do |f| %>
+    <%= form_for @prequalification, url: prequalify_principals_path, html: { class: 'l-pre-qualification-questions__form' } do |f| %>
       <fieldset class="l-pre-qualification-questions__question-group t-question-1">
         <legend class="l-pre-qualification-questions__question"><%= t('registration.question_one.heading') %></legend>
         <p><%= t('registration.question_one.explanation') %></p>

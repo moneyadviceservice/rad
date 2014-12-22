@@ -1,5 +1,5 @@
 class RejectionPage < SitePrism::Page
-  set_url '/principal/reject'
+  set_url '/principals/reject'
   set_url_matcher /reject/
 
   element :principal_email, '.t-email'
