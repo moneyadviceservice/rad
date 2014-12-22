@@ -1,0 +1,8 @@
+.l-notice {
+  @include column(12);
+  min-height: 600px;
+
+  @include respond-to($mq-m) {
+    @include column(7);
+  }
+}
