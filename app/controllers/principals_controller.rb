@@ -7,9 +7,9 @@ class PrincipalsController < ApplicationController
     @prequalification = PreQualificationForm.new(params[:pre_qualification_form])
 
     if @prequalification.valid?
-      redirect_to identify_principal_path
+      redirect_to new_principal_path
     else
-      redirect_to reject_principal_path
+      redirect_to reject_principals_path
     end
   end
 
@@ -17,8 +17,11 @@ class PrincipalsController < ApplicationController
     @message = ContactForm.new
   end
 
-  def identification_form
+  def new
     @principal = Principal.new
+  end
+
+  def show
   end
 
   def create

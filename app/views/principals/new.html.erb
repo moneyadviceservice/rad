@@ -3,7 +3,7 @@
     <%= heading_tag(t('registration.heading'), level: 1, class: 'l-pre-qualification-questions__heading') %>
     <p><%= t('required') %></p>
 
-    <%= form_for @principal, url: principal_path, html: { class: 'l-pre-qualification-questions__section form' },
+    <%= form_for @principal, html: { class: 'l-pre-qualification-questions__section form' },
       builder: Dough::Forms::Builders::Validation do |f| %>
       <%= heading_tag(t('registration.firm.heading'), level: 2, class: '') %>
 

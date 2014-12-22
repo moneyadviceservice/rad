@@ -1,6 +1,6 @@
 class IdentificationPage < SitePrism::Page
-  set_url '/principal/identify'
-  set_url_matcher /identify/
+  set_url '/principals/new'
+  set_url_matcher /new/
 
   element :reference_number, '.t-reference-number'
   element :website_address, '.t-website-address'

@@ -8,7 +8,7 @@ class ContactsController < ApplicationController
         params[:contact][:message]
       )
 
-      redirect_to reject_principal_path, notice: t('rejection.contact_sent')
+      redirect_to reject_principals_path, notice: t('rejection.contact_sent')
     else
       render 'principals/rejection_form'
     end
