@@ -12,4 +12,11 @@ class IdentificationPage < SitePrism::Page
   element :confirmation, '.t-confirmation'
 
   element :register, '.button--primary'
+
+  def firm_unmatched?
+    find(
+      '.validation-summary__error',
+      text: I18n.t('registration.fca_number_un_matched')
+    )
+  end
 end

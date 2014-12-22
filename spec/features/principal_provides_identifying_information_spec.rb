@@ -11,9 +11,32 @@ RSpec.feature 'Principal provides identifying information' do
     and_i_am_sent_a_verification_email
   end
 
+  scenario 'My FCA number cannot be matched' do
+    given_i_have_passed_the_pre_qualification_step
+    when_i_provide_a_valid_but_unmatched_fca_number
+    then_i_am_told_my_firms_details_are_not_present
+    and_i_am_asked_to_contact_admin_if_i_have_any_queries
+  end
+
 
   def given_i_have_passed_the_pre_qualification_step
     identification_page.load
+  end
+
+  def when_i_provide_a_valid_but_unmatched_fca_number
+    identification_page.tap do |p|
+      p.reference_number.set '654321'
+      p.email_address.set 'ben@example.com'
+      p.register.click
+    end
+  end
+
+  def then_i_am_told_my_firms_details_are_not_present
+    expect(identification_page).to be_firm_unmatched
+  end
+
+  def and_i_am_asked_to_contact_admin_if_i_have_any_queries
+    skip
   end
 
   def when_i_provide_my_firms_fca_reference_number
