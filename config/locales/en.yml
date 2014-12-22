@@ -31,6 +31,8 @@ en:
       disclaimer: By registering your firm with the Money Advice Service, you are confirming that these details and any responses you give to our registration questions are true and accurate.
     register_button: Register my firm
   rejection:
+    contact_sent: Your message has been sent and we will respond shortly.
+    heading: Sorry...
     try_again: Go back and try again
     subheading: "Unfortunately your firm can't be listed on our directory unless you:"
     reasons:

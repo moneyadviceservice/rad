@@ -14,6 +14,7 @@ class PrincipalsController < ApplicationController
   end
 
   def rejection_form
+    @message = ContactForm.new
   end
 
   def identification_form

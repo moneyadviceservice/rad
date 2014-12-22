@@ -1,13 +1,16 @@
 class ContactsController < ApplicationController
   def create
-    if ContactForm.new(params[:contact]).valid?
-      AdminContact.perform_async(
+    @message = ContactForm.new(params[:contact])
+
+    if @message.valid?
+      AdminContactWorker.perform_async(
         params[:contact][:email],
         params[:contact][:message]
       )
-      head :ok
+
+      redirect_to reject_principal_path, notice: t('rejection.contact_sent')
     else
-      head :bad_request
+      render 'principals/rejection_form'
     end
   end
 end
