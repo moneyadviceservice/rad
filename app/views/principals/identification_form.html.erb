@@ -1,0 +1,89 @@
+<div class="l-constrained">
+  <section class="l-identity">
+    <%= heading_tag(t('registration.heading'), level: 1, class: 'l-pre-qualification-questions__heading') %>
+    <p><%= t('required') %></p>
+
+    <form class="l-pre-qualification-questions__section form">
+      <%= heading_tag(t('registration.firm.heading'), level: 2, class: '') %>
+
+      <div class="l-identity__row">
+        <div class="l-identity__field">
+          <div class="form__row">
+            <label class="form__label-heading"><%= t('registration.firm.reference_number') %></label>
+            <input type="text" class=""/>
+          </div>
+        </div>
+      </div>
+
+      <div class="l-identity__row">
+        <div class="l-identity__field">
+          <div class="form__row">
+          <label class="form__label-heading"><%= t('registration.firm.website_address') %></label>
+          <input type="text" class=""/>
+          </div>
+        </div>
+      </div>
+
+      <hr>
+
+      <%= heading_tag(t('registration.principal.heading'), level: 2, class: '') %>
+      <p><%= t('registration.principal.explanation') %></p>
+
+      <div class="l-identity__row">
+        <div class="l-identity__field">
+          <div class="form__row">
+            <label class="form__label-heading"><%= t('registration.principal.first_name') %></label>
+            <input type="text" class=""/>
+          </div>
+        </div>
+      </div>
+
+      <div class="l-identity__row">
+        <div class="l-identity__field">
+          <div class="form__row">
+            <label class="form__label-heading"><%= t('registration.principal.last_name') %></label>
+            <input type="text" class=""  />
+          </div>
+        </div>
+      </div>
+
+      <div class="l-identity__row">
+        <div class="l-identity__field">
+          <div class="form__row">
+            <label class="form__label-heading"><%= t('registration.principal.job_title') %></label>
+            <input type="text" class=""/>
+          </div>
+        </div>
+      </div>
+
+      <div class="l-identity__row">
+        <div class="l-identity__field">
+          <div class="form__row">
+            <label class="form__label-heading"><%= t('registration.principal.email_address') %></label>
+            <input type="email" class=""/>
+          </div>
+        </div>
+      </div>
+
+      <div class="l-identity__row">
+        <div class="l-identity__field">
+          <div class="form__row">
+            <label class="form__label-heading"><%= t('registration.principal.telephone_number') %></label>
+            <input type="text" class=""/>
+          </div>
+        </div>
+      </div>
+
+      <div class="l-identity__row">
+        <div class="l-identity__field l-identity__field--disclaimer">
+          <div class="form__row">
+            <input type="checkbox" class="l-identity__checkbox"/>
+            <label class="l-identity__disclaimer-label"><%= t('registration.principal.disclaimer') %></label>
+          </div>
+        </div>
+      </div>
+
+      <%= button_primary t('registration.register_button') %>
+    </form>
+  </section>
+</div>

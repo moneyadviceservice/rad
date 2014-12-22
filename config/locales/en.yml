@@ -1,5 +1,6 @@
 en:
   adviser_sign_in: Sign in to adviser account
+  required: "* indicates required fields"
   registration:
     heading: Register your firm
     subheading: Register your firm on our Retirement Adviser Directory
@@ -15,3 +16,33 @@ en:
     question_three:
       heading: Does your firm offer a whole of market service?
       explanation: This means that your firm is not restricted in the number of providers you are able to access for a given product
+    firm:
+      heading: Firm FCA information
+      reference_number: Firm reference number *
+      website_address: Firm website address
+    principal:
+      heading: Signed by
+      explanation: Must be a Principal or a Compliance Officer
+      first_name: First name *
+      last_name: Last name *
+      job_title: Job title *
+      email_address: Email address *
+      telephone_number: Telephone number *
+      disclaimer: By registering your firm with the Money Advice Service, you are confirming that these details and any responses you give to our registration questions are true and accurate.
+    register_button: Register my firm
+  rejection:
+    contact_sent: Your message has been sent and we will respond shortly.
+    heading: Sorry...
+    try_again: Go back and try again
+    subheading: "Unfortunately your firm can't be listed on our directory unless you:"
+    reasons:
+     - heading: Are active in the retirement planning market
+       explanation: This could include either 'at retirement' or 'post retirement'.
+     - heading: Your primary business model is regulated advice
+       explanation: This could be full or focused advice but must be fully covered by the financial services authority.
+     - heading: You offer a whole market service
+       explanation: This means that you are not restricted in the number of providers you are able to access for a given product.
+    email_address: Please enter your email address
+    message: Please enter your message below
+    input_label: If you believe you've been excluded in error, please send us an explanatory message and we will be in touch with you.
+    submit_button: Send message

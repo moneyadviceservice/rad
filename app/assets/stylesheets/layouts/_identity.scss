@@ -1,0 +1,36 @@
+.l-identity {
+  @include column(12);
+  margin-bottom: $baseline-unit*8;
+}
+
+.l-identity__row {
+  @include row(12);
+}
+
+.l-identity__field {
+  @include column(12);
+
+  @include respond-to($mq-m) {
+    @include column(5);
+  }
+
+  @include respond-to($mq-l) {
+    @include column(4);
+  }
+}
+
+.l-identity__field--disclaimer {
+  @include respond-to($mq-l) {
+    @include column(7);
+  }
+}
+
+.l-identity__checkbox {
+  float: left;
+  margin-top: 5px;
+}
+
+.l-identity__disclaimer-label {
+  display: block;
+  margin-left: $baseline-unit*4;
+}
