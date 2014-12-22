@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   root 'principals#pre_qualification_form'
 
+  get 'error', to: 'pages#error'
+
   resources :principals do
     collection do
       get 'prequalify',  action: 'pre_qualification_form'
@@ -10,4 +12,5 @@ Rails.application.routes.draw do
   end
 
   resource :contact, only: :create
+  resources :firms, only: :index
 end

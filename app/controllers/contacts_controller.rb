@@ -1,4 +1,6 @@
 class ContactsController < ApplicationController
+  before_action :authenticate, except: [:create]
+
   def create
     @message = ContactForm.new(params[:contact])
 
