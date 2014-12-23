@@ -16,7 +16,11 @@ class IdentificationPage < SitePrism::Page
   def firm_unmatched?
     find(
       '.validation-summary__error',
-      text: I18n.t('registration.fca_number_un_matched')
+      text: I18n.t('registration.principal.fca_number_un_matched')
     )
+  end
+
+  def errored?
+    find('.global-alert--error')
   end
 end

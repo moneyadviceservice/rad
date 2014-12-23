@@ -33,6 +33,7 @@ class PrincipalsController < ApplicationController
       IdentificationEmailWorker.perform_async(@principal.to_param)
       redirect_to @principal
     else
+      flash[:error] = t('registration.principal.validation_error_html')
       render 'new'
     end
   end

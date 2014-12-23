@@ -36,7 +36,7 @@ RSpec.feature 'Principal provides identifying information' do
   end
 
   def and_i_am_asked_to_contact_admin_if_i_have_any_queries
-    skip
+    expect(identification_page).to be_errored
   end
 
   def when_i_provide_my_firms_fca_reference_number

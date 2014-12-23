@@ -20,7 +20,10 @@ class Principal < ActiveRecord::Base
 
   def match_fca_number
     unless Lookup::Firm.exists?(fca_number: self.fca_number)
-      errors.add(:fca_number, I18n.t('registration.fca_number_un_matched'))
+      errors.add(
+        :fca_number,
+        I18n.t('registration.principal.fca_number_un_matched')
+      )
     end
   end
 
