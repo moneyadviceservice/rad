@@ -12,7 +12,7 @@ RSpec.feature 'Verify principal e-mail address' do
   end
 
   def given_i_am_a_verified_principal
-    @principal = FactoryGirl.create(:principal)
+    @principal = create(:principal)
   end
 
   def when_i_follow_the_customised_link

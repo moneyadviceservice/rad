@@ -1,5 +1,5 @@
 RSpec.describe 'Token Authentication', type: :request do
-  let(:principal) { FactoryGirl.create(:principal) }
+  let(:principal) { create(:principal) }
 
   describe 'GET /firms' do
     before do

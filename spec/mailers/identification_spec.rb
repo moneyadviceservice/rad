@@ -1,6 +1,5 @@
 RSpec.describe Identification, '#contact' do
-  let(:principal) { FactoryGirl.create(:principal) }
-
+  let(:principal) { create(:principal) }
 
   subject { described_class.contact(principal) }
 

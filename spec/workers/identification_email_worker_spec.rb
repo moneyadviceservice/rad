@@ -1,5 +1,5 @@
 RSpec.describe IdentificationEmailWorker do
-  let(:principal) { FactoryGirl.create(:principal) }
+  let(:principal) { create(:principal) }
 
   subject { described_class.new.perform(principal.id) }
 
