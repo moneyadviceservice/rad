@@ -16,6 +16,7 @@ gem 'dough-ruby',
   github: 'moneyadviceservice/dough',
   require: 'dough',
   ref: 'a0a625f'
+gem 'letter_opener', group: :development
 gem 'pg'
 gem 'sidekiq'
 gem 'uglifier', '>= 1.3.0'
