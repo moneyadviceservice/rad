@@ -23,4 +23,8 @@ class IdentificationPage < SitePrism::Page
   def errored?
     find('.global-alert--error')
   end
+
+  def validation_summaries
+    all('.validation-summary__error')
+  end
 end

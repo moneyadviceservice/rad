@@ -18,9 +18,31 @@ RSpec.feature 'Principal provides identifying information' do
     and_i_am_asked_to_contact_admin_if_i_have_any_queries
   end
 
+  scenario 'I provide invalid information' do
+    given_i_have_passed_the_pre_qualification_step
+    when_i_provide_incorrect_or_invalid_information
+    then_i_am_told_which_fields_are_incorrect_and_why
+  end
+
 
   def given_i_have_passed_the_pre_qualification_step
     identification_page.load
+  end
+
+  def when_i_provide_incorrect_or_invalid_information
+    identification_page.tap do |p|
+      p.email_address.set 'welp'
+      p.website_address.set 'wwwelp'
+      p.first_name.set ''
+      p.last_name.set ''
+      p.telephone_number.set 'welp'
+      p.confirmation.set false
+      p.register.click
+    end
+  end
+
+  def then_i_am_told_which_fields_are_incorrect_and_why
+    expect(identification_page.validation_summaries).to be_present
   end
 
   def when_i_provide_a_valid_but_unmatched_fca_number
