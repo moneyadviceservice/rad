@@ -1,5 +1,5 @@
 RSpec.describe IdentificationEmailWorker do
-  let(:principal) { Principal.create!(email_address: 'ben@example.com') }
+  let(:principal) { create(:principal) }
 
   subject { described_class.new.perform(principal.id) }
 

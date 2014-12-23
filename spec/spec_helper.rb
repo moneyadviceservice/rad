@@ -25,4 +25,6 @@ RSpec.configure do |c|
       Sidekiq::Testing.fake!
     end
   end
+
+  c.include FactoryGirl::Syntax::Methods
 end

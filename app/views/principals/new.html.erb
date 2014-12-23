@@ -5,6 +5,9 @@
 
     <%= form_for @principal, html: { class: 'l-pre-qualification-questions__section form' },
       builder: Dough::Forms::Builders::Validation do |f| %>
+
+      <%= f.validation_summary %>
+
       <%= heading_tag(t('registration.firm.heading'), level: 2, class: '') %>
 
       <div class="l-identity__row">

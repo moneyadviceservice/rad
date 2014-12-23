@@ -35,6 +35,8 @@ en:
       email_address: Email address *
       telephone_number: Telephone number *
       disclaimer: By registering your firm with the Money Advice Service, you are confirming that these details and any responses you give to our registration questions are true and accurate.
+      fca_number_un_matched: could not be matched
+      validation_error_html: If you have any queries, please contact <a href="mailto:IFADirectoryQueries@moneyadviceservice.org.uk">IFADirectoryQueries@moneyadviceservice.org.uk</a>.
     register_button: Register my firm
   rejection:
     contact_sent: Your message has been sent and we will respond shortly.
