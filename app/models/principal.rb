@@ -9,10 +9,12 @@ class Principal < ActiveRecord::Base
 
   def self.authenticate(token)
     principal = self.find_by(token: token)
+
     if principal
-      principal.touch(:last_sign_in_at)
-      yield(principal)
-      principal
+      principal.tap do |p|
+        p.touch(:last_sign_in_at)
+        yield(principal)
+      end
     end
   end
 
