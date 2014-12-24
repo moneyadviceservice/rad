@@ -14,7 +14,7 @@ class IdentificationPage < SitePrism::Page
   element :register, '.button--primary'
 
   def firm_unmatched?
-    find(
+    first(
       '.validation-summary__error',
       text: I18n.t('registration.principal.fca_number_un_matched')
     )
