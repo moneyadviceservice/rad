@@ -2,6 +2,8 @@ class IdentificationPage < SitePrism::Page
   set_url '/principals/new'
   set_url_matcher /new/
 
+  elements :validation_summaries, '.validation-summary__error'
+
   element :reference_number, '.t-reference-number'
   element :website_address, '.t-website-address'
   element :first_name, '.t-first-name'
@@ -22,9 +24,5 @@ class IdentificationPage < SitePrism::Page
 
   def errored?
     find('.global-alert--error')
-  end
-
-  def validation_summaries
-    all('.validation-summary__error')
   end
 end

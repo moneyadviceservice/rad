@@ -42,7 +42,7 @@ RSpec.feature 'Principal provides identifying information' do
   end
 
   def then_i_am_told_which_fields_are_incorrect_and_why
-    expect(identification_page.validation_summaries).to be_present
+    expect(identification_page).to have_validation_summaries
   end
 
   def when_i_provide_a_valid_but_unmatched_fca_number
