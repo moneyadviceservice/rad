@@ -6,6 +6,25 @@ class Principal < ActiveRecord::Base
     length: { is: 6 },
     numericality: { only_integer: true }
 
+  validates :email_address,
+    presence: true,
+    uniqueness: true,
+    length: { maximum: 50 },
+    format: { with: /.+@.+\..+/ }
+
+  validates :first_name, :last_name, :job_title, presence: true, length: 2..80
+
+  validates :telephone_number,
+    presence: true,
+    length: { maximum: 50 },
+    format: { with: /\A[0-9 ]+\z/ }
+
+  validates :website_address,
+    allow_blank: true,
+    length: { maximum: 100 }
+
+  validates_acceptance_of :confirmed_disclaimer, accept: true
+
   validate :match_fca_number
 
   def self.authenticate(token)

@@ -5,6 +5,11 @@ FactoryGirl.define do
   factory :principal do
     fca_number
     email_address
+    first_name 'Ben'
+    last_name 'Lovell'
+    job_title 'Director'
+    telephone_number '07715 930 400'
+    confirmed_disclaimer true
 
     after(:build) { |p| Lookup::Firm.create!(fca_number: p.fca_number) }
   end
