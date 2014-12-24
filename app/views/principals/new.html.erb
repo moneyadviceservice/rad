@@ -5,14 +5,13 @@
 
     <%= form_for @principal, html: { class: 'form' },
       builder: Dough::Forms::Builders::Validation do |f| %>
-
       <%= f.validation_summary %>
-
-      <%= heading_tag(t('registration.firm.heading'), level: 2, class: '') %>
+      <%= heading_tag(t('registration.firm.heading'), level: 2) %>
 
       <div class="l-identity__row">
         <div class="l-identity__field">
           <%= f.form_row do %>
+            <%= f.errors_for :fca_number %>
             <%= f.label :fca_number, t('registration.firm.reference_number'), class: 'form__label-heading' %>
             <%= f.text_field :fca_number, class: 't-reference-number' %>
           <% end %>
@@ -22,6 +21,7 @@
       <div class="l-identity__row">
         <div class="l-identity__field">
           <%= f.form_row do %>
+            <%= f.errors_for :website_address %>
             <%= f.label :website_address, t('registration.firm.website_address'), class: 'form__label-heading' %>
             <%= f.text_field :website_address, class: 't-website-address' %>
           <% end %>
@@ -30,12 +30,13 @@
 
       <hr>
 
-      <%= heading_tag(t('registration.principal.heading'), level: 2, class: '') %>
+      <%= heading_tag(t('registration.principal.heading'), level: 2) %>
       <p><%= t('registration.principal.explanation') %></p>
 
       <div class="l-identity__row">
         <div class="l-identity__field">
           <%= f.form_row do %>
+            <%= f.errors_for :first_name %>
             <%= f.label :first_name, t('registration.principal.first_name'), class: 'form__label-heading' %>
             <%= f.text_field :first_name, class: 't-first-name' %>
           <% end %>
@@ -45,6 +46,7 @@
       <div class="l-identity__row">
         <div class="l-identity__field">
           <%= f.form_row do %>
+            <%= f.errors_for :last_name %>
             <%= f.label :last_name, t('registration.principal.last_name'), class: 'form__label-heading' %>
             <%= f.text_field :last_name, class: 't-last-name' %>
           <% end %>
@@ -54,6 +56,7 @@
       <div class="l-identity__row">
         <div class="l-identity__field">
           <%= f.form_row do %>
+            <%= f.errors_for :job_title %>
             <%= f.label :job_title, t('registration.principal.job_title'), class: 'form__label-heading' %>
             <%= f.text_field :job_title, class: 't-job-title' %>
           <% end %>
@@ -63,6 +66,7 @@
       <div class="l-identity__row">
         <div class="l-identity__field">
           <%= f.form_row do %>
+            <%= f.errors_for :email_address %>
             <%= f.label :email_address, t('registration.principal.email_address'), class: 'form__label-heading' %>
             <%= f.email_field :email_address, class: 't-email-address' %>
           <% end %>
@@ -72,6 +76,7 @@
       <div class="l-identity__row">
         <div class="l-identity__field">
           <%= f.form_row do %>
+            <%= f.errors_for :telephone_number %>
             <%= f.label :telephone_number, t('registration.principal.telephone_number'), class: 'form__label-heading' %>
             <%= f.text_field :telephone_number, class: 't-telephone-number' %>
           <% end %>
@@ -81,6 +86,7 @@
       <div class="l-identity__row">
         <div class="l-identity__field l-identity__field--disclaimer">
           <%= f.form_row do %>
+            <%= f.errors_for :confirmed_disclaimer %>
             <%= f.check_box :confirmed_disclaimer, class: 'l-identity__checkbox t-confirmation' %>
             <%= f.label :confirmed_disclaimer, t('registration.principal.disclaimer'), class: 'l-identity__disclaimer-label' %>
           <% end %>
