@@ -2,6 +2,7 @@ class Principal < ActiveRecord::Base
   before_create :generate_token
 
   validates :fca_number,
+    uniqueness: true,
     length: { is: 6 },
     numericality: { only_integer: true }
 

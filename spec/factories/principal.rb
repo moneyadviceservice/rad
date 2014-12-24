@@ -3,9 +3,9 @@ FactoryGirl.define do
   sequence(:email_address) { |n| "principal#{n}@example.com" }
 
   factory :principal do
-    before(:create) { |p| Lookup::Firm.create!(fca_number: p.fca_number) }
-
     fca_number
     email_address
+
+    after(:build) { |p| Lookup::Firm.create!(fca_number: p.fca_number) }
   end
 end

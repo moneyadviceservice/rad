@@ -22,6 +22,13 @@ RSpec.describe Principal do
 
         expect(principal).to_not be_valid
       end
+
+      it 'must be unique' do
+        build(:principal).tap do |p|
+          p.fca_number = principal.fca_number
+          expect(p).to_not be_valid
+        end
+      end
     end
   end
 end
