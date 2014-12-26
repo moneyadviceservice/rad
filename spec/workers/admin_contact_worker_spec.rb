@@ -10,7 +10,7 @@ RSpec.describe AdminContactWorker, '#perform' do
   end
 
   it 'delivers the email' do
-    expect(mailer).to receive(:deliver)
+    expect(mailer).to receive(:deliver_now)
     perform_job
   end
 end
