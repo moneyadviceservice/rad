@@ -3,6 +3,6 @@ class IdentificationEmailWorker
 
   def perform(id)
     principal = Principal.find(id)
-    Identification.contact(principal).deliver
+    Identification.contact(principal).deliver_now
   end
 end

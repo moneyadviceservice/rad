@@ -9,7 +9,7 @@ ruby '2.1.5'
 # 3. Place dependencies in the group they belong
 # 4. Only use version specifiers where appropriate
 
-gem 'rails', '4.1.8'
+gem 'rails', '4.2.0'
 
 gem 'bowndler', github: 'moneyadviceservice/bowndler'
 gem 'dough-ruby',
