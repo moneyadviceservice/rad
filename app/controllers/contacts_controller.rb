@@ -5,10 +5,10 @@ class ContactsController < ApplicationController
     @message = ContactForm.new(params[:contact])
 
     if @message.valid?
-      AdminContactWorker.perform_async(
+      AdminContact.contact(
         params[:contact][:email],
         params[:contact][:message]
-      )
+      ).deliver_later
 
       redirect_to reject_principals_path, notice: t('rejection.contact_sent')
     else
