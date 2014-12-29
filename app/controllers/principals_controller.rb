@@ -33,7 +33,7 @@ class PrincipalsController < ApplicationController
       Identification.contact(@principal).deliver_later
       redirect_to @principal
     else
-      flash[:error] = t('registration.principal.validation_error_html')
+      flash.now[:error] = t('registration.principal.validation_error_html')
       render 'new'
     end
   end
