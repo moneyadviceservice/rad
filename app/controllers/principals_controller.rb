@@ -30,7 +30,7 @@ class PrincipalsController < ApplicationController
     @principal = Principal.new(principal_params)
 
     if @principal.save
-      IdentificationEmailWorker.perform_async(@principal.to_param)
+      Identification.contact(@principal).deliver_later
       redirect_to @principal
     else
       flash[:error] = t('registration.principal.validation_error_html')
