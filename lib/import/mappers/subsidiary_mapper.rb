@@ -1,10 +1,17 @@
 module Import::Mappers
   class SubsidiaryMapper
-    def initialize(mapper_class)
-      @mapper_class = mapper_class
+    FCA_NUMBER = 0
+    NAME = 1
+
+    def initialize(model_class)
+      @model_class = model_class
     end
 
     def call(row)
+      @model_class.create!(
+        fca_number: row[FCA_NUMBER],
+        name: row[NAME]
+      )
     end
   end
 end
