@@ -11,30 +11,39 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141222150416) do
+ActiveRecord::Schema.define(version: 20141230112136) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "lookup_firms", force: true do |t|
-    t.integer  "fca_number",                   null: false
-    t.string   "registered_name", default: "", null: false
+  create_table "lookup_firms", force: :cascade do |t|
+    t.integer  "fca_number",                               null: false
+    t.string   "registered_name", limit: 255, default: "", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "lookup_firms", ["fca_number"], name: "index_lookup_firms_on_fca_number", unique: true, using: :btree
 
-  create_table "principals", force: true do |t|
+  create_table "lookup_subsidiaries", force: :cascade do |t|
+    t.integer  "fca_number",              null: false
+    t.string   "name",       default: "", null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+  end
+
+  add_index "lookup_subsidiaries", ["fca_number"], name: "index_lookup_subsidiaries_on_fca_number", using: :btree
+
+  create_table "principals", force: :cascade do |t|
     t.integer  "fca_number"
-    t.string   "token"
-    t.string   "website_address"
-    t.string   "first_name"
-    t.string   "last_name"
-    t.string   "job_title"
-    t.string   "email_address"
-    t.string   "telephone_number"
-    t.boolean  "confirmed_disclaimer", default: false
+    t.string   "token",                limit: 255
+    t.string   "website_address",      limit: 255
+    t.string   "first_name",           limit: 255
+    t.string   "last_name",            limit: 255
+    t.string   "job_title",            limit: 255
+    t.string   "email_address",        limit: 255
+    t.string   "telephone_number",     limit: 255
+    t.boolean  "confirmed_disclaimer",             default: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.datetime "last_sign_in_at"

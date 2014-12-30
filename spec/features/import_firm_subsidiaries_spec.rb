@@ -7,7 +7,7 @@ RSpec.feature 'Importing a Firm\'s Subsidiaries' do
 
 
   def given_an_imported_firm
-    Lookup::Firm.create!(fca_number: 123456, registered_name: 'Ben Lovell Ltd')
+    @firm = Lookup::Firm.create!(fca_number: 123456, registered_name: 'Ben Lovell Ltd')
   end
 
   def when_i_import_the_firms_subsidiaries
@@ -19,5 +19,6 @@ RSpec.feature 'Importing a Firm\'s Subsidiaries' do
 
   def then_the_subsidiaries_are_associated_with_the_firm
     skip
+    expect(@firm.subsidiaries).to_not be_empty
   end
 end
