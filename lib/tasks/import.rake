@@ -17,4 +17,23 @@ namespace :import do
       abort
     end
   end
+
+  desc 'Imports Subsidiaries from the CSV supplied by CSV=(/path/to/csv)'
+  task subsidiaries: :environment do
+    if csv_path = ENV['CSV']
+      puts 'Destroying existing Subsidiaries...'
+      Lookup::Subsidiary.destroy_all
+      puts 'Importing Subsidiaries, this may take a while...'
+
+      Import::Importer.new(
+        csv_path,
+        Import::Mappers::SubsidiaryMapper.new(Lookup::Subsidiary)
+      ).import
+
+      puts 'Done!'
+    else
+      puts 'Usage: rake import:subsidiaries CSV=/path/to/csv.ext'
+      abort
+    end
+  end
 end
