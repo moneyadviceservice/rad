@@ -10,7 +10,7 @@
 
       <div class="l-identity__row">
         <div class="l-identity__field">
-          <%= f.form_row do %>
+          <%= f.form_row(:fca_number) do %>
             <%= f.errors_for :fca_number %>
             <%= f.label :fca_number, t('registration.firm.reference_number'), class: 'form__label-heading' %>
             <%= f.text_field :fca_number, class: 't-reference-number' %>
@@ -20,7 +20,7 @@
 
       <div class="l-identity__row">
         <div class="l-identity__field">
-          <%= f.form_row do %>
+          <%= f.form_row(:website_address) do %>
             <%= f.errors_for :website_address %>
             <%= f.label :website_address, t('registration.firm.website_address'), class: 'form__label-heading' %>
             <%= f.text_field :website_address, class: 't-website-address' %>
@@ -35,7 +35,7 @@
 
       <div class="l-identity__row">
         <div class="l-identity__field">
-          <%= f.form_row do %>
+          <%= f.form_row(:first_name) do %>
             <%= f.errors_for :first_name %>
             <%= f.label :first_name, t('registration.principal.first_name'), class: 'form__label-heading' %>
             <%= f.text_field :first_name, class: 't-first-name' %>
@@ -45,7 +45,7 @@
 
       <div class="l-identity__row">
         <div class="l-identity__field">
-          <%= f.form_row do %>
+          <%= f.form_row(:last_name) do %>
             <%= f.errors_for :last_name %>
             <%= f.label :last_name, t('registration.principal.last_name'), class: 'form__label-heading' %>
             <%= f.text_field :last_name, class: 't-last-name' %>
@@ -55,7 +55,7 @@
 
       <div class="l-identity__row">
         <div class="l-identity__field">
-          <%= f.form_row do %>
+          <%= f.form_row(:job_title) do %>
             <%= f.errors_for :job_title %>
             <%= f.label :job_title, t('registration.principal.job_title'), class: 'form__label-heading' %>
             <%= f.text_field :job_title, class: 't-job-title' %>
@@ -65,7 +65,7 @@
 
       <div class="l-identity__row">
         <div class="l-identity__field">
-          <%= f.form_row do %>
+          <%= f.form_row(:email_address) do %>
             <%= f.errors_for :email_address %>
             <%= f.label :email_address, t('registration.principal.email_address'), class: 'form__label-heading' %>
             <%= f.email_field :email_address, class: 't-email-address' %>
@@ -75,7 +75,7 @@
 
       <div class="l-identity__row">
         <div class="l-identity__field">
-          <%= f.form_row do %>
+          <%= f.form_row(:telephone_number) do %>
             <%= f.errors_for :telephone_number %>
             <%= f.label :telephone_number, t('registration.principal.telephone_number'), class: 'form__label-heading' %>
             <%= f.text_field :telephone_number, class: 't-telephone-number' %>
@@ -85,7 +85,7 @@
 
       <div class="l-identity__row">
         <div class="l-identity__field l-identity__field--disclaimer">
-          <%= f.form_row do %>
+          <%= f.form_row(:confirmed_disclaimer) do %>
             <%= f.errors_for :confirmed_disclaimer %>
             <%= f.check_box :confirmed_disclaimer, class: 'l-identity__checkbox t-confirmation' %>
             <%= f.label :confirmed_disclaimer, t('registration.principal.disclaimer'), class: 'l-identity__disclaimer-label' %>
