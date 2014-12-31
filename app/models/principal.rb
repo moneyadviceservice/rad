@@ -38,6 +38,19 @@ class Principal < ActiveRecord::Base
     end
   end
 
+  def field_order
+    [
+      :fca_number,
+      :website_address,
+      :first_name,
+      :last_name,
+      :job_title,
+      :email_address,
+      :telephone_number,
+      :confirmed_disclaimer
+    ]
+  end
+
   private
 
   def match_fca_number
