@@ -57,7 +57,7 @@ class Principal < ActiveRecord::Base
     unless Lookup::Firm.exists?(fca_number: self.fca_number)
       errors.add(
         :fca_number,
-        I18n.t('registration.principal.fca_number_un_matched')
+        I18n.t('registration.principal.fca_number_un_matched', attribute: self.class.human_attribute_name(:fca_number))
       )
     end
   end

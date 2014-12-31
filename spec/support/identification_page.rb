@@ -18,7 +18,7 @@ class IdentificationPage < SitePrism::Page
   def firm_unmatched?
     first(
       '.validation-summary__error',
-      text: I18n.t('registration.principal.fca_number_un_matched')
+      text: I18n.t('registration.principal.fca_number_un_matched', attribute: Principal.human_attribute_name(:fca_number))
     )
   end
 

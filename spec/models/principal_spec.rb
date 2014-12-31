@@ -28,6 +28,10 @@ RSpec.describe Principal do
         Lookup::Firm.find_by(fca_number: principal.fca_number).destroy
 
         expect(principal).to_not be_valid
+
+        expected = I18n.t('registration.principal.fca_number_un_matched',
+                          attribute: described_class.human_attribute_name(:fca_number))
+        expect(principal.errors[:fca_number]).to include(expected)
       end
 
       it 'must be unique' do
