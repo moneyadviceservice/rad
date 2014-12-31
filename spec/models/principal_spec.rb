@@ -125,4 +125,23 @@ RSpec.describe Principal do
       end
     end
   end
+
+  describe 'dough #field_order' do
+    let(:fields) do
+      [
+        :fca_number,
+        :website_address,
+        :first_name,
+        :last_name,
+        :job_title,
+        :email_address,
+        :telephone_number,
+        :confirmed_disclaimer
+      ]
+    end
+
+    it 'orders fields per the identification form' do
+      expect(principal.field_order).to contain_exactly(*fields)
+    end
+  end
 end
