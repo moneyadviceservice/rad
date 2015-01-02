@@ -36,6 +36,13 @@ RSpec.describe Principal do
           expect(p).to_not be_valid
         end
       end
+
+      it 'uses the custom attribute name' do
+        Lookup::Firm.find_by(fca_number: principal.fca_number).destroy
+        principal.validate
+
+        expect(principal.errors.full_messages).to include(/^FCA Number/)
+      end
     end
 
     describe 'Email address' do
