@@ -15,7 +15,7 @@ gem 'bowndler', github: 'moneyadviceservice/bowndler'
 gem 'dough-ruby',
   github: 'moneyadviceservice/dough',
   require: 'dough',
-  ref: 'a0a625f'
+  ref: 'cf08913'
 gem 'letter_opener', group: :development
 gem 'pg'
 gem 'sidekiq'
