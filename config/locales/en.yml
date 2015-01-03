@@ -1,4 +1,8 @@
 en:
+  activerecord:
+    attributes:
+      principal:
+        fca_number: FCA Number
   adviser_sign_in: Sign in to adviser account
   required: "* indicates required fields"
   success:
