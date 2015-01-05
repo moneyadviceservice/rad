@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   get 'error', to: 'pages#error'
 
-  resources :principals do
+  resources :principals, param: :token do
     collection do
       get 'prequalify',  action: 'pre_qualification_form'
       post 'prequalify', action: 'pre_qualification'

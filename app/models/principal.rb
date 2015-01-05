@@ -1,4 +1,6 @@
 class Principal < ActiveRecord::Base
+  self.primary_key = 'token'
+
   before_create :generate_token
 
   validates :fca_number,
@@ -26,6 +28,10 @@ class Principal < ActiveRecord::Base
   validates_acceptance_of :confirmed_disclaimer, accept: true
 
   validate :match_fca_number
+
+  def to_param
+    token.parameterize
+  end
 
   def self.authenticate(token)
     principal = self.find_by(token: token)
@@ -63,6 +69,6 @@ class Principal < ActiveRecord::Base
   end
 
   def generate_token
-    self.token = SecureRandom.hex
+    self.token = SecureRandom.hex(4)
   end
 end

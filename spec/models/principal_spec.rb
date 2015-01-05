@@ -1,9 +1,14 @@
 RSpec.describe Principal do
   let(:principal) { create(:principal) }
 
+  it 'uses the token for ID purposes' do
+    expect(principal.id).to eq(principal.token)
+    expect(Principal.find(principal.token)).to eq(principal)
+  end
+
   context 'upon creation' do
-    it 'generates a token' do
-      expect(principal.token).to be_present
+    it 'generates an 8 character, 4 byte token' do
+      expect(principal.token.length).to eq(8)
     end
   end
 
