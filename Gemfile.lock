@@ -81,6 +81,8 @@ GEM
     factory_girl_rails (4.5.0)
       factory_girl (~> 4.5.0)
       railties (>= 3.0.0)
+    faker (1.4.3)
+      i18n (~> 0.5)
     globalid (0.3.0)
       activesupport (>= 4.1.0)
     hike (1.2.3)
@@ -207,6 +209,7 @@ DEPENDENCIES
   coffee-rails (~> 4.0.0)
   dough-ruby!
   factory_girl_rails
+  faker
   jquery-rails
   launchy
   letter_opener
