@@ -3,6 +3,10 @@
   margin-bottom: $baseline-unit*8;
 
   @include respond-to($mq-m) {
+    @include column(9);
+  }
+
+  @include respond-to($mq-l) {
     @include column(7);
   }
 }
