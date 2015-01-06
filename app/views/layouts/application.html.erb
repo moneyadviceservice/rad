@@ -2,6 +2,9 @@
 <html>
 <head>
   <title>Retirement Advisor Directory</title>
+  <meta name="viewport" content="width=device-width">
+  <%= csrf_meta_tags %>
+
   <%= stylesheet_link_tag 'dough/assets/stylesheets/basic' %>
   <%= stylesheet_link_tag 'dough/assets/stylesheets/font_files' %>
 
@@ -21,8 +24,6 @@
   <script>
     <%= raw Rails.application.assets['modernizr/modernizr'] %>
   </script>
-
-  <%= csrf_meta_tags %>
 </head>
 <body>
 <%= render 'shared/skip_links' %>
