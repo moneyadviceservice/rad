@@ -1,16 +1,16 @@
 <div class="l-constrained">
-  <section class="l-pre-qualification-questions">
-    <%= link_to t('rejection.try_again'), prequalify_principals_path, class: 'l-pre-qualification-questions__try-again t-back' %>
+  <section class="l-pre-qualification">
+    <%= link_to t('rejection.try_again'), prequalify_principals_path, class: 'l-pre-qualification__try-again t-back' %>
 
-    <%= heading_tag(t('rejection.heading'), level: 1, class: 'l-pre-qualification-questions__heading') %>
-    <p class="l-pre-qualification-questions__subheading"><%= t('rejection.subheading') %></p>
+    <%= heading_tag(t('rejection.heading'), level: 1) %>
+    <p class="l-pre-qualification__subheading"><%= t('rejection.subheading') %></p>
 
     <% t('rejection.reasons').each do |item| %>
-      <%= heading_tag(item[:heading], level: 2, class: 'l-pre-qualification-questions__question') %>
+      <%= heading_tag(item[:heading], level: 2, class: 'l-pre-qualification__question') %>
       <p><%= item[:explanation] %></p>
     <% end %>
 
-    <%= form_for @message, url: contact_path, as: :contact, html: { class: 'l-pre-qualification-questions__contact-form' },
+    <%= form_for @message, url: contact_path, as: :contact, html: { class: 'l-pre-qualification__contact-form' },
       builder: Dough::Forms::Builders::Validation do |f| %>
       <%= f.validation_summary %>
       <p class="form__label-heading"><%= t('rejection.input_label') %></p>
@@ -20,7 +20,7 @@
         <label class="form__label-heading"><%= t('rejection.email_address') %></label>
         <%= f.email_field :email, class: 't-email' %>
       <% end %>
-      
+
       <%= f.form_row :message do %>
         <%= f.errors_for :message %>
         <label class="form__label-heading"><%= t('rejection.message') %></label>
