@@ -1,4 +1,6 @@
 class Principal < ActiveRecord::Base
+  self.primary_key = 'token'
+
   before_create :generate_token
 
   validates :fca_number,
@@ -27,15 +29,8 @@ class Principal < ActiveRecord::Base
 
   validate :match_fca_number
 
-  def self.authenticate(token)
-    principal = self.find_by(token: token)
-
-    if principal
-      principal.tap do |p|
-        p.touch(:last_sign_in_at)
-        yield(principal)
-      end
-    end
+  def to_param
+    token.parameterize
   end
 
   def field_order
@@ -63,6 +58,6 @@ class Principal < ActiveRecord::Base
   end
 
   def generate_token
-    self.token = SecureRandom.hex
+    self.token = SecureRandom.hex(4)
   end
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141230112136) do
+ActiveRecord::Schema.define(version: 20150106115732) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,7 +46,6 @@ ActiveRecord::Schema.define(version: 20141230112136) do
     t.boolean  "confirmed_disclaimer",             default: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.datetime "last_sign_in_at"
   end
 
   add_index "principals", ["fca_number"], name: "index_principals_on_fca_number", unique: true, using: :btree

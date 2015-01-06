@@ -26,16 +26,16 @@ class ApplicationController < ActionController::Base
   private
 
   def authenticate
-    authenticate_token or redirect_to(error_path) unless current_user
+    current_user
+  rescue ActiveRecord::RecordNotFound
+    redirect_to error_path
   end
 
   def current_user
-    @current_user ||= Principal.find_by!(id: session[:user_id]) if session.key?(:user_id)
+    @current_user ||= Principal.find(auth_token)
   end
 
-  def authenticate_token
-    @current_user = Principal.authenticate(params[:token]) do |principal|
-      session[:user_id] = principal.id
-    end
+  def auth_token
+    params[:principal_token] || params[:token]
   end
 end

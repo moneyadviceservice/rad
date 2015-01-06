@@ -3,19 +3,21 @@ RSpec.describe 'Token Authentication', type: :request do
 
   describe 'GET /firms' do
     before do
-      get firms_path(token: token)
+      get principal_firms_path(principal)
     end
 
     context 'with a valid token' do
-      let(:token) { principal.token }
-
       it 'returns 200 response' do
         expect(response.status).to be(200)
       end
     end
 
     context 'with an invalid token' do
-      let(:token) { 'invalid-token' }
+      let(:principal) do
+        create(:principal) do |p|
+          p.token = 'abcdefg'
+        end
+      end
 
       it 'returns 302 response' do
         expect(response.status).to be(302)
