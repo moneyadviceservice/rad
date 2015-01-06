@@ -87,5 +87,5 @@ Rails.application.configure do
 
   ActionMailer::Base.delivery_method = :smtp
 
-  ActionMailer::Base.default_url_options = { host: ENV['EMAIL_HOST'] }
+  ActionMailer::Base.config.default_url_options = { host: ENV['EMAIL_HOST'] }
 end
