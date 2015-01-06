@@ -1,5 +1,5 @@
 <div class="l-constrained">
-  <%= form_for @message, url: contact_path, as: :contact, html: { class: 'l-pre-qualification-questions' },
+  <%= form_for @message, url: contact_path, as: :contact, html: { class: 'form form--collapse l-pre-qualification-questions' },
     builder: Dough::Forms::Builders::Validation do |f| %>
     <%= f.validation_summary %>
     <%= heading_tag(t('rejection.heading'), level: 1, class: 'l-pre-qualification-questions__heading') %>
