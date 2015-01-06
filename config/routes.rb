@@ -9,8 +9,9 @@ Rails.application.routes.draw do
       post 'prequalify', action: 'pre_qualification'
       get 'reject',      action: 'rejection_form'
     end
+
+    resources :firms, only: :index
   end
 
   resource :contact, only: :create
-  resources :firms, only: :index
 end

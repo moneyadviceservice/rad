@@ -33,17 +33,6 @@ class Principal < ActiveRecord::Base
     token.parameterize
   end
 
-  def self.authenticate(token)
-    principal = self.find_by(token: token)
-
-    if principal
-      principal.tap do |p|
-        p.touch(:last_sign_in_at)
-        yield(principal)
-      end
-    end
-  end
-
   def field_order
     [
       :fca_number,
