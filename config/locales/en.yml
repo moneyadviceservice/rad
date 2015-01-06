@@ -11,6 +11,7 @@ en:
       <p>An email will be sent to you shortly with further instructions.</p>
       <p>If you do not receive an email from us within 15 minutes, please contact <a href="mailto:IFADirectoryQueries@moneyadviceservice.org.uk">IFADirectoryQueries@moneyadviceservice.org.uk</a>.</p>
       <p>You can close this window now.</p>
+
   registration:
     heading: Register your firm
     subheading: Register your firm on our Retirement Adviser Directory
@@ -42,6 +43,7 @@ en:
       fca_number_un_matched: could not be matched
       validation_error_html: If you have any queries, please contact <a href="mailto:IFADirectoryQueries@moneyadviceservice.org.uk">IFADirectoryQueries@moneyadviceservice.org.uk</a>.
     register_button: Register my firm
+
   rejection:
     contact_sent: Your message has been sent and we will respond shortly.
     heading: Sorry...
@@ -58,3 +60,10 @@ en:
     message: Please enter your message below
     input_label: If you believe you've been excluded in error, please send us an explanatory message and we will be in touch with you.
     submit_button: Send message
+
+  firms:
+    title: Firm and subsidiaries
+    heading_one: 'Currently known as:'
+    heading_two: 'Or select the trading name:'
+    introduction: Bacon ipsum dolor amet frankfurter turducken corned beef chuck turkey, ham tongue ribeye prosciutto boudin flank bresaola picanha. Salami beef ribs pancetta ham biltong turkey, boudin strip steak alcatra fatback bacon meatloaf.
+    select_firm: Submit this firm
