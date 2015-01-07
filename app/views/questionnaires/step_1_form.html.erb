@@ -3,7 +3,7 @@
     <%= heading_tag(t('questionnaire.step_one.heading'), level: 1, class: 'l-questionnaire-step-1-questions__heading') %>
     <p class="l-questionnaire-step-1-questions__intro"><%= t('questionnaire.step_one.introduction') %></p>
 
-    <%= form_for @questionnaire, url: step_1_firm_questionnaire_path, html: { class: 'l-questionnaire-step-1-questions__form' }, builder: Dough::Forms::Builders::Validation do |f| %>
+    <%= form_for @questionnaire, url: step_1_principal_firm_questionnaire_path, html: { class: 'l-questionnaire-step-1-questions__form' }, builder: Dough::Forms::Builders::Validation do |f| %>
       <%= f.validation_summary %>
 
       <%= heading_tag(t('questionnaire.step_one.subheading_one'), level: 2) %>
