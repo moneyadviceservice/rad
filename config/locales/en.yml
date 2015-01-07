@@ -67,3 +67,8 @@ en:
     heading_two: 'Or select the trading name:'
     introduction: Bacon ipsum dolor amet frankfurter turducken corned beef chuck turkey, ham tongue ribeye prosciutto boudin flank bresaola picanha. Salami beef ribs pancetta ham biltong turkey, boudin strip steak alcatra fatback bacon meatloaf.
     select_firm: Submit this firm
+  questionnaires:
+    step_1:
+      heading: Provide details about your firm
+      intro: The more information you provide about your firm and the advisers in your firm, the easier it will be for us to match the right customers to you. A complete profile will also help to increase the number of views your firm receives. We will also provide you with the ability to flesh out your firm’s profile with additional information in the coming months.
+      button_next: Describe your firm's specialities
