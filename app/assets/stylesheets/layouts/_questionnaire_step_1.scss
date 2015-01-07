@@ -1,0 +1,8 @@
+.l-questionnaire-step-1-questions {
+  @include column(12);
+  margin-bottom: $baseline-unit*8;
+
+  @include respond-to($mq-m) {
+    @include column(7);
+  }
+}

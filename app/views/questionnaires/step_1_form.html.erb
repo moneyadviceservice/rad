@@ -1,0 +1,10 @@
+<div class="l-constrained">
+  <section class="l-questionnaire-step-1-questions">
+    <%= heading_tag(t('questionnaires.step_1.heading'), level: 1, class: 'l-questionnaire-step-1-questions__heading') %>
+    <p class="l-questionnaire-step-1-questions__intro"><%= t('questionnaires.step_1.intro') %></p>
+
+    <%= form_for @questionnaire, url: step_1_firm_questionnaire_path, html: { class: 'l-questionnaire-step-1-questions__form' } do |f| %>
+      <%= button_primary t('questionnaires.step_1.button_next') %>
+    <% end %>
+  </section>
+</div>
