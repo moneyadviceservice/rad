@@ -3,7 +3,7 @@ RSpec.describe 'Token Authentication', type: :request do
 
   describe 'GET /firms' do
     before do
-      get principal_firms_path(principal)
+      get principal_firm_path(principal)
     end
 
     context 'with a valid token' do
