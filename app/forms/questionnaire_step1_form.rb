@@ -6,7 +6,8 @@ class QuestionnaireStep1Form
                 :main_office_line_1,
                 :main_office_line_2,
                 :main_office_town,
-                :main_office_county
+                :main_office_county,
+                :main_office_postcode
 
   validates :firm_email_address,
             presence: true,
@@ -21,6 +22,10 @@ class QuestionnaireStep1Form
   validates :main_office_line_1,
             presence: true,
             length: {maximum: 100}
+
+  validates :main_office_postcode,
+            presence: true,
+            format: {with: /\A[a-zA-Z\d]{1,4} [a-zA-Z\d]{1,3}\z/}
 
   validates :main_office_line_2,
             :main_office_town,
