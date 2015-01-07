@@ -14,4 +14,12 @@ Rails.application.routes.draw do
   end
 
   resource :contact, only: :create
+
+  resources :firms, only: :index do
+    resource :questionnaire, only: [] do
+      collection do
+        get 'step-1', action: 'step_1_form'
+      end
+    end
+  end
 end
