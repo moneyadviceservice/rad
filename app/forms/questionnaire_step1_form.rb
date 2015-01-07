@@ -1,7 +1,12 @@
 class QuestionnaireStep1Form
   include ActiveModel::Model
 
-  attr_accessor :firm_email_address, :firm_telephone_number, :main_office_line_1, :main_office_line_2
+  attr_accessor :firm_email_address,
+                :firm_telephone_number,
+                :main_office_line_1,
+                :main_office_line_2,
+                :main_office_town,
+                :main_office_county
 
   validates :firm_email_address,
             presence: true,
@@ -18,5 +23,7 @@ class QuestionnaireStep1Form
             length: {maximum: 100}
 
   validates :main_office_line_2,
+            :main_office_town,
+            :main_office_county,
             presence: true
 end

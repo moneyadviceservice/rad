@@ -3,13 +3,17 @@ RSpec.describe QuestionnaireStep1Form, '#valid?', type: :model do
   let(:firm_telephone_number) { '0300 500 5000' }
   let(:main_office_line_1) { 'Holborn Centre' }
   let(:main_office_line_2) { '120 Holborn' }
+  let(:main_office_town) { 'London' }
+  let(:main_office_county) { 'London' }
 
   subject do
     described_class.new({
       firm_email_address: firm_email_address,
       firm_telephone_number: firm_telephone_number,
       main_office_line_1: main_office_line_1,
-      main_office_line_2: main_office_line_2
+      main_office_line_2: main_office_line_2,
+      main_office_town: main_office_town,
+      main_office_county: main_office_county
     })
   end
 
@@ -56,6 +60,22 @@ RSpec.describe QuestionnaireStep1Form, '#valid?', type: :model do
   describe 'main office line 2' do
     context 'when missing' do
       let(:main_office_line_2) { nil }
+
+      it { is_expected.not_to be_valid }
+    end
+  end
+
+  describe 'main office town' do
+    context 'when missing' do
+      let(:main_office_town) { nil }
+
+      it { is_expected.not_to be_valid }
+    end
+  end
+
+  describe 'main office county' do
+    context 'when missing' do
+      let(:main_office_county) { nil }
 
       it { is_expected.not_to be_valid }
     end
