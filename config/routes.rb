@@ -10,7 +10,7 @@ Rails.application.routes.draw do
       get 'reject',      action: 'rejection_form'
     end
 
-    resources :firms, only: :index do
+    resource :firm, only: :show do
       resource :questionnaire, only: [] do
         collection do
           get 'step-1', action: 'step_1_form'
