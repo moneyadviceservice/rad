@@ -7,7 +7,8 @@ class QuestionnaireStep1Form
                 :main_office_line_2,
                 :main_office_town,
                 :main_office_county,
-                :main_office_postcode
+                :main_office_postcode,
+                :accept_customers_from
 
   validates :firm_email_address,
             presence: true,
@@ -31,4 +32,24 @@ class QuestionnaireStep1Form
             :main_office_town,
             :main_office_county,
             presence: true
+
+  validates_inclusion_of :accept_customers_from, in: ->(form) { form.accept_customers_from_options }
+
+  def accept_customers_from_options
+    [
+      'East of England',
+      'East Midlands',
+      'London',
+      'North East',
+      'North West',
+      'South East',
+      'South West',
+      'West Midlands',
+      'Yorkshire and the Humber',
+      'Northern Ireland',
+      'Scotland',
+      'Wales',
+      'All regions'
+    ]
+  end
 end

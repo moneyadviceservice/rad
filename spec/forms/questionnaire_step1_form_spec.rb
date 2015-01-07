@@ -6,6 +6,7 @@ RSpec.describe QuestionnaireStep1Form, '#valid?', type: :model do
   let(:main_office_town) { 'London' }
   let(:main_office_county) { 'London' }
   let(:main_office_postcode) { 'EC1N 2TD' }
+  let(:accept_customers_from) { 'London' }
 
   subject do
     described_class.new({
@@ -15,7 +16,8 @@ RSpec.describe QuestionnaireStep1Form, '#valid?', type: :model do
       main_office_line_2: main_office_line_2,
       main_office_town: main_office_town,
       main_office_county: main_office_county,
-      main_office_postcode: main_office_postcode
+      main_office_postcode: main_office_postcode,
+      accept_customers_from: accept_customers_from
     })
   end
 
@@ -92,6 +94,20 @@ RSpec.describe QuestionnaireStep1Form, '#valid?', type: :model do
 
     context 'when invalid' do
       let(:main_office_postcode) { 'invalid-postcode' }
+
+      it { is_expected.not_to be_valid }
+    end
+  end
+
+  describe 'accept customers from' do
+    context 'when missing' do
+      let(:accept_customers_from) { nil }
+
+      it { is_expected.not_to be_valid }
+    end
+
+    context 'when not one of the options' do
+      let(:accept_customers_from) { 'not-in-the-list' }
 
       it { is_expected.not_to be_valid }
     end
