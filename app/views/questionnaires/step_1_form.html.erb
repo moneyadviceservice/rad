@@ -5,70 +5,95 @@
 
     <%= form_for @questionnaire, url: step_1_principal_firm_questionnaire_path, html: { class: 'l-questionnaire-step-1-questions__form' }, builder: Dough::Forms::Builders::Validation do |f| %>
       <%= f.validation_summary %>
+      <p><%= t('required') %></p>
 
       <%= heading_tag(t('questionnaire.step_one.subheading_one'), level: 2) %>
       <p><%= t('questionnaire.step_one.subheading_one_description') %></p>
-      <p><%= t('required') %></p>
 
       <%#= @TODO this need to become FCA number %>
-      <%= heading_tag(t('questionnaire.step_one.section_one.heading'), level: 3, class: '') %>
-      <p><%= t('questionnaire.step_one.section_one.description') %></p>
-      <%= f.form_row :firm_email_address do %>
-        <%= f.errors_for :firm_email_address %>
-        <%= f.label :firm_email_address, t('questionnaire.step_one.section_one.heading'), class: 'form__label-heading' %>
-        <%= f.text_field :firm_email_address %>
+
+      <%= field_set_tag(t('questionnaire.step_one.section_one.heading'), class: 'l-questionnaire__fieldset') do %>
+        <p><%= t('questionnaire.step_one.section_one.description') %></p>
+
+        <div class="l-questionnaire__row">
+          <div class="l-questionnaire__field">
+            <%= f.form_row :firm_email_address do %>
+              <%= f.errors_for :firm_email_address %>
+              <%= f.label :firm_email_address, t('questionnaire.step_one.section_one.heading'), class: 'form__label-heading' %>
+              <%= f.text_field :firm_email_address %>
+            <% end %>
+          </div>
+        </div>
       <% end %>
 
-      <%= heading_tag(t('questionnaire.step_one.section_two.heading'), level: 3, class: '') %>
-      <p><%= t('questionnaire.step_one.section_two.description') %></p>
-      <%= f.form_row :firm_email_address do %>
-        <%= f.errors_for :firm_email_address %>
-        <%= f.label :firm_email_address, t('questionnaire.step_one.section_two.label'), class: 'form__label-heading' %>
-        <%= f.text_field :firm_email_address %>
+      <%= field_set_tag(t('questionnaire.step_one.section_two.heading'), class: 'l-questionnaire__fieldset') do %>
+        <p><%= t('questionnaire.step_one.section_two.description') %></p>
+
+        <div class="l-questionnaire__row">
+          <div class="l-questionnaire__field">
+            <%= f.form_row :firm_email_address do %>
+              <%= f.errors_for :firm_email_address %>
+              <%= f.label :firm_email_address, t('questionnaire.step_one.section_two.label'), class: 'form__label-heading' %>
+              <%= f.text_field :firm_email_address %>
+            <% end %>
+          </div>
+        </div>
       <% end %>
 
-      <%= heading_tag(t('questionnaire.step_one.section_three.heading'), level: 3, class: '') %>
-      <p><%= t('questionnaire.step_one.section_three.description') %></p>
-      <%= f.form_row :main_office_line_1 do %>
-        <%= f.errors_for :main_office_line_1 %>
-        <%= f.label :main_office_line_1, t('questionnaire.step_one.section_three.label_one'), class: 'form__label-heading' %>
-        <%= f.text_field :main_office_line_1 %>
+      <%= field_set_tag(t('questionnaire.step_one.section_three.heading'), class: 'l-questionnaire__fieldset') do %>
+        <p><%= t('questionnaire.step_one.section_three.description') %></p>
+
+        <div class="l-questionnaire__row">
+          <div class="l-questionnaire__field">
+            <%= f.form_row :main_office_line_1 do %>
+              <%= f.errors_for :main_office_line_1 %>
+              <%= f.label :main_office_line_1, t('questionnaire.step_one.section_three.label_one'), class: 'form__label-heading' %>
+              <%= f.text_field :main_office_line_1 %>
+            <% end %>
+
+            <%= f.form_row :main_office_line_2 do %>
+              <%= f.errors_for :main_office_line_2 %>
+              <%= f.label :main_office_line_2, t('questionnaire.step_one.section_three.label_two'), class: 'form__label-heading' %>
+              <%= f.text_field :main_office_line_2 %>
+            <% end %>
+
+            <%= f.form_row :main_office_town do %>
+              <%= f.errors_for :main_office_town %>
+              <%= f.label :main_office_town, t('questionnaire.step_one.section_three.label_three'), class: 'form__label-heading' %>
+              <%= f.text_field :main_office_town %>
+            <% end %>
+
+            <%= f.form_row :main_office_county do %>
+              <%= f.errors_for :main_office_county %>
+              <%= f.label :main_office_county, t('questionnaire.step_one.section_three.label_four'), class: 'form__label-heading' %>
+              <%= f.text_field :main_office_county %>
+            <% end %>
+
+            <%= f.form_row :main_office_postcode do %>
+              <%= f.errors_for :main_office_postcode %>
+              <%= f.label :main_office_postcode, t('questionnaire.step_one.section_three.label_five'), class: 'form__label-heading' %>
+              <%= f.text_field :main_office_postcode %>
+            <% end %>
+          </div>
+        </div>
       <% end %>
 
-      <%= f.form_row :main_office_line_2 do %>
-        <%= f.errors_for :main_office_line_2 %>
-        <%= f.label :main_office_line_2, t('questionnaire.step_one.section_three.label_two'), class: 'form__label-heading' %>
-        <%= f.text_field :main_office_line_2 %>
-      <% end %>
+      <%= field_set_tag(t('questionnaire.step_one.section_four.heading'), class: 'l-questionnaire__fieldset') do %>
+        <p><%= t('questionnaire.step_one.section_four.description') %></p>
 
-      <%= f.form_row :main_office_town do %>
-        <%= f.errors_for :main_office_town %>
-        <%= f.label :main_office_town, t('questionnaire.step_one.section_three.label_three'), class: 'form__label-heading' %>
-        <%= f.text_field :main_office_town %>
-      <% end %>
-
-      <%= f.form_row :main_office_county do %>
-        <%= f.errors_for :main_office_county %>
-        <%= f.label :main_office_county, t('questionnaire.step_one.section_three.label_four'), class: 'form__label-heading' %>
-        <%= f.text_field :main_office_county %>
-      <% end %>
-
-      <%= f.form_row :main_office_postcode do %>
-        <%= f.errors_for :main_office_postcode %>
-        <%= f.label :main_office_postcode, t('questionnaire.step_one.section_three.label_five'), class: 'form__label-heading' %>
-        <%= f.text_field :main_office_postcode %>
-      <% end %>
-
-      <%= heading_tag(t('questionnaire.step_one.section_four.heading'), level: 3, class: '') %>
-      <p><%= t('questionnaire.step_one.section_four.description') %></p>
-      <%= f.form_row :accept_customers_from do %>
-        <% t('questionnaire.step_one.section_four.regions').each do |item| %>
-          <%= f.errors_for :accept_customers_from %>
-          <%= f.label :accept_customers_from, class: 'form__label-heading' do %>
-            <%= f.check_box :accept_customers_from, class: 'form__group-input' %>
-            <%= item[:region] %>
-          <% end %>
-        <% end %>
+        <div class="l-questionnaire__row">
+          <div class="l-questionnaire__field">
+            <%= f.form_row :accept_customers_from do %>
+              <% t('questionnaire.step_one.section_four.regions').each do |item| %>
+                <%= f.errors_for :accept_customers_from %>
+                <%= f.label :accept_customers_from, class: 'form__label-heading' do %>
+                  <%= f.check_box :accept_customers_from, class: 'form__group-input' %>
+                  <%= item[:region] %>
+                <% end %>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
       <% end %>
 
       <hr>
@@ -76,53 +101,74 @@
       <%= heading_tag(t('questionnaire.step_one.subheading_two'), level: 2) %>
       <p><%= t('questionnaire.step_one.subheading_two_description') %></p>
 
-      <%= f.form_row :accept_customers_from do %>
-        <%= f.errors_for :accept_customers_from %>
-        <%= f.label :accept_customers_from, class: 'form__label-heading' do %>
-          <%= f.check_box :accept_customers_from, class: 'form__group-input' %>
-          <%= t('questionnaire.step_one.section_five.label_one') %>
-        <% end %>
+      <%= field_set_tag('', class: 'l-questionnaire__fieldset') do %>
+        <div class="l-questionnaire__row">
+          <div class="l-questionnaire__field">
+            <%= f.form_row :accept_customers_from do %>
+              <%= f.errors_for :accept_customers_from %>
+              <%= f.label :accept_customers_from, class: 'form__label-heading' do %>
+                <%= f.check_box :accept_customers_from, class: 'form__group-input' %>
+                <%= t('questionnaire.step_one.section_five.label_one') %>
+              <% end %>
+            <% end %>
+
+            <%= f.form_row :accept_customers_from do %>
+              <% t('questionnaire.step_one.section_five.regions').each do |item| %>
+                <%= f.errors_for :accept_customers_from %>
+                <%= f.label :accept_customers_from, class: 'form__label-heading' do %>
+                  <%= f.check_box :accept_customers_from, class: 'form__group-input' %>
+                  <%= item[:region] %>
+                <% end %>
+              <% end %>
+            <% end %>
+
+            <%= f.form_row :accept_customers_from do %>
+              <%= f.errors_for :accept_customers_from %>
+              <%= f.label :accept_customers_from, class: 'form__label-heading' do %>
+                <%= f.check_box :accept_customers_from, class: 'form__group-input' %>
+                <%= t('questionnaire.step_one.section_five.label_two') %>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
       <% end %>
 
-      <%= f.form_row :accept_customers_from do %>
-        <% t('questionnaire.step_one.section_five.regions').each do |item| %>
-          <%= f.errors_for :accept_customers_from %>
-          <%= f.label :accept_customers_from, class: 'form__label-heading' do %>
-            <%= f.check_box :accept_customers_from, class: 'form__group-input' %>
-            <%= item[:region] %>
-          <% end %>
-        <% end %>
+      <%= field_set_tag('', class: 'l-questionnaire__fieldset') do %>
+        <div class="l-questionnaire__row">
+          <div class="l-questionnaire__field">
+            <%= f.form_row :accept_customers_from do %>
+              <% t('questionnaire.step_one.section_five.advice_options').each do |item| %>
+                <%= f.errors_for :accept_customers_from %>
+                <%= f.label :accept_customers_from, class: 'form__label-heading' do %>
+                  <%= f.check_box :accept_customers_from, class: 'form__group-input' %>
+                  <%= item[:advice] %>
+                <% end %>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
       <% end %>
 
-      <%= f.form_row :accept_customers_from do %>
-        <%= f.errors_for :accept_customers_from %>
-        <%= f.label :accept_customers_from, class: 'form__label-heading' do %>
-          <%= f.check_box :accept_customers_from, class: 'form__group-input' %>
-          <%= t('questionnaire.step_one.section_five.label_two') %>
-        <% end %>
-      <% end %>
-
-      <%= f.form_row :accept_customers_from do %>
-        <% t('questionnaire.step_one.section_five.advice_options').each do |item| %>
-          <%= f.errors_for :accept_customers_from %>
-          <%= f.label :accept_customers_from, class: 'form__label-heading' do %>
-            <%= f.check_box :accept_customers_from, class: 'form__group-input' %>
-            <%= item[:advice] %>
-          <% end %>
-        <% end %>
-      <% end %>
-
-      <%= heading_tag(t('questionnaire.step_one.section_six.heading'), level: 3) %>
-      <%= f.form_row :accept_customers_from do %>
-        <%= f.errors_for :accept_customers_from %>
-        <%= f.label :accept_customers_from, class: 'form__label-heading' do %>
-          <%= f.radio_button :accept_customers_from, 0,  class: 'form__group-input' %>
-          <%= t('questionnaire.yes') %>
-        <% end %>
-        <%= f.label :accept_customers_from, class: 'form__label-heading' do %>
-          <%= f.radio_button :accept_customers_from, 0,  class: 'form__group-input' %>
-          <%= t('questionnaire.no') %>
-        <% end %>
+      <%= field_set_tag(t('questionnaire.step_one.section_six.heading'), class: 'l-questionnaire__fieldset form__group form__group--inline') do %>
+        <div class="l-questionnaire__row">
+          <div class="l-questionnaire__field">
+            <%= f.form_row :accept_customers_from do %>
+              <%= f.errors_for :accept_customers_from %>
+              <div class="form__group-item">
+                <%= f.label :accept_customers_from, class: 'form__label-heading' do %>
+                  <%= f.radio_button :accept_customers_from, 0,  class: 'form__group-input' %>
+                  <%= t('questionnaire.yes') %>
+                <% end %>
+              </div>
+              <div class="form__group-item">
+                <%= f.label :accept_customers_from, class: 'form__label-heading' do %>
+                  <%= f.radio_button :accept_customers_from, 0,  class: 'form__group-input' %>
+                  <%= t('questionnaire.no') %>
+                <% end %>
+              </div>
+            <% end %>
+          </div>
+        </div>
       <% end %>
 
       <hr>
@@ -130,30 +176,35 @@
       <%= heading_tag(t('questionnaire.step_one.subheading_three'), level: 2) %>
       <p><%= t('questionnaire.step_one.subheading_three_description') %></p>
 
-      <%= heading_tag(t('questionnaire.step_one.section_seven.heading'), level: 3, class: '') %>
-      <p><%= t('questionnaire.step_one.section_seven.description') %></p>
-      <%= f.form_row :accept_customers_from do %>
-        <% t('questionnaire.step_one.section_seven.fee_options').each do |item| %>
-          <%= f.errors_for :accept_customers_from %>
-          <%= f.label :accept_customers_from, class: 'form__label-heading' do %>
-            <%= f.check_box :accept_customers_from, class: 'form__group-input' %>
-            <%= item[:fee] %>
-          <% end %>
-        <% end %>
-      <% end %>
+      <%= field_set_tag(t('questionnaire.step_one.section_seven.heading'), class: 'l-questionnaire__fieldset form__group form__group--inline') do %>
+        <div class="l-questionnaire__row">
+          <div class="l-questionnaire__field">
+            <p><%= t('questionnaire.step_one.section_seven.description') %></p>
+            <%= f.form_row :accept_customers_from do %>
+              <% t('questionnaire.step_one.section_seven.fee_options').each do |item| %>
+                <%= f.errors_for :accept_customers_from %>
+                <%= f.label :accept_customers_from, class: 'form__label-heading' do %>
+                  <%= f.check_box :accept_customers_from, class: 'form__group-input' %>
+                  <%= item[:fee] %>
+                <% end %>
+              <% end %>
+            <% end %>
 
-      <%= f.form_row :accept_customers_from do %>
-        <%= f.errors_for :accept_customers_from %>
-        <%= f.label :accept_customers_from, class: 'form__label-heading' do %>
-          <%= f.check_box :accept_customers_from, class: 'form__group-input' %>
-          <%= t('questionnaire.step_one.section_seven.label_one') %>
-        <% end %>
-      <% end %>
+            <%= f.form_row :accept_customers_from do %>
+              <%= f.errors_for :accept_customers_from %>
+              <%= f.label :accept_customers_from, class: 'form__label-heading' do %>
+                <%= f.check_box :accept_customers_from, class: 'form__group-input' %>
+                <%= t('questionnaire.step_one.section_seven.label_one') %>
+              <% end %>
+            <% end %>
 
-      <%= f.form_row :accept_customers_from do %>
-        <%= f.errors_for :accept_customers_from %>
-        <%= f.label :accept_customers_from, t('questionnaire.step_one.section_seven.label_two'), class: 'form__label-heading' %>
-        <%= f.text_field :accept_customers_from, class: 'form__group-input' %>
+            <%= f.form_row :accept_customers_from do %>
+              <%= f.errors_for :accept_customers_from %>
+              <%= f.label :accept_customers_from, t('questionnaire.step_one.section_seven.label_two'), class: 'form__label-heading' %>
+              <%= f.text_field :accept_customers_from, class: 'form__group-input' %>
+            <% end %>
+          </div>
+        </div>
       <% end %>
 
       <%= button_primary t('questionnaire.step_one.button_next') %>
