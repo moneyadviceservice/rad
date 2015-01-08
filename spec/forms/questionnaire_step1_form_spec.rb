@@ -6,7 +6,7 @@ RSpec.describe QuestionnaireStep1Form, '#valid?', type: :model do
   let(:main_office_town) { 'London' }
   let(:main_office_county) { 'London' }
   let(:main_office_postcode) { 'EC1N 2TD' }
-  let(:accept_customers_from) { 'London' }
+  let(:accept_customers_from) { ['London'] }
 
   subject do
     described_class.new({
@@ -106,8 +106,14 @@ RSpec.describe QuestionnaireStep1Form, '#valid?', type: :model do
       it { is_expected.not_to be_valid }
     end
 
+    context 'when empty array' do
+      let(:accept_customers_from) { [] }
+
+      it { is_expected.not_to be_valid }
+    end
+
     context 'when not one of the options' do
-      let(:accept_customers_from) { 'not-in-the-list' }
+      let(:accept_customers_from) { ['not-in-the-list'] }
 
       it { is_expected.not_to be_valid }
     end

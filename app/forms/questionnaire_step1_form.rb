@@ -33,11 +33,26 @@ class QuestionnaireStep1Form
             :main_office_county,
             presence: true
 
-  validates_inclusion_of :accept_customers_from, in: ->(form) { form.accept_customers_from_options }
+  validate :accept_customers_from_list_is_valid
 
   def accept_customers_from_options
     @accept_customers_from_options ||=
         I18n.t('questionnaire.step_one.section_four.regions').map {|item| item[:region] }
   end
+
+  private
+
+  def accept_customers_from_list_is_valid
+    if accept_customers_from.nil? or accept_customers_from.empty?
+      errors.add(:accept_customers_from, :required)
+    else
+      unless array_contains_values?(accept_customers_from_options, accept_customers_from)
+        errors.add(:accept_customers_from, :invalid)
+      end
+    end
+  end
+
+  def array_contains_values?(array, values)
+    (values.uniq - array.uniq).empty?
   end
 end
