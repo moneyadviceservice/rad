@@ -75,7 +75,7 @@ en:
       heading: Provide details about your firm
       introduction: The more information you provide about your firm and the advisers in your firm, the easier it will be for us to match the right customers to you. A complete profile will also help to increase the number of views your firm receives. We will also provide you with the ability to flesh out your firm’s profile with additional information in the coming months.
       subheading_one: About your firm
-      subheading_one_description: Please provide these details about your firm
+      subheading_one_description: Please provide these details about your firm.
       section_one:
         heading: Company registration number
         description: This is the company registered with companies house
@@ -85,7 +85,7 @@ en:
         label: Firm email address *
       section_three:
         heading: Main office where customers visit you
-        description: This is to help customers understand how far they need to trael if they want to visit you.
+        description: This is to help customers understand how far they need to travel if they want to visit you.
         label_one: Address line 1 *
         label_two: Address line 2 *
         label_three: Town *
