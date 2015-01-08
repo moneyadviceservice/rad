@@ -36,20 +36,8 @@ class QuestionnaireStep1Form
   validates_inclusion_of :accept_customers_from, in: ->(form) { form.accept_customers_from_options }
 
   def accept_customers_from_options
-    [
-      'East of England',
-      'East Midlands',
-      'London',
-      'North East',
-      'North West',
-      'South East',
-      'South West',
-      'West Midlands',
-      'Yorkshire and the Humber',
-      'Northern Ireland',
-      'Scotland',
-      'Wales',
-      'All regions'
-    ]
+    @accept_customers_from_options ||=
+        I18n.t('questionnaire.step_one.section_four.regions').map {|item| item[:region] }
+  end
   end
 end
