@@ -8,7 +8,7 @@
 }
 
 .l-questionnaire__row {
-  @extend .l-identity__row;
+  @include row(12);
 }
 
 .l-questionnaire__field {
