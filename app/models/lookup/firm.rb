@@ -6,6 +6,10 @@ module Lookup
       length: { is: 6 },
       numericality: { only_integer: true }
 
+    def subsidiaries?
+      subsidiaries.present?
+    end
+
     def self.table_name
       "lookup_#{super}"
     end

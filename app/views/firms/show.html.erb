@@ -1,0 +1,24 @@
+<div class="l-constrained">
+  <div class="l-firm">
+    <%= heading_tag(t('firms.title'), level: 1) %>
+    <p><%= t('firms.introduction') %></p>
+    <%= heading_tag(t('firms.heading_one'), level: 2, class: 'l-firm__subheading') %>
+  </div>
+
+  <div class="l-firm l-firm--modules">
+    <section class="firm">
+      <%= heading_tag(@firm.registered_name, level: 3, class: 'firm__title t-firm-title') %>
+      <p class="firm__number">FCA number: <%= @firm.fca_number %></p>
+      <div class="firm__button">
+        <%= link_to t('firms.select_firm'), new_principal_firm_questionnaire_path(current_user), class: 'button button--primary t-firm-questionnaire' %>
+      </div>
+    </section>
+
+    <% if @firm.subsidiaries? %>
+      <%= heading_tag(t('firms.heading_two'), level: 2, class: 'l-firm__subheading') %>
+
+      <%= render @firm.subsidiaries %>
+    <% end %>
+
+  </div>
+</div>

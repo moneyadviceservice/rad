@@ -23,6 +23,8 @@ class ApplicationController < ActionController::Base
 
   helper_method :display_adviser_sign_in?
 
+  helper_method :current_user
+
   private
 
   def authenticate
