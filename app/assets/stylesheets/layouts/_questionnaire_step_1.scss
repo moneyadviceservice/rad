@@ -1,19 +1,9 @@
- .l-questionnaire-step-1-questions {
-//   @include column(12);
-   margin-bottom: $baseline-unit*8;
-// 
-//   @include respond-to($mq-m) {
-//     @include column(7);
-//   }
- }
+.l-questionnaire {
+  @include column(12);
+  margin-bottom: $baseline-unit*8;
 
-.l-questionnaire__fieldset legend {
-  @include body(18,24);
-  font-weight: 700;
-  color: $color-green-secondary;
-
-  + p {
-    margin-top: 0;
+  @include respond-to($mq-l) {
+    @include column(7);
   }
 }
 
@@ -22,5 +12,40 @@
 }
 
 .l-questionnaire__field {
-  @extend .l-identity__field;
+  @include column(12);
+
+  @include respond-to($mq-m) {
+    @include column(5);
+  }
+}
+
+.l-questionnaire__two-cols {
+  @include respond-to($mq-m) {
+    float: left;
+    width: 50%;
+  }
+}
+
+.l-questionnaire__section-description {
+  margin-bottom: $baseline-unit*6;
+}
+
+.l-questionnaire__inset-input {
+  margin-left: $baseline-unit*4;
+}
+
+.l-questionnaire__fieldset {
+  // Using the field_set_tag helper doesn't allow for a class on the legend
+  // so we style the legend via a child selector.
+
+  > legend {
+    @include body(18,24);
+    font-weight: 700;
+    color: $color-green-secondary;
+
+    + p {
+      margin-top: 0;
+      margin-bottom: $baseline-unit*4;
+    }
+  }
 }
