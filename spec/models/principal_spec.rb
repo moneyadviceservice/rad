@@ -1,6 +1,28 @@
 RSpec.describe Principal do
   let(:principal) { create(:principal) }
 
+  describe '#firm' do
+    it 'returns my associated firm' do
+      expect(principal.firm).to be
+    end
+  end
+
+  describe '#subsidiaries?' do
+    context 'when my firm has subsidiaries' do
+      before { principal.firm.subsidiaries.create! }
+
+      it 'is truthy' do
+        expect(principal.subsidiaries?).to be_truthy
+      end
+    end
+
+    context 'when my firm has no subsidiaries' do
+      it 'is falsey' do
+        expect(principal.subsidiaries?).to be_falsey
+      end
+    end
+  end
+
   it 'uses the token for ID purposes' do
     expect(principal.id).to eq(principal.token)
     expect(Principal.find(principal.token)).to eq(principal)
