@@ -1,0 +1,26 @@
+ .l-questionnaire-step-1-questions {
+//   @include column(12);
+   margin-bottom: $baseline-unit*8;
+// 
+//   @include respond-to($mq-m) {
+//     @include column(7);
+//   }
+ }
+
+.l-questionnaire__fieldset legend {
+  @include body(18,24);
+  font-weight: 700;
+  color: $color-green-secondary;
+
+  + p {
+    margin-top: 0;
+  }
+}
+
+.l-questionnaire__row {
+  @extend .l-identity__row;
+}
+
+.l-questionnaire__field {
+  @extend .l-identity__field;
+}

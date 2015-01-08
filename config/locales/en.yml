@@ -67,3 +67,72 @@ en:
     heading_two: 'Or select the trading name:'
     introduction: Bacon ipsum dolor amet frankfurter turducken corned beef chuck turkey, ham tongue ribeye prosciutto boudin flank bresaola picanha. Salami beef ribs pancetta ham biltong turkey, boudin strip steak alcatra fatback bacon meatloaf.
     select_firm: Submit this firm
+
+  questionnaire:
+    yes: 'Yes'
+    no: 'No'
+    step_one:
+      heading: Provide details about your firm
+      introduction: The more information you provide about your firm and the advisers in your firm, the easier it will be for us to match the right customers to you. A complete profile will also help to increase the number of views your firm receives. We will also provide you with the ability to flesh out your firm’s profile with additional information in the coming months.
+      subheading_one: About your firm
+      subheading_one_description: Please provide these details about your firm
+      section_one:
+        heading: Company registration number
+        description: This is the company registered with companies house
+      section_two:
+        heading: Main email address for enquiries
+        description: This is the email address that will receive all enquiries from customers who enquire on the retirement adviser directory.
+        label: Firm email address *
+      section_three:
+        heading: Main office where customers visit you
+        description: This is to help customers understand how far they need to trael if they want to visit you.
+        label_one: Address line 1 *
+        label_two: Address line 2 *
+        label_three: Town *
+        label_four: County *
+        label_five: Post code *
+      section_four:
+        heading: Does your firm operate in other regions?
+        description: Check all that apply *
+        regions:
+          - region: East of England
+          - region: South West
+          - region: East Midlands
+          - region: West Midlands
+          - region: London
+          - region: Yorkshire and the Humber
+          - region: North East
+          - region: Scotland
+          - region: North West
+          - region: Wales
+          - region: South East
+          - region: Northern Ireland
+      subheading_two: How does your firm provide your services?
+      subheading_two_description: Select the different ways your firm services customers. Check all that apply.
+      section_five:
+        label_one: Does your firm offer advice in person?
+        regions:
+          - region: East of England
+          - region: East Midlands
+          - region: London
+        label_two: Does your firm offer advice by other methods through to transaction?
+        advice_options:
+          - advice: Advice by telephone through to transaction
+          - advice: Advice by video call / conference through to transaction
+      section_six:
+        heading: Does your firm offer a free initial meeting?
+      subheading_three: How does your firm charge for your services?
+      subheading_three_description: Select the different ways your firm charges for your services
+
+      section_seven:
+        heading: Does your firm operate in other regions?
+        description: Check all that apply.
+        fee_options:
+          - fee: Hourly fee
+          - fee: Fixed upfront fee
+          - fee: Monthly by direct debit
+          - fee: Charge for ongoing services
+          - fee: Deduction from a pot / investment
+        label_one: Do you have a minimum fixed fee?
+        label_two: Please state the amount
+      button_next: Describe your firm's specialities
