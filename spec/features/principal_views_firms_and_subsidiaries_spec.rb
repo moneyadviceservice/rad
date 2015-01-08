@@ -37,10 +37,12 @@ RSpec.feature 'Principal views Firms and Subsidiaries' do
   end
 
   def then_i_am_shown_my_firm_and_its_subsidiaries
-    expect(firm_page).to be_displayed
+    expect(firm_page.firm_title).to be_present
+    expect(firm_page.subsidiaries).to be_present
   end
 
   def and_i_can_choose_a_firm_or_subsidiary_questionnaire_to_complete
-    skip 'work in progress'
+    expect(firm_page.firm_questionnaire).to be_present
+    expect(firm_page.subsidiary_questionnaires).to be_present
   end
 end

@@ -7,48 +7,18 @@
 
   <div class="l-firm l-firm--modules">
     <section class="firm">
-      <%= heading_tag('Blackrock Venture Startup Investments Group Limited', level: 3, class: 'firm__title') %>
-      <p class="firm__number">FCA number: 123456789</p>
+      <%= heading_tag(@firm.registered_name, level: 3, class: 'firm__title t-firm-title') %>
+      <p class="firm__number">FCA number: <%= @firm.fca_number %></p>
       <div class="firm__button">
-        <%= button_primary t('firms.select_firm') %>
+        <%= link_to t('firms.select_firm'), new_principal_firm_questionnaire_path(current_user), class: 'button button--primary t-firm-questionnaire' %>
       </div>
     </section>
 
-    <%= heading_tag(t('firms.heading_two'), level: 2, class: 'l-firm__subheading') %>
+    <% if @firm.subsidiaries? %>
+      <%= heading_tag(t('firms.heading_two'), level: 2, class: 'l-firm__subheading') %>
 
-    <section class="firm">
-      <%= heading_tag('Blackrock Investments', level: 3, class: 'firm__title') %>
-      <div class="firm__button">
-        <%= button_primary t('firms.select_firm') %>
-      </div>
-    </section>
+      <%= render @firm.subsidiaries %>
+    <% end %>
 
-    <section class="firm">
-      <%= heading_tag('Blackrock  Venture Startup Investments Group Limited', level: 3, class: 'firm__title') %>
-      <div class="firm__button">
-        <%= button_primary t('firms.select_firm') %>
-      </div>
-    </section>
-
-    <section class="firm">
-      <%= heading_tag('Blackrock Investments', level: 3, class: 'firm__title') %>
-      <div class="firm__button">
-        <%= button_primary t('firms.select_firm') %>
-      </div>
-    </section>
-
-    <section class="firm">
-      <%= heading_tag('Blackrock Investments', level: 3, class: 'firm__title') %>
-      <div class="firm__button">
-        <%= button_primary t('firms.select_firm') %>
-      </div>
-    </section>
-
-    <section class="firm">
-      <%= heading_tag('Blackrock Investments', level: 3, class: 'firm__title') %>
-      <div class="firm__button">
-        <%= button_primary t('firms.select_firm') %>
-      </div>
-    </section>
   </div>
 </div>
