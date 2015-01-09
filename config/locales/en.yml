@@ -87,11 +87,6 @@ en:
         heading: How does your firm charge for your services?*
         description: Confirm the way(s) your firm charges for its services. Check all that apply.
 
-
-      registration_number:
-        heading: Company registration number
-        description: This is the company registered with companies house
-
       email_address:
         heading: Firm email address for enquiries
         description: This is the email account where you wish to receive messages from customers.
