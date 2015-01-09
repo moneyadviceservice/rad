@@ -84,10 +84,10 @@
             <%= f.errors_for :accept_customers_from %>
             <% t('questionnaire.step_one.section_four.regions').each do |item| %>
               <div class="form__group-item l-questionnaire__two-cols">
-                <%= f.label :accept_customers_from, class: '' do %>
+                <label>
                   <%= f.check_box :accept_customers_from, class: 'form__group-input' %>
                   <%= item[:region] %>
-                <% end %>
+                </label>
               </div>
             <% end %>
           <% end %>
@@ -104,31 +104,32 @@
         <%= field_set_tag('', class: 'form__group l-questionnaire__fieldset') do %>
           <%= f.form_row :accept_customers_from do %>
             <%= f.errors_for :accept_customers_from %>
-            <%= f.label :accept_customers_from, class: 'form__label-heading' do %>
+            <label class="form__label-heading">
               <%= f.check_box :accept_customers_from, class: 'form__group-input' %>
               <%= t('questionnaire.step_one.section_five.label_one') %>
-            <% end %>
+            </label>
+
             <% t('questionnaire.step_one.section_five.regions').each do |item| %>
               <%= f.errors_for :accept_customers_from %>
-              <%= f.label :accept_customers_from, class: 'form__label-heading l-questionnaire__inset-input' do %>
+              <label class="form__label-heading l-questionnaire__inset-input" do %>
                 <%= f.check_box :accept_customers_from, class: 'form__group-input' %>
                 <%= item[:region] %>
-              <% end %>
+              </label>
             <% end %>
           <% end %>
 
           <%= f.form_row :accept_customers_from do %>
             <%= f.errors_for :accept_customers_from %>
-            <%= f.label :accept_customers_from, class: 'form__label-heading' do %>
+            <label class="form__label-heading">
               <%= f.check_box :accept_customers_from, class: 'form__group-input' %>
               <%= t('questionnaire.step_one.section_five.label_two') %>
-            <% end %>
+            </label>
             <% t('questionnaire.step_one.section_five.advice_options').each do |item| %>
               <%= f.errors_for :accept_customers_from %>
-              <%= f.label :accept_customers_from, class: 'form__label-heading l-questionnaire__inset-input' do %>
+              <label class="form__label-heading l-questionnaire__inset-input" %>
                 <%= f.check_box :accept_customers_from, class: 'form__group-input' %>
                 <%= item[:advice] %>
-              <% end %>
+              </label>
             <% end %>
           <% end %>
         <% end %>
@@ -138,17 +139,17 @@
             <%= f.errors_for :accept_customers_from %>
 
             <div class="form__group-item">
-              <%= f.label :accept_customers_from, class: 'form__label-heading' do %>
+              <label class="form__label-heading">
                 <%= f.radio_button :accept_customers_from, 0,  class: 'form__group-input' %>
                 <%= t('questionnaire.yes') %>
-              <% end %>
+              </label>
             </div>
 
             <div class="form__group-item">
-              <%= f.label :accept_customers_from, class: 'form__label-heading' do %>
+              <label class="form__label-heading" %>
                 <%= f.radio_button :accept_customers_from, 0,  class: 'form__group-input' %>
                 <%= t('questionnaire.no') %>
-              <% end %>
+              </label>
             </div>
           <% end %>
         <% end %>
@@ -167,10 +168,10 @@
             <%= f.errors_for :accept_customers_from %>
             <% t('questionnaire.step_one.section_seven.fee_options').each do |item| %>
               <div class="form__group-item">
-                <%= f.label :accept_customers_from, class: '' do %>
+                <label>
                   <%= f.check_box :accept_customers_from, class: 'form__group-input' %>
                   <%= item[:fee] %>
-                <% end %>
+                </label>
               </div>
             <% end %>
           <% end %>
@@ -178,10 +179,10 @@
           <%= f.form_row :accept_customers_from do %>
             <%= f.errors_for :accept_customers_from %>
             <div class="form__group-item">
-              <%= f.label :accept_customers_from, class: '' do %>
+              <label>
                 <%= f.check_box :accept_customers_from, class: 'form__group-input' %>
                 <%= t('questionnaire.step_one.section_seven.label_one') %>
-              <% end %>
+              </label>
             </div>
           <% end %>
 
