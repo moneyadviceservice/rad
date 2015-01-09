@@ -18,6 +18,7 @@ gem 'dough-ruby',
   ref: 'cf08913'
 gem 'letter_opener', group: :development
 gem 'pg'
+gem 'rollbar'
 gem 'sidekiq'
 gem 'uglifier', '>= 1.3.0'
 
