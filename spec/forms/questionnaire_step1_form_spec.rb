@@ -7,6 +7,7 @@ RSpec.describe QuestionnaireStep1Form, '#valid?', type: :model do
   let(:main_office_county) { 'London' }
   let(:main_office_postcode) { 'EC1N 2TD' }
   let(:accept_customers_from) { ['London'] }
+  let(:advice_in_person) { ['East of England'] }
 
   subject do
     described_class.new({
@@ -17,7 +18,8 @@ RSpec.describe QuestionnaireStep1Form, '#valid?', type: :model do
       main_office_town: main_office_town,
       main_office_county: main_office_county,
       main_office_postcode: main_office_postcode,
-      accept_customers_from: accept_customers_from
+      accept_customers_from: accept_customers_from,
+      advice_in_person: advice_in_person
     })
   end
 
@@ -114,6 +116,26 @@ RSpec.describe QuestionnaireStep1Form, '#valid?', type: :model do
 
     context 'when not one of the options' do
       let(:accept_customers_from) { ['not-in-the-list'] }
+
+      it { is_expected.not_to be_valid }
+    end
+  end
+
+  describe 'advice in person' do
+    context 'when missing' do
+      let(:advice_in_person) { nil }
+
+      it { is_expected.not_to be_valid }
+    end
+
+    context 'when empty array' do
+      let(:advice_in_person) { [] }
+
+      it { is_expected.not_to be_valid }
+    end
+
+    context 'when not one of the options' do
+      let(:advice_in_person) { ['not-in-the-list'] }
 
       it { is_expected.not_to be_valid }
     end

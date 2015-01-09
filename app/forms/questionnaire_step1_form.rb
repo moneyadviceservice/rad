@@ -8,7 +8,8 @@ class QuestionnaireStep1Form
                 :main_office_town,
                 :main_office_county,
                 :main_office_postcode,
-                :accept_customers_from
+                :accept_customers_from,
+                :advice_in_person
 
   validates :firm_email_address,
             presence: true,
@@ -34,10 +35,16 @@ class QuestionnaireStep1Form
             presence: true
 
   validate :accept_customers_from_list_is_valid
+  validate :advice_in_person_list_is_valid
 
   def accept_customers_from_options
     @accept_customers_from_options ||=
         I18n.t('questionnaire.step_one.section_four.regions').map {|item| item[:region] }
+  end
+
+  def advice_in_person_options
+    @advice_in_person_options ||=
+        I18n.t('questionnaire.step_one.section_five.regions').map {|item| item[:region] }
   end
 
   private
@@ -48,6 +55,16 @@ class QuestionnaireStep1Form
     else
       unless array_contains_values?(accept_customers_from_options, accept_customers_from)
         errors.add(:accept_customers_from, :invalid)
+      end
+    end
+  end
+
+  def advice_in_person_list_is_valid
+    if advice_in_person.nil? or advice_in_person.empty?
+      errors.add(:advice_in_person, :required)
+    else
+      unless array_contains_values?(advice_in_person_options, advice_in_person)
+        errors.add(:advice_in_person, :invalid)
       end
     end
   end
