@@ -14,7 +14,8 @@ class QuestionnaireStep1Form
                 :free_initial_meeting,
                 :initial_meeting_duration,
                 :initial_advice_fee_structure,
-                :ongoing_advice_fee_structure
+                :ongoing_advice_fee_structure,
+                :allow_customers_to_pay_for_advice
 
   validates :firm_email_address,
             presence: true,
@@ -46,6 +47,7 @@ class QuestionnaireStep1Form
   validate :initial_meeting_duration_choice_is_valid
   validate :initial_advice_fee_structure_choice_is_valid
   validate :ongoing_advice_fee_structure_choice_is_valid
+  validate :allow_customers_to_pay_for_advice_choice_is_valid
 
   def accept_customers_from_options
     @accept_customers_from_options ||=
@@ -78,6 +80,14 @@ class QuestionnaireStep1Form
   def ongoing_advice_fee_structure_options
     @ongoing_advice_fee_structure_options ||=
         I18n.t('questionnaire.step_one.section_seven.fee_options').map {|item| item[:fee] }
+  end
+
+  def allow_customers_to_pay_for_advice_options
+    @allow_customers_to_pay_for_advice_options ||= [
+        'From their own resources',
+        'From funds to be invested',
+        'Either'
+    ]
   end
 
   private
@@ -142,6 +152,16 @@ class QuestionnaireStep1Form
     else
       unless ongoing_advice_fee_structure_options.include?(ongoing_advice_fee_structure)
         errors.add(:ongoing_advice_fee_structure, :invalid)
+      end
+    end
+  end
+
+  def allow_customers_to_pay_for_advice_choice_is_valid
+    if allow_customers_to_pay_for_advice.nil?
+      errors.add(:allow_customers_to_pay_for_advice, :required)
+    else
+      unless allow_customers_to_pay_for_advice_options.include?(allow_customers_to_pay_for_advice)
+        errors.add(:allow_customers_to_pay_for_advice, :invalid)
       end
     end
   end
