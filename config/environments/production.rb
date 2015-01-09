@@ -76,7 +76,7 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   # Heroku specific configuration
-  ActionMailer::Base.smtp_settings = {
+  config.action_mailer.smtp_settings = {
     port:      '587',
     address:   'smtp.mandrillapp.com',
     user_name: ENV['MANDRILL_USERNAME'],
@@ -85,7 +85,6 @@ Rails.application.configure do
     authentication: :plain
   }
 
-  ActionMailer::Base.delivery_method = :smtp
-
-  ActionMailer::Base.config.default_url_options = { host: ENV['EMAIL_HOST'] }
+  config.action_mailer.delivery_method     = :smtp
+  config.action_mailer.default_url_options = { host: ENV['EMAIL_HOST'] }
 end
