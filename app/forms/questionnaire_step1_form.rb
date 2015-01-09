@@ -15,7 +15,8 @@ class QuestionnaireStep1Form
                 :initial_meeting_duration,
                 :initial_advice_fee_structure,
                 :ongoing_advice_fee_structure,
-                :allow_customers_to_pay_for_advice
+                :allow_customers_to_pay_for_advice,
+                :minimum_fixed_one_off_fee_amount
 
   validates :firm_email_address,
             presence: true,

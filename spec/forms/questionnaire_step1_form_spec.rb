@@ -14,6 +14,7 @@ RSpec.describe QuestionnaireStep1Form, '#valid?', type: :model do
   let(:initial_advice_fee_structure) { 'Hourly fee' }
   let(:ongoing_advice_fee_structure) { 'Monthly by direct debit' }
   let(:allow_customers_to_pay_for_advice) { 'From funds to be invested' }
+  let(:minimum_fixed_one_off_fee_amount) { '£2,300.00' }
 
   subject do
     described_class.new({
@@ -31,7 +32,8 @@ RSpec.describe QuestionnaireStep1Form, '#valid?', type: :model do
       initial_meeting_duration: initial_meeting_duration,
       initial_advice_fee_structure: initial_advice_fee_structure,
       ongoing_advice_fee_structure: ongoing_advice_fee_structure,
-      allow_customers_to_pay_for_advice: allow_customers_to_pay_for_advice
+      allow_customers_to_pay_for_advice: allow_customers_to_pay_for_advice,
+      minimum_fixed_one_off_fee_amount: minimum_fixed_one_off_fee_amount
     })
   end
 
