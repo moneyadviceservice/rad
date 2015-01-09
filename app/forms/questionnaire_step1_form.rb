@@ -10,7 +10,8 @@ class QuestionnaireStep1Form
                 :main_office_postcode,
                 :accept_customers_from,
                 :advice_in_person,
-                :advice_by_other_methods
+                :advice_by_other_methods,
+                :free_initial_meeting
 
   validates :firm_email_address,
             presence: true,
@@ -38,6 +39,7 @@ class QuestionnaireStep1Form
   validate :accept_customers_from_list_is_valid
   validate :advice_in_person_list_is_valid
   validate :advice_by_other_methods_list_is_valid
+  validate :free_initial_meeting_choice_is_valid
 
   def accept_customers_from_options
     @accept_customers_from_options ||=
@@ -52,6 +54,10 @@ class QuestionnaireStep1Form
   def advice_by_other_methods_options
     @advice_by_other_methods_options ||=
         I18n.t('questionnaire.step_one.section_five.advice_options').map {|item| item[:advice] }
+  end
+
+  def free_initial_meeting_options
+    @free_initial_meeting_options ||= ['Yes', 'No']
   end
 
   private
@@ -79,6 +85,16 @@ class QuestionnaireStep1Form
   def advice_by_other_methods_list_is_valid
     unless array_contains_values?(advice_by_other_methods_options, advice_by_other_methods)
       errors.add(:advice_by_other_methods, :invalid)
+    end
+  end
+
+  def free_initial_meeting_choice_is_valid
+    if free_initial_meeting.nil?
+      errors.add(:free_initial_meeting, :required)
+    else
+      unless free_initial_meeting_options.include?(free_initial_meeting)
+        errors.add(:free_initial_meeting, :invalid)
+      end
     end
   end
 
