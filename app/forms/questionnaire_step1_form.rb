@@ -11,7 +11,8 @@ class QuestionnaireStep1Form
                 :accept_customers_from,
                 :advice_in_person,
                 :advice_by_other_methods,
-                :free_initial_meeting
+                :free_initial_meeting,
+                :initial_meeting_duration
 
   validates :firm_email_address,
             presence: true,
@@ -40,6 +41,7 @@ class QuestionnaireStep1Form
   validate :advice_in_person_list_is_valid
   validate :advice_by_other_methods_list_is_valid
   validate :free_initial_meeting_choice_is_valid
+  validate :initial_meeting_duration_choice_is_valid
 
   def accept_customers_from_options
     @accept_customers_from_options ||=
@@ -58,6 +60,10 @@ class QuestionnaireStep1Form
 
   def free_initial_meeting_options
     @free_initial_meeting_options ||= ['Yes', 'No']
+  end
+
+  def initial_meeting_duration_options
+    @initial_meeting_duration_options ||= ['30 min', '60 min']
   end
 
   private
@@ -94,6 +100,14 @@ class QuestionnaireStep1Form
     else
       unless free_initial_meeting_options.include?(free_initial_meeting)
         errors.add(:free_initial_meeting, :invalid)
+      end
+    end
+  end
+
+  def initial_meeting_duration_choice_is_valid
+    if initial_meeting_duration
+      unless initial_meeting_duration_options.include?(initial_meeting_duration)
+        errors.add(:initial_meeting_duration, :invalid)
       end
     end
   end
