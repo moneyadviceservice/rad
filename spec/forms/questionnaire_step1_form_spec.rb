@@ -11,6 +11,7 @@ RSpec.describe QuestionnaireStep1Form, '#valid?', type: :model do
   let(:advice_by_other_methods) { ['Advice by telephone through to transaction'] }
   let(:free_initial_meeting) { 'Yes' }
   let(:initial_meeting_duration) { '30 min' }
+  let(:initial_advice_fee_structure) { 'Hourly fee' }
 
   subject do
     described_class.new({
@@ -25,7 +26,8 @@ RSpec.describe QuestionnaireStep1Form, '#valid?', type: :model do
       advice_in_person: advice_in_person,
       advice_by_other_methods: advice_by_other_methods,
       free_initial_meeting: free_initial_meeting,
-      initial_meeting_duration: initial_meeting_duration
+      initial_meeting_duration: initial_meeting_duration,
+      initial_advice_fee_structure: initial_advice_fee_structure
     })
   end
 
@@ -178,6 +180,20 @@ RSpec.describe QuestionnaireStep1Form, '#valid?', type: :model do
 
     context 'when not one of the options' do
       let(:initial_meeting_duration) { ['not-in-the-list'] }
+
+      it { is_expected.not_to be_valid }
+    end
+  end
+
+  describe 'initial advice fee structure' do
+    context 'when missing' do
+      let(:initial_advice_fee_structure) { nil }
+
+      it { is_expected.not_to be_valid }
+    end
+
+    context 'when not one of the options' do
+      let(:initial_advice_fee_structure) { ['not-in-the-list'] }
 
       it { is_expected.not_to be_valid }
     end
