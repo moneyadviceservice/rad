@@ -13,7 +13,8 @@ class QuestionnaireStep1Form
                 :advice_by_other_methods,
                 :free_initial_meeting,
                 :initial_meeting_duration,
-                :initial_advice_fee_structure
+                :initial_advice_fee_structure,
+                :ongoing_advice_fee_structure
 
   validates :firm_email_address,
             presence: true,
@@ -44,6 +45,7 @@ class QuestionnaireStep1Form
   validate :free_initial_meeting_choice_is_valid
   validate :initial_meeting_duration_choice_is_valid
   validate :initial_advice_fee_structure_choice_is_valid
+  validate :ongoing_advice_fee_structure_choice_is_valid
 
   def accept_customers_from_options
     @accept_customers_from_options ||=
@@ -70,6 +72,11 @@ class QuestionnaireStep1Form
 
   def initial_advice_fee_structure_options
     @initial_advice_fee_structure_options ||=
+        I18n.t('questionnaire.step_one.section_seven.fee_options').map {|item| item[:fee] }
+  end
+
+  def ongoing_advice_fee_structure_options
+    @ongoing_advice_fee_structure_options ||=
         I18n.t('questionnaire.step_one.section_seven.fee_options').map {|item| item[:fee] }
   end
 
@@ -125,6 +132,16 @@ class QuestionnaireStep1Form
     else
       unless initial_advice_fee_structure_options.include?(initial_advice_fee_structure)
         errors.add(:initial_advice_fee_structure, :invalid)
+      end
+    end
+  end
+
+  def ongoing_advice_fee_structure_choice_is_valid
+    if ongoing_advice_fee_structure.nil?
+      errors.add(:ongoing_advice_fee_structure, :required)
+    else
+      unless ongoing_advice_fee_structure_options.include?(ongoing_advice_fee_structure)
+        errors.add(:ongoing_advice_fee_structure, :invalid)
       end
     end
   end
