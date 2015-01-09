@@ -34,10 +34,6 @@
   margin-bottom: $baseline-unit*6;
 }
 
-.l-questionnaire__inset-input {
-  margin-left: $baseline-unit*4;
-}
-
 .l-questionnaire__legend {
   @include body(18,24);
   font-weight: 700;
