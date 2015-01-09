@@ -38,18 +38,13 @@
   margin-left: $baseline-unit*4;
 }
 
-.l-questionnaire__fieldset {
-  // Using the field_set_tag helper doesn't allow for a class on the legend
-  // so we style the legend via a child selector.
+.l-questionnaire__legend {
+  @include body(18,24);
+  font-weight: 700;
+  color: $color-green-secondary;
 
-  > legend {
-    @include body(18,24);
-    font-weight: 700;
-    color: $color-green-secondary;
-
-    + p {
-      margin-top: 0;
-      margin-bottom: $baseline-unit*4;
-    }
+  + p {
+    margin-top: 0;
+    margin-bottom: $baseline-unit*4;
   }
 }

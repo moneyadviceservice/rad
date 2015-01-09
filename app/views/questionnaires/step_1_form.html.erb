@@ -11,7 +11,8 @@
         <%= heading_tag(t('questionnaire.step_one.subheading_one'), level: 2) %>
         <p class="l-questionnaire__section-description"><%= t('questionnaire.step_one.subheading_one_description') %></p>
 
-        <%= field_set_tag(t('questionnaire.step_one.section_one.heading'), class: 'form__group l-questionnaire__fieldset') do %>
+        <fieldset class="form__group">
+          <legend class="l-questionnaire__legend"><%= t('questionnaire.step_one.section_one.heading') %></legend>
           <p><%= t('questionnaire.step_one.section_one.description') %></p>
 
           <div class="l-questionnaire__row">
@@ -23,9 +24,10 @@
               <% end %>
             </div>
           </div>
-        <% end %>
+        </fieldset>
 
-        <%= field_set_tag(t('questionnaire.step_one.section_two.heading'), class: 'form__group l-questionnaire__fieldset') do %>
+        <fieldset class="form__group">
+          <legend class="l-questionnaire__legend"><%= t('questionnaire.step_one.section_two.heading') %></legend>
           <p><%= t('questionnaire.step_one.section_two.description') %></p>
 
           <div class="l-questionnaire__row">
@@ -37,9 +39,10 @@
               <% end %>
             </div>
           </div>
-        <% end %>
+        </fieldset>
 
-        <%= field_set_tag(t('questionnaire.step_one.section_three.heading'), class: 'form__group l-questionnaire__fieldset') do %>
+        <fieldset class="form__group">
+          <legend class="l-questionnaire__legend"><%= t('questionnaire.step_one.section_three.heading') %></legend>
           <p><%= t('questionnaire.step_one.section_three.description') %></p>
 
           <div class="l-questionnaire__row">
@@ -75,9 +78,10 @@
               <% end %>
             </div>
           </div>
-        <% end %>
+        </fieldset>
 
-        <%= field_set_tag(t('questionnaire.step_one.section_four.heading'), class: 'form__group l-questionnaire__fieldset') do %>
+        <fieldset class="form__group">
+          <legend class="l-questionnaire__legend"><%= t('questionnaire.step_one.section_four.heading') %></legend>
           <p><%= t('questionnaire.step_one.section_four.description') %></p>
 
           <%= f.form_row :accept_customers_from do %>
@@ -92,7 +96,7 @@
             <% end %>
           <% end %>
 
-        <% end %>
+        </fieldset>
       </section>
 
       <hr>
@@ -101,7 +105,7 @@
         <%= heading_tag(t('questionnaire.step_one.subheading_two'), level: 2) %>
         <p class="l-questionnaire__section-description"><%= t('questionnaire.step_one.subheading_two_description') %></p>
 
-        <%= field_set_tag('', class: 'form__group l-questionnaire__fieldset') do %>
+        <fieldset class="form__group">
           <%= f.form_row :accept_customers_from do %>
             <%= f.errors_for :accept_customers_from %>
             <label class="form__label-heading">
@@ -132,9 +136,10 @@
               </label>
             <% end %>
           <% end %>
-        <% end %>
+        </fieldset>
 
-        <%= field_set_tag(t('questionnaire.step_one.section_six.heading'), class: 'l-questionnaire__fieldset form__group form__group--inline') do %>
+        <fieldset class="form__group form__group--inline">
+          <legend class="l-questionnaire__legend"><%= t('questionnaire.step_one.section_six.heading') %></legend>
           <%= f.form_row :accept_customers_from do %>
             <%= f.errors_for :accept_customers_from %>
 
@@ -152,7 +157,7 @@
               </label>
             </div>
           <% end %>
-        <% end %>
+        </fieldset>
       </section>
 
       <hr>
@@ -161,7 +166,8 @@
         <%= heading_tag(t('questionnaire.step_one.subheading_three'), level: 2) %>
         <p class="l-questionnaire__section-description"><%= t('questionnaire.step_one.subheading_three_description') %></p>
 
-        <%= field_set_tag(t('questionnaire.step_one.section_seven.heading'), class: 'l-questionnaire__fieldset form__group') do %>
+        <fieldset class="form__group">
+          <legend class="l-questionnaire__legend"><%= t('questionnaire.step_one.section_seven.heading') %></legend>
           <p><%= t('questionnaire.step_one.section_seven.description') %></p>
 
           <%= f.form_row :accept_customers_from do %>
@@ -198,7 +204,7 @@
             </div>
           </div>
 
-        <% end %>
+        </fieldset>
       </section>
 
       <div class="l-questionnaire__button">
