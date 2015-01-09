@@ -109,12 +109,12 @@
         <fieldset class="form__group">
           <legend class="l-questionnaire__legend"><%= t('questionnaire.step_one.in_person_advice.heading') %></legend>
 
-          <%= f.form_row :accept_customers_from do %>
+          <%= f.form_row :advice_in_person do %>
             <% t('questionnaire.step_one.in_person_advice.items').each do |item| %>
-              <%= f.errors_for :accept_customers_from %>
+              <%= f.errors_for :advice_in_person %>
               <div class="form__group-item">
                 <label>
-                  <%= f.check_box :accept_customers_from, class: 'form__group-input' %>
+                  <%= f.check_box :advice_in_person, class: 'form__group-input' %>
                   <%= item[:text] %>
                 </label>
               </div>
@@ -125,12 +125,12 @@
         <fieldset class="form__group">
           <legend class="l-questionnaire__legend"><%= t('questionnaire.step_one.other_methods_of_advice.heading') %></legend>
 
-          <%= f.form_row :accept_customers_from do %>
+          <%= f.form_row :advice_by_other_methods do %>
             <% t('questionnaire.step_one.other_methods_of_advice.items').each do |item| %>
-              <%= f.errors_for :accept_customers_from %>
+              <%= f.errors_for :advice_by_other_methods %>
               <div class="form__group-item">
                 <label>
-                  <%= f.check_box :accept_customers_from, class: 'form__group-input' %>
+                  <%= f.check_box :advice_by_other_methods, class: 'form__group-input' %>
                   <%= item[:text] %>
                 </label>
               </div>
@@ -142,17 +142,17 @@
           <legend class="l-questionnaire__legend"><%= t('questionnaire.step_one.initial_meeting.heading_one') %></legend>
 
           <%= f.form_row :accept_customers_from do %>
-            <%= f.errors_for :accept_customers_from %>
+            <%= f.errors_for :free_initial_meeting %>
             <div class="form__group-item">
               <label>
-                <%= f.radio_button :accept_customers_from, 0,  class: 'form__group-input' %>
+                <%= f.radio_button :free_initial_meeting, 0,  class: 'form__group-input' %>
                 <%= t('yes') %>
               </label>
             </div>
 
             <div class="form__group-item">
               <label>
-                <%= f.radio_button :accept_customers_from, 0,  class: 'form__group-input' %>
+                <%= f.radio_button :free_initial_meeting, 0,  class: 'form__group-input' %>
                 <%= t('no') %>
               </label>
             </div>
@@ -162,12 +162,12 @@
         <fieldset class="form__group form__group--inline">
           <legend class="l-questionnaire__legend"><%= t('questionnaire.step_one.initial_meeting.heading_two') %></legend>
 
-          <%= f.form_row :accept_customers_from do %>
+          <%= f.form_row :initial_meeting_duration do %>
             <% t('questionnaire.step_one.initial_meeting.items').each do |item| %>
-            <%= f.errors_for :accept_customers_from %>
+            <%= f.errors_for :initial_meeting_duration %>
             <div class="form__group-item">
               <label>
-                <%= f.radio_button :accept_customers_from, 0, class: 'form__group-input' %>
+                <%= f.radio_button :initial_meeting_duration, 0, class: 'form__group-input' %>
                 <%= item[:text] %>
               </label>
             </div>
@@ -185,12 +185,12 @@
         <fieldset class="form__group">
           <legend class="l-questionnaire__legend"><%= t('questionnaire.step_one.initial_advice_fee.heading') %></legend>
 
-          <%= f.form_row :accept_customers_from do %>
-            <%= f.errors_for :accept_customers_from %>
+          <%= f.form_row :initial_advice_fee_structure do %>
+            <%= f.errors_for :initial_advice_fee_structure %>
             <% t('questionnaire.step_one.initial_advice_fee.items').each do |item| %>
               <div class="form__group-item">
                 <label>
-                  <%= f.check_box :accept_customers_from, class: 'form__group-input' %>
+                  <%= f.check_box :initial_advice_fee_structure, class: 'form__group-input' %>
                   <%= item[:text] %>
                 </label>
               </div>
@@ -201,12 +201,12 @@
         <fieldset class="form__group">
           <legend class="l-questionnaire__legend"><%= t('questionnaire.step_one.ongoing_advice_fee.heading') %></legend>
 
-          <%= f.form_row :accept_customers_from do %>
-            <%= f.errors_for :accept_customers_from %>
+          <%= f.form_row :ongoing_advice_fee_structure do %>
+            <%= f.errors_for :ongoing_advice_fee_structure %>
               <% t('questionnaire.step_one.ongoing_advice_fee.items').each do |item| %>
               <div class="form__group-item">
                 <label>
-                  <%= f.check_box :accept_customers_from, class: 'form__group-input' %>
+                  <%= f.check_box :ongoing_advice_fee_structure, class: 'form__group-input' %>
                   <%= item[:text] %>
                 </label>
               </div>
@@ -217,12 +217,12 @@
         <fieldset class="form__group">
           <legend class="l-questionnaire__legend"><%= t('questionnaire.step_one.payment_methods.heading') %></legend>
 
-          <%= f.form_row :accept_customers_from do %>
-            <%= f.errors_for :accept_customers_from %>
+          <%= f.form_row :allow_customers_to_pay_for_advice do %>
+            <%= f.errors_for :allow_customers_to_pay_for_advice %>
             <% t('questionnaire.step_one.payment_methods.items').each do |item| %>
               <div class="form__group-item">
                 <label>
-                  <%= f.check_box :accept_customers_from, class: 'form__group-input' %>
+                  <%= f.check_box :allow_customers_to_pay_for_advice, class: 'form__group-input' %>
                   <%= item[:text] %>
                 </label>
               </div>
@@ -232,11 +232,11 @@
 
           <div class="l-questionnaire__row">
             <div class="l-questionnaire__field">
-              <%= f.form_row :accept_customers_from do %>
-                <%= f.errors_for :accept_customers_from %>
+              <%= f.form_row :minimum_fixed_one_off_fee_amount do %>
+                <%= f.errors_for :minimum_fixed_one_off_fee_amount %>
                 <div class="form__group-item">
-                  <%= f.label :accept_customers_from, t('questionnaire.step_one.minimum_fixed_fee'), class: 'form__label-heading' %>
-                  <%= f.text_field :accept_customers_from, class: 'form__group-input' %>
+                  <%= f.label :minimum_fixed_one_off_fee_amount, t('questionnaire.step_one.minimum_fixed_fee'), class: 'form__label-heading' %>
+                  <%= f.text_field :minimum_fixed_one_off_fee_amount, class: 'form__group-input' %>
                 </div>
               <% end %>
             </div>
