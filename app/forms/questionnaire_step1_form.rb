@@ -9,7 +9,8 @@ class QuestionnaireStep1Form
                 :main_office_county,
                 :main_office_postcode,
                 :accept_customers_from,
-                :advice_in_person
+                :advice_in_person,
+                :advice_by_other_methods
 
   validates :firm_email_address,
             presence: true,
@@ -36,6 +37,7 @@ class QuestionnaireStep1Form
 
   validate :accept_customers_from_list_is_valid
   validate :advice_in_person_list_is_valid
+  validate :advice_by_other_methods_list_is_valid
 
   def accept_customers_from_options
     @accept_customers_from_options ||=
@@ -45,6 +47,11 @@ class QuestionnaireStep1Form
   def advice_in_person_options
     @advice_in_person_options ||=
         I18n.t('questionnaire.step_one.section_five.regions').map {|item| item[:region] }
+  end
+
+  def advice_by_other_methods_options
+    @advice_by_other_methods_options ||=
+        I18n.t('questionnaire.step_one.section_five.advice_options').map {|item| item[:advice] }
   end
 
   private
@@ -69,7 +76,13 @@ class QuestionnaireStep1Form
     end
   end
 
+  def advice_by_other_methods_list_is_valid
+    unless array_contains_values?(advice_by_other_methods_options, advice_by_other_methods)
+      errors.add(:advice_by_other_methods, :invalid)
+    end
+  end
+
   def array_contains_values?(array, values)
-    (values.uniq - array.uniq).empty?
+    values and (values.uniq - array.uniq).empty?
   end
 end
