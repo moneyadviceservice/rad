@@ -7,24 +7,11 @@
       <%= f.validation_summary %>
       <p><%= t('required') %></p>
 
+
       <section>
         <%= heading_tag(t('questionnaire.step_one.about_your_firm.heading'), level: 2) %>
+        <%= callout_instructional "<p>Blackrock Associates, firm registration number 12345678</p>" %>
         <p class="l-questionnaire__section-description"><%= t('questionnaire.step_one.about_your_firm.description') %></p>
-
-        <fieldset class="form__group">
-          <legend class="l-questionnaire__legend"><%= t('questionnaire.step_one.registration_number.heading') %></legend>
-          <p><%= t('questionnaire.step_one.registration_number.description') %></p>
-
-          <div class="l-questionnaire__row">
-            <div class="l-questionnaire__field form__group-item">
-              <%= f.form_row :firm_email_address do %>
-                <%= f.errors_for :firm_email_address %>
-                <%= f.label :firm_email_address, t('questionnaire.step_one.registration_number.heading'), class: 'form__label-heading' %>
-                <%= f.text_field :firm_email_address %>
-              <% end %>
-            </div>
-          </div>
-        </fieldset>
 
         <fieldset class="form__group">
           <legend class="l-questionnaire__legend"><%= t('questionnaire.step_one.email_address.heading') %></legend>
