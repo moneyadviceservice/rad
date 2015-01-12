@@ -13,7 +13,7 @@ Rails.application.routes.draw do
     resource :firm, only: :show do
       resource :questionnaire, only: [] do
         collection do
-          get 'step-1', action: 'step_1_form'
+          get 'step-one', action: 'step_one_form'
         end
       end
     end

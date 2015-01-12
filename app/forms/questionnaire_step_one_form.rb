@@ -1,4 +1,4 @@
-class QuestionnaireStep1Form
+class QuestionnaireStepOneForm
   include ActiveModel::Model
 
   attr_accessor :firm_email_address,

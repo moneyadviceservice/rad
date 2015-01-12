@@ -1,4 +1,4 @@
-RSpec.describe QuestionnaireStep1Form, '#valid?', type: :model do
+RSpec.describe QuestionnaireStepOneForm, '#valid?', type: :model do
   let(:firm_email_address) { 'info@finsmart.com' }
   let(:firm_telephone_number) { '0300 500 5000' }
   let(:main_office_line_1) { 'Holborn Centre' }

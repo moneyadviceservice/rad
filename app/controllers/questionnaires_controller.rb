@@ -1,5 +1,5 @@
 class QuestionnairesController < ApplicationController
-  def step_1_form
-    @questionnaire = QuestionnaireStep1Form.new
+  def step_one_form
+    @questionnaire = QuestionnaireStepOneForm.new
   end
 end
