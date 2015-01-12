@@ -41,14 +41,29 @@ class QuestionnaireStepOneForm
             :main_office_county,
             presence: true
 
-  validate :accept_customers_from_list_is_valid
-  validate :advice_in_person_list_is_valid
-  validate :advice_by_other_methods_list_is_valid
-  validate :free_initial_meeting_choice_is_valid
-  validate :initial_meeting_duration_choice_is_valid
-  validate :initial_advice_fee_structure_choice_is_valid
-  validate :ongoing_advice_fee_structure_choice_is_valid
-  validate :allow_customers_to_pay_for_advice_choice_is_valid
+  validates :free_initial_meeting,
+            presence: true,
+            inclusion: { in: ->(form) { form.free_initial_meeting_options } }
+
+  validates :initial_meeting_duration,
+            allow_nil: true,
+            inclusion: { in: ->(form) { form.initial_meeting_duration_options } }
+
+  validates :initial_advice_fee_structure,
+            presence: true,
+            inclusion: { in: ->(form) { form.initial_advice_fee_structure_options } }
+
+  validates :ongoing_advice_fee_structure,
+            presence: true,
+            inclusion: { in: ->(form) { form.ongoing_advice_fee_structure_options } }
+
+  validates :allow_customers_to_pay_for_advice,
+            presence: true,
+            inclusion: { in: ->(form) { form.allow_customers_to_pay_for_advice_options } }
+
+  validate :accept_customers_from_choices_are_valid
+  validate :advice_in_person_choices_are_valid
+  validate :advice_by_other_methods_choices_are_valid
 
   def accept_customers_from_options
     @accept_customers_from_options ||=
@@ -91,7 +106,7 @@ class QuestionnaireStepOneForm
 
   private
 
-  def accept_customers_from_list_is_valid
+  def accept_customers_from_choices_are_valid
     if accept_customers_from.nil? or accept_customers_from.empty?
       errors.add(:accept_customers_from, :required)
     else
@@ -101,7 +116,7 @@ class QuestionnaireStepOneForm
     end
   end
 
-  def advice_in_person_list_is_valid
+  def advice_in_person_choices_are_valid
     if advice_in_person.nil? or advice_in_person.empty?
       errors.add(:advice_in_person, :required)
     else
@@ -111,57 +126,9 @@ class QuestionnaireStepOneForm
     end
   end
 
-  def advice_by_other_methods_list_is_valid
+  def advice_by_other_methods_choices_are_valid
     unless array_contains_values?(advice_by_other_methods_options, advice_by_other_methods)
       errors.add(:advice_by_other_methods, :invalid)
-    end
-  end
-
-  def free_initial_meeting_choice_is_valid
-    if free_initial_meeting.nil?
-      errors.add(:free_initial_meeting, :required)
-    else
-      unless free_initial_meeting_options.include?(free_initial_meeting)
-        errors.add(:free_initial_meeting, :invalid)
-      end
-    end
-  end
-
-  def initial_meeting_duration_choice_is_valid
-    if initial_meeting_duration
-      unless initial_meeting_duration_options.include?(initial_meeting_duration)
-        errors.add(:initial_meeting_duration, :invalid)
-      end
-    end
-  end
-
-  def initial_advice_fee_structure_choice_is_valid
-    if initial_advice_fee_structure.nil?
-      errors.add(:initial_advice_fee_structure, :required)
-    else
-      unless initial_advice_fee_structure_options.include?(initial_advice_fee_structure)
-        errors.add(:initial_advice_fee_structure, :invalid)
-      end
-    end
-  end
-
-  def ongoing_advice_fee_structure_choice_is_valid
-    if ongoing_advice_fee_structure.nil?
-      errors.add(:ongoing_advice_fee_structure, :required)
-    else
-      unless ongoing_advice_fee_structure_options.include?(ongoing_advice_fee_structure)
-        errors.add(:ongoing_advice_fee_structure, :invalid)
-      end
-    end
-  end
-
-  def allow_customers_to_pay_for_advice_choice_is_valid
-    if allow_customers_to_pay_for_advice.nil?
-      errors.add(:allow_customers_to_pay_for_advice, :required)
-    else
-      unless allow_customers_to_pay_for_advice_options.include?(allow_customers_to_pay_for_advice)
-        errors.add(:allow_customers_to_pay_for_advice, :invalid)
-      end
     end
   end
 
