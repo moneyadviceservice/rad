@@ -3,7 +3,7 @@
     <%= heading_tag(t('questionnaire.step_one.title'), level: 1) %>
     <p><%= t('questionnaire.step_one.introduction') %></p>
 
-    <%= form_for @questionnaire, url: step_1_principal_firm_questionnaire_path, html: { class: 'form' }, builder: Dough::Forms::Builders::Validation do |f| %>
+    <%= form_for @questionnaire, url: step_one_principal_firm_questionnaire_path, html: { class: 'form' }, builder: Dough::Forms::Builders::Validation do |f| %>
       <%= f.validation_summary %>
       <p><%= t('required') %></p>
 
