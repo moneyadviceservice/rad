@@ -3,8 +3,11 @@ en:
     attributes:
       principal:
         fca_number: FCA Number
+        confirmed_disclaimer: Truth confirmation statement
+
   adviser_sign_in: Sign in to adviser account
   required: "* indicates required fields"
+
   success:
     heading: Thank you
     message_html: |
@@ -32,8 +35,8 @@ en:
       reference_number: Firm reference number *
       website_address: Firm website address
     principal:
-      heading: Signed by
-      explanation: Must be a Principal or a Compliance Officer
+      heading: Authorisation
+      explanation: Please enter the details of the person completing the registration process on behalf of your firm. We recommend that registration is completed by a Principal, Compliance officer or the equivalent.
       first_name: First name *
       last_name: Last name *
       job_title: Job title *
