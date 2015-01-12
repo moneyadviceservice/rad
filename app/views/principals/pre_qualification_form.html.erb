@@ -1,112 +1,47 @@
 <div class="l-constrained">
   <section class="l-pre-qualification-questions">
-    <%= heading_tag(t('registration.heading'), level: 1) %>
-    <p class="l-pre-qualification-questions__intro-text"><%= t('registration.introduction') %></p>
+    <%= heading_tag(t('registration.heading'), level: 1, class: 'l-pre-qualification-questions__heading') %>
+    <p class="l-pre-qualification-questions__subheading"><%= t('registration.subheading') %></p>
 
-    <%= form_for @prequalification, url: prequalify_principals_path, html: { class: 'form' } do |f| %>
+    <%= form_for @prequalification, url: prequalify_principals_path, html: { class: 'l-pre-qualification-questions__form' } do |f| %>
+      <fieldset class="l-pre-qualification-questions__question-group t-question-1">
+        <legend class="l-pre-qualification-questions__question"><%= t('registration.question_one.heading') %></legend>
+        <p><%= t('registration.question_one.explanation') %></p>
+        <label class="l-pre-qualification-questions__label">
+          <%= f.radio_button :question_1, 1, class: 'l-pre-qualification-questions__input', checked: true %>
+          <%= t('registration.answer_yes') %>
+        </label>
+        <label class="l-pre-qualification-questions__label">
+          <%= f.radio_button :question_1, 0, class: 'l-pre-qualification-questions__input' %>
+          <%= t('registration.answer_no') %>
+        </label>
+      </fieldset>
 
-      <%= f.form_row :question_1 do %>
-        <fieldset class="form__group form__group--inline t-question-1">
-          <legend class="l-pre-qualification-questions__question"><%= t('registration.question_one.heading') %></legend>
-          <p class="l-pre-qualification-questions__description"><%= t('registration.question_one.description') %></p>
+      <fieldset class="l-pre-qualification-questions__question-group t-question-2">
+        <legend class="l-pre-qualification-questions__question"><%= t('registration.question_two.heading') %></legend>
+        <p><%= t('registration.question_two.explanation') %></p>
+        <label class="l-pre-qualification-questions__label">
+          <%= f.radio_button :question_2, 1, class: 'l-pre-qualification-questions__input', checked: true %>
+          <%= t('registration.answer_yes') %>
+        </label>
+        <label class="l-pre-qualification-questions__label">
+          <%= f.radio_button :question_2, 0, class: 'l-pre-qualification-questions__input' %>
+          <%= t('registration.answer_no') %>
+        </label>
+      </fieldset>
 
-          <div class="form__group-item">
-            <%= f.label :question_1 do %>
-              <%= f.radio_button :question_1, 1, class: 'form__group-input', checked: true %>
-              <%= t('registration.answer_yes') %>
-            <% end %>
-          </div>
-
-          <div class="form__group-item">
-            <%= f.label :question_1 do %>
-              <%= f.radio_button :question_1, 0, class: 'form__group-input' %>
-              <%= t('registration.answer_no') %>
-            <% end %>
-          </div>
-        </fieldset>
-      <% end %>
-
-      <%= f.form_row :question_2 do %>
-        <fieldset class="form__group form__group--inline t-question-2">
-          <legend class="l-pre-qualification-questions__question"><%= t('registration.question_two.heading') %></legend>
-          <p class="l-pre-qualification-questions__description"><%= t('registration.question_two.description') %></p>
-
-          <div class="form__group-item">
-            <%= f.label :question_2 do %>
-              <%= f.radio_button :question_2, 1, class: 'form__group-input', checked: true %>
-              <%= t('registration.answer_yes') %>
-            <% end %>
-          </div>
-
-          <div class="form__group-item">
-            <%= f.label :question_2 do %>
-              <%= f.radio_button :question_2, 0, class: 'form__group-input' %>
-              <%= t('registration.answer_no') %>
-            <% end %>
-          </div>
-        </fieldset>
-      <% end %>
-
-      <%= f.form_row :question_3 do %>
-        <fieldset class="form__group form__group--inline t-question-3">
-          <legend class="l-pre-qualification-questions__question"><%= t('registration.question_three.heading') %></legend>
-          <p class="l-pre-qualification-questions__description"><%= t('registration.question_three.description') %></p>
-
-          <div class="form__group-item">
-            <%= f.label :question_3 do %>
-              <%= f.radio_button :question_3, 1, class: 'form__group-input', checked: true %>
-              <%= t('registration.answer_yes') %>
-            <% end %>
-          </div>
-
-          <div class="form__group-item">
-            <%= f.label :question_3 do %>
-              <%= f.radio_button :question_3, 0, class: 'form__group-input' %>
-              <%= t('registration.answer_no') %>
-            <% end %>
-          </div>
-        </fieldset>
-      <% end %>
-
-      <%= f.form_row :question_4 do %>
-        <fieldset class="form__group form__group--inline t-question-4">
-          <legend class="l-pre-qualification-questions__question"><%= t('registration.question_four.heading') %></legend>
-
-          <div class="form__group-item">
-            <%= f.label :question_4 do %>
-              <%= f.radio_button :question_4, 1, class: 'form__group-input', checked: true %>
-              <%= t('registration.question_four.answer_one') %>
-            <% end %>
-          </div>
-
-          <div class="form__group-item">
-            <%= f.label :question_4 do %>
-              <%= f.radio_button :question_4, 0, class: 'form__group-input' %>
-              <%= t('registration.question_four.answer_two') %>
-            <% end %>
-          </div>
-        </fieldset>
-      <% end %>
-
-      <%= f.form_row :question_5 do %>
-        <fieldset class="form__group form__group--inline t-question-5">
-          <legend class="l-pre-qualification-questions__question"><%= t('registration.question_five.heading') %></legend>
-
-          <div class="form__group-item">
-            <%= f.label :question_5 do %>
-              <%= f.radio_button :question_5, 1, class: 'form__group-input', checked: true %>
-              <%= t('registration.answer_yes') %>
-            <% end %>
-          </div>
-
-          <div class="form__group-item">
-            <%= f.label :question_5 do %>
-              <%= f.radio_button :question_5, 0, class: 'form__group-input' %>
-              <%= t('registration.answer_no') %>
-            <% end %>
-          </div>
-        </fieldset>
-      <% end %>
+      <fieldset class="l-pre-qualification-questions__question-group t-question-3">
+        <legend class="l-pre-qualification-questions__question"><%= t('registration.question_three.heading') %></legend>
+        <p><%= t('registration.question_three.explanation') %></p>
+        <label class="l-pre-qualification-questions__label">
+          <%= f.radio_button :question_3, 1, class: 'l-pre-qualification-questions__input', checked: true %>
+          <%= t('registration.answer_yes') %>
+        </label>
+        <label class="l-pre-qualification-questions__label">
+          <%= f.radio_button :question_3, 0, class: 'l-pre-qualification-questions__input' %>
+          <%= t('registration.answer_no') %>
+        </label>
+      </fieldset>
 
       <%= button_primary t('registration.button_next') %>
     <% end %>
