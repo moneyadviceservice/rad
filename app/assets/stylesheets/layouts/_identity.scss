@@ -19,7 +19,8 @@
   }
 }
 
-.l-identity__field--disclaimer {
+.l-identity__field--wide {
+  margin-bottom: $baseline-unit*4;
   @include respond-to($mq-l) {
     @include column(7);
   }

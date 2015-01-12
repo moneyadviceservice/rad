@@ -30,8 +30,12 @@
 
       <hr>
 
-      <%= heading_tag(t('registration.principal.heading'), level: 2) %>
-      <p><%= t('registration.principal.explanation') %></p>
+      <div class="l-identity__row">
+        <div class="l-identity__field l-identity__field--wide">
+          <%= heading_tag(t('registration.principal.heading'), level: 2) %>
+          <p><%= t('registration.principal.explanation') %></p>
+        </div>
+      </div>
 
       <div class="l-identity__row">
         <div class="l-identity__field">
@@ -84,7 +88,7 @@
       </div>
 
       <div class="l-identity__row">
-        <div class="l-identity__field l-identity__field--disclaimer">
+        <div class="l-identity__field l-identity__field--wide">
           <%= f.form_row(:confirmed_disclaimer) do %>
             <%= f.errors_for :confirmed_disclaimer %>
             <%= f.check_box :confirmed_disclaimer, class: 'l-identity__checkbox t-confirmation' %>
