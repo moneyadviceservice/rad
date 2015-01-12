@@ -149,14 +149,14 @@ en:
         heading: Initial advice *
         items:
           - text: Hourly fee
-          - text: Fixed upfront fee
+          - text: Fixed fee (this could be a fixed % or a fixed monetary amount)
           - text: Other
 
       ongoing_advice_fee:
         heading: Ongoing advice *
         items:
           - text: Hourly fee
-          - text: Fixed upfront fee
+          - text: Fixed fee
           - text: Monthly by direct debit
 
       payment_methods:
@@ -165,5 +165,5 @@ en:
           - text: From their own resources
           - text: From funds to be invested
 
-      minimum_fixed_fee: Do you have a minimum fixed one-off fee? If so, please state the amount.
+      minimum_fixed_fee: Do you have a minimum fee? If so, please state the amount.
       button_next: Describe your firm's specialities
