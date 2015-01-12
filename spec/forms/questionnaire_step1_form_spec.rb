@@ -7,7 +7,7 @@ RSpec.describe QuestionnaireStep1Form, '#valid?', type: :model do
   let(:main_office_county) { 'London' }
   let(:main_office_postcode) { 'EC1N 2TD' }
   let(:accept_customers_from) { ['London'] }
-  let(:advice_in_person) { ['East of England'] }
+  let(:advice_in_person) { ['At an agreed location'] }
   let(:advice_by_other_methods) { ['Advice by telephone through to transaction'] }
   let(:free_initial_meeting) { 'Yes' }
   let(:initial_meeting_duration) { '30 min' }

@@ -52,17 +52,17 @@ class QuestionnaireStep1Form
 
   def accept_customers_from_options
     @accept_customers_from_options ||=
-        I18n.t('questionnaire.step_one.section_four.regions').map {|item| item[:region] }
+        I18n.t('questionnaire.step_one.accept_customers_from.items').map {|item| item[:text] }
   end
 
   def advice_in_person_options
     @advice_in_person_options ||=
-        I18n.t('questionnaire.step_one.section_five.regions').map {|item| item[:region] }
+        I18n.t('questionnaire.step_one.in_person_advice.items').map {|item| item[:text] }
   end
 
   def advice_by_other_methods_options
     @advice_by_other_methods_options ||=
-        I18n.t('questionnaire.step_one.section_five.advice_options').map {|item| item[:advice] }
+        I18n.t('questionnaire.step_one.other_methods_of_advice.items').map {|item| item[:text] }
   end
 
   def free_initial_meeting_options
@@ -70,25 +70,23 @@ class QuestionnaireStep1Form
   end
 
   def initial_meeting_duration_options
-    @initial_meeting_duration_options ||= ['30 min', '60 min']
+    @initial_meeting_duration_options ||=
+        I18n.t('questionnaire.step_one.initial_meeting.items').map {|item| item[:text] }
   end
 
   def initial_advice_fee_structure_options
     @initial_advice_fee_structure_options ||=
-        I18n.t('questionnaire.step_one.section_seven.fee_options').map {|item| item[:fee] }
+        I18n.t('questionnaire.step_one.initial_advice_fee.items').map {|item| item[:text] }
   end
 
   def ongoing_advice_fee_structure_options
     @ongoing_advice_fee_structure_options ||=
-        I18n.t('questionnaire.step_one.section_seven.fee_options').map {|item| item[:fee] }
+        I18n.t('questionnaire.step_one.ongoing_advice_fee.items').map {|item| item[:text] }
   end
 
   def allow_customers_to_pay_for_advice_options
-    @allow_customers_to_pay_for_advice_options ||= [
-        'From their own resources',
-        'From funds to be invested',
-        'Either'
-    ]
+    @allow_customers_to_pay_for_advice_options ||=
+        I18n.t('questionnaire.step_one.payment_methods.items').map {|item| item[:text] }
   end
 
   private
