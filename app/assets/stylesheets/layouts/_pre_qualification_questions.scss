@@ -11,10 +11,6 @@
   }
 }
 
-.l-pre-qualification-questions__try-again {
-  margin: $baseline-unit*4 0 $baseline-unit*8 0;
-}
-
 .l-pre-qualification-questions__heading {
   margin-bottom: 0;
 }
@@ -32,6 +28,10 @@
   + p {
     margin-top: 0;
   }
+}
+
+.l-pre-qualification-questions__reasons {
+  margin-bottom: $baseline-unit*10;
 }
 
 .l-pre-qualification-questions__question-group {

@@ -16,7 +16,6 @@ RSpec.feature 'Principal answers pre-qualification questions' do
     given_i_answer_a_question_no
     then_i_am_notified_i_cannot_proceed
     and_i_am_able_to_send_a_message_to_the_administrator
-    and_i_am_able_to_go_back_and_modify_my_answers
   end
 
 
@@ -44,10 +43,5 @@ RSpec.feature 'Principal answers pre-qualification questions' do
 
   def and_i_am_able_to_send_a_message_to_the_administrator
     expect(rejection_page.administrator_message).to be_present
-  end
-
-  def and_i_am_able_to_go_back_and_modify_my_answers
-    rejection_page.go_back.click
-    expect(pre_qualification_page).to be_displayed
   end
 end
