@@ -19,10 +19,10 @@
 
           <div class="l-questionnaire__row">
             <div class="l-questionnaire__field form__group-item">
-              <%= f.form_row :firm_email_address do %>
-                <%= f.errors_for :firm_email_address %>
-                <%= f.label :firm_email_address, t('questionnaire.step_one.email_address.label'), class: 'form__label-heading' %>
-                <%= f.text_field :firm_email_address %>
+              <%= f.form_row :email_address do %>
+                <%= f.errors_for :email_address %>
+                <%= f.label :email_address, t('questionnaire.step_one.email_address.label'), class: 'form__label-heading' %>
+                <%= f.text_field :email_address %>
               <% end %>
             </div>
           </div>
@@ -34,10 +34,10 @@
 
           <div class="l-questionnaire__row">
             <div class="l-questionnaire__field form__group-item">
-              <%= f.form_row :firm_telephone_number do %>
-              <%= f.errors_for :firm_telephone_number %>
-              <%= f.label :firm_telephone_number, t('questionnaire.step_one.telephone_number.label'), class: 'form__label-heading' %>
-              <%= f.text_field :firm_telephone_number %>
+              <%= f.form_row :telephone_number do %>
+              <%= f.errors_for :telephone_number %>
+              <%= f.label :telephone_number, t('questionnaire.step_one.telephone_number.label'), class: 'form__label-heading' %>
+              <%= f.text_field :telephone_number %>
               <% end %>
             </div>
           </div>
@@ -49,34 +49,34 @@
 
           <div class="l-questionnaire__row">
             <div class="l-questionnaire__field">
-              <%= f.form_row :main_office_line_1 do %>
-                <%= f.errors_for :main_office_line_1 %>
-                <%= f.label :main_office_line_1, t('questionnaire.step_one.address.label_one'), class: 'form__label-heading' %>
-                <%= f.text_field :main_office_line_1 %>
+              <%= f.form_row :address_line_1 do %>
+                <%= f.errors_for :address_line_1 %>
+                <%= f.label :address_line_1, t('questionnaire.step_one.address.label_one'), class: 'form__label-heading' %>
+                <%= f.text_field :address_line_1 %>
               <% end %>
 
-              <%= f.form_row :main_office_line_2 do %>
-                <%= f.errors_for :main_office_line_2 %>
-                <%= f.label :main_office_line_2, t('questionnaire.step_one.address.label_two'), class: 'form__label-heading' %>
-                <%= f.text_field :main_office_line_2 %>
+              <%= f.form_row :address_line_2 do %>
+                <%= f.errors_for :address_line_2 %>
+                <%= f.label :address_line_2, t('questionnaire.step_one.address.label_two'), class: 'form__label-heading' %>
+                <%= f.text_field :address_line_2 %>
               <% end %>
 
-              <%= f.form_row :main_office_town do %>
-                <%= f.errors_for :main_office_town %>
-                <%= f.label :main_office_town, t('questionnaire.step_one.address.label_three'), class: 'form__label-heading' %>
-                <%= f.text_field :main_office_town %>
+              <%= f.form_row :address_town do %>
+                <%= f.errors_for :address_town %>
+                <%= f.label :address_town, t('questionnaire.step_one.address.label_three'), class: 'form__label-heading' %>
+                <%= f.text_field :address_town %>
               <% end %>
 
-              <%= f.form_row :main_office_county do %>
-                <%= f.errors_for :main_office_county %>
-                <%= f.label :main_office_county, t('questionnaire.step_one.address.label_four'), class: 'form__label-heading' %>
-                <%= f.text_field :main_office_county %>
+              <%= f.form_row :address_county do %>
+                <%= f.errors_for :address_county %>
+                <%= f.label :address_county, t('questionnaire.step_one.address.label_four'), class: 'form__label-heading' %>
+                <%= f.text_field :address_county %>
               <% end %>
 
-              <%= f.form_row :main_office_postcode do %>
-                <%= f.errors_for :main_office_postcode %>
-                <%= f.label :main_office_postcode, t('questionnaire.step_one.address.label_five'), class: 'form__label-heading' %>
-                <%= f.text_field :main_office_postcode %>
+              <%= f.form_row :address_postcode do %>
+                <%= f.errors_for :address_postcode %>
+                <%= f.label :address_postcode, t('questionnaire.step_one.address.label_five'), class: 'form__label-heading' %>
+                <%= f.text_field :address_postcode %>
               <% end %>
             </div>
           </div>
@@ -109,12 +109,12 @@
         <fieldset class="form__group">
           <legend class="l-questionnaire__legend"><%= t('questionnaire.step_one.in_person_advice.heading') %></legend>
 
-          <%= f.form_row :advice_in_person do %>
+          <%= f.form_row :in_person_advice do %>
             <% t('questionnaire.step_one.in_person_advice.items').each do |item| %>
-              <%= f.errors_for :advice_in_person %>
+              <%= f.errors_for :in_person_advice %>
               <div class="form__group-item">
                 <label>
-                  <%= f.check_box :advice_in_person, class: 'form__group-input' %>
+                  <%= f.check_box :in_person_advice, class: 'form__group-input' %>
                   <%= item[:text] %>
                 </label>
               </div>
@@ -125,12 +125,12 @@
         <fieldset class="form__group">
           <legend class="l-questionnaire__legend"><%= t('questionnaire.step_one.other_methods_of_advice.heading') %></legend>
 
-          <%= f.form_row :advice_by_other_methods do %>
+          <%= f.form_row :other_methods_of_advice do %>
             <% t('questionnaire.step_one.other_methods_of_advice.items').each do |item| %>
-              <%= f.errors_for :advice_by_other_methods %>
+              <%= f.errors_for :other_methods_of_advice %>
               <div class="form__group-item">
                 <label>
-                  <%= f.check_box :advice_by_other_methods, class: 'form__group-input' %>
+                  <%= f.check_box :other_methods_of_advice, class: 'form__group-input' %>
                   <%= item[:text] %>
                 </label>
               </div>
@@ -142,17 +142,17 @@
           <legend class="l-questionnaire__legend"><%= t('questionnaire.step_one.initial_meeting.heading') %></legend>
 
           <%= f.form_row :accept_customers_from do %>
-            <%= f.errors_for :free_initial_meeting %>
+            <%= f.errors_for :initial_meeting %>
             <div class="form__group-item">
               <label>
-                <%= f.radio_button :free_initial_meeting, 0,  class: 'form__group-input' %>
+                <%= f.radio_button :initial_meeting, 0,  class: 'form__group-input' %>
                 <%= t('yes') %>
               </label>
             </div>
 
             <div class="form__group-item">
               <label>
-                <%= f.radio_button :free_initial_meeting, 0,  class: 'form__group-input' %>
+                <%= f.radio_button :initial_meeting, 0,  class: 'form__group-input' %>
                 <%= t('no') %>
               </label>
             </div>
@@ -185,12 +185,12 @@
         <fieldset class="form__group">
           <legend class="l-questionnaire__legend"><%= t('questionnaire.step_one.initial_advice_fee.heading') %></legend>
 
-          <%= f.form_row :initial_advice_fee_structure do %>
-            <%= f.errors_for :initial_advice_fee_structure %>
+          <%= f.form_row :initial_advice_fee do %>
+            <%= f.errors_for :initial_advice_fee %>
             <% t('questionnaire.step_one.initial_advice_fee.items').each do |item| %>
               <div class="form__group-item">
                 <label>
-                  <%= f.check_box :initial_advice_fee_structure, class: 'form__group-input' %>
+                  <%= f.check_box :initial_advice_fee, class: 'form__group-input' %>
                   <%= item[:text] %>
                 </label>
               </div>
@@ -201,12 +201,12 @@
         <fieldset class="form__group">
           <legend class="l-questionnaire__legend"><%= t('questionnaire.step_one.ongoing_advice_fee.heading') %></legend>
 
-          <%= f.form_row :ongoing_advice_fee_structure do %>
-            <%= f.errors_for :ongoing_advice_fee_structure %>
+          <%= f.form_row :ongoing_advice_fee do %>
+            <%= f.errors_for :ongoing_advice_fee %>
               <% t('questionnaire.step_one.ongoing_advice_fee.items').each do |item| %>
               <div class="form__group-item">
                 <label>
-                  <%= f.check_box :ongoing_advice_fee_structure, class: 'form__group-input' %>
+                  <%= f.check_box :ongoing_advice_fee, class: 'form__group-input' %>
                   <%= item[:text] %>
                 </label>
               </div>
@@ -217,12 +217,12 @@
         <fieldset class="form__group">
           <legend class="l-questionnaire__legend"><%= t('questionnaire.step_one.payment_methods.heading') %></legend>
 
-          <%= f.form_row :allow_customers_to_pay_for_advice do %>
-            <%= f.errors_for :allow_customers_to_pay_for_advice %>
+          <%= f.form_row :payment_methods do %>
+            <%= f.errors_for :payment_methods %>
             <% t('questionnaire.step_one.payment_methods.items').each do |item| %>
               <div class="form__group-item">
                 <label>
-                  <%= f.check_box :allow_customers_to_pay_for_advice, class: 'form__group-input' %>
+                  <%= f.check_box :payment_methods, class: 'form__group-input' %>
                   <%= item[:text] %>
                 </label>
               </div>
@@ -232,11 +232,11 @@
 
           <div class="l-questionnaire__row">
             <div class="l-questionnaire__field">
-              <%= f.form_row :minimum_fixed_one_off_fee_amount do %>
-                <%= f.errors_for :minimum_fixed_one_off_fee_amount %>
+              <%= f.form_row :minimum_fixed_fee do %>
+                <%= f.errors_for :minimum_fixed_fee %>
                 <div class="form__group-item">
-                  <%= f.label :minimum_fixed_one_off_fee_amount, t('questionnaire.step_one.minimum_fixed_fee'), class: 'form__label-heading' %>
-                  <%= f.text_field :minimum_fixed_one_off_fee_amount, class: 'form__group-input' %>
+                  <%= f.label :minimum_fixed_fee, t('questionnaire.step_one.minimum_fixed_fee'), class: 'form__label-heading' %>
+                  <%= f.text_field :minimum_fixed_fee, class: 'form__group-input' %>
                 </div>
               <% end %>
             </div>

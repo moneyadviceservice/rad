@@ -1,39 +1,39 @@
 RSpec.describe QuestionnaireStepOneForm, '#valid?', type: :model do
-  let(:firm_email_address) { 'info@finsmart.com' }
-  let(:firm_telephone_number) { '0300 500 5000' }
-  let(:main_office_line_1) { 'Holborn Centre' }
-  let(:main_office_line_2) { '120 Holborn' }
-  let(:main_office_town) { 'London' }
-  let(:main_office_county) { 'London' }
-  let(:main_office_postcode) { 'EC1N 2TD' }
+  let(:email_address) { 'info@finsmart.com' }
+  let(:telephone_number) { '0300 500 5000' }
+  let(:address_line_1) { 'Holborn Centre' }
+  let(:address_line_2) { '120 Holborn' }
+  let(:address_town) { 'London' }
+  let(:address_county) { 'London' }
+  let(:address_postcode) { 'EC1N 2TD' }
   let(:accept_customers_from) { ['London'] }
-  let(:advice_in_person) { ['At an agreed location'] }
-  let(:advice_by_other_methods) { ['Advice by telephone through to transaction'] }
-  let(:free_initial_meeting) { 'Yes' }
+  let(:in_person_advice) { ['At an agreed location'] }
+  let(:other_methods_of_advice) { ['Advice by telephone through to transaction'] }
+  let(:initial_meeting) { true }
   let(:initial_meeting_duration) { '30 min' }
-  let(:initial_advice_fee_structure) { 'Hourly fee' }
-  let(:ongoing_advice_fee_structure) { 'Monthly by direct debit' }
-  let(:allow_customers_to_pay_for_advice) { 'From funds to be invested' }
-  let(:minimum_fixed_one_off_fee_amount) { '£2,300.00' }
+  let(:initial_advice_fee) { 'Hourly fee' }
+  let(:ongoing_advice_fee) { 'Monthly by direct debit' }
+  let(:payment_methods) { 'From funds to be invested' }
+  let(:minimum_fixed_fee) { '£2,300.00' }
 
   subject do
     described_class.new({
-      firm_email_address: firm_email_address,
-      firm_telephone_number: firm_telephone_number,
-      main_office_line_1: main_office_line_1,
-      main_office_line_2: main_office_line_2,
-      main_office_town: main_office_town,
-      main_office_county: main_office_county,
-      main_office_postcode: main_office_postcode,
+      email_address: email_address,
+      telephone_number: telephone_number,
+      address_line_1: address_line_1,
+      address_line_2: address_line_2,
+      address_town: address_town,
+      address_county: address_county,
+      address_postcode: address_postcode,
       accept_customers_from: accept_customers_from,
-      advice_in_person: advice_in_person,
-      advice_by_other_methods: advice_by_other_methods,
-      free_initial_meeting: free_initial_meeting,
+      in_person_advice: in_person_advice,
+      other_methods_of_advice: other_methods_of_advice,
+      initial_meeting: initial_meeting,
       initial_meeting_duration: initial_meeting_duration,
-      initial_advice_fee_structure: initial_advice_fee_structure,
-      ongoing_advice_fee_structure: ongoing_advice_fee_structure,
-      allow_customers_to_pay_for_advice: allow_customers_to_pay_for_advice,
-      minimum_fixed_one_off_fee_amount: minimum_fixed_one_off_fee_amount
+      initial_advice_fee: initial_advice_fee,
+      ongoing_advice_fee: ongoing_advice_fee,
+      payment_methods: payment_methods,
+      minimum_fixed_fee: minimum_fixed_fee
     })
   end
 
@@ -41,75 +41,75 @@ RSpec.describe QuestionnaireStepOneForm, '#valid?', type: :model do
     it { is_expected.to be_valid }
   end
 
-  describe 'firm email address' do
+  describe 'email address' do
     context 'when missing' do
-      let(:firm_email_address) { nil }
+      let(:email_address) { nil }
 
       it { is_expected.not_to be_valid }
     end
 
     context 'when invalid' do
-      let(:firm_email_address) { 'invalid-email-format' }
+      let(:email_address) { 'invalid-email-format' }
 
       it { is_expected.not_to be_valid }
     end
   end
 
-  describe 'firm telephone number' do
+  describe 'telephone number' do
     context 'when missing' do
-      let(:firm_telephone_number) { nil }
+      let(:telephone_number) { nil }
 
       it { is_expected.not_to be_valid }
     end
 
     context 'when invalid' do
-      let(:firm_telephone_number) { 'invalid-telephone-number' }
+      let(:telephone_number) { 'invalid-telephone-number' }
 
       it { is_expected.not_to be_valid }
     end
   end
 
-  describe 'main office line 1' do
+  describe 'address line 1' do
     context 'when missing' do
-      let(:main_office_line_1) { nil }
+      let(:address_line_1) { nil }
 
       it { is_expected.not_to be_valid }
     end
   end
 
-  describe 'main office line 2' do
+  describe 'address line 2' do
     context 'when missing' do
-      let(:main_office_line_2) { nil }
+      let(:address_line_2) { nil }
 
       it { is_expected.not_to be_valid }
     end
   end
 
-  describe 'main office town' do
+  describe 'address town' do
     context 'when missing' do
-      let(:main_office_town) { nil }
+      let(:address_town) { nil }
 
       it { is_expected.not_to be_valid }
     end
   end
 
-  describe 'main office county' do
+  describe 'address county' do
     context 'when missing' do
-      let(:main_office_county) { nil }
+      let(:address_county) { nil }
 
       it { is_expected.not_to be_valid }
     end
   end
 
-  describe 'main office postcode' do
+  describe 'address postcode' do
     context 'when missing' do
-      let(:main_office_postcode) { nil }
+      let(:address_postcode) { nil }
 
       it { is_expected.not_to be_valid }
     end
 
     context 'when invalid' do
-      let(:main_office_postcode) { 'invalid-postcode' }
+      let(:address_postcode) { 'invalid-postcode' }
 
       it { is_expected.not_to be_valid }
     end
@@ -135,43 +135,43 @@ RSpec.describe QuestionnaireStepOneForm, '#valid?', type: :model do
     end
   end
 
-  describe 'advice in person' do
+  describe 'in person advice' do
     context 'when missing' do
-      let(:advice_in_person) { nil }
+      let(:in_person_advice) { nil }
 
       it { is_expected.not_to be_valid }
     end
 
     context 'when empty array' do
-      let(:advice_in_person) { [] }
+      let(:in_person_advice) { [] }
 
       it { is_expected.not_to be_valid }
     end
 
     context 'when not one of the options' do
-      let(:advice_in_person) { ['not-in-the-list'] }
+      let(:in_person_advice) { ['not-in-the-list'] }
 
       it { is_expected.not_to be_valid }
     end
   end
 
-  describe 'advice by other methods' do
+  describe 'other methods of advice' do
     context 'when not one of the options' do
-      let(:advice_by_other_methods) { ['not-in-the-list'] }
+      let(:other_methods_of_advice) { ['not-in-the-list'] }
 
       it { is_expected.not_to be_valid }
     end
   end
 
-  describe 'free initial meeting' do
+  describe 'initial meeting' do
     context 'when missing' do
-      let(:free_initial_meeting) { nil }
+      let(:initial_meeting) { nil }
 
       it { is_expected.not_to be_valid }
     end
 
     context 'when not one of the options' do
-      let(:free_initial_meeting) { ['not-in-the-list'] }
+      let(:initial_meeting) { ['not-in-the-list'] }
 
       it { is_expected.not_to be_valid }
     end
@@ -191,43 +191,43 @@ RSpec.describe QuestionnaireStepOneForm, '#valid?', type: :model do
     end
   end
 
-  describe 'initial advice fee structure' do
+  describe 'initial advice fee' do
     context 'when missing' do
-      let(:initial_advice_fee_structure) { nil }
+      let(:initial_advice_fee) { nil }
 
       it { is_expected.not_to be_valid }
     end
 
     context 'when not one of the options' do
-      let(:initial_advice_fee_structure) { ['not-in-the-list'] }
+      let(:initial_advice_fee) { ['not-in-the-list'] }
 
       it { is_expected.not_to be_valid }
     end
   end
 
-  describe 'ongoing advice fee structure' do
+  describe 'ongoing advice fee' do
     context 'when missing' do
-      let(:ongoing_advice_fee_structure) { nil }
+      let(:ongoing_advice_fee) { nil }
 
       it { is_expected.not_to be_valid }
     end
 
     context 'when not one of the options' do
-      let(:ongoing_advice_fee_structure) { ['not-in-the-list'] }
+      let(:ongoing_advice_fee) { ['not-in-the-list'] }
 
       it { is_expected.not_to be_valid }
     end
   end
 
-  describe 'allow customers to pay for advice' do
+  describe 'payment methods' do
     context 'when missing' do
-      let(:allow_customers_to_pay_for_advice) { nil }
+      let(:payment_methods) { nil }
 
       it { is_expected.not_to be_valid }
     end
 
     context 'when not one of the options' do
-      let(:allow_customers_to_pay_for_advice) { ['not-in-the-list'] }
+      let(:payment_methods) { ['not-in-the-list'] }
 
       it { is_expected.not_to be_valid }
     end
