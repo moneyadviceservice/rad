@@ -139,8 +139,13 @@ en:
           - text: Advice by video call / conference through to transaction
 
       initial_meeting:
-        heading_one: Does your firm offer a free initial meeting?
-        heading_two: If yes, for how long?
+        heading: Does your firm offer a free initial meeting?
+        items:
+          - text: Yes
+          - text: No
+
+      initial_meeting_duration:
+        heading: If yes, for how long?
         items:
           - text: 30 min
           - text: 60 min

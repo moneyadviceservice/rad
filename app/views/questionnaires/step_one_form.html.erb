@@ -139,7 +139,7 @@
         </fieldset>
 
         <fieldset class="form__group form__group--inline">
-          <legend class="l-questionnaire__legend"><%= t('questionnaire.step_one.initial_meeting.heading_one') %></legend>
+          <legend class="l-questionnaire__legend"><%= t('questionnaire.step_one.initial_meeting.heading') %></legend>
 
           <%= f.form_row :accept_customers_from do %>
             <%= f.errors_for :free_initial_meeting %>
@@ -160,10 +160,10 @@
         </fieldset>
 
         <fieldset class="form__group form__group--inline">
-          <legend class="l-questionnaire__legend"><%= t('questionnaire.step_one.initial_meeting.heading_two') %></legend>
+          <legend class="l-questionnaire__legend"><%= t('questionnaire.step_one.initial_meeting_duration.heading') %></legend>
 
           <%= f.form_row :initial_meeting_duration do %>
-            <% t('questionnaire.step_one.initial_meeting.items').each do |item| %>
+            <% t('questionnaire.step_one.initial_meeting_duration.items').each do |item| %>
             <%= f.errors_for :initial_meeting_duration %>
             <div class="form__group-item">
               <label>
