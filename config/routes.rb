@@ -11,7 +11,9 @@ Rails.application.routes.draw do
     end
 
     resource :firm, only: :show do
-      resource :questionnaire
+      resource :questionnaire do
+        get 'retirement-advice', action: 'retirement_advice_form'
+      end
     end
   end
 
