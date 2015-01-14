@@ -23,13 +23,13 @@ en:
     answer_no: "No"
     question_one:
       heading: Is your firm active in the retirement planning market?
-      explanation: This could include either 'at retirement' or 'post retirement'
+      explanation: This could include either 'at retirement' or 'post retirement'.
     question_two:
       heading: Is your firm's primary business model regulated advice?
-      explanation: This could be full or focused advice but must be fully covered by the Financial ombudsman and the Financial Services Compensation Scheme
+      explanation: Financial advisers on the directory must offer, as their primary business model, regulated advice. This can be full, focused or simplified advice but must include a personal recommendation which must be appropriate to the individual client’s needs (in line with FCA definition of regulated advice). Advice must be covered by the Financial Ombudsman Service and the Financial Services Compensation Scheme.
     question_three:
       heading: Does your firm offer a whole of market service?
-      explanation: This means that your firm is not restricted in the number of providers you are able to access for a given product
+      explanation: This means that your firm is not restricted in the number of providers you are able to access for a given product.
     firm:
       heading: Firm FCA information
       reference_number: Firm reference number *
