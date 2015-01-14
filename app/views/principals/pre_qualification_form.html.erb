@@ -70,6 +70,7 @@
       <%= f.form_row :question_4 do %>
         <fieldset class="form__group form__group--inline t-question-4">
           <legend class="l-pre-qualification-questions__question"><%= t('registration.question_four.heading') %></legend>
+          <p><%= t('registration.question_four.description') %></p>
 
           <div class="form__group-item">
             <%= f.label :question_4 do %>
@@ -80,7 +81,7 @@
 
           <div class="form__group-item">
             <%= f.label :question_4 do %>
-              <%= f.radio_button :question_4, 0, class: 'form__group-input', data: { trigger: 'toggle-show-hide' } %>
+              <%= f.radio_button :question_4, 0, class: 'form__group-input', data: { trigger: 'show-hide-toggle' } %>
               <%= t('registration.question_four.answer_two') %>
             <% end %>
           </div>
@@ -88,8 +89,9 @@
       <% end %>
 
       <%= f.form_row :question_5 do %>
-        <fieldset class="form__group form__group--inline t-question-5" data-target="hide">
+        <fieldset class="form__group form__group--inline is-hidden t-question-5" data-target="hidden-element">
           <legend class="l-pre-qualification-questions__question"><%= t('registration.question_five.heading') %></legend>
+          <p><%= t('registration.question_five.description') %></p>
 
           <div class="form__group-item">
             <%= f.label :question_5 do %>
