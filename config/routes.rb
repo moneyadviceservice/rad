@@ -11,11 +11,9 @@ Rails.application.routes.draw do
     end
 
     resource :firm, only: :show do
-      resource :questionnaire
-
+      resource :questionnaire, only: [:new, :create]
       resources :advisers
     end
-
   end
 
   resource :contact, only: :create
