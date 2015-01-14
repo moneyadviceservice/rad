@@ -11,7 +11,7 @@ Rails.application.routes.draw do
     end
 
     resource :firm, only: :show do
-      resource :questionnaire
+      resource :questionnaire, only: [:new, :create]
     end
   end
 
