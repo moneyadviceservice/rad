@@ -11,10 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150114144343) do
+ActiveRecord::Schema.define(version: 20150114151447) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "firms", force: :cascade do |t|
+    t.string   "email_address",    null: false
+    t.string   "telephone_number", null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
 
   create_table "lookup_advisers", force: :cascade do |t|
     t.string   "reference_number", null: false
@@ -24,8 +31,8 @@ ActiveRecord::Schema.define(version: 20150114144343) do
   end
 
   create_table "lookup_firms", force: :cascade do |t|
-    t.integer  "fca_number",                               null: false
-    t.string   "registered_name", limit: 255, default: "", null: false
+    t.integer  "fca_number",                   null: false
+    t.string   "registered_name", default: "", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -43,14 +50,14 @@ ActiveRecord::Schema.define(version: 20150114144343) do
 
   create_table "principals", force: :cascade do |t|
     t.integer  "fca_number"
-    t.string   "token",                limit: 255
-    t.string   "website_address",      limit: 255
-    t.string   "first_name",           limit: 255
-    t.string   "last_name",            limit: 255
-    t.string   "job_title",            limit: 255
-    t.string   "email_address",        limit: 255
-    t.string   "telephone_number",     limit: 255
-    t.boolean  "confirmed_disclaimer",             default: false
+    t.string   "token"
+    t.string   "website_address"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "job_title"
+    t.string   "email_address"
+    t.string   "telephone_number"
+    t.boolean  "confirmed_disclaimer", default: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
