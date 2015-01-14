@@ -1,0 +1,77 @@
+<div class="l-constrained">
+  <section class="l-questionnaire">
+    <%= heading_tag(t('questionnaire.retirement_advice.title'), level: 1) %>
+    <% t('questionnaire.retirement_advice.introduction').each do |item| %>
+      <p><%= item[:text] %></p>
+    <% end %>
+
+     <%#= form_for @questionnaire, url: step_one_principal_firm_questionnaire_path, html: { class: 'form' }, builder: Dough::Forms::Builders::Validation do |f| %>
+      <%#= f.validation_summary %>
+
+      <p><%= t('required') %></p>
+
+      <section>
+        <%= heading_tag(t('questionnaire.retirement_advice.business_split.heading'), level: 2) %>
+        <p><%= t('questionnaire.retirement_advice.business_split.description') %></p>
+
+        <fieldset class="form__group">
+          <legend class="l-questionnaire__legend"><%= t('questionnaire.retirement_advice.business_split.subheading') %></legend>
+
+          <div class="l-questionnaire__row">
+            <div class="l-questionnaire__field form__group">
+
+              <% t('questionnaire.retirement_advice.business_split.advice_options').each do |item| %>
+                <div class="form__row">
+                  <label class="form__label-heading"><%= item[:option] %></label>
+                  <span class="form__input-container">
+                    <input type="number" class="form__input"/>
+                    <span class="form__input-label" id="input-label3b">%</span>
+                    <span class="form__input-outline"></span>
+                  </span>
+                </div>
+              <% end %>
+
+              <p><%= t('questionnaire.retirement_advice.business_split.other_category_description') %></p>
+            </div>
+          </div>
+
+          <p><%= t('questionnaire.retirement_advice.business_split.explanation') %></p>
+
+          <%= heading_tag(t('questionnaire.retirement_advice.business_split.disclaimer.heading'), level: 3) %>
+
+          <p><%= t('questionnaire.retirement_advice.business_split.disclaimer.text') %></p>
+        </fieldset>
+      </section>
+
+      <section>
+        <%= heading_tag(t('questionnaire.retirement_advice.typical_customer.heading'), level: 2) %>
+        <% t('questionnaire.retirement_advice.typical_customer.description').each do |item| %>
+          <p><%= item[:text] %></p>
+        <% end %>
+
+        <fieldset class="form__group">
+          <legend class="l-questionnaire__legend"><%= t('questionnaire.retirement_advice.typical_customer.subheading') %></legend>
+
+          <div class="l-questionnaire__row">
+            <div class="l-questionnaire__field">
+              <% t('questionnaire.retirement_advice.typical_customer.pension_pot_size').each do |item| %>
+                <div class="form__group-item">
+                  <label class="form__group">
+                    <input type="radio" name="pension_pot_group" class="form__group-input"/>
+                    <%= item[:size] %>
+                  </label>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        </fieldset>
+
+      </section>
+
+      <div class="l-questionnaire__button">
+        <%= button_primary t('questionnaire.retirement_advice.button_next') %>
+      </div>
+
+     <%# end %>
+  </section>
+</div>
