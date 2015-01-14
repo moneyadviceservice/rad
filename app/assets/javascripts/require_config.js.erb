@@ -1,0 +1,22 @@
+//= depend_on_asset jquery/dist/jquery
+//= depend_on_asset modules/toggle_visibility
+
+<%
+  def requirejs_path(asset)
+    javascript_path(asset).sub(/.js\z/, '')
+  end
+
+  requirejs_config = {
+     # baseUrl: (Rails.application.config.action_controller.asset_host || '') + \ Rails.application.config.assets.prefix,
+
+    paths: {
+      jquery: requirejs_path('jquery/dist/jquery'),
+      toggle_visibility: requirejs_path('modules/toggle_visibility')
+    }
+  }
+%>
+
+// If requirejs is present convert the requirejs_config hash to a JSON object
+if(window.requirejs) {
+  requirejs.config(<%= JSON.pretty_generate(requirejs_config) %>);
+}

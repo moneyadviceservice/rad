@@ -11,7 +11,7 @@
 
           <div class="form__group-item">
             <%= f.label :question_1 do %>
-              <%= f.radio_button :question_1, 1, class: 'form__group-input', checked: true %>
+              <%= f.radio_button :question_1, 1, class: 'form__group-input' %>
               <%= t('registration.answer_yes') %>
             <% end %>
           </div>
@@ -32,7 +32,7 @@
 
           <div class="form__group-item">
             <%= f.label :question_2 do %>
-              <%= f.radio_button :question_2, 1, class: 'form__group-input', checked: true %>
+              <%= f.radio_button :question_2, 1, class: 'form__group-input' %>
               <%= t('registration.answer_yes') %>
             <% end %>
           </div>
@@ -53,7 +53,7 @@
 
           <div class="form__group-item">
             <%= f.label :question_3 do %>
-              <%= f.radio_button :question_3, 1, class: 'form__group-input', checked: true %>
+              <%= f.radio_button :question_3, 1, class: 'form__group-input' %>
               <%= t('registration.answer_yes') %>
             <% end %>
           </div>
@@ -73,14 +73,14 @@
 
           <div class="form__group-item">
             <%= f.label :question_4 do %>
-              <%= f.radio_button :question_4, 1, class: 'form__group-input', checked: true %>
+              <%= f.radio_button :question_4, 1, class: 'form__group-input' %>
               <%= t('registration.question_four.answer_one') %>
             <% end %>
           </div>
 
           <div class="form__group-item">
             <%= f.label :question_4 do %>
-              <%= f.radio_button :question_4, 0, class: 'form__group-input' %>
+              <%= f.radio_button :question_4, 0, class: 'form__group-input', data: { trigger: 'toggle-show-hide' } %>
               <%= t('registration.question_four.answer_two') %>
             <% end %>
           </div>
@@ -88,12 +88,12 @@
       <% end %>
 
       <%= f.form_row :question_5 do %>
-        <fieldset class="form__group form__group--inline t-question-5">
+        <fieldset class="form__group form__group--inline t-question-5" data-target="hide">
           <legend class="l-pre-qualification-questions__question"><%= t('registration.question_five.heading') %></legend>
 
           <div class="form__group-item">
             <%= f.label :question_5 do %>
-              <%= f.radio_button :question_5, 1, class: 'form__group-input', checked: true %>
+              <%= f.radio_button :question_5, 1, class: 'form__group-input' %>
               <%= t('registration.answer_yes') %>
             <% end %>
           </div>
