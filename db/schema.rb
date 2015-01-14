@@ -60,10 +60,12 @@ ActiveRecord::Schema.define(version: 20150121183728) do
   add_index "advisers_qualifications", ["adviser_id", "qualification_id"], name: "advisers_qualifications_index", unique: true, using: :btree
 
   create_table "firms", force: :cascade do |t|
-    t.integer  "fca_number",      null: false
-    t.string   "registered_name", null: false
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.integer  "fca_number",       null: false
+    t.string   "registered_name",  null: false
+    t.string   "email_address"
+    t.string   "telephone_number"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
   end
 
   add_index "firms", ["fca_number"], name: "index_firms_on_fca_number", unique: true, using: :btree
@@ -76,8 +78,8 @@ ActiveRecord::Schema.define(version: 20150121183728) do
   end
 
   create_table "lookup_firms", force: :cascade do |t|
-    t.integer  "fca_number",                               null: false
-    t.string   "registered_name", limit: 255, default: "", null: false
+    t.integer  "fca_number",                   null: false
+    t.string   "registered_name", default: "", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -95,14 +97,14 @@ ActiveRecord::Schema.define(version: 20150121183728) do
 
   create_table "principals", force: :cascade do |t|
     t.integer  "fca_number"
-    t.string   "token",                limit: 255
-    t.string   "website_address",      limit: 255
-    t.string   "first_name",           limit: 255
-    t.string   "last_name",            limit: 255
-    t.string   "job_title",            limit: 255
-    t.string   "email_address",        limit: 255
-    t.string   "telephone_number",     limit: 255
-    t.boolean  "confirmed_disclaimer",             default: false
+    t.string   "token"
+    t.string   "website_address"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "job_title"
+    t.string   "email_address"
+    t.string   "telephone_number"
+    t.boolean  "confirmed_disclaimer", default: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
