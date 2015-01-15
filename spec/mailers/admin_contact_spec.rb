@@ -1,5 +1,5 @@
 RSpec.describe AdminContact, '#contact' do
-  let(:recipient) { 'IFADirectoryQueries@moneyadviceservice.org.uk' }
+  let(:recipient) { 'RADenquiries@moneyadviceservice.org.uk' }
   let(:subject_line) { 'IFA Contact' }
   let(:email) { 'principal@ifa.com' }
   let(:message) { 'my querysome query' }
