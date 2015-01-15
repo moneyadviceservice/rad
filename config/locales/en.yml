@@ -7,11 +7,19 @@ en:
 
   adviser_sign_in: Sign in to adviser account
   required: "* indicates required fields"
+<<<<<<< HEAD
   email_address: "IFADirectoryQueries@moneyadviceservice.org.uk"
 
   footer:
     text: If you need help please
     link_text: contact us via email
+=======
+  
+  footer:
+    text: If you need help please
+    link_text: contact us via email
+    mailto_link: "mailto:IFADirectoryQueries@moneyadviceservice.org.uk"
+>>>>>>> Add contact link to the footer
 
   success:
     heading: Thank you
