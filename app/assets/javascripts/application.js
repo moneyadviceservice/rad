@@ -1,9 +1,6 @@
 //= require require_config.js.erb
 
-require(["jquery"], function($) {
-
-  "use strict";
-
-  require(['toggle_visibility']);
-
+// Components
+require(['jquery', 'componentLoader', 'eventsWithPromises'], function ($, componentLoader, eventsWithPromises) {
+  componentLoader.init($('body'));
 });
