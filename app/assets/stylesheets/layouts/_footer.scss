@@ -1,7 +1,14 @@
-// Temporary styles for the Adviser Acquisition site footer. Based on the style on the main website.
-
 .l-footer {
   height: $baseline-unit*20;
   border-top: $default-border-thin;
   background-color: $background-color--light;
+}
+
+.l-footer__inner {
+  @include column(12);
+  padding-top: $baseline-unit*4;
+}
+
+.l-footer__text {
+  @include body(14,18);
 }

@@ -7,6 +7,11 @@ en:
 
   adviser_sign_in: Sign in to adviser account
   required: "* indicates required fields"
+  email_address: "IFADirectoryQueries@moneyadviceservice.org.uk"
+
+  footer:
+    text: If you need help please
+    link_text: contact us via email
 
   success:
     heading: Thank you
