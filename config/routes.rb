@@ -12,6 +12,8 @@ Rails.application.routes.draw do
 
     resource :firm, only: :show do
       resource :questionnaire
+
+      resources :advisers, only: %i(new create)
     end
   end
 
