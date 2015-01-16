@@ -1,5 +1,6 @@
 class QuestionnairesController < ApplicationController
   def new
-    render nothing: true
+    @lookup_firm = current_user.firm
+    @firm = Firm.new
   end
 end

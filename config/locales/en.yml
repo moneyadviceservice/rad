@@ -94,6 +94,9 @@ en:
     select_firm: Select this firm
 
   questionnaire:
+    title: Provide details about your firm
+    introduction: The more information you provide about your firm and the advisers in your firm, the easier it will be for us to match the right customers to you. A complete profile will also help to increase the number of views your firm receives. We will also provide you with the ability to flesh out your firm’s profile with additional information in the coming months.
+
     adviser:
       title: Yours Advisers
       description: Please provide details of advisers in your firm who are eligible to be entered onto the Retirement Advice Directory.
@@ -124,3 +127,10 @@ en:
         heading: Thank you
         subheading: "%{name} was created."
         description: Your registration details have been received and have been sent for verification. You can close this window now.
+
+    about_your_firm:
+      heading: About your firm
+      callout_html: "<p>%{registered_name}, firm registration number %{fca_number}</p>"
+      description: Please provide these details about your firm.
+
+    button_next: Describe your firm's specialities

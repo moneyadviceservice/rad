@@ -1,0 +1,21 @@
+<div class="l-constrained">
+  <section class="l-questionnaire">
+    <%= heading_tag(t('questionnaire.title'), level: 1) %>
+    <p><%= t('questionnaire.introduction') %></p>
+
+    <%= form_for @firm, url: principal_firm_questionnaire_path, html: { class: 'form' }, builder: Dough::Forms::Builders::Validation do |f| %>
+      <%= f.validation_summary %>
+      <p><%= t('required') %></p>
+
+      <section>
+        <%= heading_tag(t('questionnaire.about_your_firm.heading'), level: 2, class: 'heading-small') %>
+        <%= callout_instructional t('questionnaire.about_your_firm.callout_html', registered_name: @lookup_firm.registered_name, fca_number: @lookup_firm.fca_number) %>
+        <p class="l-questionnaire__section-description"><%= t('questionnaire.about_your_firm.description') %></p>
+      </section>
+
+      <div class="l-questionnaire__button">
+        <%= button_primary t('questionnaire.button_next') %>
+      </div>
+    <% end %>
+  </section>
+</div>
