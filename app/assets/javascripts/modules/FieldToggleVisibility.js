@@ -4,8 +4,6 @@
  * Requires an element to have a data-dough-component="FieldToggleVisibility" attribute. The application
  * file will spawn an instance of this class for each element it finds on the page.
  *
- * Events used: toggler:toggled(element, isShown) [Event for when the toggler is doing its work]
- *
  * See test fixture for sample markup - /spec/js/fixtures/ToggleVisibility.html
  */
 
@@ -16,7 +14,6 @@
  * @return {[type]}           [description]
  * @private
  */
-
 define(['jquery', 'DoughBaseComponent'], function($, DoughBaseComponent) {
 
   'use strict';
@@ -35,7 +32,6 @@ define(['jquery', 'DoughBaseComponent'], function($, DoughBaseComponent) {
    * @type {[type]}
    * @private
    */
-
   DoughBaseComponent.extend(FieldToggleVisibility);
   FieldToggleVisibilityProto = FieldToggleVisibility.prototype;
 

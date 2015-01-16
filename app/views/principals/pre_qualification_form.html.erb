@@ -84,6 +84,7 @@
               <%= f.label :question_4 do %>
                 <%= f.radio_button :question_4, 0, class: 'form__group-input js-radio-button', data: { dough_field_trigger: 'show' } %>
                 <%= t('registration.question_four.answer_two') %>
+                <span class="visually-hidden"><%= t('registration.question_four.notice') %></span>
               <% end %>
             </div>
           </fieldset>
