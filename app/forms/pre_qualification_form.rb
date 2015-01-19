@@ -1,15 +1,15 @@
 class PreQualificationForm
   include ActiveModel::Model
 
-  attr_accessor :question_1, :question_2, :question_3, :question_4, :question_5
+  attr_accessor :firm_active_question, :firm_business_model_question, :firm_status_question, :firm_particular_market_question
 
-  validates :question_1, :question_2, :question_3, acceptance: true, presence: true
+  validates :firm_active_question, :firm_business_model_question, acceptance: true, presence: true
 
-  validates :question_4, inclusion: { in: %w(0 1) }
+  validates :firm_status_question, inclusion: { in: %w(0 1) }
 
-  validates :question_5, presence: true, acceptance: true, if: -> { self.restricted? }
+  validates :firm_particular_market_question, presence: true, acceptance: true, if: -> { self.restricted? }
 
   def restricted?
-    question_4 == '0'
+    firm_status_question == '0'
   end
 end

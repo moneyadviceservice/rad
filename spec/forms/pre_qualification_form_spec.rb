@@ -4,19 +4,19 @@ RSpec.describe PreQualificationForm, '#valid?', type: :model do
   subject { described_class.new(params) }
 
   context 'when only question 4 is answered' do
-    let(:params) {{ question_4: '1' }}
+    let(:params) {{ firm_status_question: '1' }}
 
     it { is_expected.not_to be_valid }
   end
 
   context 'when one of the answers is missing' do
-    let(:params) {{ question_1: '1', question_2: '1' }}
+    let(:params) {{ firm_active_question: '1'}}
 
     it { is_expected.not_to be_valid }
   end
 
   context 'when one or more of the answers is no' do
-    let(:params) {{ question_1: '0', question_2: '1', question_3: '1' }}
+    let(:params) {{ firm_active_question: '0', firm_business_model_question: '1' }}
 
     it { is_expected.not_to be_valid }
   end
@@ -24,10 +24,9 @@ RSpec.describe PreQualificationForm, '#valid?', type: :model do
   context 'when all answers are yes' do
     let(:params) do
       {
-        question_1: '1',
-        question_2: '1',
-        question_3: '1',
-        question_4: '1'
+        firm_active_question: '1',
+        firm_business_model_question: '1',
+        firm_status_question: '1'
       }
     end
 
