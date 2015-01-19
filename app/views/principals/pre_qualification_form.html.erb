@@ -4,63 +4,42 @@
     <p class="l-pre-qualification-questions__intro-text"><%= t('registration.introduction') %></p>
 
     <%= form_for @prequalification, url: prequalify_principals_path, html: { class: 'form' } do |f| %>
-      <%= f.form_row :question_1 do %>
-        <fieldset class="form__group form__group--inline t-question-1">
-          <legend class="l-pre-qualification-questions__question"><%= t('registration.question_one.heading') %></legend>
-          <p><%= t('registration.question_one.description') %></p>
+      <%= f.form_row :active_question do %>
+        <fieldset class="form__group form__group--inline t-active-question">
+          <legend class="l-pre-qualification-questions__question"><%= t('registration.active_question.heading') %></legend>
+          <p><%= t('registration.active_question.description') %></p>
 
           <div class="form__group-item">
-            <%= f.label :question_1 do %>
-              <%= f.radio_button :question_1, 1, class: 'form__group-input' %>
+            <%= f.label :active_question do %>
+              <%= f.radio_button :active_question, 1, class: 'form__group-input' %>
               <%= t('registration.answer_yes') %>
             <% end %>
           </div>
 
           <div class="form__group-item">
-            <%= f.label :question_1 do %>
-              <%= f.radio_button :question_1, 0, class: 'form__group-input' %>
+            <%= f.label :active_question do %>
+              <%= f.radio_button :active_question, 0, class: 'form__group-input' %>
               <%= t('registration.answer_no') %>
             <% end %>
           </div>
         </fieldset>
       <% end %>
 
-      <%= f.form_row :question_2 do %>
-        <fieldset class="form__group form__group--inline t-question-2">
-          <legend class="l-pre-qualification-questions__question"><%= t('registration.question_two.heading') %></legend>
-          <p><%= t('registration.question_two.description') %></p>
+      <%= f.form_row :business_model_question do %>
+        <fieldset class="form__group form__group--inline t-business-model-question">
+          <legend class="l-pre-qualification-questions__question"><%= t('registration.business_model_question.heading') %></legend>
+          <p><%= t('registration.business_model_question.description') %></p>
 
           <div class="form__group-item">
-            <%= f.label :question_2 do %>
-              <%= f.radio_button :question_2, 1, class: 'form__group-input' %>
+            <%= f.label :business_model_question do %>
+              <%= f.radio_button :business_model_question, 1, class: 'form__group-input' %>
               <%= t('registration.answer_yes') %>
             <% end %>
           </div>
 
           <div class="form__group-item">
-            <%= f.label :question_2 do %>
-              <%= f.radio_button :question_2, 0, class: 'form__group-input' %>
-              <%= t('registration.answer_no') %>
-            <% end %>
-          </div>
-        </fieldset>
-      <% end %>
-
-      <%= f.form_row :question_3 do %>
-        <fieldset class="form__group form__group--inline t-question-3">
-          <legend class="l-pre-qualification-questions__question"><%= t('registration.question_three.heading') %></legend>
-          <p><%= t('registration.question_three.description') %></p>
-
-          <div class="form__group-item">
-            <%= f.label :question_3 do %>
-              <%= f.radio_button :question_3, 1, class: 'form__group-input' %>
-              <%= t('registration.answer_yes') %>
-            <% end %>
-          </div>
-
-          <div class="form__group-item">
-            <%= f.label :question_3 do %>
-              <%= f.radio_button :question_3, 0, class: 'form__group-input' %>
+            <%= f.label :business_model_question do %>
+              <%= f.radio_button :business_model_question, 0, class: 'form__group-input' %>
               <%= t('registration.answer_no') %>
             <% end %>
           </div>
@@ -68,43 +47,43 @@
       <% end %>
 
       <div data-dough-component="FieldToggleVisibility">
-        <%= f.form_row :question_4 do %>
-          <fieldset class="form__group form__group--inline t-question-4" >
-            <legend class="l-pre-qualification-questions__question"><%= t('registration.question_four.heading') %></legend>
-            <p><%= t('registration.question_four.description') %></p>
+        <%= f.form_row :status_question do %>
+          <fieldset class="form__group form__group--inline t-status-question" >
+            <legend class="l-pre-qualification-questions__question"><%= t('registration.status_question.heading') %></legend>
+            <p><%= t('registration.status_question.description') %></p>
 
             <div class="form__group-item">
-              <%= f.label :question_4 do %>
-                <%= f.radio_button :question_4, 1, class: 'form__group-input js-radio-button', data: { dough_field_trigger: 'hide' } %>
-                <%= t('registration.question_four.answer_one') %>
+              <%= f.label :status_question do %>
+                <%= f.radio_button :status_question, 1, class: 'form__group-input js-radio-button', data: { dough_field_trigger: 'hide' } %>
+                <%= t('registration.status_question.answer_one') %>
               <% end %>
             </div>
 
             <div class="form__group-item">
-              <%= f.label :question_4 do %>
-                <%= f.radio_button :question_4, 0, class: 'form__group-input js-radio-button', data: { dough_field_trigger: 'show' } %>
-                <%= t('registration.question_four.answer_two') %>
-                <span class="visually-hidden"><%= t('registration.question_four.notice') %></span>
+              <%= f.label :status_question do %>
+                <%= f.radio_button :status_question, 0, class: 'form__group-input js-radio-button', data: { dough_field_trigger: 'show' } %>
+                <%= t('registration.status_question.answer_two') %>
+                <span class="visually-hidden"><%= t('registration.status_question.notice') %></span>
               <% end %>
             </div>
           </fieldset>
         <% end %>
 
-        <%= f.form_row :question_5 do %>
-          <fieldset class="form__group form__group--inline is-hidden t-question-5" data-dough-field-target="">
-            <legend class="l-pre-qualification-questions__question"><%= t('registration.question_five.heading') %></legend>
-            <p><%= t('registration.question_five.description') %></p>
+        <%= f.form_row :particular_market_question do %>
+          <fieldset class="form__group form__group--inline is-hidden t-particular-market-question" data-dough-field-target="">
+            <legend class="l-pre-qualification-questions__question"><%= t('registration.particular_market_question.heading') %></legend>
+            <p><%= t('registration.particular_market_question.description') %></p>
 
             <div class="form__group-item">
-              <%= f.label :question_5 do %>
-                <%= f.radio_button :question_5, 1, class: 'form__group-input' %>
+              <%= f.label :particular_market_question do %>
+                <%= f.radio_button :particular_market_question, 1, class: 'form__group-input' %>
                 <%= t('registration.answer_yes') %>
               <% end %>
             </div>
 
             <div class="form__group-item">
-              <%= f.label :question_5 do %>
-                <%= f.radio_button :question_5, 0, class: 'form__group-input' %>
+              <%= f.label :particular_market_question do %>
+                <%= f.radio_button :particular_market_question, 0, class: 'form__group-input' %>
                 <%= t('registration.answer_no') %>
               <% end %>
             </div>
