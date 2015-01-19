@@ -43,6 +43,9 @@ en:
     particular_market_question:
       heading: Is this status because your firm focuses on a particular market?
       description: Is your firm’s restricted status due to the fact you have chosen to focus on a particular market?
+    question_six:
+      heading: Does your Firm consider all available providers within your chosen market?
+      description: Add a description here!!!
 
     firm:
       heading: Firm FCA information

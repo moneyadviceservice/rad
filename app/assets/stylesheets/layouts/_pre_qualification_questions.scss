@@ -1,4 +1,4 @@
-.l-pre-qualification-questions {
+.l-pre-qualification {
   @include column(12);
   margin-bottom: $baseline-unit*8;
 
@@ -11,17 +11,20 @@
   }
 }
 
-.l-pre-qualification-questions__intro-text {
+.l-pre-qualification__intro-text {
   margin-bottom: $baseline-unit*8;
 }
 
-.l-pre-qualification-questions__question {
+.l-pre-qualification__question {
   @include body(22,30);
   font-weight: 700;
   color: $color-heading-default;
+}
+
+.l-pre-qualification__question--with-desc {
   margin-bottom: 0;
 }
 
-.l-pre-qualification-questions__reasons {
+.l-pre-qualification__explanation {
   margin-bottom: $baseline-unit*10;
 }
