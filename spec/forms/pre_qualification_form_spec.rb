@@ -3,6 +3,16 @@ RSpec.describe PreQualificationForm, '#valid?', type: :model do
 
   subject { described_class.new(params) }
 
+  context 'when only question 4 is answered' do
+    let(:params) do
+      {
+        question_4: '1'
+      }
+    end
+
+    it { is_expected.not_to be_valid }
+  end
+
   context 'when one of the answers is missing' do
     let(:params) do {
       question_1: '1',
