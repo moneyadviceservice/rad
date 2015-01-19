@@ -1,5 +1,5 @@
 class Identification < ActionMailer::Base
-  default from: 'IFADirectoryQueries@moneyadviceservice.org.uk'
+  default from: 'RADenquiries@moneyadviceservice.org.uk'
 
   def contact(principal)
     @principal = principal

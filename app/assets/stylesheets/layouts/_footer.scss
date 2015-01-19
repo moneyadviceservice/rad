@@ -2,6 +2,10 @@
   height: $baseline-unit*20;
   border-top: $default-border-thin;
   background-color: $background-color--light;
+
+  p {
+    @include body(14,18);
+  }
 }
 
 .l-footer__inner {

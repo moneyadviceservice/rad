@@ -1,7 +1,7 @@
 class AdminContact < ActionMailer::Base
   default(
-    from: 'IFADirectoryQueries@moneyadviceservice.org.uk',
-    to: 'IFADirectoryQueries@moneyadviceservice.org.uk'
+    from: 'RADenquiries@moneyadviceservice.org.uk',
+    to: 'RADenquiries@moneyadviceservice.org.uk'
   )
 
   def contact(email, message)

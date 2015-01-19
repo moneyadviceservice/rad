@@ -7,7 +7,7 @@ en:
 
   adviser_sign_in: Sign in to adviser account
   required: "* indicates required fields"
-  email_address: "IFADirectoryQueries@moneyadviceservice.org.uk"
+  email_address: "RADenquiries@moneyadviceservice.org.uk"
 
   footer:
     text: If you need help please
@@ -17,7 +17,7 @@ en:
     heading: Thank you
     message_html: |
       <p>An email will be sent to you shortly with further instructions.</p>
-      <p>If you do not receive an email from us within 15 minutes, please contact <a href="mailto:IFADirectoryQueries@moneyadviceservice.org.uk">IFADirectoryQueries@moneyadviceservice.org.uk</a>.</p>
+      <p>If you do not receive an email from us within 15 minutes, please contact <a href="mailto:RADenquiries@moneyadviceservice.org.uk">RADenquiries@moneyadviceservice.org.uk</a>.</p>
       <p>You can close this window now.</p>
 
   registration:
@@ -49,7 +49,7 @@ en:
       telephone_number: Telephone number *
       disclaimer: By registering your firm with the Money Advice Service, you are confirming that these details and any responses you give to our registration questions are true and accurate.
       fca_number_un_matched: could not be matched
-      validation_error_html: If you have any queries, please contact <a href="mailto:IFADirectoryQueries@moneyadviceservice.org.uk">IFADirectoryQueries@moneyadviceservice.org.uk</a>.
+      validation_error_html: If you have any queries, please contact <a href="mailto:RADenquiries@moneyadviceservice.org.uk">RADenquiries@moneyadviceservice.org.uk</a>.
     register_button: Register my firm
 
   rejection:
