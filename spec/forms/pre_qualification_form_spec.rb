@@ -27,6 +27,7 @@ RSpec.describe PreQualificationForm, '#valid?', type: :model do
       question_1: '1',
       question_2: '1',
       question_3: '1',
+      question_4: '1'
     } end
 
     it { is_expected.to be_valid }
