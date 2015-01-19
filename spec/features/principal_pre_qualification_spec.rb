@@ -41,23 +41,23 @@ RSpec.feature 'Principal answers pre-qualification questions' do
   end
 
   def given_i_answer_all_questions_yes_and_choose_independent
-    pre_qualification_page.firm_active_question.choose('Yes')
-    pre_qualification_page.firm_business_model_question.choose('Yes')
-    pre_qualification_page.firm_status_question.choose('Independent')
+    pre_qualification_page.active_question.choose('Yes')
+    pre_qualification_page.business_model_question.choose('Yes')
+    pre_qualification_page.status_question.choose('Independent')
   end
 
   def given_i_answer_all_questions_yes_and_choose_restricted
-    pre_qualification_page.firm_active_question.choose('Yes')
-    pre_qualification_page.firm_business_model_question.choose('Yes')
-    pre_qualification_page.firm_status_question.choose('Restricted')
+    pre_qualification_page.active_question.choose('Yes')
+    pre_qualification_page.business_model_question.choose('Yes')
+    pre_qualification_page.status_question.choose('Restricted')
   end
 
   def then_i_answer_yes
-    pre_qualification_page.firm_particular_market_question.choose('Yes')
+    pre_qualification_page.particular_market_question.choose('Yes')
   end
 
   def then_i_answer_no
-    pre_qualification_page.firm_particular_market_question.choose('No')
+    pre_qualification_page.particular_market_question.choose('No')
   end
 
   def then_i_am_able_to_proceed_to_verify_my_identity
@@ -65,8 +65,8 @@ RSpec.feature 'Principal answers pre-qualification questions' do
   end
 
   def given_i_answer_a_question_no
-    pre_qualification_page.firm_active_question.choose('Yes')
-    pre_qualification_page.firm_business_model_question.choose('No')
+    pre_qualification_page.active_question.choose('Yes')
+    pre_qualification_page.business_model_question.choose('No')
   end
 
   def then_i_am_notified_i_cannot_proceed
