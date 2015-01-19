@@ -50,3 +50,11 @@ To start the application:
 ```sh
 $ rails s
 ```
+
+## Running Karma Javascript tests
+
+To run the javascript tests:
+
+```
+$ karma start spec/javascripts/karma.conf.js --single-run=true
+```

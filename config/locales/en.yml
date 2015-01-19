@@ -22,19 +22,31 @@ en:
 
   registration:
     heading: Register your firm
-    subheading: Register your firm on our Retirement Adviser Directory
+    introduction: Register your firm on our Retirement Adviser Directory
     button_next: Next
+    
     answer_yes: "Yes"
     answer_no: "No"
+
     question_one:
       heading: Is your firm active in the retirement planning market?
-      explanation: This could include either 'at retirement' or 'post retirement'.
+      description: This could include either "at retirement" or "post retirement".
     question_two:
       heading: Is your firm's primary business model regulated advice?
-      explanation: Financial advisers on the directory must offer, as their primary business model, regulated advice. This can be full, focused or simplified advice but must include a personal recommendation which must be appropriate to the individual client’s needs (in line with FCA definition of regulated advice). Advice must be covered by the Financial Ombudsman Service and the Financial Services Compensation Scheme.
+      description: Financial advisers on the directory must offer, as their primary business model, regulated advice. This can be full, focused or simplified advice but must include a personal recommendation which must be appropriate to the individual client’s needs (in line with FCA definition of regulated advice). Advice must be covered by the Financial Ombudsman Service and the Financial Services Compensation Scheme.
     question_three:
       heading: Does your firm offer a whole of market service?
-      explanation: This means that your firm is not restricted in the number of providers you are able to access for a given product.
+      description: This means that your firm is not restricted in the number of providers you are able to access for a given product.
+    question_four:
+      heading: What is your firm’s status?
+      description: This is your firm’s status as defined by the Financial Conduct Authority.
+      answer_one: Independent
+      answer_two: Restricted
+      notice: Selecting this option will reveal a further question below.
+    question_five:
+      heading: Is this status because your firm focuses on a particular market?
+      description: Is your firm’s restricted status due to the fact you have chosen to focus on a particular market?
+
     firm:
       heading: Firm FCA information
       reference_number: Firm reference number *

@@ -5,6 +5,8 @@ class PreQualificationPage < SitePrism::Page
   element :question_1, '.t-question-1'
   element :question_2, '.t-question-2'
   element :question_3, '.t-question-3'
+  element :question_4, '.t-question-4'
+  element :question_5, '.t-question-5'
   element :submit, '.button--primary'
 
   element :error_message, '.global-alert--error'

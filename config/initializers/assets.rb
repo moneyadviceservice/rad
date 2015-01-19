@@ -2,6 +2,8 @@ Rails.application.configure do
   # Version of your assets, change this if you want to expire all your assets.
   config.assets.version = '1.0'
 
+  config.assets.paths << Rails.root.join('vendor', 'assets', 'bower_components')
+
   # Application Stylesheets
   config.assets.precompile += %w(
     enhanced_fixed.css
@@ -13,7 +15,9 @@ Rails.application.configure do
 
   # Application JavaScript
   config.assets.precompile += %w(
+    rsvp/rsvp.js
     dough/assets/js/**/*.js
+    modules/FieldToggleVisibility.js
   )
 
   # Vendor JavaScript

@@ -1,0 +1,26 @@
+//= depend_on_asset jquery/dist/jquery
+//= depend_on_asset modules/FieldToggleVisibility
+
+<%
+  def requirejs_path(asset)
+    javascript_path(asset).sub(/.js\z/, '')
+  end
+
+  requirejs_config = {
+     # baseUrl: (Rails.application.config.action_controller.asset_host || '') + \ Rails.application.config.assets.prefix,
+
+    paths: {
+      jquery: requirejs_path('jquery/dist/jquery'),
+      FieldToggleVisibility: requirejs_path('modules/FieldToggleVisibility'),
+      componentLoader: requirejs_path('dough/assets/js/lib/componentLoader'),
+      DoughBaseComponent: requirejs_path('dough/assets/js/components/DoughBaseComponent'),
+      eventsWithPromises: requirejs_path('eventsWithPromises/src/eventsWithPromises'),
+      rsvp: requirejs_path('rsvp/rsvp')
+    }
+  }
+%>
+
+// If requirejs is present convert the requirejs_config hash to a JSON object
+if(window.requirejs) {
+  requirejs.config(<%= JSON.pretty_generate(requirejs_config) %>);
+}
