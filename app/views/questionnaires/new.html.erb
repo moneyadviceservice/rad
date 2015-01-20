@@ -99,6 +99,29 @@
         <% end %>
       </fieldset>
 
+      <hr>
+
+      <section>
+        <%= heading_tag(t('questionnaire.providing_your_services.heading'), level: 2, class: 'heading-small') %>
+        <p class="l-questionnaire__section-description"><%= t('questionnaire.providing_your_services.description') %></p>
+
+        <fieldset class="form__group">
+          <legend class="l-questionnaire__legend"><%= t('questionnaire.in_person_advice_methods.heading') %></legend>
+
+          <%= f.form_row :in_person_advice_methods do %>
+              <%= f.errors_for :in_person_advice_methods %>
+              <% InPersonAdviceMethod.all.each do |in_person_advice_method| %>
+                  <div class="form__group-item l-questionnaire__two-cols">
+                    <label>
+                      <%= check_box_tag 'firm[in_person_advice_method_ids][]', in_person_advice_method.id, @firm.in_person_advice_methods.include?(in_person_advice_method), class: 'form__group-input' %>
+                      <%= in_person_advice_method.name %>
+                    </label>
+                  </div>
+              <% end %>
+          <% end %>
+        </fieldset>
+      </section>
+
       <div class="l-questionnaire__button">
         <%= button_primary t('questionnaire.button_next') %>
       </div>
