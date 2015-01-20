@@ -91,7 +91,7 @@ en:
 
     about_your_firm:
       heading: About your firm
-      callout_html: "<p>%{registered_name}, firm registration number %{fca_number}</p>"
+      callout_html: '<p><span class="t-firm-name">%{registered_name}</span>, firm registration number <span class="t-firm-fca-number">%{fca_number}</span></p>'
       description: Please provide these details about your firm.
 
     providing_your_services:
