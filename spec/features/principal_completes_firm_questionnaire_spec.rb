@@ -1,6 +1,17 @@
 RSpec.feature 'Principal completes the firm questionnaire' do
   let(:questionnaire_page) { QuestionnairePage.new }
 
+  before do
+    FactoryGirl.create(:service_region)
+    FactoryGirl.create(:in_person_advice_method)
+    FactoryGirl.create(:other_advice_method)
+    FactoryGirl.create(:initial_meeting_duration)
+    FactoryGirl.create(:initial_advice_fee_structure)
+    FactoryGirl.create(:ongoing_advice_fee_structure)
+    FactoryGirl.create(:allowed_payment_method)
+    FactoryGirl.create(:investment_size)
+  end
+
   scenario 'Successfully complete the questionnaire' do
     given_i_have_selected_a_firm
     and_i_can_see_my_firm_name_and_fca_reference_number
