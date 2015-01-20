@@ -32,6 +32,10 @@ RSpec.describe Principal do
     it 'generates an 8 character, 4 byte token' do
       expect(principal.token.length).to eq(8)
     end
+
+    it 'creates the associated Firm' do
+      expect(principal.firm.fca_number).to eq(principal.lookup_firm.fca_number)
+    end
   end
 
   describe 'validation' do

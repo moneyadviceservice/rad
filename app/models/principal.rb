@@ -2,6 +2,9 @@ class Principal < ActiveRecord::Base
   self.primary_key = 'token'
 
   before_create :generate_token
+  after_create  :associate_firm
+
+  has_one :firm, primary_key: :fca_number, foreign_key: :fca_number
 
   validates :fca_number,
     presence: true,
@@ -54,6 +57,13 @@ class Principal < ActiveRecord::Base
   end
 
   private
+
+  def associate_firm
+    create_firm!(
+      fca_number: lookup_firm.fca_number,
+      registered_name: lookup_firm.registered_name
+    )
+  end
 
   def match_fca_number
     unless Lookup::Firm.exists?(fca_number: self.fca_number)
