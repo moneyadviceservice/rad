@@ -133,4 +133,14 @@ en:
       callout_html: "<p>%{registered_name}, firm registration number %{fca_number}</p>"
       description: Please provide these details about your firm.
 
+    email_address:
+      heading: Firm email address for enquiries
+      description: This is the email account where you wish to receive messages from customers.
+      label: Firm email address *
+
+    telephone_number:
+      heading: Firm telephone number for enquiries
+      description: Please provide a contact number for customers who wish to call you.
+      label: Firm telephone number *
+
     button_next: Describe your firm's specialities
