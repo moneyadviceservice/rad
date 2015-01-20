@@ -23,7 +23,10 @@ RSpec.feature 'Principal creates Adviser' do
   end
 
   def when_i_provide_a_valid_adviser_reference_number
-    adviser_page.load(principal: principal.token)
+    adviser_page.tap do |p|
+      p.load(principal: principal.token)
+      p.reference_number.set 'ABCD1234'
+    end
   end
 
   def and_the_adviser_is_matched
