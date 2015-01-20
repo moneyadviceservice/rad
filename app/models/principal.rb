@@ -38,7 +38,7 @@ class Principal < ActiveRecord::Base
   end
 
   def lookup_firm
-    Lookup::Firm.find_by(fca_number: fca_number)
+    @lookup_firm ||= Lookup::Firm.find_by(fca_number: fca_number)
   end
 
   delegate :subsidiaries?, to: :lookup_firm
