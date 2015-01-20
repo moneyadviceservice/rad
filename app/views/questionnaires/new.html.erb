@@ -196,6 +196,22 @@
               <% end %>
           <% end %>
         </fieldset>
+
+        <fieldset class="form__group">
+          <legend class="l-questionnaire__legend"><%= t('questionnaire.ongoing_advice_fee.heading') %></legend>
+
+          <%= f.form_row :ongoing_advice_fee_structures do %>
+              <%= f.errors_for :ongoing_advice_fee_structures %>
+              <% OngoingAdviceFeeStructure.all.each do |ongoing_advice_fee_structure| %>
+                  <div class="form__group-item l-questionnaire__two-cols">
+                    <label>
+                      <%= check_box_tag 'firm[ongoing_advice_fee_structure_ids][]', ongoing_advice_fee_structure.id, @firm.ongoing_advice_fee_structures.include?(ongoing_advice_fee_structure), class: 'form__group-input' %>
+                      <%= ongoing_advice_fee_structure.name %>
+                    </label>
+                  </div>
+              <% end %>
+          <% end %>
+        </fieldset>
       </section>
 
       <div class="l-questionnaire__button">

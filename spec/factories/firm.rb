@@ -13,5 +13,6 @@ FactoryGirl.define do
     free_initial_meeting { [true, false].sample }
     initial_meeting_duration { create(:initial_meeting_duration) }
     initial_advice_fee_structures { create_list(:initial_advice_fee_structure, rand(1..3)) }
+    ongoing_advice_fee_structures { create_list(:ongoing_advice_fee_structure, rand(1..3)) }
   end
 end

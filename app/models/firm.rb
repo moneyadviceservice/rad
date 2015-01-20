@@ -6,6 +6,7 @@ class Firm < ActiveRecord::Base
   belongs_to :initial_meeting_duration
 
   has_and_belongs_to_many :initial_advice_fee_structures
+  has_and_belongs_to_many :ongoing_advice_fee_structures
 
   validates :email_address,
             presence: true,
@@ -52,4 +53,6 @@ class Firm < ActiveRecord::Base
   validates :initial_advice_fee_structures,
             length: { minimum: 1 }
 
+  validates :ongoing_advice_fee_structures,
+            length: { minimum: 1 }
 end
