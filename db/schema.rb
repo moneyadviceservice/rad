@@ -87,6 +87,7 @@ ActiveRecord::Schema.define(version: 20150121183728) do
     t.string   "address_postcode"
     t.boolean  "free_initial_meeting",        null: false
     t.integer  "initial_meeting_duration_id"
+    t.integer  "minimum_fixed_fee"
   end
 
   add_index "firms", ["fca_number"], name: "index_firms_on_fca_number", unique: true, using: :btree

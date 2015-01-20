@@ -59,4 +59,8 @@ class Firm < ActiveRecord::Base
 
   validates :allowed_payment_methods,
             length: { minimum: 1 }
+
+  validates :minimum_fixed_fee,
+            allow_blank: true,
+            numericality: { only_integer: true }
 end

@@ -228,6 +228,20 @@
               <% end %>
           <% end %>
         </fieldset>
+
+        <fieldset class="form__group">
+          <div class="l-questionnaire__row">
+            <div class="l-questionnaire__field">
+              <%= f.form_row :minimum_fixed_fee do %>
+                  <%= f.errors_for :minimum_fixed_fee %>
+                  <div class="form__group-item">
+                    <%= f.label :minimum_fixed_fee, t('questionnaire.minimum_fixed_fee.heading'), class: 'form__label-heading' %>
+                    <%= f.text_field :minimum_fixed_fee, class: 'form__group-input' %>
+                  </div>
+              <% end %>
+            </div>
+          </div>
+        </fieldset>
       </section>
 
       <div class="l-questionnaire__button">

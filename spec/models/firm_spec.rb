@@ -3,6 +3,8 @@ RSpec.describe Firm do
 
   describe 'validation' do
     it 'is valid with valid attributes' do
+
+      binding.pry
       expect(firm).to be_valid
     end
 
@@ -135,6 +137,14 @@ RSpec.describe Firm do
     describe 'allowed payment methods' do
       context 'when none assigned' do
         before { firm.allowed_payment_methods = [] }
+
+        it { is_expected.not_to be_valid }
+      end
+    end
+
+    describe 'minimum fixed fee' do
+      context 'when not numeric' do
+        before { firm.minimum_fixed_fee = 'not-numeric' }
 
         it { is_expected.not_to be_valid }
       end
