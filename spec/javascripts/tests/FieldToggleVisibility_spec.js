@@ -2,7 +2,7 @@ describe('show content block on click of radio button', function () {
 
   'use strict';
 
-  describe('on a simple form', function() {
+  describe('on a simple form with hidden by default', function() {
     beforeEach(function (done) {
       var self = this;
 
@@ -25,7 +25,7 @@ describe('show content block on click of radio button', function () {
       expect(this.component).to.exist;
     });
 
-    it('adds is-hidden class to target elements', function() {
+    it('adds is-hidden class to target elements if applicable', function() {
       var fieldToggleVisibility = new this.FieldToggleVisibility(this.component).init(),
           $triggers = fieldToggleVisibility.$el.find('[data-dough-field-target]');
 
@@ -104,6 +104,32 @@ describe('show content block on click of radio button', function () {
       expect($hideTrigger2).to.be.checked;
       expect($target1).to.have.class('is-hidden');
       expect($target2).to.have.class('is-hidden');
+    });
+  });
+
+  describe('on a simple form with hidden by default', function() {
+    beforeEach(function (done) {
+      var self = this;
+
+      requirejs(['jquery', 'FieldToggleVisibility'], function ($, FieldToggleVisibility) {
+
+        self.$html = $(window.__html__['spec/javascripts/fixtures/FieldToggleVisibilityShown.html']).appendTo('body');
+        self.component = self.$html.find('[data-dough-component="FieldToggleVisibility"]');
+        self.FieldToggleVisibility = FieldToggleVisibility;
+
+        done();
+      }, done);
+    });
+
+    afterEach(function() {
+      this.$html.remove();
+    });
+
+    it('does not add is-hidden if "show" option is pre-checked', function() {
+      var fieldToggleVisibility = new this.FieldToggleVisibility(this.component).init(),
+          $triggers = fieldToggleVisibility.$el.find('[data-dough-field-target]');
+
+      expect($triggers).to.not.have.class('is-hidden');
     });
   });
 });

@@ -27,7 +27,9 @@ define(['jquery', 'DoughBaseComponent'], function($, DoughBaseComponent) {
     this.$triggers = this.$el.find('[data-dough-field-trigger]');
     this.$targets = this.$el.find('[data-dough-field-target]');
 
-    this.$targets.addClass('is-hidden');
+    if (!this.$triggers.filter('[data-dough-field-trigger-type="show"]').is(':checked')) {
+      this.$targets.addClass('is-hidden');
+    }
   }
 
   /**
