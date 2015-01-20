@@ -34,11 +34,11 @@ class Principal < ActiveRecord::Base
     token.parameterize
   end
 
-  def firm
+  def lookup_firm
     Lookup::Firm.find_by(fca_number: fca_number)
   end
 
-  delegate :subsidiaries?, to: :firm
+  delegate :subsidiaries?, to: :lookup_firm
 
   def field_order
     [
