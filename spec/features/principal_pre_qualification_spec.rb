@@ -20,21 +20,6 @@ RSpec.feature 'Principal answers pre-qualification questions' do
     and_i_am_able_to_send_a_message_to_the_administrator
   end
 
-  scenario 'Answering all questions "Yes" and choosing "Restricted" and then choosing "Yes"' do
-    given_i_answer_all_questions_yes_and_choose_restricted
-    then_i_answer_yes
-    when_i_submit_my_answers
-    then_i_am_able_to_proceed_to_verify_my_identity
-  end
-
-  scenario 'Answering all questions "Yes" and choosing "Restricted" and then choosing "No"' do
-    given_i_answer_all_questions_yes_and_choose_restricted
-    then_i_answer_no
-    when_i_submit_my_answers
-    then_i_am_notified_i_cannot_proceed
-    and_i_am_able_to_send_a_message_to_the_administrator
-  end
-
 
   def when_i_submit_my_answers
     pre_qualification_page.submit.click
@@ -44,20 +29,6 @@ RSpec.feature 'Principal answers pre-qualification questions' do
     pre_qualification_page.active_question.choose('Yes')
     pre_qualification_page.business_model_question.choose('Yes')
     pre_qualification_page.status_question.choose('Independent')
-  end
-
-  def given_i_answer_all_questions_yes_and_choose_restricted
-    pre_qualification_page.active_question.choose('Yes')
-    pre_qualification_page.business_model_question.choose('Yes')
-    pre_qualification_page.status_question.choose('Restricted')
-  end
-
-  def then_i_answer_yes
-    pre_qualification_page.particular_market_question.choose('Yes')
-  end
-
-  def then_i_answer_no
-    pre_qualification_page.particular_market_question.choose('No')
   end
 
   def then_i_am_able_to_proceed_to_verify_my_identity
