@@ -5,6 +5,8 @@ class Firm < ActiveRecord::Base
 
   belongs_to :initial_meeting_duration
 
+  has_and_belongs_to_many :initial_advice_fee_structures
+
   validates :email_address,
             presence: true,
             length: { maximum: 50 },
@@ -46,5 +48,8 @@ class Firm < ActiveRecord::Base
   validates :initial_meeting_duration,
             presence: true,
             if: ->{ free_initial_meeting }
+
+  validates :initial_advice_fee_structures,
+            length: { minimum: 1 }
 
 end

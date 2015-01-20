@@ -32,7 +32,8 @@ class QuestionnairesController < ApplicationController
         :initial_meeting_duration_id,
         service_region_ids: [],
         in_person_advice_method_ids: [],
-        other_advice_method_ids: []
+        other_advice_method_ids: [],
+        initial_advice_fee_structure_ids: []
     )
   end
 end
