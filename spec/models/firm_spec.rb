@@ -79,5 +79,13 @@ RSpec.describe Firm do
         it { is_expected.not_to be_valid }
       end
     end
+
+    describe 'service regions' do
+      context 'when none assigned' do
+        before { firm.service_regions = [] }
+
+        it { is_expected.not_to be_valid }
+      end
+    end
   end
 end

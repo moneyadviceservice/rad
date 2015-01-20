@@ -75,6 +75,14 @@ ActiveRecord::Schema.define(version: 20150121183728) do
 
   add_index "firms", ["fca_number"], name: "index_firms_on_fca_number", unique: true, using: :btree
 
+  create_table "firms_service_regions", id: false, force: :cascade do |t|
+    t.integer "firm_id"
+    t.integer "service_region_id"
+  end
+
+  add_index "firms_service_regions", ["firm_id"], name: "index_firms_service_regions_on_firm_id", using: :btree
+  add_index "firms_service_regions", ["service_region_id"], name: "index_firms_service_regions_on_service_region_id", using: :btree
+
   create_table "lookup_advisers", force: :cascade do |t|
     t.string   "reference_number", null: false
     t.string   "name",             null: false
@@ -134,5 +142,13 @@ ActiveRecord::Schema.define(version: 20150121183728) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "service_regions", force: :cascade do |t|
+    t.string   "name",       null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "service_regions", ["name"], name: "index_service_regions_on_name", unique: true, using: :btree
 
 end

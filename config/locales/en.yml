@@ -152,4 +152,8 @@ en:
       label_four: County *
       label_five: Post code *
 
+    service_regions:
+      heading: From which region(s) of the UK is your firm willing to accept customers?
+      description: Where are your advisers prepared to travel in order to assist customers? Check all that apply. *
+
     button_next: Describe your firm's specialities

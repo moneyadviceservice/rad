@@ -82,6 +82,23 @@
         </div>
       </fieldset>
 
+      <fieldset class="form__group">
+        <legend class="l-questionnaire__legend"><%= t('questionnaire.service_regions.heading') %></legend>
+        <p><%= t('questionnaire.service_regions.description') %></p>
+
+        <%= f.form_row :service_regions do %>
+            <%= f.errors_for :service_regions %>
+            <% ServiceRegion.all.each do |service_region| %>
+                <div class="form__group-item l-questionnaire__two-cols">
+                  <label>
+                    <%= check_box_tag 'firm[service_region_ids][]', service_region.id, @firm.service_regions.include?(service_region), class: 'form__group-input' %>
+                    <%= service_region.name %>
+                  </label>
+                </div>
+            <% end %>
+        <% end %>
+      </fieldset>
+
       <div class="l-questionnaire__button">
         <%= button_primary t('questionnaire.button_next') %>
       </div>
