@@ -111,7 +111,7 @@
           <%= f.form_row :in_person_advice_methods do %>
               <%= f.errors_for :in_person_advice_methods %>
               <% InPersonAdviceMethod.all.each do |in_person_advice_method| %>
-                  <div class="form__group-item l-questionnaire__two-cols">
+                  <div class="form__group-item">
                     <label>
                       <%= check_box_tag 'firm[in_person_advice_method_ids][]', in_person_advice_method.id, @firm.in_person_advice_methods.include?(in_person_advice_method), class: 'form__group-input' %>
                       <%= in_person_advice_method.name %>
@@ -127,7 +127,7 @@
           <%= f.form_row :other_advice_methods do %>
               <%= f.errors_for :other_advice_methods %>
               <% OtherAdviceMethod.all.each do |other_advice_method| %>
-                  <div class="form__group-item l-questionnaire__two-cols">
+                  <div class="form__group-item">
                     <label>
                       <%= check_box_tag 'firm[other_advice_method_ids][]', other_advice_method.id, @firm.other_advice_methods.include?(other_advice_method), class: 'form__group-input' %>
                       <%= other_advice_method.name %>
@@ -158,13 +158,13 @@
           <% end %>
         </fieldset>
 
-        <fieldset class="form__group form__group--inline">
+        <fieldset class="form__group">
           <legend class="l-questionnaire__legend"><%= t('questionnaire.initial_meeting_duration.heading') %></legend>
 
           <%= f.form_row :initial_meeting_duration do %>
               <%= f.errors_for :initial_meeting_duration %>
               <% InitialMeetingDuration.all.each do |initial_meeting_duration| %>
-                  <div class="form__group-item l-questionnaire__two-cols">
+                  <div class="form__group-item">
                     <label>
                       <%= radio_button_tag 'firm[initial_meeting_duration_id]', initial_meeting_duration.id, @firm.initial_meeting_duration == initial_meeting_duration, class: 'form__group-input' %>
                       <%= initial_meeting_duration.duration %> <%= t('questionnaire.initial_meeting_duration.duration_unit') %>
