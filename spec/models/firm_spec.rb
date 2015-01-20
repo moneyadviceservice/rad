@@ -123,5 +123,13 @@ RSpec.describe Firm do
         end
       end
     end
+
+    describe 'initial advice fee structures' do
+      context 'when none assigned' do
+        before { firm.initial_advice_fee_structures = [] }
+
+        it { is_expected.not_to be_valid }
+      end
+    end
   end
 end

@@ -175,6 +175,29 @@
         </fieldset>
       </section>
 
+      <hr>
+
+      <section>
+        <%= heading_tag(t('questionnaire.service_charges.heading'), level: 2, class: 'heading-small') %>
+        <p class="l-questionnaire__section-description"><%= t('questionnaire.service_charges.description') %></p>
+
+        <fieldset class="form__group">
+          <legend class="l-questionnaire__legend"><%= t('questionnaire.initial_advice_fee.heading') %></legend>
+
+          <%= f.form_row :initial_advice_fee_structures do %>
+              <%= f.errors_for :initial_advice_fee_structures %>
+              <% InitialAdviceFeeStructure.all.each do |initial_advice_fee_structure| %>
+                  <div class="form__group-item l-questionnaire__two-cols">
+                    <label>
+                      <%= check_box_tag 'firm[initial_advice_fee_structure_ids][]', initial_advice_fee_structure.id, @firm.initial_advice_fee_structures.include?(initial_advice_fee_structure), class: 'form__group-input' %>
+                      <%= initial_advice_fee_structure.name %>
+                    </label>
+                  </div>
+              <% end %>
+          <% end %>
+        </fieldset>
+      </section>
+
       <div class="l-questionnaire__button">
         <%= button_primary t('questionnaire.button_next') %>
       </div>
