@@ -42,14 +42,6 @@ RSpec.describe Firm do
       end
     end
 
-    describe 'address line 2' do
-      context 'when missing' do
-        before { firm.address_line_2 = nil }
-
-        it { is_expected.not_to be_valid }
-      end
-    end
-
     describe 'address town' do
       context 'when missing' do
         before { firm.address_town = nil }
