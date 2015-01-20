@@ -136,6 +136,27 @@
               <% end %>
           <% end %>
         </fieldset>
+
+        <fieldset class="form__group form__group--inline">
+          <legend class="l-questionnaire__legend"><%= t('questionnaire.free_initial_meeting.heading') %></legend>
+
+          <%= f.form_row :free_initial_meeting do %>
+              <%= f.errors_for :free_initial_meeting %>
+              <div class="form__group-item">
+                <label>
+                  <%= f.radio_button :free_initial_meeting, true, class: 'form__group-input' %>
+                  <%= t('questionnaire.free_initial_meeting.answer_yes') %>
+                </label>
+              </div>
+
+              <div class="form__group-item">
+                <label>
+                  <%= f.radio_button :free_initial_meeting, false, class: 'form__group-input' %>
+                  <%= t('questionnaire.free_initial_meeting.answer_no') %>
+                </label>
+              </div>
+          <% end %>
+        </fieldset>
       </section>
 
       <div class="l-questionnaire__button">

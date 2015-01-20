@@ -103,5 +103,13 @@ RSpec.describe Firm do
         it { is_expected.not_to be_valid }
       end
     end
+
+    describe 'free initial meeting' do
+      context 'when missing' do
+        before { firm.free_initial_meeting = nil }
+
+        it { is_expected.not_to be_valid }
+      end
+    end
   end
 end
