@@ -147,5 +147,13 @@ RSpec.describe Firm do
         it { is_expected.not_to be_valid }
       end
     end
+
+    describe 'investment size' do
+      context 'when none assigned' do
+        before { firm.investment_sizes = [] }
+
+        it { is_expected.not_to be_valid }
+      end
+    end
   end
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150120141928) do
+ActiveRecord::Schema.define(version: 20150120150845) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -63,6 +63,14 @@ ActiveRecord::Schema.define(version: 20150120141928) do
   add_index "firms_initial_advice_fee_structures", ["firm_id"], name: "index_firms_initial_advice_fee_structures_on_firm_id", using: :btree
   add_index "firms_initial_advice_fee_structures", ["initial_advice_fee_structure_id"], name: "firms_initial_advice_fee_structs_initial_advice_fee_struct_id", using: :btree
 
+  create_table "firms_investment_sizes", id: false, force: :cascade do |t|
+    t.integer "firm_id"
+    t.integer "investment_size_id"
+  end
+
+  add_index "firms_investment_sizes", ["firm_id"], name: "index_firms_investment_sizes_on_firm_id", using: :btree
+  add_index "firms_investment_sizes", ["investment_size_id"], name: "index_firms_investment_sizes_on_investment_size_id", using: :btree
+
   create_table "firms_ongoing_advice_fee_structures", id: false, force: :cascade do |t|
     t.integer "firm_id"
     t.integer "ongoing_advice_fee_structure_id"
@@ -103,6 +111,12 @@ ActiveRecord::Schema.define(version: 20150120141928) do
 
   create_table "initial_meeting_durations", force: :cascade do |t|
     t.integer  "duration"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "investment_sizes", force: :cascade do |t|
+    t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
