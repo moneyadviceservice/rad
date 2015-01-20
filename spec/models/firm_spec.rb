@@ -3,8 +3,6 @@ RSpec.describe Firm do
 
   describe 'validation' do
     it 'is valid with valid attributes' do
-
-      binding.pry
       expect(firm).to be_valid
     end
 
