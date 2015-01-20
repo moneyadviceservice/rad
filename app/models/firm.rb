@@ -24,7 +24,6 @@ class Firm < ActiveRecord::Base
             length: { maximum: 100 }
 
   validates :address_line_2,
-            presence: true,
             length: { maximum: 100 }
 
   validates :address_postcode,
