@@ -91,7 +91,7 @@
             <% ServiceRegion.all.each do |service_region| %>
                 <div class="form__group-item l-questionnaire__two-cols">
                   <label>
-                    <%= check_box_tag 'firm[service_region_ids][]', service_region.id, @firm.service_regions.include?(service_region), class: 'form__group-input' %>
+                    <%= check_box_tag 'firm[service_region_ids][]', service_region.id, @firm.service_regions.include?(service_region), class: 'form__group-input t-questionnaire__service_region_id' %>
                     <%= service_region.name %>
                   </label>
                 </div>
@@ -113,7 +113,7 @@
               <% InPersonAdviceMethod.all.each do |in_person_advice_method| %>
                   <div class="form__group-item">
                     <label>
-                      <%= check_box_tag 'firm[in_person_advice_method_ids][]', in_person_advice_method.id, @firm.in_person_advice_methods.include?(in_person_advice_method), class: 'form__group-input' %>
+                      <%= check_box_tag 'firm[in_person_advice_method_ids][]', in_person_advice_method.id, @firm.in_person_advice_methods.include?(in_person_advice_method), class: 'form__group-input t-questionnaire__in_person_advice_method_id' %>
                       <%= in_person_advice_method.name %>
                     </label>
                   </div>
@@ -129,7 +129,7 @@
               <% OtherAdviceMethod.all.each do |other_advice_method| %>
                   <div class="form__group-item">
                     <label>
-                      <%= check_box_tag 'firm[other_advice_method_ids][]', other_advice_method.id, @firm.other_advice_methods.include?(other_advice_method), class: 'form__group-input' %>
+                      <%= check_box_tag 'firm[other_advice_method_ids][]', other_advice_method.id, @firm.other_advice_methods.include?(other_advice_method), class: 'form__group-input t-questionnaire__other_advice_method_id' %>
                       <%= other_advice_method.name %>
                     </label>
                   </div>
@@ -166,7 +166,7 @@
               <% InitialMeetingDuration.all.each do |initial_meeting_duration| %>
                   <div class="form__group-item">
                     <label>
-                      <%= radio_button_tag 'firm[initial_meeting_duration_id]', initial_meeting_duration.id, @firm.initial_meeting_duration == initial_meeting_duration, class: 'form__group-input' %>
+                      <%= radio_button_tag 'firm[initial_meeting_duration_id]', initial_meeting_duration.id, @firm.initial_meeting_duration == initial_meeting_duration, class: 'form__group-input t-questionnaire__firm_initial_meeting_duration_id' %>
                       <%= initial_meeting_duration.duration %> <%= t('questionnaire.initial_meeting_duration.duration_unit') %>
                     </label>
                   </div>
@@ -189,7 +189,7 @@
               <% InitialAdviceFeeStructure.all.each do |initial_advice_fee_structure| %>
                   <div class="form__group-item l-questionnaire__two-cols">
                     <label>
-                      <%= check_box_tag 'firm[initial_advice_fee_structure_ids][]', initial_advice_fee_structure.id, @firm.initial_advice_fee_structures.include?(initial_advice_fee_structure), class: 'form__group-input' %>
+                      <%= check_box_tag 'firm[initial_advice_fee_structure_ids][]', initial_advice_fee_structure.id, @firm.initial_advice_fee_structures.include?(initial_advice_fee_structure), class: 'form__group-input t-questionnaire__initial_advice_fee_structure_id' %>
                       <%= initial_advice_fee_structure.name %>
                     </label>
                   </div>
@@ -205,7 +205,7 @@
               <% OngoingAdviceFeeStructure.all.each do |ongoing_advice_fee_structure| %>
                   <div class="form__group-item l-questionnaire__two-cols">
                     <label>
-                      <%= check_box_tag 'firm[ongoing_advice_fee_structure_ids][]', ongoing_advice_fee_structure.id, @firm.ongoing_advice_fee_structures.include?(ongoing_advice_fee_structure), class: 'form__group-input' %>
+                      <%= check_box_tag 'firm[ongoing_advice_fee_structure_ids][]', ongoing_advice_fee_structure.id, @firm.ongoing_advice_fee_structures.include?(ongoing_advice_fee_structure), class: 'form__group-input t-questionnaire__ongoing_advice_fee_structure_id' %>
                       <%= ongoing_advice_fee_structure.name %>
                     </label>
                   </div>
@@ -221,7 +221,7 @@
               <% AllowedPaymentMethod.all.each do |allowed_payment_method| %>
                   <div class="form__group-item l-questionnaire__two-cols">
                     <label>
-                      <%= check_box_tag 'firm[allowed_payment_method_ids][]', allowed_payment_method.id, @firm.allowed_payment_methods.include?(allowed_payment_method), class: 'form__group-input' %>
+                      <%= check_box_tag 'firm[allowed_payment_method_ids][]', allowed_payment_method.id, @firm.allowed_payment_methods.include?(allowed_payment_method), class: 'form__group-input t-questionnaire__allowed_payment_method_id' %>
                       <%= allowed_payment_method.name %>
                     </label>
                   </div>
