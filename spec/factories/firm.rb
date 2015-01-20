@@ -9,5 +9,6 @@ FactoryGirl.define do
     address_postcode 'EC1N 2TD'
     service_regions { create_list(:service_region, rand(1..3)) }
     in_person_advice_methods { create_list(:in_person_advice_method, rand(1..3)) }
+    other_advice_methods { create_list(:other_advice_method, rand(1..3)) }
   end
 end

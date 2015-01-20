@@ -120,6 +120,22 @@
               <% end %>
           <% end %>
         </fieldset>
+
+        <fieldset class="form__group">
+          <legend class="l-questionnaire__legend"><%= t('questionnaire.other_advice_methods.heading') %></legend>
+
+          <%= f.form_row :other_advice_methods do %>
+              <%= f.errors_for :other_advice_methods %>
+              <% OtherAdviceMethod.all.each do |other_advice_method| %>
+                  <div class="form__group-item l-questionnaire__two-cols">
+                    <label>
+                      <%= check_box_tag 'firm[other_advice_method_ids][]', other_advice_method.id, @firm.other_advice_methods.include?(other_advice_method), class: 'form__group-input' %>
+                      <%= other_advice_method.name %>
+                    </label>
+                  </div>
+              <% end %>
+          <% end %>
+        </fieldset>
       </section>
 
       <div class="l-questionnaire__button">
