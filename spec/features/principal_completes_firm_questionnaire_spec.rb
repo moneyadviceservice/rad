@@ -33,6 +33,21 @@ RSpec.feature 'Principal completes the firm questionnaire' do
   def when_I_complete_all_mandatory_questions
     questionnaire_page.email_address_field.set(Faker::Internet.email)
     questionnaire_page.telephone_number_field.set(Faker::Base.numerify('##### ### ###'))
+    questionnaire_page.address_line_1_field.set(Faker::Address.street_address)
+    questionnaire_page.address_town_field.set(Faker::Address.city)
+    questionnaire_page.address_county_field.set(Faker::Address.county)
+    questionnaire_page.address_postcode_field.set(Faker::Address.postcode)
+
+    questionnaire_page.service_region_checkboxes.first.set(true)
+    questionnaire_page.in_person_advice_method_checkboxes.first.set(true)
+    questionnaire_page.other_advice_method_checkboxes.first.set(true)
+    questionnaire_page.offers_free_initial_meeting_radio_button.set(true)
+    questionnaire_page.initial_meeting_duration_checkboxes.first.set(true)
+    questionnaire_page.initial_fee_structure_checkboxes.first.set(true)
+    questionnaire_page.ongoing_fee_structure_checkboxes.first.set(true)
+    questionnaire_page.allowed_payment_method_checkboxes.first.set(true)
+    questionnaire_page.minimum_fee_field.set(Faker::Number.number(4))
+
     questionnaire_page.next_button.click
   end
 
