@@ -59,6 +59,20 @@ ActiveRecord::Schema.define(version: 20150121183728) do
 
   add_index "advisers_qualifications", ["adviser_id", "qualification_id"], name: "advisers_qualifications_index", unique: true, using: :btree
 
+  create_table "allowed_payment_methods", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "allowed_payment_methods_firms", id: false, force: :cascade do |t|
+    t.integer "firm_id"
+    t.integer "allowed_payment_method_id"
+  end
+
+  add_index "allowed_payment_methods_firms", ["allowed_payment_method_id"], name: "allowed_payment_methods_firms_allowed_payment_method_id", using: :btree
+  add_index "allowed_payment_methods_firms", ["firm_id"], name: "index_allowed_payment_methods_firms_on_firm_id", using: :btree
+
   create_table "firms", force: :cascade do |t|
     t.integer  "fca_number",                  null: false
     t.string   "registered_name",             null: false

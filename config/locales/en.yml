@@ -185,4 +185,7 @@ en:
     ongoing_advice_fee:
       heading: Ongoing advice *
 
+    allowed_payment_methods:
+      heading: Do you allow customers to pay for advice *
+
     button_next: Describe your firm's specialities

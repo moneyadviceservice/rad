@@ -34,7 +34,8 @@ class QuestionnairesController < ApplicationController
         in_person_advice_method_ids: [],
         other_advice_method_ids: [],
         initial_advice_fee_structure_ids: [],
-        ongoing_advice_fee_structure_ids: []
+        ongoing_advice_fee_structure_ids: [],
+        allowed_payment_method_ids: []
     )
   end
 end
