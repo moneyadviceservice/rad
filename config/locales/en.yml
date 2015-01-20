@@ -104,4 +104,13 @@ en:
       description: Please provide a contact number for customers who wish to call you.
       label: Firm telephone number *
 
+    address:
+      heading: Main office where customers will meet you
+      description: This is to help customers understand how far they will need to travel if they want to visit you.
+      label_one: Address line 1 *
+      label_two: Address line 2
+      label_three: Town *
+      label_four: County *
+      label_five: Post code *
+
     button_next: Describe your firm's specialities
