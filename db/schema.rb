@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150115130949) do
+ActiveRecord::Schema.define(version: 20150116161044) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,6 +27,14 @@ ActiveRecord::Schema.define(version: 20150115130949) do
     t.string   "address_county",   null: false
     t.string   "address_postcode", null: false
   end
+
+  create_table "firms_service_regions", id: false, force: :cascade do |t|
+    t.integer "firm_id"
+    t.integer "service_region_id"
+  end
+
+  add_index "firms_service_regions", ["firm_id"], name: "index_firms_service_regions_on_firm_id", using: :btree
+  add_index "firms_service_regions", ["service_region_id"], name: "index_firms_service_regions_on_service_region_id", using: :btree
 
   create_table "lookup_advisers", force: :cascade do |t|
     t.string   "reference_number", null: false
@@ -69,5 +77,13 @@ ActiveRecord::Schema.define(version: 20150115130949) do
 
   add_index "principals", ["fca_number"], name: "index_principals_on_fca_number", unique: true, using: :btree
   add_index "principals", ["token"], name: "index_principals_on_token", unique: true, using: :btree
+
+  create_table "service_regions", force: :cascade do |t|
+    t.string   "name",       null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "service_regions", ["name"], name: "index_service_regions_on_name", unique: true, using: :btree
 
 end

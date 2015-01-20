@@ -27,7 +27,8 @@ class QuestionnairesController < ApplicationController
         :address_line_2,
         :address_town,
         :address_county,
-        :address_postcode
+        :address_postcode,
+        service_region_ids: []
     )
   end
 end

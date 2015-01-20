@@ -1,4 +1,5 @@
 class Firm < ActiveRecord::Base
+  has_and_belongs_to_many :service_regions
   validates :email_address,
             presence: true,
             length: { maximum: 50 },
@@ -24,4 +25,7 @@ class Firm < ActiveRecord::Base
   validates :address_town,
             :address_county,
             presence: true
+
+  validates :service_regions,
+            length: { minimum: 1 }
 end
