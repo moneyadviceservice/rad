@@ -28,7 +28,8 @@ class QuestionnairesController < ApplicationController
         :address_town,
         :address_county,
         :address_postcode,
-        service_region_ids: []
+        service_region_ids: [],
+        in_person_advice_method_ids: []
     )
   end
 end

@@ -75,6 +75,14 @@ ActiveRecord::Schema.define(version: 20150121183728) do
 
   add_index "firms", ["fca_number"], name: "index_firms_on_fca_number", unique: true, using: :btree
 
+  create_table "firms_in_person_advice_methods", id: false, force: :cascade do |t|
+    t.integer "firm_id"
+    t.integer "in_person_advice_method_id"
+  end
+
+  add_index "firms_in_person_advice_methods", ["firm_id"], name: "in_person_advice_methods_firm_id", using: :btree
+  add_index "firms_in_person_advice_methods", ["in_person_advice_method_id"], name: "in_person_advice_methods_in_person_advice_method_id", using: :btree
+
   create_table "firms_service_regions", id: false, force: :cascade do |t|
     t.integer "firm_id"
     t.integer "service_region_id"
@@ -82,6 +90,14 @@ ActiveRecord::Schema.define(version: 20150121183728) do
 
   add_index "firms_service_regions", ["firm_id"], name: "index_firms_service_regions_on_firm_id", using: :btree
   add_index "firms_service_regions", ["service_region_id"], name: "index_firms_service_regions_on_service_region_id", using: :btree
+
+  create_table "in_person_advice_methods", force: :cascade do |t|
+    t.string   "name",       null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "in_person_advice_methods", ["name"], name: "index_in_person_advice_methods_on_name", using: :btree
 
   create_table "lookup_advisers", force: :cascade do |t|
     t.string   "reference_number", null: false
