@@ -60,20 +60,23 @@ ActiveRecord::Schema.define(version: 20150121183728) do
   add_index "advisers_qualifications", ["adviser_id", "qualification_id"], name: "advisers_qualifications_index", unique: true, using: :btree
 
   create_table "firms", force: :cascade do |t|
-    t.integer  "fca_number",       null: false
-    t.string   "registered_name",  null: false
+    t.integer  "fca_number",                  null: false
+    t.string   "registered_name",             null: false
     t.string   "email_address"
     t.string   "telephone_number"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
     t.string   "address_line_1"
     t.string   "address_line_2"
     t.string   "address_town"
     t.string   "address_county"
     t.string   "address_postcode"
+    t.boolean  "free_initial_meeting",        null: false
+    t.integer  "initial_meeting_duration_id"
   end
 
   add_index "firms", ["fca_number"], name: "index_firms_on_fca_number", unique: true, using: :btree
+  add_index "firms", ["initial_meeting_duration_id"], name: "index_firms_on_initial_meeting_duration_id", using: :btree
 
   create_table "firms_in_person_advice_methods", id: false, force: :cascade do |t|
     t.integer "firm_id"
@@ -82,6 +85,30 @@ ActiveRecord::Schema.define(version: 20150121183728) do
 
   add_index "firms_in_person_advice_methods", ["firm_id"], name: "in_person_advice_methods_firm_id", using: :btree
   add_index "firms_in_person_advice_methods", ["in_person_advice_method_id"], name: "in_person_advice_methods_in_person_advice_method_id", using: :btree
+
+  create_table "firms_initial_advice_fee_structures", id: false, force: :cascade do |t|
+    t.integer "firm_id"
+    t.integer "initial_advice_fee_structure_id"
+  end
+
+  add_index "firms_initial_advice_fee_structures", ["firm_id"], name: "index_firms_initial_advice_fee_structures_on_firm_id", using: :btree
+  add_index "firms_initial_advice_fee_structures", ["initial_advice_fee_structure_id"], name: "firms_initial_advice_fee_structs_initial_advice_fee_struct_id", using: :btree
+
+  create_table "firms_ongoing_advice_fee_structures", id: false, force: :cascade do |t|
+    t.integer "firm_id"
+    t.integer "ongoing_advice_fee_structure_id"
+  end
+
+  add_index "firms_ongoing_advice_fee_structures", ["firm_id"], name: "index_firms_ongoing_advice_fee_structures_on_firm_id", using: :btree
+  add_index "firms_ongoing_advice_fee_structures", ["ongoing_advice_fee_structure_id"], name: "firms_ongoing_advice_fee_structs_ongoing_advice_fee_struct_id", using: :btree
+
+  create_table "firms_other_advice_methods", id: false, force: :cascade do |t|
+    t.integer "firm_id"
+    t.integer "other_advice_method_id"
+  end
+
+  add_index "firms_other_advice_methods", ["firm_id"], name: "index_firms_other_advice_methods_on_firm_id", using: :btree
+  add_index "firms_other_advice_methods", ["other_advice_method_id"], name: "index_firms_other_advice_methods_on_other_advice_method_id", using: :btree
 
   create_table "firms_service_regions", id: false, force: :cascade do |t|
     t.integer "firm_id"
@@ -98,6 +125,18 @@ ActiveRecord::Schema.define(version: 20150121183728) do
   end
 
   add_index "in_person_advice_methods", ["name"], name: "index_in_person_advice_methods_on_name", using: :btree
+
+  create_table "initial_advice_fee_structures", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "initial_meeting_durations", force: :cascade do |t|
+    t.integer  "duration"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "lookup_advisers", force: :cascade do |t|
     t.string   "reference_number", null: false
@@ -123,6 +162,18 @@ ActiveRecord::Schema.define(version: 20150121183728) do
   end
 
   add_index "lookup_subsidiaries", ["fca_number"], name: "index_lookup_subsidiaries_on_fca_number", using: :btree
+
+  create_table "ongoing_advice_fee_structures", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "other_advice_methods", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "principals", force: :cascade do |t|
     t.integer  "fca_number"

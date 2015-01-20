@@ -182,4 +182,7 @@ en:
     initial_advice_fee:
       heading: Initial advice *
 
+    ongoing_advice_fee:
+      heading: Ongoing advice *
+
     button_next: Describe your firm's specialities

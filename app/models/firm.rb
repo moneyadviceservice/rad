@@ -3,6 +3,7 @@ class Firm < ActiveRecord::Base
   has_and_belongs_to_many :in_person_advice_methods
   has_and_belongs_to_many :other_advice_methods
   has_and_belongs_to_many :initial_advice_fee_structures
+  has_and_belongs_to_many :ongoing_advice_fee_structures
 
   belongs_to :initial_meeting_duration
 
@@ -51,5 +52,8 @@ class Firm < ActiveRecord::Base
             if: ->{ free_initial_meeting }
 
   validates :initial_advice_fee_structures,
+            length: { minimum: 1 }
+
+  validates :ongoing_advice_fee_structures,
             length: { minimum: 1 }
 end
