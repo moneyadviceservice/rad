@@ -5,6 +5,7 @@ class Firm < ActiveRecord::Base
   has_and_belongs_to_many :initial_advice_fee_structures
   has_and_belongs_to_many :ongoing_advice_fee_structures
   has_and_belongs_to_many :allowed_payment_methods
+  has_and_belongs_to_many :investment_sizes
 
   belongs_to :initial_meeting_duration
 
@@ -63,4 +64,7 @@ class Firm < ActiveRecord::Base
   validates :minimum_fixed_fee,
             allow_blank: true,
             numericality: { only_integer: true }
+
+  validates :investment_sizes,
+            length: { minimum: 1 }
 end
