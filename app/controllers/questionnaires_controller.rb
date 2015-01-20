@@ -29,6 +29,7 @@ class QuestionnairesController < ApplicationController
         :address_county,
         :address_postcode,
         :free_initial_meeting,
+        :initial_meeting_duration_id,
         service_region_ids: [],
         in_person_advice_method_ids: [],
         other_advice_method_ids: []
