@@ -11,6 +11,36 @@
         <%= heading_tag(t('questionnaire.about_your_firm.heading'), level: 2, class: 'heading-small') %>
         <%= callout_instructional t('questionnaire.about_your_firm.callout_html', registered_name: @lookup_firm.registered_name, fca_number: @lookup_firm.fca_number) %>
         <p class="l-questionnaire__section-description"><%= t('questionnaire.about_your_firm.description') %></p>
+
+        <fieldset class="form__group">
+          <legend class="l-questionnaire__legend"><%= t('questionnaire.email_address.heading') %></legend>
+          <p><%= t('questionnaire.email_address.description') %></p>
+
+          <div class="l-questionnaire__row">
+            <div class="l-questionnaire__field form__group-item">
+              <%= f.form_row :email_address do %>
+                  <%= f.errors_for :email_address %>
+                  <%= f.label :email_address, t('questionnaire.email_address.label'), class: 'form__label-heading' %>
+                  <%= f.text_field :email_address %>
+              <% end %>
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset class="form__group">
+          <legend class="l-questionnaire__legend"><%= t('questionnaire.telephone_number.heading') %></legend>
+          <p><%= t('questionnaire.telephone_number.description') %></p>
+
+          <div class="l-questionnaire__row">
+            <div class="l-questionnaire__field form__group-item">
+              <%= f.form_row :telephone_number do %>
+                  <%= f.errors_for :telephone_number %>
+                  <%= f.label :telephone_number, t('questionnaire.telephone_number.label'), class: 'form__label-heading' %>
+                  <%= f.text_field :telephone_number %>
+              <% end %>
+            </div>
+          </div>
+        </fieldset>
       </section>
 
       <div class="l-questionnaire__button">
