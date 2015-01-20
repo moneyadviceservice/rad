@@ -95,5 +95,13 @@ RSpec.describe Firm do
         it { is_expected.not_to be_valid }
       end
     end
+
+    describe 'other advice methods' do
+      context 'when none assigned' do
+        before { firm.other_advice_methods = [] }
+
+        it { is_expected.not_to be_valid }
+      end
+    end
   end
 end
