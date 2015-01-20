@@ -1,13 +1,13 @@
 <div class="l-constrained">
-  <%= form_for @message, url: contact_path, as: :contact, html: { class: 'form form--collapse l-pre-qualification-questions' },
+  <%= form_for @message, url: contact_path, as: :contact, html: { class: 'form form--collapse l-pre-qualification' },
     builder: Dough::Forms::Builders::Validation do |f| %>
     <%= f.validation_summary %>
-    <%= heading_tag(t('rejection.heading'), level: 1, class: 'l-pre-qualification-questions__heading') %>
-    <p class="l-pre-qualification-questions__subheading"><%= t('rejection.subheading') %></p>
+    <%= heading_tag(t('rejection.heading'), level: 1) %>
+    <p><%= t('rejection.subheading') %></p>
 
-    <section class="l-pre-qualification-questions__reasons">
+    <section class="l-pre-qualification__explanation">
       <% t('rejection.reasons').each do |item| %>
-        <%= heading_tag(item[:heading], level: 2, class: 'l-pre-qualification-questions__question') %>
+        <%= heading_tag(item[:heading], level: 2, class: 'l-pre-qualification__question') %>
         <p><%= item[:explanation] %></p>
       <% end %>
     </section>
