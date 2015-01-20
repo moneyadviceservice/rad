@@ -11,10 +11,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150119152813) do
+ActiveRecord::Schema.define(version: 20150120133931) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "allowed_payment_methods", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "allowed_payment_methods_firms", id: false, force: :cascade do |t|
+    t.integer "firm_id"
+    t.integer "allowed_payment_method_id"
+  end
+
+  add_index "allowed_payment_methods_firms", ["allowed_payment_method_id"], name: "allowed_payment_methods_firms_allowed_payment_method_id", using: :btree
+  add_index "allowed_payment_methods_firms", ["firm_id"], name: "index_allowed_payment_methods_firms_on_firm_id", using: :btree
 
   create_table "firms", force: :cascade do |t|
     t.string   "email_address",               null: false

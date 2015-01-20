@@ -7,6 +7,7 @@ class Firm < ActiveRecord::Base
 
   has_and_belongs_to_many :initial_advice_fee_structures
   has_and_belongs_to_many :ongoing_advice_fee_structures
+  has_and_belongs_to_many :allowed_payment_methods
 
   validates :email_address,
             presence: true,
@@ -54,5 +55,8 @@ class Firm < ActiveRecord::Base
             length: { minimum: 1 }
 
   validates :ongoing_advice_fee_structures,
+            length: { minimum: 1 }
+
+  validates :allowed_payment_methods,
             length: { minimum: 1 }
 end

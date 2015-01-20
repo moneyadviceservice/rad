@@ -139,5 +139,13 @@ RSpec.describe Firm do
         it { is_expected.not_to be_valid }
       end
     end
+
+    describe 'allowed payment methods' do
+      context 'when none assigned' do
+        before { firm.allowed_payment_methods = [] }
+
+        it { is_expected.not_to be_valid }
+      end
+    end
   end
 end
