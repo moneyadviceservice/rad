@@ -132,4 +132,8 @@ en:
       answer_yes: "Yes"
       answer_no: "No"
 
+    initial_meeting_duration:
+      heading: If yes, for how long?
+      duration_unit: minutes
+
     button_next: Describe your firm's specialities

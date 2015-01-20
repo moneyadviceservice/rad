@@ -3,6 +3,8 @@ class Firm < ActiveRecord::Base
   has_and_belongs_to_many :in_person_advice_methods
   has_and_belongs_to_many :other_advice_methods
 
+  belongs_to :initial_meeting_duration
+
   validates :email_address,
             presence: true,
             length: { maximum: 50 },
@@ -40,5 +42,9 @@ class Firm < ActiveRecord::Base
 
   validates :free_initial_meeting,
             inclusion: { in: [true, false] }
+
+  validates :initial_meeting_duration,
+            presence: true,
+            if: ->{ free_initial_meeting }
 
 end
