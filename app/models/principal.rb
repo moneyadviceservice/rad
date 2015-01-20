@@ -2,6 +2,9 @@ class Principal < ActiveRecord::Base
   self.primary_key = 'token'
 
   before_create :generate_token
+  after_create  :associate_firm
+
+  has_one :firm, primary_key: :fca_number, foreign_key: :fca_number
 
   validates :fca_number,
     presence: true,
@@ -34,11 +37,11 @@ class Principal < ActiveRecord::Base
     token.parameterize
   end
 
-  def firm
-    Lookup::Firm.find_by(fca_number: fca_number)
+  def lookup_firm
+    @lookup_firm ||= Lookup::Firm.find_by(fca_number: fca_number)
   end
 
-  delegate :subsidiaries?, to: :firm
+  delegate :subsidiaries?, to: :lookup_firm
 
   def field_order
     [
@@ -54,6 +57,13 @@ class Principal < ActiveRecord::Base
   end
 
   private
+
+  def associate_firm
+    create_firm!(
+      fca_number: lookup_firm.fca_number,
+      registered_name: lookup_firm.registered_name
+    )
+  end
 
   def match_fca_number
     unless Lookup::Firm.exists?(fca_number: self.fca_number)

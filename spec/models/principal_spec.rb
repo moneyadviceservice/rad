@@ -1,15 +1,15 @@
 RSpec.describe Principal do
   let(:principal) { create(:principal) }
 
-  describe '#firm' do
-    it 'returns my associated firm' do
-      expect(principal.firm).to be
+  describe '#lookup_firm' do
+    it 'returns my associated lookup firm' do
+      expect(principal.lookup_firm).to be
     end
   end
 
   describe '#subsidiaries?' do
     context 'when my firm has subsidiaries' do
-      before { principal.firm.subsidiaries.create! }
+      before { principal.lookup_firm.subsidiaries.create! }
 
       it 'is truthy' do
         expect(principal.subsidiaries?).to be_truthy
@@ -31,6 +31,10 @@ RSpec.describe Principal do
   context 'upon creation' do
     it 'generates an 8 character, 4 byte token' do
       expect(principal.token.length).to eq(8)
+    end
+
+    it 'creates the associated Firm' do
+      expect(principal.firm.fca_number).to eq(principal.lookup_firm.fca_number)
     end
   end
 
