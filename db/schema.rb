@@ -66,6 +66,11 @@ ActiveRecord::Schema.define(version: 20150121183728) do
     t.string   "telephone_number"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
+    t.string   "address_line_1"
+    t.string   "address_line_2"
+    t.string   "address_town"
+    t.string   "address_county"
+    t.string   "address_postcode"
   end
 
   add_index "firms", ["fca_number"], name: "index_firms_on_fca_number", unique: true, using: :btree

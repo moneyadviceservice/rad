@@ -33,5 +33,51 @@ RSpec.describe Firm do
         it { is_expected.to_not be_valid }
       end
     end
+
+    describe 'address line 1' do
+      context 'when missing' do
+        before { firm.address_line_1 = nil }
+
+        it { is_expected.not_to be_valid }
+      end
+    end
+
+    describe 'address line 2' do
+      context 'when missing' do
+        before { firm.address_line_2 = nil }
+
+        it { is_expected.not_to be_valid }
+      end
+    end
+
+    describe 'address town' do
+      context 'when missing' do
+        before { firm.address_town = nil }
+
+        it { is_expected.not_to be_valid }
+      end
+    end
+
+    describe 'address county' do
+      context 'when missing' do
+        before { firm.address_county = nil }
+
+        it { is_expected.not_to be_valid }
+      end
+    end
+
+    describe 'address postcode' do
+      context 'when missing' do
+        before { firm.address_postcode = nil }
+
+        it { is_expected.not_to be_valid }
+      end
+
+      context 'when invalid' do
+        before { firm.address_postcode = nil }
+
+        it { is_expected.not_to be_valid }
+      end
+    end
   end
 end
