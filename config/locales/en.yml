@@ -82,7 +82,8 @@ en:
 
   firms:
     title: Firm and subsidiaries
-    heading_one: 'Currently known as:'
-    heading_two: 'Or select the trading name:'
-    introduction: Provide us with information about your Firm. Below you can find a list of Firms matching the FCA Firm reference number that you provided when you first registered to appear on the Retirement Advice Directory. Please click the button next to the Firm you wish to provide information about and you will be guided to a page where you can fill in all the required details.
+    heading_provide_us_info: Provide us with information about your Firm
+    heading_currently_known_as: 'Currently known as:'
+    heading_trading_name: 'Or select the trading name:'
+    introduction: Below you will find a list of Firms that match the FCA reference number you provided when you registered with us. Select the Firm you wish to provide information for and you will be guided to a page where you can fill in the required details.
     select_firm: Select this firm
