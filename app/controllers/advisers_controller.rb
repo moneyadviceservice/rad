@@ -1,5 +1,5 @@
 class AdvisersController < ApplicationController
   def new
-    @adviser = Adviser.new
+    @adviser = current_user.firm.advisers.build
   end
 end

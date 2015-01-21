@@ -1,3 +1,3 @@
-<%= form_for @adviser, url: new_principal_firm_adviser_path(current_user, current_user.firm, @adviser) do |f| %>
+<%= form_for [current_user, current_user.firm, @adviser] do |f| %>
   <%= f.text_field :reference_number, class: 't-reference-number' %>
 <% end %>
