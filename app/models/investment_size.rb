@@ -1,5 +1,5 @@
 class InvestmentSize < ActiveRecord::Base
-  has_and_belongs_to_many :firms
+  has_many :firms
 
   validates :name, presence: true
 end

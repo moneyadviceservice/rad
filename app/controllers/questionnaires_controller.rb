@@ -31,6 +31,7 @@ class QuestionnairesController < ApplicationController
         :free_initial_meeting,
         :initial_meeting_duration_id,
         :minimum_fixed_fee,
+        :investment_size_id,
         service_region_ids: [],
         in_person_advice_method_ids: [],
         other_advice_method_ids: [],

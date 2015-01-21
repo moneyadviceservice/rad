@@ -149,8 +149,8 @@ RSpec.describe Firm do
     end
 
     describe 'investment size' do
-      context 'when none assigned' do
-        before { firm.investment_sizes = [] }
+      context 'when missing' do
+        before { firm.investment_size = nil }
 
         it { is_expected.not_to be_valid }
       end

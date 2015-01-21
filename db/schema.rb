@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150120150845) do
+ActiveRecord::Schema.define(version: 20150121122416) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,9 +43,11 @@ ActiveRecord::Schema.define(version: 20150120150845) do
     t.boolean  "free_initial_meeting",        null: false
     t.integer  "initial_meeting_duration_id"
     t.integer  "minimum_fixed_fee"
+    t.integer  "investment_size_id"
   end
 
   add_index "firms", ["initial_meeting_duration_id"], name: "index_firms_on_initial_meeting_duration_id", using: :btree
+  add_index "firms", ["investment_size_id"], name: "index_firms_on_investment_size_id", using: :btree
 
   create_table "firms_in_person_advice_methods", id: false, force: :cascade do |t|
     t.integer "firm_id"
@@ -62,14 +64,6 @@ ActiveRecord::Schema.define(version: 20150120150845) do
 
   add_index "firms_initial_advice_fee_structures", ["firm_id"], name: "index_firms_initial_advice_fee_structures_on_firm_id", using: :btree
   add_index "firms_initial_advice_fee_structures", ["initial_advice_fee_structure_id"], name: "firms_initial_advice_fee_structs_initial_advice_fee_struct_id", using: :btree
-
-  create_table "firms_investment_sizes", id: false, force: :cascade do |t|
-    t.integer "firm_id"
-    t.integer "investment_size_id"
-  end
-
-  add_index "firms_investment_sizes", ["firm_id"], name: "index_firms_investment_sizes_on_firm_id", using: :btree
-  add_index "firms_investment_sizes", ["investment_size_id"], name: "index_firms_investment_sizes_on_investment_size_id", using: :btree
 
   create_table "firms_ongoing_advice_fee_structures", id: false, force: :cascade do |t|
     t.integer "firm_id"
@@ -183,4 +177,5 @@ ActiveRecord::Schema.define(version: 20150120150845) do
 
   add_index "service_regions", ["name"], name: "index_service_regions_on_name", unique: true, using: :btree
 
+  add_foreign_key "firms", "investment_sizes"
 end

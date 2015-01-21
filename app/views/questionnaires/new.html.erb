@@ -290,13 +290,16 @@
           <p><%= t('questionnaire.retirement_advice.pension_pot.description') %></p>
           <div class="l-questionnaire__row">
             <div class="l-questionnaire__field">
-              <% t('questionnaire.retirement_advice.pension_pot.pension_pot_size').each do |item| %>
-                <div class="form__group-item">
-                  <label class="form__group">
-                    <input type="radio" name="pension_pot_group" class="form__group-input"/>
-                    <%= item[:size] %>
-                  </label>
-                </div>
+              <%= f.form_row :investment_size do %>
+                  <%= f.errors_for :investment_size %>
+                  <% InvestmentSize.all.each do |investment_size| %>
+                      <div class="form__group-item">
+                        <label>
+                          <%= radio_button_tag 'firm[investment_size_id]', investment_size.id, @firm.investment_size == investment_size, class: 'form__group-input t-questionnaire__firm_investment_size_id' %>
+                          <%= investment_size.name %>
+                        </label>
+                      </div>
+                  <% end %>
               <% end %>
             </div>
           </div>
