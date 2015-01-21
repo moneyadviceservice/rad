@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150121154458) do
+ActiveRecord::Schema.define(version: 20150121173015) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,6 +36,13 @@ ActiveRecord::Schema.define(version: 20150121154458) do
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
   end
+
+  create_table "advisers_professional_standings", id: false, force: :cascade do |t|
+    t.integer "adviser_id",               null: false
+    t.integer "professional_standing_id", null: false
+  end
+
+  add_index "advisers_professional_standings", ["adviser_id", "professional_standing_id"], name: "advisers_professional_standings_index", unique: true, using: :btree
 
   create_table "advisers_qualifications", id: false, force: :cascade do |t|
     t.integer "adviser_id",       null: false
@@ -94,6 +101,12 @@ ActiveRecord::Schema.define(version: 20150121154458) do
 
   add_index "principals", ["fca_number"], name: "index_principals_on_fca_number", unique: true, using: :btree
   add_index "principals", ["token"], name: "index_principals_on_token", unique: true, using: :btree
+
+  create_table "professional_standings", force: :cascade do |t|
+    t.string   "name",       null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "qualifications", force: :cascade do |t|
     t.string   "name",       null: false
