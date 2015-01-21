@@ -1,4 +1,4 @@
-class CreateAdvisers < ActiveRecord::Migration
+class CreateLookupAdvisers < ActiveRecord::Migration
   def change
     create_table :lookup_advisers do |t|
       t.string :reference_number, null: false, unique: true, length: 8
