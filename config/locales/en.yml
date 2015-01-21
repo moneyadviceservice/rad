@@ -100,7 +100,8 @@ en:
 
     service_charges:
       heading: How does your firm charge for your services?*
-      description: Confirm the way(s) your firm charges for its services. Check all that apply.
+      description: Confirm the way(s) your firm charges for its services.
+      hint: Check all that apply.
 
     email_address:
       heading: Firm email address for enquiries
@@ -152,4 +153,43 @@ en:
     minimum_fixed_fee:
       heading: Do you have a minimum fee? If so, please state the amount.
 
-    button_next: Describe your firm's specialities
+    button_next: Submit your firm's details
+
+    retirement_advice:
+      title: Retirement advice offered by your firm
+      introduction:
+        - text: Help us match you with customers who are looking for the main type(s) of advice that you provide.
+        - text: Providing this information means you are more likely to receive customers enquiries relevant to your firm’s area(s) of focus.
+      button_next: Select the advisers who work here
+
+      business_split:
+        heading: Describe your firm's business split as it relates to ‘at’ or ‘post’ retirement advice
+        description: In your last financial year, please tell us how active your firm was in the following areas of retirement planning / advice.
+        subheading: "Percentage of overall business income taken from the following types of advice:"
+        advice_options:
+          - option: Retirement income products
+          - option: Pension transfer
+          - option: Long term care
+          - option: Equity release
+          - option: Inheritance Tax and Estate Planning
+          - option: Wills & Probate
+          - option: Other
+        other_category_description: This would include investment/pensions advice to clients in the accumulation phase i.e. not seeking ‘at’ or ‘post’ retirement advice – e.g. non-equity release mortgage advice;  protection advice, etc.
+        explanation: Together, the entries into all of the fields must add up to a total of 100%.
+        disclaimer:
+          heading: How do we use this information?
+          text: This information is for internal processes and will not appear on your profile page.  We will use this information to filter results so that consumers looking for a particular type of advice will be matched to a firm that provides that type of advice.
+
+      typical_customer:
+        heading: Your firm's typical customer
+        description: Customers searching for advice on converting their pension pot into retirement income and/or advice on pension transfers will be asked to provide the size of pension pot they wish to invest and/or transfer.
+
+      pension_pot:
+        heading: Total pension pot / investment size *
+        description: "Please tell us what size pension pot you are willing to provide advice on:"
+        pension_pot_size:
+          - size: Under £49,999
+          - size: Over £50,000
+          - size: Over £100,000
+          - size: Over £150,000
+          - size: All of these pot / investment sizes
