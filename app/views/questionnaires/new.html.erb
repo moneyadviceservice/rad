@@ -179,7 +179,8 @@
 
       <section>
         <%= heading_tag(t('questionnaire.service_charges.heading'), level: 2, class: 'heading-small') %>
-        <p class="l-questionnaire__section-description"><%= t('questionnaire.service_charges.description') %></p>
+        <p><%= t('questionnaire.service_charges.description') %></p>
+        <p class="l-questionnaire__section-description"><%= t('questionnaire.service_charges.hint') %></p>
 
         <fieldset class="form__group">
           <legend class="l-questionnaire__legend"><%= t('questionnaire.initial_advice_fee.heading') %></legend>
@@ -187,7 +188,7 @@
           <%= f.form_row :initial_advice_fee_structures do %>
               <%= f.errors_for :initial_advice_fee_structures %>
               <% InitialAdviceFeeStructure.all.each do |initial_advice_fee_structure| %>
-                  <div class="form__group-item l-questionnaire__two-cols">
+                  <div class="form__group-item">
                     <label>
                       <%= check_box_tag 'firm[initial_advice_fee_structure_ids][]', initial_advice_fee_structure.id, @firm.initial_advice_fee_structures.include?(initial_advice_fee_structure), class: 'form__group-input t-questionnaire__initial_advice_fee_structure_id' %>
                       <%= initial_advice_fee_structure.name %>
@@ -203,7 +204,7 @@
           <%= f.form_row :ongoing_advice_fee_structures do %>
               <%= f.errors_for :ongoing_advice_fee_structures %>
               <% OngoingAdviceFeeStructure.all.each do |ongoing_advice_fee_structure| %>
-                  <div class="form__group-item l-questionnaire__two-cols">
+                  <div class="form__group-item">
                     <label>
                       <%= check_box_tag 'firm[ongoing_advice_fee_structure_ids][]', ongoing_advice_fee_structure.id, @firm.ongoing_advice_fee_structures.include?(ongoing_advice_fee_structure), class: 'form__group-input t-questionnaire__ongoing_advice_fee_structure_id' %>
                       <%= ongoing_advice_fee_structure.name %>
@@ -219,7 +220,7 @@
           <%= f.form_row :allowed_payment_methods do %>
               <%= f.errors_for :allowed_payment_methods %>
               <% AllowedPaymentMethod.all.each do |allowed_payment_method| %>
-                  <div class="form__group-item l-questionnaire__two-cols">
+                  <div class="form__group-item">
                     <label>
                       <%= check_box_tag 'firm[allowed_payment_method_ids][]', allowed_payment_method.id, @firm.allowed_payment_methods.include?(allowed_payment_method), class: 'form__group-input t-questionnaire__allowed_payment_method_id' %>
                       <%= allowed_payment_method.name %>
@@ -238,6 +239,64 @@
                     <%= f.label :minimum_fixed_fee, t('questionnaire.minimum_fixed_fee.heading'), class: 'form__label-heading' %>
                     <%= f.text_field :minimum_fixed_fee, class: 'form__group-input' %>
                   </div>
+              <% end %>
+            </div>
+          </div>
+        </fieldset>
+      </section>
+
+      <hr>
+
+      <section>
+        <%= heading_tag(t('questionnaire.retirement_advice.business_split.heading'), level: 2, class: 'heading-small') %>
+        <p class="l-questionnaire__section-description"><%= t('questionnaire.retirement_advice.business_split.description') %></p>
+
+        <fieldset class="form__group">
+          <legend class="l-questionnaire__legend"><%= t('questionnaire.retirement_advice.business_split.subheading') %></legend>
+          <p><%= t('questionnaire.retirement_advice.business_split.explanation') %></p>
+
+          <div class="l-questionnaire__row">
+            <div class="l-questionnaire__field form__group">
+              <% t('questionnaire.retirement_advice.business_split.advice_options').each do |item| %>
+
+                <div class="form__row">
+                  <label class="form__label-heading"><%= item[:option] %></label>
+                  <span class="form__input-container">
+                    <input type="number" class="form__input"/>
+                    <span class="form__input-label" id="input-label3b">%</span>
+                    <span class="form__input-outline"></span>
+                  </span>
+                </div>
+              <% end %>
+            </div>
+          </div>
+
+          <p><%= t('questionnaire.retirement_advice.business_split.other_category_description') %></p>
+
+
+          <%= callout_instructional "<p>#{t('questionnaire.retirement_advice.business_split.disclaimer.text')}</p>" %>
+
+        </fieldset>
+      </section>
+
+      <hr>
+
+      <section>
+        <%= heading_tag(t('questionnaire.retirement_advice.typical_customer.heading'), level: 2, class: 'heading-small') %>
+        <p class="l-questionnaire__section-description"><%= t('questionnaire.retirement_advice.typical_customer.description') %></p>
+
+        <fieldset class="form__group">
+          <legend class="l-questionnaire__legend"><%= t('questionnaire.retirement_advice.pension_pot.heading') %></legend>
+          <p><%= t('questionnaire.retirement_advice.pension_pot.description') %></p>
+          <div class="l-questionnaire__row">
+            <div class="l-questionnaire__field">
+              <% t('questionnaire.retirement_advice.pension_pot.pension_pot_size').each do |item| %>
+                <div class="form__group-item">
+                  <label class="form__group">
+                    <input type="radio" name="pension_pot_group" class="form__group-input"/>
+                    <%= item[:size] %>
+                  </label>
+                </div>
               <% end %>
             </div>
           </div>
