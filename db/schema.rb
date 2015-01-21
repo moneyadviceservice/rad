@@ -140,14 +140,6 @@ ActiveRecord::Schema.define(version: 20150121183728) do
   add_index "firms_other_advice_methods", ["firm_id"], name: "index_firms_other_advice_methods_on_firm_id", using: :btree
   add_index "firms_other_advice_methods", ["other_advice_method_id"], name: "index_firms_other_advice_methods_on_other_advice_method_id", using: :btree
 
-  create_table "firms_service_regions", id: false, force: :cascade do |t|
-    t.integer "firm_id"
-    t.integer "service_region_id"
-  end
-
-  add_index "firms_service_regions", ["firm_id"], name: "index_firms_service_regions_on_firm_id", using: :btree
-  add_index "firms_service_regions", ["service_region_id"], name: "index_firms_service_regions_on_service_region_id", using: :btree
-
   create_table "in_person_advice_methods", force: :cascade do |t|
     t.string   "name",       null: false
     t.datetime "created_at", null: false

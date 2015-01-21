@@ -72,14 +72,6 @@ RSpec.describe Firm do
       end
     end
 
-    describe 'service regions' do
-      context 'when none assigned' do
-        before { firm.service_regions = [] }
-
-        it { is_expected.not_to be_valid }
-      end
-    end
-
     describe 'in person advice methods' do
       context 'when none assigned' do
         before { firm.in_person_advice_methods = [] }

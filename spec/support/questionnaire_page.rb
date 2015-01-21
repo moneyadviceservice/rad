@@ -12,7 +12,6 @@ class QuestionnairePage < SitePrism::Page
   element :address_county_field, '#firm_address_county'
   element :address_postcode_field, '#firm_address_postcode'
 
-  elements :service_region_checkboxes, '.t-questionnaire__service_region_id'
   elements :in_person_advice_method_checkboxes, '.t-questionnaire__in_person_advice_method_id'
   elements :other_advice_method_checkboxes, '.t-questionnaire__other_advice_method_id'
   element :offers_free_initial_meeting_radio_button, '#firm_free_initial_meeting_true'
