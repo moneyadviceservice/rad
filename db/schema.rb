@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150121122416) do
+ActiveRecord::Schema.define(version: 20150121123437) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,19 +31,26 @@ ActiveRecord::Schema.define(version: 20150121122416) do
   add_index "allowed_payment_methods_firms", ["firm_id"], name: "index_allowed_payment_methods_firms_on_firm_id", using: :btree
 
   create_table "firms", force: :cascade do |t|
-    t.string   "email_address",               null: false
-    t.string   "telephone_number",            null: false
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
-    t.string   "address_line_1",              null: false
-    t.string   "address_line_2",              null: false
-    t.string   "address_town",                null: false
-    t.string   "address_county",              null: false
-    t.string   "address_postcode",            null: false
-    t.boolean  "free_initial_meeting",        null: false
+    t.string   "email_address",                               null: false
+    t.string   "telephone_number",                            null: false
+    t.datetime "created_at",                                  null: false
+    t.datetime "updated_at",                                  null: false
+    t.string   "address_line_1",                              null: false
+    t.string   "address_line_2",                              null: false
+    t.string   "address_town",                                null: false
+    t.string   "address_county",                              null: false
+    t.string   "address_postcode",                            null: false
+    t.boolean  "free_initial_meeting",                        null: false
     t.integer  "initial_meeting_duration_id"
     t.integer  "minimum_fixed_fee"
     t.integer  "investment_size_id"
+    t.integer  "retirement_income_products_percent",          null: false
+    t.integer  "pension_transfer_percent",                    null: false
+    t.integer  "long_term_care_percent",                      null: false
+    t.integer  "equity_release_percent",                      null: false
+    t.integer  "inheritance_tax_and_estate_planning_percent", null: false
+    t.integer  "wills_and_probate_percent",                   null: false
+    t.integer  "other_percent",                               null: false
   end
 
   add_index "firms", ["initial_meeting_duration_id"], name: "index_firms_on_initial_meeting_duration_id", using: :btree
