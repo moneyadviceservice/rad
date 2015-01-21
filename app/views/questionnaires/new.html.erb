@@ -233,13 +233,13 @@
         <fieldset class="form__group">
           <div class="l-questionnaire__row">
             <div class="l-questionnaire__field">
-              <%= f.form_row :minimum_fixed_fee do %>
-                  <%= f.errors_for :minimum_fixed_fee %>
-                  <div class="form__group-item">
-                    <%= f.label :minimum_fixed_fee, t('questionnaire.minimum_fixed_fee.heading'), class: 'form__label-heading' %>
-                    <%= f.text_field :minimum_fixed_fee, class: 'form__group-input' %>
-                  </div>
-              <% end %>
+            <%= f.form_row :minimum_fixed_fee do %>
+              <%= f.errors_for :minimum_fixed_fee %>
+              <div class="form__group-item">
+                <%= f.label :minimum_fixed_fee, t('questionnaire.minimum_fixed_fee.heading'), class: 'form__label-heading' %>
+                <%= f.text_field :minimum_fixed_fee, class: 'form__group-input' %>
+              </div>
+            <% end %>
             </div>
           </div>
         </fieldset>
@@ -257,73 +257,21 @@
 
           <div class="l-questionnaire__row">
             <div class="l-questionnaire__field form__group">
-
-              <div class="form__row">
-                <label class="form__label-heading"><%= t('questionnaire.retirement_advice.business_split.advice_options.retirement_income') %></label>
-                <span class="form__input-container">
-                  <input type="number" class="form__input"/>
-                  <span class="form__input-label" id="input-label3b">%</span>
-                  <span class="form__input-outline"></span>
-                </span>
-              </div>
-
-              <div class="form__row">
-                <label class="form__label-heading"><%= t('questionnaire.retirement_advice.business_split.advice_options.pension_transfer') %></label>
-                <span class="form__input-container">
-                  <input type="number" class="form__input"/>
-                  <span class="form__input-label" id="input-label3b">%</span>
-                  <span class="form__input-outline"></span>
-                </span>
-              </div>
-
-              <div class="form__row">
-                <label class="form__label-heading"><%= t('questionnaire.retirement_advice.business_split.advice_options.longterm_care') %></label>
-                <span class="form__input-container">
-                  <input type="number" class="form__input"/>
-                  <span class="form__input-label" id="input-label3b">%</span>
-                  <span class="form__input-outline"></span>
-                </span>
-              </div>
-
-              <div class="form__row">
-                <label class="form__label-heading"><%= t('questionnaire.retirement_advice.business_split.advice_options.equity_release') %></label>
-                <span class="form__input-container">
-                  <input type="number" class="form__input"/>
-                  <span class="form__input-label" id="input-label3b">%</span>
-                  <span class="form__input-outline"></span>
-                </span>
-              </div>
-
-              <div class="form__row">
-                <label class="form__label-heading"><%= t('questionnaire.retirement_advice.business_split.advice_options.inheritance_tax') %></label>
-                <span class="form__input-container">
-                  <input type="number" class="form__input"/>
-                  <span class="form__input-label" id="input-label3b">%</span>
-                  <span class="form__input-outline"></span>
-                </span>
-              </div>
-
-              <div class="form__row">
-                <label class="form__label-heading"><%= t('questionnaire.retirement_advice.business_split.advice_options.wills') %></label>
-                <span class="form__input-container">
-                  <input type="number" class="form__input"/>
-                  <span class="form__input-label" id="input-label3b">%</span>
-                  <span class="form__input-outline"></span>
-                </span>
-              </div>
-
-              <div class="form__row">
-                <label class="form__label-heading"><%= t('questionnaire.retirement_advice.business_split.advice_options.other') %></label>
-                <span class="form__input-container">
-                  <input type="number" class="form__input"/>
-                  <span class="form__input-label" id="input-label3b">%</span>
-                  <span class="form__input-outline"></span>
-                </span>
-              </div>
+              <% t('questionnaire.retirement_advice.business_split.advice_options').each do |attribute, heading| %>
+                <%= f.form_row attribute do %>
+                  <%= f.errors_for attribute %>
+                  <%= f.label attribute, heading, class: 'form__label-heading' %>
+                  <span class="form__input-container">
+                    <%= f.text_field attribute, type: 'number', class: 'form__input' %>
+                    <span class="form__input-label" id="input-label3b">%</span>
+                    <span class="form__input-outline"></span>
+                  </span>
+                <% end %>
+              <% end %>
             </div>
           </div>
 
-          <p><%= t('questionnaire.retirement_advice.business_split.advice_options.other_description') %></p>
+          <p><%= t('questionnaire.retirement_advice.business_split.other_description') %></p>
           <%= callout_instructional "<p>#{t('questionnaire.retirement_advice.business_split.disclaimer.text')}</p>" %>
         </fieldset>
       </section>

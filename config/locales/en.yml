@@ -207,15 +207,15 @@ en:
         subheading: "Percentage of overall business income taken from the following types of advice:"
 
         advice_options:
-          retirement_income: Retirement income products
-          pension_transfer: Pension transfer
-          longterm_care: Long term care
-          equity_release: Equity release
-          inheritance_tax: Inheritance Tax and Estate Planning
-          wills: Wills & Probate
-          other: Other
-          other_description: "This would include investment/pensions advice to clients in the accumulation phase i.e. not seeking ‘at’ or ‘post’ retirement advice - e.g. non-equity release mortgage advice;  protection advice, etc."
+          retirement_income_products_percent: Retirement income products
+          pension_transfer_percent: Pension transfer
+          long_term_care_percent: Long term care
+          equity_release_percent: Equity release
+          inheritance_tax_and_estate_planning_percent: Inheritance Tax and Estate Planning
+          wills_and_probate_percent: Wills & Probate
+          other_percent: Other
 
+        other_description: "This would include investment/pensions advice to clients in the accumulation phase i.e. not seeking ‘at’ or ‘post’ retirement advice - e.g. non-equity release mortgage advice;  protection advice, etc."
         explanation: Together, the entries into all of the fields must add up to a total of 100%.
         disclaimer:
           heading: How do we use this information?
