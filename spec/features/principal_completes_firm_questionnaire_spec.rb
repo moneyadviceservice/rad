@@ -2,7 +2,6 @@ RSpec.feature 'Principal completes the firm questionnaire' do
   let(:questionnaire_page) { QuestionnairePage.new }
 
   before do
-    FactoryGirl.create(:service_region)
     FactoryGirl.create(:in_person_advice_method)
     FactoryGirl.create(:other_advice_method)
     FactoryGirl.create(:initial_meeting_duration)
@@ -38,7 +37,6 @@ RSpec.feature 'Principal completes the firm questionnaire' do
     questionnaire_page.address_county_field.set(Faker::Address.county)
     questionnaire_page.address_postcode_field.set(Faker::Address.postcode)
 
-    questionnaire_page.service_region_checkboxes.first.set(true)
     questionnaire_page.in_person_advice_method_checkboxes.first.set(true)
     questionnaire_page.other_advice_method_checkboxes.first.set(true)
     questionnaire_page.offers_free_initial_meeting_radio_button.set(true)
