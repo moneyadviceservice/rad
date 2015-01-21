@@ -82,8 +82,9 @@ en:
 
   firms:
     title: Firm and subsidiaries
-    heading_provide_us_info: Provide us with information about your Firm
-    heading_currently_known_as: 'Currently known as:'
-    heading_trading_name: 'Or select the trading name:'
+    headings:
+      provide_us_info: Provide us with information about your Firm
+      currently_known_as: 'Currently known as:'
+      trading_name: 'Or select the trading name:'
     introduction: Below you will find a list of Firms that match the FCA reference number you provided when you registered with us. Select the Firm you wish to provide information for and you will be guided to a page where you can fill in the required details.
     select_firm: Select this firm

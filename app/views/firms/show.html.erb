@@ -1,11 +1,11 @@
 <div class="l-constrained">
   <section class="l-firm">
     <%= heading_tag(t('firms.title'), level: 1) %>
-    <%= heading_tag(t('firms.heading_provide_us_info'), level: 2, class: 'l-firm__subheading') %>
+    <%= heading_tag(t('firms.headings.provide_us_info'), level: 2, class: 'l-firm__subheading') %>
 
     <p><%= t('firms.introduction') %></p>
 
-    <%= heading_tag(t('firms.heading_currently_known_as'), level: 2, class: 'l-firm__subheading') %>
+    <%= heading_tag(t('firms.headings.currently_known_as'), level: 2, class: 'l-firm__subheading') %>
   </section>
 
   <div class="l-firm l-firm--modules">
@@ -18,7 +18,7 @@
     </section>
 
     <% if @firm.subsidiaries? %>
-      <%= heading_tag(t('firms.heading_trading_name'), level: 2, class: 'l-firm__subheading') %>
+      <%= heading_tag(t('firms.headings.trading_name'), level: 2, class: 'l-firm__subheading') %>
       <%= render @firm.subsidiaries %>
     <% end %>
   </div>
