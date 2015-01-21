@@ -5,4 +5,6 @@
   <%= f.collection_check_boxes :accreditation_ids, Accreditation.all, :id, :name %>
   <%= f.collection_check_boxes :professional_standing_ids, ProfessionalStanding.all, :id, :name %>
   <%= f.collection_check_boxes :professional_bodies, ProfessionalBody.all, :id, :name %>
+
+  <%= f.check_box :confirmed_disclaimer, class: 't-confirmed-disclaimer' %>
 <% end %>

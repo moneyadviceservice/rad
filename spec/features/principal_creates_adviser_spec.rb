@@ -58,7 +58,7 @@ RSpec.feature 'Principal creates Adviser' do
   end
 
   def and_i_have_confirmed_the_statement_of_truth
-    skip
+    adviser_page.confirmed_disclaimer.set true
   end
 
   def when_i_submit_the_advisers_details
