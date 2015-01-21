@@ -63,7 +63,7 @@
               <label>
                 <%= f.radio_button :status_question, 0, class: 'form__group-input js-radio-button', data: { dough_field_trigger_type: 'show', dough_field_trigger: '1' } %>
                 <%= t('registration.status_question.answer_two') %>
-                <span class="visually-hidden"><%= t('registration.status_question.notice') %></span>
+                <span class="visually-hidden"><%= t('registration.notice') %></span>
               </label>
             </div>
           </fieldset>
@@ -79,6 +79,7 @@
                 <label>
                   <%= f.radio_button :particular_market_question, 1, class: 'form__group-input', data: { dough_field_trigger_type: 'show', dough_field_trigger: '2'  } %>
                   <%= t('registration.answer_yes') %>
+                  <span class="visually-hidden"><%= t('registration.notice') %></span>
                 </label>
               </div>
 

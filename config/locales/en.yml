@@ -24,10 +24,11 @@ en:
     heading: Register your firm
     introduction: Register your firm on our Retirement Adviser Directory
     button_next: Next
-    
+
     answer_yes: "Yes"
     answer_no: "No"
 
+    notice: Selecting this option will reveal a further question below.
     active_question:
       heading: Is your firm active in the retirement planning market?
       description: This could include either "at retirement" or "post retirement".
@@ -39,7 +40,6 @@ en:
       description: This is your firm’s status as defined by the Financial Conduct Authority.
       answer_one: Independent
       answer_two: Restricted
-      notice: Selecting this option will reveal a further question below.
     particular_market_question:
       heading: Is this status because your firm focuses on a particular market?
       description: Is your firm’s restricted status due to the fact you have chosen to focus on a particular market?
