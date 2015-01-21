@@ -1,6 +1,7 @@
 RSpec.feature 'Principal creates Adviser' do
   let(:principal) { create(:principal) }
   let(:adviser_page) { AdviserPage.new }
+  let!(:qualifications) { create_list(:qualification, 2) }
 
   scenario 'Creating a valid Adviser' do
     given_i_have_created_a_firm
@@ -37,7 +38,7 @@ RSpec.feature 'Principal creates Adviser' do
   end
 
   def and_i_provide_the_optional_qualifications
-    skip
+    qualifications.each { |q| adviser_page.check(q.name) }
   end
 
   def and_i_provide_the_optional_accreditations
