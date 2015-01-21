@@ -1,5 +1,3 @@
-class Adviser
-  include ActiveModel::Model
-
-  attr_accessor :reference_number
+class Adviser < ActiveRecord::Base
+  belongs_to :firm
 end
