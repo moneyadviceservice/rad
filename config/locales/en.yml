@@ -166,15 +166,17 @@ en:
         heading: Describe your firm's business split as it relates to ‘at’ or ‘post’ retirement advice
         description: In your last financial year, please tell us how active your firm was in the following areas of retirement planning / advice.
         subheading: "Percentage of overall business income taken from the following types of advice:"
+
         advice_options:
-          - option: Retirement income products
-          - option: Pension transfer
-          - option: Long term care
-          - option: Equity release
-          - option: Inheritance Tax and Estate Planning
-          - option: Wills & Probate
-          - option: Other
-        other_category_description: This would include investment/pensions advice to clients in the accumulation phase i.e. not seeking ‘at’ or ‘post’ retirement advice – e.g. non-equity release mortgage advice;  protection advice, etc.
+          retirement_income: Retirement income products
+          pension_transfer: Pension transfer
+          longterm_care: Long term care
+          equity_release: Equity release
+          inheritance_tax: Inheritance Tax and Estate Planning
+          wills: Wills & Probate
+          other: Other
+          other_description: "This would include investment/pensions advice to clients in the accumulation phase i.e. not seeking ‘at’ or ‘post’ retirement advice - e.g. non-equity release mortgage advice;  protection advice, etc."
+
         explanation: Together, the entries into all of the fields must add up to a total of 100%.
         disclaimer:
           heading: How do we use this information?
