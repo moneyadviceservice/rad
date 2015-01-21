@@ -2,4 +2,5 @@
   <%= f.text_field :reference_number, class: 't-reference-number' %>
 
   <%= f.collection_check_boxes :qualification_ids, Qualification.all, :id, :name %>
+  <%= f.collection_check_boxes :accreditation_ids, Accreditation.all, :id, :name %>
 <% end %>
