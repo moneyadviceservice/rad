@@ -41,63 +41,46 @@
             </div>
           </div>
         </fieldset>
-      </section>
 
-      <fieldset class="form__group">
-        <legend class="l-questionnaire__legend"><%= t('questionnaire.address.heading') %></legend>
-        <p><%= t('questionnaire.address.description') %></p>
+        <fieldset class="form__group">
+          <legend class="l-questionnaire__legend"><%= t('questionnaire.address.heading') %></legend>
+          <p><%= t('questionnaire.address.description') %></p>
 
-        <div class="l-questionnaire__row">
-          <div class="l-questionnaire__field">
-            <%= f.form_row :address_line_1 do %>
-                <%= f.errors_for :address_line_1 %>
-                <%= f.label :address_line_1, t('questionnaire.address.label_one'), class: 'form__label-heading' %>
-                <%= f.text_field :address_line_1 %>
-            <% end %>
+          <div class="l-questionnaire__row">
+            <div class="l-questionnaire__field">
+              <%= f.form_row :address_line_1 do %>
+                  <%= f.errors_for :address_line_1 %>
+                  <%= f.label :address_line_1, t('questionnaire.address.label_one'), class: 'form__label-heading' %>
+                  <%= f.text_field :address_line_1 %>
+              <% end %>
 
-            <%= f.form_row :address_line_2 do %>
-                <%= f.errors_for :address_line_2 %>
-                <%= f.label :address_line_2, t('questionnaire.address.label_two'), class: 'form__label-heading' %>
-                <%= f.text_field :address_line_2 %>
-            <% end %>
+              <%= f.form_row :address_line_2 do %>
+                  <%= f.errors_for :address_line_2 %>
+                  <%= f.label :address_line_2, t('questionnaire.address.label_two'), class: 'form__label-heading' %>
+                  <%= f.text_field :address_line_2 %>
+              <% end %>
 
-            <%= f.form_row :address_town do %>
-                <%= f.errors_for :address_town %>
-                <%= f.label :address_town, t('questionnaire.address.label_three'), class: 'form__label-heading' %>
-                <%= f.text_field :address_town %>
-            <% end %>
+              <%= f.form_row :address_town do %>
+                  <%= f.errors_for :address_town %>
+                  <%= f.label :address_town, t('questionnaire.address.label_three'), class: 'form__label-heading' %>
+                  <%= f.text_field :address_town %>
+              <% end %>
 
-            <%= f.form_row :address_county do %>
-                <%= f.errors_for :address_county %>
-                <%= f.label :address_county, t('questionnaire.address.label_four'), class: 'form__label-heading' %>
-                <%= f.text_field :address_county %>
-            <% end %>
+              <%= f.form_row :address_county do %>
+                  <%= f.errors_for :address_county %>
+                  <%= f.label :address_county, t('questionnaire.address.label_four'), class: 'form__label-heading' %>
+                  <%= f.text_field :address_county %>
+              <% end %>
 
-            <%= f.form_row :address_postcode do %>
-                <%= f.errors_for :address_postcode %>
-                <%= f.label :address_postcode, t('questionnaire.address.label_five'), class: 'form__label-heading' %>
-                <%= f.text_field :address_postcode %>
-            <% end %>
+              <%= f.form_row :address_postcode do %>
+                  <%= f.errors_for :address_postcode %>
+                  <%= f.label :address_postcode, t('questionnaire.address.label_five'), class: 'form__label-heading' %>
+                  <%= f.text_field :address_postcode %>
+              <% end %>
+            </div>
           </div>
-        </div>
-      </fieldset>
-
-      <fieldset class="form__group">
-        <legend class="l-questionnaire__legend"><%= t('questionnaire.service_regions.heading') %></legend>
-        <p><%= t('questionnaire.service_regions.description') %></p>
-
-        <%= f.form_row :service_regions do %>
-            <%= f.errors_for :service_regions %>
-            <% ServiceRegion.all.each do |service_region| %>
-                <div class="form__group-item l-questionnaire__two-cols">
-                  <label>
-                    <%= check_box_tag 'firm[service_region_ids][]', service_region.id, @firm.service_regions.include?(service_region), class: 'form__group-input t-questionnaire__service_region_id' %>
-                    <%= service_region.name %>
-                  </label>
-                </div>
-            <% end %>
-        <% end %>
-      </fieldset>
+        </fieldset>
+      </section>
 
       <hr>
 

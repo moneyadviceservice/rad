@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150121123437) do
+ActiveRecord::Schema.define(version: 20150121165612) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -72,6 +72,14 @@ ActiveRecord::Schema.define(version: 20150121123437) do
   add_index "firms_initial_advice_fee_structures", ["firm_id"], name: "index_firms_initial_advice_fee_structures_on_firm_id", using: :btree
   add_index "firms_initial_advice_fee_structures", ["initial_advice_fee_structure_id"], name: "firms_initial_advice_fee_structs_initial_advice_fee_struct_id", using: :btree
 
+  create_table "firms_investment_sizes", id: false, force: :cascade do |t|
+    t.integer "firm_id"
+    t.integer "investment_size_id"
+  end
+
+  add_index "firms_investment_sizes", ["firm_id"], name: "index_firms_investment_sizes_on_firm_id", using: :btree
+  add_index "firms_investment_sizes", ["investment_size_id"], name: "index_firms_investment_sizes_on_investment_size_id", using: :btree
+
   create_table "firms_ongoing_advice_fee_structures", id: false, force: :cascade do |t|
     t.integer "firm_id"
     t.integer "ongoing_advice_fee_structure_id"
@@ -87,14 +95,6 @@ ActiveRecord::Schema.define(version: 20150121123437) do
 
   add_index "firms_other_advice_methods", ["firm_id"], name: "index_firms_other_advice_methods_on_firm_id", using: :btree
   add_index "firms_other_advice_methods", ["other_advice_method_id"], name: "index_firms_other_advice_methods_on_other_advice_method_id", using: :btree
-
-  create_table "firms_service_regions", id: false, force: :cascade do |t|
-    t.integer "firm_id"
-    t.integer "service_region_id"
-  end
-
-  add_index "firms_service_regions", ["firm_id"], name: "index_firms_service_regions_on_firm_id", using: :btree
-  add_index "firms_service_regions", ["service_region_id"], name: "index_firms_service_regions_on_service_region_id", using: :btree
 
   create_table "in_person_advice_methods", force: :cascade do |t|
     t.string   "name",       null: false
