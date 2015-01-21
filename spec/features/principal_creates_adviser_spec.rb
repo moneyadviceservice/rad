@@ -30,7 +30,10 @@ RSpec.feature 'Principal creates Adviser' do
   end
 
   def and_the_adviser_is_matched
-    skip
+    @lookup_adviser = Lookup::Adviser.create!(
+      reference_number: 'ABCD1234',
+      name: 'Daisy Lovell'
+    )
   end
 
   def and_i_provide_the_optional_qualifications
