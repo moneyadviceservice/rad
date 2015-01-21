@@ -5,6 +5,7 @@ RSpec.feature 'Principal creates Adviser' do
   let!(:qualifications) { create_list(:qualification, 2) }
   let!(:accreditations) { create_list(:accreditation, 2) }
   let!(:professional_standings) { create_list(:professional_standing, 2) }
+  let!(:professional_bodies) { create_list(:professional_body, 2) }
 
   scenario 'Creating a valid Adviser' do
     given_i_have_created_a_firm
@@ -53,7 +54,7 @@ RSpec.feature 'Principal creates Adviser' do
   end
 
   def and_i_provide_the_optional_professional_bodies
-    skip
+    professional_bodies.each { |p| adviser_page.check(p.name) }
   end
 
   def and_i_have_confirmed_the_statement_of_truth
