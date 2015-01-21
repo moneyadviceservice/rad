@@ -18,5 +18,12 @@ FactoryGirl.define do
     ongoing_advice_fee_structures { create_list(:ongoing_advice_fee_structure, rand(1..3)) }
     allowed_payment_methods { create_list(:allowed_payment_method, rand(1..3)) }
     investment_sizes { create_list(:investment_size, rand(5..10)) }
+    retirement_income_products_percent 15
+    pension_transfer_percent 15
+    long_term_care_percent 15
+    equity_release_percent 15
+    inheritance_tax_and_estate_planning_percent 15
+    wills_and_probate_percent 15
+    other_percent 10
   end
 end

@@ -65,6 +65,32 @@ class Firm < ActiveRecord::Base
             allow_blank: true,
             numericality: { only_integer: true }
 
+  validates :retirement_income_products_percent,
+            :pension_transfer_percent,
+            :long_term_care_percent,
+            :equity_release_percent,
+            :inheritance_tax_and_estate_planning_percent,
+            :wills_and_probate_percent,
+            :other_percent,
+            presence: true,
+            numericality: { only_integer: true }
+
   validates :investment_sizes,
             length: { minimum: 1 }
+
+  validate :sum_of_percentages_equals_one_hundred
+
+  private
+
+  def sum_of_percentages_equals_one_hundred
+    total = retirement_income_products_percent.to_i \
+          + pension_transfer_percent.to_i \
+          + long_term_care_percent.to_i \
+          + equity_release_percent.to_i \
+          + inheritance_tax_and_estate_planning_percent.to_i \
+          + wills_and_probate_percent.to_i \
+          + other_percent.to_i
+
+    errors.add(:base, :breakdown_invalid) unless total == 100
+  end
 end

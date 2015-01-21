@@ -74,20 +74,27 @@ ActiveRecord::Schema.define(version: 20150121183728) do
   add_index "allowed_payment_methods_firms", ["firm_id"], name: "index_allowed_payment_methods_firms_on_firm_id", using: :btree
 
   create_table "firms", force: :cascade do |t|
-    t.integer  "fca_number",                  null: false
-    t.string   "registered_name",             null: false
+    t.integer  "fca_number",                                  null: false
+    t.string   "registered_name",                             null: false
     t.string   "email_address"
     t.string   "telephone_number"
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.datetime "created_at",                                  null: false
+    t.datetime "updated_at",                                  null: false
     t.string   "address_line_1"
     t.string   "address_line_2"
     t.string   "address_town"
     t.string   "address_county"
     t.string   "address_postcode"
-    t.boolean  "free_initial_meeting",        null: false
+    t.boolean  "free_initial_meeting",                        null: false
     t.integer  "initial_meeting_duration_id"
     t.integer  "minimum_fixed_fee"
+    t.integer  "retirement_income_products_percent",          null: false
+    t.integer  "pension_transfer_percent",                    null: false
+    t.integer  "long_term_care_percent",                      null: false
+    t.integer  "equity_release_percent",                      null: false
+    t.integer  "inheritance_tax_and_estate_planning_percent", null: false
+    t.integer  "wills_and_probate_percent",                   null: false
+    t.integer  "other_percent",                               null: false
   end
 
   add_index "firms", ["fca_number"], name: "index_firms_on_fca_number", unique: true, using: :btree
@@ -108,6 +115,14 @@ ActiveRecord::Schema.define(version: 20150121183728) do
 
   add_index "firms_initial_advice_fee_structures", ["firm_id"], name: "index_firms_initial_advice_fee_structures_on_firm_id", using: :btree
   add_index "firms_initial_advice_fee_structures", ["initial_advice_fee_structure_id"], name: "firms_initial_advice_fee_structs_initial_advice_fee_struct_id", using: :btree
+
+  create_table "firms_investment_sizes", id: false, force: :cascade do |t|
+    t.integer "firm_id"
+    t.integer "investment_size_id"
+  end
+
+  add_index "firms_investment_sizes", ["firm_id"], name: "index_firms_investment_sizes_on_firm_id", using: :btree
+  add_index "firms_investment_sizes", ["investment_size_id"], name: "index_firms_investment_sizes_on_investment_size_id", using: :btree
 
   create_table "firms_ongoing_advice_fee_structures", id: false, force: :cascade do |t|
     t.integer "firm_id"
@@ -149,6 +164,12 @@ ActiveRecord::Schema.define(version: 20150121183728) do
 
   create_table "initial_meeting_durations", force: :cascade do |t|
     t.integer  "duration"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "investment_sizes", force: :cascade do |t|
+    t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
