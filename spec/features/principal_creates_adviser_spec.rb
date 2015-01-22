@@ -1,5 +1,5 @@
 RSpec.feature 'Principal creates Adviser' do
-  let(:reference) { 'ABCD1234' }
+  let(:reference) { 'ABC12345' }
   let(:principal) { create(:principal) }
   let(:adviser_page) { AdviserPage.new }
   let(:adviser_confirmation_page) { AdviserConfirmationPage.new }
