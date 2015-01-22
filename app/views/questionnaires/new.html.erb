@@ -158,7 +158,7 @@
           <% end %>
         </fieldset>
 
-        <fieldset class="form__group">
+        <fieldset class="form__group form__group--inline">
           <legend class="l-questionnaire__legend"><%= t('questionnaire.initial_meeting_duration.heading') %></legend>
 
           <%= f.form_row :initial_meeting_duration do %>
@@ -285,18 +285,17 @@
         <fieldset class="form__group">
           <legend class="l-questionnaire__legend"><%= t('questionnaire.retirement_advice.pension_pot.heading') %></legend>
           <p><%= t('questionnaire.retirement_advice.pension_pot.description') %></p>
-          <div class="l-questionnaire__row">
-            <div class="l-questionnaire__field">
-              <% t('questionnaire.retirement_advice.pension_pot.pension_pot_size').each do |item| %>
+          <%= f.form_row :investment_size do %>
+            <%= f.errors_for :investment_size %>
+            <% InvestmentSize.all.each do |investment_size| %>
                 <div class="form__group-item">
-                  <label class="form__group">
-                    <input type="radio" name="pension_pot_group" class="form__group-input"/>
-                    <%= item[:size] %>
+                  <label>
+                    <%= check_box_tag 'firm[investment_size_id]', investment_size.id, @firm.investment_size == investment_size, class: 'form__group-input t-questionnaire__firm_investment_size_id' %>
+                    <%= investment_size.name %>
                   </label>
                 </div>
-              <% end %>
-            </div>
-          </div>
+            <% end %>
+          <% end %>
         </fieldset>
       </section>
 
