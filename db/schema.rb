@@ -85,16 +85,16 @@ ActiveRecord::Schema.define(version: 20150121183728) do
     t.string   "address_town"
     t.string   "address_county"
     t.string   "address_postcode"
-    t.boolean  "free_initial_meeting",                        null: false
+    t.boolean  "free_initial_meeting"
     t.integer  "initial_meeting_duration_id"
     t.integer  "minimum_fixed_fee"
-    t.integer  "retirement_income_products_percent",          null: false
-    t.integer  "pension_transfer_percent",                    null: false
-    t.integer  "long_term_care_percent",                      null: false
-    t.integer  "equity_release_percent",                      null: false
-    t.integer  "inheritance_tax_and_estate_planning_percent", null: false
-    t.integer  "wills_and_probate_percent",                   null: false
-    t.integer  "other_percent",                               null: false
+    t.integer  "retirement_income_products_percent"
+    t.integer  "pension_transfer_percent"
+    t.integer  "long_term_care_percent"
+    t.integer  "equity_release_percent"
+    t.integer  "inheritance_tax_and_estate_planning_percent"
+    t.integer  "wills_and_probate_percent"
+    t.integer  "other_percent"
   end
 
   add_index "firms", ["fca_number"], name: "index_firms_on_fca_number", unique: true, using: :btree
