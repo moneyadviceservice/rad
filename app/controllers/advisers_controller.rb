@@ -4,9 +4,13 @@ class AdvisersController < ApplicationController
   end
 
   def create
-    advisers.create(adviser_params)
+    @adviser = advisers.create(adviser_params)
 
-    render nothing: true
+    redirect_to principal_firm_adviser_path(id: @adviser)
+  end
+
+  def show
+    @adviser = advisers.find(params[:id])
   end
 
   private

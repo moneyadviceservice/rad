@@ -1,6 +1,7 @@
 RSpec.feature 'Principal creates Adviser' do
   let(:principal) { create(:principal) }
   let(:adviser_page) { AdviserPage.new }
+  let(:adviser_confirmation_page) { AdviserConfirmationPage.new }
 
   let!(:qualifications) { create_list(:qualification, 2) }
   let!(:accreditations) { create_list(:accreditation, 2) }
@@ -76,10 +77,12 @@ RSpec.feature 'Principal creates Adviser' do
   end
 
   def and_i_receive_a_confirmation
-    skip
+    expect(adviser_confirmation_page).to be_displayed
   end
 
   def and_i_can_add_further_advisers
-    skip
+    adviser_confirmation_page.add_another.click
+
+    expect(adviser_page).to be_displayed
   end
 end
