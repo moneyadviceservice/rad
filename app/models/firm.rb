@@ -8,6 +8,8 @@ class Firm < ActiveRecord::Base
 
   has_many :advisers
 
+  attr_accessor :percent_total
+
   validates :email_address,
             presence: true,
             length: { maximum: 50 },
@@ -85,6 +87,6 @@ class Firm < ActiveRecord::Base
           + wills_and_probate_percent.to_i \
           + other_percent.to_i
 
-    errors.add(:base, :breakdown_invalid) unless total == 100
+    errors.add(:percent_total, :invalid) unless total == 100
   end
 end

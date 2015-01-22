@@ -240,6 +240,10 @@
 
           <div class="l-questionnaire__row">
             <div class="l-questionnaire__field form__group">
+              <%= f.form_row :percent_total do %>
+                <%= f.errors_for :percent_total %>
+              <% end %>
+
               <% t('questionnaire.retirement_advice.business_split.advice_options').each do |attribute, heading| %>
                 <%= f.form_row attribute do %>
                   <%= f.errors_for attribute %>
