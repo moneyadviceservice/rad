@@ -1,12 +1,102 @@
-<%= form_for @adviser, url: principal_firm_advisers_path do |f| %>
-  <%= f.text_field :reference_number, class: 't-reference-number' %>
+<div class="l-constrained">
+  <section class="l-questionnaire">
+    <%= heading_tag('Your Advisers', level: 1) %>
+    <p>Please provide details of advisers in your firm who are eligible to be entered onto the Retirement Advice Directory.</p>
 
-  <%= f.collection_check_boxes :qualification_ids, Qualification.all, :id, :name %>
-  <%= f.collection_check_boxes :accreditation_ids, Accreditation.all, :id, :name %>
-  <%= f.collection_check_boxes :professional_standing_ids, ProfessionalStanding.all, :id, :name %>
-  <%= f.collection_check_boxes :professional_body_ids, ProfessionalBody.all, :id, :name %>
+    <%= form_for @adviser, url: principal_firm_advisers_path, html: { class: 'form' }, builder: Dough::Forms::Builders::Validation do |f| %>
+      <%= f.validation_summary %>
 
-  <%= f.check_box :confirmed_disclaimer, class: 't-confirmed-disclaimer' %>
+      <fieldset class="form__group">
+        <legend class="l-questionnaire__legend">Enter the Adviser’s FCA individual reference number.</legend>
+        <p>You will then be asked to complete some basic information about that Adviser.</p>
 
-  <%= f.submit class: 't-submit' %>
-<% end %>
+        <div class="l-questionnaire__row">
+          <div class="l-questionnaire__field">
+            <%= f.form_row :reference_number do %>
+              <%= f.errors_for :reference_number %>
+              <%= f.label :reference_number, t('reference number'), class: 'form__label-heading' %>
+              <%= f.text_field :reference_number, class: 't-reference-number' %>
+            <% end %>
+          </div>
+        </div>
+      </fieldset>
+
+      <div class="l-questionnaire__callout">
+        <%= callout_instructional "<p>Print out Adviser name - Mr Steve Simon Smith</p>" %>
+      </div>
+
+      <fieldset class="form__group">
+        <legend class="l-questionnaire__legend">Accreditations</legend>
+        <p>Please provide all the Accreditations held by this Adviser.</p>
+
+        <%= f.form_row :accreditation_ids do %>
+          <%= f.errors_for :accreditation_ids %>
+
+          <%= f.collection_check_boxes(:accreditation_ids, Accreditation.all, :id, :name) do |b| %>
+            <div class="form__group-item l-questionnaire__two-cols">
+              <%= b.label(class: '') { b.check_box(class: 'form__group-input') + b.text } %>
+            </div>
+          <% end %>
+        <% end %>
+      </fieldset>
+
+      <fieldset class="form__group">
+        <legend class="l-questionnaire__legend">Qualifications</legend>
+        <p>Please provide all the Qualifications  held by this Adviser.</p>
+
+        <%= f.form_row :qualification_ids do %>
+          <%= f.errors_for :qualification_ids %>
+
+          <%= f.collection_check_boxes(:qualification_ids, Qualification.all, :id, :name) do |b| %>
+            <div class="form__group-item l-questionnaire__two-cols">
+              <%= b.label(class: '') { b.check_box(class: 'form__group-input') + b.text } %>
+            </div>
+          <% end %>
+        <% end %>
+      </fieldset>
+
+      <fieldset class="form__group">
+        <legend class="l-questionnaire__legend">Statement of Professional Standing</legend>
+        <p>Please confirm the professional body this Adviser’s Statement of Professional Standing is issued by:</p>
+
+        <%= f.form_row :professional_standing_ids do %>
+          <%= f.errors_for :professional_standing_ids %>
+          <%= f.collection_check_boxes(:professional_standing_ids, ProfessionalStanding.all, :id, :name) do |b| %>
+            <div class="form__group-item l-questionnaire__two-cols">
+              <%= b.label(class: '') { b.check_box(class: 'form__group-input') + b.text } %>
+            </div>
+          <% end %>
+        <% end %>
+      </fieldset>
+
+      <fieldset class="form__group">
+        <legend class="l-questionnaire__legend">Professional body memberships</legend>
+        <p>Please confirm the professional bodies this Adviser is a member of.</p>
+
+        <%= f.form_row :professional_body_ids do %>
+          <%= f.errors_for :professional_body_ids %>
+
+          <%= f.collection_check_boxes(:professional_body_ids, ProfessionalBody.all, :id, :name) do |b| %>
+            <div class="form__group-item l-questionnaire__two-cols">
+              <%= b.label(class: '') { b.check_box(class: 'form__group-input') + b.text } %>
+            </div>
+          <% end %>
+        <% end %>
+      </fieldset>
+
+      <%= f.form_row :confirmed_disclaimer do %>
+        <%= f.errors_for :confirmed_disclaimer %>
+        <div class="form__group-item">
+          <label>
+            <%= f.check_box(:confirmed_disclaimer, class: 't-confirmed-disclaimer l-identity__checkbox form__group-input') %>
+            <%= f.label :confirmed_disclaimer, "By registering your firm details with the Money Advice Service, you are confirming that these details and any responses you give to our registration questions are true and accurate.", class: 'l-identity__disclaimer-label' %>
+          </label>
+        </div>
+      <% end %>
+
+      <div class="l-questionnaire__button">
+        <%= f.submit class: 'button button--primary t-submit' %>
+      </div>
+    <% end %>
+  </section>
+</div>
