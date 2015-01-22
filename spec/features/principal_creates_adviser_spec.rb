@@ -24,6 +24,26 @@ RSpec.feature 'Principal creates Adviser' do
     and_i_can_add_further_advisers
   end
 
+  scenario 'Attempting to create an non-existent Adviser' do
+    given_i_have_created_a_firm
+    and_i_provide_a_valid_adviser_reference_number
+    when_the_adviser_is_not_matched
+    then_i_am_notified_of_this
+    and_i_can_try_another_adviser_reference_number
+  end
+
+
+  def when_the_adviser_is_not_matched
+    adviser_page.submit.click
+  end
+
+  def then_i_am_notified_of_this
+    skip
+  end
+
+  def and_i_can_try_another_adviser_reference_number
+    skip
+  end
 
   def given_i_have_created_a_firm
     expect(principal.firm).to be
@@ -35,6 +55,8 @@ RSpec.feature 'Principal creates Adviser' do
       p.reference_number.set reference
     end
   end
+
+  alias :and_i_provide_a_valid_adviser_reference_number :when_i_provide_a_valid_adviser_reference_number
 
   def and_the_adviser_is_matched
     @lookup_adviser = Lookup::Adviser.create!(
