@@ -62,11 +62,17 @@ RSpec.feature 'Principal creates Adviser' do
   end
 
   def when_i_submit_the_advisers_details
-    skip
+    adviser_page.submit.click
   end
 
   def then_the_adviser_is_assigned_to_the_firm
-    skip
+    Adviser.find_by(reference_number: 'ABCD1234').tap do |a|
+      expect(a.firm).to be
+      expect(a.qualifications).to_not be_empty
+      expect(a.accreditations).to_not be_empty
+      expect(a.professional_standings).to_not be_empty
+      expect(a.professional_bodies).to_not be_empty
+    end
   end
 
   def and_i_receive_a_confirmation

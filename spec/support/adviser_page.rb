@@ -4,4 +4,5 @@ class AdviserPage < SitePrism::Page
 
   element :reference_number, '.t-reference-number'
   element :confirmed_disclaimer, '.t-confirmed-disclaimer'
+  element :submit, '.t-submit'
 end
