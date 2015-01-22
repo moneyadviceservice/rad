@@ -1,4 +1,5 @@
 RSpec.feature 'Principal creates Adviser' do
+  let(:reference) { 'ABCD1234' }
   let(:principal) { create(:principal) }
   let(:adviser_page) { AdviserPage.new }
   let(:adviser_confirmation_page) { AdviserConfirmationPage.new }
@@ -31,13 +32,13 @@ RSpec.feature 'Principal creates Adviser' do
   def when_i_provide_a_valid_adviser_reference_number
     adviser_page.tap do |p|
       p.load(principal: principal.token)
-      p.reference_number.set 'ABCD1234'
+      p.reference_number.set reference
     end
   end
 
   def and_the_adviser_is_matched
     @lookup_adviser = Lookup::Adviser.create!(
-      reference_number: 'ABCD1234',
+      reference_number: reference,
       name: 'Daisy Lovell'
     )
   end
@@ -67,7 +68,7 @@ RSpec.feature 'Principal creates Adviser' do
   end
 
   def then_the_adviser_is_assigned_to_the_firm
-    Adviser.find_by(reference_number: 'ABCD1234').tap do |a|
+    Adviser.find_by(reference_number: reference).tap do |a|
       expect(a.firm).to be
       expect(a.qualifications).to_not be_empty
       expect(a.accreditations).to_not be_empty
