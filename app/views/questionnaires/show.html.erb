@@ -272,12 +272,12 @@
         <fieldset class="form__group">
           <legend class="l-questionnaire__legend"><%= t('questionnaire.retirement_advice.pension_pot.heading') %></legend>
           <p><%= t('questionnaire.retirement_advice.pension_pot.description') %></p>
-          <%= f.form_row :investment_size do %>
-            <%= f.errors_for :investment_size %>
+          <%= f.form_row :investment_sizes do %>
+            <%= f.errors_for :investment_sizes %>
             <% InvestmentSize.all.each do |investment_size| %>
                 <div class="form__group-item">
                   <label>
-                    <%= check_box_tag 'firm[investment_size_id]', investment_size.id, @firm.investment_size == investment_size, class: 'form__group-input t-questionnaire__firm_investment_size_id' %>
+                    <%= check_box_tag 'firm[investment_size_ids][]', investment_size.id, @firm.investment_sizes.include?(investment_size), class: 'form__group-input t-questionnaire__firm_investment_size_id' %>
                     <%= investment_size.name %>
                   </label>
                 </div>
