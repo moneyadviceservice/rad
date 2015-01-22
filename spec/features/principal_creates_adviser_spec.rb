@@ -38,11 +38,11 @@ RSpec.feature 'Principal creates Adviser' do
   end
 
   def then_i_am_notified_of_this
-    skip
+    expect(adviser_page).to be_adviser_unmatched
   end
 
   def and_i_can_try_another_adviser_reference_number
-    skip
+    expect(adviser_page.reference_number).to be_present
   end
 
   def given_i_have_created_a_firm

@@ -5,4 +5,11 @@ class AdviserPage < SitePrism::Page
   element :reference_number, '.t-reference-number'
   element :confirmed_disclaimer, '.t-confirmed-disclaimer'
   element :submit, '.t-submit'
+
+  def adviser_unmatched?
+    first(
+      '.validation-summary__error',
+      text: I18n.t('questionnaire.adviser.reference_number_un_matched')
+    )
+  end
 end
