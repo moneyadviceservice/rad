@@ -1,4 +1,4 @@
-<%= form_for [current_user, current_user.firm, @adviser] do |f| %>
+<%= form_for @adviser, url: principal_firm_advisers_path do |f| %>
   <%= f.text_field :reference_number, class: 't-reference-number' %>
 
   <%= f.collection_check_boxes :qualification_ids, Qualification.all, :id, :name %>
