@@ -88,3 +88,30 @@ en:
       trading_name: 'Or select the trading name:'
     introduction: Below you will find a list of Firms that match the FCA reference number you provided when you registered with us. Select the Firm you wish to provide information for and you will be guided to a page where you can fill in the required details.
     select_firm: Select this firm
+
+  questionnaire:
+    adviser:
+      title: Yours Advisers
+      description: Please provide details of advisers in your firm who are eligible to be entered onto the Retirement Advice Directory.
+
+      advisers_details:
+        heading: Enter the Adviser’s FCA individual reference number.
+        description: You will then be asked to complete some basic information about that Adviser.
+
+      accreditations:
+        heading: Accreditations
+        description: Please provide all the Accreditations held by this Adviser.
+
+      qualifications:
+        heading: Qualifications
+        description: Please provide all the Qualifications held by this Adviser.
+
+      professional_standing:
+        heading: Statement of Professional Standing
+        description: "Please confirm the professional body this Adviser’s Statement of Professional Standing is issued by:"
+
+      professional_body:
+        heading: Professional body memberships
+        description: "Please confirm the professional bodies this Adviser is a member of:"
+
+      disclaimer: By registering your firm details with the Money Advice Service, you are confirming that these details and any responses you give to our registration questions are true and accurate.
