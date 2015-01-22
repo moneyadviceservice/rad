@@ -1,19 +1,14 @@
 class QuestionnairesController < ApplicationController
-  def new
-    @lookup_firm = current_user.firm
-    @firm = Firm.new
+  def show
+    @firm = current_user.firm
   end
 
-  def create
-    @firm = Firm.new(firm_params)
-
-    if @firm.valid?
-      render nothing: true
-    else
-      @lookup_firm = current_user.firm
-
-      render :new
-    end
+  def update
+    @firm = current_user.firm
+    @firm.update!(firm_params)
+    redirect_to(principal_firm_advisers_path, principal: current_user)
+  rescue ActiveRecord::ActiveRecordError
+    render :show
   end
 
   private

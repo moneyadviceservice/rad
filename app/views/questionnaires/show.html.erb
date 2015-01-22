@@ -9,7 +9,7 @@
 
       <section>
         <%= heading_tag(t('questionnaire.about_your_firm.heading'), level: 2, class: 'heading-small') %>
-        <%= callout_instructional t('questionnaire.about_your_firm.callout_html', registered_name: @lookup_firm.registered_name, fca_number: @lookup_firm.fca_number) %>
+        <%= callout_instructional t('questionnaire.about_your_firm.callout_html', registered_name: @firm.registered_name, fca_number: @firm.fca_number) %>
         <p class="l-questionnaire__section-description"><%= t('questionnaire.about_your_firm.description') %></p>
 
         <fieldset class="form__group">

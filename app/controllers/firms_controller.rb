@@ -3,7 +3,7 @@ class FirmsController < ApplicationController
     if current_user.subsidiaries?
       @firm = current_user.lookup_firm
     else
-      redirect_to new_principal_firm_questionnaire_path(current_user)
+      redirect_to principal_firm_questionnaire_path(current_user)
     end
   end
 end
