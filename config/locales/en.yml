@@ -4,6 +4,12 @@ en:
       principal:
         fca_number: FCA Number
         confirmed_disclaimer: Truth confirmation statement
+    errors:
+      models:
+        firm:
+          attributes:
+            percent_total:
+              invalid: Percentage total across advice types must equal 100%. Please adjust your figures.
 
   adviser_sign_in: Sign in to adviser account
   required: "* indicates required fields"

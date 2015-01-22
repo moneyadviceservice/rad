@@ -61,6 +61,8 @@ class Firm < ActiveRecord::Base
             allow_blank: true,
             numericality: { only_integer: true }
 
+  validate :sum_of_percentages_equals_one_hundred
+
   validates :retirement_income_products_percent,
             :pension_transfer_percent,
             :long_term_care_percent,
@@ -73,8 +75,6 @@ class Firm < ActiveRecord::Base
 
   validates :investment_sizes,
             length: { minimum: 1 }
-
-  validate :sum_of_percentages_equals_one_hundred
 
   private
 
