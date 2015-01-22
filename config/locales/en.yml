@@ -115,3 +115,8 @@ en:
         description: "Please confirm the professional bodies this Adviser is a member of:"
 
       disclaimer: By registering your firm details with the Money Advice Service, you are confirming that these details and any responses you give to our registration questions are true and accurate.
+      add_another_adviser_button: or add another adviser
+      notice:
+        heading: Thank you
+        subheading: "%{name} was created."
+        description: Your registration details have been received and have been sent for verification. You can close this window now.
