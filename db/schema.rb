@@ -11,10 +11,62 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150114144343) do
+ActiveRecord::Schema.define(version: 20150121183728) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "accreditations", force: :cascade do |t|
+    t.string   "name",       null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "accreditations_advisers", id: false, force: :cascade do |t|
+    t.integer "adviser_id",       null: false
+    t.integer "accreditation_id", null: false
+  end
+
+  add_index "accreditations_advisers", ["adviser_id", "accreditation_id"], name: "advisers_accreditations_index", unique: true, using: :btree
+
+  create_table "advisers", force: :cascade do |t|
+    t.string   "reference_number",     null: false
+    t.string   "name",                 null: false
+    t.integer  "firm_id",              null: false
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+    t.boolean  "confirmed_disclaimer", null: false
+  end
+
+  create_table "advisers_professional_bodies", id: false, force: :cascade do |t|
+    t.integer "adviser_id",           null: false
+    t.integer "professional_body_id", null: false
+  end
+
+  add_index "advisers_professional_bodies", ["adviser_id", "professional_body_id"], name: "advisers_professional_bodies_index", unique: true, using: :btree
+
+  create_table "advisers_professional_standings", id: false, force: :cascade do |t|
+    t.integer "adviser_id",               null: false
+    t.integer "professional_standing_id", null: false
+  end
+
+  add_index "advisers_professional_standings", ["adviser_id", "professional_standing_id"], name: "advisers_professional_standings_index", unique: true, using: :btree
+
+  create_table "advisers_qualifications", id: false, force: :cascade do |t|
+    t.integer "adviser_id",       null: false
+    t.integer "qualification_id", null: false
+  end
+
+  add_index "advisers_qualifications", ["adviser_id", "qualification_id"], name: "advisers_qualifications_index", unique: true, using: :btree
+
+  create_table "firms", force: :cascade do |t|
+    t.integer  "fca_number",      null: false
+    t.string   "registered_name", null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "firms", ["fca_number"], name: "index_firms_on_fca_number", unique: true, using: :btree
 
   create_table "lookup_advisers", force: :cascade do |t|
     t.string   "reference_number", null: false
@@ -57,5 +109,23 @@ ActiveRecord::Schema.define(version: 20150114144343) do
 
   add_index "principals", ["fca_number"], name: "index_principals_on_fca_number", unique: true, using: :btree
   add_index "principals", ["token"], name: "index_principals_on_token", unique: true, using: :btree
+
+  create_table "professional_bodies", force: :cascade do |t|
+    t.string   "name",       null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "professional_standings", force: :cascade do |t|
+    t.string   "name",       null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "qualifications", force: :cascade do |t|
+    t.string   "name",       null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
 end

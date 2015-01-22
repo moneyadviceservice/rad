@@ -12,7 +12,10 @@ Rails.application.routes.draw do
 
     resource :firm, only: :show do
       resource :questionnaire
+
+      resources :advisers
     end
+
   end
 
   resource :contact, only: :create
