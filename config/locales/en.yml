@@ -226,9 +226,3 @@ en:
       pension_pot:
         heading: Total pension pot / investment size *
         description: "Please tell us what size pension pot you are willing to provide advice on:"
-        pension_pot_size:
-          - size: Under £49,999
-          - size: Over £50,000
-          - size: Over £100,000
-          - size: Over £150,000
-          - size: All of these pot / investment sizes
