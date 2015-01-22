@@ -89,6 +89,6 @@ class Firm < ActiveRecord::Base
           + wills_and_probate_percent.to_i \
           + other_percent.to_i
 
-    errors.add(:percent_total, :invalid) unless total == 100
+    errors.add(:percent_total, I18n.t('questionnaire.retirement_advice.percent_total.not_one_hundred')) unless total == 100
   end
 end
