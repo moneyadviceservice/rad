@@ -8,6 +8,22 @@ en:
         confirmed_disclaimer: Truth confirmation statement
       firm:
         percent_total: Percentage total
+    errors:
+      models:
+        firm:
+          attributes:
+            in_person_advice_methods:
+              too_short: "- please select at least one"
+            free_initial_meeting:
+              inclusion: '- please select "yes" or "no"'
+            initial_advice_fee_structures:
+              too_short: "- please select at least one"
+            ongoing_advice_fee_structures:
+              too_short: "- please select at least one"
+            allowed_payment_methods:
+              too_short: "- please select at least one"
+            investment_sizes:
+              too_short: "- please select at least one"
 
   adviser_sign_in: Sign in to adviser account
   required: "* indicates required fields"
