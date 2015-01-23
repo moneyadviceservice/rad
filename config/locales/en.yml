@@ -1,6 +1,8 @@
 en:
   activerecord:
     attributes:
+      adviser:
+        confirmed_disclaimer: Truth confirmation statement
       principal:
         fca_number: FCA Number
         confirmed_disclaimer: Truth confirmation statement

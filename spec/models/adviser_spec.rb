@@ -4,6 +4,12 @@ RSpec.describe Adviser do
       expect(build(:adviser)).to be_valid
     end
 
+    describe 'statement of truth' do
+      it 'must be confirmed' do
+        expect(build(:adviser, confirmed_disclaimer: false)).to_not be_valid
+      end
+    end
+
     describe 'reference number' do
       it 'is required' do
         expect(build(:adviser, reference_number: nil)).to_not be_valid
