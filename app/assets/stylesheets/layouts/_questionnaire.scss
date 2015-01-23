@@ -49,17 +49,3 @@
     margin-bottom: $baseline-unit*4;
   }
 }
-
-.l-questionnaire__input-small {
-  max-width: 80px;
-}
-
-.l-questionnaire__input-description {
-  @include body(14,18);
-  margin-left: 18px;
-}
-
-.l-questionnaire__footnote {
-  margin-left: -18px;
-  margin-right: 6px;
-}

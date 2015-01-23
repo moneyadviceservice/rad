@@ -249,7 +249,7 @@
                 <%= f.form_row attribute do %>
                   <%= f.errors_for attribute %>
                   <%= f.label attribute, raw(heading), class: 'form__label-heading' %>
-                  <span class="form__input-container l-questionnaire__input-small">
+                  <span class="form__input-container form__input-container--small">
                     <%= f.text_field attribute, type: 'number', class: 'form__input' %>
                     <span class="form__input-label" id="input-label3b">%</span>
                     <span class="form__input-outline"></span>
@@ -261,7 +261,7 @@
 
           <section>
             <%= heading_tag(t('questionnaire.retirement_advice.business_split.footnotes.heading'), level: 3, class: 'heading-extra-small') %>
-            <p id="other_description" class="l-questionnaire__input-description"><%= t('questionnaire.retirement_advice.business_split.footnotes.other_html') %></p>
+            <p id="other_description" class="footnote"><%= t('questionnaire.retirement_advice.business_split.footnotes.other_html') %></p>
           </section>
         </fieldset>
       </section>

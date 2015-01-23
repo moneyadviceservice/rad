@@ -219,7 +219,7 @@ en:
         footnotes:
           heading: Footnotes
           other_html: |
-            <span class="l-questionnaire__footnote">1.</span>This would include investment/pensions advice to clients in the accumulation phase i.e. not seeking ‘at’ or ‘post’ retirement advice - e.g. non-equity release mortgage advice;  protection advice, etc.
+            <span class="footnote__number">1.</span>This would include investment/pensions advice to clients in the accumulation phase i.e. not seeking ‘at’ or ‘post’ retirement advice - e.g. non-equity release mortgage advice;  protection advice, etc.
 
         explanation: Together, the entries into all of the fields must add up to a total of 100%.
         disclaimer:
