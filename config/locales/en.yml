@@ -214,9 +214,13 @@ en:
           equity_release_percent: Equity release
           inheritance_tax_and_estate_planning_percent: Inheritance Tax and Estate Planning
           wills_and_probate_percent: Wills & Probate
-          other_percent: Other
+          other_percent: Other types of advice <a href="#other_description">&#185;</a>
 
-        other_description: "This would include investment/pensions advice to clients in the accumulation phase i.e. not seeking ‘at’ or ‘post’ retirement advice - e.g. non-equity release mortgage advice;  protection advice, etc."
+        footnotes:
+          heading: Footnotes
+          other_html: |
+            <span class="l-questionnaire__footnote">1.</span>This would include investment/pensions advice to clients in the accumulation phase i.e. not seeking ‘at’ or ‘post’ retirement advice - e.g. non-equity release mortgage advice;  protection advice, etc.
+
         explanation: Together, the entries into all of the fields must add up to a total of 100%.
         disclaimer:
           heading: How do we use this information?
