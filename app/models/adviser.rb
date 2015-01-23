@@ -16,6 +16,10 @@ class Adviser < ActiveRecord::Base
 
   validate :match_reference_number
 
+  def field_order
+    %i(reference_number confirmed_disclaimer)
+  end
+
   private
 
   def match_reference_number
