@@ -45,7 +45,7 @@ class Firm < ActiveRecord::Base
 
   validates :initial_meeting_duration,
     presence: true,
-    if: ->{ free_initial_meeting }
+    if: ->{ free_initial_meeting? }
 
   validates :initial_advice_fee_structures,
     length: { minimum: 1 }
