@@ -43,3 +43,34 @@ FactoryGirl.create_list(:principal, 3) if Rails.env.development?
   'Over £150,001',
   'All of these pot / investment sizes'
 ].each { |item| InvestmentSize.find_or_create_by(name: item) }
+
+[
+  'SOLLA',
+  'Later Life Academy',
+  'ISO 22222',
+  'British Standard in Financial Planning BS8577',
+  'Other'
+].each { |item| Accreditation.find_or_create_by(name: item) }
+
+[
+  'Level 4 (DipPFS, DipFA® or equivalent)',
+  'Level 6 Diploma in Financial Advice (Adv DipFA®)',
+  'Chartered Financial Planner',
+  'Certified Financial Planner',
+  'Pension transfer qualifications - holder of G60, AF3 or equivalent',
+  'Equity release qualifications i.e. holder of Certificate in Equity Release or equivalent',
+  'Long term care planning qualifications i.e. holder of CF8 or equivalent'
+].each { |item| Qualification.find_or_create_by(name: item) }
+
+[
+  'Personal Finance Society / Chartered Insurance Institute',
+  'Institute of Financial Planning',
+  'Institute of Financial Services',
+  'The Chartered Institute of Bankers in Scotland',
+  'The Chartered Institute for Securities and Investments',
+  'CFA Institute',
+  'Institute of Chartered Accountants for England and Wales'
+].each do |item|
+  ProfessionalStanding.find_or_create_by(name: item)
+  ProfessionalBody.find_or_create_by(name: item)
+end
