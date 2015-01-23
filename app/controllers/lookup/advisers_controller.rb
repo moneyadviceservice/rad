@@ -3,7 +3,11 @@ module Lookup
     def show
       @adviser = Lookup::Adviser.find_by(reference_number: params[:id])
 
-      render json: { name: @adviser.name }
+      if @adviser
+        render json: { name: @adviser.name }
+      else
+        head :not_found
+      end
     end
   end
 end

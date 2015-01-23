@@ -40,6 +40,20 @@ RSpec.feature 'Principal creates Adviser', type: :request do
     and_i_am_given_the_advisers_name
   end
 
+  scenario 'Attempting to match a non-existent Adviser' do
+    given_i_have_created_a_firm
+    when_i_request_a_non_existent_adviser
+    then_the_endpoint_responds_404
+  end
+
+
+  def when_i_request_a_non_existent_adviser
+    get principal_lookup_adviser_path(principal, 'BAD12345')
+  end
+
+  def then_the_endpoint_responds_404
+    expect(response.status).to eq(404)
+  end
 
   def when_i_request_the_advisers_name
     get principal_lookup_adviser_path(principal, reference)
