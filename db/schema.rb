@@ -60,7 +60,7 @@ ActiveRecord::Schema.define(version: 20150121183728) do
   add_index "advisers_qualifications", ["adviser_id", "qualification_id"], name: "advisers_qualifications_index", unique: true, using: :btree
 
   create_table "allowed_payment_methods", force: :cascade do |t|
-    t.string   "name"
+    t.string   "name",       null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -141,19 +141,19 @@ ActiveRecord::Schema.define(version: 20150121183728) do
   end
 
   create_table "initial_advice_fee_structures", force: :cascade do |t|
-    t.string   "name"
+    t.string   "name",       null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "initial_meeting_durations", force: :cascade do |t|
-    t.integer  "duration"
+    t.integer  "duration",   null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "investment_sizes", force: :cascade do |t|
-    t.string   "name"
+    t.string   "name",       null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -184,13 +184,13 @@ ActiveRecord::Schema.define(version: 20150121183728) do
   add_index "lookup_subsidiaries", ["fca_number"], name: "index_lookup_subsidiaries_on_fca_number", using: :btree
 
   create_table "ongoing_advice_fee_structures", force: :cascade do |t|
-    t.string   "name"
+    t.string   "name",       null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "other_advice_methods", force: :cascade do |t|
-    t.string   "name"
+    t.string   "name",       null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

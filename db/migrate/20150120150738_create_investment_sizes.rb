@@ -1,7 +1,7 @@
 class CreateInvestmentSizes < ActiveRecord::Migration
   def change
     create_table :investment_sizes do |t|
-      t.string :name
+      t.string :name, null: false, unique: true
 
       t.timestamps null: false
     end

@@ -1,7 +1,7 @@
 class CreateAllowedPaymentMethods < ActiveRecord::Migration
   def change
     create_table :allowed_payment_methods do |t|
-      t.string :name
+      t.string :name, null: false, unique: true
 
       t.timestamps null: false
     end
