@@ -48,6 +48,13 @@ RSpec.describe Principal do
     end
 
     describe 'FCA number' do
+      it 'must be a present' do
+        build(:principal).tap do |p|
+          p.fca_number = nil
+          expect(p).to_not be_valid
+        end
+      end
+
       it 'must be a 6 digit number' do
         build(:principal).tap do |p|
           p.fca_number = 12345

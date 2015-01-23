@@ -6,11 +6,13 @@ class Principal < ActiveRecord::Base
 
   has_one :firm, primary_key: :fca_number, foreign_key: :fca_number
 
+  validates_presence_of :fca_number
+
   validates :fca_number,
-    presence: true,
     uniqueness: true,
     length: { is: 6 },
-    numericality: { only_integer: true }
+    numericality: { only_integer: true },
+    if: :fca_number?
 
   validates :email_address,
     presence: true,
@@ -31,7 +33,7 @@ class Principal < ActiveRecord::Base
 
   validates_acceptance_of :confirmed_disclaimer, accept: true
 
-  validate :match_fca_number
+  validate :match_fca_number, if: :fca_number?
 
   def to_param
     token.parameterize
