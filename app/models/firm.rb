@@ -40,9 +40,6 @@ class Firm < ActiveRecord::Base
   validates :in_person_advice_methods,
             length: { minimum: 1 }
 
-  validates :other_advice_methods,
-            length: { minimum: 1 }
-
   validates :free_initial_meeting,
             inclusion: { in: [true, false] }
 
