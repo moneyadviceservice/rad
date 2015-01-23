@@ -167,7 +167,7 @@ en:
       heading: Does your firm offer advice (through to transaction) in person? *
 
     other_advice_methods:
-      heading: Does your firm offer advice by other methods through to transaction?
+      heading: Does your firm offer advice by other methods through to transaction? *
 
     free_initial_meeting:
       heading: Does your firm offer a free initial meeting? *
