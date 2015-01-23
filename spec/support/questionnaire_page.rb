@@ -1,5 +1,5 @@
 class QuestionnairePage < SitePrism::Page
-  set_url 'principals/{principal}/firm/questionnaire/edit'
+  set_url '/principals/{principal}/firm/questionnaire/edit'
   set_url_matcher %r{/principals/[a-f0-9]{8}/firm/questionnaire(/edit)?}
 
   element :firm_name, '.t-firm-name'
