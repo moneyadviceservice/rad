@@ -5,5 +5,7 @@ class CreateInitialMeetingDurations < ActiveRecord::Migration
 
       t.timestamps null: false
     end
+
+    add_reference :firms, :initial_meeting_duration, index: true
   end
 end
