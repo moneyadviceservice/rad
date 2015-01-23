@@ -11,7 +11,7 @@ Rails.application.routes.draw do
     end
 
     resource :firm, only: :show do
-      resource :questionnaire, only: [:show, :update]
+      resource :questionnaire, only: [:edit, :update]
       resources :advisers
     end
   end

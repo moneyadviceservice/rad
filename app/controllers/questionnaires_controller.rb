@@ -1,14 +1,16 @@
 class QuestionnairesController < ApplicationController
-  def show
+  def edit
     @firm = current_user.firm
   end
 
   def update
     @firm = current_user.firm
-    @firm.update!(firm_params)
-    redirect_to(new_principal_firm_adviser_path, principal: current_user)
-  rescue ActiveRecord::ActiveRecordError
-    render :show
+
+    if @firm.update(firm_params)
+      redirect_to new_principal_firm_adviser_path(current_user)
+    else
+      render :edit
+    end
   end
 
   private
