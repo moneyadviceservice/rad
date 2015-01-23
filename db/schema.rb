@@ -230,12 +230,4 @@ ActiveRecord::Schema.define(version: 20150121183728) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "service_regions", force: :cascade do |t|
-    t.string   "name",       null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  add_index "service_regions", ["name"], name: "index_service_regions_on_name", unique: true, using: :btree
-
 end
