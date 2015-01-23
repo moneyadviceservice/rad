@@ -147,7 +147,7 @@ ActiveRecord::Schema.define(version: 20150121183728) do
   end
 
   create_table "initial_meeting_durations", force: :cascade do |t|
-    t.integer  "duration",   null: false
+    t.string   "name",       null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

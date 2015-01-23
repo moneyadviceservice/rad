@@ -1,7 +1,5 @@
 FactoryGirl.define do
-  sequence(:duration) { |n| n * 15 }
-
   factory :initial_meeting_duration do
-    duration
+    sequence(:name) { |n| (n * 15).to_s + ' mins' }
   end
 end

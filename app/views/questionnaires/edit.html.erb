@@ -150,7 +150,7 @@
                   <div class="form__group-item">
                     <label>
                       <%= radio_button_tag 'firm[initial_meeting_duration_id]', initial_meeting_duration.id, @firm.initial_meeting_duration == initial_meeting_duration, class: 'form__group-input t-questionnaire__firm_initial_meeting_duration_id' %>
-                      <%= initial_meeting_duration.duration %> <%= t('questionnaire.initial_meeting_duration.duration_unit') %>
+                      <%= initial_meeting_duration.name %>
                     </label>
                   </div>
               <% end %>

@@ -12,7 +12,10 @@ FactoryGirl.create_list(:principal, 3) if Rails.env.development?
   'Advice online e.g. by video call / conference / email or other online method(s) through to transaction'
 ].each { |item| OtherAdviceMethod.find_or_create_by(name: item) }
 
-[30, 60].each { |duration| InitialMeetingDuration.find_or_create_by(duration: duration) }
+[
+  '30 min',
+  '60 min'
+].each { |item| InitialMeetingDuration.find_or_create_by(name: item) }
 
 [
   'Hourly fee',
@@ -25,7 +28,7 @@ FactoryGirl.create_list(:principal, 3) if Rails.env.development?
   'Fixed upfront fee',
   'Monthly by direct debit (standing order?)',
   'Other'
-].each { |item| OngoingAdviceFeeStructure.find_or_create_by(name: item).update!(name: item) }
+].each { |item| OngoingAdviceFeeStructure.find_or_create_by(name: item) }
 
 [
   'From their own resources',
