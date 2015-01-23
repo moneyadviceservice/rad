@@ -4,6 +4,7 @@ FactoryGirl.define do
   factory :adviser do
     reference_number
     name 'Ben Lovell'
+    confirmed_disclaimer true
     firm
 
     after(:build) do |a|
