@@ -6,7 +6,7 @@ class QuestionnairesController < ApplicationController
   def update
     @firm = current_user.firm
     @firm.update!(firm_params)
-    redirect_to(principal_firm_advisers_path, principal: current_user)
+    redirect_to(new_principal_firm_adviser_path, principal: current_user)
   rescue ActiveRecord::ActiveRecordError
     render :show
   end
