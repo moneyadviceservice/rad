@@ -33,8 +33,5 @@ class AdvisersController < ApplicationController
         professional_standing_ids: [],
         professional_body_ids: []
       )
-      .merge(
-        name: 'Temporary Name'
-      )
   end
 end

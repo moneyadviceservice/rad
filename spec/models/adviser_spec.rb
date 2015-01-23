@@ -1,4 +1,24 @@
 RSpec.describe Adviser do
+  describe 'before validation' do
+    context 'when a reference number is present' do
+      let(:attributes) { attributes_for(:adviser) }
+      let(:adviser) { Adviser.new(attributes) }
+
+      before do
+        Lookup::Adviser.create!(
+          reference_number: attributes[:reference_number],
+          name: 'Mr. Welp'
+        )
+      end
+
+      it 'assigns #name from the lookup Adviser data' do
+        adviser.validate
+
+        expect(adviser.name).to eq('Mr. Welp')
+      end
+    end
+  end
+
   describe 'validation' do
     it 'is valid with valid attributes' do
       expect(build(:adviser)).to be_valid

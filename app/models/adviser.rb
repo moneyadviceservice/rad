@@ -6,6 +6,8 @@ class Adviser < ActiveRecord::Base
   has_and_belongs_to_many :professional_standings
   has_and_belongs_to_many :professional_bodies
 
+  before_validation :assign_name, if: :reference_number?
+
   validates_acceptance_of :confirmed_disclaimer, accept: true
 
   validates :reference_number,
@@ -21,6 +23,12 @@ class Adviser < ActiveRecord::Base
   end
 
   private
+
+  def assign_name
+    self.name = Lookup::Adviser.find_by(
+      reference_number: reference_number
+    ).try(:name)
+  end
 
   def match_reference_number
     unless Lookup::Adviser.exists?(reference_number: reference_number)
