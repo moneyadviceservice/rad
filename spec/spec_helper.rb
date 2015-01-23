@@ -6,6 +6,8 @@ require 'rspec/rails'
 
 Dir[File.join(File.dirname(__FILE__), 'support', '**', '*.rb')].each { |f| require f }
 
+Faker::Config.locale = 'en-GB'
+
 RSpec.configure do |c|
   c.include Rails.application.routes.url_helpers
 

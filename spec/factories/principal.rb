@@ -10,6 +10,6 @@ FactoryGirl.define do
     telephone_number { Faker::Base.numerify('##### ### ###') }
     confirmed_disclaimer true
 
-    after(:build) { |p| Lookup::Firm.create!(fca_number: p.fca_number) }
+    after(:build) { |p| create(:lookup_firm, fca_number: p.fca_number) }
   end
 end

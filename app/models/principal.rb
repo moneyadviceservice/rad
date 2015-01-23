@@ -59,10 +59,9 @@ class Principal < ActiveRecord::Base
   private
 
   def associate_firm
-    create_firm!(
-      fca_number: lookup_firm.fca_number,
-      registered_name: lookup_firm.registered_name
-    )
+    Firm.new(fca_number: lookup_firm.fca_number, registered_name: lookup_firm.registered_name).tap do |f|
+      f.save!(validate: false)
+    end
   end
 
   def match_fca_number

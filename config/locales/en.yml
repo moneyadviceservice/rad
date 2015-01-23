@@ -6,6 +6,8 @@ en:
       principal:
         fca_number: FCA Number
         confirmed_disclaimer: Truth confirmation statement
+      firm:
+        percent_total: Percentage total
 
   adviser_sign_in: Sign in to adviser account
   required: "* indicates required fields"
@@ -92,6 +94,9 @@ en:
     select_firm: Select this firm
 
   questionnaire:
+    title: Provide details about your firm
+    introduction: The more information you provide about your firm and the advisers in your firm, the easier it will be for us to match the right customers to you. A complete profile will also help to increase the number of views your firm receives. We will also provide you with the ability to flesh out your firm’s profile with additional information in the coming months.
+
     adviser:
       reference_number_un_matched: could not be matched with an existing adviser reference
       title: Your Advisers
@@ -123,3 +128,107 @@ en:
         heading: Thank you
         subheading: "%{name} was created."
         description: Your registration details have been received and have been sent for verification. You can close this window now.
+
+    about_your_firm:
+      heading: About your firm
+      callout_html: '<p><span class="t-firm-name">%{registered_name}</span>, firm registration number <span class="t-firm-fca-number">%{fca_number}</span></p>'
+      description: Please provide these details about your firm.
+
+    providing_your_services:
+      heading: How does your firm provide your services?
+      description: Select the different communication channels your firm uses to advise customers. Check all that apply.
+
+    service_charges:
+      heading: How does your firm charge for your services?*
+      description: Confirm the way(s) your firm charges for its services.
+      hint: Check all that apply.
+
+    email_address:
+      heading: Firm email address for enquiries
+      description: This is the email account where you wish to receive messages from customers.
+      label: Firm email address *
+
+    telephone_number:
+      heading: Firm telephone number for enquiries
+      description: Please provide a contact number for customers who wish to call you.
+      label: Firm telephone number *
+
+    address:
+      heading: Main office where customers will meet you
+      description: This is to help customers understand how far they will need to travel if they want to visit you.
+      label_one: Address line 1 *
+      label_two: Address line 2
+      label_three: Town *
+      label_four: County *
+      label_five: Post code *
+
+    in_person_advice_methods:
+      heading: Does your firm offer advice (through to transaction) in person? *
+
+    other_advice_methods:
+      heading: Does your firm offer advice by other methods through to transaction? *
+
+    free_initial_meeting:
+      heading: Does your firm offer a free initial meeting? *
+      answer_yes: "Yes"
+      answer_no: "No"
+
+    initial_meeting_duration:
+      heading: If yes, for how long?
+      duration_unit: minutes
+
+    initial_advice_fee:
+      heading: Initial advice *
+
+    ongoing_advice_fee:
+      heading: Ongoing advice *
+
+    allowed_payment_methods:
+      heading: Do you allow customers to pay for advice *
+
+    minimum_fixed_fee:
+      heading: Do you have a minimum fee? If so, please state the amount.
+
+    button_next: Submit your firm's details
+
+    retirement_advice:
+      title: Retirement advice offered by your firm
+      introduction:
+        - text: Help us match you with customers who are looking for the main type(s) of advice that you provide.
+        - text: Providing this information means you are more likely to receive customers enquiries relevant to your firm’s area(s) of focus.
+      button_next: Select the advisers who work here
+
+      percent_total:
+        not_one_hundred: across advice types must equal 100%. Please adjust your figures.
+
+      business_split:
+        heading: Describe your firm's business split as it relates to ‘at’ or ‘post’ retirement advice
+        description: In your last financial year, please tell us how active your firm was in the following areas of retirement planning / advice.
+        subheading: "Percentage of overall business income taken from the following types of advice:"
+
+        advice_options:
+          retirement_income_products_percent: Retirement income products
+          pension_transfer_percent: Pension transfer
+          long_term_care_percent: Long term care
+          equity_release_percent: Equity release
+          inheritance_tax_and_estate_planning_percent: Inheritance Tax and Estate Planning
+          wills_and_probate_percent: Wills & Probate
+          other_percent: Other types of advice <a href="#other_description">&#185;</a>
+
+        footnotes:
+          heading: Footnotes
+          other_html: |
+            <span class="footnote__number">1.</span>This would include investment/pensions advice to clients in the accumulation phase i.e. not seeking ‘at’ or ‘post’ retirement advice - e.g. non-equity release mortgage advice;  protection advice, etc.
+
+        explanation: Together, the entries into all of the fields must add up to a total of 100%.
+        disclaimer:
+          heading: How do we use this information?
+          text: This information is for internal processes and will not appear on your profile page.  We will use this information to filter results so that consumers looking for a particular type of advice will be matched to a firm that provides that type of advice.
+
+      typical_customer:
+        heading: Your firm's typical customer
+        description: Customers searching for advice on converting their pension pot into retirement income and/or advice on pension transfers will be asked to provide the size of pension pot they wish to invest and/or transfer.
+
+      pension_pot:
+        heading: Total pension pot / investment size *
+        description: "Please tell us what size pension pot you are willing to provide advice on. Check all that apply."
