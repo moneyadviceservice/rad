@@ -48,7 +48,7 @@
 
       <div data-dough-component="FieldToggleVisibility">
         <%= f.form_row :status_question do %>
-          <fieldset class="form__group form__group--inline t-status-question" >
+          <fieldset class="form__group form__group--inline t-status-question">
             <legend class="l-pre-qualification__question l-pre-qualification__question--with-desc"><%= t('registration.status_question.heading') %></legend>
             <p><%= t('registration.status_question.description') %></p>
 
@@ -93,7 +93,7 @@
           <% end %>
 
           <%= f.form_row :consider_available_providers_question do %>
-            <fieldset class="form__group form__group--inline is-hidden t-consider-available-providers-question" data-dough-field-target="2">
+            <fieldset class="form__group form__group--inline t-consider-available-providers-question" data-dough-field-target="2">
               <legend class="l-pre-qualification__question"><%= t('registration.consider_available_providers_question.heading') %></legend>
 
               <div class="form__group-item">
