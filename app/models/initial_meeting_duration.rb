@@ -1,5 +1,5 @@
 class InitialMeetingDuration < ActiveRecord::Base
   has_many :firms
 
-  validates :duration, presence: true
+  validates_presence_of :duration
 end
