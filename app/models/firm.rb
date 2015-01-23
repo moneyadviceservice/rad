@@ -31,7 +31,7 @@ class Firm < ActiveRecord::Base
 
   validates :address_postcode,
     presence: true,
-    format: { with: /\A[a-zA-Z\d]{1,4} [a-zA-Z\d]{1,3}\z/ }
+    format: { with: /\A[A-Z\d]{1,4} [A-Z\d]{1,3}\z/ }
 
   validates :address_town,
     :address_county,
