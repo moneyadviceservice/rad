@@ -48,16 +48,16 @@
 
           <div class="l-questionnaire__row">
             <div class="l-questionnaire__field">
-              <%= f.form_row :address_line_1 do %>
-                  <%= f.errors_for :address_line_1 %>
-                  <%= f.label :address_line_1, t('questionnaire.address.label_one'), class: 'form__label-heading' %>
-                  <%= f.text_field :address_line_1 %>
+              <%= f.form_row :address_line_one do %>
+                  <%= f.errors_for :address_line_one %>
+                  <%= f.label :address_line_one, t('questionnaire.address.label_one'), class: 'form__label-heading' %>
+                  <%= f.text_field :address_line_one %>
               <% end %>
 
-              <%= f.form_row :address_line_2 do %>
-                  <%= f.errors_for :address_line_2 %>
-                  <%= f.label :address_line_2, t('questionnaire.address.label_two'), class: 'form__label-heading' %>
-                  <%= f.text_field :address_line_2 %>
+              <%= f.form_row :address_line_two do %>
+                  <%= f.errors_for :address_line_two %>
+                  <%= f.label :address_line_two, t('questionnaire.address.label_two'), class: 'form__label-heading' %>
+                  <%= f.text_field :address_line_two %>
               <% end %>
 
               <%= f.form_row :address_town do %>

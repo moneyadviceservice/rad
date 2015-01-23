@@ -79,8 +79,8 @@ ActiveRecord::Schema.define(version: 20150121183728) do
     t.string   "telephone_number"
     t.datetime "created_at",                                  null: false
     t.datetime "updated_at",                                  null: false
-    t.string   "address_line_1"
-    t.string   "address_line_2"
+    t.string   "address_line_one"
+    t.string   "address_line_two"
     t.string   "address_town"
     t.string   "address_county"
     t.string   "address_postcode"

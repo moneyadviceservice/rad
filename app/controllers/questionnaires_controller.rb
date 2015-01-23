@@ -20,8 +20,8 @@ class QuestionnairesController < ApplicationController
     .permit(
         :email_address,
         :telephone_number,
-        :address_line_1,
-        :address_line_2,
+        :address_line_one,
+        :address_line_two,
         :address_town,
         :address_county,
         :address_postcode,

@@ -22,11 +22,11 @@ class Firm < ActiveRecord::Base
     length: { maximum: 30 },
     format: { with: /\A[0-9 ]+\z/ }
 
-  validates :address_line_1,
+  validates :address_line_one,
     presence: true,
     length: { maximum: 100 }
 
-  validates :address_line_2,
+  validates :address_line_two,
     length: { maximum: 100 }
 
   validates :address_postcode,

@@ -7,7 +7,7 @@ class QuestionnairePage < SitePrism::Page
 
   element :email_address, '#firm_email_address'
   element :telephone_number, '#firm_telephone_number'
-  element :address_line_1, '#firm_address_line_1'
+  element :address_line_one, '#firm_address_line_one'
   element :address_town, '#firm_address_town'
   element :address_county, '#firm_address_county'
   element :address_postcode, '#firm_address_postcode'

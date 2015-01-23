@@ -34,7 +34,7 @@ RSpec.feature 'Principal completes the firm questionnaire' do
     questionnaire_page.tap do |p|
       p.email_address.set Faker::Internet.email
       p.telephone_number.set Faker::Base.numerify('##### ### ###')
-      p.address_line_1.set Faker::Address.street_address
+      p.address_line_one.set Faker::Address.street_address
       p.address_town.set Faker::Address.city
       p.address_county.set Faker::Address.county
       p.address_postcode.set Faker::Address.postcode
