@@ -67,14 +67,12 @@ define(['jquery', 'DoughBaseComponent'], function($, DoughBaseComponent) {
   FieldToggleVisibilityProto.hideRelevantTargets = function() {
     var self = this;
 
-    this.$triggers.filter('[data-dough-field-trigger-type="show"]').each(function() {
+    this.$triggers.filter('[data-dough-field-trigger-type="show"]:not(:checked)').each(function() {
       var $trigger = $(this),
         target = $trigger.attr('data-dough-field-trigger'),
         $target = self.$targets.filter('[data-dough-field-target="' + target + '"]');
 
-      if (!$trigger.is(':checked')) {
         $target.addClass('is-hidden');
-      }
     });
 
     return this;
