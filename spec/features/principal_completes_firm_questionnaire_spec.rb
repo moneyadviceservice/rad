@@ -1,5 +1,6 @@
 RSpec.feature 'Principal completes the firm questionnaire' do
   let(:questionnaire_page) { QuestionnairePage.new }
+  let(:adviser_page) { AdviserPage.new }
 
   before do
     FactoryGirl.create(:in_person_advice_method)
@@ -46,14 +47,26 @@ RSpec.feature 'Principal completes the firm questionnaire' do
     questionnaire_page.allowed_payment_method_checkboxes.first.set(true)
     questionnaire_page.minimum_fee_field.set(Faker::Number.number(4))
 
+    questionnaire_page.firm_retirement_income_products_percent_field.set(15)
+    questionnaire_page.firm_pension_transfer_percent_field.set(15)
+    questionnaire_page.firm_long_term_care_percent_field.set(15)
+    questionnaire_page.firm_equity_release_percent_field.set(15)
+    questionnaire_page.firm_inheritance_tax_and_estate_planning_percent_field.set(15)
+    questionnaire_page.firm_wills_and_probate_percent_field.set(15)
+    questionnaire_page.firm_other_percent_field.set(10)
+
+    questionnaire_page.investment_size_checkboxes.first.set(true)
+
     questionnaire_page.next_button.click
   end
 
   def then_my_directory_listing_is_created_and_marked_as_done
-    skip('waiting on dependant story')
+    @principal.firm.reload
+
+    expect(@principal.firm).to be_valid
   end
 
   def and_i_am_directed_to_assign_advisers_to_my_firm_or_subsidiary
-    skip('waiting on dependant story')
+    expect(adviser_page).to be_displayed
   end
 end
