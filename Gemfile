@@ -35,10 +35,9 @@ group :test, :development do
   gem 'timecop'
   gem 'guard'
   gem 'guard-livereload', require: false
-  gem "rack-livereload"
+  gem 'rack-livereload'
   gem 'guard-bundler', require: false
   gem 'guard-rails'
-  gem 'guard-rspec', require: false
 end
 
 group :test do
