@@ -1,4 +1,4 @@
-RSpec.feature 'Principal creates Adviser' do
+RSpec.feature 'Principal creates Adviser', type: :request do
   let(:reference) { 'ABC12345' }
   let(:principal) { create(:principal) }
   let(:adviser_page) { AdviserPage.new }
@@ -32,6 +32,28 @@ RSpec.feature 'Principal creates Adviser' do
     and_i_can_try_another_adviser_reference_number
   end
 
+  scenario 'Matching an Adviser' do
+    given_i_have_created_a_firm
+    and_the_adviser_is_matched
+    when_i_request_the_advisers_name
+    then_the_endpoint_responds_ok
+    and_i_am_given_the_advisers_name
+  end
+
+
+  def when_i_request_the_advisers_name
+    get principal_lookup_adviser_path(principal, reference)
+  end
+
+  def then_the_endpoint_responds_ok
+    expect(response).to be_ok
+  end
+
+  def and_i_am_given_the_advisers_name
+    JSON.parse(response.body).tap do |json|
+      expect(json['name']).to eq('Daisy Lovell')
+    end
+  end
 
   def when_the_adviser_is_not_matched
     adviser_page.submit.click
