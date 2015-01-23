@@ -14,6 +14,10 @@ Rails.application.routes.draw do
       resource :questionnaire, only: [:edit, :update]
       resources :advisers
     end
+
+    namespace :lookup do
+      resources :advisers, only: :show
+    end
   end
 
   resource :contact, only: :create
