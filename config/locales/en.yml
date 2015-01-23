@@ -1,6 +1,8 @@
 en:
   activerecord:
     attributes:
+      adviser:
+        confirmed_disclaimer: Truth confirmation statement
       principal:
         fca_number: FCA Number
         confirmed_disclaimer: Truth confirmation statement
@@ -19,10 +21,6 @@ en:
       <p>An email will be sent to you shortly with further instructions.</p>
       <p>If you do not receive an email from us within 15 minutes, please contact <a href="mailto:RADenquiries@moneyadviceservice.org.uk">RADenquiries@moneyadviceservice.org.uk</a>.</p>
       <p>You can close this window now.</p>
-
-  questionnaire:
-    adviser:
-      reference_number_un_matched: could not be matched with an existing adviser reference
 
   registration:
     heading: Register your firm
@@ -95,7 +93,8 @@ en:
 
   questionnaire:
     adviser:
-      title: Yours Advisers
+      reference_number_un_matched: could not be matched with an existing adviser reference
+      title: Your Advisers
       description: Please provide details of advisers in your firm who are eligible to be entered onto the Retirement Advice Directory.
 
       advisers_details:
