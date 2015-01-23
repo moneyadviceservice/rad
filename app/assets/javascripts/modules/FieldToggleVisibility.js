@@ -27,9 +27,7 @@ define(['jquery', 'DoughBaseComponent'], function($, DoughBaseComponent) {
     this.$triggers = this.$el.find('[data-dough-field-trigger]');
     this.$targets = this.$el.find('[data-dough-field-target]');
 
-    if (!this.$triggers.filter('[data-dough-field-trigger-type="show"]').is(':checked')) {
-      this.$targets.addClass('is-hidden');
-    }
+    this.hideRelevantTargets();
   }
 
   /**
@@ -64,7 +62,23 @@ define(['jquery', 'DoughBaseComponent'], function($, DoughBaseComponent) {
     this._initialisedSuccess(initialised);
 
     return this;
-  }
+  };
+
+  FieldToggleVisibilityProto.hideRelevantTargets = function() {
+    var self = this;
+
+    this.$triggers.filter('[data-dough-field-trigger-type="show"]').each(function() {
+      var $trigger = $(this),
+        target = $trigger.attr('data-dough-field-trigger'),
+        $target = self.$targets.filter('[data-dough-field-target="' + target + '"]');
+
+      if (!$trigger.is(':checked')) {
+        $target.addClass('is-hidden');
+      }
+    });
+
+    return this;
+  };
 
   FieldToggleVisibilityProto.onChange = function($trigger, triggerTarget, triggerAction) {
     var $target = this.$el.find('[data-dough-field-target="' + triggerTarget + '"]');
