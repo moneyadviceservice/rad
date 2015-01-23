@@ -6,7 +6,11 @@ class AdvisersController < ApplicationController
   def create
     @adviser = advisers.create(adviser_params)
 
-    redirect_to principal_firm_adviser_path(id: @adviser)
+    if @adviser.valid?
+      redirect_to principal_firm_adviser_path(id: @adviser)
+    else
+      render :new
+    end
   end
 
   def show

@@ -20,6 +20,10 @@ en:
       <p>If you do not receive an email from us within 15 minutes, please contact <a href="mailto:RADenquiries@moneyadviceservice.org.uk">RADenquiries@moneyadviceservice.org.uk</a>.</p>
       <p>You can close this window now.</p>
 
+  questionnaire:
+    adviser:
+      reference_number_un_matched: could not be matched with an existing adviser reference
+
   registration:
     heading: Register your firm
     introduction: Register your firm on our Retirement Adviser Directory
