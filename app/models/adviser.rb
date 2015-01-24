@@ -8,7 +8,19 @@ class Adviser < ActiveRecord::Base
 
   before_validation :assign_name, if: :reference_number?
 
+  before_validation :clear_geographical_coverage, if: :covers_whole_of_uk?
+
   validates_acceptance_of :confirmed_disclaimer, accept: true
+
+  validates :travel_distance,
+    presence: true,
+    inclusion: { in: TravelDistance.all },
+    unless: :covers_whole_of_uk?
+
+  validates :postcode,
+    presence: true,
+    format: { with: /\A[A-Z\d]{1,4} [A-Z\d]{1,3}\z/ },
+    unless: :covers_whole_of_uk?
 
   validates :reference_number,
     presence: true,
@@ -29,6 +41,11 @@ class Adviser < ActiveRecord::Base
   end
 
   private
+
+  def clear_geographical_coverage
+    self.postcode = ''
+    self.travel_distance = 0
+  end
 
   def assign_name
     self.name = Lookup::Adviser.find_by(

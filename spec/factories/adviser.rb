@@ -5,7 +5,7 @@ FactoryGirl.define do
     reference_number
     name 'Ben Lovell'
     postcode 'RG1 1NN'
-    travel_distance 50
+    travel_distance '50'
     covers_whole_of_uk false
     confirmed_disclaimer true
     firm
