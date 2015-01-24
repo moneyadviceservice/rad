@@ -29,6 +29,37 @@
       </div>
 
       <fieldset class="form__group">
+        <legend class="l-questionnaire__legend"><%= t('questionnaire.adviser.geographical_coverage.heading') %></legend>
+        <p><%= t('questionnaire.adviser.geographical_coverage.description') %></p>
+
+        <div class="l-questionnaire__row">
+          <div class="l-questionnaire__field">
+            <%= f.form_row :travel_distance do %>
+              <%= f.errors_for :travel_distance %>
+              <%= f.label :travel_distance, t('questionnaire.adviser.geographical_coverage.travel_distance'), class: 'form__label-heading' %>
+              <%= f.select :travel_distance, TravelDistance.all, { include_blank: true }, { class: 't-travel-distance' } %>
+            <% end %>
+          </div>
+
+          <div class="l-questionnaire__field">
+            <%= f.form_row :postcode do %>
+              <%= f.errors_for :postcode %>
+              <%= f.label :postcode, t('questionnaire.adviser.geographical_coverage.postcode'), class: 'form__label-heading' %>
+              <%= f.text_field :postcode, class: 't-postcode' %>
+            <% end %>
+          </div>
+
+          <div class="l-questionnaire__field">
+            <%= f.form_row :covers_whole_of_uk do %>
+              <%= f.errors_for :covers_whole_of_uk %>
+              <%= f.label :covers_whole_of_uk, t('questionnaire.adviser.geographical_coverage.covers_whole_of_uk'), class: 'form__label-heading' %>
+              <%= f.check_box :covers_whole_of_uk, class: 't-covers-whole-of-uk' %>
+            <% end %>
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset class="form__group">
         <legend class="l-questionnaire__legend"><%= t('questionnaire.adviser.accreditations.heading') %></legend>
         <p><%= t('questionnaire.adviser.accreditations.description') %></p>
 
