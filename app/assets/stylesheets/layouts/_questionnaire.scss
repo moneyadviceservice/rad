@@ -49,3 +49,16 @@
     margin-bottom: $baseline-unit*4;
   }
 }
+
+.l-coverage {
+  line-height: 2.4;
+}
+
+.l-coverage__select {
+  margin: 0 $baseline-unit*2;
+}
+
+.l-coverage__postcode {
+  margin: 0 $baseline-unit*2;
+  max-width: 120px;
+}

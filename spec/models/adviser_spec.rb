@@ -25,10 +25,40 @@ RSpec.describe Adviser do
     end
 
     it 'orders fields correctly for dough' do
-      expect(build(:adviser).field_order).to contain_exactly(
-        :reference_number,
-        :confirmed_disclaimer
-      )
+      expect(build(:adviser).field_order).not_to be_empty
+    end
+
+    describe 'geographical coverage' do
+      context 'when the adviser covers whole of UK' do
+        it 'ensures travel distance and postcode are empty' do
+          create(:adviser, covers_whole_of_uk: true).tap do |a|
+            expect(a.travel_distance).to be_zero
+            expect(a.postcode).to be_empty
+          end
+        end
+      end
+
+      context 'when the adviser does not cover whole of UK' do
+        describe 'travel distance' do
+          it 'must be provided' do
+            expect(build(:adviser, travel_distance: nil)).to_not be_valid
+          end
+
+          it 'must be within the allowed options' do
+            expect(build(:adviser, travel_distance: 999)).to_not be_valid
+          end
+        end
+
+        describe 'postcode' do
+          it 'must be provided' do
+            expect(build(:adviser, postcode: nil)).to_not be_valid
+          end
+
+          it 'must be a valid format' do
+            expect(build(:adviser, postcode: '098abc')).to_not be_valid
+          end
+        end
+      end
     end
 
     describe 'statement of truth' do

@@ -45,6 +45,7 @@ group :test do
   gem 'database_cleaner'
   gem 'launchy'
   gem 'poltergeist'
+  gem 'rspec-collection_matchers'
   gem 'rspec-rails'
   gem 'site_prism'
 end
