@@ -12,4 +12,8 @@ class AdviserPage < SitePrism::Page
       text: I18n.t('questionnaire.adviser.reference_number_un_matched')
     )
   end
+
+  def matched_adviser?(name)
+    has_content?(name)
+  end
 end
