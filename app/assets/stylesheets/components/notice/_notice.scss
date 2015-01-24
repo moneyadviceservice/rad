@@ -1,0 +1,10 @@
+.notice {
+  padding: 1px $baseline-unit*3;
+  margin: $baseline-unit*4 0;
+  background-color: $color-notice-background;
+  font-weight: 500;
+}
+
+.notice--error {
+  background-color: $color-notice-background--error;
+}
