@@ -27,6 +27,9 @@ class AdvisersController < ApplicationController
     params.require(:adviser)
       .permit(
         :reference_number,
+        :travel_distance,
+        :postcode,
+        :covers_whole_of_uk,
         :confirmed_disclaimer,
         qualification_ids: [],
         accreditation_ids: [],
