@@ -32,31 +32,29 @@
         <legend class="l-questionnaire__legend"><%= t('questionnaire.adviser.geographical_coverage.heading') %></legend>
         <p><%= t('questionnaire.adviser.geographical_coverage.description') %></p>
 
-        <div class="l-questionnaire__row">
-          <div class="l-questionnaire__field">
-            <%= f.form_row :travel_distance do %>
-              <%= f.errors_for :travel_distance %>
-              <%= f.label :travel_distance, t('questionnaire.adviser.geographical_coverage.travel_distance'), class: 'form__label-heading' %>
-              <%= f.select :travel_distance, TravelDistance.all, { include_blank: true }, { class: 't-travel-distance' } %>
-            <% end %>
-          </div>
+        <%= f.form_row :travel_distance do %>
+          <div class="l-coverage">
+            <%= f.errors_for :travel_distance %>
+            <%= f.label :travel_distance, t('questionnaire.adviser.geographical_coverage.travel_distance') %>
+            <%= f.select :travel_distance, TravelDistance.all, { include_blank: true }, { class: 't-travel-distance l-coverage__select' } %>
 
-          <div class="l-questionnaire__field">
-            <%= f.form_row :postcode do %>
-              <%= f.errors_for :postcode %>
-              <%= f.label :postcode, t('questionnaire.adviser.geographical_coverage.postcode'), class: 'form__label-heading' %>
-              <%= f.text_field :postcode, class: 't-postcode' %>
-            <% end %>
+            <%= f.errors_for :postcode %>
+            <%= f.label :postcode, t('questionnaire.adviser.geographical_coverage.postcode') %>
+            <%= f.text_field :postcode, class: 't-postcode l-coverage__postcode' %>
+            <%= t('questionnaire.adviser.geographical_coverage.coda') %>
           </div>
+        <% end %>
 
-          <div class="l-questionnaire__field">
-            <%= f.form_row :covers_whole_of_uk do %>
-              <%= f.errors_for :covers_whole_of_uk %>
-              <%= f.label :covers_whole_of_uk, t('questionnaire.adviser.geographical_coverage.covers_whole_of_uk'), class: 'form__label-heading' %>
+        <%= f.form_row :covers_whole_of_uk do %>
+          <%= f.errors_for :covers_whole_of_uk %>
+
+          <div class="form__group-item">
+            <%= f.label :covers_whole_of_uk, class: 'form__group-input' do %>
               <%= f.check_box :covers_whole_of_uk, class: 't-covers-whole-of-uk' %>
+              <%= t('questionnaire.adviser.geographical_coverage.covers_whole_of_uk_html') %>
             <% end %>
           </div>
-        </div>
+        <% end %>
       </fieldset>
 
       <fieldset class="form__group">
@@ -67,7 +65,7 @@
           <%= f.errors_for :accreditation_ids %>
 
           <%= f.collection_check_boxes(:accreditation_ids, Accreditation.all, :id, :name) do |b| %>
-            <div class="form__group-item l-questionnaire__two-cols">
+            <div class="form__group-item">
               <%= b.label { b.check_box(class: 'form__group-input') + b.text } %>
             </div>
           <% end %>
@@ -82,7 +80,7 @@
           <%= f.errors_for :qualification_ids %>
 
           <%= f.collection_check_boxes(:qualification_ids, Qualification.all, :id, :name) do |b| %>
-            <div class="form__group-item l-questionnaire__two-cols">
+            <div class="form__group-item">
               <%= b.label { b.check_box(class: 'form__group-input') + b.text } %>
             </div>
           <% end %>
@@ -96,7 +94,7 @@
         <%= f.form_row :professional_standing_ids do %>
           <%= f.errors_for :professional_standing_ids %>
           <%= f.collection_check_boxes(:professional_standing_ids, ProfessionalStanding.all, :id, :name) do |b| %>
-            <div class="form__group-item l-questionnaire__two-cols">
+            <div class="form__group-item">
               <%= b.label { b.check_box(class: 'form__group-input') + b.text } %>
             </div>
           <% end %>
@@ -111,12 +109,14 @@
           <%= f.errors_for :professional_body_ids %>
 
           <%= f.collection_check_boxes(:professional_body_ids, ProfessionalBody.all, :id, :name) do |b| %>
-            <div class="form__group-item l-questionnaire__two-cols">
+            <div class="form__group-item">
               <%= b.label { b.check_box(class: 'form__group-input') + b.text } %>
             </div>
           <% end %>
         <% end %>
       </fieldset>
+
+      <hr>
 
       <%= f.form_row :confirmed_disclaimer do %>
         <%= f.errors_for :confirmed_disclaimer %>
