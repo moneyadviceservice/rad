@@ -212,7 +212,8 @@ en:
       heading: Do you allow customers to pay for advice *
 
     minimum_fixed_fee:
-      heading: Do you have a minimum fee? If so, please state the amount.
+      heading: Do you have a minimum fee?
+      label: Please state your minimum fee to the nearest pound.
 
     button_next: Submit your firm's details
 
