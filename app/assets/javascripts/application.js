@@ -4,3 +4,7 @@
 require(['jquery', 'componentLoader', 'eventsWithPromises'], function ($, componentLoader, eventsWithPromises) {
   componentLoader.init($('body'));
 });
+
+require(['jquery'], function ($) {
+  require(['modules/AdviserAjaxCall']);
+});

@@ -42,7 +42,9 @@ end
 
 group :test do
   gem 'capybara'
+  gem 'database_cleaner'
   gem 'launchy'
+  gem 'poltergeist'
   gem 'rspec-rails'
   gem 'site_prism'
 end
