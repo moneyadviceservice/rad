@@ -1,0 +1,31 @@
+define(['jquery'], function($) {
+  'use strict';
+
+  $('[data-input]').keyup(function(){
+
+    var success = $('[data-notice="success"]'),
+        error = $('[data-notice="error"]'),
+        inputValue = $(this).val(),
+        extension = ".json",
+        pageURL = $(this).attr('data-url'),
+        url = pageURL + inputValue + extension;
+
+    console.log(url);
+    console.log(pageURL);
+
+    $.ajax(url, {
+      datatype: 'json',
+      contentType: 'application/json',
+      success: function(result) {
+        success.html("<p>" + result.name + "</p>");
+        success.removeClass('is-hidden');
+        error.addClass('is-hidden');
+      },
+      error: function(request) {
+        error.html("<p>Individual reference number not recognised. Please try again.</p>");
+        error.removeClass('is-hidden');
+        success.addClass('is-hidden');
+      }
+    });
+  });
+});
