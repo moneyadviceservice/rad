@@ -111,12 +111,12 @@ en:
 
   questionnaire:
     title: Provide details about your firm
-    introduction: The more information you provide about your firm and the advisers in your firm, the easier it will be for us to match the right customers to you. A complete profile will also help to increase the number of views your firm receives. We will also provide you with the ability to flesh out your firm’s profile with additional information in the coming months.
+    introduction: The more information you provide about your firm and the advisers in your firm, the easier it will be for us to match the right customers to you. A complete profile will also help to increase the number of views your firm receives.
 
     adviser:
       reference_number_un_matched: could not be matched with an existing adviser reference
-      title: Your Advisers
-      description: Please provide details of advisers in your firm who are eligible to be entered onto the Retirement Advice Directory.
+      title: Your advisers
+      description: Please provide details of advisers in your firm who are eligible to be entered onto the Retirement Adviser Directory.
 
       geographical_coverage:
         heading: Geographical coverage
@@ -133,19 +133,19 @@ en:
 
       accreditations:
         heading: Accreditations
-        description: Please provide all the Accreditations held by this Adviser.
+        description: Please provide all the accreditations held by this adviser.
 
       qualifications:
         heading: Qualifications
-        description: Please provide all the Qualifications held by this Adviser.
+        description: Please provide all the qualifications held by this adviser.
 
       professional_standing:
         heading: Statement of Professional Standing
-        description: "Please confirm the professional body this Adviser’s Statement of Professional Standing is issued by:"
+        description: "Please confirm the professional body this adviser’s Statement of Professional Standing is issued by:"
 
       professional_body:
         heading: Professional body memberships
-        description: "Please confirm the professional bodies this Adviser is a member of:"
+        description: "Please confirm the professional bodies this adviser is a member of:"
 
       disclaimer: By registering your firm details with the Money Advice Service, you are confirming that these details and any responses you give to our registration questions are true and accurate.
       add_another_adviser_button: or add another adviser
