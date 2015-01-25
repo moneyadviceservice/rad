@@ -21,7 +21,7 @@ class QuestionnairesController < ApplicationController
 
   def firm_params
     params.require(:firm)
-    .permit(
+      .permit(
         :email_address,
         :telephone_number,
         :address_line_one,
@@ -45,6 +45,6 @@ class QuestionnairesController < ApplicationController
         ongoing_advice_fee_structure_ids: [],
         allowed_payment_method_ids: [],
         investment_size_ids: []
-    )
+      )
   end
 end
