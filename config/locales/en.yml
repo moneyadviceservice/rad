@@ -119,17 +119,17 @@ en:
       description: Please provide details of advisers in your firm who are eligible to be entered onto the Retirement Adviser Directory.
 
       geographical_coverage:
-        heading: Geographical coverage
+        heading: Geographical coverage *
         description: Please provide details of the area your adviser is willing to travel to provide their services.
         travel_distance: The adviser is able to travel
         postcode: miles from postcode
         coda: in order to meet customers.
-        covers_whole_of_uk_html: 'Our Firm (or this adviser specifically) is able to provide UK wide coverage.'
+        covers_whole_of_uk_html: 'Our firm (or this adviser specifically) is able to provide UK wide coverage.'
 
       advisers_details:
         heading: Enter the Adviser’s FCA individual reference number.
         description: You will then be asked to complete some basic information about that Adviser.
-        label: Adviser FCA individual reference number
+        label: Adviser FCA individual reference number *
 
       accreditations:
         heading: Accreditations

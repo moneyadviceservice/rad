@@ -3,6 +3,8 @@
     <%= heading_tag(t('questionnaire.adviser.title'), level: 1) %>
     <p><%= t('questionnaire.adviser.description') %></p>
 
+    <p><%= t('required') %></p>
+
     <%= form_for @adviser, url: principal_firm_advisers_path, html: { class: 'form' }, data: { submit: '' }, builder: Dough::Forms::Builders::Validation do |f| %>
       <%= f.validation_summary %>
 
