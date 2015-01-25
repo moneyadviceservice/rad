@@ -14,6 +14,9 @@ RSpec.feature 'Principal views Firms and Subsidiaries' do
     when_i_follow_my_email_verification_link
     then_i_am_shown_my_firm_and_its_subsidiaries
     and_i_can_choose_a_firm_or_subsidiary_questionnaire_to_complete
+    when_i_choose_the_first_subsidiary
+    then_the_subsidiary_is_created
+    and_i_am_directed_to_the_questionnaire_for_my_subsidiary
   end
 
 
@@ -45,4 +48,14 @@ RSpec.feature 'Principal views Firms and Subsidiaries' do
     expect(firm_page.firm_questionnaire).to be_present
     expect(firm_page.subsidiary_questionnaires).to be_present
   end
+
+  def when_i_choose_the_first_subsidiary
+    firm_page.subsidiary_questionnaires.first.click
+  end
+
+  def then_the_subsidiary_is_created
+    expect(@principal.firm.subsidiaries).to_not be_empty
+  end
+
+  alias :and_i_am_directed_to_the_questionnaire_for_my_subsidiary :then_i_am_directed_to_the_questionnaire_for_my_firm
 end
