@@ -1,6 +1,6 @@
 class AdviserPage < SitePrism::Page
-  set_url '/principals/{principal}/firm/advisers/new'
-  set_url_matcher %r{/principals/[a-f0-9]{8}/firm/advisers/new}
+  set_url '/principals/{principal}/firms/{firm}/advisers/new'
+  set_url_matcher %r{/principals/[a-f0-9]{8}/firms/\d+/advisers/new}
 
   element :reference_number, '.t-reference-number'
   element :postcode, '.t-postcode'

@@ -1,9 +1,9 @@
 RSpec.describe 'Token Authentication', type: :request do
   let(:principal) { create(:principal) }
 
-  describe 'GET /principals/:token/firm' do
+  describe 'GET /principals/:token/firms' do
     before do
-      get principal_firm_path(principal)
+      get principal_firms_path(principal)
     end
 
     context 'with an invalid token' do
