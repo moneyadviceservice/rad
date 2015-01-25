@@ -57,5 +57,7 @@ RSpec.feature 'Principal views Firms and Subsidiaries' do
     expect(@principal.firm.subsidiaries).to_not be_empty
   end
 
-  alias :and_i_am_directed_to_the_questionnaire_for_my_subsidiary :then_i_am_directed_to_the_questionnaire_for_my_firm
+  def and_i_am_directed_to_the_questionnaire_for_my_subsidiary
+    expect(questionnaire_page.firm_name.text).to eql('Another Company PLC')
+  end
 end
