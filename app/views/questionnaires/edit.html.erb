@@ -239,12 +239,14 @@
 
         <fieldset class="form__group">
           <legend class="l-questionnaire__legend"><%= t('questionnaire.retirement_advice.business_split.subheading') %></legend>
-          <p><%= t('questionnaire.retirement_advice.business_split.explanation') %></p>
+
+          <%= f.form_row :percent_total do %>
+            <%= f.errors_for :percent_total %>
+            <p class="l-questionnaire__section-description l-questionnaire__section-description--collapsed"><%= t('questionnaire.retirement_advice.business_split.explanation') %></p>
+          <% end %>
 
           <div class="l-questionnaire__row">
             <div class="l-questionnaire__field">
-              <%= f.errors_for :percent_total %>
-
               <% t('questionnaire.retirement_advice.business_split.advice_options').each do |attribute, heading| %>
                 <%= f.form_row attribute do %>
                   <%= f.errors_for attribute %>

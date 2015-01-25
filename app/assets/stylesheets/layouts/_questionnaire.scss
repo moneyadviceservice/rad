@@ -39,6 +39,10 @@
   margin-bottom: $baseline-unit*6;
 }
 
+.l-questionnaire__section-description--collapsed {
+  margin: 0;
+}
+
 .l-questionnaire__legend {
   @include body(18,24);
   font-weight: 700;
