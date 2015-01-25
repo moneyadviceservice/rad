@@ -30,12 +30,12 @@ en:
   email_address: "RADenquiries@moneyadviceservice.org.uk"
 
   footer:
-    text: If you need help please email us on
+    text: If you need help please contact us at
 
   success:
     heading: Thank you
     message: An email will be sent to you shortly with further instructions.
-    contact_us: If you do not receive an email from us within 15 minutes, please contact us on
+    contact_us: If you do not receive an email from us within 15 minutes, please contact us at
 
   registration:
     heading: Register your firm
