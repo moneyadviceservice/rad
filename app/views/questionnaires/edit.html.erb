@@ -214,17 +214,17 @@
         </fieldset>
 
         <fieldset class="form__group">
-          <div class="l-questionnaire__row">
-            <div class="l-questionnaire__field">
-              <%= f.form_row :minimum_fixed_fee do %>
-                <%= f.errors_for :minimum_fixed_fee %>
-                <div class="form__group-item">
-                  <%= f.label :minimum_fixed_fee, t('questionnaire.minimum_fixed_fee.heading'), class: 'form__label-heading' %>
-                  <%= f.text_field :minimum_fixed_fee, class: 'form__group-input' %>
-                </div>
-              <% end %>
-            </div>
-          </div>
+          <legend class="l-questionnaire__legend"><%= t('questionnaire.minimum_fixed_fee.heading') %></legend>
+
+          <%= f.form_row :minimum_fixed_fee do %>
+            <%= f.errors_for :minimum_fixed_fee %>
+            <%= f.label :minimum_fixed_fee, t('questionnaire.minimum_fixed_fee.label'), class: 'form__label-heading', id: 'form-label-one' %>
+            <span class="form__input-container form__input-container--medium">
+              <span class="form__input-label" id="input-label-one-a">£</span>
+              <%= f.text_field :minimum_fixed_fee, class: 'form__input', type: 'number', aria_labelledby: 'form-label-one input-label-one-a' %>
+              <span class="form__input-outline"></span>
+            </span>
+          <% end %>
         </fieldset>
       </section>
 
@@ -248,10 +248,10 @@
               <% t('questionnaire.retirement_advice.business_split.advice_options').each do |attribute, heading| %>
                 <%= f.form_row attribute do %>
                   <%= f.errors_for attribute %>
-                  <%= f.label attribute, raw(heading), class: 'form__label-heading' %>
+                  <%= f.label attribute, raw(heading), class: 'form__label-heading', id: "form-label-#{attribute}".dasherize %>
                   <span class="form__input-container form__input-container--small">
-                    <%= f.text_field attribute, type: 'number', class: 'form__input' %>
-                    <span class="form__input-label" id="input-label3b">%</span>
+                    <%= f.text_field attribute, type: 'number', class: 'form__input', aria_labelledby: "form-label-#{attribute} input-label-#{attribute}-b".dasherize %>
+                    <span class="form__input-label" id="<%= "input-label-#{attribute}-b".dasherize %>">%</span>
                     <span class="form__input-outline"></span>
                   </span>
                 <% end %>
