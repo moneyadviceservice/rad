@@ -30,15 +30,12 @@ en:
   email_address: "RADenquiries@moneyadviceservice.org.uk"
 
   footer:
-    text: If you need help please
-    link_text: contact us via email
+    text: If you need help please contact us at
 
   success:
     heading: Thank you
-    message_html: |
-      <p>An email will be sent to you shortly with further instructions.</p>
-      <p>If you do not receive an email from us within 15 minutes, please contact <a href="mailto:RADenquiries@moneyadviceservice.org.uk">RADenquiries@moneyadviceservice.org.uk</a>.</p>
-      <p>You can close this window now.</p>
+    message: An email will be sent to you shortly with further instructions.
+    contact_us: If you do not receive an email from us within 15 minutes, please contact us at
 
   registration:
     heading: Register your firm
