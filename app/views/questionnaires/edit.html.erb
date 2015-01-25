@@ -93,12 +93,9 @@
 
           <%= f.form_row :in_person_advice_methods do %>
             <%= f.errors_for :in_person_advice_methods %>
-            <% InPersonAdviceMethod.all.each do |in_person_advice_method| %>
+            <%= f.collection_check_boxes(:in_person_advice_method_ids, InPersonAdviceMethod.all, :id, :name) do |b| %>
               <div class="form__group-item">
-                <label>
-                  <%= check_box_tag 'firm[in_person_advice_method_ids][]', in_person_advice_method.id, @firm.in_person_advice_methods.include?(in_person_advice_method), class: 'form__group-input t-questionnaire__in_person_advice_method_id' %>
-                  <%= in_person_advice_method.name %>
-                </label>
+                <%= b.label { b.check_box(class: 'form__group-input t-questionnaire__in_person_advice_method_id') + b.text } %>
               </div>
             <% end %>
           <% end %>
@@ -109,12 +106,9 @@
 
           <%= f.form_row :other_advice_methods do %>
             <%= f.errors_for :other_advice_methods %>
-            <% OtherAdviceMethod.all.each do |other_advice_method| %>
+            <%= f.collection_check_boxes(:other_advice_method_ids, OtherAdviceMethod.all, :id, :name) do |b| %>
               <div class="form__group-item">
-                <label>
-                  <%= check_box_tag 'firm[other_advice_method_ids][]', other_advice_method.id, @firm.other_advice_methods.include?(other_advice_method), class: 'form__group-input t-questionnaire__other_advice_method_id' %>
-                  <%= other_advice_method.name %>
-                </label>
+                <%= b.label { b.check_box(class: 'form__group-input t-questionnaire__other_advice_method_id') + b.text } %>
               </div>
             <% end %>
           <% end %>
@@ -170,12 +164,9 @@
 
           <%= f.form_row :initial_advice_fee_structures do %>
             <%= f.errors_for :initial_advice_fee_structures %>
-            <% InitialAdviceFeeStructure.all.each do |initial_advice_fee_structure| %>
+            <%= f.collection_check_boxes(:initial_advice_fee_structure_ids, InitialAdviceFeeStructure.all, :id, :name) do |b| %>
               <div class="form__group-item">
-                <label>
-                  <%= check_box_tag 'firm[initial_advice_fee_structure_ids][]', initial_advice_fee_structure.id, @firm.initial_advice_fee_structures.include?(initial_advice_fee_structure), class: 'form__group-input t-questionnaire__initial_advice_fee_structure_id' %>
-                  <%= initial_advice_fee_structure.name %>
-                </label>
+                <%= b.label { b.check_box(class: 'form__group-input t-questionnaire__initial_advice_fee_structure_id') + b.text } %>
               </div>
             <% end %>
           <% end %>
@@ -186,12 +177,9 @@
 
           <%= f.form_row :ongoing_advice_fee_structures do %>
             <%= f.errors_for :ongoing_advice_fee_structures %>
-            <% OngoingAdviceFeeStructure.all.each do |ongoing_advice_fee_structure| %>
+            <%= f.collection_check_boxes(:ongoing_advice_fee_structure_ids, OngoingAdviceFeeStructure.all, :id, :name) do |b| %>
               <div class="form__group-item">
-                <label>
-                  <%= check_box_tag 'firm[ongoing_advice_fee_structure_ids][]', ongoing_advice_fee_structure.id, @firm.ongoing_advice_fee_structures.include?(ongoing_advice_fee_structure), class: 'form__group-input t-questionnaire__ongoing_advice_fee_structure_id' %>
-                  <%= ongoing_advice_fee_structure.name %>
-                </label>
+                <%= b.label { b.check_box(class: 'form__group-input t-questionnaire__ongoing_advice_fee_structure_id') + b.text } %>
               </div>
             <% end %>
           <% end %>
@@ -202,12 +190,9 @@
 
           <%= f.form_row :allowed_payment_methods do %>
             <%= f.errors_for :allowed_payment_methods %>
-            <% AllowedPaymentMethod.all.each do |allowed_payment_method| %>
+            <%= f.collection_check_boxes(:allowed_payment_method_ids, AllowedPaymentMethod.all, :id, :name) do |b| %>
               <div class="form__group-item">
-                <label>
-                  <%= check_box_tag 'firm[allowed_payment_method_ids][]', allowed_payment_method.id, @firm.allowed_payment_methods.include?(allowed_payment_method), class: 'form__group-input t-questionnaire__allowed_payment_method_id' %>
-                  <%= allowed_payment_method.name %>
-                </label>
+                <%= b.label { b.check_box(class: 'form__group-input t-questionnaire__allowed_payment_method_id') + b.text } %>
               </div>
             <% end %>
           <% end %>
@@ -279,12 +264,9 @@
           <p><%= t('questionnaire.retirement_advice.pension_pot.description') %></p>
           <%= f.form_row :investment_sizes do %>
             <%= f.errors_for :investment_sizes %>
-            <% InvestmentSize.all.each do |investment_size| %>
+            <%= f.collection_check_boxes(:investment_size_ids, InvestmentSize.all, :id, :name) do |b| %>
               <div class="form__group-item">
-                <label>
-                  <%= check_box_tag 'firm[investment_size_ids][]', investment_size.id, @firm.investment_sizes.include?(investment_size), class: 'form__group-input t-questionnaire__firm_investment_size_id' %>
-                  <%= investment_size.name %>
-                </label>
+                <%= b.label { b.check_box(class: 'form__group-input t-questionnaire__firm_investment_size_id') + b.text } %>
               </div>
             <% end %>
           <% end %>
