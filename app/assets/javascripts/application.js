@@ -6,6 +6,6 @@ require(['jquery', 'componentLoader', 'eventsWithPromises'], function ($, compon
 });
 
 require(['jquery'], function ($) {
-  require(['modules/AdviserAjaxCall']);
-  require(['modules/DataTransform']);
+  require(['AdviserAjaxCall']);
+  require(['DataTransform']);
 });
