@@ -10,6 +10,10 @@ class Firm < ActiveRecord::Base
 
   has_many :advisers
 
+  has_many :subsidiaries, class_name: 'Firm', foreign_key: :parent_id
+
+  belongs_to :parent, class_name: 'Firm'
+
   attr_accessor :percent_total
 
   validates :email_address,
@@ -74,6 +78,10 @@ class Firm < ActiveRecord::Base
 
   validates :investment_sizes,
     length: { minimum: 1 }
+
+  def subsidiary?
+    parent.present?
+  end
 
   private
 

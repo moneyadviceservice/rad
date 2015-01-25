@@ -1,6 +1,21 @@
 RSpec.describe Firm do
   subject(:firm) { build(:firm) }
 
+  describe 'subsidaries' do
+    context 'when the firm has a parent' do
+      it 'is classed as a subsidiary' do
+        expect(build(:subsidiary)).to be_subsidiary
+      end
+    end
+
+    describe '#subsidiaries' do
+      it 'exposes subsidiaries' do
+        subsidiary = create(:subsidiary)
+        expect(subsidiary.parent.subsidiaries).to contain_exactly(subsidiary)
+      end
+    end
+  end
+
   describe 'validation' do
     it 'is valid with valid attributes' do
       expect(firm).to be_valid

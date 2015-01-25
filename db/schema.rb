@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150124124350) do
+ActiveRecord::Schema.define(version: 20150125164156) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -97,9 +97,9 @@ ActiveRecord::Schema.define(version: 20150124124350) do
     t.integer  "inheritance_tax_and_estate_planning_percent"
     t.integer  "wills_and_probate_percent"
     t.integer  "other_percent"
+    t.integer  "parent_id"
   end
 
-  add_index "firms", ["fca_number"], name: "index_firms_on_fca_number", unique: true, using: :btree
   add_index "firms", ["initial_meeting_duration_id"], name: "index_firms_on_initial_meeting_duration_id", using: :btree
 
   create_table "firms_in_person_advice_methods", id: false, force: :cascade do |t|

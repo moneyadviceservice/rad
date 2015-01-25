@@ -24,5 +24,9 @@ FactoryGirl.define do
     inheritance_tax_and_estate_planning_percent 15
     wills_and_probate_percent 15
     other_percent 10
+
+    factory :subsidiary do
+      parent factory: Firm
+    end
   end
 end

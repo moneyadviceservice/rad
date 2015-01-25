@@ -13,6 +13,11 @@ Rails.application.routes.draw do
     resources :firms, only: :index do
       resource :questionnaire, only: [:edit, :update]
       resources :advisers
+      resources :subsidiaries, only: [] do
+        member do
+          post 'convert'
+        end
+      end
     end
 
     namespace :lookup do

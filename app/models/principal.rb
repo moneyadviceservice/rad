@@ -58,7 +58,22 @@ class Principal < ActiveRecord::Base
     ]
   end
 
+  def find_or_create_subsidiary(id)
+    subsidiary = lookup_firm.subsidiaries.find(id)
+
+    find_subsidiary(subsidiary).tap do |firm|
+      firm.save(validate: false) unless firm.persisted?
+    end
+  end
+
   private
+
+  def find_subsidiary(subsidiary)
+    firm.subsidiaries.find_or_initialize_by(
+      registered_name: subsidiary.name,
+      fca_number: subsidiary.fca_number
+    )
+  end
 
   def associate_firm
     Firm.new(fca_number: lookup_firm.fca_number, registered_name: lookup_firm.registered_name).tap do |f|
