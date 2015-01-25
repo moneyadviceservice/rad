@@ -21,6 +21,15 @@ RSpec.feature 'Principal completes the firm questionnaire' do
     and_i_am_directed_to_assign_advisers_to_my_firm_or_subsidiary
   end
 
+  scenario 'Successfully complete the subsidiary questionnaire' do
+    given_my_principal_record_exists
+    given_i_have_selected_a_subsidiary
+    and_i_can_see_my_firm_name_and_fca_reference_number
+    when_I_complete_all_mandatory_questions
+    then_my_directory_listing_is_created
+    and_i_am_directed_to_assign_advisers_to_my_firm_or_subsidiary
+  end
+
 
   def given_my_principal_record_exists
     @principal = create(:principal)
@@ -28,6 +37,13 @@ RSpec.feature 'Principal completes the firm questionnaire' do
 
   def given_i_have_selected_a_firm
     @firm = @principal.firm
+    questionnaire_page.load(principal: @principal.token, firm: @firm.to_param)
+  end
+
+  def given_i_have_selected_a_subsidiary
+    subsidiary = @principal.lookup_firm.subsidiaries.create!(name: 'Meh Meh Ltd')
+    @firm = @principal.find_or_create_subsidiary(subsidiary.to_param)
+
     questionnaire_page.load(principal: @principal.token, firm: @firm.to_param)
   end
 
