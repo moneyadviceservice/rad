@@ -25,6 +25,7 @@ en:
             investment_sizes:
               too_short: "- please select at least one"
 
+  error_message: Error
   adviser_sign_in: Sign in to adviser account
   required: "* indicates required fields"
   email_address: "RADenquiries@moneyadviceservice.org.uk"
