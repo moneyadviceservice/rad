@@ -1,10 +1,10 @@
 class QuestionnairesController < ApplicationController
   def edit
-    @firm = current_user.firm
+    @firm = firm_or_subsidiary
   end
 
   def update
-    @firm = current_user.firm
+    @firm = firm_or_subsidiary
 
     if @firm.update(firm_params)
       redirect_to new_principal_firm_adviser_path(current_user, @firm)
@@ -14,6 +14,10 @@ class QuestionnairesController < ApplicationController
   end
 
   private
+
+  def firm_or_subsidiary
+    Firm.find_by(id: params[:firm_id], fca_number: current_user.fca_number)
+  end
 
   def firm_params
     params.require(:firm)
