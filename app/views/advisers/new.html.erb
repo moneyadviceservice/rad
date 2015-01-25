@@ -17,7 +17,7 @@
             <%= f.form_row :reference_number do %>
               <%= f.errors_for :reference_number %>
               <%= f.label :reference_number, t('questionnaire.adviser.advisers_details.label'), class: 'form__label-heading' %>
-              <%= f.text_field :reference_number, class: 't-reference-number', data: { input: '', url: principal_lookup_adviser_path(id: '') } %>
+              <%= f.text_field :reference_number, class: 't-reference-number', data: { transform: '', input: '', url: principal_lookup_adviser_path(id: '') } %>
             <% end %>
           </div>
         </div>
@@ -42,7 +42,7 @@
 
             <%= f.errors_for :postcode %>
             <%= f.label :postcode, t('questionnaire.adviser.geographical_coverage.postcode') %>
-            <%= f.text_field :postcode, class: 't-postcode l-coverage__postcode' %>
+            <%= f.text_field :postcode, class: 't-postcode l-coverage__postcode', data: { transform: '' } %>
             <%= t('questionnaire.adviser.geographical_coverage.coda') %>
           </div>
         <% end %>

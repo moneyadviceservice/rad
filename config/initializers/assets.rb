@@ -18,6 +18,8 @@ Rails.application.configure do
     rsvp/rsvp.js
     dough/assets/js/**/*.js
     modules/FieldToggleVisibility.js
+    modules/DataTransform.js
+    modules/AdviserAjaxCall.js
   )
 
   # Vendor JavaScript

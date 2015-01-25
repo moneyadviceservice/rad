@@ -26,9 +26,10 @@
 
 // Shame
 
-.form__input-container .form__input-label {
+.is-errored .form__input-container .form__input-label {
   // This is to override an error on text boxes that contain an % label.
   // When errored the % is pushed out of the box. Seems to be a Dough-based error.
+  // Is there an error with how this component is laid out which is causing this?
   padding-left: 0;
   padding-right: 5px;
 }
