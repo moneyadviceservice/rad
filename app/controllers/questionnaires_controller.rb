@@ -7,7 +7,7 @@ class QuestionnairesController < ApplicationController
     @firm = current_user.firm
 
     if @firm.update(firm_params)
-      redirect_to new_principal_firm_adviser_path(current_user)
+      redirect_to new_principal_firm_adviser_path(current_user, @firm)
     else
       render :edit
     end

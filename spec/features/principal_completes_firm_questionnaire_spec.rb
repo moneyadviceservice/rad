@@ -22,7 +22,7 @@ RSpec.feature 'Principal completes the firm questionnaire' do
 
   def given_i_have_selected_a_firm
     @principal = create(:principal)
-    questionnaire_page.load(principal: @principal.token)
+    questionnaire_page.load(principal: @principal.token, firm: @principal.firm.to_param)
   end
 
   def and_i_can_see_my_firm_name_and_fca_reference_number

@@ -99,7 +99,7 @@ RSpec.feature 'Principal creates Adviser', type: :request do
 
   def when_i_provide_a_valid_adviser_reference_number
     adviser_page.tap do |p|
-      p.load(principal: principal.token)
+      p.load(principal: principal.token, firm: principal.firm.to_param)
       p.reference_number.set reference
     end
   end

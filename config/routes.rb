@@ -10,7 +10,7 @@ Rails.application.routes.draw do
       get 'reject',      action: 'rejection_form'
     end
 
-    resource :firm, only: :show do
+    resources :firms, only: :index do
       resource :questionnaire, only: [:edit, :update]
       resources :advisers
     end

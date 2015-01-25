@@ -1,6 +1,6 @@
 class FirmPage < SitePrism::Page
-  set_url '/principals/{principal}/firm'
-  set_url_matcher %r{/principals/[a-f0-9]{8}/firm}
+  set_url '/principals/{principal}/firms'
+  set_url_matcher %r{/principals/[a-f0-9]{8}/firms}
 
   element :firm_title, '.t-firm-title'
   element :firm_questionnaire, '.t-firm-questionnaire'
