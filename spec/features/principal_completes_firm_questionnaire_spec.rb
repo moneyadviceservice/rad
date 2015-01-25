@@ -13,21 +13,43 @@ RSpec.feature 'Principal completes the firm questionnaire' do
   end
 
   scenario 'Successfully complete the questionnaire' do
+    given_my_principal_record_exists
     given_i_have_selected_a_firm
     and_i_can_see_my_firm_name_and_fca_reference_number
     when_I_complete_all_mandatory_questions
-    then_my_directory_listing_is_created_and_marked_as_done
+    then_my_directory_listing_is_created
     and_i_am_directed_to_assign_advisers_to_my_firm_or_subsidiary
   end
 
-  def given_i_have_selected_a_firm
+  scenario 'Successfully complete the subsidiary questionnaire' do
+    given_my_principal_record_exists
+    given_i_have_selected_a_subsidiary
+    and_i_can_see_my_firm_name_and_fca_reference_number
+    when_I_complete_all_mandatory_questions
+    then_my_directory_listing_is_created
+    and_i_am_directed_to_assign_advisers_to_my_firm_or_subsidiary
+  end
+
+
+  def given_my_principal_record_exists
     @principal = create(:principal)
-    questionnaire_page.load(principal: @principal.token, firm: @principal.firm.to_param)
+  end
+
+  def given_i_have_selected_a_firm
+    @firm = @principal.firm
+    questionnaire_page.load(principal: @principal.token, firm: @firm.to_param)
+  end
+
+  def given_i_have_selected_a_subsidiary
+    subsidiary = @principal.lookup_firm.subsidiaries.create!(name: 'Meh Meh Ltd')
+    @firm = @principal.find_or_create_subsidiary(subsidiary.to_param)
+
+    questionnaire_page.load(principal: @principal.token, firm: @firm.to_param)
   end
 
   def and_i_can_see_my_firm_name_and_fca_reference_number
-    expect(questionnaire_page.firm_name.text).to eql(@principal.firm.registered_name)
-    expect(questionnaire_page.firm_fca_number.text).to eql(@principal.firm.fca_number.to_s)
+    expect(questionnaire_page.firm_name.text).to eql(@firm.registered_name)
+    expect(questionnaire_page.firm_fca_number.text).to eql(@firm.fca_number.to_s)
   end
 
   def when_I_complete_all_mandatory_questions
@@ -63,10 +85,12 @@ RSpec.feature 'Principal completes the firm questionnaire' do
     end
   end
 
-  def then_my_directory_listing_is_created_and_marked_as_done
-    @principal.firm.reload
-
-    expect(@principal.firm).to be_valid
+  def then_my_directory_listing_is_created
+    @firm.reload.tap do |f|
+      expect(f.email_address).to be_present
+      expect(f.telephone_number).to be_present
+      expect(f.address_line_one).to be_present
+    end
   end
 
   def and_i_am_directed_to_assign_advisers_to_my_firm_or_subsidiary
