@@ -15,8 +15,25 @@ RSpec.feature 'Principal creates Adviser', type: :request do
   let!(:professional_standings) { create_list(:professional_standing, 2) }
   let!(:professional_bodies) { create_list(:professional_body, 2) }
 
-  scenario 'Creating a valid Adviser' do
+  scenario 'Creating a valid Adviser for a Firm' do
     given_i_have_created_a_firm
+    and_the_adviser_exists
+    when_i_provide_a_valid_adviser_reference_number
+    and_i_provide_a_postcode_and_distance_i_can_cover
+    and_i_provide_the_optional_qualifications
+    and_i_provide_the_optional_accreditations
+    and_i_provide_the_optional_statements_of_professional_standing
+    and_i_provide_the_optional_professional_bodies
+    and_i_have_confirmed_the_statement_of_truth
+    when_i_submit_the_advisers_details
+    then_the_adviser_is_assigned_to_the_firm
+    and_i_receive_a_confirmation
+    and_i_can_add_further_advisers
+    and_i_can_return_to_the_landing_page
+  end
+
+  scenario 'Creating a valid Adviser for a Subsidiary' do
+    given_i_have_created_a_subsidiary
     and_the_adviser_exists
     when_i_provide_a_valid_adviser_reference_number
     and_i_provide_a_postcode_and_distance_i_can_cover
@@ -97,12 +114,18 @@ RSpec.feature 'Principal creates Adviser', type: :request do
   end
 
   def given_i_have_created_a_firm
-    expect(principal.firm).to be
+    @firm = principal.firm
+  end
+
+  def given_i_have_created_a_subsidiary
+    @firm = principal.find_or_create_subsidiary(
+      principal.lookup_firm.subsidiaries.first.to_param
+    )
   end
 
   def when_i_provide_a_valid_adviser_reference_number
     adviser_page.tap do |p|
-      p.load(principal: principal.token, firm: principal.firm.to_param)
+      p.load(principal: principal.token, firm: @firm.to_param)
       p.reference_number.set reference
     end
   end
@@ -141,7 +164,7 @@ RSpec.feature 'Principal creates Adviser', type: :request do
 
   def then_the_adviser_is_assigned_to_the_firm
     Adviser.find_by(reference_number: reference).tap do |a|
-      expect(a.firm).to be
+      expect(a.firm).to eq(@firm)
       expect(a.qualifications).to_not be_empty
       expect(a.accreditations).to_not be_empty
       expect(a.professional_standings).to_not be_empty
