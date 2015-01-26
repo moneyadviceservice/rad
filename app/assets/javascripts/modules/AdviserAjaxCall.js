@@ -9,10 +9,7 @@ define(['jquery'], function($) {
     var $success = $('[data-notice="success"]'),
         $error = $('[data-notice="error"]'),
         $inputFieldValue = $(this).val(),
-
-        // constructs the URL to retrieve the FCA Adviser name
         url = $(this).attr('data-url') + $inputFieldValue + ".json",
-
         error404 = "<p>We cannot find that adviser. Please try entering the reference number again.</p>",
         error500 = "<p>The server is not responding. We are unable to check whether that individual reference number is valid. Please try again later.</p>";
 

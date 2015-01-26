@@ -19,20 +19,15 @@
   }
 }
 
-.l-questionnaire__callout {
-  margin-top: -$baseline-unit*3;
-  margin-bottom: $baseline-unit*10;
-}
-
-.l-questionnaire__button {
-  margin-top: $baseline-unit*2;
-}
-
 .l-questionnaire__two-cols {
   @include respond-to($mq-m) {
     float: left;
     width: 50%;
   }
+}
+
+.l-questionnaire__button {
+  margin-top: $baseline-unit*2;
 }
 
 .l-questionnaire__section-description {
@@ -47,11 +42,7 @@
   @include body(18,24);
   font-weight: 700;
   color: $color-green-secondary;
-
-  + p {
-    margin-top: 0;
-    margin-bottom: $baseline-unit*4;
-  }
+  margin-bottom: 0;
 }
 
 .l-coverage {
