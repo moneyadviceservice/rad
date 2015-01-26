@@ -1,7 +1,9 @@
 FactoryGirl.define do
+  sequence(:registered_name) { |n| "Financial Advice #{n} Ltd." }
+
   factory :firm do
     fca_number
-    registered_name 'Financial Advice Ltd'
+    registered_name
     email_address { Faker::Internet.email }
     telephone_number { Faker::Base.numerify('##### ### ###') }
     address_line_one { Faker::Address.street_address }
