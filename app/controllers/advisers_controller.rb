@@ -20,7 +20,9 @@ class AdvisersController < ApplicationController
   private
 
   def advisers
-    current_user.firm.advisers
+    Firm
+      .find_by(id: params[:firm_id], fca_number: current_user.fca_number)
+      .advisers
   end
 
   def adviser_params
