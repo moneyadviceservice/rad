@@ -4,5 +4,8 @@
     <p class="l-questionnaire__legend"><%= t(:subheading, scope: "questionnaire.adviser.notice", name: @adviser.name) %></p>
     <p><%= t('questionnaire.adviser.notice.description') %></p>
     <%= link_to t('questionnaire.adviser.add_another_adviser_button'), new_principal_firm_adviser_path, class: 'button button--primary t-add-another' %>
+    <% if current_user.subsidiaries? %>
+      <%= link_to t('questionnaire.adviser.landing_page_button'), principal_firms_path, class: 'button button--primary t-landing-page' %>
+    <% end %>
   </section>
 </div>

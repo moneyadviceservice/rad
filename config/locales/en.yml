@@ -147,6 +147,7 @@ en:
 
       disclaimer: By registering your firm details with the Money Advice Service, you are confirming that these details and any responses you give to our registration questions are true and accurate.
       add_another_adviser_button: or add another adviser
+      landing_page_button: Add more firms
       notice:
         heading: Thank you
         subheading: "%{name} was created."

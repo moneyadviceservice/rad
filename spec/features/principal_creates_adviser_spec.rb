@@ -1,8 +1,13 @@
 RSpec.feature 'Principal creates Adviser', type: :request do
   let(:reference) { 'ABC12345' }
   let(:name) { 'Daisy Lovell' }
-  let(:principal) { create(:principal) }
+  let(:principal) do
+    create(:principal) do |p|
+      p.lookup_firm.subsidiaries.create!(name: 'A Subsidiary Ltd')
+    end
+  end
   let(:adviser_page) { AdviserPage.new }
+  let(:firm_page) { FirmPage.new }
   let(:adviser_confirmation_page) { AdviserConfirmationPage.new }
 
   let!(:qualifications) { create_list(:qualification, 2) }
@@ -10,23 +15,21 @@ RSpec.feature 'Principal creates Adviser', type: :request do
   let!(:professional_standings) { create_list(:professional_standing, 2) }
   let!(:professional_bodies) { create_list(:professional_body, 2) }
 
-  scenario 'Creating a valid Adviser', js: true do
-    Capybara.using_driver(:poltergeist) do
-      given_i_have_created_a_firm
-      and_the_adviser_exists
-      when_i_provide_a_valid_adviser_reference_number
-      and_the_adviser_is_matched
-      and_i_provide_a_postcode_and_distance_i_can_cover
-      and_i_provide_the_optional_qualifications
-      and_i_provide_the_optional_accreditations
-      and_i_provide_the_optional_statements_of_professional_standing
-      and_i_provide_the_optional_professional_bodies
-      and_i_have_confirmed_the_statement_of_truth
-      when_i_submit_the_advisers_details
-      then_the_adviser_is_assigned_to_the_firm
-      and_i_receive_a_confirmation
-      and_i_can_add_further_advisers
-    end
+  scenario 'Creating a valid Adviser' do
+    given_i_have_created_a_firm
+    and_the_adviser_exists
+    when_i_provide_a_valid_adviser_reference_number
+    and_i_provide_a_postcode_and_distance_i_can_cover
+    and_i_provide_the_optional_qualifications
+    and_i_provide_the_optional_accreditations
+    and_i_provide_the_optional_statements_of_professional_standing
+    and_i_provide_the_optional_professional_bodies
+    and_i_have_confirmed_the_statement_of_truth
+    when_i_submit_the_advisers_details
+    then_the_adviser_is_assigned_to_the_firm
+    and_i_receive_a_confirmation
+    and_i_can_add_further_advisers
+    and_i_can_return_to_the_landing_page
   end
 
   scenario 'Attempting to create an non-existent Adviser' do
@@ -106,11 +109,6 @@ RSpec.feature 'Principal creates Adviser', type: :request do
 
   alias :and_i_provide_a_valid_adviser_reference_number :when_i_provide_a_valid_adviser_reference_number
 
-  def and_the_adviser_is_matched
-    skip 'Needed some attention in travis'
-    expect(adviser_page).to be_matched_adviser(name)
-  end
-
   def and_i_provide_a_postcode_and_distance_i_can_cover
     adviser_page.travel_distance.select '100'
     adviser_page.postcode.set 'GU9 9BN'
@@ -156,8 +154,12 @@ RSpec.feature 'Principal creates Adviser', type: :request do
   end
 
   def and_i_can_add_further_advisers
-    adviser_confirmation_page.add_another.click
+    expect(adviser_confirmation_page.add_another).to be_present
+  end
 
-    expect(adviser_page).to be_displayed
+  def and_i_can_return_to_the_landing_page
+    adviser_confirmation_page.go_to_landing_page.click
+
+    expect(firm_page).to be_displayed
   end
 end
