@@ -37,9 +37,9 @@ FactoryGirl.create_list(:principal, 3) if Rails.env.development?
 
 [
   'Under £50,000',
-  'Between £50,001 and £100,000',
-  'Between £100,001 - £150,000',
-  'Over £150,001'
+  '£50,000 - 99,999',
+  '£100,000 - £149,999',
+  'Over £150,000'
 ].each { |item| InvestmentSize.find_or_create_by(name: item) }
 
 [
