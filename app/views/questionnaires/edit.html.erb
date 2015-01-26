@@ -219,9 +219,6 @@
         <%= heading_tag(t('questionnaire.retirement_advice.business_split.heading'), level: 2, class: 'heading-small') %>
         <p><%= t('questionnaire.retirement_advice.business_split.description') %></p>
 
-        <%= heading_tag(t('questionnaire.retirement_advice.business_split.disclaimer.heading'), level: 3, class: 'l-questionnaire__legend heading-extra-small') %>
-        <p class="l-questionnaire__section-description"><%= t('questionnaire.retirement_advice.business_split.disclaimer.text') %></p>
-
         <fieldset class="form__group">
           <legend class="l-questionnaire__legend"><%= t('questionnaire.retirement_advice.business_split.subheading') %></legend>
 
@@ -251,6 +248,11 @@
             <p id="other_description" class="footnote"><%= t('questionnaire.retirement_advice.business_split.footnotes.other_html') %></p>
           </section>
         </fieldset>
+
+        <div class="notice">
+          <%= heading_tag(t('questionnaire.retirement_advice.business_split.disclaimer.heading'), level: 3, class: 'heading-extra-small') %>
+          <p><%= t('questionnaire.retirement_advice.business_split.disclaimer.text') %></p>
+        </div>
       </section>
 
       <hr>
