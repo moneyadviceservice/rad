@@ -208,7 +208,7 @@ en:
       heading: Ongoing advice *
 
     allowed_payment_methods:
-      heading: Do you allow customers to pay for advice *
+      heading: Do you allow customers to pay for advice? *
 
     minimum_fixed_fee:
       heading: Do you have a minimum fee?
