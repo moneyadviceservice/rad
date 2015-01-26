@@ -25,7 +25,7 @@ FactoryGirl.create_list(:principal, 3) if Rails.env.development?
 [
   'Hourly fee',
   'Fixed upfront fee',
-  'Monthly by direct debit (standing order?)',
+  'Monthly by direct debit / standing order',
   'Other'
 ].each { |item| OngoingAdviceFeeStructure.find_or_create_by(name: item) }
 

@@ -76,7 +76,7 @@ en:
       job_title: Job title *
       email_address: Email address *
       telephone_number: Telephone number *
-      disclaimer: By registering your firm with the Money Advice Service, you are confirming that these details and any responses you give to our registration questions are true and accurate.
+      disclaimer: By registering your firm's details with the Money Advice Service, you are confirming that these details and any responses you give to our registration questions are true and accurate.
       fca_number_un_matched: could not be matched
       validation_error_html: If you have any queries, please contact <a href="mailto:RADenquiries@moneyadviceservice.org.uk">RADenquiries@moneyadviceservice.org.uk</a>.
     register_button: Register my firm
@@ -115,6 +115,7 @@ en:
       reference_number_un_matched: could not be matched with an existing adviser reference
       title: Your advisers
       description: Please provide details of advisers in your firm who are eligible to be entered onto the Retirement Adviser Directory.
+      button_add: Add adviser
 
       geographical_coverage:
         heading: Geographical coverage *
@@ -151,7 +152,7 @@ en:
       notice:
         heading: Thank you
         subheading: "%{name} was created."
-        description: Your registration details have been received and have been sent for verification. You can close this window now.
+        description: Your registration details have been received and have been sent for verification. The information you have provided will appear in the directory when we launch it. We will also be adding a 'Firm profile' feature to allow you to manage your information and add further details to your profile in the near future.
 
     about_your_firm:
       heading: About your firm
@@ -159,11 +160,11 @@ en:
       description: Please provide these details about your firm.
 
     providing_your_services:
-      heading: How does your firm provide your services?
+      heading: How does your firm provide its services?
       description: Select the different communication channels your firm uses to advise customers. Check all that apply.
 
     service_charges:
-      heading: How does your firm charge for your services?*
+      heading: How does your firm charge for its services? *
       description: Confirm the way(s) your firm charges for its services.
       hint: Check all that apply.
 
@@ -212,7 +213,7 @@ en:
 
     minimum_fixed_fee:
       heading: Do you have a minimum fee?
-      label: Please state your minimum fee to the nearest pound.
+      label: If yes, please state your minimum fee to the nearest pound.
 
     button_next: Submit your firm's details
 
@@ -232,16 +233,16 @@ en:
         subheading: "Percentage of overall business income taken from the following types of advice:"
 
         advice_options:
-          retirement_income_products_percent: Retirement income products
-          pension_transfer_percent: Pension transfer
+          retirement_income_products_percent: Conversion of pension pot/other liquid savings into retirement income
+          pension_transfer_percent: Defined benefit pensions (including transfers)
           long_term_care_percent: Long term care
           equity_release_percent: Equity release
           inheritance_tax_and_estate_planning_percent: Inheritance Tax and Estate Planning
           wills_and_probate_percent: Wills & Probate
-          other_percent: Other types of advice <a href="#other_description">&#185;</a>
+          other_percent: Other <a href="#other_description">&#185;</a>
 
         footnotes:
-          heading: Footnotes
+          heading: Supplementary Information
           other_html: |
             <span class="footnote__number">1.</span>This would include investment/pensions advice to clients in the accumulation phase i.e. not seeking ‘at’ or ‘post’ retirement advice - e.g. non-equity release mortgage advice;  protection advice, etc.
 
@@ -256,4 +257,4 @@ en:
 
       pension_pot:
         heading: Total pension pot / investment size *
-        description: "Please tell us what size pension pot you are willing to provide advice on. Check all that apply."
+        description: Please tell us what size pension pot(s) you are willing to provide advice on. Check all that apply.
