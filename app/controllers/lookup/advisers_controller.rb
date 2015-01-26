@@ -1,17 +1,29 @@
 module Lookup
   class AdvisersController < ApplicationController
     def show
-      @adviser = Lookup::Adviser.find_by(reference_number: params[:id])
+      @adviser = ::Adviser.find_by(reference_number: params[:id])
 
       if @adviser
-        Stats.increment('radsignup.adviser.matched')
+        stat :already_matched
 
-        render json: { name: @adviser.name }
+        render json: { error: t('questionnaire.adviser.advisers_details.already_exists_error') }, status: 409
       else
-        Stats.increment('radsignup.adviser.unmatched')
+        @lookup_adviser = Adviser.find_by(reference_number: params[:id])
 
-        head :not_found
+        if @lookup_adviser
+          stat :matched
+
+          render json: { name: @lookup_adviser.name }
+        else
+          stat :unmatched
+
+          render json: { error: t('questionnaire.adviser.advisers_details.not_found_error') }, status: 404
+        end
       end
+    end
+
+    def stat(key)
+      Stats.increment("radsignup.adviser.#{key}")
     end
   end
 end
