@@ -29,6 +29,7 @@ en:
   adviser_sign_in: Sign in to adviser account
   required: "* indicates required fields"
   email_address: "RADenquiries@moneyadviceservice.org.uk"
+  confirmation_statement: By registering your firm's details with the Money Advice Service, you are confirming that these details and any responses you give to our registration questions are true and accurate.
 
   footer:
     text: If you need help please contact us at
@@ -76,7 +77,6 @@ en:
       job_title: Job title *
       email_address: Email address *
       telephone_number: Telephone number *
-      disclaimer: By registering your firm's details with the Money Advice Service, you are confirming that these details and any responses you give to our registration questions are true and accurate.
       fca_number_un_matched: could not be matched
       validation_error_html: If you have any queries, please contact <a href="mailto:RADenquiries@moneyadviceservice.org.uk">RADenquiries@moneyadviceservice.org.uk</a>.
     register_button: Register my firm
@@ -146,7 +146,6 @@ en:
         heading: Professional body memberships
         description: "Please confirm the professional bodies this adviser is a member of:"
 
-      disclaimer: By registering your firm details with the Money Advice Service, you are confirming that these details and any responses you give to our registration questions are true and accurate.
       add_another_adviser_button: Add another adviser
       landing_page_button: Or add more firms
       notice:
