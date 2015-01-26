@@ -31,8 +31,7 @@ FactoryGirl.create_list(:principal, 3) if Rails.env.development?
 
 [
   'From their own resources',
-  'From funds to be invested',
-  'Either (Removed due to inconsistency in format of question)'
+  'From funds to be invested'
 ].each { |item| AllowedPaymentMethod.find_or_create_by(name: item) }
 
 [
