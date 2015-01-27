@@ -24,6 +24,7 @@ class Adviser < ActiveRecord::Base
 
   validates :reference_number,
     presence: true,
+    uniqueness: true,
     format: {
       with: /\A[A-Z]{3}[0-9]{5}\z/
     }

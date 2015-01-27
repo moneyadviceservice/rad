@@ -87,6 +87,18 @@ RSpec.describe Adviser do
           expect(a).to_not be_valid
         end
       end
+
+      context 'when an adviser with the same reference number already exists' do
+        let(:reference_number) { 'ABC12345' }
+
+        before do
+          create(:adviser, reference_number: reference_number)
+        end
+
+        it 'must not be valid' do
+          expect(build(:adviser, reference_number: reference_number)).to_not be_valid
+        end
+      end
     end
   end
 end
