@@ -6,13 +6,11 @@ class Principal < ActiveRecord::Base
 
   has_one :firm, primary_key: :fca_number, foreign_key: :fca_number
 
-  validates_presence_of :fca_number
-
   validates :fca_number,
+    presence: true,
     uniqueness: true,
     length: { is: 6 },
-    numericality: { only_integer: true },
-    if: :fca_number?
+    numericality: { only_integer: true }
 
   validates :email_address,
     presence: true,
