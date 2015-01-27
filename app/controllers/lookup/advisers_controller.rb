@@ -6,7 +6,7 @@ module Lookup
       if @adviser
         stat :already_matched
 
-        render json: { error: t('questionnaire.adviser.advisers_details.already_exists_error') }, status: 409
+        render json: { error: t('questionnaire.adviser.error_responses.already_exists') }, status: 409
       else
         @lookup_adviser = Adviser.find_by(reference_number: params[:id])
 
@@ -17,7 +17,7 @@ module Lookup
         else
           stat :unmatched
 
-          render json: { error: t('questionnaire.adviser.advisers_details.not_found_error') }, status: 404
+          render json: { error: t('questionnaire.adviser.error_responses.not_found') }, status: 404
         end
       end
     end
