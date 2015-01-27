@@ -7,6 +7,8 @@ class AdvisersController < ApplicationController
     @adviser = advisers.create(adviser_params)
 
     if @adviser.valid?
+      Stats.increment('radsignup.adviser.registered')
+
       redirect_to principal_firm_adviser_path(id: @adviser)
     else
       render :new

@@ -10,6 +10,8 @@ class ContactsController < ApplicationController
         params[:contact][:message]
       ).deliver_later
 
+      Stats.increment('radsignup.contact.sent')
+
       redirect_to reject_principals_path, notice: t('rejection.contact_sent')
     else
       render 'principals/rejection_form'

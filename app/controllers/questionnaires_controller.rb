@@ -7,6 +7,8 @@ class QuestionnairesController < ApplicationController
     @firm = firm_or_subsidiary
 
     if @firm.update(firm_params)
+      Stats.increment('radsignup.firm.registered')
+
       redirect_to new_principal_firm_adviser_path(current_user, @firm)
     else
       render :edit

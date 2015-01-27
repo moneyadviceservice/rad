@@ -16,10 +16,14 @@ class PrincipalsController < ApplicationController
   end
 
   def rejection_form
+    Stats.increment('radsignup.prequalification.rejection')
+
     @message = ContactForm.new
   end
 
   def new
+    Stats.increment('radsignup.prequalification.success')
+
     @principal = Principal.new
   end
 
@@ -30,6 +34,8 @@ class PrincipalsController < ApplicationController
     @principal = Principal.new(principal_params)
 
     if @principal.save
+      Stats.increment('radsignup.principal.created')
+
       Identification.contact(@principal).deliver_later
       redirect_to @principal
     else
