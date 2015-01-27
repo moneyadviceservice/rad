@@ -15,10 +15,11 @@ RSpec.feature 'Principal creates Adviser' do
   let!(:professional_standings) { create_list(:professional_standing, 2) }
   let!(:professional_bodies) { create_list(:professional_body, 2) }
 
-  scenario 'Creating a valid Adviser for a Firm' do
+  scenario 'Creating a valid Adviser for a Firm', :js do
     given_i_have_created_a_firm
     and_the_adviser_exists
     when_i_provide_a_valid_adviser_reference_number
+    and_the_adviser_is_matched
     and_i_provide_a_postcode_and_distance_i_can_cover
     and_i_provide_the_optional_qualifications
     and_i_provide_the_optional_accreditations
@@ -32,10 +33,11 @@ RSpec.feature 'Principal creates Adviser' do
     and_i_can_return_to_the_landing_page
   end
 
-  scenario 'Creating a valid Adviser for a Subsidiary' do
+  scenario 'Creating a valid Adviser for a Subsidiary', :js do
     given_i_have_created_a_subsidiary
     and_the_adviser_exists
     when_i_provide_a_valid_adviser_reference_number
+    and_the_adviser_is_matched
     and_i_provide_a_postcode_and_distance_i_can_cover
     and_i_provide_the_optional_qualifications
     and_i_provide_the_optional_accreditations
@@ -128,6 +130,10 @@ RSpec.feature 'Principal creates Adviser' do
       p.load(principal: principal.token, firm: @firm.to_param)
       p.reference_number.set reference
     end
+  end
+
+  def and_the_adviser_is_matched
+    expect(adviser_page).to be_matched_adviser('Daisy Lovell')
   end
 
   alias :and_i_provide_a_valid_adviser_reference_number :when_i_provide_a_valid_adviser_reference_number
