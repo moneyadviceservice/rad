@@ -1,4 +1,4 @@
-RSpec.feature 'Principal creates Adviser', type: :request do
+RSpec.feature 'Principal creates Adviser' do
   let(:reference) { 'ABC12345' }
   let(:name) { 'Daisy Lovell' }
   let(:principal) do
@@ -80,23 +80,23 @@ RSpec.feature 'Principal creates Adviser', type: :request do
   end
 
   def when_i_request_a_non_existent_adviser
-    get principal_lookup_adviser_path(principal, 'BAD12345')
+    visit principal_lookup_adviser_path(principal, 'BAD12345')
   end
 
   def then_the_endpoint_responds_404
-    expect(response.status).to eq(404)
+    expect(page.status_code).to eq(404)
   end
 
   def when_i_request_the_advisers_name
-    get principal_lookup_adviser_path(principal, reference)
+    visit principal_lookup_adviser_path(principal, reference)
   end
 
   def then_the_endpoint_responds_ok
-    expect(response).to be_ok
+    expect(page.status_code).to eq(200)
   end
 
   def and_i_am_given_the_advisers_name
-    JSON.parse(response.body).tap do |json|
+    JSON.parse(page.body).tap do |json|
       expect(json['name']).to eq(name)
     end
   end
