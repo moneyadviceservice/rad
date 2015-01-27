@@ -129,6 +129,8 @@ en:
         heading: Enter the Adviser’s FCA individual reference number.
         description: You will then be asked to complete some basic information about that Adviser.
         label: Adviser FCA individual reference number *
+        already_exists_error: An adviser with that reference number already exists.
+        not_found_error: We cannot find that adviser. Please try entering the reference number again.
 
       accreditations:
         heading: Accreditations
