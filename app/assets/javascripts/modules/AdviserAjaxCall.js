@@ -36,7 +36,7 @@ define(['jquery'], function($) {
           $error.html("<p>" + request.responseJSON.error + "</p>");
         },
 
-        500: function(request) {
+        default: function(request) {
           $error.html(error500);
         }
       }
