@@ -7,8 +7,7 @@ class AdvisersController < ApplicationController
     @adviser = advisers.create(adviser_params)
 
     if @adviser.valid?
-      Stats.increment('radsignup.adviser.registered')
-
+      stat
       redirect_to principal_firm_adviser_path(id: @adviser)
     else
       render :new
@@ -20,6 +19,13 @@ class AdvisersController < ApplicationController
   end
 
   private
+
+  def stat
+    'radsignup.adviser.registered'.tap do |key|
+      Stats.increment(key)
+      Stats.gauge(key, Adviser.count)
+    end
+  end
 
   def advisers
     Firm
