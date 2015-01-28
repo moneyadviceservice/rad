@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150128155644) do
+ActiveRecord::Schema.define(version: 20150127084858) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,15 +31,15 @@ ActiveRecord::Schema.define(version: 20150128155644) do
   add_index "accreditations_advisers", ["adviser_id", "accreditation_id"], name: "advisers_accreditations_index", unique: true, using: :btree
 
   create_table "advisers", force: :cascade do |t|
-    t.string   "reference_number",                  null: false
-    t.string   "name",                              null: false
-    t.integer  "firm_id",                           null: false
-    t.datetime "created_at",                        null: false
-    t.datetime "updated_at",                        null: false
-    t.boolean  "confirmed_disclaimer",              null: false
-    t.string   "postcode",             default: "", null: false
-    t.integer  "travel_distance",      default: 0,  null: false
-    t.boolean  "covers_whole_of_uk"
+    t.string   "reference_number",                     null: false
+    t.string   "name",                                 null: false
+    t.integer  "firm_id",                              null: false
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
+    t.boolean  "confirmed_disclaimer",                 null: false
+    t.string   "postcode",             default: "",    null: false
+    t.integer  "travel_distance",      default: 0,     null: false
+    t.boolean  "covers_whole_of_uk",   default: false, null: false
   end
 
   create_table "advisers_professional_bodies", id: false, force: :cascade do |t|
