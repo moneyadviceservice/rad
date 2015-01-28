@@ -1,4 +1,6 @@
 class Firm < ActiveRecord::Base
+  scope :registered, -> { where.not(email_address: nil) }
+
   has_and_belongs_to_many :in_person_advice_methods
   has_and_belongs_to_many :other_advice_methods
   has_and_belongs_to_many :initial_advice_fee_structures

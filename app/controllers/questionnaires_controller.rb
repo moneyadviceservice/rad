@@ -7,8 +7,7 @@ class QuestionnairesController < ApplicationController
     @firm = firm_or_subsidiary
 
     if @firm.update(firm_params)
-      Stats.increment('radsignup.firm.registered')
-
+      stat
       redirect_to new_principal_firm_adviser_path(current_user, @firm)
     else
       render :edit
@@ -16,6 +15,13 @@ class QuestionnairesController < ApplicationController
   end
 
   private
+
+  def stat
+    'radsignup.firm.registered'.tap do |key|
+      Stats.increment(key)
+      Stats.gauge(key, Firm.registered.count)
+    end
+  end
 
   def firm_or_subsidiary
     Firm.find_by(id: params[:firm_id], fca_number: current_user.fca_number)
