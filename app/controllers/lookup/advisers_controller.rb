@@ -27,7 +27,7 @@ module Lookup
     def errors_for(status)
       stat stat_key_for(status)
 
-      render json: { error: t("questionnaire.adviser.error_responses.{status}") }, status: status
+      render json: { error: t("questionnaire.adviser.error_responses.#{status}") }, status: status
     end
 
     def stat_key_for(status)
