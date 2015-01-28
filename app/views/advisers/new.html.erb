@@ -25,124 +25,93 @@
         </fieldset>
       <% end %>
 
+      <fieldset class="form__group">
+        <legend class="l-questionnaire__legend"><%= t('questionnaire.adviser.geographical_coverage.heading') %></legend>
+        <p><%= t('questionnaire.adviser.geographical_coverage.description') %></p>
+
+        <%= f.form_row :travel_distance do %>
+          <div class="l-coverage">
+            <%= f.errors_for :travel_distance %>
+            <%= f.label :travel_distance, t('questionnaire.adviser.geographical_coverage.travel_distance') %>
+            <%= f.select :travel_distance, TravelDistance.all, { include_blank: true }, { class: 't-travel-distance l-coverage__select' } %>
+
+            <%= f.errors_for :postcode %>
+            <%= f.label :postcode, t('questionnaire.adviser.geographical_coverage.postcode') %>
+            <%= f.text_field :postcode, class: 't-postcode l-coverage__postcode', data: { transform: '' } %>
+            <%= t('questionnaire.adviser.geographical_coverage.coda') %>
+          </div>
+        <% end %>
+
+        <%= f.form_row :covers_whole_of_uk do %>
+          <%= f.errors_for :covers_whole_of_uk %>
+          <div class="form__group-item">
+            <%= f.label :covers_whole_of_uk, class: 'form__group-input' do %>
+              <%= f.check_box :covers_whole_of_uk, class: 't-covers-whole-of-uk' %>
+              <%= t('questionnaire.adviser.geographical_coverage.covers_whole_of_uk_html') %>
+            <% end %>
+          </div>
+        <% end %>
+      </fieldset>
+
+      <fieldset class="form__group">
+        <legend class="l-questionnaire__legend"><%= t('questionnaire.adviser.accreditations.heading') %></legend>
+        <p><%= t('questionnaire.adviser.accreditations.description') %></p>
+
+        <%= f.form_row :accreditation_ids do %>
+          <%= f.errors_for :accreditation_ids %>
+
+          <%= f.collection_check_boxes(:accreditation_ids, Accreditation.all, :id, :name) do |b| %>
+            <div class="form__group-item">
+              <%= b.label { b.check_box(class: 'form__group-input') + b.text } %>
+            </div>
+          <% end %>
+        <% end %>
+      </fieldset>
+
+      <fieldset class="form__group">
+        <legend class="l-questionnaire__legend"><%= t('questionnaire.adviser.qualifications.heading') %></legend>
+        <p><%= t('questionnaire.adviser.qualifications.description') %></p>
+
+        <%= f.form_row :qualification_ids do %>
+          <%= f.errors_for :qualification_ids %>
+
+          <%= f.collection_check_boxes(:qualification_ids, Qualification.all, :id, :name) do |b| %>
+            <div class="form__group-item">
+              <%= b.label { b.check_box(class: 'form__group-input') + b.text } %>
+            </div>
+          <% end %>
+        <% end %>
+      </fieldset>
+
+      <fieldset class="form__group">
+        <legend class="l-questionnaire__legend"><%= t('questionnaire.adviser.professional_standing.heading') %></legend>
+        <p><%= t('questionnaire.adviser.professional_standing.description') %></p>
+
+        <%= f.form_row :professional_standing_ids do %>
+          <%= f.errors_for :professional_standing_ids %>
+          <%= f.collection_check_boxes(:professional_standing_ids, ProfessionalStanding.all, :id, :name) do |b| %>
+            <div class="form__group-item">
+              <%= b.label { b.check_box(class: 'form__group-input') + b.text } %>
+            </div>
+          <% end %>
+        <% end %>
+      </fieldset>
+
+      <fieldset class="form__group">
+        <legend class="l-questionnaire__legend"><%= t('questionnaire.adviser.professional_body.heading') %></legend>
+        <p><%= t('questionnaire.adviser.professional_body.description') %></p>
+
+        <%= f.form_row :professional_body_ids do %>
+          <%= f.errors_for :professional_body_ids %>
+          <%= f.collection_check_boxes(:professional_body_ids, ProfessionalBody.all, :id, :name) do |b| %>
+            <div class="form__group-item">
+              <%= b.label { b.check_box(class: 'form__group-input') + b.text } %>
+            </div>
+          <% end %>
+        <% end %>
+      </fieldset>
+
       <hr>
-
-      <section>
-        <%= heading_tag(t('questionnaire.adviser.geographical_coverage.heading'), level: 2, class: 'heading-small') %>
-        <p class="l-questionnaire__section-description"><%= t('questionnaire.adviser.geographical_coverage.description') %></p>
-
-        <div data-dough-component="FieldToggleVisibility">
-          <fieldset class="form__group form__group--inline">
-            <legend class="l-questionnaire__legend"><%= t('questionnaire.adviser.geographical_coverage.covers_whole_of_uk') %></legend>
-
-            <%= f.form_row :covers_whole_of_uk do %>
-              <%= f.errors_for :covers_whole_of_uk %>
-              <div class="form__group-item">
-                <label class="form__group-input">
-                  <%= f.radio_button :covers_whole_of_uk, true, class: 't-covers-whole-of-uk', data: { dough_field_trigger_type: 'hide', dough_field_trigger: '1'  } %>
-                  <%= t('registration.answer_yes') %>
-                </label>
-              </div>
-
-              <div class="form__group-item">
-                <label class="form__group-input">
-                  <%= f.radio_button :covers_whole_of_uk, false, class: 't-covers-whole-of-uk', data: { dough_field_trigger_type: 'show', dough_field_trigger: '1'  } %>
-                  <%= t('registration.answer_no') %>
-                </label>
-              </div>
-            <% end %>
-          </fieldset>
-
-          <% unless @adviser.covers_whole_of_uk? %>
-            <fieldset class="form__group" data-dough-field-target="1">
-              <legend class="l-questionnaire__legend"><%= t('questionnaire.adviser.geographical_coverage.adviser_services_postcode') %></legend>
-              <%= f.form_row :postcode do %>
-                <div>
-                  <%= f.errors_for :postcode %>
-                  <%= f.label :postcode, t('questionnaire.adviser.geographical_coverage.postcode'), class: 'form__label-heading' %>
-                  <%= f.text_field :postcode, class: 't-postcode form__input-container--medium', data: { transform: '' } %>
-                </div>
-              <% end %>
-
-              <%= f.form_row :travel_distance do %>
-                <div>
-                  <%= f.errors_for :travel_distance %>
-                  <%= f.label :travel_distance, t('questionnaire.adviser.geographical_coverage.travel_distance'), class: 'form__label-heading' %>
-                  <span>
-                    <%= f.select :travel_distance, TravelDistance.all, { include_blank: true }, { class: 't-travel-distance' } %>
-                    <%= t('questionnaire.adviser.geographical_coverage.unit') %></span>
-                </div>
-              <% end %>
-            </fieldset>
-          <% end %>
-        </div>
-      </section>
-
-      <hr>
-
-      <section>
-        <%= heading_tag(t('questionnaire.adviser.advisers_qualifications.heading'), level: 2, class: 'heading-small') %>
-        <p class="l-questionnaire__section-description"><%= t('questionnaire.adviser.geographical_coverage.description') %></p>
-
-        <fieldset class="form__group">
-          <legend class="l-questionnaire__legend"><%= t('questionnaire.adviser.accreditations.heading') %></legend>
-          <p><%= t('questionnaire.adviser.accreditations.description') %></p>
-
-          <%= f.form_row :accreditation_ids do %>
-            <%= f.errors_for :accreditation_ids %>
-
-            <%= f.collection_check_boxes(:accreditation_ids, Accreditation.all, :id, :name) do |b| %>
-              <div class="form__group-item">
-                <%= b.label { b.check_box(class: 'form__group-input') + b.text } %>
-              </div>
-            <% end %>
-          <% end %>
-        </fieldset>
-
-        <fieldset class="form__group">
-          <legend class="l-questionnaire__legend"><%= t('questionnaire.adviser.qualifications.heading') %></legend>
-          <p><%= t('questionnaire.adviser.qualifications.description') %></p>
-
-          <%= f.form_row :qualification_ids do %>
-            <%= f.errors_for :qualification_ids %>
-
-            <%= f.collection_check_boxes(:qualification_ids, Qualification.all, :id, :name) do |b| %>
-              <div class="form__group-item">
-                <%= b.label { b.check_box(class: 'form__group-input') + b.text } %>
-              </div>
-            <% end %>
-          <% end %>
-        </fieldset>
-
-        <fieldset class="form__group">
-          <legend class="l-questionnaire__legend"><%= t('questionnaire.adviser.professional_standing.heading') %></legend>
-          <p><%= t('questionnaire.adviser.professional_standing.description') %></p>
-
-          <%= f.form_row :professional_standing_ids do %>
-            <%= f.errors_for :professional_standing_ids %>
-            <%= f.collection_check_boxes(:professional_standing_ids, ProfessionalStanding.all, :id, :name) do |b| %>
-              <div class="form__group-item">
-                <%= b.label { b.check_box(class: 'form__group-input') + b.text } %>
-              </div>
-            <% end %>
-          <% end %>
-        </fieldset>
-
-        <fieldset class="form__group">
-          <legend class="l-questionnaire__legend"><%= t('questionnaire.adviser.professional_body.heading') %></legend>
-          <p><%= t('questionnaire.adviser.professional_body.description') %></p>
-
-          <%= f.form_row :professional_body_ids do %>
-            <%= f.errors_for :professional_body_ids %>
-
-            <%= f.collection_check_boxes(:professional_body_ids, ProfessionalBody.all, :id, :name) do |b| %>
-              <div class="form__group-item">
-                <%= b.label { b.check_box(class: 'form__group-input') + b.text } %>
-              </div>
-            <% end %>
-          <% end %>
-        </fieldset>
-      </section>
 
       <%= f.form_row :confirmed_disclaimer do %>
         <%= f.errors_for :confirmed_disclaimer %>
