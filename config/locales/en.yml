@@ -118,7 +118,7 @@ en:
       button_add: Add adviser
 
       error_responses:
-        already_exists: An adviser with that reference number already exists.
+        conflict: An adviser with that reference number already exists.
         not_found: We cannot find that adviser. Please try entering the reference number again.
 
       geographical_coverage:
