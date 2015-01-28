@@ -21,14 +21,4 @@ class AdviserPage < SitePrism::Page
   def matched_adviser?(name)
     has_content?(name)
   end
-
-  def covers_whole_of_uk(v)
-    if v
-      does_cover_whole_of_uk.set(true)
-      does_not_cover_whole_of_uk.set(false)
-    else
-      does_cover_whole_of_uk.set(false)
-      does_not_cover_whole_of_uk.set(true)
-    end
-  end
 end
