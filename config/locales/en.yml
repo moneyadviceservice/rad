@@ -117,6 +117,10 @@ en:
       description: Please provide details of advisers in your firm who are eligible to be entered onto the Retirement Adviser Directory.
       button_add: Add adviser
 
+      error_responses:
+        conflict: An adviser with that reference number already exists.
+        not_found: We cannot find that adviser. Please try entering the reference number again.
+
       geographical_coverage:
         heading: Geographical coverage *
         description: Please provide details of the area your adviser is willing to travel to provide their services.
