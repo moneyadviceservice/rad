@@ -8,6 +8,9 @@ class AdviserPage < SitePrism::Page
   element :confirmed_disclaimer, '.t-confirmed-disclaimer'
   element :submit, '.t-submit'
 
+  element :does_cover_whole_of_uk, '#adviser_covers_whole_of_uk_true'
+  element :does_not_cover_whole_of_uk, '#adviser_covers_whole_of_uk_false'
+
   def adviser_unmatched?
     first(
       '.validation-summary__error',
@@ -20,7 +23,12 @@ class AdviserPage < SitePrism::Page
   end
 
   def covers_whole_of_uk(v)
-    key = I18n.t('questionnaire.adviser.geographical_coverage.covers_whole_of_uk_html')
-    v ? check(key) : uncheck(key)
+    if v
+      does_cover_whole_of_uk.set(true)
+      does_not_cover_whole_of_uk.set(false)
+    else
+      does_cover_whole_of_uk.set(false)
+      does_not_cover_whole_of_uk.set(true)
+    end
   end
 end
