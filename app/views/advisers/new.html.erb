@@ -53,7 +53,7 @@
             <% end %>
           </fieldset>
 
-          <% unless @adviser.covers_whole_of_uk %>
+          <% unless @adviser.covers_whole_of_uk? %>
             <fieldset class="form__group" data-dough-field-target="1">
               <legend class="l-questionnaire__legend"><%= t('questionnaire.adviser.geographical_coverage.adviser_services_postcode') %></legend>
               <%= f.form_row :postcode do %>
