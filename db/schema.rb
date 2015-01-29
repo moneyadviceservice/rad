@@ -39,7 +39,7 @@ ActiveRecord::Schema.define(version: 20150128155644) do
     t.boolean  "confirmed_disclaimer",              null: false
     t.string   "postcode",             default: "", null: false
     t.integer  "travel_distance",      default: 0,  null: false
-    t.boolean  "covers_whole_of_uk"
+    t.boolean  "covers_whole_of_uk",                null: false
   end
 
   create_table "advisers_professional_bodies", id: false, force: :cascade do |t|
