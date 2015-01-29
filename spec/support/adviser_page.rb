@@ -8,8 +8,8 @@ class AdviserPage < SitePrism::Page
   element :confirmed_disclaimer, '.t-confirmed-disclaimer'
   element :submit, '.t-submit'
 
-  element :does_cover_whole_of_uk, '#adviser_covers_whole_of_uk_true'
-  element :does_not_cover_whole_of_uk, '#adviser_covers_whole_of_uk_false'
+  element :national_coverage, '#adviser_covers_whole_of_uk_true'
+  element :local_coverage, '#adviser_covers_whole_of_uk_false'
 
   def adviser_unmatched?
     first(

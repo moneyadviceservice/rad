@@ -135,8 +135,8 @@ RSpec.feature 'Principal creates Adviser', type: :request do
   def and_i_provide_a_postcode_and_distance_i_can_cover
     adviser_page.travel_distance.select '100'
     adviser_page.postcode.set 'GU9 9BN'
-    adviser_page.does_cover_whole_of_uk.set false
-    adviser_page.does_not_cover_whole_of_uk.set true
+    adviser_page.national_coverage.set false
+    adviser_page.local_coverage.set true
   end
 
   def and_i_provide_the_optional_qualifications
