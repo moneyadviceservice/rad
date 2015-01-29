@@ -122,14 +122,14 @@ en:
         not_found: We cannot find that adviser. Please try entering the reference number again.
 
       advisers_details:
-        heading: Enter the Adviser’s FCA individual reference number.
+        heading: Enter the adviser’s FCA individual reference number.
         description: You will then be asked to complete some basic information about that Adviser.
         label: Adviser FCA individual reference number *
 
       geographical_coverage:
-        heading: Where does your adviser provide their services?
+        heading: 'Where does your adviser provide their services? *'
         description: This is to show customers if your adviser is willing to travel to provide their services.
-        covers_whole_of_uk: Does your adviser provide UK wide coverage?
+        national_coverage: Does your adviser provide UK wide coverage?
         adviser_services_postcode: Please provide details of the area your adviser offers their services?
         postcode: Adviser's postcode
         travel_distance: Distance the adviser is willing to travel
