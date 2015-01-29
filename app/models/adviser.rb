@@ -34,9 +34,9 @@ class Adviser < ActiveRecord::Base
   def field_order
     [
       :reference_number,
-      :travel_distance,
-      :postcode,
       :covers_whole_of_uk,
+      :postcode,
+      :travel_distance,
       :confirmed_disclaimer
     ]
   end
