@@ -21,6 +21,10 @@ RSpec.describe Firm do
       expect(firm).to be_valid
     end
 
+    it 'orders fields correctly for dough' do
+      expect(firm.field_order).not_to be_empty
+    end
+
     describe 'email address' do
       context 'when not present' do
         before { firm.email_address = nil }

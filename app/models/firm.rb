@@ -85,6 +85,28 @@ class Firm < ActiveRecord::Base
     parent.present?
   end
 
+  def field_order
+    [
+      :email_address,
+      :telephone_number,
+      :address_line_one,
+      :address_line_two,
+      :address_town,
+      :address_county,
+      :address_postcode,
+      :in_person_advice_methods,
+      :free_initial_meeting,
+      :initial_meeting_duration,
+      :initial_advice_fee_structures,
+      :ongoing_advice_fee_structures,
+      :allowed_payment_methods,
+      :minimum_fixed_fee,
+      :percent_total,
+      *I18n.t('questionnaire.retirement_advice.business_split.advice_options').keys,
+      :investment_sizes
+    ]
+  end
+
   private
 
   def sum_of_percentages_equals_one_hundred
