@@ -18,12 +18,12 @@ class Adviser < ActiveRecord::Base
   validates :travel_distance,
     presence: true,
     inclusion: { in: TravelDistance.all },
-    unless: :covers_whole_of_uk?
+    unless: -> { covers_whole_of_uk or covers_whole_of_uk.nil? }
 
   validates :postcode,
     presence: true,
     format: { with: /\A[A-Z\d]{1,4} [A-Z\d]{1,3}\z/ },
-    unless: :covers_whole_of_uk?
+    unless: -> { covers_whole_of_uk or covers_whole_of_uk.nil? }
 
   validates :reference_number,
     presence: true,
