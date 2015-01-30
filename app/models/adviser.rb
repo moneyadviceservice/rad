@@ -12,6 +12,9 @@ class Adviser < ActiveRecord::Base
 
   validates_acceptance_of :confirmed_disclaimer, accept: true
 
+  validates :covers_whole_of_uk,
+    inclusion: { in: [true, false] }
+
   validates :travel_distance,
     presence: true,
     inclusion: { in: TravelDistance.all },
