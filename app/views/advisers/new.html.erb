@@ -55,7 +55,7 @@
 
           <fieldset class="form__group" data-dough-field-target="1">
             <legend class="l-questionnaire__legend"><%= t('questionnaire.adviser.geographical_coverage.adviser_services_postcode') %></legend>
-            <%= f.form_row :travel_distance do %>
+            <%= f.form_row :postcode do %>
               <div>
                 <%= f.errors_for :postcode %>
                 <%= f.label :postcode, t('questionnaire.adviser.geographical_coverage.postcode'), class: 'form__label-heading' %>
