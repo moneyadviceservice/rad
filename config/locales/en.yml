@@ -29,6 +29,8 @@ en:
           attributes:
             covers_whole_of_uk:
               inclusion: '- please select "yes" or "no"'
+            travel_distance:
+              inclusion: "- please select at least one"
 
   error_message: Error
   adviser_sign_in: Sign in to adviser account
