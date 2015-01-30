@@ -6,6 +6,7 @@ en:
       principal:
         fca_number: FCA Number
         confirmed_disclaimer: Truth confirmation statement
+        covers_whole_of_uk: UK wide coverage
       firm:
         percent_total: Percentage total
     errors:
@@ -24,6 +25,10 @@ en:
               too_short: "- please select at least one"
             investment_sizes:
               too_short: "- please select at least one"
+        adviser:
+          attributes:
+            covers_whole_of_uk:
+              inclusion: '- please select "yes" or "no"'
 
   error_message: Error
   adviser_sign_in: Sign in to adviser account
