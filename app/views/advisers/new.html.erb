@@ -39,14 +39,14 @@
               <%= f.errors_for :covers_whole_of_uk %>
               <div class="form__group-item">
                 <label class="form__group-input">
-                  <%= f.radio_button :covers_whole_of_uk, 1, class: 't-covers-whole-of-uk', data: { dough_field_trigger_type: 'hide', dough_field_trigger: '1'  } %>
+                  <%= f.radio_button :covers_whole_of_uk, true, class: 't-covers-whole-of-uk', data: { dough_field_trigger_type: 'hide', dough_field_trigger: '1'  } %>
                   <%= t('registration.answer_yes') %>
                 </label>
               </div>
 
               <div class="form__group-item">
                 <label class="form__group-input">
-                  <%= f.radio_button :covers_whole_of_uk, 0, class: 't-covers-whole-of-uk', data: { dough_field_trigger_type: 'show', dough_field_trigger: '1'  } %>
+                  <%= f.radio_button :covers_whole_of_uk, false, class: 't-covers-whole-of-uk', data: { dough_field_trigger_type: 'show', dough_field_trigger: '1'  } %>
                   <%= t('registration.answer_no') %>
                 </label>
               </div>
