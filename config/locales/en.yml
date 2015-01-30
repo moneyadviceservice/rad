@@ -130,11 +130,11 @@ en:
 
       advisers_details:
         heading: Enter the adviser’s FCA individual reference number.
-        description: You will then be asked to complete some basic information about that Adviser.
+        description: You will then be asked to complete some basic information about that adviser.
         label: Adviser FCA individual reference number *
 
       geographical_coverage:
-        heading: 'Where does your adviser provide their services? *'
+        heading: Where does your adviser provide their services? *
         description: This is to show customers if your adviser is willing to travel to provide their services.
         national_coverage: Does your adviser provide UK wide coverage?
         adviser_services_postcode: Please provide details of the area your adviser offers their services?
@@ -144,7 +144,7 @@ en:
 
       advisers_qualifications:
         heading: What are your advisers details?
-        description: You will then be asked to complete some basic information about that Adviser.
+        description: You will then be asked to complete some basic information about that adviser.
 
       accreditations:
         heading: Accreditations
