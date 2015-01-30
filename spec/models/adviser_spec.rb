@@ -29,6 +29,26 @@ RSpec.describe Adviser do
     end
 
     describe 'geographical coverage' do
+      describe 'does or does not cover whole of uk' do
+        it 'is required' do
+          expect(build(:adviser, covers_whole_of_uk: nil)).to_not be_valid
+        end
+
+        context 'when not selected' do
+          let(:adviser) { build(:adviser, covers_whole_of_uk: nil) }
+
+          before { adviser.valid? }
+
+          it 'does not contain errors for postcode' do
+            expect(adviser.errors).to_not include(:postcode)
+          end
+
+          it 'does not contain errors for travel distance' do
+            expect(adviser.errors).to_not include(:travel_distance)
+          end
+        end
+      end
+
       context 'when the adviser covers whole of UK' do
         it 'ensures travel distance and postcode are empty' do
           create(:adviser, covers_whole_of_uk: true).tap do |a|
