@@ -5,18 +5,6 @@ class ApplicationController < ActionController::Base
 
   before_action :authenticate
 
-  def display_search_box_in_header?
-    false
-  end
-
-  helper_method :display_search_box_in_header?
-
-  def display_auth_in_header?
-    false
-  end
-
-  helper_method :display_auth_in_header?
-
   def display_adviser_sign_in?
     false
   end
