@@ -76,4 +76,50 @@ namespace :export do
       end
     end
   end
+
+  desc 'Export Advisers to CSV=(/path/to/csv)'
+  task advisers: :environment do
+    unless csv_path = ENV['CSV']
+      puts 'Usage: rake export:advisers CSV=/path/to/csv.ext'
+      abort
+    end
+
+    CSV.open(csv_path, 'wb') do |csv|
+      csv << [
+        'ID',
+        'Firm ID',
+        'Created At',
+        'Updated At',
+        'Reference Number',
+        'Name',
+        'Confirmed Disclaimer',
+        'Covers Whole of UK',
+        'Postcode',
+        'Travel Distance',
+        'Qualifications',
+        'Accreditations',
+        'Professional Standings',
+        'Professional Bodies'
+      ]
+
+      Adviser.order(id: :asc).each do |adviser|
+        csv << [
+          adviser.id,
+          adviser.firm_id,
+          adviser.created_at,
+          adviser.updated_at,
+          adviser.reference_number,
+          adviser.name,
+          adviser.confirmed_disclaimer,
+          adviser.covers_whole_of_uk,
+          adviser.postcode,
+          adviser.travel_distance,
+          adviser.qualifications.map(&:name).join(', '),
+          adviser.accreditations.map(&:name).join(', '),
+          adviser.professional_standings.map(&:name).join(', '),
+          adviser.professional_bodies.map(&:name).join(', ')
+        ]
+      end
+    end
+  end
 end
