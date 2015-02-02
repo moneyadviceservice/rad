@@ -42,5 +42,10 @@
   @include body(18,24);
   font-weight: 700;
   color: $color-green-secondary;
-  margin-bottom: 0;
+
+  + p {
+    // CSS bug fix
+    // legend and paragraph margins will not collapse into each other
+    margin-top: 0;
+  }
 }
