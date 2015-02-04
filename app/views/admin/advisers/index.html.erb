@@ -1,4 +1,9 @@
-<h1>Advisers</h1>
+<h1>
+  Advisers
+  <% if firm.present? %>
+    with <%= firm.registered_name %>
+  <% end %>
+</h1>
 
 <p>
   <%= page_entries_info @advisers %>
@@ -8,7 +13,9 @@
   <tr>
     <th>Ref Number</th>
     <th>Name</th>
-    <th>Firm</th>
+    <% unless firm.present? %>
+      <th>Firm</th>
+    <% end %>
     <th>Post Code</th>
     <th>Added</th>
   </tr>
@@ -17,7 +24,9 @@
       <tr>
         <td><%= adviser.reference_number %></td>
         <td><%= adviser.name %></td>
-        <td><%= adviser.firm.registered_name %></td>
+        <% unless firm.present? %>
+          <td><%= adviser.firm.registered_name %></td>
+        <% end %>
         <td><%= adviser.postcode %></td>
         <td><%= adviser.created_at.to_s(:short) %></td>
       </tr>

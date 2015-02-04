@@ -29,6 +29,8 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :advisers, only: :index
-    resources :firms, only: :index
+    resources :firms, only: :index do
+      resources :advisers, only: :index
+    end
   end
 end

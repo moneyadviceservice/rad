@@ -24,7 +24,7 @@
             None
           <% end %>
         </td>
-        <td><%= firm.advisers.count %></td>
+        <td><%= link_to(firm.advisers.count, admin_firm_advisers_path(firm)) %></td>
         <td><%= firm.created_at.to_s(:short) %></td>
       </tr>
     <% end %>
