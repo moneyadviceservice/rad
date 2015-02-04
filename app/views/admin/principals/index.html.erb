@@ -1,0 +1,35 @@
+<h1>Principals</h1>
+
+<p>
+  <%= page_entries_info @principals %>
+</p>
+
+<table class="table table-bordered">
+  <tr>
+    <th>Firm</th>
+    <th>FCA Number</th>
+    <th>Name</th>
+    <th>Website</th>
+    <th>Added</th>
+  </tr>
+  <% if @principals.present? %>
+    <% @principals.each do |principal| %>
+      <tr>
+        <td><%= principal.firm.registered_name %></td>
+        <td><%= principal.fca_number %></td>
+        <td><%= "#{principal.first_name} #{principal.last_name}" %></td>
+        <td><%= principal.website_address %></td>
+        <td><%= principal.created_at.to_s(:short) %></td>
+      </tr>
+    <% end %>
+  <% else %>
+    <tr>
+      <td colspan="6">No principals to display</td>
+    </tr>
+  <% end %>
+</table>
+
+<p>
+  <%= paginate @principals %>
+</p>
+

@@ -32,5 +32,6 @@ Rails.application.routes.draw do
     resources :firms, only: :index do
       resources :advisers, only: :index
     end
+    resources :principals, only: :index
   end
 end
