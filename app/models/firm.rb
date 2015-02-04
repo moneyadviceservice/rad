@@ -18,7 +18,7 @@ class Firm < ActiveRecord::Base
 
   attr_accessor :percent_total
 
-  before_validation :uppercase_postcode
+  before_validation :upcase_postcode
 
   validates :email_address,
     presence: true,
@@ -111,8 +111,8 @@ class Firm < ActiveRecord::Base
 
   private
 
-  def uppercase_postcode
-    self.address_postcode.upcase!
+  def upcase_postcode
+    address_postcode.upcase! if address_postcode.present?
   end
 
   def sum_of_percentages_equals_one_hundred
