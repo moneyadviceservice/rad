@@ -18,7 +18,7 @@
       <tr>
         <td>
           <% if firm.principal.present? %>
-            <%= "#{firm.principal.first_name} #{firm.principal.last_name}" %>
+            <%= link_to "#{firm.principal.first_name} #{firm.principal.last_name}", admin_principal_path(firm.principal) %>
           <% else %>
             N/A
           <% end %>

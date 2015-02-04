@@ -6,6 +6,10 @@
 <div class="panel panel-default">
   <div class="panel-body">
     <p>
+      <strong>Principal:</strong>
+      <%= link_to "#{@firm.principal.first_name} #{@firm.principal.last_name}", admin_principal_path(@firm.principal) %>
+    </p>
+    <p>
       <strong>FCA Number:</strong> <%= @firm.fca_number %>
     </p>
     <p>
