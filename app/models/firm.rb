@@ -18,6 +18,8 @@ class Firm < ActiveRecord::Base
 
   attr_accessor :percent_total
 
+  before_validation :uppercase_postcode
+
   validates :email_address,
     presence: true,
     length: { maximum: 50 },
@@ -37,7 +39,7 @@ class Firm < ActiveRecord::Base
 
   validates :address_postcode,
     presence: true,
-    format: { with: /(([gG][iI][rR] {0,}0[aA]{2})|((([a-pr-uwyzA-PR-UWYZ][a-hk-yA-HK-Y]?[0-9][0-9]?)|(([a-pr-uwyzA-PR-UWYZ][0-9][a-hjkstuwA-HJKSTUW])|([a-pr-uwyzA-PR-UWYZ][a-hk-yA-HK-Y][0-9][abehmnprv-yABEHMNPRV-Y]))) {0,}[0-9][abd-hjlnp-uw-zABD-HJLNP-UW-Z]{2}))/ }
+    format: { with: /\A[A-Z\d]{1,4} [A-Z\d]{1,3}\z/ }
 
   validates :address_town,
     :address_county,
@@ -108,6 +110,10 @@ class Firm < ActiveRecord::Base
   end
 
   private
+
+  def uppercase_postcode
+    self.address_postcode.upcase!
+  end
 
   def sum_of_percentages_equals_one_hundred
     total = retirement_income_products_percent.to_i \
