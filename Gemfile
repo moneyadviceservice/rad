@@ -11,6 +11,7 @@ ruby '2.2.0'
 
 gem 'rails', '4.2.0'
 
+gem 'bootstrap-sass', '~> 3.3.3'
 gem 'bowndler', github: 'moneyadviceservice/bowndler'
 gem 'dough-ruby',
   github: 'moneyadviceservice/dough',
