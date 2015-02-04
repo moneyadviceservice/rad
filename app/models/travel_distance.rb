@@ -1,5 +1,5 @@
 class TravelDistance
   def self.all
-    %w(5 10 25 50 100 150 200 250).map(&:to_i)
+    ['5 miles', '10 miles', '25 miles', '50 miles', '100 miles', '150 miles', '200 miles', '250 miles', 'Nationwide']
   end
 end
