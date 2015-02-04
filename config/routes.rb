@@ -28,6 +28,7 @@ Rails.application.routes.draw do
   resource :contact, only: :create
 
   namespace :admin do
+    resources :advisers, only: :index
     resources :firms, only: :index
   end
 end

@@ -1,0 +1,35 @@
+<h1>Advisers</h1>
+
+<p>
+  <%= page_entries_info @advisers %>
+</p>
+
+<table class="table table-bordered">
+  <tr>
+    <th>Ref Number</th>
+    <th>Name</th>
+    <th>Firm</th>
+    <th>Post Code</th>
+    <th>Added</th>
+  </tr>
+  <% if @advisers.present? %>
+    <% @advisers.each do |adviser| %>
+      <tr>
+        <td><%= adviser.reference_number %></td>
+        <td><%= adviser.name %></td>
+        <td><%= adviser.firm.registered_name %></td>
+        <td><%= adviser.postcode %></td>
+        <td><%= adviser.created_at.to_s(:short) %></td>
+      </tr>
+    <% end %>
+  <% else %>
+    <tr>
+      <td colspan="5">No advisers to display</td>
+    </tr>
+  <% end %>
+</table>
+
+<p>
+  <%= paginate @advisers %>
+</p>
+
