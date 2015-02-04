@@ -21,7 +21,7 @@
     </div>
     <div id="navbar" class="collapse navbar-collapse">
       <ul class="nav navbar-nav">
-        <li><a href="/admin">Home</a></li>
+        <li class="<%= 'active' if current_page?(controller: :pages, action: :home) %>"><%= link_to 'Home', admin_root_path %></li>
         <li class="<%= 'active' if current_page?(controller: :firms) %>"><%= link_to 'Firms', admin_firms_path %></li>
         <li class="<%= 'active' if current_page?(controller: :advisers) %>"><%= link_to 'Advisers', admin_advisers_path %></li>
         <li class="<%= 'active' if current_page?(controller: :principals) %>"><%= link_to 'Principals', admin_principals_path %></li>

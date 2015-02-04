@@ -28,6 +28,7 @@ Rails.application.routes.draw do
   resource :contact, only: :create
 
   namespace :admin do
+    root 'pages#home'
     resources :advisers, only: [:index, :show]
     resources :firms, only: [:index, :show] do
       resources :advisers, only: :index
