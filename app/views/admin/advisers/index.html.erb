@@ -25,7 +25,7 @@
         <td><%= adviser.reference_number %></td>
         <td><%= adviser.name %></td>
         <% unless firm.present? %>
-          <td><%= adviser.firm.registered_name %></td>
+          <td><%= link_to adviser.firm.registered_name, admin_firm_path(adviser.firm) %></td>
         <% end %>
         <td><%= adviser.postcode %></td>
         <td><%= adviser.created_at.to_s(:short) %></td>

@@ -24,10 +24,10 @@
           <% end %>
         </td>
         <td><%= firm.fca_number %></td>
-        <td><%= firm.registered_name %></td>
+        <td><%= link_to firm.registered_name, admin_firm_path(firm) %></td>
         <td>
           <% if firm.subsidiary? %>
-            <%= firm.parent.registered_name %>
+            <%= link_to firm.parent.registered_name, admin_firm_path(firm.parent) %>
           <% else %>
             None
           <% end %>

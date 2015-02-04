@@ -15,7 +15,7 @@
   <% if @principals.present? %>
     <% @principals.each do |principal| %>
       <tr>
-        <td><%= principal.firm.registered_name %></td>
+        <td><%= link_to principal.firm.registered_name, admin_firm_path(principal.firm) %></td>
         <td><%= principal.fca_number %></td>
         <td><%= "#{principal.first_name} #{principal.last_name}" %></td>
         <td><%= principal.website_address %></td>
