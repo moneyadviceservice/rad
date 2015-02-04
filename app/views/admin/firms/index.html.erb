@@ -1,1 +1,41 @@
 <h1>Firms</h1>
+
+<p>
+  <%= page_entries_info @firms %>
+</p>
+
+<table class="table table-bordered">
+  <tr>
+    <th>FCA Number</th>
+    <th>Registered Name</th>
+    <th>Parent Firm</th>
+    <th># Advisers</th>
+    <th>Added</th>
+  </tr>
+  <% if @firms.present? %>
+    <% @firms.each do |firm| %>
+      <tr>
+        <td><%= firm.fca_number %></td>
+        <td><%= firm.registered_name %></td>
+        <td>
+          <% if firm.subsidiary? %>
+            <%= firm.parent.registered_name %>
+          <% else %>
+            None
+          <% end %>
+        </td>
+        <td><%= firm.advisers.count %></td>
+        <td><%= firm.created_at.to_s(:short) %></td>
+      </tr>
+    <% end %>
+  <% else %>
+    <tr>
+      <td colspan="5">No firms to display</td>
+    </tr>
+  <% end %>
+</table>
+
+<p>
+  <%= paginate @firms %>
+</p>
+
