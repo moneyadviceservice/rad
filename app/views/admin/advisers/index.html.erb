@@ -23,7 +23,7 @@
     <% @advisers.each do |adviser| %>
       <tr>
         <td><%= adviser.reference_number %></td>
-        <td><%= adviser.name %></td>
+        <td><%= link_to adviser.name, admin_adviser_path(adviser) %></td>
         <% unless firm.present? %>
           <td><%= link_to adviser.firm.registered_name, admin_firm_path(adviser.firm) %></td>
         <% end %>

@@ -64,7 +64,7 @@
 
   <ul>
     <% @firm.advisers.each do |adviser| %>
-      <li><%= adviser.name %>, added <%= adviser.created_at.to_s(:short) %></li>
+      <li><%= link_to adviser.name, admin_adviser_path(adviser) %>, added <%= adviser.created_at.to_s(:short) %></li>
     <% end %>
   </ul>
 <% else %>
