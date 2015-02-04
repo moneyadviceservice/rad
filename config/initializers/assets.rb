@@ -6,6 +6,7 @@ Rails.application.configure do
 
   # Application Stylesheets
   config.assets.precompile += %w(
+    admin.css
     enhanced_fixed.css
     enhanced_responsive.css
     dough/assets/stylesheets/basic.css
