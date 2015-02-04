@@ -6,6 +6,7 @@
 
 <table class="table table-bordered">
   <tr>
+    <th>Principal</th>
     <th>FCA Number</th>
     <th>Registered Name</th>
     <th>Parent Firm</th>
@@ -15,6 +16,13 @@
   <% if @firms.present? %>
     <% @firms.each do |firm| %>
       <tr>
+        <td>
+          <% if firm.principal.present? %>
+            <%= "#{firm.principal.first_name} #{firm.principal.last_name}" %>
+          <% else %>
+            N/A
+          <% end %>
+        </td>
         <td><%= firm.fca_number %></td>
         <td><%= firm.registered_name %></td>
         <td>
@@ -30,7 +38,7 @@
     <% end %>
   <% else %>
     <tr>
-      <td colspan="5">No firms to display</td>
+      <td colspan="6">No firms to display</td>
     </tr>
   <% end %>
 </table>
