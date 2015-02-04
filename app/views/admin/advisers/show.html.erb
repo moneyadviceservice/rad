@@ -1,0 +1,27 @@
+<h1>
+  <%= @adviser.name %>
+  <small><%= @adviser.reference_number %></small>
+</h1>
+
+<div class="panel panel-default">
+  <div class="panel-body">
+    <p>
+      <strong>Reference Number:</strong> <%= @adviser.reference_number %>
+    </p>
+    <p>
+      <strong>Name:</strong> <%= @adviser.name %>
+    </p>
+    <p>
+      <strong>Firm:</strong> <%= link_to @adviser.firm.registered_name, admin_firm_path(@adviser.firm) %>
+    </p>
+    <p>
+      <strong>Post Code:</strong> <%= @adviser.postcode.present? ? @adviser.postcode : 'unset' %>
+    </p>
+    <p>
+      <strong>Travel Distance:</strong> <%= @adviser.travel_distance > 0 ? "#{@adviser.travel_distance} miles" : 'unset' %>
+    </p>
+    <p>
+      <strong>Added:</strong> <%= @adviser.created_at.to_s(:long) %>
+    </p>
+  </div>
+</div>

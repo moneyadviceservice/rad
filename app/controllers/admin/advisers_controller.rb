@@ -9,6 +9,10 @@ class Admin::AdvisersController < Admin::ApplicationController
     @advisers = @advisers.page(params[:page]).per(20)
   end
 
+  def show
+    @adviser = Adviser.find(params[:id])
+  end
+
   private
 
   def firm
