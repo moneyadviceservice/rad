@@ -10,6 +10,8 @@ class Adviser < ActiveRecord::Base
 
   before_validation :clear_geographical_coverage, if: :covers_whole_of_uk?
 
+  before_validation :upcase_postcode
+
   validates_acceptance_of :confirmed_disclaimer, accept: true
 
   validates :covers_whole_of_uk,
@@ -45,6 +47,10 @@ class Adviser < ActiveRecord::Base
   end
 
   private
+
+  def upcase_postcode
+    postcode.upcase! if postcode.present?
+  end
 
   def clear_geographical_coverage
     self.postcode = ''
