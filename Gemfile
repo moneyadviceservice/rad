@@ -17,6 +17,7 @@ gem 'dough-ruby',
   github: 'moneyadviceservice/dough',
   require: 'dough',
   ref: 'cf08913'
+gem 'kaminari'
 gem 'letter_opener', group: :development
 gem 'pg'
 gem 'rollbar'
