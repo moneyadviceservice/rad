@@ -35,18 +35,18 @@
           <fieldset class="form__group form__group--inline">
             <legend class="l-questionnaire__legend"><%= t('questionnaire.adviser.geographical_coverage.national_coverage') %></legend>
 
-            <%= f.form_row :covers_whole_of_uk do %>
+            <%= f.form_row :covers_whole_of_uk, html_options: { classes: 't-covers-whole-of-uk' } do %>
               <%= f.errors_for :covers_whole_of_uk %>
               <div class="form__group-item">
                 <label class="form__group-input">
-                  <%= f.radio_button :covers_whole_of_uk, true, class: 't-covers-whole-of-uk', data: { dough_field_trigger_type: 'hide', dough_field_trigger: '1'  } %>
+                  <%= f.radio_button :covers_whole_of_uk, true, data: { dough_field_trigger_type: 'hide', dough_field_trigger: '1'  } %>
                   <%= t('registration.answer_yes') %>
                 </label>
               </div>
 
               <div class="form__group-item">
                 <label class="form__group-input">
-                  <%= f.radio_button :covers_whole_of_uk, false, class: 't-covers-whole-of-uk', data: { dough_field_trigger_type: 'show', dough_field_trigger: '1'  } %>
+                  <%= f.radio_button :covers_whole_of_uk, false, data: { dough_field_trigger_type: 'show', dough_field_trigger: '1'  } %>
                   <%= t('registration.answer_no') %>
                 </label>
               </div>

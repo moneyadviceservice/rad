@@ -3,13 +3,11 @@ class AdviserPage < SitePrism::Page
   set_url_matcher %r{/principals/[a-f0-9]{8}/firms/\d+/advisers/new}
 
   element :reference_number, '.t-reference-number'
+  element :covers_whole_of_uk, '.t-covers-whole-of-uk'
   element :postcode, '.t-postcode'
   element :travel_distance, '.t-travel-distance'
   element :confirmed_disclaimer, '.t-confirmed-disclaimer'
   element :submit, '.t-submit'
-
-  element :national_coverage, '#adviser_covers_whole_of_uk_true'
-  element :local_coverage, '#adviser_covers_whole_of_uk_false'
 
   def adviser_unmatched?
     first(
