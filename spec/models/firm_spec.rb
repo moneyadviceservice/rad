@@ -95,7 +95,7 @@ RSpec.describe Firm do
       context 'when none assigned' do
         before { firm.in_person_advice_methods = [] }
 
-        it { is_expected.not_to be_valid }
+        it { is_expected.to be_valid }
       end
     end
 

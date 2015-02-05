@@ -13,8 +13,6 @@ en:
       models:
         firm:
           attributes:
-            in_person_advice_methods:
-              too_short: "- please select at least one"
             free_initial_meeting:
               inclusion: '- please select "yes" or "no"'
             initial_advice_fee_structures:
