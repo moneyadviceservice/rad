@@ -80,6 +80,10 @@ class Firm < ActiveRecord::Base
   validates :investment_sizes,
     length: { minimum: 1 }
 
+  def in_person_advice?
+    in_person_advice_methods.present?
+  end
+
   def subsidiary?
     parent.present?
   end
