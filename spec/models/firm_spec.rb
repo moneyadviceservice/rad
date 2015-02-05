@@ -1,6 +1,22 @@
 RSpec.describe Firm do
   subject(:firm) { build(:firm) }
 
+  describe '#in_person_advice?' do
+    context 'when the firm offers in person advice' do
+      it 'is true' do
+        expect(firm).to be_in_person_advice
+      end
+    end
+
+    context 'when the firm does not offer in person advice' do
+      it 'is false' do
+        firm.in_person_advice_methods.clear
+
+        expect(firm).to_not be_in_person_advice
+      end
+    end
+  end
+
   describe 'subsidaries' do
     context 'when the firm has a parent' do
       it 'is classed as a subsidiary' do
@@ -95,7 +111,7 @@ RSpec.describe Firm do
       context 'when none assigned' do
         before { firm.in_person_advice_methods = [] }
 
-        it { is_expected.not_to be_valid }
+        it { is_expected.to be_valid }
       end
     end
 

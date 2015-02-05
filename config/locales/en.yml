@@ -13,8 +13,6 @@ en:
       models:
         firm:
           attributes:
-            in_person_advice_methods:
-              too_short: "- please select at least one"
             free_initial_meeting:
               inclusion: '- please select "yes" or "no"'
             initial_advice_fee_structures:
@@ -203,7 +201,7 @@ en:
       label_five: Post code *
 
     in_person_advice_methods:
-      heading: Does your firm offer advice (through to transaction) in person? *
+      heading: Does your firm offer advice (through to transaction) in person?
 
     other_advice_methods:
       heading: Does your firm offer advice by other methods through to transaction?

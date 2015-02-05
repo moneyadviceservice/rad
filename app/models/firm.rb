@@ -45,9 +45,6 @@ class Firm < ActiveRecord::Base
     :address_county,
     presence: true
 
-  validates :in_person_advice_methods,
-    length: { minimum: 1 }
-
   validates :free_initial_meeting,
     inclusion: { in: [true, false] }
 
@@ -82,6 +79,10 @@ class Firm < ActiveRecord::Base
 
   validates :investment_sizes,
     length: { minimum: 1 }
+
+  def in_person_advice?
+    in_person_advice_methods.present?
+  end
 
   def subsidiary?
     parent.present?
