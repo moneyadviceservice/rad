@@ -1,10 +1,11 @@
 class Admin::AdvisersController < Admin::ApplicationController
   def index
-    @advisers = if firm
-                  firm.advisers
-                else
-                  Adviser.all
-                end
+    @search = Adviser.ransack(params[:q])
+    @advisers = @search.result
+
+    if firm
+      @advisers = @advisers.where(:firm_id => firm)
+    end
 
     @advisers = @advisers.page(params[:page]).per(20)
   end

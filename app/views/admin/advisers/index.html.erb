@@ -1,44 +1,74 @@
-<h1>
-  Advisers
-  <% if firm.present? %>
-    with <%= firm.registered_name %>
-  <% end %>
-</h1>
-
-<p>
-  <%= page_entries_info @advisers %>
-</p>
-
-<table class="table table-bordered">
-  <tr>
-    <th>Ref Number</th>
-    <th>Name</th>
-    <% unless firm.present? %>
-      <th>Firm</th>
+<div class="row">
+  <div class="col-xs-10 col-xs-push-2">
+    <h1>
+      Advisers
+      <% if firm.present? %>
+          with <%= firm.registered_name %>
+      <% end %>
+    </h1>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-2">
+    <%= search_form_for @search, url: [:admin, firm, :advisers], method: :get do |f| %>
+      <div class="form-group">
+        <%= f.label :reference_number_cont, 'Search Ref Numbers' %>
+        <%= f.search_field :reference_number_cont, class: 'form-control' %>
+      </div>
+      <div class="form-group">
+        <%= f.label :name_cont, 'Search Adviser Names' %>
+        <%= f.search_field :name_cont, class: 'form-control' %>
+      </div>
+      <% unless firm.present? %>
+        <div class="form-group">
+          <%= f.label :firm_registered_name_cont, 'Search Firms Names' %>
+          <%= f.search_field :firm_registered_name_cont, class: 'form-control' %>
+        </div>
+      <% end %>
+        <div class="form-group">
+          <%= f.label :postcode_cont, 'Search Post Codes' %>
+          <%= f.search_field :postcode_cont, class: 'form-control' %>
+        </div>
+      <div class="form-group">
+        <button type="submit" class="btn btn-default">Submit</button>
+      </div>
     <% end %>
-    <th>Post Code</th>
-    <th>Added</th>
-  </tr>
-  <% if @advisers.present? %>
-    <% @advisers.each do |adviser| %>
+    <p>
+      <%= page_entries_info @advisers %>
+    </p>
+  </div>
+  <div class="col-xs-10">
+    <table class="table table-bordered">
       <tr>
-        <td><%= adviser.reference_number %></td>
-        <td><%= link_to adviser.name, admin_adviser_path(adviser) %></td>
+        <th><%= sort_link(@search, :reference_number, 'Ref Number') %></th>
+        <th><%= sort_link(@search, :name) %></th>
         <% unless firm.present? %>
-          <td><%= link_to adviser.firm.registered_name, admin_firm_path(adviser.firm) %></td>
+            <th><%= sort_link(@search, :firm_registered_name, 'Firm') %></th>
         <% end %>
-        <td><%= adviser.postcode %></td>
-        <td><%= adviser.created_at.to_s(:short) %></td>
+        <th><%= sort_link(@search, :postcode, 'Post Code') %></th>
+        <th><%= sort_link(@search, :created_at, 'Added') %></th>
       </tr>
-    <% end %>
-  <% else %>
-    <tr>
-      <td colspan="5">No advisers to display</td>
-    </tr>
-  <% end %>
-</table>
+      <% if @advisers.present? %>
+          <% @advisers.each do |adviser| %>
+              <tr>
+                <td><%= adviser.reference_number %></td>
+                <td><%= link_to adviser.name, admin_adviser_path(adviser) %></td>
+                <% unless firm.present? %>
+                    <td><%= link_to adviser.firm.registered_name, admin_firm_path(adviser.firm) %></td>
+                <% end %>
+                <td><%= adviser.postcode %></td>
+                <td><%= adviser.created_at.to_s(:short) %></td>
+              </tr>
+          <% end %>
+      <% else %>
+          <tr>
+            <td colspan="5">No advisers to display</td>
+          </tr>
+      <% end %>
+    </table>
 
-<p>
-  <%= paginate @advisers %>
-</p>
-
+    <p>
+      <%= paginate @advisers %>
+    </p>
+  </div>
+</div>
