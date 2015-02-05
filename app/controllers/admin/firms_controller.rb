@@ -1,6 +1,7 @@
 class Admin::FirmsController < Admin::ApplicationController
   def index
-    @firms = Firm.page(params[:page]).per(20)
+    @search = Firm.ransack(params[:q])
+    @firms = @search.result.page(params[:page]).per(20)
   end
 
   def show
