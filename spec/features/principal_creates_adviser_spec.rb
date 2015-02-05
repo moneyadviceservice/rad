@@ -133,7 +133,7 @@ RSpec.feature 'Principal creates Adviser' do
   end
 
   def and_the_adviser_is_matched
-    expect(adviser_page).to be_matched_adviser('Daisy Lovell')
+    expect(adviser_page).to be_matched_adviser(name)
   end
 
   alias :and_i_provide_a_valid_adviser_reference_number :when_i_provide_a_valid_adviser_reference_number
