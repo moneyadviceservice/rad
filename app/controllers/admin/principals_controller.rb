@@ -1,6 +1,7 @@
 class Admin::PrincipalsController < Admin::ApplicationController
   def index
-    @principals = Principal.page(params[:page]).per(20)
+    @search = Principal.ransack(params[:q])
+    @principals = @search.result.page(params[:page]).per(20)
   end
 
   def show
