@@ -1,0 +1,58 @@
+<div class="row">
+  <div class="col-xs-10 col-xs-push-2">
+    <h1>
+      Advisers
+      <small>(lookup data)</small>
+    </h1>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-2">
+    <%= search_form_for @search, url: admin_lookup_advisers_path, method: :get do |f| %>
+      <div class="form-group">
+        <%= f.label :reference_number_cont, 'Search Ref Numbers' %>
+        <%= f.search_field :reference_number_cont, class: 'form-control' %>
+      </div>
+      <div class="form-group">
+        <%= f.label :name_cont, 'Search Adviser Names' %>
+        <%= f.search_field :name_cont, class: 'form-control' %>
+      </div>
+      <div class="form-group">
+        <button type="submit" class="btn btn-default">Submit</button>
+      </div>
+    <% end %>
+    <p>
+      <%= page_entries_info @advisers %>
+    </p>
+  </div>
+  <div class="col-xs-10">
+    <table class="table table-bordered">
+      <tr>
+        <th><%= sort_link(@search, :reference_number, 'Ref Number') %></th>
+        <th><%= sort_link(@search, :name) %></th>
+        <th><%= sort_link(@search, :created_at, 'Added') %></th>
+      </tr>
+      <% if @advisers.present? %>
+        <% @advisers.each do |adviser| %>
+          <tr>
+            <td>
+              <%= link_to adviser.reference_number, admin_advisers_path(q: { reference_number_cont: adviser.reference_number }) %>
+            </td>
+            <td>
+              <%= link_to adviser.name, admin_advisers_path(q: { name_cont: adviser.name }) %>
+            </td>
+            <td><%= adviser.created_at.to_s(:short) %></td>
+          </tr>
+        <% end %>
+      <% else %>
+        <tr>
+          <td colspan="5">No advisers to display</td>
+        </tr>
+      <% end %>
+    </table>
+
+    <p>
+      <%= paginate @advisers %>
+    </p>
+  </div>
+</div>
