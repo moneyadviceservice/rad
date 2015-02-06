@@ -16,6 +16,7 @@ Rails.application.configure do
 
   # Application JavaScript
   config.assets.precompile += %w(
+    admin.js
     rsvp/rsvp.js
     dough/assets/js/**/*.js
     modules/FieldToggleVisibility.js
