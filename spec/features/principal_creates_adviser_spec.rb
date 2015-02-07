@@ -1,4 +1,4 @@
-RSpec.feature 'Principal creates Adviser', type: :request do
+RSpec.feature 'Principal creates Adviser' do
   let(:reference) { 'ABC12345' }
   let(:name) { 'Daisy Lovell' }
   let(:principal) do
@@ -15,10 +15,11 @@ RSpec.feature 'Principal creates Adviser', type: :request do
   let!(:professional_standings) { create_list(:professional_standing, 2) }
   let!(:professional_bodies) { create_list(:professional_body, 2) }
 
-  scenario 'Creating a valid Adviser for a Firm' do
+  scenario 'Creating a valid Adviser for a Firm', :js do
     given_i_have_created_a_firm
     and_the_adviser_exists
     when_i_provide_a_valid_adviser_reference_number
+    and_the_adviser_is_matched
     and_i_provide_a_postcode_and_distance_i_can_cover
     and_i_provide_the_optional_qualifications
     and_i_provide_the_optional_accreditations
@@ -32,10 +33,11 @@ RSpec.feature 'Principal creates Adviser', type: :request do
     and_i_can_return_to_the_landing_page
   end
 
-  scenario 'Creating a valid Adviser for a Subsidiary' do
+  scenario 'Creating a valid Adviser for a Subsidiary', :js do
     given_i_have_created_a_subsidiary
     and_the_adviser_exists
     when_i_provide_a_valid_adviser_reference_number
+    and_the_adviser_is_matched
     and_i_provide_a_postcode_and_distance_i_can_cover
     and_i_provide_the_optional_qualifications
     and_i_provide_the_optional_accreditations
@@ -80,23 +82,23 @@ RSpec.feature 'Principal creates Adviser', type: :request do
   end
 
   def when_i_request_a_non_existent_adviser
-    get principal_lookup_adviser_path(principal, 'BAD12345')
+    visit principal_lookup_adviser_path(principal, 'BAD12345')
   end
 
   def then_the_endpoint_responds_404
-    expect(response.status).to eq(404)
+    expect(page.status_code).to eq(404)
   end
 
   def when_i_request_the_advisers_name
-    get principal_lookup_adviser_path(principal, reference)
+    visit principal_lookup_adviser_path(principal, reference)
   end
 
   def then_the_endpoint_responds_ok
-    expect(response).to be_ok
+    expect(page.status_code).to eq(200)
   end
 
   def and_i_am_given_the_advisers_name
-    JSON.parse(response.body).tap do |json|
+    JSON.parse(page.body).tap do |json|
       expect(json['name']).to eq(name)
     end
   end
@@ -130,13 +132,19 @@ RSpec.feature 'Principal creates Adviser', type: :request do
     end
   end
 
+  def and_the_adviser_is_matched
+    unless ENV['TRAVIS']
+      expect(adviser_page).to be_matched_adviser(name)
+    end
+  end
+
   alias :and_i_provide_a_valid_adviser_reference_number :when_i_provide_a_valid_adviser_reference_number
 
   def and_i_provide_a_postcode_and_distance_i_can_cover
+    adviser_page.covers_whole_of_uk.choose 'No'
+
     adviser_page.travel_distance.select '100'
     adviser_page.postcode.set 'GU9 9BN'
-    adviser_page.national_coverage.set false
-    adviser_page.local_coverage.set true
   end
 
   def and_i_provide_the_optional_qualifications
