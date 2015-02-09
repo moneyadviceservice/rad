@@ -36,6 +36,7 @@ Rails.application.routes.draw do
     namespace :lookup do
       resources :advisers, only: :index
       resources :firms, only: :index
+      resources :subsidiaries, only: :index
     end
     resources :principals, only: [:index, :show]
   end
