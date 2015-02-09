@@ -74,3 +74,28 @@
 <% else %>
   <p>No advisers registered.</p>
 <% end %>
+
+<% if @firm.email_address.present? %>
+  <h2>Questionnaire Responses</h2>
+  <ul>
+    <% [
+         :in_person_advice_methods,
+         :other_advice_methods,
+         :free_initial_meeting,
+         :initial_meeting_duration,
+         :initial_advice_fee_structures,
+         :ongoing_advice_fee_structures,
+         :allowed_payment_methods,
+         :minimum_fixed_fee,
+         :percent_total,
+         *t('questionnaire.retirement_advice.business_split.advice_options').keys,
+         :investment_sizes
+       ].each do |attribute|
+    %>
+      <li>
+        <strong><%= attribute.to_s.humanize %>:</strong>
+        <%= render_questionnaire_response(@firm, attribute) %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
