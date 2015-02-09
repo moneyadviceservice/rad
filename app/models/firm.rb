@@ -10,6 +10,8 @@ class Firm < ActiveRecord::Base
 
   belongs_to :initial_meeting_duration
 
+  belongs_to :principal, primary_key: :fca_number, foreign_key: :fca_number
+
   has_many :advisers
 
   has_many :subsidiaries, class_name: 'Firm', foreign_key: :parent_id

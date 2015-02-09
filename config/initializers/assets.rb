@@ -6,6 +6,7 @@ Rails.application.configure do
 
   # Application Stylesheets
   config.assets.precompile += %w(
+    admin.css
     enhanced_fixed.css
     enhanced_responsive.css
     dough/assets/stylesheets/basic.css
@@ -15,6 +16,7 @@ Rails.application.configure do
 
   # Application JavaScript
   config.assets.precompile += %w(
+    admin.js
     rsvp/rsvp.js
     dough/assets/js/**/*.js
     modules/FieldToggleVisibility.js

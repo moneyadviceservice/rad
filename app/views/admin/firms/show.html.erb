@@ -1,0 +1,76 @@
+<h1>
+  <%= @firm.registered_name %>
+  <small>FCA Number <%= @firm.fca_number %></small>
+</h1>
+
+<div class="panel panel-default">
+  <div class="panel-body">
+    <p>
+      <strong>Principal:</strong>
+      <%= link_to "#{@firm.principal.first_name} #{@firm.principal.last_name}", admin_principal_path(@firm.principal) %>
+    </p>
+    <p>
+      <strong>FCA Number:</strong> <%= @firm.fca_number %>
+    </p>
+    <p>
+      <strong>Registered Name:</strong> <%= @firm.registered_name %>
+    </p>
+    <p>
+      <strong>Email Address:</strong> <%= mail_to @firm.email_address %>
+    </p>
+    <p>
+      <strong>Phone Number:</strong> <%= @firm.telephone_number %>
+    </p>
+    <p>
+      <strong>Address:</strong>
+      <% if @firm.address_line_one.present? %>
+        <%= @firm.address_line_one %>,
+        <%= "#{@firm.address_line_two}," if @firm.address_line_two.present? %>
+        <%= @firm.address_town %>,
+        <%= @firm.address_county %>,
+        <%= @firm.address_postcode %>
+      <% else %>
+        Not provided
+      <% end %>
+    </p>
+    <p>
+      <strong>Added:</strong> <%= @firm.created_at.to_s(:long) %>
+    </p>
+  </div>
+</div>
+
+<% if @firm.subsidiary? %>
+  <h2>Parent Firm</h2>
+  <p>
+    <%= @firm.registered_name %> is a subsidiary of
+    <%= link_to @firm.parent.registered_name, admin_firm_path(@firm.parent) %>.
+  </p>
+<% end %>
+
+<% if @firm.subsidiaries.present? %>
+  <h2>Subsidiaries</h2>
+  <p>
+    <%= @firm.registered_name %> has the following subsidiaries:
+  </p>
+
+  <ul>
+    <% @firm.subsidiaries.each do |subsidiary| %>
+      <li><%= link_to subsidiary.registered_name, admin_firm_path(subsidiary) %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<h2>Advisers</h2>
+<% if @firm.advisers.present? %>
+  <p>
+    <%= @firm.registered_name %> has the following advisers:
+  </p>
+
+  <ul>
+    <% @firm.advisers.each do |adviser| %>
+      <li><%= link_to adviser.name, admin_adviser_path(adviser) %>, added <%= adviser.created_at.to_s(:short) %></li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>No advisers registered.</p>
+<% end %>

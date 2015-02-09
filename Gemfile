@@ -11,13 +11,16 @@ ruby '2.2.0'
 
 gem 'rails', '4.2.0'
 
+gem 'bootstrap-sass', '~> 3.3.3'
 gem 'bowndler', github: 'moneyadviceservice/bowndler'
 gem 'dough-ruby',
   github: 'moneyadviceservice/dough',
   require: 'dough',
   ref: 'cf08913'
+gem 'kaminari'
 gem 'letter_opener', group: :development
 gem 'pg'
+gem 'ransack'
 gem 'rollbar'
 gem 'sidekiq'
 gem 'statsd-ruby'

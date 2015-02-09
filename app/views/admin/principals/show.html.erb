@@ -1,0 +1,33 @@
+<h1>
+  <%= "#{@principal.first_name} #{@principal.last_name}" %>
+  <small>FCA Number <%= @principal.fca_number %></small>
+</h1>
+
+<div class="panel panel-default">
+  <div class="panel-body">
+    <p>
+      <strong>Firm:</strong> <%= link_to @principal.firm.registered_name, admin_firm_path(@principal.firm) %>
+    </p>
+    <p>
+      <strong>FCA Number:</strong> <%= @principal.fca_number %>
+    </p>
+    <p>
+      <strong>Name:</strong> <%= "#{@principal.first_name} #{@principal.last_name}" %>
+    </p>
+    <p>
+      <strong>Job Title:</strong> <%= @principal.job_title %>
+    </p>
+    <p>
+      <strong>Phone Number:</strong> <%= @principal.telephone_number %>
+    </p>
+    <p>
+      <strong>Website Address:</strong> <%= @principal.website_address.present? ? @principal.website_address : 'not given' %>
+    </p>
+    <p>
+      <strong>Firm Selection URL:</strong> <%= link_to principal_firms_url(@principal), principal_firms_url(@principal) %>
+    </p>
+    <p>
+      <strong>Added:</strong> <%= @principal.created_at.to_s(:long) %>
+    </p>
+  </div>
+</div>
