@@ -142,7 +142,7 @@ RSpec.feature 'Principal creates Adviser' do
 
   def and_i_provide_a_postcode_and_distance_i_can_cover
     adviser_page.travel_distance.select '100'
-    adviser_page.postcode.set 'GU9 9BN'
+    adviser_page.postcode.set 'gu9 9bn'
   end
 
   def and_i_provide_the_optional_qualifications
