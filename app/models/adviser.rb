@@ -8,24 +8,17 @@ class Adviser < ActiveRecord::Base
 
   before_validation :assign_name, if: :reference_number?
 
-  before_validation :clear_geographical_coverage, if: :covers_whole_of_uk?
-
   before_validation :upcase_postcode
 
   validates_acceptance_of :confirmed_disclaimer, accept: true
 
-  validates :covers_whole_of_uk,
-    inclusion: { in: [true, false] }
-
   validates :travel_distance,
     presence: true,
-    inclusion: { in: TravelDistance.all },
-    unless: :covers_whole_of_uk?
+    inclusion: { in: TravelDistance.all.values }
 
   validates :postcode,
     presence: true,
-    format: { with: /\A[A-Z\d]{1,4} [A-Z\d]{1,3}\z/ },
-    unless: :covers_whole_of_uk?
+    format: { with: /\A[A-Z\d]{1,4} [A-Z\d]{1,3}\z/ }
 
   validates :reference_number,
     presence: true,
@@ -39,7 +32,6 @@ class Adviser < ActiveRecord::Base
   def field_order
     [
       :reference_number,
-      :covers_whole_of_uk,
       :postcode,
       :travel_distance,
       :confirmed_disclaimer
@@ -50,11 +42,6 @@ class Adviser < ActiveRecord::Base
 
   def upcase_postcode
     postcode.upcase! if postcode.present?
-  end
-
-  def clear_geographical_coverage
-    self.postcode = ''
-    self.travel_distance = 0
   end
 
   def assign_name

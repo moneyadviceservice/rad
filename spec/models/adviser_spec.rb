@@ -29,40 +29,23 @@ RSpec.describe Adviser do
     end
 
     describe 'geographical coverage' do
-      describe 'does or does not cover whole of uk' do
-        it 'is required' do
-          expect(build(:adviser, covers_whole_of_uk: nil)).to_not be_valid
+      describe 'travel distance' do
+        it 'must be provided' do
+          expect(build(:adviser, travel_distance: nil)).to_not be_valid
+        end
+
+        it 'must be within the allowed options' do
+          expect(build(:adviser, travel_distance: 999)).to_not be_valid
         end
       end
 
-      context 'when the adviser covers whole of UK' do
-        it 'ensures travel distance and postcode are empty' do
-          create(:adviser, covers_whole_of_uk: true).tap do |a|
-            expect(a.travel_distance).to be_zero
-            expect(a.postcode).to be_empty
-          end
-        end
-      end
-
-      context 'when the adviser does not cover whole of UK' do
-        describe 'travel distance' do
-          it 'must be provided' do
-            expect(build(:adviser, travel_distance: nil)).to_not be_valid
-          end
-
-          it 'must be within the allowed options' do
-            expect(build(:adviser, travel_distance: 999)).to_not be_valid
-          end
+      describe 'postcode' do
+        it 'must be provided' do
+          expect(build(:adviser, postcode: nil)).to_not be_valid
         end
 
-        describe 'postcode' do
-          it 'must be provided' do
-            expect(build(:adviser, postcode: nil)).to_not be_valid
-          end
-
-          it 'must be a valid format' do
-            expect(build(:adviser, postcode: '098abc')).to_not be_valid
-          end
+        it 'must be a valid format' do
+          expect(build(:adviser, postcode: '098abc')).to_not be_valid
         end
       end
     end

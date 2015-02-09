@@ -141,8 +141,6 @@ RSpec.feature 'Principal creates Adviser' do
   alias :and_i_provide_a_valid_adviser_reference_number :when_i_provide_a_valid_adviser_reference_number
 
   def and_i_provide_a_postcode_and_distance_i_can_cover
-    adviser_page.covers_whole_of_uk.choose 'No'
-
     adviser_page.travel_distance.select '100'
     adviser_page.postcode.set 'GU9 9BN'
   end

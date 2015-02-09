@@ -31,49 +31,24 @@
         <%= heading_tag(t('questionnaire.adviser.geographical_coverage.heading'), level: 2, class: 'heading-small') %>
         <p class="l-questionnaire__section-description"><%= t('questionnaire.adviser.geographical_coverage.description') %></p>
 
-        <div data-dough-component="FieldToggleVisibility">
-          <fieldset class="form__group form__group--inline">
-            <legend class="l-questionnaire__legend"><%= t('questionnaire.adviser.geographical_coverage.national_coverage') %></legend>
+        <fieldset class="form__group" data-dough-field-target="1">
+          <legend class="l-questionnaire__legend"><%= t('questionnaire.adviser.geographical_coverage.adviser_services_postcode') %></legend>
+          <%= f.form_row :postcode do %>
+            <div>
+              <%= f.errors_for :postcode %>
+              <%= f.label :postcode, t('questionnaire.adviser.geographical_coverage.postcode'), class: 'form__label-heading' %>
+              <%= f.text_field :postcode, class: 't-postcode form__input-container--medium', data: { transform: '' } %>
+            </div>
+          <% end %>
 
-            <%= f.form_row :covers_whole_of_uk, html_options: { classes: 't-covers-whole-of-uk' } do %>
-              <%= f.errors_for :covers_whole_of_uk %>
-              <div class="form__group-item">
-                <label class="form__group-input">
-                  <%= f.radio_button :covers_whole_of_uk, true, data: { dough_field_trigger_type: 'hide', dough_field_trigger: '1'  } %>
-                  <%= t('registration.answer_yes') %>
-                </label>
-              </div>
-
-              <div class="form__group-item">
-                <label class="form__group-input">
-                  <%= f.radio_button :covers_whole_of_uk, false, data: { dough_field_trigger_type: 'show', dough_field_trigger: '1'  } %>
-                  <%= t('registration.answer_no') %>
-                </label>
-              </div>
-            <% end %>
-          </fieldset>
-
-          <fieldset class="form__group" data-dough-field-target="1">
-            <legend class="l-questionnaire__legend"><%= t('questionnaire.adviser.geographical_coverage.adviser_services_postcode') %></legend>
-            <%= f.form_row :postcode do %>
-              <div>
-                <%= f.errors_for :postcode %>
-                <%= f.label :postcode, t('questionnaire.adviser.geographical_coverage.postcode'), class: 'form__label-heading' %>
-                <%= f.text_field :postcode, class: 't-postcode form__input-container--medium' %>
-              </div>
-            <% end %>
-
-            <%= f.form_row :travel_distance do %>
-              <div>
-                <%= f.errors_for :travel_distance %>
-                <%= f.label :travel_distance, t('questionnaire.adviser.geographical_coverage.travel_distance'), class: 'form__label-heading' %>
-                <span>
-                  <%= f.select :travel_distance, TravelDistance.all, { include_blank: true }, { class: 't-travel-distance' } %>
-                  <%= t('questionnaire.adviser.geographical_coverage.unit') %></span>
-              </div>
-            <% end %>
-          </fieldset>
-        </div>
+          <%= f.form_row :travel_distance do %>
+            <div>
+              <%= f.errors_for :travel_distance %>
+              <%= f.label :travel_distance, t('questionnaire.adviser.geographical_coverage.travel_distance'), class: 'form__label-heading' %>
+              <%= f.select :travel_distance, TravelDistance.all, { include_blank: true }, { class: 't-travel-distance' } %>
+            </div>
+          <% end %>
+        </fieldset>
       </section>
 
       <hr>

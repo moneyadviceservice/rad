@@ -135,10 +135,9 @@ en:
         heading: Where does your adviser provide their services? *
         description: This is to show customers if your adviser is willing to travel to provide their services.
         national_coverage: Does your adviser provide UK wide coverage?
-        adviser_services_postcode: Please provide details of the area your adviser offers their services?
-        postcode: Adviser's postcode
-        travel_distance: Distance the adviser is willing to travel
-        unit: Miles
+        adviser_services_postcode: Please provide details of the area your adviser offers their services
+        postcode: What is your adviser's postcode?
+        travel_distance: How far is your adviser willing to travel?
 
       advisers_qualifications:
         heading: What are your advisers details?
