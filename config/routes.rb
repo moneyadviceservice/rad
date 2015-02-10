@@ -1,3 +1,5 @@
+require 'sidekiq/web'
+
 Rails.application.routes.draw do
   root 'principals#pre_qualification_form'
 
@@ -39,5 +41,13 @@ Rails.application.routes.draw do
       resources :subsidiaries, only: :index
     end
     resources :principals, only: [:index, :show]
+  end
+
+  if Authentication.required?
+    Sidekiq::Web.use Rack::Auth::Basic do |username, password|
+      Authentication.authenticate(username, password)
+    end
+
+    mount Sidekiq::Web, at: '/sidekiq'
   end
 end
