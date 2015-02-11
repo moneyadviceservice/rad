@@ -15,6 +15,14 @@ GIT
       rails (>= 3.2)
       sass-rails (~> 4.0.0)
 
+GIT
+  remote: git://github.com/moneyadviceservice/rad_core.git
+  revision: 49f73eb1d1112a689d51e417f44dcfc86e3795b1
+  specs:
+    rad_core (0.0.1)
+      pg
+      rails (~> 4.2.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -312,6 +320,7 @@ DEPENDENCIES
   poltergeist
   pry-rails
   rack-livereload
+  rad_core!
   rails (= 4.2.0)
   ransack
   rollbar
