@@ -20,6 +20,7 @@ gem 'dough-ruby',
 gem 'kaminari'
 gem 'letter_opener', group: :development
 gem 'pg'
+gem 'rad_core', github: 'moneyadviceservice/rad_core'
 gem 'ransack'
 gem 'rollbar'
 gem 'sidekiq'
