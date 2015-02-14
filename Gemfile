@@ -19,8 +19,8 @@ gem 'dough-ruby',
   ref: 'cf08913'
 gem 'kaminari'
 gem 'letter_opener', group: :development
+gem 'mas-rad_core'
 gem 'pg'
-gem 'rad_core', github: 'moneyadviceservice/rad_core'
 gem 'ransack'
 gem 'rollbar'
 gem 'sidekiq'
