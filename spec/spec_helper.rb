@@ -10,6 +10,7 @@ Dir[File.join(File.dirname(__FILE__), 'support', '**', '*.rb')].each { |f| requi
 Faker::Config.locale = 'en-GB'
 
 Capybara.javascript_driver = :poltergeist
+Capybara.default_wait_time = 5
 
 RSpec.configure do |c|
   c.include Rails.application.routes.url_helpers

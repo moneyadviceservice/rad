@@ -15,15 +15,6 @@ GIT
       rails (>= 3.2)
       sass-rails (~> 4.0.0)
 
-GIT
-  remote: git://github.com/moneyadviceservice/rad_core.git
-  revision: 96dcad2a090a7368a3360ef19f8fd5c386981691
-  specs:
-    rad_core (0.0.1)
-      pg
-      rails (~> 4.2.0)
-      statsd-ruby
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -106,7 +97,7 @@ GEM
       i18n (~> 0.5)
     ffi (1.9.6)
     formatador (0.2.5)
-    globalid (0.3.2)
+    globalid (0.3.3)
       activesupport (>= 4.1.0)
     guard (2.11.1)
       formatador (>= 0.2.4)
@@ -154,6 +145,10 @@ GEM
     lumberjack (1.0.9)
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
+    mas-rad_core (0.0.2)
+      pg
+      rails (~> 4.2.0)
+      statsd-ruby
     method_source (0.8.2)
     mime-types (2.4.3)
     mini_portile (0.6.2)
@@ -317,11 +312,11 @@ DEPENDENCIES
   kaminari
   launchy
   letter_opener
+  mas-rad_core
   pg
   poltergeist
   pry-rails
   rack-livereload
-  rad_core!
   rails (= 4.2.0)
   ransack
   rollbar
