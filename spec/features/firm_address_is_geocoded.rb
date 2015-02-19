@@ -1,6 +1,4 @@
 RSpec.feature 'Firm address is geocoded' do
-  before { ActiveJob::Base.queue_adapter = :test }
-
   scenario 'Valid Firm is scheduled for geocoding' do
     when_i_have_created_a_valid_firm
     then_it_is_scheduled_for_geocoding

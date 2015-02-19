@@ -1,4 +1,4 @@
-RSpec.feature 'Principal provides identifying information' do
+RSpec.feature 'Principal provides identifying information', :inline_job_queue do
   let(:identification_page) { IdentificationPage.new }
   let(:identity_confirmed_page) { IdentityConfirmedPage.new }
 
