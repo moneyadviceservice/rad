@@ -22,4 +22,13 @@ RSpec.configure do |c|
   c.disable_monkey_patching!
 
   c.include FactoryGirl::Syntax::Methods
+
+  c.around(:each, inline_job_queue: true) do |example|
+    begin
+      ActiveJob::Base.queue_adapter = :inline
+      example.run
+    ensure
+      ActiveJob::Base.queue_adapter = :test
+    end
+  end
 end
