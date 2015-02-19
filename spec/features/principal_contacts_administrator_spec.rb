@@ -1,4 +1,4 @@
-RSpec.feature 'Principal contacts Administrator' do
+RSpec.feature 'Principal contacts Administrator', :inline_job_queue do
   let(:rejection_page) { RejectionPage.new }
 
   scenario 'Sending a valid message' do
