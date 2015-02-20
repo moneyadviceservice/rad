@@ -33,6 +33,12 @@
         Not provided
       <% end %>
     </p>
+    <% if @firm.latitude.present? && @firm.longitude.present? %>
+      <p>
+        <strong>Map:</strong>
+        <%= link_to "#{@firm.latitude}, #{@firm.longitude}", "http://maps.google.com/maps?z=12&t=m&q=#{@firm.latitude},#{@firm.longitude}" %>
+      </p>
+    <% end %>
     <p>
       <strong>Added:</strong> <%= @firm.created_at.to_s(:long) %>
     </p>
