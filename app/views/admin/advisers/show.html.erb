@@ -17,6 +17,12 @@
     <p>
       <strong>Post Code:</strong> <%= @adviser.postcode.present? ? @adviser.postcode : 'unset' %>
     </p>
+    <% if @adviser.latitude.present? && @adviser.longitude.present? %>
+      <p>
+        <strong>Map:</strong>
+        <%= link_to "#{@adviser.latitude}, #{@adviser.longitude}", "http://maps.google.com/maps?z=12&t=m&q=#{@adviser.latitude},#{@adviser.longitude}" %>
+      </p>
+    <% end %>
     <p>
       <strong>Travel Distance:</strong> <%= @adviser.travel_distance > 0 ? "#{@adviser.travel_distance} miles" : 'unset' %>
     </p>
