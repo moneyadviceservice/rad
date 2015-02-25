@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150210113610) do
+ActiveRecord::Schema.define(version: 20150222092417) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,6 +39,8 @@ ActiveRecord::Schema.define(version: 20150210113610) do
     t.boolean  "confirmed_disclaimer",              null: false
     t.string   "postcode",             default: "", null: false
     t.integer  "travel_distance",      default: 0,  null: false
+    t.float    "latitude"
+    t.float    "longitude"
   end
 
   create_table "advisers_professional_bodies", id: false, force: :cascade do |t|
