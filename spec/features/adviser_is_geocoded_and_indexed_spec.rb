@@ -11,6 +11,6 @@ RSpec.feature 'Adviser is geocoded and indexed' do
   def then_it_is_scheduled_for_geocoding_and_indexing
     expect { @adviser.save! }.to change {
       ActiveJob::Base.queue_adapter.enqueued_jobs.size
-    }.by(2)
+    }.by(1)
   end
 end
