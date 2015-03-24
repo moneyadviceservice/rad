@@ -27,6 +27,22 @@
       <strong>Travel Distance:</strong> <%= @adviser.travel_distance > 0 ? "#{@adviser.travel_distance} miles" : 'unset' %>
     </p>
     <p>
+      <strong>Qualifications:</strong>
+      <ul>
+      <% @adviser.qualifications.each do |qualification| %>
+        <li><%= qualification.name %></li>
+      <% end %>
+      </ul>
+    </p>
+    <p>
+      <strong>Accreditations:</strong>
+      <ul>
+      <% @adviser.accreditations.each do |accreditation| %>
+        <li><%= accreditation.name %></li>
+      <% end %>
+      </ul>
+    </p>
+    <p>
       <strong>Added:</strong> <%= @adviser.created_at.to_s(:long) %>
     </p>
   </div>
