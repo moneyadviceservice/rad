@@ -67,7 +67,7 @@ RSpec.feature 'Principal provides identifying information', :inline_job_queue do
 
   def and_i_provide_my_identifying_particulars
     identification_page.tap do |p|
-      p.website_address.set 'www.example.com'
+      p.website_address.set 'http://www.example.com'
       p.first_name.set 'Ben'
       p.last_name.set 'Lovell'
       p.job_title.set 'Director'
