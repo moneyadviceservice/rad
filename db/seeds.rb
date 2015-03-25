@@ -24,10 +24,9 @@
 ].each.with_index(1) { |item, index| InitialAdviceFeeStructure.find_or_create_by(name: item, order: index) }
 
 [
-  'Hourly fee',
-  'Fixed fee',
-  'Other',
-].each.with_index(1) { |item, index| InitialAdviceFeeStructure.find_or_create_by(name: item, order: index) }
+  '30 min',
+  '60 min'
+].each.with_index(1) { |item, index| InitialMeetingDuration.find_or_create_by(name: item, order: index) }
 
 [
   'Under £50,000',
