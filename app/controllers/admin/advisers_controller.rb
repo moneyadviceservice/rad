@@ -11,7 +11,21 @@ class Admin::AdvisersController < Admin::ApplicationController
   end
 
   def show
-    @adviser = Adviser.find(params[:id])
+    @adviser = adviser
+  end
+
+  def edit
+    @adviser = adviser
+  end
+
+  def update
+    @adviser = adviser
+
+    if @adviser.update(adviser_params)
+      render 'show'
+    else
+      render 'edit'
+    end
   end
 
   private
@@ -22,4 +36,12 @@ class Admin::AdvisersController < Admin::ApplicationController
               end
   end
   helper_method :firm
+
+  def adviser
+    Adviser.find(params[:id])
+  end
+
+  def adviser_params
+    params.require(:adviser).permit(:postcode)
+  end
 end
