@@ -5,6 +5,30 @@ class Admin::PrincipalsController < Admin::ApplicationController
   end
 
   def show
-    @principal = Principal.find(params[:id])
+    @principal = principal
+  end
+
+  def edit
+    @principal = principal
+  end
+
+  def update
+    @principal = principal
+
+    if @principal.update(principal_params)
+      render 'show'
+    else
+      render 'edit'
+    end
+  end
+
+  private
+
+  def principal
+    Principal.find(params[:id])
+  end
+
+  def principal_params
+    params.require(:principal).permit(:website_address)
   end
 end
