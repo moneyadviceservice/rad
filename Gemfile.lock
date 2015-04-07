@@ -149,7 +149,7 @@ GEM
     lumberjack (1.0.9)
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
-    mas-rad_core (0.0.33)
+    mas-rad_core (0.0.34)
       active_model_serializers
       geocoder
       httpclient
