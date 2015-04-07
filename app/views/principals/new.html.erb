@@ -23,7 +23,7 @@
           <%= f.form_row(:website_address) do %>
             <%= f.errors_for :website_address %>
             <%= f.label :website_address, t('registration.firm.website_address'), class: 'form__label-heading' %>
-            <%= f.text_field :website_address, class: 't-website-address' %>
+            <%= f.text_field :website_address, class: 't-website-address', placeholder: 'http://www.example.com' %>
           <% end %>
         </div>
       </div>
