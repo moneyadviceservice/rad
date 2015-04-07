@@ -23,6 +23,10 @@ en:
               too_short: "- please select at least one"
             investment_sizes:
               too_short: "- please select at least one"
+        principal:
+          attributes:
+            website_address:
+              invalid: " is invalid. The address must be in the format: http://www.example.com"
         adviser:
           attributes:
             covers_whole_of_uk:
