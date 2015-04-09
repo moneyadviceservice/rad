@@ -1,5 +1,5 @@
 RSpec.feature 'Adviser is geocoded and indexed' do
-  scenario 'Adviser is scheduled for geocoding and indexing' do
+  scenario 'Adviser is scheduled for geocoding and indexing', :js do
     when_i_have_created_a_valid_adviser
     then_it_is_scheduled_for_geocoding_and_indexing
   end
@@ -9,9 +9,6 @@ RSpec.feature 'Adviser is geocoded and indexed' do
   end
 
   def then_it_is_scheduled_for_geocoding_and_indexing
-    skip
-    expect { @adviser.save! }.to change {
-      ActiveJob::Base.queue_adapter.enqueued_jobs.size
-    }.by(1)
+    expect { @adviser.save! }.to change { ActiveJob::Base.queue_adapter.enqueued_jobs.size }
   end
 end
