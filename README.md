@@ -40,8 +40,9 @@ Be sure to remove or modify the `username` attribute.
 
 ```sh
 $ bundle exec rake db:create \
->  && bundle exec rake db:schema:load \
->  && bundle exec rake db:seed
+  && bundle exec rake db:migrate \
+  && bundle exec rake db:schema:load \
+  && bundle exec rake db:seed
 ```
 
 **NOTE** `db:schema:load` loads into both the test and development databases.
