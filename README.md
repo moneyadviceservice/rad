@@ -44,6 +44,9 @@ $ bundle exec rake db:create \
 >  && bundle exec rake db:seed
 ```
 
+**NOTE** `db:schema:load` loads into both the test and development databases.
+But `db:migrate` does not.
+
 ## Usage
 
 To start the application:
