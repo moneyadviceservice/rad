@@ -7,12 +7,11 @@ A directory to help people nearing retirement find an Independent Financial Advi
 ## Prerequisites
 
 * [Git](http://git-scm.com)
-* [Ruby 2.2.0](http://www.ruby-lang.org/en)
+* [Ruby 2.2.2](http://www.ruby-lang.org/en)
 * [Rubygems 2.2.2](http://rubygems.org)
 * [Node.js](http://nodejs.org/)
 * [Bundler](http://bundler.io)
 * [PostgreSQL](http://www.postgresql.org/)
-
 
 ## Installation
 
@@ -26,7 +25,8 @@ Make sure all dependencies are available to the application:
 
 ```sh
 $ bundle install
-$ bowndler update
+$ bundle exec bowndler update
+$ npm install
 ```
 
 Make sure PostgreSQL is running.
@@ -34,27 +34,40 @@ Make sure PostgreSQL is running.
 Setup the database:
 
 ```sh
-cp config/database.example.yml config/database.yml
+$ cp config/database.example.yml config/database.yml
 ```
 Be sure to remove or modify the `username` attribute.
 
 ```sh
-bundle exec rake db:create && bundle exec rake db:schema:load
+$ bundle exec rake db:create \
+>  && bundle exec rake db:schema:load \
+>  && bundle exec rake db:seed
 ```
 
+**NOTE** `db:schema:load` loads into both the test and development databases.
+But `db:migrate` does not.
 
 ## Usage
 
 To start the application:
 
 ```sh
-$ rails s
+$ bundle exec rails s -p 5000
 ```
 
-## Running Karma Javascript tests
+Then navigate to [http://localhost:5000/](http://localhost:5000/) to access the
+application locally.
+
+## Running the Tests
+
+To run the Ruby tests:
+
+```sh
+$ bundle exec rspec
+```
 
 To run the javascript tests:
 
 ```
-$ karma start spec/javascripts/karma.conf.js --single-run=true
+$ node_modules/.bin/karma start spec/javascripts/karma.conf.js --single-run=true
 ```
