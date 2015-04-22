@@ -1,58 +1,20 @@
 # FCA Import Scripts
 
-This is a tempory procedure for importing new FCA data into the lookup tables
+This is a temporary procedure for importing new FCA data into the lookup tables
 in the RAD database.
 
 ## Steps
 
-1) Download the latest set of zip files from the FCA SFTP directory.
+1) Download the latest set of zip files from the FCA SFTP directory to `archives/`
 
-There are 7 for one export e.g.
+2) Run `./import.sh` and follow the prompts.
 
-```
-20150416a.zip
-20150416b.zip
-20150416c.zip
-20150416d.zip
-20150416e.zip
-20150416f.zip
-20150416z.zip
-```
+3)
 
-2) Extra all the zip files
-
-3) Select the following files from the set and discard the others:
-
-* `firms2015*.ext` is for firms data
-* `indiv_apprvd2015*.ext` is advisers data
-* `firm_names2015*.ext` is subsidiaries data
-
-4) Convert them to UTF-8 encoding
-
-These files are usually in latin1 / ISO-8859-1 character encoding (to check run
-`file -I *.ext` from the command line) and need to be converted to UTF-8 before
-importing.
-
-```sh
-iconv -f ISO8859-1 -t UTF8 ext/indiv_apprvd2015*.ext > advisers-utf8.ext
-iconv -f ISO8859-1 -t UTF8 ext/firms2015*.ext        > firms-utf8.ext
-iconv -f ISO8859-1 -t UTF8 ext/firm_names2015*.ext   > subsidiaries-utf8.ext
-```
-
-5) Convert into SQL
-
-```sh
-ruby advisers2sql.rb
-ruby firms2sql.rb
-ruby subsidiaries2sql.rb
-```
-
----
-
-**`CSV::MalformedCSVError` errors** - You will almost certainly see the scripts
-fail out with these errors. Usually they are due to name fields that contain
-double quotes. To fix these wrap the entire field in quotes, then double the
-quotes already in the string. E.g. given this:
+**`CSV::MalformedCSVError` errors** - You will might see the scripts fail out
+with these errors if the autorepair fails. Usually they are due to name fields
+that contain double quotes. To fix these wrap the entire field in quotes, then
+double the quotes already in the string. E.g. given this:
 
 ```
 Mr David ("Davey") Lynott
@@ -81,11 +43,11 @@ In `psql` execute:
 ```sql
 BEGIN;
 TRUNCATE lookup_advisers;
-\i advisers.sql
+\i sql/advisers.sql
 TRUNCATE lookup_firms;
-\i firms.sql
+\i sql/firms.sql
 TRUNCATE lookup_subsidiaries;
-\i subsidiaries.sql
+\i sql/subsidiaries.sql
 ```
 
 Then if all went well:
