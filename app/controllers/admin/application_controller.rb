@@ -4,11 +4,11 @@ class Admin::ApplicationController < ActionController::Base
 
   layout 'admin'
 
-  before_action :authenticate, if: -> { Authentication.required? }
+  before_action :authenticate, if: -> { HttpAuthentication.required? }
 
   def authenticate
     authenticate_or_request_with_http_basic do |username, password|
-      Authentication.authenticate(username, password)
+      HttpAuthentication.authenticate(username, password)
     end
   end
 end
