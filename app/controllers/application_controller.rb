@@ -11,17 +11,17 @@ class ApplicationController < ActionController::Base
 
   helper_method :display_adviser_sign_in?
 
-  helper_method :current_user
+  helper_method :current_principle
 
   private
 
   def authenticate
-    current_user
+    current_principle
   rescue ActiveRecord::RecordNotFound
     redirect_to error_path
   end
 
-  def current_user
+  def current_principle
     @current_user ||= Principal.find(auth_token)
   end
 
