@@ -1,17 +1,15 @@
 module HttpAuthentication
   class << self
     def required?
-      true#Rails.env.production?
+      Rails.env.production?
     end
 
     def username
-      # ENV['AUTH_USERNAME']
-      'user'
+      ENV['AUTH_USERNAME']
     end
 
     def password
-      # ENV['AUTH_PASSWORD']
-      'pass'
+      ENV['AUTH_PASSWORD']
     end
 
     def authenticate(username, password)
