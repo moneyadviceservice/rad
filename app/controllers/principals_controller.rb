@@ -1,5 +1,5 @@
 class PrincipalsController < ApplicationController
-  skip_before_filter :authenticate
+  skip_before_filter :load_principle
 
   def pre_qualification_form
     @prequalification = PreQualificationForm.new
