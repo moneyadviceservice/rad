@@ -1,6 +1,7 @@
 require 'sidekiq/web'
 
 Rails.application.routes.draw do
+  devise_for :users
   root 'principals#pre_qualification_form'
 
   get 'error', to: 'pages#error'

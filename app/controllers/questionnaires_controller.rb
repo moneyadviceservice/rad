@@ -8,7 +8,7 @@ class QuestionnairesController < ApplicationController
 
     if @firm.update(firm_params)
       stat
-      redirect_to new_principal_firm_adviser_path(current_user, @firm)
+      redirect_to new_principal_firm_adviser_path(current_principle, @firm)
     else
       render :edit
     end
@@ -24,7 +24,7 @@ class QuestionnairesController < ApplicationController
   end
 
   def firm_or_subsidiary
-    Firm.find_by(id: params[:firm_id], fca_number: current_user.fca_number)
+    Firm.find_by(id: params[:firm_id], fca_number: current_principle.fca_number)
   end
 
   FIRM_PARAMS = [

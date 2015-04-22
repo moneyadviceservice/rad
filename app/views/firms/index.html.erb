@@ -13,7 +13,7 @@
       <%= heading_tag(@firm.registered_name, level: 3, class: 'firm__title t-firm-title') %>
       <p class="firm__number">FCA number: <%= @firm.fca_number %></p>
       <div class="firm__button">
-        <%= link_to t('firms.select_firm'), edit_principal_firm_questionnaire_path(current_user, current_user.firm), class: 'button button--primary t-firm-questionnaire' %>
+        <%= link_to t('firms.select_firm'), edit_principal_firm_questionnaire_path(current_principle, current_principle.firm), class: 'button button--primary t-firm-questionnaire' %>
       </div>
     </section>
 

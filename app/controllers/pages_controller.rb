@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
-  before_action :authenticate, except: [:error]
+  before_action :load_principle, except: [:error]
 
   def error
   end

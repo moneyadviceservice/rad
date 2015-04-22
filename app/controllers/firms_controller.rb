@@ -1,9 +1,9 @@
 class FirmsController < ApplicationController
   def index
-    if current_user.subsidiaries?
-      @firm = current_user.lookup_firm
+    if current_principle.subsidiaries?
+      @firm = current_principle.lookup_firm
     else
-      redirect_to edit_principal_firm_questionnaire_path(current_user, current_user.firm)
+      redirect_to edit_principal_firm_questionnaire_path(current_principle, current_principle.firm)
     end
   end
 end
