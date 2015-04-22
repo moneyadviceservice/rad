@@ -55,9 +55,9 @@ Rails.application.routes.draw do
     resources :principals, only: [:index, :show, :edit, :update]
   end
 
-  if Authentication.required?
+  if HttpAuthentication.required?
     Sidekiq::Web.use Rack::Auth::Basic do |username, password|
-      Authentication.authenticate(username, password)
+      HttpAuthentication.authenticate(username, password)
     end
 
     mount Sidekiq::Web, at: '/sidekiq'
