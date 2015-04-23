@@ -1,4 +1,4 @@
-class SubsidiariesController < ApplicationController
+class SubsidiariesController < PrincipalsBaseController
   def convert
     firm = current_principle.find_or_create_subsidiary(params[:id])
 

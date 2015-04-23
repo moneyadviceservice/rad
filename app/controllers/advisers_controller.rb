@@ -1,4 +1,4 @@
-class AdvisersController < ApplicationController
+class AdvisersController < PrincipalsBaseController
   def new
     @adviser = advisers.build
   end

@@ -1,4 +1,4 @@
-class FirmsController < ApplicationController
+class FirmsController < PrincipalsBaseController
   def index
     if current_principle.subsidiaries?
       @firm = current_principle.lookup_firm
