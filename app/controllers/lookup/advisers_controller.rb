@@ -1,5 +1,5 @@
 module Lookup
-  class AdvisersController < ApplicationController
+  class AdvisersController < PrincipalsBaseController
     def show
       if @adviser = ::Adviser.find_by(reference_number: params[:id])
         errors_for :conflict

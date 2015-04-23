@@ -1,4 +1,4 @@
-class QuestionnairesController < ApplicationController
+class QuestionnairesController < PrincipalsBaseController
   def edit
     @firm = firm_or_subsidiary
   end
