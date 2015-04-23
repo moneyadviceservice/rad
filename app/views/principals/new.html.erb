@@ -75,7 +75,7 @@
             <%= user_form.form_row(:email) do %>
               <%= user_form.errors_for :email %>
               <%= user_form.label :email, t('registration.principal.email_address'), class: 'form__label-heading' %>
-              <%= user_form.text_field :email, class: 't-reference-number' %>
+              <%= user_form.text_field :email, class: 't-email-address' %>
             <% end %>
           </div>
         </div>
@@ -95,7 +95,7 @@
             <%= user_form.form_row(:password) do %>
               <%= user_form.errors_for :password %>
               <%= user_form.label :password, t('registration.user.password'), class: 'form__label-heading' %>
-              <%= user_form.password_field :password, class: 't-reference-number' %>
+              <%= user_form.password_field :password, class: 't-password' %>
             <% end %>
           </div>
         </div>
@@ -105,7 +105,7 @@
             <%= user_form.form_row(:password_confirmation) do %>
               <%= user_form.errors_for :password_confirmation %>
               <%= user_form.label :password_confirmation, t('registration.user.password_confirmation'), class: 'form__label-heading' %>
-              <%= user_form.password_field :password_confirmation, class: 't-reference-number' %>
+              <%= user_form.password_field :password_confirmation, class: 't-password-confirmation' %>
             <% end %>
           </div>
         </div>

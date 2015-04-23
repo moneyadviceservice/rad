@@ -31,7 +31,7 @@ RSpec.feature 'Principal provides identifying information', :inline_job_queue do
 
   def when_i_provide_incorrect_or_invalid_information
     identification_page.tap do |p|
-      p.email_address.set 'welp'
+      p.email.set 'welp'
       p.website_address.set 'wwwelp'
       p.first_name.set ''
       p.last_name.set ''
@@ -48,7 +48,7 @@ RSpec.feature 'Principal provides identifying information', :inline_job_queue do
   def when_i_provide_a_valid_but_unmatched_fca_number
     identification_page.tap do |p|
       p.reference_number.set '654321'
-      p.email_address.set 'ben@example.com'
+      p.email.set 'ben@example.com'
       p.register.click
     end
   end
@@ -71,8 +71,12 @@ RSpec.feature 'Principal provides identifying information', :inline_job_queue do
       p.first_name.set 'Ben'
       p.last_name.set 'Lovell'
       p.job_title.set 'Director'
-      p.email_address.set 'ben@example.com'
+      # p.email.set 'ben@example.com'
+      p.email.set 'ben@example.com'
+      p.password.set 'password'
+      p.password_confirmation.set 'password'
       p.telephone_number.set '07715 930 400'
+
       p.confirmation.set true
     end
   end
