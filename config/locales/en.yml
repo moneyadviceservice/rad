@@ -103,6 +103,10 @@ en:
       fca_number_un_matched: could not be matched
       validation_error_html: If you have any queries, please contact <a href="mailto:RADenquiries@moneyadviceservice.org.uk">RADenquiries@moneyadviceservice.org.uk</a>.
     register_button: Register my firm
+    user:
+      email: Email address *
+      password: Password *
+      password_confirmation: Password confirmation *
 
   rejection:
     contact_sent: Your message has been sent and we will respond shortly.
