@@ -7,57 +7,22 @@ in the RAD database.
 
 1) Download the latest set of zip files from the FCA SFTP directory to `archives/`
 
-2) Run `./import.sh` and follow the prompts.
+2) Run `./fca_data_to_sql.sh` and follow the prompts.
 
-3)
+You might see a message stating `Possibly malformed row detected:`. In this case
+you will need to create a repair record for the row in `repairs.yml`. There are
+examples in there already.
 
-**`CSV::MalformedCSVError` errors** - You will might see the scripts fail out
-with these errors if the autorepair fails. Usually they are due to name fields
-that contain double quotes. To fix these wrap the entire field in quotes, then
-double the quotes already in the string. E.g. given this:
+4) Import into the Database
 
-```
-Mr David ("Davey") Lynott
-```
-
-Convert it to:
+To import to your local database, run:
 
 ```
-"Mr David (""Davey"") Lynott"
+psql rad_development < sql/all.sql
 ```
 
----
+Or to Heroku:
 
-6) Import into the Database
-
-Run `psql`.
-
-```sh
-$ psql rad_development
 ```
-
-Or replace `rad_development` with the name of the database you are importing to.
-
-In `psql` execute:
-
-```sql
-BEGIN;
-TRUNCATE lookup_advisers;
-\i sql/advisers.sql
-TRUNCATE lookup_firms;
-\i sql/firms.sql
-TRUNCATE lookup_subsidiaries;
-\i sql/subsidiaries.sql
-```
-
-Then if all went well:
-
-```sql
-COMMIT;
-```
-
-Otherwise:
-
-```sql
-ROLLBACK;
+heroku pg:psql --app mas-rad-staging < sql/all.sql
 ```
