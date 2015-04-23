@@ -1,21 +1,23 @@
 #!/usr/bin/ruby
 require_relative 'ext_to_sql'
 
-CSV.foreach(ExtToSql::CLI.options[:file], col_sep: '|') do |row|
-  next if row[0] == 'Footer'
-
-  if row[0] == 'Header'
-    @type = ExtToSql.determine_type_from_header(row)
-    puts ExtToSql.build_copy_statement_for_type(@type)
-    ExtToSql::CLI.print_to_stderr_and_flush "  • \033[33;36mConverting #{@type} EXT to SQL.\033[0m "
-    next
-  end
-
-  puts ExtToSql.build_row(row)
-
-  ExtToSql::CLI.write_progress
+def print_usage
+  puts 'USAGE: '
+  puts '  ruby ext_to_sql.rb FILE'
+  exit
 end
 
-puts ExtToSql.end_copy_statement
+def options
+  print_usage unless ARGV.length == 1
+  {
+    file: ARGV[0]
+  }
+end
+
+ext_to_sql = ExtToSql.new(STDERR)
+
+ext_to_sql.process_ext_file(options[:file]) do |line|
+  puts line
+end
 
 STDERR.puts
