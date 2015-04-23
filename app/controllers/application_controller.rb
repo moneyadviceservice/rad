@@ -23,7 +23,7 @@ class ApplicationController < ActionController::Base
   end
 
   def current_principle
-    @current_user ||= Principal.find(auth_token)
+    @current_principle ||= Principal.find(auth_token)
   end
 
   def auth_token
