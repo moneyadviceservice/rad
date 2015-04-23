@@ -45,21 +45,31 @@ module ExtToSql
     end
   end
 
-  def self.build_row_for_type(type, row)
-    number = row[0] # reference number for advisers or firms
-    name = row[1].gsub("'", "''").strip
+  def self.build_copy_statement_for_type(type)
     case type
     when :adviser
-      "insert into lookup_advisers(reference_number, name, created_at, updated_at)
-       values('#{number}', '#{name}', '#{TIMESTAMP}', '#{TIMESTAMP}');"
+      'COPY lookup_advisers (reference_number, name, created_at, updated_at) FROM stdin;'
     when :firm
-      "insert into lookup_firms(fca_number, registered_name, created_at, updated_at)
-       values('#{number}', '#{name}', '#{TIMESTAMP}', '#{TIMESTAMP}');"
+      'COPY lookup_firms (fca_number, registered_name, created_at, updated_at) FROM stdin;'
     when :subsidiary
-      "insert into lookup_subsidiaries(fca_number, name, created_at, updated_at)
-       values('#{number}', '#{name}', '#{TIMESTAMP}', '#{TIMESTAMP}');"
+      'COPY lookup_subsidiaries (fca_number, name, created_at, updated_at) FROM stdin;'
     else
       fail
     end
+  end
+
+  def self.escape(str)
+    str.inspect[1...-1]
+  end
+
+  def self.build_row(row)
+    number = row[0] # reference number for advisers or firms
+    name = escape(row[1].strip)
+
+    "#{number}\t#{name}\t#{TIMESTAMP}\t#{TIMESTAMP}"
+  end
+
+  def self.end_copy_statement
+    '\.'
   end
 end

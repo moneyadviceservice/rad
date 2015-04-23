@@ -85,11 +85,13 @@ ruby convert.rb ext/firms-utf8.ext > sql/firms.sql
 ruby convert.rb ext/subsidiaries-utf8.ext > sql/subsidiaries.sql
 
 echo -e "• ${CC}Writing batch import to sql/all.sql${RC}"
-echo "BEGIN;" > sql/all.sql
+echo "\\set ECHO all" > sql/all.sql
+echo "BEGIN;" >> sql/all.sql
 echo "TRUNCATE lookup_firms;" >> sql/all.sql
 echo "TRUNCATE lookup_advisers;" >> sql/all.sql
 echo "TRUNCATE lookup_subsidiaries;" >> sql/all.sql
 cat sql/advisers.sql sql/firms.sql sql/subsidiaries.sql >> sql/all.sql
 echo "COMMIT;" >> sql/all.sql
+echo "\\unset ECHO" >> sql/all.sql
 
 echo -e "• ${CG}Done.${RC}"
