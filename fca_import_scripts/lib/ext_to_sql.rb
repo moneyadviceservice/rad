@@ -24,12 +24,17 @@ class ExtToSql
         next
       end
 
-      block.call build_row(row)
+      if record_active?(@type, row)
+        block.call build_row(row)
+      end
+      
       write_progress
     end
 
     block.call end_copy_statement
   end
+
+  private
 
   def determine_type_from_header(row)
     case row[1]
@@ -64,11 +69,22 @@ class ExtToSql
     "#{number}\t#{name}\t#{TIMESTAMP}\t#{TIMESTAMP}"
   end
 
-  def end_copy_statement
-    '\.'
-  end
+  def record_active?(type, row)
+    # For details on this, see FS Register Extract Service on Computer Readable
+    # Media Subscriber's Handbook
 
-  private
+    if type == :adviser
+      # Col 4 - Status code
+      row[4] == '4' # Value 4 means 'Active'
+    elsif type == :firm
+      # Col 19 - Current Authorisation Status code
+      ['Authorised', 'Registered', 'EEA Authorised'].include?(row[19])
+    elsif type == :subsidiary
+      true
+    else
+      fail
+    end
+  end
 
   def repairs
     @fixes ||= YAML.load_file(REPAIR_FILE)['repairs']
@@ -88,6 +104,10 @@ class ExtToSql
   def warn_on_possibly_broken_line(line)
     return unless line.include? '""'
     log "\n  • \033[33;31mPossibly malformed row detected:\033[0m #{line}\n    ", newline: false
+  end
+
+  def end_copy_statement
+    '\.'
   end
 
   def log(str, newline: true)

@@ -53,13 +53,12 @@ RSpec.describe ExtToSql do
       let(:fixture_name) { 'advisers_with_tab' }
 
       it 'generates the right SQL' do
-        expect(subject[0]).to eq 'COPY lookup_advisers (reference_number, name, created_at, updated_at) FROM stdin;'
         expect(subject[1]).to start_with 'AAA00001	Mr Tab\tSpace	'
         expect(subject[2]).to eq '\.'
       end
     end
 
-    context 'advisers file with broken row in it' do
+    context 'advisers file with broken row' do
       let(:fixture_name) { 'advisers_with_broken_row' }
 
       it 'warns of a broken row' do
@@ -73,10 +72,29 @@ RSpec.describe ExtToSql do
         end
 
         it 'repairs the row' do
-          expect(subject[0]).to eq 'COPY lookup_advisers (reference_number, name, created_at, updated_at) FROM stdin;'
           expect(subject[1]).to start_with 'AAA00001	Mr Fixed Adewale Adebajo	'
           expect(subject[2]).to eq '\.'
         end
+      end
+    end
+
+    context 'advisers file with inactive row' do
+      let(:fixture_name) { 'advisers_with_inactive_row' }
+
+      it 'generates the right SQL' do
+        expect(subject[1]).to start_with 'AAA00002	Mr Andy Ademola Adewale	'
+        expect(subject[2]).to eq '\.'
+      end
+    end
+
+    context 'firms file with inactive row' do
+      let(:fixture_name) { 'firms_with_inactive_row' }
+
+      it 'generates the right SQL' do
+        expect(subject[1]).to start_with '100013	Skipton Financial Services Ltd	'
+        expect(subject[2]).to start_with '100038	Crane & Partners	'
+        expect(subject[3]).to start_with '100039	Crawfords	'
+        expect(subject[4]).to eq '\.'
       end
     end
   end
