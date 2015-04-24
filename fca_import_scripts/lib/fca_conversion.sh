@@ -10,6 +10,14 @@ clear_data() {
   mkdir sql ext
 }
 
+warn_if_no_archives() {
+  if [[ ! -d archives ]]; then
+    echo -e "${CR}No FCA archives found in archives/.${RC}"
+    echo -e "${CR}Check README.md${RC}"
+    exit 1
+  fi
+}
+
 extract_archives() {
   echo -e "• ${CC}Extracting archives.${RC}"
   ls archives/*.zip | xargs -Ifile unzip file -d ext/ > /dev/null

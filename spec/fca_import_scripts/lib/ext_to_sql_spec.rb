@@ -53,7 +53,7 @@ RSpec.describe ExtToSql do
       let(:fixture_name) { 'advisers_with_tab' }
 
       it 'generates the right SQL' do
-        expect(subject[1]).to start_with 'AAA00001	Mr Tab\tSpace	'
+        expect(subject[1]).to start_with 'AAA00001	Mr\t"Tab"\tSpace	'
         expect(subject[2]).to eq '\.'
       end
     end

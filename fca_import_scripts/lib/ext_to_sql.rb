@@ -1,10 +1,17 @@
-require 'csv'
 require 'date'
 require 'yaml'
 
 class ExtToSql
   TIMESTAMP = DateTime.now.strftime('%Y-%m-%d %H:%M:%S.%N')
   REPAIR_FILE = File.join(File.dirname(__FILE__), '..', 'repairs.yml')
+
+  module COLUMNS
+    HEADER_NAME = 1
+    REFERENCE_NUMBER = 0
+    NAME = 1
+    ADVISER_STATUS_CODE = 4
+    FIRM_AUTHORISATION_STATUS_CODE = 19
+  end
 
   def initialize(stderr = nil)
     @stderr = stderr
@@ -15,19 +22,19 @@ class ExtToSql
       line = repair_line line
       row = line.split('|')
 
-      next if row[0] == 'Footer'
+      next if row.first == 'Footer'
 
-      if row[0] == 'Header'
+      if row.first == 'Header'
         @type = determine_type_from_header(row)
-        block.call build_copy_statement_for_type(@type)
+        block.call build_copy_statement
         log "  • \033[33;36mConverting #{@type} EXT to SQL.\033[0m ", newline: false
         next
       end
 
-      if record_active?(@type, row)
+      if record_active?(row)
         block.call build_row(row)
       end
-      
+
       write_progress
     end
 
@@ -37,52 +44,50 @@ class ExtToSql
   private
 
   def determine_type_from_header(row)
-    case row[1]
-    when 'Alternative Firm Name'
-      return :subsidiary
-    when 'Firm Authorisation'
-      return :firm
+    case row[COLUMNS::HEADER_NAME]
     when 'Individual Details'
-      return :adviser
+      :adviser
+    when 'Firm Authorisation'
+      :firm
+    when 'Alternative Firm Name'
+      :subsidiary
     else
-      fail "Unable to determine file type from header: #{row[1]}"
+      fail "Unable to determine file type from header: #{row[COLUMNS::HEADER_NAME]}"
     end
   end
 
-  def build_copy_statement_for_type(type)
-    case type
+  def build_copy_statement
+    case @type
     when :adviser
       'COPY lookup_advisers (reference_number, name, created_at, updated_at) FROM stdin;'
     when :firm
       'COPY lookup_firms (fca_number, registered_name, created_at, updated_at) FROM stdin;'
     when :subsidiary
       'COPY lookup_subsidiaries (fca_number, name, created_at, updated_at) FROM stdin;'
-    else
-      fail
     end
   end
 
   def build_row(row)
-    number = row[0] # reference number for advisers or firms
-    name = escape(row[1].strip)
+    number = row[COLUMNS::REFERENCE_NUMBER] # reference number for advisers or firms
+    name = escape(row[COLUMNS::NAME].strip)
 
     "#{number}\t#{name}\t#{TIMESTAMP}\t#{TIMESTAMP}"
   end
 
-  def record_active?(type, row)
+  def record_active?(row)
     # For details on this, see FS Register Extract Service on Computer Readable
     # Media Subscriber's Handbook
 
-    if type == :adviser
-      # Col 4 - Status code
-      row[4] == '4' # Value 4 means 'Active'
-    elsif type == :firm
+    case @type
+    when :adviser
+      row[COLUMNS::ADVISER_STATUS_CODE] == '4' # Value 4 means 'Active'
+    when :firm
       # Col 19 - Current Authorisation Status code
-      ['Authorised', 'Registered', 'EEA Authorised'].include?(row[19])
-    elsif type == :subsidiary
+      ['Authorised',
+       'Registered',
+       'EEA Authorised'].include?(row[COLUMNS::FIRM_AUTHORISATION_STATUS_CODE])
+    when :subsidiary
       true
-    else
-      fail
     end
   end
 
@@ -121,13 +126,13 @@ class ExtToSql
   end
 
   def write_progress
-    @i = 0 if @i.nil?
+    @i ||= 0
     if (@i += 1) % 10_000 == 0
       log '.', newline: false
     end
   end
 
   def escape(str)
-    str.inspect[1...-1]
+    str.gsub("\t", "\\t")
   end
 end

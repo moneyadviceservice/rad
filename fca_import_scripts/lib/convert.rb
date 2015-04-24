@@ -9,9 +9,7 @@ end
 
 def options
   print_usage unless ARGV.length == 1
-  {
-    file: ARGV[0]
-  }
+  { file: ARGV[0] }
 end
 
 ext_to_sql = ExtToSql.new(STDERR)
