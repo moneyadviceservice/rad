@@ -1,15 +1,20 @@
 require 'csv'
 require 'date'
+require 'yaml'
 
 class ExtToSql
   TIMESTAMP = DateTime.now.strftime('%Y-%m-%d %H:%M:%S.%N')
+  REPAIR_FILE = File.join(File.dirname(__FILE__), '..', 'repairs.yml')
 
   def initialize(stderr = nil)
     @stderr = stderr
   end
 
   def process_ext_file(path, &block)
-    CSV.foreach(path, col_sep: '|') do |row|
+    File.foreach(path) do |line|
+      line = repair_line line
+      row = line.split('|')
+
       next if row[0] == 'Footer'
 
       if row[0] == 'Header'
@@ -64,6 +69,26 @@ class ExtToSql
   end
 
   private
+
+  def repairs
+    @fixes ||= YAML.load_file(REPAIR_FILE)['repairs']
+  end
+
+  def repair_line(line)
+    line = line.strip
+    match = repairs.find { |pair| line == pair['line'] }
+    if match.nil?
+      warn_on_possibly_broken_line line
+      line
+    else
+      match['replacement']
+    end
+  end
+
+  def warn_on_possibly_broken_line(line)
+    return unless line.include? '""'
+    log "\n  • \033[33;31mPossibly malformed row detected:\033[0m #{line}\n    ", newline: false
+  end
 
   def log(str, newline: true)
     return if @stderr.nil?
