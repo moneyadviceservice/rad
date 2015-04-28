@@ -1,12 +1,9 @@
 class Admin::AdvisersController < Admin::ApplicationController
   def index
     @search = Adviser.ransack(params[:q])
+
     @advisers = @search.result
-
-    if firm
-      @advisers = @advisers.where(:firm_id => firm)
-    end
-
+    @advisers = @advisers.where(firm_id: firm) if firm
     @advisers = @advisers.page(params[:page]).per(20)
   end
 
@@ -22,7 +19,7 @@ class Admin::AdvisersController < Admin::ApplicationController
     @adviser = adviser
 
     if @adviser.update(adviser_params)
-      render 'show'
+      redirect_to admin_adviser_path(@adviser)
     else
       render 'edit'
     end
@@ -31,9 +28,7 @@ class Admin::AdvisersController < Admin::ApplicationController
   private
 
   def firm
-    @firm ||= if params[:firm_id]
-                Firm.find(params[:firm_id])
-              end
+    @firm ||= Firm.find(params[:firm_id]) if params[:firm_id]
   end
   helper_method :firm
 
