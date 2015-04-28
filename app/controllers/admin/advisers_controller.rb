@@ -37,6 +37,13 @@ class Admin::AdvisersController < Admin::ApplicationController
   end
 
   def adviser_params
-    params.require(:adviser).permit(:postcode)
+    params.require(:adviser).permit(
+      :postcode,
+      :travel_distance,
+      qualification_ids: [],
+      accreditation_ids: [],
+      professional_standing_ids: [],
+      professional_body_ids: []
+    )
   end
 end
