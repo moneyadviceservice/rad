@@ -69,10 +69,9 @@ en:
       answer_one: Independent
       answer_two: Restricted
     particular_market_question:
-      heading: Is this status because your firm focuses on a particular market?
-      description: Is your restricted status due to the fact that your firm focuses on a particular market?
+      heading: Is this status because your firm focuses on a particular market and/or excludes certain high-risk or niche products from its product offering?
     consider_available_providers_question:
-      heading: Does your firm consider a wide range of providers from within your chosen market?
+      heading: Does your firm consider a wide range of providers from within the market you are advising on?
 
     firm:
       heading: Firm FCA information
