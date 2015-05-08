@@ -1,0 +1,26 @@
+<p>Please confirm you want to:</p>
+<dl>
+  <dt>Move:</dt>
+  <dd>
+    <ul>
+      <% @form.advisers_to_move.each do |adviser| %>
+        <li class="t-adviser"><%= adviser.name %></li>
+      <% end %>
+    </ul>
+  </dd>
+  <dt>From:</dt><dd><span class="t-from_firm"><%= @form.from_firm.registered_name %></span></dd>
+  <dt>To:</dt><dd><span class="t-to_firm"><%= @form.to_firm.registered_name %></span></dd>
+</dl>
+
+<%= form_for(@form, url: move_admin_move_advisers_path) do |f| %>
+  <div class="t-hidden-fields">
+    <% @form.adviser_ids.each do |adviser_id| %>
+      <%= f.hidden_field(:adviser_ids, multiple: true, value: adviser_id, class: 't-adviser') %>
+    <% end %>
+    <%= f.hidden_field(:to_firm_id, class: 't-to_firm_id') %>
+  </div>
+
+  <div class="form-group">
+    <%= f.submit('Move', class: 't-move') %>
+  </div>
+<% end %>

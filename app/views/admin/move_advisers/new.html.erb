@@ -1,0 +1,13 @@
+<%= form_for(@form, url: choose_to_firm_admin_move_advisers_path, method: :get) do |f| %>
+  <%= f.collection_check_boxes(:adviser_ids, @form.from_firm.advisers.order(:reference_number),
+        :id, ->(adviser) { "#{adviser.reference_number} #{adviser.name}" }) do |b| %>
+    <div>
+      <%= b.check_box(class: 't-adviser') %>
+      <%= b.label { b.text } %>
+    </div>
+  <% end %>
+
+  <div>
+    <%= f.submit('Next', class: 't-next') %>
+  </div>
+<% end %>

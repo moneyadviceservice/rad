@@ -1,0 +1,18 @@
+<%= form_for(@form, url: confirm_admin_move_advisers_path, method: :get) do |f| %>
+  <%= f.collection_radio_buttons(:to_firm_id, @form.subsidiaries, :id, :registered_name) do |b| %>
+    <div class="t-subsidiary">
+      <%= b.radio_button(class: 't-subsidiary-field') %>
+      <%= b.label(class: 't-subsidiary-label') { b.text } %>
+    </div>
+  <% end %>
+
+  <div class="t-hidden-fields">
+    <% @form.adviser_ids.each do |adviser_id| %>
+      <%= f.hidden_field(:adviser_ids, multiple: true, value: adviser_id, class: 't-adviser') %>
+    <% end %>
+  </div>
+
+  <div class="form-group">
+    <%= f.submit('Next', class: 't-next') %>
+  </div>
+<% end %>
