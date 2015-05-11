@@ -6,6 +6,9 @@ module Admin
     end
 
     def choose_to_firm
+      if @form.invalid?
+        render :new
+      end
     end
 
     def choose_subsidiary

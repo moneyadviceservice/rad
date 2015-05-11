@@ -3,6 +3,7 @@ module Admin
     class ChooseFirmPage < SitePrism::Page
       set_url_matcher %r{/admin/firms/[0-9]+/move_advisers/choose_to_firm}
 
+      element :validation_errors, '.t-errors'
       element :to_firm_fca_number, '.t-to_firm_fca_number'
       element :next, '.t-next'
 

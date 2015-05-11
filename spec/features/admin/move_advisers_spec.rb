@@ -17,6 +17,11 @@ RSpec.feature 'Move advisers between firms' do
     then_the_adviser_is_moved
   end
 
+  scenario 'When no advisers are selected to move' do
+    given_i_do_not_specify_any_advisers_to_move
+    then_i_am_told_about_the_problem
+  end
+
   def given_i_want_to_move_an_adviser_from_firm(firm)
     firm_page.load(firm_id: firm.id)
     expect(firm_page).to be_displayed
@@ -63,5 +68,17 @@ RSpec.feature 'Move advisers between firms' do
     from_firm.reload
     expect(to_firm.advisers).to include(adviser)
     expect(from_firm.advisers).not_to include(adviser)
+  end
+
+  def given_i_do_not_specify_any_advisers_to_move
+    given_i_want_to_move_an_adviser_from_firm(from_firm)
+    expect(move_advisers_page).to be_displayed
+    move_advisers_page.next.click
+  end
+
+  def then_i_am_told_about_the_problem
+    # TODO this is confusing: the next URL is shown but the old view is rendered
+    expect(choose_firm_page).to be_displayed
+    expect(choose_firm_page).to have_validation_errors
   end
 end
