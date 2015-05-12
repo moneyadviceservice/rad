@@ -25,6 +25,13 @@ class Admin::AdvisersController < Admin::ApplicationController
     end
   end
 
+  def destroy
+    @adviser = adviser
+    @adviser.destroy
+
+    redirect_to admin_advisers_path
+  end
+
   private
 
   def firm

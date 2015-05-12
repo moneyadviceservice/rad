@@ -31,7 +31,8 @@ Rails.application.routes.draw do
 
   namespace :admin do
     root 'pages#home'
-    resources :advisers, only: [:index, :show, :edit, :update]
+    resources :advisers, only: [:index, :show, :edit, :update, :destroy]
+
     resources :firms, only: [:index, :show] do
       resources :advisers, only: :index
     end
