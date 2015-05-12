@@ -20,6 +20,7 @@ module Admin
     end
 
     def confirm
+      @form.validate_to_firm_fca_number = true
       @form.validate_to_firm_id = true
 
       if @form.invalid?
@@ -28,7 +29,13 @@ module Admin
     end
 
     def move
-      @form.advisers_to_move.move_all_to_firm(@form.to_firm)
+      @form.validate_to_firm_id = true
+
+      if @form.valid?
+        @form.advisers_to_move.move_all_to_firm(@form.to_firm)
+      else
+        fail 'Form data is invalid'
+      end
     end
 
     private
