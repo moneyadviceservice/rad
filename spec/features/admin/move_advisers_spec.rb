@@ -19,7 +19,12 @@ RSpec.feature 'Move advisers between firms' do
 
   scenario 'When no advisers are selected to move' do
     given_i_do_not_specify_any_advisers_to_move
-    then_i_am_told_about_the_problem
+    then_i_am_told_about_the_problem_on(choose_firm_page)
+  end
+
+  scenario 'When the to-firm does not exist' do
+    given_i_supply_a_non_existent_fca_number
+    then_i_am_told_about_the_problem_on(choose_subsidiary_page)
   end
 
   def given_i_want_to_move_an_adviser_from_firm(firm)
@@ -76,9 +81,15 @@ RSpec.feature 'Move advisers between firms' do
     move_advisers_page.next.click
   end
 
-  def then_i_am_told_about_the_problem
-    # TODO this is confusing: the next URL is shown but the old view is rendered
-    expect(choose_firm_page).to be_displayed
-    expect(choose_firm_page).to have_validation_errors
+  def given_i_supply_a_non_existent_fca_number
+    given_i_want_to_move_an_adviser_from_firm(from_firm)
+    and_i_want_to_move_adviser(adviser)
+    choose_firm_page.to_firm_fca_number.set('DOES_NOT_EXIST')
+    choose_firm_page.next.click
+  end
+
+  def then_i_am_told_about_the_problem_on(page)
+    expect(page).to be_displayed
+    expect(page).to have_validation_errors
   end
 end

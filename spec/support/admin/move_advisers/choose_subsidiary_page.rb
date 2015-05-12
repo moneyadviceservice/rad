@@ -3,6 +3,7 @@ module Admin
     class ChooseSubsidiaryPage < SitePrism::Page
       set_url_matcher %r{/admin/firms/[0-9]+/move_advisers/choose_subsidiary}
 
+      element :validation_errors, '.t-errors'
       elements :subsidiaries, '.t-subsidiary'
       element :next, '.t-next'
 

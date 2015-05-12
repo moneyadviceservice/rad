@@ -1,5 +1,4 @@
 <%= form_for(@form, url: choose_to_firm_admin_move_advisers_path, method: :get) do |f| %>
-
   <% if @form.errors.any? %>
     <ul class="t-errors">
       <% @form.errors.full_messages.each do |message| %>

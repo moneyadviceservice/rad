@@ -1,4 +1,12 @@
 <%= form_for(@form, url: choose_subsidiary_admin_move_advisers_path, method: :get) do |f| %>
+  <% if @form.errors.any? %>
+    <ul class="t-errors">
+      <% @form.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  <% end %>
+
   <div>
     <%= f.label :to_firm_fca_number, 'FCA Number of firm to move to:' %>
     <%= f.text_field :to_firm_fca_number, class: 't-to_firm_fca_number' %>

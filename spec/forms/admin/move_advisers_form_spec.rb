@@ -1,7 +1,14 @@
 RSpec.describe Admin::MoveAdvisersForm, type: :model do
   let(:adviser) { create(:adviser) }
   let(:from_firm) { create(:firm) }
-  let(:valid_params) { { id: from_firm.id.to_s, adviser_ids: [adviser.id.to_s] } }
+  let(:to_firm) { create(:firm) }
+  let(:valid_params) do
+    {
+      id: from_firm.id.to_s,
+      adviser_ids: [adviser.id.to_s],
+      to_firm_fca_number: to_firm.fca_number
+    }
+  end
   let(:params) { valid_params }
 
   subject { described_class.new(params) }
@@ -54,6 +61,30 @@ RSpec.describe Admin::MoveAdvisersForm, type: :model do
       context 'when adviser_ids is missing' do
         let(:params) { valid_params.tap { |p| p.delete(:adviser_ids) } }
         it { is_expected.not_to be_valid }
+      end
+    end
+
+    describe '#to_firm_fca_number' do
+      context 'do not validate' do
+        let(:params) { valid_params.tap { |p| p[:to_firm_fca_number] = 'DOES_NOT_EXIST' } }
+
+        it 'is not validated when `validate_to_firm_fca_number` is false' do
+          subject.validate_to_firm_fca_number = nil
+          is_expected.to be_valid
+        end
+      end
+
+      context 'validate' do
+        before { subject.validate_to_firm_fca_number = true }
+
+        context 'to_firm_fca_number is invalid' do
+          let(:params) { valid_params.tap { |p| p[:to_firm_fca_number] = 'DOES_NOT_EXIST' } }
+          it { is_expected.not_to be_valid }
+        end
+
+        context 'to_firm_fca_number is valid' do
+          it { is_expected.to be_valid }
+        end
       end
     end
   end

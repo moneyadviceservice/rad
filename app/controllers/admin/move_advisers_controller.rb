@@ -12,6 +12,11 @@ module Admin
     end
 
     def choose_subsidiary
+      @form.validate_to_firm_fca_number = true
+
+      if @form.invalid?
+        render :choose_to_firm
+      end
     end
 
     def confirm
