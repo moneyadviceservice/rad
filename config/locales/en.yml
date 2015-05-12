@@ -9,6 +9,8 @@ en:
           attributes:
             adviser_ids:
               too_short: you must select one or more advisers
+            to_firm_id:
+              blank: must be selected
   activerecord:
     attributes:
       adviser:
