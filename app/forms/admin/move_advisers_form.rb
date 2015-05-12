@@ -33,7 +33,7 @@ module Admin
 
     def to_firm_fca_number_exists
       unless Firm.where(fca_number: to_firm_fca_number).count > 0
-        errors.add(:fca_number, "No firms exist with FCA number #{to_firm_fca_number}")
+        errors.add(:to_firm_fca_number, :does_not_exist, fca_number: to_firm_fca_number)
       end
     end
   end
