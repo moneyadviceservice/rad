@@ -20,5 +20,6 @@
 
   <div class="form-group">
     <%= f.submit('Move', class: 't-move') %>
+    <%= link_to 'Cancel', admin_firm_path(@form.from_firm), :method => :get %>
   </div>
 <% end %>
