@@ -1,13 +1,11 @@
+<h1>Please confirm</h1>
+
 <p>Please confirm you want to:</p>
 <dl>
   <dt>Move:</dt>
-  <dd>
-    <ul>
-      <% @form.advisers_to_move.each do |adviser| %>
-        <li class="t-adviser"><%= adviser.name %></li>
-      <% end %>
-    </ul>
-  </dd>
+  <% @form.advisers_to_move.each do |adviser| %>
+    <dd class="t-adviser"><%= adviser.name %></dd>
+  <% end %>
   <dt>From:</dt><dd><span class="t-from_firm"><%= @form.from_firm.registered_name %></span></dd>
   <dt>To:</dt><dd><span class="t-to_firm"><%= @form.to_firm.registered_name %></span></dd>
 </dl>
