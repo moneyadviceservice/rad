@@ -27,6 +27,11 @@ RSpec.feature 'Move advisers between firms' do
     then_i_am_told_about_the_problem_on(choose_subsidiary_page)
   end
 
+  scenario 'When a subsidiary has not been selected' do
+    given_i_forget_to_select_a_subsidiary
+    then_i_am_told_about_the_problem_on(confirm_page)
+  end
+
   def given_i_want_to_move_an_adviser_from_firm(firm)
     firm_page.load(firm_id: firm.id)
     expect(firm_page).to be_displayed
@@ -47,6 +52,7 @@ RSpec.feature 'Move advisers between firms' do
 
     expect(choose_subsidiary_page).to be_displayed
     expect(choose_subsidiary_page.hidden.advisers[0].value).to eq(adviser.id.to_s)
+    expect(choose_subsidiary_page.hidden.to_firm_fca_number.value).to eq(to_firm.fca_number.to_s)
     expect(choose_subsidiary_page.subsidiary_label(0))
       .to have_text(to_firm.registered_name)
     choose_subsidiary_page.subsidiary_field(0).set(true)
@@ -86,6 +92,18 @@ RSpec.feature 'Move advisers between firms' do
     and_i_want_to_move_adviser(adviser)
     choose_firm_page.to_firm_fca_number.set('DOES_NOT_EXIST')
     choose_firm_page.next.click
+  end
+
+  def given_i_forget_to_select_a_subsidiary
+    given_i_want_to_move_an_adviser_from_firm(from_firm)
+    and_i_want_to_move_adviser(adviser)
+
+    expect(choose_firm_page).to be_displayed
+    choose_firm_page.to_firm_fca_number.set(to_firm.fca_number)
+    choose_firm_page.next.click
+
+    expect(choose_subsidiary_page).to be_displayed
+    choose_subsidiary_page.next.click
   end
 
   def then_i_am_told_about_the_problem_on(page)

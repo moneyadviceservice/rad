@@ -6,7 +6,8 @@ RSpec.describe Admin::MoveAdvisersForm, type: :model do
     {
       id: from_firm.id.to_s,
       adviser_ids: [adviser.id.to_s],
-      to_firm_fca_number: to_firm.fca_number
+      to_firm_fca_number: to_firm.fca_number,
+      to_firm_id: to_firm.id.to_s
     }
   end
   let(:params) { valid_params }
@@ -83,6 +84,30 @@ RSpec.describe Admin::MoveAdvisersForm, type: :model do
         end
 
         context 'to_firm_fca_number is valid' do
+          it { is_expected.to be_valid }
+        end
+      end
+    end
+
+    describe '#to_firm_id' do
+      context 'do not validate' do
+        let(:params) { valid_params.tap { |p| p.delete(:to_firm_id) } }
+
+        it 'is not validated when `validate_to_firm_id` is false' do
+          subject.validate_to_firm_id = nil
+          is_expected.to be_valid
+        end
+      end
+
+      context 'validate' do
+        before { subject.validate_to_firm_id = true }
+
+        context 'without to_firm_id' do
+          let(:params) { valid_params.tap { |p| p.delete(:to_firm_id) } }
+          it { is_expected.not_to be_valid }
+        end
+
+        context 'with to_firm_id' do
           it { is_expected.to be_valid }
         end
       end

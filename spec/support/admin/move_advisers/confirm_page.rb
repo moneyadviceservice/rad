@@ -3,6 +3,7 @@ module Admin
     class ConfirmPage < SitePrism::Page
       set_url_matcher %r{/admin/firms/[0-9]+/move_advisers/confirm}
 
+      element :validation_errors, '.t-errors'
       element :from_firm, '.t-from_firm'
       element :to_firm, '.t-to_firm'
       elements :advisers, '.t-adviser'

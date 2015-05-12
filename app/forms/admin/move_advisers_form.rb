@@ -2,10 +2,11 @@ module Admin
   class MoveAdvisersForm
     include ActiveModel::Model
 
-    attr_accessor :id, :to_firm_fca_number, :to_firm_id, :adviser_ids, :validate_to_firm_fca_number
+    attr_accessor :id, :to_firm_fca_number, :to_firm_id, :adviser_ids, :validate_to_firm_fca_number, :validate_to_firm_id
 
     validates :adviser_ids, length: { minimum: 1 }
     validate :to_firm_fca_number_exists, if: :validate_to_firm_fca_number
+    validates :to_firm_id, presence: true, if: :validate_to_firm_id
 
     def adviser_ids=(values)
       # Needed to strip out the ghost value added by the Rails form helper

@@ -1,6 +1,6 @@
 <%= form_for(@form, url: choose_subsidiary_admin_move_advisers_path, method: :get) do |f| %>
   <% if @form.errors.any? %>
-    <ul class="t-errors">
+    <ul class="t-errors bg-danger">
       <% @form.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>

@@ -20,6 +20,11 @@ module Admin
     end
 
     def confirm
+      @form.validate_to_firm_id = true
+
+      if @form.invalid?
+        render :choose_subsidiary
+      end
     end
 
     def move

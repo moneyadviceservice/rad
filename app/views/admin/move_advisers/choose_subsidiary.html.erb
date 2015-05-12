@@ -1,4 +1,12 @@
 <%= form_for(@form, url: confirm_admin_move_advisers_path, method: :get) do |f| %>
+  <% if @form.errors.any? %>
+    <ul class="t-errors bg-danger">
+      <% @form.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  <% end %>
+
   <%= f.collection_radio_buttons(:to_firm_id, @form.subsidiaries, :id, :registered_name) do |b| %>
     <div class="t-subsidiary">
       <%= b.radio_button(class: 't-subsidiary-field') %>
@@ -10,6 +18,7 @@
     <% @form.adviser_ids.each do |adviser_id| %>
       <%= f.hidden_field(:adviser_ids, multiple: true, value: adviser_id, class: 't-adviser') %>
     <% end %>
+    <%= f.hidden_field(:to_firm_fca_number, value: @form.to_firm_fca_number, class: 't-to_firm_fca_number') %>
   </div>
 
   <div class="form-group">
