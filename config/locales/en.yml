@@ -1,4 +1,14 @@
 en:
+  activemodel:
+    attributes:
+      admin/move_advisers_form:
+        adviser_ids: 'Advisers to move:'
+    errors:
+      models:
+        admin/move_advisers_form:
+          attributes:
+            adviser_ids:
+              too_short: you must select one or more advisers
   activerecord:
     attributes:
       adviser:
