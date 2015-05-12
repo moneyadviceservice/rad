@@ -4,10 +4,12 @@
 <dl>
   <dt>Move:</dt>
   <% @form.advisers_to_move.each do |adviser| %>
-    <dd class="t-adviser"><%= adviser.name %></dd>
+    <dd class="t-adviser">(<%= adviser.reference_number %>) <%= adviser.name %></dd>
   <% end %>
-  <dt>From:</dt><dd><span class="t-from_firm"><%= @form.from_firm.registered_name %></span></dd>
-  <dt>To:</dt><dd><span class="t-to_firm"><%= @form.to_firm.registered_name %></span></dd>
+  <dt>From:</dt><dd><span class="t-from_firm">(<%= @form.from_firm.fca_number %>)
+    <%= @form.from_firm.registered_name %></span></dd>
+  <dt>To:</dt><dd><span class="t-to_firm">(<%= @form.to_firm.fca_number %>)
+    <%= @form.to_firm.registered_name %></span></dd>
 </dl>
 
 <%= form_for(@form, url: move_admin_move_advisers_path) do |f| %>

@@ -10,7 +10,7 @@
 
   <div class="form-group">
     <%= f.collection_check_boxes(:adviser_ids, @form.from_firm.advisers.order(:reference_number),
-          :id, ->(adviser) { "#{adviser.reference_number} #{adviser.name}" }) do |b| %>
+          :id, ->(adviser) { "(#{adviser.reference_number}) #{adviser.name}" }) do |b| %>
       <div class="checkbox">
         <%= b.label { b.check_box(class: 't-adviser') + b.text } %>
       </div>
