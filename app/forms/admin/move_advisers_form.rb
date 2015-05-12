@@ -22,7 +22,7 @@ module Admin
     end
 
     def advisers_to_move
-      Adviser.where(id: adviser_ids)
+      Adviser.where(id: adviser_ids).order(:reference_number)
     end
 
     def subsidiaries
