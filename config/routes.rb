@@ -38,7 +38,7 @@ Rails.application.routes.draw do
       member do
         resources :move_advisers, only: [:new] do
           collection do
-            get :choose_to_firm
+            get :choose_destination_firm
             get :choose_subsidiary
             get :confirm
             post :move

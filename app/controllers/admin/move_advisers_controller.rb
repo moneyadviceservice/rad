@@ -5,7 +5,7 @@ module Admin
     def new
     end
 
-    def choose_to_firm
+    def choose_destination_firm
       if @form.invalid?
         render :new
       end
@@ -15,7 +15,7 @@ module Admin
       @form.validate_to_firm_fca_number = true
 
       if @form.invalid?
-        render :choose_to_firm
+        render :choose_destination_firm
       end
     end
 
