@@ -1,12 +1,7 @@
 <%= form_for(@form, url: confirm_admin_move_advisers_path, method: :get) do |f| %>
   <h1>Choose subsidiary</h1>
-  <% if @form.errors.any? %>
-    <ul class="t-errors bg-danger">
-      <% @form.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-    </ul>
-  <% end %>
+
+  <%= render 'admin/shared/errors', model: @form %>
 
   <div class="form-group">
     <%= f.collection_radio_buttons(:to_firm_id, @form.subsidiaries, :id,

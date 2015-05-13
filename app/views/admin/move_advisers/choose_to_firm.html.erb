@@ -1,12 +1,7 @@
 <%= form_for(@form, url: choose_subsidiary_admin_move_advisers_path, method: :get) do |f| %>
   <h1>Firm to move to</h1>
-  <% if @form.errors.any? %>
-    <ul class="t-errors bg-danger">
-      <% @form.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-    </ul>
-  <% end %>
+
+  <%= render 'admin/shared/errors', model: @form %>
 
   <div class="form-group">
     <%= f.label :to_firm_fca_number, 'FCA Number of firm to move to:' %>

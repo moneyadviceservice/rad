@@ -6,13 +6,7 @@
 <div class="panel panel-default">
   <div class="panel-body">
   <%= form_for([:admin, @principal]) do |f| %>
-    <% if @principal.errors.any? %>
-    <ul class="bg-danger">
-    <% @principal.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
-    <% end %>
-    </ul>
-    <% end %>
+    <%= render 'admin/shared/errors', model: @principal %>
 
     <div class="form-group">
       <label for="principal_website_address">Website Address</label>

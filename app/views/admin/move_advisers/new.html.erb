@@ -1,12 +1,7 @@
 <%= form_for(@form, url: choose_to_firm_admin_move_advisers_path, method: :get) do |f| %>
   <h1>Choose advisers to move</h1>
-  <% if @form.errors.any? %>
-    <ul class="t-errors bg-danger">
-      <% @form.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-    </ul>
-  <% end %>
+
+  <%= render 'admin/shared/errors', model: @form %>
 
   <div class="form-group">
     <%= f.collection_check_boxes(:adviser_ids, @form.from_firm.advisers.order(:reference_number),

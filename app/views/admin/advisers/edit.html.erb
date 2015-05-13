@@ -6,13 +6,7 @@
 <div class="panel panel-default">
   <div class="panel-body">
   <%= form_for([:admin, @adviser]) do |f| %>
-    <% if @adviser.errors.any? %>
-    <ul class="bg-danger">
-    <% @adviser.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
-    <% end %>
-    </ul>
-    <% end %>
+    <%= render 'admin/shared/errors', model: @adviser %>
 
     <div class="form-group">
       <%= f.label :postcode %>
