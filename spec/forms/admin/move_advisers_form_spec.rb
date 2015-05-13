@@ -1,13 +1,13 @@
 RSpec.describe Admin::MoveAdvisersForm, type: :model do
   let(:adviser) { create(:adviser) }
   let(:from_firm) { create(:firm) }
-  let(:to_firm) { create(:firm) }
+  let(:destination_firm) { create(:firm) }
   let(:valid_params) do
     {
       id: from_firm.id.to_s,
       adviser_ids: [adviser.id.to_s],
-      to_firm_fca_number: to_firm.fca_number,
-      to_firm_id: to_firm.id.to_s
+      destination_firm_fca_number: destination_firm.fca_number,
+      destination_firm_id: destination_firm.id.to_s
     }
   end
   let(:params) { valid_params }
@@ -40,21 +40,21 @@ RSpec.describe Admin::MoveAdvisersForm, type: :model do
     end
   end
 
-  describe '#to_firm' do
-    let!(:to_firm) { create(:firm) }
+  describe '#destination_firm' do
+    let!(:destination_firm) { create(:firm) }
     context 'when the to firm exists' do
-      let(:params) { { to_firm_id: to_firm.id } }
+      let(:params) { { destination_firm_id: destination_firm.id } }
 
       it 'returns the firm' do
-        expect(subject.to_firm).to eq(to_firm)
+        expect(subject.destination_firm).to eq(destination_firm)
       end
     end
 
     context 'when the to firm fca number does not exist' do
-      let(:params) { { to_firm_id: 'NONSENSE' } }
+      let(:params) { { destination_firm_id: 'NONSENSE' } }
 
       it 'raises an error' do
-        expect { subject.to_firm }.to raise_error(ActiveRecord::RecordNotFound)
+        expect { subject.destination_firm }.to raise_error(ActiveRecord::RecordNotFound)
       end
     end
 
@@ -62,7 +62,7 @@ RSpec.describe Admin::MoveAdvisersForm, type: :model do
       let(:params) { {} }
 
       it 'raises an error' do
-        expect { subject.to_firm }.to raise_error(ActiveRecord::RecordNotFound)
+        expect { subject.destination_firm }.to raise_error(ActiveRecord::RecordNotFound)
       end
     end
   end
@@ -92,49 +92,49 @@ RSpec.describe Admin::MoveAdvisersForm, type: :model do
       end
     end
 
-    describe '#to_firm_fca_number' do
+    describe '#destination_firm_fca_number' do
       context 'do not validate' do
-        let(:params) { valid_params.tap { |p| p[:to_firm_fca_number] = 'DOES_NOT_EXIST' } }
+        let(:params) { valid_params.tap { |p| p[:destination_firm_fca_number] = 'DOES_NOT_EXIST' } }
 
-        it 'is not validated when `validate_to_firm_fca_number` is false' do
-          subject.validate_to_firm_fca_number = nil
+        it 'is not validated when `validate_destination_firm_fca_number` is false' do
+          subject.validate_destination_firm_fca_number = nil
           is_expected.to be_valid
         end
       end
 
       context 'validate' do
-        before { subject.validate_to_firm_fca_number = true }
+        before { subject.validate_destination_firm_fca_number = true }
 
-        context 'to_firm_fca_number is invalid' do
-          let(:params) { valid_params.tap { |p| p[:to_firm_fca_number] = 'DOES_NOT_EXIST' } }
+        context 'destination_firm_fca_number is invalid' do
+          let(:params) { valid_params.tap { |p| p[:destination_firm_fca_number] = 'DOES_NOT_EXIST' } }
           it { is_expected.not_to be_valid }
         end
 
-        context 'to_firm_fca_number is valid' do
+        context 'destination_firm_fca_number is valid' do
           it { is_expected.to be_valid }
         end
       end
     end
 
-    describe '#to_firm_id' do
+    describe '#destination_firm_id' do
       context 'do not validate' do
-        let(:params) { valid_params.tap { |p| p.delete(:to_firm_id) } }
+        let(:params) { valid_params.tap { |p| p.delete(:destination_firm_id) } }
 
-        it 'is not validated when `validate_to_firm_id` is false' do
-          subject.validate_to_firm_id = nil
+        it 'is not validated when `validate_destination_firm_id` is false' do
+          subject.validate_destination_firm_id = nil
           is_expected.to be_valid
         end
       end
 
       context 'validate' do
-        before { subject.validate_to_firm_id = true }
+        before { subject.validate_destination_firm_id = true }
 
-        context 'without to_firm_id' do
-          let(:params) { valid_params.tap { |p| p.delete(:to_firm_id) } }
+        context 'without destination_firm_id' do
+          let(:params) { valid_params.tap { |p| p.delete(:destination_firm_id) } }
           it { is_expected.not_to be_valid }
         end
 
-        context 'with to_firm_id' do
+        context 'with destination_firm_id' do
           it { is_expected.to be_valid }
         end
       end
@@ -164,7 +164,7 @@ RSpec.describe Admin::MoveAdvisersForm, type: :model do
       f.save!(validate: false)
       f
     end
-    let!(:params) { {to_firm_fca_number: shared_fca_number} }
+    let!(:params) { {destination_firm_fca_number: shared_fca_number} }
 
     it 'does not include firm without the shared fca number' do
       expect(subject.subsidiaries).not_to include(unrelated_firm)

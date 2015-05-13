@@ -12,7 +12,7 @@ module Admin
     end
 
     def choose_subsidiary
-      @form.validate_to_firm_fca_number = true
+      @form.validate_destination_firm_fca_number = true
 
       if @form.invalid?
         render :choose_destination_firm
@@ -20,8 +20,8 @@ module Admin
     end
 
     def confirm
-      @form.validate_to_firm_fca_number = true
-      @form.validate_to_firm_id = true
+      @form.validate_destination_firm_fca_number = true
+      @form.validate_destination_firm_id = true
 
       if @form.invalid?
         render :choose_subsidiary
@@ -29,10 +29,10 @@ module Admin
     end
 
     def move
-      @form.validate_to_firm_id = true
+      @form.validate_destination_firm_id = true
 
       if @form.valid?
-        @form.advisers_to_move.move_all_to_firm(@form.to_firm)
+        @form.advisers_to_move.move_all_to_firm(@form.destination_firm)
       else
         fail 'Form data is invalid'
       end
@@ -50,8 +50,8 @@ module Admin
       # nesting.
       params.permit(:id).merge(
         params.fetch(:admin_move_advisers_form, {})
-          .permit(:to_firm_fca_number,
-                  :to_firm_id,
+          .permit(:destination_firm_fca_number,
+                  :destination_firm_id,
                   adviser_ids: []))
     end
   end

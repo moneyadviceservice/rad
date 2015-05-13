@@ -5,7 +5,7 @@ module Admin
 
       element :validation_errors, '.t-errors'
       element :from_firm, '.t-from_firm'
-      element :to_firm, '.t-to_firm'
+      element :destination_firm, '.t-destination_firm'
       elements :advisers, '.t-adviser'
       element :move, '.t-move'
 

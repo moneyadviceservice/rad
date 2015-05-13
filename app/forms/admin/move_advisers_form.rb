@@ -2,11 +2,12 @@ module Admin
   class MoveAdvisersForm
     include ActiveModel::Model
 
-    attr_accessor :id, :to_firm_fca_number, :to_firm_id, :adviser_ids, :validate_to_firm_fca_number, :validate_to_firm_id
+    attr_accessor :id, :destination_firm_fca_number, :destination_firm_id,
+      :adviser_ids, :validate_destination_firm_fca_number, :validate_destination_firm_id
 
     validates :adviser_ids, length: { minimum: 1 }
-    validate :to_firm_fca_number_exists, if: :validate_to_firm_fca_number
-    validates :to_firm_id, presence: true, if: :validate_to_firm_id
+    validate :destination_firm_fca_number_exists, if: :validate_destination_firm_fca_number
+    validates :destination_firm_id, presence: true, if: :validate_destination_firm_id
 
     def adviser_ids=(values)
       # Needed to strip out the ghost value added by the Rails form helper
@@ -17,8 +18,8 @@ module Admin
       Firm.find(id)
     end
 
-    def to_firm
-      Firm.find(to_firm_id)
+    def destination_firm
+      Firm.find(destination_firm_id)
     end
 
     def advisers_to_move
@@ -26,14 +27,14 @@ module Admin
     end
 
     def subsidiaries
-      Firm.registered.where(fca_number: to_firm_fca_number).order('LOWER(registered_name)')
+      Firm.registered.where(fca_number: destination_firm_fca_number).order('LOWER(registered_name)')
     end
 
     private
 
-    def to_firm_fca_number_exists
-      unless Firm.where(fca_number: to_firm_fca_number).count > 0
-        errors.add(:to_firm_fca_number, :does_not_exist, fca_number: to_firm_fca_number)
+    def destination_firm_fca_number_exists
+      unless Firm.where(fca_number: destination_firm_fca_number).count > 0
+        errors.add(:destination_firm_fca_number, :does_not_exist, fca_number: destination_firm_fca_number)
       end
     end
   end
