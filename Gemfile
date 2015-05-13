@@ -17,22 +17,18 @@ gem 'dough-ruby',
   github: 'moneyadviceservice/dough',
   require: 'dough',
   ref: 'cf08913'
+gem 'jquery-rails'
 gem 'kaminari'
 gem 'letter_opener', group: :development
 gem 'mas-rad_core'
 gem 'pg'
 gem 'ransack'
 gem 'rollbar'
+gem 'sass-rails'
 gem 'sidekiq'
 gem 'sinatra', require: false
 gem 'uglifier', '>= 1.3.0'
 gem 'unicorn'
-
-group :assets do
-  gem 'coffee-rails'
-  gem 'jquery-rails'
-  gem 'sass-rails'
-end
 
 group :test, :development do
   gem 'factory_girl_rails'

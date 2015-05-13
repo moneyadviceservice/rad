@@ -1,4 +1,5 @@
 RSpec.feature 'Accessing the admin area' do
+  let(:admin_adviser_page) { AdminAdviserPage.new }
   let(:username) { 'admin' }
   let(:password) { 'password' }
 
