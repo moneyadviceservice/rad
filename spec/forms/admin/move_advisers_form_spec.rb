@@ -110,6 +110,16 @@ RSpec.describe Admin::MoveAdvisersForm, type: :model do
           it { is_expected.not_to be_valid }
         end
 
+        context 'destination_firm_fca_number returns only invalid/unregistered firm records' do
+          let!(:invalid_firm) do
+            f = build(:firm, email_address: nil)
+            f.save!(validate: false)
+            f
+          end
+          let(:params) { valid_params.tap { |p| p[:destination_firm_fca_number] = invalid_firm.fca_number } }
+          it { is_expected.not_to be_valid }
+        end
+
         context 'destination_firm_fca_number is valid' do
           it { is_expected.to be_valid }
         end
