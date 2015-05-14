@@ -94,7 +94,7 @@
           <%= f.form_row :in_person_advice_methods do %>
             <%= f.collection_check_boxes(:in_person_advice_method_ids, InPersonAdviceMethod.all, :id, :name) do |b| %>
               <div class="form__group-item">
-                <%= b.label { b.check_box(class: 'form__group-input t-questionnaire__in_person_advice_method_id') + b.text } %>
+                <%= b.label { b.check_box(class: 'form__group-input t-questionnaire__in-person-advice-method-id') + b.text } %>
               </div>
             <% end %>
           <% end %>
@@ -107,7 +107,7 @@
             <%= f.errors_for :other_advice_methods %>
             <%= f.collection_check_boxes(:other_advice_method_ids, OtherAdviceMethod.all, :id, :name) do |b| %>
               <div class="form__group-item">
-                <%= b.label { b.check_box(class: 'form__group-input t-questionnaire__other_advice_method_id') + b.text } %>
+                <%= b.label { b.check_box(class: 'form__group-input t-questionnaire__other-advice-method-id') + b.text } %>
               </div>
             <% end %>
           <% end %>
@@ -142,7 +142,7 @@
             <% InitialMeetingDuration.all.each do |initial_meeting_duration| %>
               <div class="form__group-item">
                 <label>
-                  <%= radio_button_tag 'firm[initial_meeting_duration_id]', initial_meeting_duration.id, @firm.initial_meeting_duration == initial_meeting_duration, class: 'form__group-input t-questionnaire__firm_initial_meeting_duration_id' %>
+                  <%= radio_button_tag 'firm[initial_meeting_duration_id]', initial_meeting_duration.id, @firm.initial_meeting_duration == initial_meeting_duration, class: 'form__group-input t-questionnaire__firm-initial-meeting-duration-id' %>
                   <%= initial_meeting_duration.name %>
                 </label>
               </div>
@@ -165,7 +165,7 @@
             <%= f.errors_for :initial_advice_fee_structures %>
             <%= f.collection_check_boxes(:initial_advice_fee_structure_ids, InitialAdviceFeeStructure.all, :id, :name) do |b| %>
               <div class="form__group-item">
-                <%= b.label { b.check_box(class: 'form__group-input t-questionnaire__initial_advice_fee_structure_id') + b.text } %>
+                <%= b.label { b.check_box(class: 'form__group-input t-questionnaire__initial-advice-fee-structure-id') + b.text } %>
               </div>
             <% end %>
           <% end %>
@@ -178,7 +178,7 @@
             <%= f.errors_for :ongoing_advice_fee_structures %>
             <%= f.collection_check_boxes(:ongoing_advice_fee_structure_ids, OngoingAdviceFeeStructure.all, :id, :name) do |b| %>
               <div class="form__group-item">
-                <%= b.label { b.check_box(class: 'form__group-input t-questionnaire__ongoing_advice_fee_structure_id') + b.text } %>
+                <%= b.label { b.check_box(class: 'form__group-input t-questionnaire__ongoing-advice-fee-structure-id') + b.text } %>
               </div>
             <% end %>
           <% end %>
@@ -191,7 +191,7 @@
             <%= f.errors_for :allowed_payment_methods %>
             <%= f.collection_check_boxes(:allowed_payment_method_ids, AllowedPaymentMethod.all, :id, :name) do |b| %>
               <div class="form__group-item">
-                <%= b.label { b.check_box(class: 'form__group-input t-questionnaire__allowed_payment_method_id') + b.text } %>
+                <%= b.label { b.check_box(class: 'form__group-input t-questionnaire__allowed-payment-method-id') + b.text } %>
               </div>
             <% end %>
           <% end %>
@@ -267,7 +267,7 @@
             <%= f.errors_for :investment_sizes %>
             <%= f.collection_check_boxes(:investment_size_ids, InvestmentSize.all, :id, :name) do |b| %>
               <div class="form__group-item">
-                <%= b.label { b.check_box(class: 'form__group-input t-questionnaire__firm_investment_size_id') + b.text } %>
+                <%= b.label { b.check_box(class: 'form__group-input t-questionnaire__firm-investment-size-id') + b.text } %>
               </div>
             <% end %>
           <% end %>

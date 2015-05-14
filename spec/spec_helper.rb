@@ -5,6 +5,7 @@ require_relative '../config/environment'
 require 'rspec/rails'
 require 'capybara/poltergeist'
 
+Dir[File.join(File.dirname(__FILE__), 'support', '**', '*_section.rb')].each { |f| require f }
 Dir[File.join(File.dirname(__FILE__), 'support', '**', '*.rb')].each { |f| require f }
 
 Faker::Config.locale = 'en-GB'

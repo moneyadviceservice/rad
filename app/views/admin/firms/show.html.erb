@@ -77,6 +77,9 @@
       <li><%= link_to adviser.name, admin_adviser_path(adviser) %>, added <%= adviser.created_at.to_s(:short) %></li>
     <% end %>
   </ul>
+
+  <%= button_to 'Move advisers', new_admin_move_adviser_path,
+                :class => "t-move-advisers", :method => :get %>
 <% else %>
   <p>No advisers registered.</p>
 <% end %>

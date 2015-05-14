@@ -35,6 +35,16 @@ Rails.application.routes.draw do
 
     resources :firms, only: [:index, :show] do
       resources :advisers, only: :index
+      member do
+        resources :move_advisers, only: [:new] do
+          collection do
+            get :choose_destination_firm
+            get :choose_subsidiary
+            get :confirm
+            post :move
+          end
+        end
+      end
     end
     namespace :lookup do
       resources :advisers, only: :index

@@ -1,0 +1,26 @@
+<%= form_for(@form, url: confirm_admin_move_advisers_path, method: :get) do |f| %>
+  <h1>Choose subsidiary</h1>
+
+  <%= render 'admin/shared/errors', model: @form %>
+
+  <div class="form-group">
+    <%= f.collection_radio_buttons(:destination_firm_id, @form.subsidiaries, :id,
+        ->(firm) { "(#{firm.fca_number}) #{firm.registered_name}" }) do |b| %>
+      <div class="t-subsidiary radio">
+        <%= b.label(class: 't-subsidiary-label') { b.radio_button(class: 't-subsidiary-field') + b.text } %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="t-hidden-fields form-group">
+    <% @form.adviser_ids.each do |adviser_id| %>
+      <%= f.hidden_field(:adviser_ids, multiple: true, value: adviser_id, class: 't-adviser') %>
+    <% end %>
+    <%= f.hidden_field(:destination_firm_fca_number,
+          value: @form.destination_firm_fca_number, class: 't-destination-firm-fca-number') %>
+  </div>
+
+  <div class="form-group">
+    <%= f.submit('Next', class: 't-next') %>
+  </div>
+<% end %>

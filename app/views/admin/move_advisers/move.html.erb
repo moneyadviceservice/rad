@@ -1,0 +1,12 @@
+<p>Done!</p>
+<p>You have successfully moved:</p>
+<ul>
+  <% @form.advisers_to_move.each do |adviser| %>
+    <li><%= link_to adviser.name, admin_adviser_path(adviser) %></li>
+  <% end %>
+</ul>
+<p>
+  From
+  <%= link_to @form.from_firm.registered_name, admin_firm_path(@form.from_firm) %>
+  to
+  <%= link_to @form.destination_firm.registered_name, admin_firm_path(@form.destination_firm) %>.

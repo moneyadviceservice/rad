@@ -1,4 +1,19 @@
 en:
+  activemodel:
+    attributes:
+      admin/move_advisers_form:
+        adviser_ids: 'Advisers to move:'
+        destination_firm_fca_number: 'FCA Number:'
+    errors:
+      models:
+        admin/move_advisers_form:
+          attributes:
+            adviser_ids:
+              too_short: you must select one or more advisers
+            destination_firm_id:
+              blank: must be selected
+            destination_firm_fca_number:
+              does_not_exist: "no firms exist that match '%{fca_number}'"
   activerecord:
     attributes:
       adviser:

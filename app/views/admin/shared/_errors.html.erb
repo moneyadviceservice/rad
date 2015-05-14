@@ -1,0 +1,10 @@
+<% if model.errors.any? %>
+  <div class="bg-danger">
+    <p>The following errors occurred:</p>
+    <ul class="t-errors ">
+      <% model.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
