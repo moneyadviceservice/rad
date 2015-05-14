@@ -33,7 +33,7 @@ module Admin
     private
 
     def destination_firm_fca_number_exists
-      unless Firm.where(fca_number: destination_firm_fca_number).count > 0
+      unless subsidiaries.count > 0
         errors.add(:destination_firm_fca_number, :does_not_exist, fca_number: destination_firm_fca_number)
       end
     end
