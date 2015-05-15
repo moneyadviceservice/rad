@@ -3,6 +3,7 @@ ENV['RAILS_ENV'] = 'test'
 require_relative '../config/environment'
 
 require 'rspec/rails'
+require 'factory_girl_rails'
 require 'capybara/poltergeist'
 
 Dir[File.join(File.dirname(__FILE__), 'support', '**', '*_section.rb')].each { |f| require f }
