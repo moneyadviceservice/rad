@@ -31,9 +31,7 @@ class ExtToSql
         next
       end
 
-      if record_active?(row)
-        block.call build_row(row)
-      end
+      block.call build_row(row) if record_active?(row)
 
       write_progress
     end
@@ -127,9 +125,7 @@ class ExtToSql
 
   def write_progress
     @i ||= 0
-    if (@i += 1) % 10_000 == 0
-      log '.', newline: false
-    end
+    log '.', newline: false if (@i += 1) % 10_000 == 0
   end
 
   def escape(str)

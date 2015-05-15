@@ -14,9 +14,9 @@ gem 'rails', '~> 4.2'
 gem 'bootstrap-sass', '~> 3.3.3'
 gem 'bowndler', github: 'moneyadviceservice/bowndler'
 gem 'dough-ruby',
-  github: 'moneyadviceservice/dough',
-  require: 'dough',
-  ref: 'cf08913'
+    github: 'moneyadviceservice/dough',
+    require: 'dough',
+    ref: 'cf08913'
 gem 'jquery-rails'
 gem 'kaminari'
 gem 'letter_opener', group: :development

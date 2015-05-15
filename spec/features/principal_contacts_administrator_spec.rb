@@ -14,7 +14,6 @@ RSpec.feature 'Principal contacts Administrator', :inline_job_queue do
     then_i_am_told_to_provide_a_message
   end
 
-
   def given_i_have_failed_pre_qualification
     rejection_page.load
   end

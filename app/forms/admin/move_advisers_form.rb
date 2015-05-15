@@ -3,7 +3,7 @@ module Admin
     include ActiveModel::Model
 
     attr_accessor :id, :destination_firm_fca_number, :destination_firm_id,
-      :adviser_ids, :validate_destination_firm_fca_number, :validate_destination_firm_id
+                  :adviser_ids, :validate_destination_firm_fca_number, :validate_destination_firm_id
 
     validates :adviser_ids, length: { minimum: 1 }
     validate :destination_firm_fca_number_exists, if: :validate_destination_firm_fca_number

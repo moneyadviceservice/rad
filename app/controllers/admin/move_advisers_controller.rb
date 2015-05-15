@@ -6,26 +6,20 @@ module Admin
     end
 
     def choose_destination_firm
-      if @form.invalid?
-        render :new
-      end
+      render :new if @form.invalid?
     end
 
     def choose_subsidiary
       @form.validate_destination_firm_fca_number = true
 
-      if @form.invalid?
-        render :choose_destination_firm
-      end
+      render :choose_destination_firm if @form.invalid?
     end
 
     def confirm
       @form.validate_destination_firm_fca_number = true
       @form.validate_destination_firm_id = true
 
-      if @form.invalid?
-        render :choose_subsidiary
-      end
+      render :choose_subsidiary if @form.invalid?
     end
 
     def move

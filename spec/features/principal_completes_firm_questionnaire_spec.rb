@@ -30,7 +30,6 @@ RSpec.feature 'Principal completes the firm questionnaire' do
     and_i_am_directed_to_assign_advisers_to_my_firm_or_subsidiary
   end
 
-
   def given_my_principal_record_exists
     @principal = create(:principal)
   end

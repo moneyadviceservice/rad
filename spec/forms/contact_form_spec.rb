@@ -11,28 +11,34 @@ RSpec.describe ContactForm, type: :model do
   end
 
   context 'with an empty message' do
-    let(:params) do {
-      email: email,
-      message: ''
-    } end
+    let(:params) do
+      {
+        email: email,
+        message: ''
+      }
+    end
 
     it { is_expected.to_not be_valid }
   end
 
   context 'with an invalid email address' do
-    let(:params) do {
-      email: invalid_email,
-      message: message
-    } end
+    let(:params) do
+      {
+        email: invalid_email,
+        message: message
+      }
+    end
 
     it { is_expected.to_not be_valid }
   end
 
   context 'with valid data' do
-    let(:params) do {
-      email: email,
-      message: message
-    } end
+    let(:params) do
+      {
+        email: email,
+        message: message
+      }
+    end
 
     it { is_expected.to be_valid }
   end
