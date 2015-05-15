@@ -1,7 +1,7 @@
 RSpec.feature 'Verify principal e-mail address' do
   let(:firm_page) { FirmPage.new }
 
-  before { Timecop.freeze(Time.local(1990)) }
+  before { Timecop.freeze(Time.zone.local(1990)) }
   after { Timecop.return }
 
   scenario 'when the link in the confirmation e-mail is followed' do

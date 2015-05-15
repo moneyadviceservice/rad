@@ -19,7 +19,6 @@ RSpec.feature 'Principal views Firms and Subsidiaries' do
     and_i_am_directed_to_the_questionnaire_for_my_subsidiary
   end
 
-
   def given_i_am_verified
     @principal = create(:principal)
   end

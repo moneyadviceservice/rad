@@ -2,7 +2,7 @@ require 'date'
 require 'yaml'
 
 class ExtToSql
-  TIMESTAMP = DateTime.now.strftime('%Y-%m-%d %H:%M:%S.%N')
+  TIMESTAMP = Time.zone.now.strftime('%Y-%m-%d %H:%M:%S.%N') # Time in UTC
   REPAIR_FILE = File.join(File.dirname(__FILE__), '..', 'repairs.yml')
 
   module COLUMNS
@@ -31,9 +31,7 @@ class ExtToSql
         next
       end
 
-      if record_active?(row)
-        block.call build_row(row)
-      end
+      block.call build_row(row) if record_active?(row)
 
       write_progress
     end
@@ -127,12 +125,10 @@ class ExtToSql
 
   def write_progress
     @i ||= 0
-    if (@i += 1) % 10_000 == 0
-      log '.', newline: false
-    end
+    log '.', newline: false if (@i += 1) % 10_000 == 0
   end
 
   def escape(str)
-    str.gsub("\t", "\\t")
+    str.gsub("\t", '\t')
   end
 end

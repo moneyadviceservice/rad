@@ -24,7 +24,6 @@ RSpec.feature 'Principal provides identifying information', :inline_job_queue do
     then_i_am_told_which_fields_are_incorrect_and_why
   end
 
-
   def given_i_have_passed_the_pre_qualification_step
     identification_page.load
   end

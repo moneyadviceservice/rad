@@ -72,3 +72,11 @@ To run the javascript tests:
 ```
 $ node_modules/.bin/karma start spec/javascripts/karma.conf.js --single-run=true
 ```
+
+# Style Checking
+
+To run the Rubocop style checker:
+
+```sh
+$ bundle exec rubocop -DS
+```

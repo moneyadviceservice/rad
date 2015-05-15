@@ -20,7 +20,6 @@ RSpec.feature 'Principal answers pre-qualification questions' do
     and_i_am_able_to_send_a_message_to_the_administrator
   end
 
-
   def when_i_submit_my_answers
     pre_qualification_page.submit.click
   end

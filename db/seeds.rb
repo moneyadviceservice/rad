@@ -14,13 +14,13 @@
 [
   'At customers home',
   'At firm\'s place of business',
-  'At an agreed location',
+  'At an agreed location'
 ].each.with_index(1) { |item, index| InPersonAdviceMethod.find_or_create_by(name: item, order: index) }
 
 [
   'Hourly fee',
   'Fixed fee',
-  'Other',
+  'Other'
 ].each.with_index(1) { |item, index| InitialAdviceFeeStructure.find_or_create_by(name: item, order: index) }
 
 [

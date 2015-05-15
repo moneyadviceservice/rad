@@ -159,7 +159,7 @@ RSpec.describe Admin::MoveAdvisersForm, type: :model do
 
     it 'are sorted by reference number' do
       reference_numbers = subject.advisers_to_move.map(&:reference_number)
-      expect(reference_numbers).to eq(['AXX12345', 'FXX12345', 'SXX12345'])
+      expect(reference_numbers).to eq(%w(AXX12345 FXX12345 SXX12345))
     end
   end
 
@@ -170,11 +170,11 @@ RSpec.describe Admin::MoveAdvisersForm, type: :model do
     let!(:sandras_firm) { create(:firm, registered_name: 'Sandras Firm', fca_number: shared_fca_number) }
     let!(:unrelated_firm) { create(:firm, registered_name: 'Unrelated Firm', fca_number: 999999) }
     let!(:no_registered_firm) do
-      f = build(:firm, email_address: nil, fca_number: shared_fca_number )
+      f = build(:firm, email_address: nil, fca_number: shared_fca_number)
       f.save!(validate: false)
       f
     end
-    let!(:params) { {destination_firm_fca_number: shared_fca_number} }
+    let!(:params) { { destination_firm_fca_number: shared_fca_number } }
 
     it 'does not include firm without the shared fca number' do
       expect(subject.subsidiaries).not_to include(unrelated_firm)
@@ -185,7 +185,7 @@ RSpec.describe Admin::MoveAdvisersForm, type: :model do
     end
 
     it 'includes only firms with the supplied fca number' do
-      all_shared = subject.subsidiaries.all?{ |s| s.fca_number == shared_fca_number }
+      all_shared = subject.subsidiaries.all? { |s| s.fca_number == shared_fca_number }
       expect(all_shared).to eq(true)
     end
 
