@@ -1,6 +1,6 @@
 class IdentificationPage < SitePrism::Page
   set_url '/principals/new'
-  set_url_matcher /new/
+  set_url_matcher(/new/)
 
   elements :validation_summaries, '.validation-summary__error'
 
