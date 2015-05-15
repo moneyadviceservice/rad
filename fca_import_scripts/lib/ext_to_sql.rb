@@ -129,6 +129,6 @@ class ExtToSql
   end
 
   def escape(str)
-    str.gsub("\t", "\\t")
+    str.gsub("\t", '\t')
   end
 end
