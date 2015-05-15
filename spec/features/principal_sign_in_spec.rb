@@ -34,7 +34,7 @@ RSpec.feature 'Principal can sign in' do
   end
 
   def they_have_logged_in
-    # We don't have access to `current_user` in feature
+    # TODO: We don't have access to `current_user` in feature
     # tests, so we'll rely on this? Until we can test it on content.
     expect(@user.reload.sign_in_count).to eq 1
   end
