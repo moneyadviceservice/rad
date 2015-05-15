@@ -35,3 +35,16 @@ AllCops:
   - 'node_modules/**/*'
   - 'tmp/**/*'
   - 'vendor/**/*'
+
+#
+# Project specific settings
+#
+
+# If someone can provide a good explanation of how to satisfy this, we can turn
+# it on.
+Metrics/AbcSize:
+  Enabled: false
+
+# Separating every 3 digits of FCA numbers with '_' is not helpful
+Style/NumericLiterals:
+  Enabled: false
