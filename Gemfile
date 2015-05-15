@@ -22,6 +22,7 @@ gem 'jquery-rails'
 gem 'kaminari'
 gem 'letter_opener', group: :development
 gem 'mas-rad_core'
+gem 'oga'
 gem 'pg'
 gem 'ransack'
 gem 'rollbar'
