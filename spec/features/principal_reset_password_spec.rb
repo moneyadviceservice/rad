@@ -43,7 +43,7 @@ RSpec.feature 'Principal can reset their password' do
 
   def then_they_see_a_confirmation_message
     message = I18n.t('devise.passwords.send_instructions')
-    expect(sign_in_page.flash_message.text).to eq message
+    expect(sign_in_page.flash_message).to have_text message
   end
 
   def and_get_an_email_with_a_reset_password_link
