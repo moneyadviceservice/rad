@@ -3,7 +3,9 @@ require 'csv'
 namespace :export do
   desc 'Export Firms to CSV=(/path/to/csv)'
   task firms: :environment do
-    unless csv_path = ENV['CSV']
+    csv_path = ENV['CSV']
+
+    unless csv_path
       puts 'Usage: rake export:firms CSV=/path/to/csv.ext'
       abort
     end
@@ -79,7 +81,9 @@ namespace :export do
 
   desc 'Export Advisers to CSV=(/path/to/csv)'
   task advisers: :environment do
-    unless csv_path = ENV['CSV']
+    csv_path = ENV['CSV']
+
+    unless csv_path
       puts 'Usage: rake export:advisers CSV=/path/to/csv.ext'
       abort
     end
