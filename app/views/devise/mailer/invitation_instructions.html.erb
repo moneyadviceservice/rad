@@ -2,7 +2,7 @@ Dear <%= @resource.principal.first_name + " " + @resource.principal.last_name %>
 
 Great news - as the named Principal at <%= @resource.principal.firm.registered_name %>, you can now manage your Firm and Adviser profiles on The Money Advise Service Adviser Directory.
 
-<p><%= link_to 'Activate your account password', edit_password_url(@resource, reset_password_token: @token), target: '_blank' %></p>
+<p><%= link_to 'Activate your account password', accept_invitation_url(@resource, :invitation_token => @token), target: '_blank' %></p>
 
 <h3>Multiple offices</h3>
 Do you have multipl offices? If so, we know you've been frustrated with the directory only allowing a single office. So we've fixed it. You are now able to add additional offices, and assign Advisers to that office.
