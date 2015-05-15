@@ -16,7 +16,7 @@ RSpec.feature 'Principal completes the firm questionnaire' do
     given_my_principal_record_exists
     given_i_have_selected_a_firm
     and_i_can_see_my_firm_name_and_fca_reference_number
-    when_I_complete_all_mandatory_questions
+    when_i_complete_all_mandatory_questions
     then_my_directory_listing_is_created
     and_i_am_directed_to_assign_advisers_to_my_firm_or_subsidiary
   end
@@ -25,7 +25,7 @@ RSpec.feature 'Principal completes the firm questionnaire' do
     given_my_principal_record_exists
     given_i_have_selected_a_subsidiary
     and_i_can_see_my_firm_name_and_fca_reference_number
-    when_I_complete_all_mandatory_questions
+    when_i_complete_all_mandatory_questions
     then_my_directory_listing_is_created
     and_i_am_directed_to_assign_advisers_to_my_firm_or_subsidiary
   end
@@ -51,7 +51,7 @@ RSpec.feature 'Principal completes the firm questionnaire' do
     expect(questionnaire_page.firm_fca_number.text).to eql(@firm.fca_number.to_s)
   end
 
-  def when_I_complete_all_mandatory_questions
+  def when_i_complete_all_mandatory_questions
     questionnaire_page.tap do |p|
       p.email_address.set Faker::Internet.email
       p.telephone_number.set Faker::Base.numerify('##### ### ###')
