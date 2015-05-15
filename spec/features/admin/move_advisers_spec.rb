@@ -40,6 +40,7 @@ RSpec.feature 'Move advisers between firms' do
 
   def and_i_want_to_move_adviser(adviser)
     expect(move_advisers_page).to be_displayed
+    expect(move_advisers_page.advisers[0].value).to eq(adviser.id.to_s)
     move_advisers_page.advisers[0].set(true)
     move_advisers_page.next.click
   end
@@ -47,14 +48,13 @@ RSpec.feature 'Move advisers between firms' do
   def and_i_want_to_move_to_firm(firm)
     expect(choose_firm_page).to be_displayed
     expect(choose_firm_page.hidden.advisers[0].value).to eq(adviser.id.to_s)
-    choose_firm_page.destination_firm_fca_number.set(destination_firm.fca_number)
+    choose_firm_page.destination_firm_fca_number.set(firm.fca_number)
     choose_firm_page.next.click
 
     expect(choose_subsidiary_page).to be_displayed
     expect(choose_subsidiary_page.hidden.advisers[0].value).to eq(adviser.id.to_s)
-    expect(choose_subsidiary_page.hidden.destination_firm_fca_number.value).to eq(destination_firm.fca_number.to_s)
-    expect(choose_subsidiary_page.subsidiary_label(0))
-      .to have_text(destination_firm.registered_name)
+    expect(choose_subsidiary_page.hidden.destination_firm_fca_number.value).to eq(firm.fca_number.to_s)
+    expect(choose_subsidiary_page.subsidiary_label(0)).to have_text(firm.registered_name)
     choose_subsidiary_page.subsidiary_field(0).set(true)
     choose_subsidiary_page.next.click
   end
