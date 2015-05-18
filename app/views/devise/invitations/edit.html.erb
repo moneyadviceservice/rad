@@ -1,14 +1,55 @@
-<h2><%= t 'devise.invitations.edit.header' %></h2>
+<%= devise_layout do %>
+  <h1><%= t 'devise.invitations.edit.header' %></h1>
 
-<%= form_for resource, :as => resource_name, :url => invitation_path(resource_name), :html => { :method => :put } do |f| %>
-  <%= devise_error_messages! %>
-  <%= f.hidden_field :invitation_token %>
+  <%= form_for resource, as: resource_name,
+                         url: invitation_path(resource_name),
+                         builder: Dough::Forms::Builders::Validation,
+                         html: { method: :put, class: 'form', novalidate: 'novalidate' } do |f| %>
 
-  <p><%= f.label :password %><br />
-  <%= f.password_field :password %></p>
+    <%= f.validation_summary %>
 
-  <p><%= f.label :password_confirmation %><br />
-  <%= f.password_field :password_confirmation %></p>
+    <%= f.hidden_field :invitation_token %>
 
-  <p><%= f.submit t("devise.invitations.edit.submit_button") %></p>
+    <div class="registration__row">
+      <div class="registration__field">
+        <%= f.form_row :password do %>
+          <%= f.errors_for :password %>
+          <%= f.label :password, class: "form__label-heading" %>
+          <%= f.password_field :password, class: 't-password-field', autocomplete: "off", "aria-describedby" => "tooltip_password" %>
+        <% end %>
+      </div>
+
+      <div class="registration__helper">
+        <div class="field-help-text field-help-text--jshide" id="tooltip_password" data-dough-component="FieldHelpText">
+          <div class="tooltip__content-container">
+            <p class="tooltip__text"><%= t("authentication.accept_invitation_page.field_help_texts.password") %></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="registration__row">
+      <div class="registration__field">
+        <%= f.form_row :password_confirmation do %>
+          <%= f.errors_for :password_confirmation %>
+          <%= f.label :password_confirmation, class: "form__label-heading" %>
+          <%= f.password_field :password_confirmation, class: 't-password-confirmation-field', autocomplete: "off", "aria-describedby" => "tooltip_password_confirmation" %>
+        <% end %>
+      </div>
+
+      <div class="registration__helper">
+        <div class="field-help-text field-help-text--jshide" id="tooltip_password_confirmation" data-dough-component="FieldHelpText">
+          <div class="tooltip__content-container">
+            <p class="tooltip__text"><%= t("authentication.accept_invitation_page.field_help_texts.password_confirmation") %></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="registration__row">
+      <div class="registration__field">
+        <%= f.submit t("devise.invitations.edit.submit_button"), class: "button button--primary t-submit-button" %>
+      </div>
+    </div>
+  <% end %>
 <% end %>

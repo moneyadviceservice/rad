@@ -26,6 +26,10 @@ en:
           - Setting your own personal money goals
           - The true cost of running a car
           - How to afford to buy a home
+    accept_invitation_page:
+      field_help_texts:
+        password: Please enter a password to keep your information private
+        password_confirmation: Please confirm the password you entered above
     sign_in_page:
       title: Sign in
       label: Sign in
