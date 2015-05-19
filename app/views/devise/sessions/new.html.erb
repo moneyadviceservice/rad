@@ -6,7 +6,7 @@
                          builder: Dough::Forms::Builders::Validation,
                          html: { class: "form", novalidate: 'novalidate'}) do |f| %>
 
-    <%= f.validation_summary %>
+    <%= validation_summary_with_devise_alerts(form: f) %>
 
     <div class="registration__row">
       <div class="registration__field">

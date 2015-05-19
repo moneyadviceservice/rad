@@ -7,4 +7,5 @@ class SignInPage < SitePrism::Page
   element :submit_button, '.t-submit-button'
   element :forgot_password_link, '.t-forgot-password'
   element :flash_message, '.t-flash-message'
+  element :devise_form_errors, '.t-devise-form-errors'
 end

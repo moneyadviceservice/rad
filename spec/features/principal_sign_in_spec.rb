@@ -13,6 +13,7 @@ RSpec.feature 'Principal can sign in' do
     when_they_sign_in_with_incorrect_details
     they_have_not_logged_in
     they_see_the_sign_in_page
+    and_they_see_a_notice_that_their_details_were_incorrect
   end
 
   def given_the_principal_user_exists
@@ -51,4 +52,8 @@ RSpec.feature 'Principal can sign in' do
     expect(page.current_path).to eq new_user_session_path
   end
 
+  def and_they_see_a_notice_that_their_details_were_incorrect
+    expect(sign_in_page.devise_form_errors).to have_text(
+      I18n.t('devise.failure.invalid', authentication_keys: 'email'))
+  end
 end
