@@ -48,3 +48,16 @@ code {
   width: 100%;
   margin-bottom: 20px;
 }
+
+.adviser__actions {
+  @include make-row;
+}
+
+.adviser__actions__delete {
+  @include make-xs-column(6);
+  text-align: right;
+}
+
+.adviser__actions__edit {
+  @include make-xs-column(6);
+}
