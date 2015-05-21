@@ -7,7 +7,7 @@ module Tasks
 
         if user.nil?
           invite principal
-        elsif !user.invitation_accepted?
+        elsif user.invited_to_sign_up? && !user.invitation_accepted?
           user.invite!
         end
       end

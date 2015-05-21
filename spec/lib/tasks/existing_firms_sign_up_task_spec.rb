@@ -33,16 +33,6 @@ module Tasks
         expect(emails_sent.first.to).to include('firm@example.com')
       end
 
-      it 'mails principals that have an account that have not accepted an invitation' do
-        user = create :user, principal: bill
-        allow_any_instance_of(User).to receive(:invitation_accepted?).and_return(false)
-
-        described_class.notify
-
-        expect(emails_sent.size).to eq(1)
-        expect(emails_sent.first.subject).to eq('Invitation instructions')
-      end
-
       it 'does not mail principals thats firm is not registered' do
         bill.firm.update_attribute(:email_address, nil)
 
@@ -60,13 +50,55 @@ module Tasks
       end
 
 
-      it 'does not mail principals that have an account' do
+      it 'does not mail principals that have an already have an account' do
         user = create :user, principal: bill
-        allow_any_instance_of(User).to receive(:invitation_accepted?).and_return(true)
+        allow_any_instance_of(User).to receive(:invited_to_sign_up?).and_return(false)
 
         described_class.notify
 
         expect(emails_sent).to be_empty
+      end
+
+      it 'does not mail principals that have an account' do
+        user = create :user, principal: bill
+        allow_any_instance_of(User).to receive(:invited_to_sign_up?).and_return(false)
+
+        described_class.notify
+
+        expect(emails_sent).to be_empty
+      end
+
+      context 'rerunning task' do
+        it 'mails principals that have an account that have not accepted an invitation' do
+          user = create :user, principal: bill
+          allow_any_instance_of(User).to receive(:invited_to_sign_up?).and_return(true)
+          allow_any_instance_of(User).to receive(:invitation_accepted?).and_return(false)
+
+          described_class.notify
+
+          expect(emails_sent.size).to eq(1)
+          expect(emails_sent.first.subject).to eq('Invitation instructions')
+        end
+
+        it 'does not mail principals that have not been previously invited' do
+          user = create :user, principal: bill
+          allow_any_instance_of(User).to receive(:invited_to_sign_up?).and_return(false)
+
+          described_class.notify
+
+          expect(emails_sent.size).to eq(0)
+        end
+
+        it 'does not mail principals that have been invited and accepted the invitation' do
+          user = create :user, principal: bill
+          allow_any_instance_of(User).to receive(:invited_to_sign_up?).and_return(true)
+          allow_any_instance_of(User).to receive(:invitation_accepted?).and_return(true)
+
+          described_class.notify
+
+          expect(emails_sent.size).to eq(0)
+        end
+
       end
 
       private
