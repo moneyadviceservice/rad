@@ -28,6 +28,10 @@ Rails.application.routes.draw do
     end
   end
 
+  namespace :dashboard do
+    root 'dashboard#index'
+  end
+
   resource :contact, only: :create
 
   namespace :admin do
