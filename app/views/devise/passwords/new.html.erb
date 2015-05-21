@@ -1,16 +1,30 @@
-<h2>Forgot your password?</h2>
+<%= devise_layout do %>
+  <h1><%= t("authentication.reset_password_page.title") %></h1>
 
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-  <%= devise_error_messages! %>
+  <p><%= t("authentication.reset_password_page.intro") %></p>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, class: 't-email-field', autofocus: true %>
-  </div>
+  <p><%= t("authentication.reset_password_page.instructions") %></p>
 
-  <div class="actions">
-    <%= f.submit "Send me reset password instructions", class: 't-submit-button' %>
+  <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post, class: 'form' }) do |f| %>
+    <%= devise_error_messages! %>
+
+    <div class="registration__row">
+      <div class="registration__field">
+        <%= f.form_row :email do %>
+          <%= f.label :email %>
+          <%= f.email_field :email, class: 't-email-field', autofocus: true %>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="registration__row">
+      <div class="registration__field">
+        <%= f.submit t("authentication.reset_password_page.button_label"), class: 'button button--primary t-submit-button' %>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="registration__links">
+    <%= render "devise/shared/links" %>
   </div>
 <% end %>
-
-<%= render "devise/shared/links" %>
