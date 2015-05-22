@@ -1,5 +1,14 @@
-<ul class="t-dashboard-firms">
-  <% @firms.each do |firm| %>
-    <li><%= firm.registered_name %></li>
-  <% end %>
-</ul>
+<div class="l-constrained">
+  <div class="l-3col-even">
+    <h2>Firms (2)</h2>
+    <ul class="firm-list t-dashboard-firms">
+      <%= render partial: 'dashboard/firms/firm', collection: @firms %>
+      <%= render partial: 'dashboard/firms/firm', collection: @firms %>
+      <%= render partial: 'dashboard/firms/firm', collection: @firms %>
+    </ul>
+
+    <div class="dashboard__action-button">
+      <%= button_primary 'Add a subsidiary' %>
+    </div>
+  </div>
+</div>
