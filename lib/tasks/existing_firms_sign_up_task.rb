@@ -14,14 +14,14 @@ module Tasks
     end
 
     def self.invite(principal)
-      User.invite!({
-        :principal_token => principal.token,
+      User.invite!(
+        principal_token: principal.token,
         email: principal.email_address
-      })
+      )
     end
 
     def self.valid_registered_parent_firms
-      Firm.registered.all.select{ |f| f.valid? && f.parent.nil? }
+      Firm.registered.all.select { |f| f.valid? && f.parent.nil? }
     end
   end
 end

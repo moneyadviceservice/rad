@@ -93,8 +93,8 @@ RSpec.feature 'Principal can reset their password' do
 
   def reset_password_url_from_email
     Oga.parse_html(last_email.body.to_s)
-       .at_css('.t-reset-password-link')
-       .get(:href)
+      .at_css('.t-reset-password-link')
+      .get(:href)
   end
 
   def flash_message

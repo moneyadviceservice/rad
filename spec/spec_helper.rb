@@ -34,3 +34,17 @@ RSpec.configure do |c|
     end
   end
 end
+
+module HelperHelpers
+  def sign_in(user)
+    allow(helper).to receive(:current_user).and_return(user)
+  end
+
+  def sign_out
+    allow(helper).to receive(:current_user).and_return(nil)
+  end
+end
+
+RSpec.configure do |config|
+  config.include HelperHelpers, type: :helper
+end

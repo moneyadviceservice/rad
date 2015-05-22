@@ -1,18 +1,3 @@
-module HelperHelpers
-  def sign_in(user)
-    allow(helper).to receive(:current_user).and_return(user)
-  end
-  def sign_out
-    allow(helper).to receive(:current_user).and_return(nil)
-  end
-end
-
-RSpec.configure do |config|
-  config.include HelperHelpers, :type => :helper
-end
-
-
-
 RSpec.describe ApplicationHelper, type: :helper do
   describe '#display_adviser_sign_in?' do
     it 'is true when the user is not signed in' do

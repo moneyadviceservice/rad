@@ -16,5 +16,4 @@ class PrincipalsBaseController < ApplicationController
   def auth_token
     params[:principal_token] || params[:token]
   end
-
 end
