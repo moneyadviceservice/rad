@@ -1,2 +1,5 @@
 <ul class="t-dashboard-firms">
+  <% @firms.each do |firm| %>
+    <li><%= firm.registered_name %></li>
+  <% end %>
 </ul>
