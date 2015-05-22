@@ -1,0 +1,46 @@
+.rad__authentication {
+  @extend .unstyled-list;
+  text-align: right;
+  margin-top: 22px;
+}
+
+.rad__authentication__item {
+  @include inline-block;
+  margin-right: -4px;
+  line-height: 1;
+
+  @include respond-to($mq-xl) {
+    padding: 0 $baseline-unit*1.5;
+    border-right: 1px solid $color-primary-nav;
+  }
+
+  .theme-cy & {
+    padding-left: $baseline-unit;
+  }
+}
+
+.rad__authentication__item--last {
+  border-right: 0;
+}
+
+.rad__authentication__item-divider {
+  margin: 0 $baseline-unit;
+}
+
+.rad__authentication__link,
+.rad__authentication__item > a {
+  @extend .unstyled-button;
+  @extend %font-heading-medium;
+  @include body(14, 14);
+  color: $color-white;
+
+  &:hover,
+  &:focus {
+    outline: none;
+    text-decoration: underline;
+  }
+
+  &:visited {
+    color: $color-white;
+  }
+}
