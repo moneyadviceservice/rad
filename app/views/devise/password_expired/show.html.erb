@@ -1,4 +1,4 @@
-<h1>Renew your password</h1>
+<h1><%= t('.title') %></h1>
 <%= form_for(resource, as: resource_name,
                          url: [resource_name, :password_expired],
                          html: {class: "form", novalidate: 'novalidate', method: :put},
