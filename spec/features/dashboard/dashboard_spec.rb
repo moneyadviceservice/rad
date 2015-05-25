@@ -1,5 +1,5 @@
 RSpec.feature 'The principal dashboard' do
-  let(:dashboard_page) { DashboardPage.new }
+  let(:dashboard_page) { Dashboard::DashboardPage.new }
 
   scenario 'The principal can see a summary of the firms they are associated with' do
     given_i_am_a_fully_registered_principal_user
