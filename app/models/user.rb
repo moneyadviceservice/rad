@@ -1,9 +1,9 @@
 class User < ActiveRecord::Base
-  include ActiveModel::Dirty
-
   devise :invitable, :database_authenticatable, :recoverable,
          :recoverable, :rememberable, :trackable, :registerable,
          :secure_validatable, :password_archivable, :password_expirable
+
+  validates :email, email: { validate_mx: false, allow_idn: false }
 
   belongs_to :principal, foreign_key: :principal_token
 
