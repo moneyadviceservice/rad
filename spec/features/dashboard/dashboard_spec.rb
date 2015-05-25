@@ -27,7 +27,8 @@ RSpec.feature 'The principal dashboard' do
   end
 
   def when_i_am_on_the_principal_dashboard
-    visit dashboard_root_path
+    dashboard_page.load
+    expect(dashboard_page).to be_displayed
   end
 
   def then_i_can_see_the_list_of_firms_i_am_associated_with

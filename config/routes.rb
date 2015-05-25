@@ -30,6 +30,7 @@ Rails.application.routes.draw do
 
   namespace :dashboard do
     root 'dashboard#index'
+    resources :firms, only: :index
   end
 
   resource :contact, only: :create
