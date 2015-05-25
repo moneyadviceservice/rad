@@ -11,7 +11,5 @@ RSpec.describe User do
       subject.valid?
       expect(subject.errors_on(:email)).not_to be_empty
     end
-
-
   end
 end

@@ -1,14 +1,12 @@
 <ul class="rad__authentication">
-  <% if display_adviser_sign_in? %>
+  <% unless user_signed_in? %>
     <li class='rad__authentication__item'>
       <%= link_to t('authentication_sign_in'), new_user_session_path, class: 'rad__authentication__link' %>
     </li>
     <li class='rad__authentication__item  rad__authentication__item--last'>
       <%= link_to t('authentication_sign_up'), prequalify_principals_path, class: 'rad__authentication__link' %>
     </li>
-  <% end %>
-
-  <% if display_adviser_sign_out? %>
+  <% else %>
     <li class='rad__authentication__item'>
       <%= link_to t('authentication_sign_out'), destroy_user_session_path, class: 'rad__authentication__link' %>
     </li>
