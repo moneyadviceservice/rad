@@ -22,7 +22,7 @@ RSpec.feature 'Principal can sign in' do
   def when_they_sign_in_with_correct_details
     visit new_user_session_path
     sign_in_page.email_field.set @user.email
-    sign_in_page.password_field.set 'password'
+    sign_in_page.password_field.set 'Password1!'
     sign_in_page.submit_button.click
   end
 

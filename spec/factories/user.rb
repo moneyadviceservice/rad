@@ -1,8 +1,8 @@
 FactoryGirl.define do
   factory :user do
     sequence(:email) { Faker::Internet.email }
-    password 'password'
-    password_confirmation 'password'
+    password 'Password1!'
+    password_confirmation 'Password1!'
 
     principal
   end

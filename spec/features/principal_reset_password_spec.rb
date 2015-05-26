@@ -61,8 +61,8 @@ RSpec.feature 'Principal can reset their password' do
   end
 
   def and_they_submit_a_new_password_correctly
-    reset_password_page.password_field.set 'new_password'
-    reset_password_page.password_confirmation_field.set 'new_password'
+    reset_password_page.password_field.set 'new_Password1!'
+    reset_password_page.password_confirmation_field.set 'new_Password1!'
     reset_password_page.submit_button.click
   end
 
@@ -81,7 +81,7 @@ RSpec.feature 'Principal can reset their password' do
   def and_sign_in_with_new_details
     visit new_user_session_path
     sign_in_page.email_field.set @user.email
-    sign_in_page.password_field.set 'new_password'
+    sign_in_page.password_field.set 'new_Password1!'
     sign_in_page.submit_button.click
   end
 

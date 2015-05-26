@@ -70,10 +70,9 @@ RSpec.feature 'Principal provides identifying information', :inline_job_queue do
       p.first_name.set 'Ben'
       p.last_name.set 'Lovell'
       p.job_title.set 'Director'
-      # p.email.set 'ben@example.com'
-      p.email.set 'ben@example.com'
-      p.password.set 'password'
-      p.password_confirmation.set 'password'
+      p.email.set 'ben@moneyadviceservice.org.uk'
+      p.password.set 'Password1!'
+      p.password_confirmation.set 'Password1!'
       p.telephone_number.set '07715 930 400'
 
       p.confirmation.set true
