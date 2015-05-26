@@ -1,10 +1,10 @@
-.rad__authentication {
+.navigation {
   @extend .unstyled-list;
   text-align: right;
   margin-top: 22px;
 }
 
-.rad__authentication__item {
+.navigation__item {
   @include inline-block;
   margin-right: -4px;
   line-height: 1;
@@ -19,16 +19,16 @@
   }
 }
 
-.rad__authentication__item--last {
+.navigation__item--last {
   border-right: 0;
 }
 
-.rad__authentication__item-divider {
+.navigation__item-divider {
   margin: 0 $baseline-unit;
 }
 
-.rad__authentication__link,
-.rad__authentication__item > a {
+.navigation__link,
+.navigation__item > a {
   @extend .unstyled-button;
   @extend %font-heading-medium;
   @include body(14, 14);

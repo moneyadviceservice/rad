@@ -17,12 +17,12 @@
 @import 'layouts/notice';
 @import 'layouts/firm';
 
-@import 'components/authentication';
 @import 'components/button';
-@import 'components/form/all';
-@import 'components/footnote';
-@import 'components/notice/all';
 @import 'components/firm/all';
+@import 'components/footnote';
+@import 'components/form/all';
+@import 'components/navigation';
+@import 'components/notice/all';
 
 @import 'page_specific/dashboard';
 
