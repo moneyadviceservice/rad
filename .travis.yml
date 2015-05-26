@@ -17,3 +17,4 @@ before_script:
 script:
   - bundle exec rspec
   - karma start spec/javascripts/karma.conf.js --single-run=true
+  - bundle exec rubocop -DS
