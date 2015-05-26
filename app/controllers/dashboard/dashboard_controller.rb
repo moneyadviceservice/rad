@@ -3,7 +3,8 @@ module Dashboard
     before_action :authenticate_user!
 
     def index
-      @firms = all_firms_associated_with_principal
+      @firm = principal.firm
+      @trading_names = @firm.subsidiaries
       render 'dashboard/index'
     end
 
@@ -11,10 +12,6 @@ module Dashboard
 
     def principal
       current_user.principal
-    end
-
-    def all_firms_associated_with_principal
-      [principal.firm].concat(principal.firm.subsidiaries)
     end
   end
 end
