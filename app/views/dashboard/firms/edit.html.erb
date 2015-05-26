@@ -1,0 +1,21 @@
+<div class="t-firm-name">
+  <%= @firm.registered_name %>
+</div>
+
+<%= form_for @firm,
+             url: dashboard_firm_path(@firm),
+             builder: Dough::Forms::Builders::Validation,
+             html: { class: 'form' } do |f| %>
+
+<% if @firm.errors.any? %>
+  <div class="t-validation-summary">
+    <%= f.validation_summary %>
+  </div>
+<% end %>
+
+<%= f.label :email_address %>
+<%= f.text_field :email_address, class: 't-firm-email-field' %>
+
+<%= f.submit class: 't-save-button' %>
+
+<% end %>
