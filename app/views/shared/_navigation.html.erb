@@ -9,6 +9,12 @@
       </li>
     <% else %>
       <li class='navigation__item'>
+        <%= link_to t('dashboard.navigation.root'), dashboard_root_path, class: 'navigation__link t-dashboard-link' %>
+      </li>
+      <li class='navigation__item'>
+        <%= link_to t('dashboard.navigation.firms'), dashboard_firms_path, class: 'navigation__link t-dashboard-link' %>
+      </li>
+      <li class='navigation__item'>
         <%= link_to t('authentication_sign_out'), destroy_user_session_path, class: 'navigation__link' %>
       </li>
       <li class='navigation__item navigation__item--last'>
