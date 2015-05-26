@@ -3,100 +3,124 @@
     <%= heading_tag(t('registration.heading'), level: 1) %>
     <p><%= t('required') %></p>
 
-    <%= form_for @principal, html: { class: 'form' },
-      builder: Dough::Forms::Builders::Validation do |f| %>
-      <%= f.validation_summary %>
-      <%= heading_tag(t('registration.firm.heading'), level: 2) %>
+    <%= form_for @user, url: {controller: 'principals', action: 'create'}, method: :post, html: { class: 'form' }, builder: Dough::Forms::Builders::Validation do |user_form| %>
 
-      <div class="l-identity__row">
-        <div class="l-identity__field">
-          <%= f.form_row(:fca_number) do %>
-            <%= f.errors_for :fca_number %>
-            <%= f.label :fca_number, t('registration.firm.reference_number'), class: 'form__label-heading' %>
-            <%= f.text_field :fca_number, class: 't-reference-number', maxlength: 6 %>
-          <% end %>
+      <%= fields_for @principal, html: { class: 'form' },
+        builder: Dough::Forms::Builders::Validation do |principle_form| %>
+        <%= user_form.validation_summary %>
+        <%= heading_tag(t('registration.firm.heading'), level: 2) %>
+
+
+        <div class="l-identity__row">
+          <div class="l-identity__field">
+            <%= principle_form.form_row(:fca_number) do %>
+              <%= user_form.errors_for :fca_number %>
+              <%= principle_form.label :fca_number, t('registration.firm.reference_number'), class: 'form__label-heading' %>
+              <%= principle_form.text_field :fca_number, class: 't-reference-number', maxlength: 6 %>
+            <% end %>
+          </div>
         </div>
-      </div>
 
-      <div class="l-identity__row">
-        <div class="l-identity__field">
-          <%= f.form_row(:website_address) do %>
-            <%= f.errors_for :website_address %>
-            <%= f.label :website_address, t('registration.firm.website_address'), class: 'form__label-heading' %>
-            <%= f.text_field :website_address, class: 't-website-address', placeholder: 'http://www.example.com' %>
-          <% end %>
+        <div class="l-identity__row">
+          <div class="l-identity__field">
+            <%= principle_form.form_row(:website_address) do %>
+              <%= user_form.errors_for :website_address %>
+              <%= principle_form.label :website_address, t('registration.firm.website_address'), class: 'form__label-heading' %>
+              <%= principle_form.text_field :website_address, class: 't-website-address', placeholder: 'http://www.example.com' %>
+            <% end %>
+          </div>
         </div>
-      </div>
 
-      <hr>
+        <hr>
 
-      <div class="l-identity__row">
-        <div class="l-identity__field l-identity__field--wide">
-          <%= heading_tag(t('registration.principal.heading'), level: 2) %>
-          <p><%= t('registration.principal.explanation') %></p>
+        <div class="l-identity__row">
+          <div class="l-identity__field l-identity__field--wide">
+            <%= heading_tag(t('registration.principal.heading'), level: 2) %>
+            <p><%= t('registration.principal.explanation') %></p>
+          </div>
         </div>
-      </div>
 
-      <div class="l-identity__row">
-        <div class="l-identity__field">
-          <%= f.form_row(:first_name) do %>
-            <%= f.errors_for :first_name %>
-            <%= f.label :first_name, t('registration.principal.first_name'), class: 'form__label-heading' %>
-            <%= f.text_field :first_name, class: 't-first-name' %>
-          <% end %>
+        <div class="l-identity__row">
+          <div class="l-identity__field">
+            <%= principle_form.form_row(:first_name) do %>
+              <%= user_form.errors_for :first_name %>
+              <%= principle_form.label :first_name, t('registration.principal.first_name'), class: 'form__label-heading' %>
+              <%= principle_form.text_field :first_name, class: 't-first-name' %>
+            <% end %>
+          </div>
         </div>
-      </div>
 
-      <div class="l-identity__row">
-        <div class="l-identity__field">
-          <%= f.form_row(:last_name) do %>
-            <%= f.errors_for :last_name %>
-            <%= f.label :last_name, t('registration.principal.last_name'), class: 'form__label-heading' %>
-            <%= f.text_field :last_name, class: 't-last-name' %>
-          <% end %>
+        <div class="l-identity__row">
+          <div class="l-identity__field">
+            <%= principle_form.form_row(:last_name) do %>
+              <%= user_form.errors_for :last_name %>
+              <%= principle_form.label :last_name, t('registration.principal.last_name'), class: 'form__label-heading' %>
+              <%= principle_form.text_field :last_name, class: 't-last-name' %>
+            <% end %>
+          </div>
         </div>
-      </div>
 
-      <div class="l-identity__row">
-        <div class="l-identity__field">
-          <%= f.form_row(:job_title) do %>
-            <%= f.errors_for :job_title %>
-            <%= f.label :job_title, t('registration.principal.job_title'), class: 'form__label-heading' %>
-            <%= f.text_field :job_title, class: 't-job-title' %>
-          <% end %>
+        <div class="l-identity__row">
+          <div class="l-identity__field">
+            <%= principle_form.form_row(:job_title) do %>
+              <%= user_form.errors_for :job_title %>
+              <%= principle_form.label :job_title, t('registration.principal.job_title'), class: 'form__label-heading' %>
+              <%= principle_form.text_field :job_title, class: 't-job-title' %>
+            <% end %>
+          </div>
         </div>
-      </div>
 
-      <div class="l-identity__row">
-        <div class="l-identity__field">
-          <%= f.form_row(:email_address) do %>
-            <%= f.errors_for :email_address %>
-            <%= f.label :email_address, t('registration.principal.email_address'), class: 'form__label-heading' %>
-            <%= f.email_field :email_address, class: 't-email-address' %>
-          <% end %>
+        <div class="l-identity__row">
+          <div class="l-identity__field">
+            <%= user_form.form_row(:email) do %>
+              <%= user_form.errors_for :email %>
+              <%= user_form.label :email, t('registration.principal.email_address'), class: 'form__label-heading' %>
+              <%= user_form.text_field :email, class: 't-email-address' %>
+            <% end %>
+          </div>
         </div>
-      </div>
 
-      <div class="l-identity__row">
-        <div class="l-identity__field">
-          <%= f.form_row(:telephone_number) do %>
-            <%= f.errors_for :telephone_number %>
-            <%= f.label :telephone_number, t('registration.principal.telephone_number'), class: 'form__label-heading' %>
-            <%= f.text_field :telephone_number, class: 't-telephone-number' %>
-          <% end %>
+        <div class="l-identity__row">
+          <div class="l-identity__field">
+            <%= principle_form.form_row(:telephone_number) do %>
+              <%= user_form.errors_for :telephone_number %>
+              <%= principle_form.label :telephone_number, t('registration.principal.telephone_number'), class: 'form__label-heading' %>
+              <%= principle_form.text_field :telephone_number, class: 't-telephone-number' %>
+            <% end %>
+          </div>
         </div>
-      </div>
 
-      <div class="l-identity__row">
-        <div class="l-identity__field l-identity__field--wide">
-          <%= f.form_row(:confirmed_disclaimer) do %>
-            <%= f.errors_for :confirmed_disclaimer %>
-            <%= f.check_box :confirmed_disclaimer, class: 'l-identity__checkbox t-confirmation' %>
-            <%= f.label :confirmed_disclaimer, t('confirmation_statement'), class: 'l-identity__disclaimer-label' %>
-          <% end %>
+        <div class="l-identity__row">
+          <div class="l-identity__field">
+            <%= user_form.form_row(:password) do %>
+              <%= user_form.errors_for :password %>
+              <%= user_form.label :password, t('registration.user.password'), class: 'form__label-heading' %>
+              <%= user_form.password_field :password, class: 't-password' %>
+            <% end %>
+          </div>
         </div>
-      </div>
 
+        <div class="l-identity__row">
+          <div class="l-identity__field">
+            <%= user_form.form_row(:password_confirmation) do %>
+              <%= user_form.errors_for :password_confirmation %>
+              <%= user_form.label :password_confirmation, t('registration.user.password_confirmation'), class: 'form__label-heading' %>
+              <%= user_form.password_field :password_confirmation, class: 't-password-confirmation' %>
+            <% end %>
+          </div>
+        </div>
+
+        <div class="l-identity__row">
+          <div class="l-identity__field l-identity__field--wide">
+            <%= principle_form.form_row(:confirmed_disclaimer) do %>
+              <%= user_form.errors_for :confirmed_disclaimer %>
+              <%= principle_form.check_box :confirmed_disclaimer, class: 'l-identity__checkbox t-confirmation' %>
+              <%= principle_form.label :confirmed_disclaimer, t('confirmation_statement'), class: 'l-identity__disclaimer-label' %>
+            <% end %>
+          </div>
+        </div>
+
+      <% end %>
       <%= button_primary t('registration.register_button') %>
     <% end %>
   </section>

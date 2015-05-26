@@ -50,7 +50,11 @@ en:
               inclusion: "- please select at least one"
 
   error_message: Error
-  adviser_sign_in: Sign in to adviser account
+  authentication_sign_in: Sign in
+  authentication_sign_up: Register
+  authentication_sign_out: Sign out
+  adviser_forgot_password: Forgot password
+  authentication_change_password: Change password
   required: "* indicates required fields"
   email_address: "RADenquiries@moneyadviceservice.org.uk"
   confirmation_statement: By registering your firm's details with the Money Advice Service, you are confirming that these details and any responses you give to our registration questions are true and accurate.
@@ -62,6 +66,25 @@ en:
     heading: Thank you
     message: An email will be sent to you shortly with further instructions.
     contact_us: If you do not receive an email from us within 15 minutes, please contact us at
+
+  authentication:
+    settings:
+      attributes:
+        new_password: New password
+      field_help_texts:
+        email: Please enter a valid email address if you would like to change your current one
+        password: At least 8 characters. Leave blank if you don't want to change your password.
+        password_confirmation: Leave blank if you don't want to change your password
+        current_password: We need your current password to confirm your changes
+      change_password: 'Change my password'
+      label: Update
+      title: Edit my settings
+
+  identification:
+    contact:
+      thanks: Thank you for your interest in joining the Retirement Adviser Directory.
+      advice: We advise you to keep this email safe as you will need the link below to continue your firm's registration process.
+      verify_email_link: Please click the link below to verify your email address and continue with the registration process.
 
   registration:
     heading: Register your firm
@@ -103,6 +126,10 @@ en:
       fca_number_un_matched: could not be matched
       validation_error_html: If you have any queries, please contact <a href="mailto:RADenquiries@moneyadviceservice.org.uk">RADenquiries@moneyadviceservice.org.uk</a>.
     register_button: Register my firm
+    user:
+      email: Email address *
+      password: Password *
+      password_confirmation: Password confirmation *
 
   rejection:
     contact_sent: Your message has been sent and we will respond shortly.

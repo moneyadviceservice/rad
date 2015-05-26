@@ -9,7 +9,9 @@ class IdentificationPage < SitePrism::Page
   element :first_name, '.t-first-name'
   element :last_name, '.t-last-name'
   element :job_title, '.t-job-title'
-  element :email_address, '.t-email-address'
+  element :email, '.t-email-address'
+  element :password, '.t-password'
+  element :password_confirmation, '.t-password-confirmation'
   element :telephone_number, '.t-telephone-number'
   element :confirmation, '.t-confirmation'
 

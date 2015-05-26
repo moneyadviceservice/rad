@@ -13,6 +13,10 @@ gem 'rails', '~> 4.2'
 
 gem 'bootstrap-sass', '~> 3.3.3'
 gem 'bowndler', github: 'moneyadviceservice/bowndler'
+gem 'devise'
+gem 'devise_invitable'
+gem 'rails_email_validator'
+gem 'devise_security_extension'
 gem 'dough-ruby',
     github: 'moneyadviceservice/dough',
     require: 'dough',
@@ -21,6 +25,7 @@ gem 'jquery-rails'
 gem 'kaminari'
 gem 'letter_opener', group: :development
 gem 'mas-rad_core'
+gem 'oga'
 gem 'pg'
 gem 'ransack'
 gem 'rollbar'

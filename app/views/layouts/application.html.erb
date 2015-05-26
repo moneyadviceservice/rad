@@ -31,8 +31,17 @@
 <%= render 'shared/alerts' %>
 
 <main role="main" id="main">
-  <%= render 'shared/adviser_sign_in' %>
+  <% if devise_controller? %>
+    <div class='l-constrained'>
+      <div class='l-registration'>
+  <% end %>
+
   <%= yield %>
+
+  <% if devise_controller? %>
+      </div>
+    </div>
+  <% end %>
 </main>
 
 <%= render 'shared/footer' %>

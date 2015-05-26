@@ -1,5 +1,5 @@
 module Lookup
-  class AdvisersController < ApplicationController
+  class AdvisersController < PrincipalsBaseController
     def show
       @adviser = ::Adviser.find_by(reference_number: params[:id])
 

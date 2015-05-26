@@ -4,8 +4,8 @@ RSpec.feature 'Accessing the admin area' do
   let(:password) { 'password' }
 
   before do
-    allow(Authentication).to receive(:username) { username }
-    allow(Authentication).to receive(:password) { password }
+    allow(HttpAuthentication).to receive(:username) { username }
+    allow(HttpAuthentication).to receive(:password) { password }
   end
 
   scenario 'Not needing to authenticate' do
@@ -30,11 +30,11 @@ RSpec.feature 'Accessing the admin area' do
 end
 
 def given_i_am_required_to_authenticate_to_access_admin
-  allow(Authentication).to receive(:required?) { true }
+  allow(HttpAuthentication).to receive(:required?) { true }
 end
 
 def given_i_am_not_required_to_authenticate_to_access_admin
-  allow(Authentication).to receive(:required?) { false }
+  allow(HttpAuthentication).to receive(:required?) { false }
 end
 
 def and_i_authenticate_with_valid_credentials

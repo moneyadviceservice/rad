@@ -1,6 +1,4 @@
 class PrincipalsController < ApplicationController
-  skip_before_action :authenticate
-
   def pre_qualification_form
     @prequalification = PreQualificationForm.new
   end
@@ -23,17 +21,18 @@ class PrincipalsController < ApplicationController
 
   def new
     Stats.increment('radsignup.prequalification.success')
-
-    @principal = Principal.new
+    @user = User.new
+    @principal = @user.build_principal
   end
 
   def show
   end
 
   def create
-    @principal = Principal.new(principal_params)
+    @user = User.new(user_params)
+    @principal = @user.build_principal(principal_params.merge(email_address: user_params[:email]))
 
-    if @principal.save
+    if @user.save
       Stats.increment('radsignup.principal.created')
 
       Identification.contact(@principal).deliver_later
@@ -45,6 +44,10 @@ class PrincipalsController < ApplicationController
   end
 
   private
+
+  def user_params
+    params.require(:user).permit!
+  end
 
   def principal_params
     params.require(:principal)
