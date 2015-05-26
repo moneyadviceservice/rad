@@ -2,7 +2,7 @@ require 'date'
 require 'yaml'
 
 class ExtToSql
-  TIMESTAMP = Time.zone.now.strftime('%Y-%m-%d %H:%M:%S.%N') # Time in UTC
+  TIMESTAMP = Time.now.strftime('%Y-%m-%d %H:%M:%S.%N') # rubocop:disable Rails/TimeZone
   REPAIR_FILE = File.join(File.dirname(__FILE__), '..', 'repairs.yml')
 
   module COLUMNS
