@@ -51,6 +51,10 @@ en:
 
   error_message: Error
   adviser_sign_in: Sign in to adviser account
+  adviser_sign_up: Sign up for adviser account
+  adviser_sign_out: Sign out
+  adviser_forgot_password: Forgot password
+  adviser_change_password: Change password
   required: "* indicates required fields"
   email_address: "RADenquiries@moneyadviceservice.org.uk"
   confirmation_statement: By registering your firm's details with the Money Advice Service, you are confirming that these details and any responses you give to our registration questions are true and accurate.
