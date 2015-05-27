@@ -25,7 +25,7 @@
             <%= f.form_row :email_address do %>
               <%= f.errors_for :email_address %>
               <%= f.label :email_address, t('questionnaire.email_address.label'), class: 'form__label-heading' %>
-              <%= f.text_field :email_address %>
+              <%= f.text_field :email_address, class: 't-email-address' %>
             <% end %>
           </div>
         </div>
@@ -40,7 +40,7 @@
             <%= f.form_row :telephone_number do %>
               <%= f.errors_for :telephone_number %>
               <%= f.label :telephone_number, t('questionnaire.telephone_number.label'), class: 'form__label-heading' %>
-              <%= f.text_field :telephone_number %>
+              <%= f.text_field :telephone_number, class: 't-telephone-number' %>
             <% end %>
           </div>
         </div>
@@ -55,7 +55,7 @@
             <%= f.form_row :address_line_one do %>
               <%= f.errors_for :address_line_one %>
               <%= f.label :address_line_one, t('questionnaire.address.label_one'), class: 'form__label-heading' %>
-              <%= f.text_field :address_line_one %>
+              <%= f.text_field :address_line_one, class: 't-address-line-one' %>
             <% end %>
 
             <%= f.form_row :address_line_two do %>
@@ -67,19 +67,19 @@
             <%= f.form_row :address_town do %>
               <%= f.errors_for :address_town %>
               <%= f.label :address_town, t('questionnaire.address.label_three'), class: 'form__label-heading' %>
-              <%= f.text_field :address_town %>
+              <%= f.text_field :address_town, class: 't-address-town' %>
             <% end %>
 
             <%= f.form_row :address_county do %>
               <%= f.errors_for :address_county %>
               <%= f.label :address_county, t('questionnaire.address.label_four'), class: 'form__label-heading' %>
-              <%= f.text_field :address_county %>
+              <%= f.text_field :address_county, class: 't-address-county' %>
             <% end %>
 
             <%= f.form_row :address_postcode do %>
               <%= f.errors_for :address_postcode %>
               <%= f.label :address_postcode, t('questionnaire.address.label_five'), class: 'form__label-heading' %>
-              <%= f.text_field :address_postcode, class: 'form__input-container--medium' %>
+              <%= f.text_field :address_postcode, class: 'form__input-container--medium t-address-postcode' %>
             <% end %>
           </div>
         </div>
@@ -124,14 +124,14 @@
           <%= f.errors_for :free_initial_meeting %>
           <div class="form__group-item">
             <label>
-              <%= f.radio_button :free_initial_meeting, true, class: 'form__group-input' %>
+              <%= f.radio_button :free_initial_meeting, true, class: 'form__group-input t-free-initial-meeting-true' %>
               <%= t('questionnaire.free_initial_meeting.answer_yes') %>
             </label>
           </div>
 
           <div class="form__group-item">
             <label>
-              <%= f.radio_button :free_initial_meeting, false, class: 'form__group-input' %>
+              <%= f.radio_button :free_initial_meeting, false, class: 'form__group-input t-free-initial-meeting-false' %>
               <%= t('questionnaire.free_initial_meeting.answer_no') %>
             </label>
           </div>
@@ -209,7 +209,7 @@
           <%= f.label :minimum_fixed_fee, t('questionnaire.minimum_fixed_fee.label'), class: 'form__label-heading', id: 'form-label-one' %>
           <span class="form__input-container form__input-container--medium">
             <span class="form__input-label" id="input-label-one-a">£</span>
-            <%= f.text_field :minimum_fixed_fee, class: 'form__input', type: 'number', aria_labelledby: 'form-label-one input-label-one-a' %>
+            <%= f.text_field :minimum_fixed_fee, class: 'form__input t-minimum_fixed_fee', type: 'number', aria_labelledby: 'form-label-one input-label-one-a' %>
             <span class="form__input-outline"></span>
           </span>
         <% end %>
@@ -237,7 +237,7 @@
                 <%= f.errors_for attribute %>
                 <%= f.label attribute, raw(heading), class: 'form__label-heading', id: "form-label-#{attribute}".dasherize %>
                 <span class="form__input-container form__input-container--small">
-                  <%= f.text_field attribute, type: 'number', class: 'form__input', aria_labelledby: "form-label-#{attribute} input-label-#{attribute}-b".dasherize %>
+                  <%= f.text_field attribute, type: 'number', class: "form__input t-#{attribute.to_s.dasherize}", aria_labelledby: "form-label-#{attribute} input-label-#{attribute}-b".dasherize %>
                   <span class="form__input-label" id="<%= "input-label-#{attribute}-b".dasherize %>">%</span>
                   <span class="form__input-outline"></span>
                 </span>
