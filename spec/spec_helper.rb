@@ -33,4 +33,9 @@ RSpec.configure do |c|
       ActiveJob::Base.queue_adapter = :test
     end
   end
+
+  c.include Warden::Test::Helpers
+  c.before :suite do
+    Warden.test_mode!
+  end
 end
