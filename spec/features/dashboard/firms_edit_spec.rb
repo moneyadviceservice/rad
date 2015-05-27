@@ -1,6 +1,16 @@
 RSpec.feature 'The dashboard firm edit page' do
   let(:firms_index_page) { Dashboard::FirmsIndexPage.new }
   let(:firm_edit_page) { Dashboard::FirmEditPage.new }
+  let(:firm_changes) do
+    FactoryGirl.build(:firm,
+                      retirement_income_products_percent: 3,
+                      pension_transfer_percent: 5,
+                      long_term_care_percent: 7,
+                      equity_release_percent: 9,
+                      inheritance_tax_and_estate_planning_percent: 11,
+                      wills_and_probate_percent: 13,
+                      other_percent: 52)
+  end
 
   scenario 'The principal can edit their firm' do
     given_i_am_a_fully_registered_principal_user
@@ -57,6 +67,11 @@ RSpec.feature 'The dashboard firm edit page' do
     expect(firm_edit_page.firm_name).to have_text @principal.firm.registered_name
   end
 
+  def when_i_change_the_information
+    complete_part_1
+    complete_part_2
+  end
+
   def when_i_invalidate_the_information
     firm_edit_page.email_address.set 'clearly_not_a_valid_email!'
   end
@@ -74,9 +89,11 @@ RSpec.feature 'The dashboard firm edit page' do
   end
 
   def and_the_information_is_changed
-    expect(firm_edit_page.email_address.value).to eq 'i_dunno@example.com'
+    validate_part_1
+    validate_part_2
+
     @principal.reload
-    expect(@principal.firm.email_address).to eq 'i_dunno@example.com'
+    expect(@principal.firm.email_address).to eq firm_changes.email_address
   end
 
   def and_the_information_is_not_changed
@@ -85,45 +102,52 @@ RSpec.feature 'The dashboard firm edit page' do
     expect(@principal.firm.email_address).to eq @original_firm_email
   end
 
-  # ---------------------------------------------------------------------------
-
-  def complete_part_1(page)
-    page.email_address.set 'i_dunno@example.com'
-    page.telephone_number.set Faker::Base.numerify('##### ### ###')
-    page.address_line_one.set Faker::Address.street_address
-    page.address_town.set Faker::Address.city
-    page.address_county.set Faker::Address.county
-    page.address_postcode.set Faker::Address.postcode
-  end
-
-  def complete_part_2(page)
-    page.in_person_advice_methods.first.set true
-    page.other_advice_methods.first.set true
-    page.offers_free_initial_meeting.set true
-    page.initial_meeting_durations.first.set true
-    page.initial_fee_structures.first.set true
-    page.ongoing_fee_structures.first.set true
-    page.allowed_payment_methods.first.set true
-  end
-
-  def complete_part_3(page)
-    page.retirement_income_products_percent.set 15
-    page.pension_transfer_percent.set 15
-    page.long_term_care_percent.set 15
-    page.equity_release_percent.set 15
-    page.inheritance_tax_and_estate_planning_percent.set 15
-    page.wills_and_probate_percent.set 15
-    page.other_percent.set 10
-  end
-
-  def when_i_change_the_information
+  def complete_part_1
     firm_edit_page.tap do |p|
-      complete_part_1(p)
-      complete_part_2(p)
-      complete_part_3(p)
+      p.email_address.set firm_changes.email_address
+      p.telephone_number.set firm_changes.telephone_number
+      p.address_line_one.set firm_changes.address_line_one
+      p.address_town.set firm_changes.address_town
+      p.address_county.set firm_changes.address_county
+      p.address_postcode.set firm_changes.address_postcode
+    end
+  end
 
-      p.minimum_fee.set Faker::Number.number(4)
-      p.investment_sizes.first.set true
+  def validate_part_1
+    firm_edit_page.tap do |p|
+      expect(p.email_address.value).to eq firm_changes.email_address
+      expect(p.telephone_number.value).to eq firm_changes.telephone_number
+      expect(p.address_line_one.value).to eq firm_changes.address_line_one
+      expect(p.address_town.value).to eq firm_changes.address_town
+      expect(p.address_county.value).to eq firm_changes.address_county
+      expect(p.address_postcode.value).to eq firm_changes.address_postcode
+    end
+  end
+
+  def complete_part_2
+    firm_edit_page.tap do |p|
+      p.retirement_income_products_percent.set firm_changes.retirement_income_products_percent
+      p.pension_transfer_percent.set firm_changes.pension_transfer_percent
+      p.long_term_care_percent.set firm_changes.long_term_care_percent
+      p.equity_release_percent.set firm_changes.equity_release_percent
+      p.inheritance_tax_and_estate_planning_percent.set firm_changes.inheritance_tax_and_estate_planning_percent
+      p.wills_and_probate_percent.set firm_changes.wills_and_probate_percent
+      p.other_percent.set firm_changes.other_percent
+      p.minimum_fee.set firm_changes.minimum_fixed_fee
+    end
+  end
+
+  def validate_part_2
+    firm_edit_page.tap do |p|
+      expect(p.retirement_income_products_percent.value).to eq firm_changes.retirement_income_products_percent.to_s
+      expect(p.pension_transfer_percent.value).to eq firm_changes.pension_transfer_percent.to_s
+      expect(p.long_term_care_percent.value).to eq firm_changes.long_term_care_percent.to_s
+      expect(p.equity_release_percent.value).to eq firm_changes.equity_release_percent.to_s
+      expect(p.inheritance_tax_and_estate_planning_percent.value)
+        .to eq firm_changes.inheritance_tax_and_estate_planning_percent.to_s
+      expect(p.wills_and_probate_percent.value).to eq firm_changes.wills_and_probate_percent.to_s
+      expect(p.other_percent.value).to eq firm_changes.other_percent.to_s
+      expect(p.minimum_fee.value).to eq firm_changes.minimum_fixed_fee.to_s
     end
   end
 end
