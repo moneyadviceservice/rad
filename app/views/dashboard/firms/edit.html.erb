@@ -1,21 +1,284 @@
-<div class="t-firm-name">
-  <%= @firm.registered_name %>
-</div>
+<div class="l-constrained">
 
-<%= form_for @firm,
-             url: dashboard_firm_path(@firm),
-             builder: Dough::Forms::Builders::Validation,
-             html: { class: 'form' } do |f| %>
-
-<% if @firm.errors.any? %>
-  <div class="t-validation-summary">
-    <%= f.validation_summary %>
+  <div class="t-firm-name">
+    <%= @firm.registered_name %>
   </div>
-<% end %>
 
-<%= f.label :email_address %>
-<%= f.text_field :email_address, class: 't-firm-email-field' %>
+  <%= form_for @firm,
+               url: dashboard_firm_path(@firm),
+               builder: Dough::Forms::Builders::Validation,
+               html: { class: 'form' } do |f| %>
 
-<%= f.submit class: 't-save-button' %>
+    <% if @firm.errors.any? %>
+      <div class="t-validation-summary">
+        <%= f.validation_summary %>
+      </div>
+    <% end %>
 
-<% end %>
+    <section>
+      <fieldset class="form__group">
+        <legend class="l-questionnaire__legend"><%= t('questionnaire.email_address.heading') %></legend>
+        <p><%= t('questionnaire.email_address.description') %></p>
+
+        <div class="l-questionnaire__row">
+          <div class="l-questionnaire__field form__group-item">
+            <%= f.form_row :email_address do %>
+              <%= f.errors_for :email_address %>
+              <%= f.label :email_address, t('questionnaire.email_address.label'), class: 'form__label-heading' %>
+              <%= f.text_field :email_address %>
+            <% end %>
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset class="form__group">
+        <legend class="l-questionnaire__legend"><%= t('questionnaire.telephone_number.heading') %></legend>
+        <p><%= t('questionnaire.telephone_number.description') %></p>
+
+        <div class="l-questionnaire__row">
+          <div class="l-questionnaire__field form__group-item">
+            <%= f.form_row :telephone_number do %>
+              <%= f.errors_for :telephone_number %>
+              <%= f.label :telephone_number, t('questionnaire.telephone_number.label'), class: 'form__label-heading' %>
+              <%= f.text_field :telephone_number %>
+            <% end %>
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset class="form__group">
+        <legend class="l-questionnaire__legend"><%= t('questionnaire.address.heading') %></legend>
+        <p><%= t('questionnaire.address.description') %></p>
+
+        <div class="l-questionnaire__row">
+          <div class="l-questionnaire__field">
+            <%= f.form_row :address_line_one do %>
+              <%= f.errors_for :address_line_one %>
+              <%= f.label :address_line_one, t('questionnaire.address.label_one'), class: 'form__label-heading' %>
+              <%= f.text_field :address_line_one %>
+            <% end %>
+
+            <%= f.form_row :address_line_two do %>
+              <%= f.errors_for :address_line_two %>
+              <%= f.label :address_line_two, t('questionnaire.address.label_two'), class: 'form__label-heading' %>
+              <%= f.text_field :address_line_two %>
+            <% end %>
+
+            <%= f.form_row :address_town do %>
+              <%= f.errors_for :address_town %>
+              <%= f.label :address_town, t('questionnaire.address.label_three'), class: 'form__label-heading' %>
+              <%= f.text_field :address_town %>
+            <% end %>
+
+            <%= f.form_row :address_county do %>
+              <%= f.errors_for :address_county %>
+              <%= f.label :address_county, t('questionnaire.address.label_four'), class: 'form__label-heading' %>
+              <%= f.text_field :address_county %>
+            <% end %>
+
+            <%= f.form_row :address_postcode do %>
+              <%= f.errors_for :address_postcode %>
+              <%= f.label :address_postcode, t('questionnaire.address.label_five'), class: 'form__label-heading' %>
+              <%= f.text_field :address_postcode, class: 'form__input-container--medium' %>
+            <% end %>
+          </div>
+        </div>
+      </fieldset>
+    </section>
+
+    <hr>
+
+    <section>
+      <%= heading_tag(t('questionnaire.providing_your_services.heading'), level: 2, class: 'heading-small') %>
+      <p class="l-questionnaire__section-description"><%= t('questionnaire.providing_your_services.description') %></p>
+
+      <fieldset class="form__group">
+        <legend class="l-questionnaire__legend"><%= t('questionnaire.in_person_advice_methods.heading') %></legend>
+
+        <%= f.form_row :in_person_advice_methods do %>
+          <%= f.collection_check_boxes(:in_person_advice_method_ids, InPersonAdviceMethod.all, :id, :name) do |b| %>
+            <div class="form__group-item">
+              <%= b.label { b.check_box(class: 'form__group-input t-questionnaire__in-person-advice-method-id') + b.text } %>
+            </div>
+          <% end %>
+        <% end %>
+      </fieldset>
+
+      <fieldset class="form__group">
+        <legend class="l-questionnaire__legend"><%= t('questionnaire.other_advice_methods.heading') %></legend>
+
+        <%= f.form_row :other_advice_methods do %>
+          <%= f.errors_for :other_advice_methods %>
+          <%= f.collection_check_boxes(:other_advice_method_ids, OtherAdviceMethod.all, :id, :name) do |b| %>
+            <div class="form__group-item">
+              <%= b.label { b.check_box(class: 'form__group-input t-questionnaire__other-advice-method-id') + b.text } %>
+            </div>
+          <% end %>
+        <% end %>
+      </fieldset>
+
+      <fieldset class="form__group form__group--inline">
+        <legend class="l-questionnaire__legend"><%= t('questionnaire.free_initial_meeting.heading') %></legend>
+
+        <%= f.form_row :free_initial_meeting do %>
+          <%= f.errors_for :free_initial_meeting %>
+          <div class="form__group-item">
+            <label>
+              <%= f.radio_button :free_initial_meeting, true, class: 'form__group-input' %>
+              <%= t('questionnaire.free_initial_meeting.answer_yes') %>
+            </label>
+          </div>
+
+          <div class="form__group-item">
+            <label>
+              <%= f.radio_button :free_initial_meeting, false, class: 'form__group-input' %>
+              <%= t('questionnaire.free_initial_meeting.answer_no') %>
+            </label>
+          </div>
+        <% end %>
+      </fieldset>
+
+      <fieldset class="form__group form__group--inline">
+        <legend class="l-questionnaire__legend"><%= t('questionnaire.initial_meeting_duration.heading') %></legend>
+
+        <%= f.form_row :initial_meeting_duration do %>
+          <%= f.errors_for :initial_meeting_duration %>
+          <% InitialMeetingDuration.all.each do |initial_meeting_duration| %>
+            <div class="form__group-item">
+              <label>
+                <%= radio_button_tag 'firm[initial_meeting_duration_id]', initial_meeting_duration.id, @firm.initial_meeting_duration == initial_meeting_duration, class: 'form__group-input t-questionnaire__firm-initial-meeting-duration-id' %>
+                <%= initial_meeting_duration.name %>
+              </label>
+            </div>
+          <% end %>
+        <% end %>
+      </fieldset>
+    </section>
+
+    <hr>
+
+    <section>
+      <%= heading_tag(t('questionnaire.service_charges.heading'), level: 2, class: 'heading-small') %>
+      <p><%= t('questionnaire.service_charges.description') %></p>
+      <p class="l-questionnaire__section-description"><%= t('questionnaire.service_charges.hint') %></p>
+
+      <fieldset class="form__group">
+        <legend class="l-questionnaire__legend"><%= t('questionnaire.initial_advice_fee.heading') %></legend>
+
+        <%= f.form_row :initial_advice_fee_structures do %>
+          <%= f.errors_for :initial_advice_fee_structures %>
+          <%= f.collection_check_boxes(:initial_advice_fee_structure_ids, InitialAdviceFeeStructure.all, :id, :name) do |b| %>
+            <div class="form__group-item">
+              <%= b.label { b.check_box(class: 'form__group-input t-questionnaire__initial-advice-fee-structure-id') + b.text } %>
+            </div>
+          <% end %>
+        <% end %>
+      </fieldset>
+
+      <fieldset class="form__group">
+        <legend class="l-questionnaire__legend"><%= t('questionnaire.ongoing_advice_fee.heading') %></legend>
+
+        <%= f.form_row :ongoing_advice_fee_structures do %>
+          <%= f.errors_for :ongoing_advice_fee_structures %>
+          <%= f.collection_check_boxes(:ongoing_advice_fee_structure_ids, OngoingAdviceFeeStructure.all, :id, :name) do |b| %>
+            <div class="form__group-item">
+              <%= b.label { b.check_box(class: 'form__group-input t-questionnaire__ongoing-advice-fee-structure-id') + b.text } %>
+            </div>
+          <% end %>
+        <% end %>
+      </fieldset>
+
+      <fieldset class="form__group">
+        <legend class="l-questionnaire__legend"><%= t('questionnaire.allowed_payment_methods.heading') %></legend>
+
+        <%= f.form_row :allowed_payment_methods do %>
+          <%= f.errors_for :allowed_payment_methods %>
+          <%= f.collection_check_boxes(:allowed_payment_method_ids, AllowedPaymentMethod.all, :id, :name) do |b| %>
+            <div class="form__group-item">
+              <%= b.label { b.check_box(class: 'form__group-input t-questionnaire__allowed-payment-method-id') + b.text } %>
+            </div>
+          <% end %>
+        <% end %>
+      </fieldset>
+
+      <fieldset class="form__group">
+        <legend class="l-questionnaire__legend"><%= t('questionnaire.minimum_fixed_fee.heading') %></legend>
+
+        <%= f.form_row :minimum_fixed_fee do %>
+          <%= f.errors_for :minimum_fixed_fee %>
+          <%= f.label :minimum_fixed_fee, t('questionnaire.minimum_fixed_fee.label'), class: 'form__label-heading', id: 'form-label-one' %>
+          <span class="form__input-container form__input-container--medium">
+            <span class="form__input-label" id="input-label-one-a">£</span>
+            <%= f.text_field :minimum_fixed_fee, class: 'form__input', type: 'number', aria_labelledby: 'form-label-one input-label-one-a' %>
+            <span class="form__input-outline"></span>
+          </span>
+        <% end %>
+      </fieldset>
+    </section>
+
+    <hr>
+
+    <section>
+      <%= heading_tag(t('questionnaire.retirement_advice.business_split.heading'), level: 2, class: 'heading-small') %>
+      <p><%= t('questionnaire.retirement_advice.business_split.description') %></p>
+
+      <fieldset class="form__group">
+        <legend class="l-questionnaire__legend"><%= t('questionnaire.retirement_advice.business_split.subheading') %></legend>
+
+        <%= f.form_row :percent_total do %>
+          <%= f.errors_for :percent_total %>
+          <p class="l-questionnaire__section-description l-questionnaire__section-description--collapsed"><%= t('questionnaire.retirement_advice.business_split.explanation') %></p>
+        <% end %>
+
+        <div class="l-questionnaire__row">
+          <div class="l-questionnaire__field">
+            <% t('questionnaire.retirement_advice.business_split.advice_options').each do |attribute, heading| %>
+              <%= f.form_row attribute do %>
+                <%= f.errors_for attribute %>
+                <%= f.label attribute, raw(heading), class: 'form__label-heading', id: "form-label-#{attribute}".dasherize %>
+                <span class="form__input-container form__input-container--small">
+                  <%= f.text_field attribute, type: 'number', class: 'form__input', aria_labelledby: "form-label-#{attribute} input-label-#{attribute}-b".dasherize %>
+                  <span class="form__input-label" id="<%= "input-label-#{attribute}-b".dasherize %>">%</span>
+                  <span class="form__input-outline"></span>
+                </span>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+
+        <section>
+          <%= heading_tag(t('questionnaire.retirement_advice.business_split.footnotes.heading'), level: 3, class: 'heading-extra-small') %>
+          <p id="other_description" class="footnote"><%= t('questionnaire.retirement_advice.business_split.footnotes.other_html') %></p>
+        </section>
+      </fieldset>
+
+      <div class="notice">
+        <%= heading_tag(t('questionnaire.retirement_advice.business_split.disclaimer.heading'), level: 3, class: 'heading-extra-small') %>
+        <p><%= t('questionnaire.retirement_advice.business_split.disclaimer.text') %></p>
+      </div>
+    </section>
+
+    <hr>
+
+    <section>
+      <%= heading_tag(t('questionnaire.retirement_advice.typical_customer.heading'), level: 2, class: 'heading-small') %>
+      <p class="l-questionnaire__section-description"><%= t('questionnaire.retirement_advice.typical_customer.description') %></p>
+
+      <fieldset class="form__group">
+        <legend class="l-questionnaire__legend"><%= t('questionnaire.retirement_advice.pension_pot.heading') %></legend>
+        <p><%= t('questionnaire.retirement_advice.pension_pot.description') %></p>
+        <%= f.form_row :investment_sizes do %>
+          <%= f.errors_for :investment_sizes %>
+          <%= f.collection_check_boxes(:investment_size_ids, InvestmentSize.all, :id, :name) do |b| %>
+            <div class="form__group-item">
+              <%= b.label { b.check_box(class: 'form__group-input t-questionnaire__firm-investment-size-id') + b.text } %>
+            </div>
+          <% end %>
+        <% end %>
+      </fieldset>
+    </section>
+
+    <%= f.submit class: 't-save-button' %>
+
+  <% end %>
+</div>

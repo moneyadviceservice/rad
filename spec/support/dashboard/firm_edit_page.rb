@@ -5,8 +5,37 @@ module Dashboard
 
     element :flash_message, '.t-flash-message'
     element :validation_summary, '.t-validation-summary'
+
     element :firm_name, '.t-firm-name'
-    element :firm_email_field, '.t-firm-email-field'
+    element :firm_fca_number, '.t-firm-fca-number'
+
+    element :email_address, '#firm_email_address'
+    element :telephone_number, '#firm_telephone_number'
+    element :address_line_one, '#firm_address_line_one'
+    element :address_town, '#firm_address_town'
+    element :address_county, '#firm_address_county'
+    element :address_postcode, '#firm_address_postcode'
+
+    elements :in_person_advice_methods, '.t-questionnaire__in-person-advice-method-id'
+    elements :other_advice_methods, '.t-questionnaire__other-advice-method-id'
+    element :offers_free_initial_meeting, '#firm_free_initial_meeting_true'
+    element :does_not_offer_free_initial_meeting, '#firm_free_initial_meeting_false'
+    elements :initial_meeting_durations, '.t-questionnaire__firm-initial-meeting-duration-id'
+    elements :initial_fee_structures, '.t-questionnaire__initial-advice-fee-structure-id'
+    elements :ongoing_fee_structures, '.t-questionnaire__ongoing-advice-fee-structure-id'
+    elements :allowed_payment_methods, '.t-questionnaire__allowed-payment-method-id'
+    element :minimum_fee, '#firm_minimum_fixed_fee'
+
+    element :retirement_income_products_percent, '#firm_retirement_income_products_percent'
+    element :pension_transfer_percent, '#firm_pension_transfer_percent'
+    element :long_term_care_percent, '#firm_long_term_care_percent'
+    element :equity_release_percent, '#firm_equity_release_percent'
+    element :inheritance_tax_and_estate_planning_percent, '#firm_inheritance_tax_and_estate_planning_percent'
+    element :wills_and_probate_percent, '#firm_wills_and_probate_percent'
+    element :other_percent, '#firm_other_percent'
+
+    elements :investment_sizes, '.t-questionnaire__firm-investment-size-id'
+
     element :save_button, '.t-save-button'
   end
 end

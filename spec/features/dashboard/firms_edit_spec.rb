@@ -57,12 +57,8 @@ RSpec.feature 'The dashboard firm edit page' do
     expect(firm_edit_page.firm_name).to have_text @principal.firm.registered_name
   end
 
-  def when_i_change_the_information
-    firm_edit_page.firm_email_field.set 'i_dunno@example.com'
-  end
-
   def when_i_invalidate_the_information
-    firm_edit_page.firm_email_field.set 'clearly_not_a_valid_email!'
+    firm_edit_page.email_address.set 'clearly_not_a_valid_email!'
   end
 
   def and_i_click_save
@@ -78,14 +74,56 @@ RSpec.feature 'The dashboard firm edit page' do
   end
 
   def and_the_information_is_changed
-    expect(firm_edit_page.firm_email_field.value).to eq 'i_dunno@example.com'
+    expect(firm_edit_page.email_address.value).to eq 'i_dunno@example.com'
     @principal.reload
     expect(@principal.firm.email_address).to eq 'i_dunno@example.com'
   end
 
   def and_the_information_is_not_changed
-    expect(firm_edit_page.firm_email_field.value).to eq 'clearly_not_a_valid_email!'
+    expect(firm_edit_page.email_address.value).to eq 'clearly_not_a_valid_email!'
     @principal.reload
     expect(@principal.firm.email_address).to eq @original_firm_email
+  end
+
+  # ---------------------------------------------------------------------------
+
+  def complete_part_1(page)
+    page.email_address.set 'i_dunno@example.com'
+    page.telephone_number.set Faker::Base.numerify('##### ### ###')
+    page.address_line_one.set Faker::Address.street_address
+    page.address_town.set Faker::Address.city
+    page.address_county.set Faker::Address.county
+    page.address_postcode.set Faker::Address.postcode
+  end
+
+  def complete_part_2(page)
+    page.in_person_advice_methods.first.set true
+    page.other_advice_methods.first.set true
+    page.offers_free_initial_meeting.set true
+    page.initial_meeting_durations.first.set true
+    page.initial_fee_structures.first.set true
+    page.ongoing_fee_structures.first.set true
+    page.allowed_payment_methods.first.set true
+  end
+
+  def complete_part_3(page)
+    page.retirement_income_products_percent.set 15
+    page.pension_transfer_percent.set 15
+    page.long_term_care_percent.set 15
+    page.equity_release_percent.set 15
+    page.inheritance_tax_and_estate_planning_percent.set 15
+    page.wills_and_probate_percent.set 15
+    page.other_percent.set 10
+  end
+
+  def when_i_change_the_information
+    firm_edit_page.tap do |p|
+      complete_part_1(p)
+      complete_part_2(p)
+      complete_part_3(p)
+
+      p.minimum_fee.set Faker::Number.number(4)
+      p.investment_sizes.first.set true
+    end
   end
 end
