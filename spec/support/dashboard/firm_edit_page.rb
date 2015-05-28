@@ -18,7 +18,8 @@ module Dashboard
 
     elements :in_person_advice_methods, '.t-questionnaire__in-person-advice-method-id'
     elements :other_advice_methods, '.t-questionnaire__other-advice-method-id'
-    element :offers_free_initial_meeting, '.t-free-initial-meeting-true'
+    element :offers_free_initial_meeting_true, '.t-free-initial-meeting-true'
+    element :offers_free_initial_meeting_false, '.t-free-initial-meeting-false'
     element :does_not_offer_free_initial_meeting, '.t-free-initial-meeting-false'
     elements :initial_meeting_durations, '.t-questionnaire__firm-initial-meeting-duration-id'
     elements :initial_fee_structures, '.t-questionnaire__initial-advice-fee-structure-id'
@@ -37,5 +38,13 @@ module Dashboard
     elements :investment_sizes, '.t-questionnaire__firm-investment-size-id'
 
     element :save_button, '.t-save-button'
+
+    def offers_free_initial_meeting=(choice)
+      send("offers_free_initial_meeting_#{choice}").set(true)
+    end
+
+    def offers_free_initial_meeting?
+      !!offers_free_initial_meeting_true.checked?
+    end
   end
 end

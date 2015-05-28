@@ -1,7 +1,9 @@
 RSpec.feature 'The dashboard firm edit page' do
+  include CheckboxGroupHelpers
+
   let(:firms_index_page) { Dashboard::FirmsIndexPage.new }
   let(:firm_edit_page) { Dashboard::FirmEditPage.new }
-  let(:firm_changes) do
+  let!(:firm_changes) do
     FactoryGirl.build(:firm,
                       retirement_income_products_percent: 3,
                       pension_transfer_percent: 5,
@@ -70,6 +72,7 @@ RSpec.feature 'The dashboard firm edit page' do
   def when_i_change_the_information
     complete_part_1
     complete_part_2
+    complete_part_3
   end
 
   def when_i_invalidate_the_information
@@ -91,6 +94,7 @@ RSpec.feature 'The dashboard firm edit page' do
   def and_the_information_is_changed
     validate_part_1
     validate_part_2
+    validate_part_3
 
     @principal.reload
     expect(@principal.firm.email_address).to eq firm_changes.email_address
@@ -148,6 +152,30 @@ RSpec.feature 'The dashboard firm edit page' do
       expect(p.wills_and_probate_percent.value).to eq firm_changes.wills_and_probate_percent.to_s
       expect(p.other_percent.value).to eq firm_changes.other_percent.to_s
       expect(p.minimum_fee.value).to eq firm_changes.minimum_fixed_fee.to_s
+    end
+  end
+
+  def complete_part_3
+    firm_edit_page.tap do |p|
+      set_checkbox_group_state(p, InPersonAdviceMethod.all, firm_changes.in_person_advice_methods)
+      set_checkbox_group_state(p, OtherAdviceMethod.all, firm_changes.other_advice_methods)
+      p.offers_free_initial_meeting = firm_changes.free_initial_meeting
+      p.choose(firm_changes.initial_meeting_duration.name)
+      set_checkbox_group_state(p, InitialAdviceFeeStructure.all, firm_changes.initial_advice_fee_structures)
+      set_checkbox_group_state(p, OngoingAdviceFeeStructure.all, firm_changes.ongoing_advice_fee_structures)
+      set_checkbox_group_state(p, AllowedPaymentMethod.all, firm_changes.allowed_payment_methods)
+    end
+  end
+
+  def validate_part_3
+    firm_edit_page.tap do |p|
+      expect_checkbox_group_state(p, InPersonAdviceMethod.all, firm_changes.in_person_advice_methods)
+      expect_checkbox_group_state(p, OtherAdviceMethod.all, firm_changes.other_advice_methods)
+      expect(p.offers_free_initial_meeting?).to eq(firm_changes.free_initial_meeting)
+      expect(p).to have_checked_field(firm_changes.initial_meeting_duration.name)
+      expect_checkbox_group_state(p, InitialAdviceFeeStructure.all, firm_changes.initial_advice_fee_structures)
+      expect_checkbox_group_state(p, OngoingAdviceFeeStructure.all, firm_changes.ongoing_advice_fee_structures)
+      expect_checkbox_group_state(p, AllowedPaymentMethod.all, firm_changes.allowed_payment_methods)
     end
   end
 end
