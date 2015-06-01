@@ -1,22 +1,26 @@
-<nav class="breadcrumbs" role="navigation" aria-label="breadcrumbs">
-  <ul class="unstyled-list">
-    <% last_link = breadcrumbs.pop %>
-    <% breadcrumbs.each do |breadcrumb| %>
-      <li class="breadcrumbs__item" itemscope itemtype="http://data-vocabulary.org/Breadcrumb">
-        <a class="breadcrumbs__link" href="<%= breadcrumb[:url] %>" itemprop="url">
-          <span itemprop="title">
-            <%= breadcrumb[:text] %>
-          </span>
-        </a>
-        <span class="breadcrumbs__divider" aria-hidden="true"></span>
-      </li>
-    <% end %>
+<div class="l-context-bar">
+  <div class="l-constrained">
+    <nav class="breadcrumbs" role="navigation" aria-label="breadcrumbs">
+      <ul class="unstyled-list">
+        <% last_link = breadcrumbs.pop %>
+        <% breadcrumbs.each do |breadcrumb| %>
+          <li class="breadcrumbs__item" itemscope itemtype="http://data-vocabulary.org/Breadcrumb">
+            <a class="breadcrumbs__link" href="<%= breadcrumb[:url] %>" itemprop="url">
+              <span itemprop="title">
+                <%= breadcrumb[:text] %>
+              </span>
+            </a>
+            <span class="breadcrumbs__divider" aria-hidden="true"></span>
+          </li>
+        <% end %>
 
-    <li class="breadcrumbs__item" itemscope itemtype="http://data-vocabulary.org/Breadcrumb">
-      <span class="visually-hidden">&gt;</span>
-        <span itemprop="title">
-          <%= last_link[:text] %>
-        </span>
-    </li>
-  </ul>
-</nav>
+        <li class="breadcrumbs__item" itemscope itemtype="http://data-vocabulary.org/Breadcrumb">
+          <span class="visually-hidden">&gt;</span>
+            <span itemprop="title">
+              <%= last_link[:text] %>
+            </span>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</div>
