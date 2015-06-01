@@ -7,18 +7,17 @@
 
 @import 'states/hidden';
 
-@import 'layouts/half_width';
-@import 'layouts/rows';
 @import 'layouts/constrained';
-@import 'layouts/questionnaire';
-@import 'layouts/header';
 @import 'layouts/dashboard';
+@import 'layouts/firm';
 @import 'layouts/footer';
-@import 'layouts/pre_qualification_questions';
-@import 'layouts/questionnaire';
+@import 'layouts/half_width';
+@import 'layouts/header';
 @import 'layouts/identity';
 @import 'layouts/notice';
-@import 'layouts/firm';
+@import 'layouts/pre_qualification_questions';
+@import 'layouts/questionnaire';
+@import 'layouts/rows';
 
 @import 'components/button';
 @import 'components/firm_detail_links';
