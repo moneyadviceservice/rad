@@ -1,8 +1,6 @@
 <div class="l-constrained">
-  <%= render 'shared/breadcrumbs', breadcrumbs: [
-      { text: 'Dashboard', url: dashboard_root_path },
-      { text: 'Firms' }
-    ] %>
+  <%= render_breadcrumbs [{ text: 'Dashboard', url: dashboard_root_path },
+                          { text: 'Firms' }] %>
 
   <h2><%= t('dashboard.firms_index.firm_heading') %></h2>
   <div class="table-wrapper">
