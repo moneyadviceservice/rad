@@ -52,9 +52,15 @@
       </div>
     </section>
 
+    <section class="form-section">
+      <%= render partial: 'dashboard/firms/questionnaire/supplementary_information', locals: {f: f} %>
     </section>
 
-    <%= f.submit class: 't-save-button' %>
+
+    <div class="l-dashboard-action-row">
+      <%= link_to t('dashboard.cancel_button'), :back, class: 'l-dashboard-action-row__cancel' %>
+      <%= f.submit t('dashboard.save_button'), class: 'button button--primary t-save-button' %>
+    </div>
 
   <% end %>
 </div>
