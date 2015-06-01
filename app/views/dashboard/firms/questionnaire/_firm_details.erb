@@ -1,0 +1,35 @@
+<div class="l-2col-even-row">
+  <div class="l-2col-even">
+    <fieldset class="form__group form-section__group">
+      <legend class="form-section__group__heading"><%= t('dashboard.firm_edit.contact_details_heading') %></legend>
+
+      <%= f.form_row do %>
+        <div class="form__label-heading"><%= t('questionnaire.registered_name.label') %></div>
+        <%= f.object.registered_name %>
+      <% end %>
+
+      <%= f.form_row :email_address do %>
+        <%= f.errors_for :email_address %>
+        <%= f.label :email_address, t('questionnaire.email_address.label'), class: 'form__label-heading' %>
+        <%= f.text_field :email_address, class: 't-email-address' %>
+      <% end %>
+    </fieldset>
+  </div>
+  <div class="l-2col-even">
+    <fieldset class="form__group form-section__group">
+      <legend class="form-section__group__heading"><%= t('dashboard.firm_edit.principal_details_heading') %></legend>
+
+      <div class="form__row">
+        <%= f.errors_for :principal_name %>
+        <%= f.label :principal_name, t('questionnaire.principal.full_name.label'), class: 'form__label-heading' %>
+        <%= f.text_field :principal_name, value: f.object.principal.full_name, disabled: true %>
+      </div>
+
+      <div class="form__row">
+        <%= f.errors_for :telephone_number %>
+        <%= f.label :telephone_number, t('questionnaire.telephone_number.label'), class: 'form__label-heading' %>
+        <%= f.text_field :telephone_number, class: 't-telephone-number' %>
+      </div>
+    </fieldset>
+  </div>
+</div>

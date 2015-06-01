@@ -1,8 +1,8 @@
 <div class="l-constrained">
 
-  <div class="t-firm-name">
+  <h1 class="t-firm-name">
     <%= @firm.registered_name %>
-  </div>
+  </h1>
 
   <%= form_for @firm,
                url: dashboard_firm_path(@firm),
@@ -15,9 +15,13 @@
       </div>
     <% end %>
 
-    <section>
-      <%= render partial: 'dashboard/firms/questionnaire/email_and_phone', locals: {f: f} %>
-      <%= render partial: 'dashboard/firms/questionnaire/address', locals: {f: f} %>
+    <section class="form-section">
+      <div class="form-section__heading-with-button">
+        <h2 class="form-section__heading-with-button__heading"><%= t('dashboard.firm_edit.firm_heading') %></h2>
+        <a class="form-section__heading-with-button__button button button--primary"><%= t('dashboard.add_trading_name_button') %></a>
+      </div>
+      <%= render partial: 'dashboard/firms/questionnaire/firm_details', locals: {f: f} %>
+      <%= render partial: 'dashboard/firms/questionnaire/links', locals: {f: f} %>
     </section>
 
     <hr>
