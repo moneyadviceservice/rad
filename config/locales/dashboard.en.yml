@@ -16,8 +16,10 @@ en:
 
     firm_edit:
       saved: Saved successfully
+      trading_name_heading: Trading name
       firm_heading: Firm
-      contact_details_heading: Firm Contact Details
+      trading_name_contact_details_heading: Trading Name Contact Details
+      firm_contact_details_heading: Firm Contact Details
       principal_details_heading: Principal Details
       address_heading: Address
       questionnaire_heading: Questionnaire Responses
