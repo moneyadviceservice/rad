@@ -4,6 +4,8 @@ en:
     trading_name: Trading name
     add_trading_name_button: Add a trading name
     firms_heading: Firms
+    cancel_button: Cancel
+    save_button: Save
 
     firms_index:
       firm_heading: Parent Firm
@@ -12,6 +14,11 @@ en:
 
     firm_edit:
       saved: Saved successfully
+      firm_heading: Firm
+      contact_details_heading: Firm Contact Details
+      principal_details_heading: Principal Details
+      address_heading: Address
+      questionnaire_heading: Questionnaire Responses
 
     navigation: # name according to route name
       root: Dashboard
