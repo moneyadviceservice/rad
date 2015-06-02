@@ -3,6 +3,7 @@ RSpec.feature 'The dashboard trading name edit page' do
 
   let(:firms_index_page) { Dashboard::FirmsIndexPage.new }
   let(:trading_name_edit_page) { Dashboard::TradingNameEditPage.new }
+  let(:new_address) { 'Somewhere else' }
 
   scenario 'The principal can visit the edit page for the first trading name' do
     given_i_am_a_fully_registered_principal_user
@@ -11,6 +12,10 @@ RSpec.feature 'The dashboard trading name edit page' do
     when_i_am_on_the_principal_dashboard_firms_page
     and_i_click_the_edit_link_for_the_first_trading_name
     then_i_see_the_edit_page_for_the_first_trading_name
+    when_i_change_the_information
+    and_i_click_save
+    then_i_see_a_success_notice
+    and_the_information_is_changed
   end
 
   def given_i_am_a_fully_registered_principal_user
@@ -40,5 +45,24 @@ RSpec.feature 'The dashboard trading name edit page' do
   def then_i_see_the_edit_page_for_the_first_trading_name
     expect(trading_name_edit_page).to be_displayed
     expect(trading_name_edit_page.firm_name).to have_text @principal.firm.trading_names.first.registered_name
+  end
+
+  def when_i_change_the_information
+    trading_name_edit_page.address_line_one.set(new_address)
+  end
+
+  def and_i_click_save
+    trading_name_edit_page.save_button.click
+  end
+
+  def then_i_see_a_success_notice
+    expect(trading_name_edit_page).to have_flash_message(text: I18n.t('dashboard.firm_edit.saved'))
+  end
+
+  def and_the_information_is_changed
+    expect(trading_name_edit_page.address_line_one.value).to eq new_address
+
+    @principal.reload
+    expect(@principal.firm.trading_names.first.address_line_one).to eq new_address
   end
 end
