@@ -24,44 +24,31 @@
       <%= render partial: 'dashboard/firms/questionnaire/links', locals: {f: f} %>
     </section>
 
-    <hr>
-
-    <section>
-      <%= heading_tag(t('questionnaire.providing_your_services.heading'), level: 2, class: 'heading-small') %>
-      <p class="l-questionnaire__section-description"><%= t('questionnaire.providing_your_services.description') %></p>
-
-      <%= render partial: 'dashboard/firms/questionnaire/advice_methods', locals: {f: f} %>
-      <%= render partial: 'dashboard/firms/questionnaire/initial_meeting', locals: {f: f} %>
     </section>
 
-    <hr>
+    <section class="form-section">
+      <h2 class="form-section__heading"><%= t('dashboard.firm_edit.questionnaire_heading') %></h2>
 
-    <section>
-      <%= heading_tag(t('questionnaire.service_charges.heading'), level: 2, class: 'heading-small') %>
-      <p><%= t('questionnaire.service_charges.description') %></p>
-      <p class="l-questionnaire__section-description"><%= t('questionnaire.service_charges.hint') %></p>
+      <div class="l-3col-even-row">
+        <div class="l-3col-even">
+          <%= render partial: 'dashboard/firms/questionnaire/advice_methods', locals: {f: f} %>
+          <%= render partial: 'dashboard/firms/questionnaire/initial_meeting', locals: {f: f} %>
+          <%= render partial: 'dashboard/firms/questionnaire/initial_advice', locals: {f: f} %>
+        </div>
 
-      <%= render partial: 'dashboard/firms/questionnaire/fee_structures', locals: {f: f} %>
-      <%= render partial: 'dashboard/firms/questionnaire/payment_methods', locals: {f: f} %>
-      <%= render partial: 'dashboard/firms/questionnaire/minimum_fee', locals: {f: f} %>
+        <div class="l-3col-even">
+          <%= render partial: 'dashboard/firms/questionnaire/ongoing_advice', locals: {f: f} %>
+          <%= render partial: 'dashboard/firms/questionnaire/payment_methods', locals: {f: f} %>
+          <%= render partial: 'dashboard/firms/questionnaire/minimum_fee', locals: {f: f} %>
+          <%= render partial: 'dashboard/firms/questionnaire/investment_sizes', locals: {f: f} %>
+        </div>
+
+        <div class="l-3col-even">
+          <%= render partial: 'dashboard/firms/questionnaire/business_split', locals: {f: f} %>
+        </div>
+      </div>
     </section>
 
-    <hr>
-
-    <section>
-      <%= heading_tag(t('questionnaire.retirement_advice.business_split.heading'), level: 2, class: 'heading-small') %>
-      <p><%= t('questionnaire.retirement_advice.business_split.description') %></p>
-
-      <%= render partial: 'dashboard/firms/questionnaire/business_split', locals: {f: f} %>
-    </section>
-
-    <hr>
-
-    <section>
-      <%= heading_tag(t('questionnaire.retirement_advice.typical_customer.heading'), level: 2, class: 'heading-small') %>
-      <p class="l-questionnaire__section-description"><%= t('questionnaire.retirement_advice.typical_customer.description') %></p>
-
-      <%= render partial: 'dashboard/firms/questionnaire/investment_sizes', locals: {f: f} %>
     </section>
 
     <%= f.submit class: 't-save-button' %>

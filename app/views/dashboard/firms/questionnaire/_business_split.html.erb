@@ -7,28 +7,16 @@
   <% end %>
 
   <div class="l-questionnaire__row">
-    <div class="l-questionnaire__field">
-      <% t('questionnaire.retirement_advice.business_split.advice_options').each do |attribute, heading| %>
-        <%= f.form_row attribute do %>
-          <%= f.errors_for attribute %>
-          <%= f.label attribute, raw(heading), class: 'form__label-heading', id: "form-label-#{attribute}".dasherize %>
-          <span class="form__input-container form__input-container--small">
-            <%= f.text_field attribute, type: 'number', class: "form__input t-#{attribute.to_s.dasherize}", aria_labelledby: "form-label-#{attribute} input-label-#{attribute}-b".dasherize %>
-            <span class="form__input-label" id="<%= "input-label-#{attribute}-b".dasherize %>">%</span>
-            <span class="form__input-outline"></span>
-          </span>
-        <% end %>
+    <% t('questionnaire.retirement_advice.business_split.advice_options').each do |attribute, heading| %>
+      <%= f.form_row attribute do %>
+        <%= f.errors_for attribute %>
+        <%= f.label attribute, raw(heading), class: 'form__label-heading', id: "form-label-#{attribute}".dasherize %>
+        <span class="form__input-container form__input-container--small">
+          <%= f.text_field attribute, type: 'number', class: "form__input t-#{attribute.to_s.dasherize}", aria_labelledby: "form-label-#{attribute} input-label-#{attribute}-b".dasherize %>
+          <span class="form__input-label" id="<%= "input-label-#{attribute}-b".dasherize %>">%</span>
+          <span class="form__input-outline"></span>
+        </span>
       <% end %>
-    </div>
+    <% end %>
   </div>
-
-  <section>
-    <%= heading_tag(t('questionnaire.retirement_advice.business_split.footnotes.heading'), level: 3, class: 'heading-extra-small') %>
-    <p id="other_description" class="footnote"><%= t('questionnaire.retirement_advice.business_split.footnotes.other_html') %></p>
-  </section>
 </fieldset>
-
-<div class="notice">
-  <%= heading_tag(t('questionnaire.retirement_advice.business_split.disclaimer.heading'), level: 3, class: 'heading-extra-small') %>
-  <p><%= t('questionnaire.retirement_advice.business_split.disclaimer.text') %></p>
-</div>
