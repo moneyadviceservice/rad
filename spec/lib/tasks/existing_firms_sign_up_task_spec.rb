@@ -14,11 +14,12 @@ module Tasks
         described_class.notify
 
         expect(emails_sent.size).to eq(2)
-        expect(emails_sent.first.subject).to eq('Invitation instructions')
-        expect(emails_sent.first.to).to include(bill.email_address)
+        expect(emails_sent).to all(have_attributes(subject: 'Invitation instructions'))
 
-        expect(emails_sent.last.subject).to eq('Invitation instructions')
-        expect(emails_sent.last.to).to include('ben@example.com')
+        emails_sent.sort_by(&:to).tap do |sorted_emails_sent|
+          expect(sorted_emails_sent.first.to).to include('ben@example.com')
+          expect(sorted_emails_sent.last.to).to include(bill.email_address)
+        end
       end
 
       it 'mails only principals for firms with no parent' do
