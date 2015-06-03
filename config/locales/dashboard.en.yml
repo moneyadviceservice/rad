@@ -11,6 +11,8 @@ en:
       firm_heading: Parent Firm
       trading_names_heading: Trading Names
       principal_column_heading: Principal
+      trading_names_filter_label: "Filter trading names:"
+      trading_names_filter_placeholder: e.g. firm name
 
     firm_edit:
       saved: Saved successfully

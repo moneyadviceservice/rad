@@ -4,7 +4,7 @@
 <div class="l-constrained">
   <h2><%= t('dashboard.firms_index.firm_heading') %></h2>
   <div class="table-wrapper">
-    <table>
+    <table class="l-half-width">
       <thead>
         <tr>
           <th><%= Firm.human_attribute_name(:fca_number) %></th>
@@ -26,25 +26,28 @@
     </table>
   </div>
 
-  <h2><%= t('dashboard.firms_index.trading_names_heading') %></h2>
-  <div class="table-wrapper">
-    <table>
-      <thead>
-        <tr>
-          <th><%= Firm.human_attribute_name(:fca_number) %></th>
-          <th><%= Firm.human_attribute_name(:registered_name)  %></th>
-          <th><%= t('dashboard.firms_index.principal_column_heading') %></th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @trading_names.each do |trading_name| %>
-          <tr class="t-trading-name-table-row">
-            <td class="t-frn"><%= trading_name.fca_number %></td>
-            <td class="t-firm-name"><%= trading_name.registered_name %></td>
-            <td class="t-principal-name"><%= trading_name.principal.full_name %></td>
+  <div id="firm-list" data-dough-component="FilterTable">
+    <h2><%= t('dashboard.firms_index.trading_names_heading') %></h2>
+    <%= filter_field :trading_names, locale_prefix: 'dashboard.firms_index.trading_names_filter' %>
+    <div class="table-wrapper">
+      <table class="l-half-width">
+        <thead>
+          <tr>
+            <th><%= Firm.human_attribute_name(:fca_number) %></th>
+            <th><%= Firm.human_attribute_name(:registered_name)  %></th>
+            <th><%= t('dashboard.firms_index.principal_column_heading') %></th>
           </tr>
-        <% end %>
-      </tbody>
-    </table>
+        </thead>
+        <tbody class="js-filter-rows">
+          <% @trading_names.each do |trading_name| %>
+            <tr class="t-trading-name-table-row">
+              <td class="js-filterable t-frn"><%= trading_name.fca_number %></td>
+              <td class="js-filterable t-firm-name"><%= trading_name.registered_name %></td>
+              <td class="js-filterable t-principal-name"><%= trading_name.principal.full_name %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>

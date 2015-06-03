@@ -2,6 +2,9 @@
 //= depend_on_asset modules/FieldToggleVisibility
 //= depend_on_asset modules/AdviserAjaxCall
 //= depend_on_asset modules/DataTransform
+//= depend_on_asset modules/FilterTable
+//= depend_on_asset list.js/dist/list.js
+//= depend_on_asset list.fuzzysearch.js/dist/list.fuzzysearch.js
 
 <%
   def requirejs_path(asset)
@@ -13,9 +16,12 @@
 
     paths: {
       jquery: requirejs_path('jquery/dist/jquery'),
+      List: requirejs_path('list.js/dist/list.js'),
+      ListFuzzySearch: requirejs_path('list.fuzzysearch.js/dist/list.fuzzysearch.js'),
       FieldToggleVisibility: requirejs_path('modules/FieldToggleVisibility'),
       AdviserAjaxCall: requirejs_path('modules/AdviserAjaxCall'),
       DataTransform: requirejs_path('modules/DataTransform'),
+      FilterTable: requirejs_path('modules/FilterTable'),
       componentLoader: requirejs_path('dough/assets/js/lib/componentLoader'),
       DoughBaseComponent: requirejs_path('dough/assets/js/components/DoughBaseComponent'),
       FieldHelpText: requirejs_path('dough/assets/js/components/FieldHelpText'),
