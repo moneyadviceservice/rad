@@ -1,0 +1,66 @@
+<div class="l-constrained">
+
+  <h1 class="t-firm-name">
+    <%= @firm.registered_name %>
+  </h1>
+
+  <%= form_for @firm,
+               url: dashboard_firm_path(@firm),
+               builder: Dough::Forms::Builders::Validation,
+               html: { class: 'form' } do |f| %>
+
+    <% if @firm.errors.any? %>
+      <div class="t-validation-summary">
+        <%= f.validation_summary %>
+      </div>
+    <% end %>
+
+    <section class="form-section">
+      <div class="form-section__heading-with-button">
+        <h2 class="form-section__heading-with-button__heading"><%= t('dashboard.firm_edit.firm_heading') %></h2>
+        <a class="form-section__heading-with-button__button button button--primary"><%= t('dashboard.add_trading_name_button') %></a>
+      </div>
+      <%= render partial: 'dashboard/firms/questionnaire/firm_details', locals: {f: f} %>
+      <%= render partial: 'dashboard/firms/questionnaire/links', locals: {f: f} %>
+    </section>
+
+    <section class="form-section">
+      <h2 class="form-section__heading"><%= t('dashboard.firm_edit.address_heading') %></h2>
+      <%= render partial: 'dashboard/firms/questionnaire/address', locals: {f: f} %>
+    </section>
+
+    <section class="form-section">
+      <h2 class="form-section__heading"><%= t('dashboard.firm_edit.questionnaire_heading') %></h2>
+
+      <div class="l-3col-even-row">
+        <div class="l-3col-even">
+          <%= render partial: 'dashboard/firms/questionnaire/advice_methods', locals: {f: f} %>
+          <%= render partial: 'dashboard/firms/questionnaire/initial_meeting', locals: {f: f} %>
+          <%= render partial: 'dashboard/firms/questionnaire/initial_advice', locals: {f: f} %>
+        </div>
+
+        <div class="l-3col-even">
+          <%= render partial: 'dashboard/firms/questionnaire/ongoing_advice', locals: {f: f} %>
+          <%= render partial: 'dashboard/firms/questionnaire/payment_methods', locals: {f: f} %>
+          <%= render partial: 'dashboard/firms/questionnaire/minimum_fee', locals: {f: f} %>
+          <%= render partial: 'dashboard/firms/questionnaire/investment_sizes', locals: {f: f} %>
+        </div>
+
+        <div class="l-3col-even">
+          <%= render partial: 'dashboard/firms/questionnaire/business_split', locals: {f: f} %>
+        </div>
+      </div>
+    </section>
+
+    <section class="form-section">
+      <%= render partial: 'dashboard/firms/questionnaire/supplementary_information', locals: {f: f} %>
+    </section>
+
+
+    <div class="l-dashboard-action-row">
+      <%= link_to t('dashboard.cancel_button'), :back, class: 'l-dashboard-action-row__cancel' %>
+      <%= f.submit t('dashboard.save_button'), class: 'button button--primary t-save-button' %>
+    </div>
+
+  <% end %>
+</div>

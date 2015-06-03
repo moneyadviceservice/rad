@@ -213,6 +213,10 @@ en:
         subheading: "%{name} was created."
         description: Your registration details have been received and have been sent for verification. The information you have provided will appear in the directory when we launch it. We will also be adding a 'Firm profile' feature to allow you to manage your information and add further details to your profile in the near future.
 
+    principal:
+      full_name:
+        label: Principal
+
     about_your_firm:
       heading: About your firm
       callout_html: '<p><span class="t-firm-name">%{registered_name}</span>, firm registration number <span class="t-firm-fca-number">%{fca_number}</span></p>'
@@ -226,6 +230,9 @@ en:
       heading: How does your firm charge for its services? *
       description: Confirm the way(s) your firm charges for its services.
       hint: Check all that apply.
+
+    registered_name:
+      label: Registered name
 
     email_address:
       heading: Firm email address for enquiries

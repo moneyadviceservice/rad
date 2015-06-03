@@ -1,0 +1,36 @@
+<fieldset class="form__group">
+  <legend class="l-questionnaire__legend"><%= t('questionnaire.address.heading') %></legend>
+  <p><%= t('questionnaire.address.description') %></p>
+
+  <div class="l-half-width">
+    <%= f.form_row :address_line_one do %>
+      <%= f.errors_for :address_line_one %>
+      <%= f.label :address_line_one, t('questionnaire.address.label_one'), class: 'form__label-heading' %>
+      <%= f.text_field :address_line_one, class: 't-address-line-one' %>
+    <% end %>
+
+    <%= f.form_row :address_line_two do %>
+      <%= f.errors_for :address_line_two %>
+      <%= f.label :address_line_two, t('questionnaire.address.label_two'), class: 'form__label-heading' %>
+      <%= f.text_field :address_line_two %>
+    <% end %>
+
+    <%= f.form_row :address_town do %>
+      <%= f.errors_for :address_town %>
+      <%= f.label :address_town, t('questionnaire.address.label_three'), class: 'form__label-heading' %>
+      <%= f.text_field :address_town, class: 't-address-town' %>
+    <% end %>
+
+    <%= f.form_row :address_county do %>
+      <%= f.errors_for :address_county %>
+      <%= f.label :address_county, t('questionnaire.address.label_four'), class: 'form__label-heading' %>
+      <%= f.text_field :address_county, class: 't-address-county' %>
+    <% end %>
+
+    <%= f.form_row :address_postcode do %>
+      <%= f.errors_for :address_postcode %>
+      <%= f.label :address_postcode, t('questionnaire.address.label_five'), class: 'form__label-heading' %>
+      <%= f.text_field :address_postcode, class: 'form__input-container--medium t-address-postcode' %>
+    <% end %>
+  </div>
+</fieldset>

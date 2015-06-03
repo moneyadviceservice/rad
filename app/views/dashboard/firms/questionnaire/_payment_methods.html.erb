@@ -1,0 +1,12 @@
+<fieldset class="form__group">
+  <legend class="l-questionnaire__legend"><%= t('questionnaire.allowed_payment_methods.heading') %></legend>
+
+  <%= f.form_row :allowed_payment_methods do %>
+    <%= f.errors_for :allowed_payment_methods %>
+    <%= f.collection_check_boxes(:allowed_payment_method_ids, AllowedPaymentMethod.all, :id, :name) do |b| %>
+      <div class="form__group-item">
+        <%= b.label { b.check_box(class: 'form__group-input t-questionnaire__allowed-payment-method-id') + b.text } %>
+      </div>
+    <% end %>
+  <% end %>
+</fieldset>
