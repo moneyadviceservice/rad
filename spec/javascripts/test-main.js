@@ -25,7 +25,10 @@ require.config({
     componentLoader: 'vendor/assets/bower_components/dough/assets/js/lib/componentLoader',
     DoughBaseComponent: 'vendor/assets/bower_components/dough/assets/js/components/DoughBaseComponent',
     jquery: 'vendor/assets/bower_components/jquery/dist/jquery',
-    FieldToggleVisibility: 'app/assets/javascripts/modules/FieldToggleVisibility'
+    FieldToggleVisibility: 'app/assets/javascripts/modules/FieldToggleVisibility',
+    FilterTable: 'app/assets/javascripts/modules/FilterTable',
+    List: 'vendor/assets/bower_components/list.js/dist/list',
+    ListFuzzySearch: 'vendor/assets/bower_components/list.fuzzysearch.js/dist/list.fuzzysearch'
   },
 
   shim: {

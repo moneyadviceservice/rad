@@ -19,6 +19,7 @@ Rails.application.configure do
     admin.js
     rsvp/rsvp.js
     dough/assets/js/**/*.js
+    modules/FilterTable.js
     modules/FieldToggleVisibility.js
     modules/DataTransform.js
     modules/AdviserAjaxCall.js
@@ -32,5 +33,7 @@ Rails.application.configure do
     rsvp/rsvp.amd.js
     requirejs/require.js
     modernizer-flexbox-cssclasses.js
+    list.js/dist/list.js
+    list.fuzzysearch.js/dist/list.fuzzysearch.js
   )
 end
