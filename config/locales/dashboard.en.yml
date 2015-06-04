@@ -27,6 +27,9 @@ en:
       address_heading: Address
       questionnaire_heading: Questionnaire Responses
 
+    trading_name_edit:
+      saved: Saved successfully
+
     navigation: # name according to route name
       root: Dashboard
       firms: Firms

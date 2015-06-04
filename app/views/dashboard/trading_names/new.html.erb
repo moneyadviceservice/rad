@@ -1,0 +1,16 @@
+<div class="l-constrained">
+
+  <h1 class="t-firm-name">
+    <%= @firm.registered_name %>
+  </h1>
+
+  <%= form_for @firm,
+               url: dashboard_trading_names_path(@firm),
+               builder: Dough::Forms::Builders::Validation,
+               html: { class: 'form' } do |f| %>
+
+    <%= hidden_field_tag 'lookup_id', params[:lookup_id] %>
+    <%= render partial: 'dashboard/firms/form', locals: {f: f} %>
+
+  <% end %>
+</div>
