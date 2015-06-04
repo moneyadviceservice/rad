@@ -15,6 +15,16 @@ en:
             destination_firm_fca_number:
               does_not_exist: "no firms exist that match '%{fca_number}'"
   activerecord:
+    models:
+      firm:
+        one: Firm
+        other: Firms
+      adviser:
+        one: Adviser
+        other: Advisers
+      trading_name:
+        one: Trading name
+        other: Trading names
     attributes:
       adviser:
         confirmed_disclaimer: Truth confirmation statement
