@@ -7,4 +7,8 @@ module ApplicationHelper
   def render_breadcrumbs(crumbs)
     render 'shared/breadcrumbs', breadcrumbs: crumbs
   end
+
+  def register_path
+    prequalify_principals_path
+  end
 end
