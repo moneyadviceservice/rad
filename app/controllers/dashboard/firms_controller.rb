@@ -47,7 +47,7 @@ module Dashboard
       ongoing_advice_fee_structure_ids: [],
       allowed_payment_method_ids: [],
       investment_size_ids: []
-    ]
+    ].freeze
 
     def firm_params
       params.require(:firm).permit(*FIRM_PARAMS)
