@@ -10,4 +10,10 @@ RSpec.describe ApplicationHelper, type: :helper do
       helper.render_breadcrumbs []
     end
   end
+
+  describe '#register_path' do
+    it 'provides the start of the registration flow' do
+      expect(helper.register_path).to eq(prequalify_principals_path)
+    end
+  end
 end
