@@ -8,6 +8,7 @@ RSpec.feature 'The dashboard firm list page' do
     when_i_am_on_the_principal_dashboard_firms_page
     then_i_can_see_the_parent_firm_i_am_associated_with
     then_i_can_see_the_list_of_trading_names_i_am_associated_with
+    then_i_can_see_the_list_of_available_trading_names
   end
 
   def given_i_am_a_fully_registered_principal_user
@@ -16,7 +17,8 @@ RSpec.feature 'The dashboard firm list page' do
   end
 
   def and_i_have_a_firm_with_trading_names
-    firm_attrs = FactoryGirl.attributes_for(:firm_with_subsidiaries, fca_number: @principal.fca_number)
+    @lookup_trading_name = FactoryGirl.create(:lookup_subsidiary, fca_number: @principal.fca_number)
+    firm_attrs = FactoryGirl.attributes_for(:firm_with_trading_names, fca_number: @principal.fca_number)
     @principal.firm.update_attributes(firm_attrs)
   end
 
@@ -41,8 +43,13 @@ RSpec.feature 'The dashboard firm list page' do
   end
 
   def then_i_can_see_the_list_of_trading_names_i_am_associated_with
-    firms_index_page.trading_names.zip(@principal.firm.subsidiaries).each do |trading_name_section, trading_name|
+    firms_index_page.trading_names.zip(@principal.firm.trading_names).each do |trading_name_section, trading_name|
       expect_firm_table_row(trading_name_section, trading_name)
     end
+  end
+
+  def then_i_can_see_the_list_of_available_trading_names
+    expect(firms_index_page.available_trading_names.size).to eq 1
+    expect(firms_index_page.available_trading_names.first).to have_name(text: @lookup_trading_name.name)
   end
 end
