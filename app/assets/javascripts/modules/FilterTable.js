@@ -6,7 +6,7 @@
  * Makes use of ListJS — see listjs.com.
  * See test fixture for sample markup - /spec/js/fixtures/FilterTable.html
  */
- 
+
 define(['jquery', 'DoughBaseComponent', 'List', 'ListFuzzySearch'],
        function($, DoughBaseComponent, List, ListFuzzySearch) {
   'use strict';
@@ -44,9 +44,30 @@ define(['jquery', 'DoughBaseComponent', 'List', 'ListFuzzySearch'],
     return this;
   };
 
+  /**
+   * makeFilterTargetClasses
+   *
+   * Find columns with filterTargetClass and apply individual classes
+   * to them, since this is what ListJS wants.
+   *
+   * @return {Array} array of classes used
+   */
+  FilterTableProto.makeFilterTargetClasses = function () {
+    var filterClasses = [];
+
+    this.$el.find('.' + this.config.filterTargetClass).each(function(_, cell) {
+      var $cell = $(cell),
+          filterClass = 'js-filterable-' + $cell.index();
+      $cell.addClass(filterClass);
+      filterClasses.push(filterClass);
+    });
+
+    return $.unique(filterClasses);
+  };
+
   FilterTableProto.bindFilterToElements = function() {
     var firmOptions = {
-      valueNames: [this.config.filterTargetClass],
+      valueNames: this.makeFilterTargetClasses(),
       searchClass: this.config.filterFieldClass,
       listClass: this.config.filterListClass,
       plugins: [ListFuzzySearch()]

@@ -80,5 +80,17 @@ describe('filter table based on text field criteria', function () {
         expect(this.getRows().length).to.eq(0);
       });
     });
+
+    describe('when text matching the second column of one row is entered into the field', function () {
+      beforeEach(function() {
+        this.$field.val('Bristol');
+        fireKeyup(this.$field);
+      });
+
+      it('shows only that row', function () {
+        expect(this.getRows().length).to.eq(1);
+        expect(this.getRows().eq(0).text()).to.include('Alex');
+      });
+    });
   });
 });
