@@ -1,3 +1,7 @@
+<%= render_breadcrumbs [{ locale_key: 'dashboard.navigation.root', url: dashboard_root_path },
+                        { locale_key: 'dashboard.navigation.firms', url: dashboard_firms_path },
+                        { name: @firm.registered_name }] %>
+
 <div class="l-constrained">
 
   <h1 class="t-firm-name">

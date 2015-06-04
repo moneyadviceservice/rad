@@ -17,7 +17,7 @@
         <li class="breadcrumbs__item" itemscope itemtype="http://data-vocabulary.org/Breadcrumb">
           <span class="visually-hidden">&gt;</span>
             <span itemprop="title">
-              <%= t(last_link[:locale_key]) %>
+              <%= last_link[:name] || t(last_link[:locale_key]) %>
             </span>
         </li>
       </ul>
