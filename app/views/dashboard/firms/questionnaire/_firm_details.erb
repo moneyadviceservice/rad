@@ -9,7 +9,7 @@
 
       <%= f.form_row do %>
         <div class="form__label-heading"><%= t('questionnaire.registered_name.label') %></div>
-        <%= f.object.registered_name %>
+        <div class="form__static-value"><%= f.object.registered_name %></div>
       <% end %>
 
       <%= f.form_row :email_address do %>
