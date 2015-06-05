@@ -7,8 +7,8 @@
  * See test fixture for sample markup - /spec/js/fixtures/FilterTable.html
  */
 
-define(['jquery', 'DoughBaseComponent', 'List', 'ListFuzzySearch'],
-       function($, DoughBaseComponent, List, ListFuzzySearch) {
+define(['jquery', 'DoughBaseComponent', 'List'],
+       function($, DoughBaseComponent, List) {
   'use strict';
 
   var FilterTableProto,
@@ -65,27 +65,12 @@ define(['jquery', 'DoughBaseComponent', 'List', 'ListFuzzySearch'],
     return $.unique(filterClasses);
   };
 
-  /**
-   * enableFuzzySearch
-   *
-   * Find input field with class filterFieldClass then add fuzzy-search class to it.
-   *
-   */
-  FilterTableProto.enableFuzzySearch = function () {
-    this.$el.find('.' + this.config.filterFieldClass).each(function(_, cell) {
-      $(cell).addClass('fuzzy-search');
-    });
-  };
-
   FilterTableProto.bindFilterToElements = function() {
     var firmOptions = {
       valueNames: this.makeFilterTargetClasses(),
       searchClass: this.config.filterFieldClass,
-      listClass: this.config.filterListClass,
-      plugins: [ListFuzzySearch()]
+      listClass: this.config.filterListClass
     };
-
-    this.enableFuzzySearch();
 
     new List(this.$el.attr('id'), firmOptions);
   };
