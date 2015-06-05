@@ -16,6 +16,7 @@ en:
       available_trading_names_filter_label: "Filter available trading names:"
       trading_names_filter_placeholder: e.g. firm name
       available_trading_names_filter_placeholder: e.g. firm name
+      new_trading_name_link: Add to directory
 
     firm_edit:
       saved: Saved successfully
