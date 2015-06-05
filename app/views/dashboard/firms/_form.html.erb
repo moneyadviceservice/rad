@@ -14,7 +14,10 @@
     <% end %>
   </div>
   <%= render partial: 'dashboard/firms/questionnaire/firm_details', locals: {f: f} %>
-  <%= render partial: 'dashboard/firms/questionnaire/links', locals: {f: f} %>
+  
+  <% if @firm.persisted? %>
+    <%= render partial: 'dashboard/firms/questionnaire/links', locals: {f: f} %>
+  <% end %>
 </section>
 
 <section class="form-section">
