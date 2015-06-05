@@ -92,17 +92,5 @@ describe('filter table based on text field criteria', function () {
         expect(this.getRows().eq(0).text()).to.include('Alex');
       });
     });
-
-    describe('when text matching across multiple columns', function() {
-      beforeEach(function() {
-        this.$field.val('orse ondon');
-        fireKeyup(this.$field);
-      });
-
-      it('shows only that row', function () {
-        expect(this.getRows().length).to.eq(1);
-        expect(this.getRows().eq(0).text()).to.include('Horse');
-      });
-    });
   });
 });

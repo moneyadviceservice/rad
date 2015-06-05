@@ -65,18 +65,6 @@ define(['jquery', 'DoughBaseComponent', 'List', 'ListFuzzySearch'],
     return $.unique(filterClasses);
   };
 
-  /**
-   * enableFuzzySearch
-   *
-   * Find input field with class filterFieldClass then add fuzzy-search class to it.
-   *
-   */
-  FilterTableProto.enableFuzzySearch = function () {
-    this.$el.find('.' + this.config.filterFieldClass).each(function(_, cell) {
-      $(cell).addClass('fuzzy-search');
-    });
-  };
-
   FilterTableProto.bindFilterToElements = function() {
     var firmOptions = {
       valueNames: this.makeFilterTargetClasses(),
@@ -84,8 +72,6 @@ define(['jquery', 'DoughBaseComponent', 'List', 'ListFuzzySearch'],
       listClass: this.config.filterListClass,
       plugins: [ListFuzzySearch()]
     };
-
-    this.enableFuzzySearch();
 
     new List(this.$el.attr('id'), firmOptions);
   };
