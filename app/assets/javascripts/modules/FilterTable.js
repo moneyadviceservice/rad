@@ -7,8 +7,8 @@
  * See test fixture for sample markup - /spec/js/fixtures/FilterTable.html
  */
 
-define(['jquery', 'DoughBaseComponent', 'List', 'ListFuzzySearch'],
-       function($, DoughBaseComponent, List, ListFuzzySearch) {
+define(['jquery', 'DoughBaseComponent', 'List'],
+       function($, DoughBaseComponent, List) {
   'use strict';
 
   var FilterTableProto,
@@ -69,8 +69,7 @@ define(['jquery', 'DoughBaseComponent', 'List', 'ListFuzzySearch'],
     var firmOptions = {
       valueNames: this.makeFilterTargetClasses(),
       searchClass: this.config.filterFieldClass,
-      listClass: this.config.filterListClass,
-      plugins: [ListFuzzySearch()]
+      listClass: this.config.filterListClass
     };
 
     new List(this.$el.attr('id'), firmOptions);

@@ -34,6 +34,5 @@ Rails.application.configure do
     requirejs/require.js
     modernizer-flexbox-cssclasses.js
     list.js/dist/list.js
-    list.fuzzysearch.js/dist/list.fuzzysearch.js
   )
 end
