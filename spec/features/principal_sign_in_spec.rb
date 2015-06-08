@@ -5,8 +5,8 @@ RSpec.feature 'Principal can sign in' do
   scenario 'Principal can sign in with correct details' do
     given_the_principal_user_exists
     when_they_sign_in_with_correct_details
-    they_have_logged_in
     they_see_the_dashboard_page
+    they_have_logged_in
   end
 
   scenario 'Principal cannot sign in with incorrect details' do
@@ -36,13 +36,13 @@ RSpec.feature 'Principal can sign in' do
   end
 
   def they_have_logged_in
-    # TODO: We don't have access to `current_user` in feature
-    # tests, so we'll rely on this? Until we can test it on content.
     expect(@user.reload.sign_in_count).to eq 1
+    expect(dashboard_page.navigation).to have_sign_out
   end
 
   def they_have_not_logged_in
     expect(@user.reload.sign_in_count).to eq 0
+    expect(dashboard_page.navigation).to have_sign_in
   end
 
   def they_see_the_dashboard_page
@@ -50,7 +50,7 @@ RSpec.feature 'Principal can sign in' do
   end
 
   def they_see_the_sign_in_page
-    expect(page.current_path).to eq new_user_session_path
+    expect(sign_in_page).to be_displayed
   end
 
   def and_they_see_a_notice_that_their_details_were_incorrect
