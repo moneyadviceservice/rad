@@ -15,6 +15,9 @@
         <%= link_to t('dashboard.navigation.firms'), dashboard_firms_path, class: 'navigation__link t-dashboard-link' %>
       </li>
       <li class='navigation__item'>
+        <%= link_to t('dashboard.navigation.advisers'), dashboard_advisers_path, class: 'navigation__link t-dashboard-link' %>
+      </li>
+      <li class='navigation__item'>
         <%= link_to t('authentication_sign_out'), destroy_user_session_path, class: 'navigation__link t-sign-out' %>
       </li>
       <li class='navigation__item navigation__item--last'>

@@ -28,6 +28,10 @@ en:
     attributes:
       adviser:
         confirmed_disclaimer: Truth confirmation statement
+        name: Name
+        postcode: Postcode
+        qualifications: Qualifications
+        reference_number: Number
       principal:
         fca_number: FCA Number
         confirmed_disclaimer: Truth confirmation statement

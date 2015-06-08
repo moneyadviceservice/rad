@@ -1,0 +1,28 @@
+<div class="table-wrapper">
+  <table class="l-half-width">
+    <thead>
+      <tr>
+        <th><%= Adviser.human_attribute_name(:reference_number) %></th>
+        <th><%= Adviser.human_attribute_name(:name) %></th>
+        <th><%= Adviser.human_attribute_name(:qualifications) %></th>
+        <th><%= Adviser.human_attribute_name(:postcode) %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% advisers.each do |adviser| %>
+        <tr>
+          <td><%= adviser.reference_number %></td>
+          <td><%= adviser.name %></td>
+          <td>
+            <ul>
+              <% adviser.qualifications.each do |qualification| %>
+                <li><%= qualification.name %></li>
+              <% end %>
+            </ul>
+          </td>
+          <td><%= adviser.postcode %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

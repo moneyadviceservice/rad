@@ -7,6 +7,9 @@ en:
     cancel_button: Cancel
     save_button: Save
 
+    advisers_index:
+      trading_names_heading: "Trading Name: %{trading_name}"
+
     firms_index:
       firm_heading: Parent Firm
       trading_names_heading: Trading Names
@@ -34,3 +37,4 @@ en:
     navigation: # name according to route name
       root: Dashboard
       firms: Firms
+      advisers: Advisers

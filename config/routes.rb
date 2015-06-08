@@ -32,6 +32,7 @@ Rails.application.routes.draw do
     root 'dashboard#index'
     resources :firms, only: [:index, :edit, :update]
     resources :trading_names, only: [:new, :create, :edit, :update]
+    resources :advisers, only: [:index]
   end
 
   resource :contact, only: :create
