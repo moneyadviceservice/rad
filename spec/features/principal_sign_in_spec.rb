@@ -1,11 +1,12 @@
 RSpec.feature 'Principal can sign in' do
   let(:sign_in_page) { SignInPage.new }
+  let(:dashboard_page) { Dashboard::DashboardPage.new }
 
   scenario 'Principal can sign in with correct details' do
     given_the_principal_user_exists
     when_they_sign_in_with_correct_details
     they_have_logged_in
-    they_see_the_index_page
+    they_see_the_dashboard_page
   end
 
   scenario 'Principal cannot sign in with incorrect details' do
@@ -44,8 +45,8 @@ RSpec.feature 'Principal can sign in' do
     expect(@user.reload.sign_in_count).to eq 0
   end
 
-  def they_see_the_index_page
-    expect(page.current_path).to eq root_path
+  def they_see_the_dashboard_page
+    expect(dashboard_page).to be_displayed
   end
 
   def they_see_the_sign_in_page
