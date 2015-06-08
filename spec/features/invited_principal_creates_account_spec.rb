@@ -1,6 +1,7 @@
 RSpec.feature 'An invited principal can create a user account' do
   let(:accept_invitation_page) { AcceptInvitationPage.new }
   let(:dashboard_page) { Dashboard::DashboardPage.new }
+  let(:password) { 'ABCabc123@£$' }
 
   scenario 'Principal accepts the invite and sets a password' do
     given_the_principal_exists
@@ -10,7 +11,13 @@ RSpec.feature 'An invited principal can create a user account' do
     when_they_click_the_link_to_accept_the_invitation
     then_they_are_on_the_accept_invitation_page
 
-    when_they_set_a_password
+    when_they_set_the_password_inconsistently
+    and_submit_the_form
+    then_they_are_on_the_accept_invitation_page
+    and_they_are_not_signed_in
+    and_they_see_a_notice_that_there_were_validation_errors
+
+    when_they_set_a_valid_password
     and_submit_the_form
     then_they_are_on_the_dashboard_page
     and_they_see_a_confirmation_message
@@ -41,9 +48,14 @@ RSpec.feature 'An invited principal can create a user account' do
     expect(accept_invitation_page).to have_password_confirmation
   end
 
-  def when_they_set_a_password
-    accept_invitation_page.password.set 'ABCabc123@£$'
-    accept_invitation_page.password_confirmation.set 'ABCabc123@£$'
+  def when_they_set_the_password_inconsistently
+    accept_invitation_page.password.set password
+    accept_invitation_page.password_confirmation.set password.chop
+  end
+
+  def when_they_set_a_valid_password
+    accept_invitation_page.password.set password
+    accept_invitation_page.password_confirmation.set password
   end
 
   def and_submit_the_form
@@ -59,9 +71,18 @@ RSpec.feature 'An invited principal can create a user account' do
       .to have_flash_message(text: I18n.t('devise.invitations.updated'))
   end
 
+  def and_they_see_a_notice_that_there_were_validation_errors
+    expect(accept_invitation_page).to have_devise_form_errors
+  end
+
   def and_they_are_signed_in
     expect(@user.reload.sign_in_count).to eq(1)
     expect(dashboard_page.navigation).to have_sign_out
+  end
+
+  def and_they_are_not_signed_in
+    expect(@user.reload.sign_in_count).to eq 0
+    expect(dashboard_page.navigation).to have_sign_in
   end
 
   private

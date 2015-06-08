@@ -5,7 +5,7 @@
                        builder: Dough::Forms::Builders::Validation,
                        html: { method: :put, class: 'form', novalidate: 'novalidate' } do |f| %>
 
-  <%= f.validation_summary %>
+  <%= validation_summary_with_devise_alerts(form: f) %>
 
   <%= f.hidden_field :invitation_token %>
 
