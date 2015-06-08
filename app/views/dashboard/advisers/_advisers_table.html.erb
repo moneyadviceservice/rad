@@ -14,7 +14,7 @@
             <td><%= adviser.reference_number %></td>
             <td><%= adviser.name %></td>
             <td>
-              <ul>
+              <ul class="l-comma-separated-list">
                 <% adviser.qualifications.each do |q| %>
                   <li><%= q.name %></li>
                 <% end %>
