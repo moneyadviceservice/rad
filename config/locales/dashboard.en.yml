@@ -11,6 +11,9 @@ en:
       trading_names_heading: "Trading Name: %{trading_name}"
       add_adviser_button: Add an adviser
 
+    adviser_new:
+      new_adviser_heading: Add an adviser
+
     firms_index:
       firm_heading: Parent Firm
       trading_names_heading: Trading Names
