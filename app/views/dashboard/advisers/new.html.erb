@@ -1,0 +1,15 @@
+<div class="l-constrained">
+
+  <h1 class="t-firm-name">
+    <%= t('dashboard.adviser_new.new_adviser_heading') %>
+  </h1>
+
+  <%= form_for Adviser.new,
+               url: dashboard_advisers_path,
+               builder: Dough::Forms::Builders::Validation,
+               html: { class: 'form' } do |f| %>
+
+    <%= render partial: 'dashboard/advisers/form', locals: {f: f} %>
+
+  <% end %>
+</div>
