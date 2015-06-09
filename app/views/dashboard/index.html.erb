@@ -1,6 +1,6 @@
 <div class="l-constrained">
   <div class="l-3col-even">
-    <h2><%= t('dashboard.firms_heading') %> (<span class="t-firm-count"><%= firm_count %></span>)</h2>
+    <h2><%= t('dashboard.firms_heading') %></h2>
     <ul class="dashboard-list">
       <%= render partial: 'dashboard/firms/firm', locals: { firm: @firm, firm_type: :main_firm } %>
       <%= render partial: 'dashboard/firms/firm', collection: @trading_names, locals: { firm_type: :trading_name } %>

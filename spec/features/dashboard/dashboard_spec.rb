@@ -7,7 +7,6 @@ RSpec.feature 'The principal dashboard' do
     and_i_am_logged_in
     when_i_am_on_the_principal_dashboard
     then_i_can_see_the_list_of_firms_i_am_associated_with
-    then_i_can_see_the_total_number_of_firms
     then_the_top_level_firm_is_first_and_labelled_main
     and_the_trading_names_are_present_and_labelled_trading_names
   end
@@ -42,10 +41,6 @@ RSpec.feature 'The principal dashboard' do
 
   def then_i_can_see_the_list_of_firms_i_am_associated_with
     expect(dashboard_page).to have_firms(count: @principal.firm.subsidiaries.count + 1)
-  end
-
-  def then_i_can_see_the_total_number_of_firms
-    expect(dashboard_page.firm_count).to have_text(@principal.firm.subsidiaries.count + 1)
   end
 
   def then_the_top_level_firm_is_first_and_labelled_main
