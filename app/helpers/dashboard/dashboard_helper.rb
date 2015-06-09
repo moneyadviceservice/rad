@@ -13,5 +13,14 @@ module Dashboard
                               class: 'filter-field__input js-filter-field'
       end
     end
+
+    def add_adviser_button(firm:)
+      label = t('dashboard.advisers_index.add_adviser_button')
+      sr_label = t('dashboard.advisers_index.add_adviser_button_full', firm_name: firm.registered_name)
+      link_to new_dashboard_firm_adviser_path(firm), class: 'button button--primary' do
+        concat content_tag(:span, label, 'aria-hidden' => true)
+        concat content_tag(:span, sr_label, class: 'visually-hidden')
+      end
+    end
   end
 end
