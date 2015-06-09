@@ -4,8 +4,7 @@ module Dashboard
 
     def index
       @firm = principal.firm
-      # @trading_names = @firm.subsidiaries
-      @trading_names = [@firm, @firm]
+      @trading_names = @firm.trading_names
     end
 
     private
