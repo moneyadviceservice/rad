@@ -22,10 +22,10 @@ Rails.application.routes.draw do
         end
       end
     end
+  end
 
-    namespace :lookup do
-      resources :advisers, only: :show
-    end
+  namespace :lookup do
+    resources :advisers, only: :show
   end
 
   namespace :dashboard do
