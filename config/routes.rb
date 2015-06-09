@@ -30,9 +30,12 @@ Rails.application.routes.draw do
 
   namespace :dashboard do
     root 'dashboard#index'
-    resources :firms, only: [:index, :edit, :update]
+    resources :advisers, only: [:index]
     resources :trading_names, only: [:new, :create, :edit, :update]
-    resources :advisers, only: [:index, :new]
+
+    resources :firms, only: [:index, :edit, :update] do
+      resources :advisers, only: [:new, :create]
+    end
   end
 
   resource :contact, only: :create

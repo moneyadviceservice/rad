@@ -4,8 +4,8 @@
     <%= t('dashboard.adviser_new.new_adviser_heading') %>
   </h1>
 
-  <%= form_for Adviser.new,
-               url: dashboard_advisers_path,
+  <%= form_for @adviser,
+               url: dashboard_firm_advisers_path(@firm),
                builder: Dough::Forms::Builders::Validation,
                html: { class: 'form' } do |f| %>
 
