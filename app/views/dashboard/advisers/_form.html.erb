@@ -9,7 +9,7 @@
       <div class="l-questionnaire__field">
         <%= f.errors_for :reference_number %>
         <%= f.label :reference_number, t('questionnaire.adviser.advisers_details.label'), class: 'form__label-heading' %>
-        <%= f.text_field :reference_number, class: 't-reference-number', maxlength: 8, data: { transform: '', input: '', url: principal_lookup_adviser_path(id: '') } %>
+        <%= f.text_field :reference_number, class: 't-reference-number', maxlength: 8, data: { transform: '', input: '', url: lookup_adviser_path(id: '') } %>
       </div>
     </div>
 

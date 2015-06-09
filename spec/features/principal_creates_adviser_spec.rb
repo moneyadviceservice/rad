@@ -81,7 +81,7 @@ RSpec.feature 'Principal creates Adviser' do
   end
 
   def when_i_request_a_non_existent_adviser
-    visit principal_lookup_adviser_path(principal, 'BAD12345')
+    visit lookup_adviser_path('BAD12345')
   end
 
   def then_the_endpoint_responds_404
@@ -89,7 +89,7 @@ RSpec.feature 'Principal creates Adviser' do
   end
 
   def when_i_request_the_advisers_name
-    visit principal_lookup_adviser_path(principal, reference)
+    visit lookup_adviser_path(reference)
   end
 
   def then_the_endpoint_responds_ok
