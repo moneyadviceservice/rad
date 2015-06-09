@@ -1,52 +1,28 @@
 module Dashboard
-  class TradingNamesController < ApplicationController
-    before_action :authenticate_user!
-
-    def edit
-      @firm = Firm.find(params[:id])
-      render 'dashboard/firms/edit'
+  class TradingNamesController < AbstractFirmsController
+    def new
+      @firm = initialize_firm_from_lookup_trading_name(params[:lookup_id])
     end
 
-    def update
-      @firm = Firm.find(params[:id])
-      @firm.update(firm_params) && flash[:notice] = I18n.t('dashboard.firm_edit.saved')
-      render 'dashboard/firms/edit'
+    def create
+      @firm = initialize_firm_from_lookup_trading_name(params[:lookup_id])
+      @firm.assign_attributes(firm_params)
+      if @firm.save
+        flash[:notice] = I18n.t('dashboard.trading_name_edit.saved')
+        render :edit
+      else
+        render :new
+      end
     end
 
     private
 
-    def principal
-      current_user.principal
-    end
-
-    FIRM_PARAMS = [
-      :email_address,
-      :telephone_number,
-      :address_line_one,
-      :address_line_two,
-      :address_town,
-      :address_county,
-      :address_postcode,
-      :free_initial_meeting,
-      :initial_meeting_duration_id,
-      :minimum_fixed_fee,
-      :retirement_income_products_percent,
-      :pension_transfer_percent,
-      :long_term_care_percent,
-      :equity_release_percent,
-      :inheritance_tax_and_estate_planning_percent,
-      :wills_and_probate_percent,
-      :other_percent,
-      in_person_advice_method_ids: [],
-      other_advice_method_ids: [],
-      initial_advice_fee_structure_ids: [],
-      ongoing_advice_fee_structure_ids: [],
-      allowed_payment_method_ids: [],
-      investment_size_ids: []
-    ].freeze
-
-    def firm_params
-      params.require(:firm).permit(*FIRM_PARAMS)
+    def initialize_firm_from_lookup_trading_name(id)
+      lookup_name = Lookup::Subsidiary.find_by!(id: id, fca_number: principal.fca_number)
+      @firm = principal.firm.subsidiaries.find_or_initialize_by(
+        registered_name: lookup_name.name,
+        fca_number: lookup_name.fca_number
+      )
     end
   end
 end

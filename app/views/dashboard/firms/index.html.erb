@@ -54,4 +54,33 @@
       </table>
     </div>
   </div>
+
+  <div id="trading-name-list" data-dough-component="FilterTable">
+    <h2><%= t('dashboard.firms_index.available_trading_names_heading') %></h2>
+    <%= filter_field :trading_names, locale_prefix: 'dashboard.firms_index.available_trading_names_filter' %>
+    <div class="table-wrapper">
+      <table class="l-half-width">
+        <thead>
+          <tr>
+            <th><%= Firm.human_attribute_name(:fca_number) %></th>
+            <th><%= Firm.human_attribute_name(:registered_name) %></th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody class="js-filter-rows">
+          <% @lookup_names.each do |lookup_name| %>
+            <tr class="t-available-trading-name-table-row">
+              <td class="js-filterable t-frn"><%= lookup_name.fca_number %></td>
+              <td class="js-filterable t-firm-name">
+                <%= lookup_name.name %>
+              </td>
+              <td>
+                <%= link_to t('dashboard.firms_index.new_trading_name_link'), new_dashboard_trading_name_path(lookup_id: lookup_name.id), class: 'button button--small t-edit-link' %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>

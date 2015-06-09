@@ -1,0 +1,13 @@
+.l-heading-with-button {
+  @include clearfix();
+
+  h2,
+  h3 {
+    float: left;
+    margin: 0 0 $baseline-unit*1 0;
+  }
+
+  .button {
+    float: right;
+  }
+}

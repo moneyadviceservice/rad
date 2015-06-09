@@ -34,6 +34,7 @@ RSpec.configure do |c|
     end
   end
 
+  c.include Devise::TestHelpers, type: :controller
   c.include Warden::Test::Helpers
   c.before :suite do
     Warden.test_mode!

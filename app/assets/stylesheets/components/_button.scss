@@ -1,3 +1,14 @@
 .button {
   @include body(16, 24);
 }
+
+.button--small {
+  height: $input-height;
+  line-height: 0;
+  vertical-align: top;
+
+  &:active {
+    padding-top: 14px;
+    border-bottom: 0;
+  }
+}

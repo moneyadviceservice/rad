@@ -10,9 +10,13 @@ en:
     firms_index:
       firm_heading: Parent Firm
       trading_names_heading: Trading Names
+      available_trading_names_heading: Available Trading Names
       principal_column_heading: Principal
       trading_names_filter_label: "Filter trading names:"
+      available_trading_names_filter_label: "Filter available trading names:"
       trading_names_filter_placeholder: e.g. firm name
+      available_trading_names_filter_placeholder: e.g. firm name
+      new_trading_name_link: Add to directory
 
     firm_edit:
       saved: Saved successfully
@@ -23,6 +27,9 @@ en:
       principal_details_heading: Principal Details
       address_heading: Address
       questionnaire_heading: Questionnaire Responses
+
+    trading_name_edit:
+      saved: Saved successfully
 
     navigation: # name according to route name
       root: Dashboard
