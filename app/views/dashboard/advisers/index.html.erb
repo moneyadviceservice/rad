@@ -2,6 +2,10 @@
                         { locale_key: 'dashboard.navigation.advisers' }] %>
 
 <div class="l-constrained">
+  <div class="l-top-right-action">
+    <%= link_to t('dashboard.advisers_index.add_adviser_button'), new_dashboard_adviser_path, class: 'button button--primary' %>
+  </div>
+
   <h2><%= @firm.registered_name %></h2>
   <%= render 'dashboard/advisers/advisers_table', advisers: @firm.advisers %>
 
