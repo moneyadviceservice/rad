@@ -2,7 +2,7 @@
   <ul class="navigation">
     <% unless user_signed_in? %>
       <li class='navigation__item'>
-        <%= link_to t('authentication_sign_in'), new_user_session_path, class: 'navigation__link' %>
+        <%= link_to t('authentication_sign_in'), new_user_session_path, class: 'navigation__link t-sign-in' %>
       </li>
       <li class='navigation__item navigation__item--last'>
         <%= link_to t('authentication_sign_up'), register_path, class: 'navigation__link' %>
@@ -15,7 +15,7 @@
         <%= link_to t('dashboard.navigation.firms'), dashboard_firms_path, class: 'navigation__link t-dashboard-link' %>
       </li>
       <li class='navigation__item'>
-        <%= link_to t('authentication_sign_out'), destroy_user_session_path, class: 'navigation__link' %>
+        <%= link_to t('authentication_sign_out'), destroy_user_session_path, class: 'navigation__link t-sign-out' %>
       </li>
       <li class='navigation__item navigation__item--last'>
         <%= link_to t('authentication_change_password'), edit_user_registration_path(current_user), class: 'navigation__link' %>
