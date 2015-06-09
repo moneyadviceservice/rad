@@ -9,6 +9,7 @@ en:
 
     advisers_index:
       trading_names_heading: "Trading Name: %{trading_name}"
+      add_adviser_button: Add an adviser
 
     firms_index:
       firm_heading: Parent Firm
