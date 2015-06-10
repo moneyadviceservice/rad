@@ -6,15 +6,18 @@
     <%= add_adviser_button(firm: @firm) %>
   </div>
 
+<div class="l-constrained" data-dough-component="FilterTable" >
   <h2><%= @firm.registered_name %></h2>
-  <%= render 'dashboard/advisers/advisers_table', advisers: @firm.advisers %>
+  <%= filter_field :trading_names, locale_prefix: 'dashboard.firms_index.trading_names_filter' %>
+
+  <%= render 'dashboard/advisers/advisers_table', advisers: @firm.advisers, firm: @firm, title: nil %>
 
   <% @trading_names.each do |trading_name| %>
     <div class="l-top-right-action">
       <%= add_adviser_button(firm: trading_name) %>
     </div>
 
-    <h2><%= t('dashboard.advisers_index.trading_names_heading', trading_name: trading_name.registered_name) %></h2>
-    <%= render 'dashboard/advisers/advisers_table', advisers: trading_name.advisers %>
+    <% title = t('dashboard.advisers_index.trading_names_heading', trading_name: trading_name.registered_name) %>
+    <%= render 'dashboard/advisers/advisers_table', advisers: trading_name.advisers, firm: trading_name, title: title %>
   <% end %>
 </div>
