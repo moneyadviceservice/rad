@@ -1,7 +1,12 @@
 <div class="table-wrapper js-filter-wrapper">
+  <div class="l-top-right-action">
+    <%= add_adviser_button(firm: firm) %>
+  </div>
+
 	<% if title.present? %>
 		<h2><%= title %></h2>
 	<% end %>
+
   <table class="l-half-width">
     <thead>
       <tr>
