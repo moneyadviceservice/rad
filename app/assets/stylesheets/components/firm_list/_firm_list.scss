@@ -1,8 +1,8 @@
-.firm-list {
+.dashboard-list {
   @extend .unstyled-list;
 }
 
-.firm-list__item {
+.dashboard-list__item {
   border: 2px solid $color-firm-list-border-grey;
   border-bottom: 0;
   margin: 0;
@@ -13,13 +13,13 @@
   }
 }
 
-.firm-list__item__type {
+.dashboard-list__item__type {
   font-size: $baseline-unit*2;
   line-height: 1;
   margin-bottom: $baseline-unit*1;
   text-transform: uppercase;
 }
 
-.firm-list__item__name {
+.dashboard-list__item__name {
   font-weight: bold;
 }
