@@ -3,12 +3,12 @@
  *
  * Requires an element to have a data-dough-component="FilterTable" attribute and an ID.
  *
- * Makes use of ListJS — see listjs.com.
+ * Makes use of jquery.fastLiveFilter.
  * See test fixture for sample markup - /spec/js/fixtures/FilterTable.html
  */
 
-define(['jquery', 'jqueryFastLiveFilter', 'DoughBaseComponent', 'List'],
-       function($, jqueryFastLiveFilter, DoughBaseComponent, List) {
+define(['jquery', 'jqueryFastLiveFilter', 'DoughBaseComponent'],
+       function($, jqueryFastLiveFilter, DoughBaseComponent) {
   'use strict';
 
   var FilterTableProto,

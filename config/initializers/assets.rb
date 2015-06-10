@@ -34,6 +34,5 @@ Rails.application.configure do
     rsvp/rsvp.amd.js
     requirejs/require.js
     modernizer-flexbox-cssclasses.js
-    list.js/dist/list.js
   )
 end
