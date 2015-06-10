@@ -3,19 +3,20 @@
  *
  * Requires an element to have a data-dough-component="FilterTable" attribute and an ID.
  *
- * Makes use of ListJS — see listjs.com.
+ * Makes use of jquery.fastLiveFilter.
  * See test fixture for sample markup - /spec/js/fixtures/FilterTable.html
  */
 
-define(['jquery', 'DoughBaseComponent', 'List'],
-       function($, DoughBaseComponent, List) {
+define(['jquery', 'jqueryFastLiveFilter', 'DoughBaseComponent'],
+       function($, jqueryFastLiveFilter, DoughBaseComponent) {
   'use strict';
 
   var FilterTableProto,
       defaultConfig = {
-        filterTargetClass: 'js-filterable',
-        filterFieldClass: 'js-filter-field',
-        filterListClass: 'js-filter-rows'
+        filterTargetClass: '.js-filterable',
+        filterFieldClass: '.js-filter-field',
+        filterListClass: '.js-filter-rows',
+        filterWrapperClass: '.js-filter-wrapper',
       };
 
   function FilterTable($el, config) {
@@ -45,34 +46,49 @@ define(['jquery', 'DoughBaseComponent', 'List'],
   };
 
   /**
-   * makeFilterTargetClasses
+   * toggleFilterWrappers function
    *
-   * Find columns with filterTargetClass and apply individual classes
-   * to them, since this is what ListJS wants.
+   * show/hide fitlerWrappers when all filterTargetClasses are hidden
    *
-   * @return {Array} array of classes used
    */
-  FilterTableProto.makeFilterTargetClasses = function () {
-    var filterClasses = [];
+  FilterTableProto.toggleFilterWrappers = function() {
+  	var self = this;
 
-    this.$el.find('.' + this.config.filterTargetClass).each(function(_, cell) {
-      var $cell = $(cell),
-          filterClass = 'js-filterable-' + $cell.index();
-      $cell.addClass(filterClass);
-      filterClasses.push(filterClass);
-    });
+		$(self.config.filterWrapperClass).each( function(index, element ) {
+			self.toggleFilterWrapper( $(element) )
+		});
+	}
 
-    return $.unique(filterClasses);
+  /**
+   * toggleFilterWrapper function
+   *
+   * show/hide fitlerWrapper when all filterTargetClasses are hidden
+   *
+   */
+
+  FilterTableProto.toggleFilterWrapper = function(element) {
+		var list = element.find(this.config.filterListClass)
+		var rows = $(list[0]).find('tr')
+		var hidden_rows = $(rows).filter(function() {
+		  return $(this).css('display') == 'none';
+		});
+
+		if(hidden_rows.length == rows.length) {
+			element.hide();
+		} else {
+			element.show();
+		}
   };
 
   FilterTableProto.bindFilterToElements = function() {
-    var firmOptions = {
-      valueNames: this.makeFilterTargetClasses(),
-      searchClass: this.config.filterFieldClass,
-      listClass: this.config.filterListClass
-    };
+  	var self = this
 
-    new List(this.$el.attr('id'), firmOptions);
+		$(this.config.filterFieldClass).fastLiveFilter(this.config.filterListClass, {
+			selector: self.config.filterTargetClass,
+			callback: function(total) {
+				self.toggleFilterWrappers();
+			}
+		});
   };
 
   return FilterTable;

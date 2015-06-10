@@ -1,28 +1,36 @@
-<div class="table-wrapper">
-    <table class="l-half-width">
-      <thead>
-        <tr>
-          <th><%= Adviser.human_attribute_name(:reference_number) %></th>
-          <th><%= Adviser.human_attribute_name(:name) %></th>
-          <th><%= Adviser.human_attribute_name(:qualifications) %></th>
-          <th><%= Adviser.human_attribute_name(:postcode) %></th>
-        </tr>
-      </thead>
-      <tbody>
-        <% advisers.each do |adviser| %>
-          <tr>
-            <td><%= adviser.reference_number %></td>
-            <td><%= adviser.name %></td>
-            <td>
-              <ul class="l-comma-separated-list">
-                <% adviser.qualifications.each do |q| %>
-                  <li><%= q.name %></li>
-                <% end %>
-              </ul>
-            </td>
-            <td><%= adviser.postcode %></td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
+<div class="table-wrapper js-filter-wrapper">
+  <div class="l-top-right-action">
+    <%= add_adviser_button(firm: firm) %>
   </div>
+
+	<% if title.present? %>
+		<h2><%= title %></h2>
+	<% end %>
+
+  <table class="l-half-width">
+    <thead>
+      <tr>
+        <th><%= Adviser.human_attribute_name(:reference_number) %></th>
+        <th><%= Adviser.human_attribute_name(:name) %></th>
+        <th><%= Adviser.human_attribute_name(:qualifications) %></th>
+        <th><%= Adviser.human_attribute_name(:postcode) %></th>
+      </tr>
+    </thead>
+    <tbody class="js-filter-rows">
+      <% advisers.each do |adviser| %>
+        <tr>
+          <td class="js-filterable"><%= adviser.reference_number %></td>
+          <td class="js-filterable"><%= adviser.name %></td>
+          <td class="js-filterable">
+            <ul class="l-comma-separated-list">
+              <% adviser.qualifications.each do |q| %>
+                <li><%= q.name %></li>
+              <% end %>
+            </ul>
+          </td class="js-filterable">
+          <td class="js-filterable"><%= adviser.postcode %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

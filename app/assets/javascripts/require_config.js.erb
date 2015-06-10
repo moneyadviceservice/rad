@@ -1,9 +1,9 @@
 //= depend_on_asset jquery/dist/jquery
+//= depend_on_asset jquery-fastlivefilter/jquery.fastLiveFilter
 //= depend_on_asset modules/FieldToggleVisibility
 //= depend_on_asset modules/AdviserAjaxCall
 //= depend_on_asset modules/DataTransform
 //= depend_on_asset modules/FilterTable
-//= depend_on_asset list.js/dist/list.js
 
 <%
   def requirejs_path(asset)
@@ -15,7 +15,7 @@
 
     paths: {
       jquery: requirejs_path('jquery/dist/jquery'),
-      List: requirejs_path('list.js/dist/list.js'),
+      jqueryFastLiveFilter: requirejs_path('jquery-fastlivefilter/jquery.fastLiveFilter.js'),
       FieldToggleVisibility: requirejs_path('modules/FieldToggleVisibility'),
       AdviserAjaxCall: requirejs_path('modules/AdviserAjaxCall'),
       DataTransform: requirejs_path('modules/DataTransform'),
