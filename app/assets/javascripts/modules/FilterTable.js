@@ -3,19 +3,20 @@
  *
  * Requires an element to have a data-dough-component="FilterTable" attribute and an ID.
  *
- * Makes use of ListJS — see listjs.com.
+ * Makes use of jquery.fastLiveFilter.
  * See test fixture for sample markup - /spec/js/fixtures/FilterTable.html
  */
 
-define(['jquery', 'DoughBaseComponent', 'List'],
-       function($, DoughBaseComponent, List) {
+define(['jquery', 'jqueryFastLiveFilter', 'DoughBaseComponent'],
+       function($, jqueryFastLiveFilter, DoughBaseComponent) {
   'use strict';
 
   var FilterTableProto,
       defaultConfig = {
-        filterTargetClass: 'js-filterable',
-        filterFieldClass: 'js-filter-field',
-        filterListClass: 'js-filter-rows'
+        filterTargetSelector: '.js-filterable',
+        filterFieldSelector: '.js-filter-field',
+        filterListSelector: '.js-filter-rows',
+        filterWrapperSelector: '.js-filter-wrapper'
       };
 
   function FilterTable($el, config) {
@@ -28,6 +29,7 @@ define(['jquery', 'DoughBaseComponent', 'List'],
    * @private
    */
   DoughBaseComponent.extend(FilterTable);
+  FilterTable.componentName = 'FilterTable';
   FilterTableProto = FilterTable.prototype;
 
   /**
@@ -45,34 +47,46 @@ define(['jquery', 'DoughBaseComponent', 'List'],
   };
 
   /**
-   * makeFilterTargetClasses
-   *
-   * Find columns with filterTargetClass and apply individual classes
-   * to them, since this is what ListJS wants.
-   *
-   * @return {Array} array of classes used
+   * show/hide filterWrappers when all filterTargetSelectores are hidden
    */
-  FilterTableProto.makeFilterTargetClasses = function () {
-    var filterClasses = [];
+  FilterTableProto.toggleFilterWrappers = function() {
+    var self = this;
 
-    this.$el.find('.' + this.config.filterTargetClass).each(function(_, cell) {
-      var $cell = $(cell),
-          filterClass = 'js-filterable-' + $cell.index();
-      $cell.addClass(filterClass);
-      filterClasses.push(filterClass);
+    $(self.config.filterWrapperSelector).each(function(_index, filterWrapper) {
+      self.toggleFilterWrapper(filterWrapper);
+    });
+  };
+
+  /**
+   * show/hide filterWrapper when all filterTargetSelectores are hidden
+   */
+
+  FilterTableProto.toggleFilterWrapper = function(filterWrapper) {
+    var $filterWrapper = $(filterWrapper),
+        $list = $filterWrapper.find(this.config.filterListSelector),
+        $rows = $list.first().find('tr'),
+        hiddenRows;
+
+    hiddenRows = $rows.filter(function() {
+      return $(this).css('display') == 'none';
     });
 
-    return $.unique(filterClasses);
+    if(hiddenRows.length == $rows.length) {
+      $filterWrapper.hide();
+    } else {
+      $filterWrapper.show();
+    }
   };
 
   FilterTableProto.bindFilterToElements = function() {
-    var firmOptions = {
-      valueNames: this.makeFilterTargetClasses(),
-      searchClass: this.config.filterFieldClass,
-      listClass: this.config.filterListClass
-    };
+    var self = this;
 
-    new List(this.$el.attr('id'), firmOptions);
+    $(self.config.filterFieldSelector).fastLiveFilter(self.config.filterListSelector, {
+      selector: self.config.filterTargetSelector,
+      callback: function(total) {
+        self.toggleFilterWrappers();
+      }
+    });
   };
 
   return FilterTable;

@@ -8,5 +8,4 @@ require(['jquery', 'componentLoader', 'eventsWithPromises'], function ($, compon
 require(['jquery'], function ($) {
   require(['AdviserAjaxCall']);
   require(['DataTransform']);
-  require(['FilterTable']);
 });
