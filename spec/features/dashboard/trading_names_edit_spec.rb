@@ -57,7 +57,9 @@ RSpec.feature 'The dashboard trading name edit page' do
 
   def then_i_see_the_edit_page_for_the_first_trading_name
     expect(trading_name_edit_page).to be_displayed
-    expect(trading_name_edit_page.firm_name).to have_text @principal.firm.trading_names.first.registered_name
+    trading_names = @principal.firm.trading_names.registered.sorted_by_registered_name
+    expected_name = trading_names.first.registered_name
+    expect(trading_name_edit_page.firm_name).to have_text expected_name
   end
 
   def when_i_change_the_information
