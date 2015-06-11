@@ -22,5 +22,33 @@ module Dashboard
         concat content_tag(:span, sr_label, class: 'visually-hidden')
       end
     end
+
+    def number_of_advisers(firm)
+      all_advisers(firm).length
+    end
+
+    def most_recently_edited_advisers(firm)
+      return [] if firm.advisers.empty?
+
+      number_of_entries = 3
+      result = Array.new(number_of_entries)
+      advisers = all_advisers(firm).sort_by(&:updated_at).reverse.first(number_of_entries)
+
+      advisers.each_with_index do |adviser, index|
+        result[index] = adviser
+      end
+
+      result
+    end
+
+    private
+
+    def all_advisers(firm)
+      result = firm.advisers
+      firm.trading_names.each do |trading_names|
+        result += trading_names.advisers
+      end
+      result
+    end
   end
 end

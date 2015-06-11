@@ -12,27 +12,19 @@
   </div>
 
   <div class="l-3col-even">
-    <h2><%= t('dashboard.advisers_heading') %> (<span class="t-adviser-count"><%= @firm.advisers.length %></span>)</h2>
-    <% advisers = @firm.advisers %>
-    <% advisers = [] %>
-    <% if advisers.empty? %>
-      <div>You haven't edited any Advisers yet.</div>
-      <div>Click here to view all Advisers</div>
-      <div>Or add a new Adviser</div>
-    <% else %>
-      <ul class="dashboard-list">
-        <% @firm.advisers.each do |adviser| %>
-          <li class="dashboard-list__item">
-            <div class="dashboard-list__item__type">
-              <%= t("dashboard.adviser") %>
-            </div>
-            <div class="dashboard-list__item__name">
-              <%= adviser.name %>
-            </div>
-          </li>
-        <% end %>
-      </ul>
-    <% end %>
+    <h2><%= t('dashboard.advisers_heading') %> (<span class="t-adviser-count"><%= number_of_advisers(@firm) %></span>)</h2>
+    <ul class="dashboard-list">
+      <% most_recently_edited_advisers(@firm).each do |adviser| %>
+        <li class="dashboard-list__item">
+          <div class="dashboard-list__item__type">
+            <%= t("dashboard.adviser") %>
+          </div>
+          <div class="dashboard-list__item__name">
+            <%= adviser.name %>
+          </div>
+        </li>
+      <% end %>
+    </ul>
     <div class="dashboard__action-button">
       <%= button_primary t('dashboard.add_adviser_button') %>
     </div>
