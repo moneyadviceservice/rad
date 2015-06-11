@@ -1,0 +1,8 @@
+module Dashboard
+  class AdvisersTableRowSection < SitePrism::Section
+    element :reference_number, '.t-adviser-reference-number'
+    element :name, '.t-adviser-name'
+    elements :qualifications, '.t-adviser-qualification'
+    element :postcode, '.t-adviser-postcode'
+  end
+end

@@ -1,0 +1,20 @@
+<%= render_breadcrumbs [{ locale_key: 'dashboard.navigation.root', url: dashboard_root_path },
+                        { locale_key: 'dashboard.navigation.advisers' }] %>
+
+<div class="l-constrained">
+  <div class="l-top-right-action">
+    <%= link_to t('dashboard.advisers_index.add_adviser_button'), new_dashboard_adviser_path, class: 'button button--primary' %>
+  </div>
+
+  <div class="t-parent-firm">
+    <h2><%= @firm.registered_name %></h2>
+    <%= render 'dashboard/advisers/advisers_table', advisers: @firm.advisers %>
+  </div>
+
+  <% @trading_names.each do |trading_name| %>
+    <div class="t-trading-name">
+      <h2><%= t('dashboard.advisers_index.trading_names_heading', trading_name: trading_name.registered_name) %></h2>
+      <%= render 'dashboard/advisers/advisers_table', advisers: trading_name.advisers %>
+    </div>
+  <% end %>
+</div>
