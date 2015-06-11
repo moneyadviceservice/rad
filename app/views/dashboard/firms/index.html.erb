@@ -39,7 +39,7 @@
           </tr>
         </thead>
         <tbody class="js-filter-rows">
-          <% @trading_names.each do |trading_name| %>
+          <% @trading_names.sorted_by_registered_name.each do |trading_name| %>
             <tr class="t-trading-name-table-row">
               <td class="js-filterable t-frn"><%= trading_name.fca_number %></td>
               <td class="js-filterable t-firm-name">

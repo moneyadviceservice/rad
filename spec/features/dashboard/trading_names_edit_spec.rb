@@ -39,7 +39,7 @@ RSpec.feature 'The dashboard trading name edit page' do
   def and_i_have_a_firm_with_trading_names
     firm_attrs = FactoryGirl.attributes_for(:firm_with_trading_names, fca_number: @principal.fca_number)
     @principal.firm.update_attributes(firm_attrs)
-    @original_trading_name_email = @principal.firm.trading_names.first.email_address
+    @original_trading_name_email = trading_names(@principal).first.email_address
   end
 
   def and_i_am_logged_in
@@ -57,7 +57,8 @@ RSpec.feature 'The dashboard trading name edit page' do
 
   def then_i_see_the_edit_page_for_the_first_trading_name
     expect(trading_name_edit_page).to be_displayed
-    expect(trading_name_edit_page.firm_name).to have_text @principal.firm.trading_names.first.registered_name
+    expected_name = trading_names(@principal).first.registered_name
+    expect(trading_name_edit_page.firm_name).to have_text expected_name
   end
 
   def when_i_change_the_information
@@ -84,12 +85,18 @@ RSpec.feature 'The dashboard trading name edit page' do
     expect(trading_name_edit_page.address_line_one.value).to eq new_address
 
     @principal.reload
-    expect(@principal.firm.trading_names.first.address_line_one).to eq new_address
+    expect(trading_names(@principal).first.address_line_one).to eq new_address
   end
 
   def and_the_information_is_not_changed
     expect(trading_name_edit_page.email_address.value).to eq 'clearly_not_a_valid_email!'
     @principal.reload
-    expect(@principal.firm.trading_names.first.email_address).to eq @original_trading_name_email
+    expect(trading_names(@principal).first.email_address).to eq @original_trading_name_email
+  end
+
+  private
+
+  def trading_names(principal)
+    principal.firm.trading_names.registered.sorted_by_registered_name
   end
 end
