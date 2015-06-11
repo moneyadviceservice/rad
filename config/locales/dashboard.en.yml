@@ -14,6 +14,12 @@ en:
 
     adviser_new:
       new_adviser_heading: Add an adviser
+      submit_button: Add adviser
+
+    adviser_edit:
+      edit_adviser_heading: Edit adviser
+      submit_button: Save adviser
+      saved: Saved successfully
 
     firms_index:
       firm_heading: Parent Firm

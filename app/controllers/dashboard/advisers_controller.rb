@@ -26,6 +26,20 @@ module Dashboard
       end
     end
 
+    def edit
+      @firm = Firm.find(params[:firm_id])
+      @adviser = advisers.find(params[:id])
+    end
+
+    def update
+      @firm = Firm.find(params[:firm_id])
+      @adviser = advisers.find(params[:id])
+
+      @adviser.update(adviser_params) && flash[:notice] = I18n.t('dashboard.adviser_edit.saved')
+
+      render :edit
+    end
+
     private
 
     def principal

@@ -1,10 +1,10 @@
 <div class="l-constrained">
   <h1 class="t-firm-name">
-    <%= t('dashboard.adviser_new.new_adviser_heading') %>
+    <%= t('dashboard.adviser_edit.edit_adviser_heading') %>
   </h1>
 
   <%= form_for @adviser,
-               url: dashboard_firm_advisers_path(@firm),
+               url: dashboard_firm_adviser_path(@firm, @adviser),
                builder: Dough::Forms::Builders::Validation,
                html: { class: 'form' } do |f| %>
 

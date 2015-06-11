@@ -112,5 +112,9 @@
 
 <div class="l-dashboard-action-row">
   <%= link_to t('dashboard.cancel_button'), :back, class: 'l-dashboard-action-row__cancel' %>
-  <%= f.submit t('questionnaire.adviser.button_add'), class: 'button button--primary t-submit' %>
+  <% if f.object.persisted? %>
+    <%= f.submit t('dashboard.adviser_edit.submit_button'), class: 'button button--primary t-submit' %>
+  <% else %>
+    <%= f.submit t('dashboard.adviser_new.submit_button'), class: 'button button--primary t-submit' %>
+  <% end %>
 </div>
