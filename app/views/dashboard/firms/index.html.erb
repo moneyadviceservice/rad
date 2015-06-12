@@ -3,77 +3,17 @@
 
 <div class="l-constrained">
   <h2><%= t('dashboard.firms_index.firm_heading') %></h2>
-  <div class="table-wrapper">
-    <table class="l-half-width">
-      <thead>
-        <tr>
-          <th><%= Firm.human_attribute_name(:fca_number) %></th>
-          <th><%= Firm.human_attribute_name(:registered_name) %></th>
-          <th><%= t('dashboard.firms_index.principal_column_heading') %></th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr class="t-parent-firm-table-row">
-          <td class="t-frn"><%= @firm.fca_number %></td>
-          <td class="t-firm-name">
-            <%= link_to edit_dashboard_firm_path(@firm), class: 't-edit-link' do %>
-              <%= @firm.registered_name %>
-            <% end %>
-          </td>
-          <td class="t-principal-name"><%= @firm.principal.full_name %></td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+  <%= render 'table_parent_firm' %>
 
   <% if @trading_names.present? || @lookup_names.present? %>
     <div id="firm-list" class="t-trading-names-block" data-dough-component="FilterTable">
       <h2><%= t('dashboard.firms_index.trading_names_heading') %></h2>
+
       <% if @lookup_names.present? %>
-        <div class="table-wrapper">
-          <table class="l-half-width">
-            <thead>
-              <tr>
-                <th><%= Firm.human_attribute_name(:fca_number) %></th>
-                <th><%= Firm.human_attribute_name(:registered_name)  %></th>
-                <th><%= t('dashboard.firms_index.principal_column_heading') %></th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td class="t-add-trading-names-prompt" colspan="3">
-                  <%= t('dashboard.firms_index.add_trading_names_prompt') %>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+        <%= render 'table_empty_trading_names' %>
       <% else %>
         <%= filter_field :trading_names, locale_prefix: 'dashboard.firms_index.trading_names_filter' %>
-        <div class="table-wrapper">
-          <table class="l-half-width">
-            <thead>
-              <tr>
-                <th><%= Firm.human_attribute_name(:fca_number) %></th>
-                <th><%= Firm.human_attribute_name(:registered_name)  %></th>
-                <th><%= t('dashboard.firms_index.principal_column_heading') %></th>
-              </tr>
-            </thead>
-            <tbody class="js-filter-rows">
-              <% @trading_names.sorted_by_registered_name.each do |trading_name| %>
-                <tr class="t-trading-name-table-row">
-                  <td class="js-filterable t-frn"><%= trading_name.fca_number %></td>
-                  <td class="js-filterable t-firm-name">
-                    <%= link_to edit_dashboard_trading_name_path(trading_name), class: 't-edit-link' do %>
-                      <%= trading_name.registered_name %>
-                    <% end %>
-                  </td>
-                  <td class="js-filterable t-principal-name"><%= trading_name.principal.full_name %></td>
-                </tr>
-              <% end %>
-            </tbody>
-          </table>
-        </div>
+        <%= render 'table_trading_names' %>
       <% end %>
     </div>
   <% end %>
@@ -81,31 +21,9 @@
   <% if @lookup_names.present? %>
     <div id="trading-name-list" class="t-available-trading-names-block" data-dough-component="FilterTable">
       <h2><%= t('dashboard.firms_index.available_trading_names_heading') %></h2>
+
       <%= filter_field :trading_names, locale_prefix: 'dashboard.firms_index.available_trading_names_filter' %>
-      <div class="table-wrapper">
-        <table class="l-half-width">
-          <thead>
-            <tr>
-              <th><%= Firm.human_attribute_name(:fca_number) %></th>
-              <th><%= Firm.human_attribute_name(:registered_name) %></th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody class="js-filter-rows">
-            <% @lookup_names.each do |lookup_name| %>
-              <tr class="t-available-trading-name-table-row">
-                <td class="js-filterable t-frn"><%= lookup_name.fca_number %></td>
-                <td class="js-filterable t-firm-name">
-                  <%= lookup_name.name %>
-                </td>
-                <td>
-                  <%= link_to t('dashboard.firms_index.new_trading_name_link'), new_dashboard_trading_name_path(lookup_id: lookup_name.id), class: 'button button--small t-edit-link' %>
-                </td>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
-      </div>
+      <%= render 'table_available_trading_names' %>
     </div>
   <% end %>
 </div>
