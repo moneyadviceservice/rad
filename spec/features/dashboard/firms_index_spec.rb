@@ -28,12 +28,16 @@ RSpec.feature 'The dashboard firm list page' do
 
   def and_i_have_a_firm_with_trading_names
     @lookup_trading_name = FactoryGirl.create(:lookup_subsidiary, fca_number: @principal.fca_number)
-    firm_attrs = FactoryGirl.attributes_for(:firm_with_trading_names, fca_number: @principal.fca_number)
+    firm_attrs = FactoryGirl.attributes_for(:firm_with_trading_names,
+                                            fca_number: @principal.fca_number,
+                                            registered_name: @principal.lookup_firm.registered_name)
     @principal.firm.update_attributes(firm_attrs)
   end
 
   def and_i_have_a_firm_with_no_trading_names
-    firm_attrs = FactoryGirl.attributes_for(:firm, fca_number: @principal.fca_number)
+    firm_attrs = FactoryGirl.attributes_for(:firm,
+                                            fca_number: @principal.fca_number,
+                                            registered_name: @principal.lookup_firm.registered_name)
     @principal.firm.update_attributes(firm_attrs)
   end
 
