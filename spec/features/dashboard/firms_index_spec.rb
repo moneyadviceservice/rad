@@ -7,8 +7,8 @@ RSpec.feature 'The dashboard firm list page' do
     and_i_am_logged_in
     when_i_am_on_the_principal_dashboard_firms_page
     then_i_can_see_the_parent_firm_i_am_associated_with
-    then_i_can_see_the_list_of_trading_names_i_am_associated_with
-    then_i_can_see_the_list_of_available_trading_names
+    and_i_can_see_the_list_of_trading_names_i_am_associated_with
+    and_i_can_see_the_list_of_available_trading_names
   end
 
   scenario 'When there are no added or available trading names' do
@@ -19,6 +19,16 @@ RSpec.feature 'The dashboard firm list page' do
     then_i_can_see_the_parent_firm_i_am_associated_with
     and_the_trading_names_block_is_not_shown
     and_the_available_trading_names_block_is_not_shown
+  end
+
+  scenario 'When there are available trading names but none have been added' do
+    given_i_am_a_fully_registered_principal_user
+    and_i_have_a_firm_with_available_trading_names_but_none_added
+    and_i_am_logged_in
+    when_i_am_on_the_principal_dashboard_firms_page
+    then_i_can_see_the_parent_firm_i_am_associated_with
+    and_the_trading_names_section_is_showing_a_prompt_to_add_a_trading_name
+    and_i_can_see_the_list_of_available_trading_names
   end
 
   def given_i_am_a_fully_registered_principal_user
@@ -35,6 +45,14 @@ RSpec.feature 'The dashboard firm list page' do
   end
 
   def and_i_have_a_firm_with_no_trading_names
+    firm_attrs = FactoryGirl.attributes_for(:firm,
+                                            fca_number: @principal.fca_number,
+                                            registered_name: @principal.lookup_firm.registered_name)
+    @principal.firm.update_attributes(firm_attrs)
+  end
+
+  def and_i_have_a_firm_with_available_trading_names_but_none_added
+    @lookup_trading_name = FactoryGirl.create(:lookup_subsidiary, fca_number: @principal.fca_number)
     firm_attrs = FactoryGirl.attributes_for(:firm,
                                             fca_number: @principal.fca_number,
                                             registered_name: @principal.lookup_firm.registered_name)
@@ -61,7 +79,7 @@ RSpec.feature 'The dashboard firm list page' do
     expect_firm_table_row(firms_index_page.parent_firm, @principal.firm)
   end
 
-  def then_i_can_see_the_list_of_trading_names_i_am_associated_with
+  def and_i_can_see_the_list_of_trading_names_i_am_associated_with
     expect(firms_index_page).to have_trading_names_block
 
     trading_names = @principal.firm.trading_names.sorted_by_registered_name
@@ -70,7 +88,7 @@ RSpec.feature 'The dashboard firm list page' do
     end
   end
 
-  def then_i_can_see_the_list_of_available_trading_names
+  def and_i_can_see_the_list_of_available_trading_names
     expect(firms_index_page).to have_available_trading_names_block
     expect(firms_index_page.available_trading_names.size).to eq 1
     expect(firms_index_page.available_trading_names.first).to have_name(text: @lookup_trading_name.name)
@@ -82,5 +100,11 @@ RSpec.feature 'The dashboard firm list page' do
 
   def and_the_available_trading_names_block_is_not_shown
     expect(firms_index_page).not_to have_available_trading_names_block
+  end
+
+  def and_the_trading_names_section_is_showing_a_prompt_to_add_a_trading_name
+    expect(firms_index_page).to have_trading_names_block
+    expect(firms_index_page).to have_add_trading_names_prompt
+    expect(firms_index_page).not_to have_trading_names
   end
 end

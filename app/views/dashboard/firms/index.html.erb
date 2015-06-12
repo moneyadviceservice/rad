@@ -26,38 +26,47 @@
     </table>
   </div>
 
-  <% unless @trading_names.empty? %>
+  <% if @trading_names.present? || @lookup_names.present? %>
     <div id="firm-list" class="t-trading-names-block" data-dough-component="FilterTable">
       <h2><%= t('dashboard.firms_index.trading_names_heading') %></h2>
-      <%= filter_field :trading_names, locale_prefix: 'dashboard.firms_index.trading_names_filter' %>
-      <div class="table-wrapper">
-        <table class="l-half-width">
-          <thead>
-            <tr>
-              <th><%= Firm.human_attribute_name(:fca_number) %></th>
-              <th><%= Firm.human_attribute_name(:registered_name)  %></th>
-              <th><%= t('dashboard.firms_index.principal_column_heading') %></th>
-            </tr>
-          </thead>
-          <tbody class="js-filter-rows">
-            <% @trading_names.sorted_by_registered_name.each do |trading_name| %>
-              <tr class="t-trading-name-table-row">
-                <td class="js-filterable t-frn"><%= trading_name.fca_number %></td>
-                <td class="js-filterable t-firm-name">
-                  <%= link_to edit_dashboard_trading_name_path(trading_name), class: 't-edit-link' do %>
-                    <%= trading_name.registered_name %>
-                  <% end %>
-                </td>
-                <td class="js-filterable t-principal-name"><%= trading_name.principal.full_name %></td>
+      <% if @lookup_names.present? %>
+        <div class="t-add-trading-names-prompt">
+          <p>
+            You have not added any trading names to the directory. You can add
+            a trading name from the list of available trading names below.
+          </p>
+        </div>
+      <% else %>
+        <%= filter_field :trading_names, locale_prefix: 'dashboard.firms_index.trading_names_filter' %>
+        <div class="table-wrapper">
+          <table class="l-half-width">
+            <thead>
+              <tr>
+                <th><%= Firm.human_attribute_name(:fca_number) %></th>
+                <th><%= Firm.human_attribute_name(:registered_name)  %></th>
+                <th><%= t('dashboard.firms_index.principal_column_heading') %></th>
               </tr>
-            <% end %>
-          </tbody>
-        </table>
-      </div>
+            </thead>
+            <tbody class="js-filter-rows">
+              <% @trading_names.sorted_by_registered_name.each do |trading_name| %>
+                <tr class="t-trading-name-table-row">
+                  <td class="js-filterable t-frn"><%= trading_name.fca_number %></td>
+                  <td class="js-filterable t-firm-name">
+                    <%= link_to edit_dashboard_trading_name_path(trading_name), class: 't-edit-link' do %>
+                      <%= trading_name.registered_name %>
+                    <% end %>
+                  </td>
+                  <td class="js-filterable t-principal-name"><%= trading_name.principal.full_name %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      <% end %>
     </div>
   <% end %>
 
-  <% unless @lookup_names.empty? %>
+  <% if @lookup_names.present? %>
     <div id="trading-name-list" class="t-available-trading-names-block" data-dough-component="FilterTable">
       <h2><%= t('dashboard.firms_index.available_trading_names_heading') %></h2>
       <%= filter_field :trading_names, locale_prefix: 'dashboard.firms_index.available_trading_names_filter' %>
