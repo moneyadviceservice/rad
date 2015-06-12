@@ -30,11 +30,24 @@
     <div id="firm-list" class="t-trading-names-block" data-dough-component="FilterTable">
       <h2><%= t('dashboard.firms_index.trading_names_heading') %></h2>
       <% if @lookup_names.present? %>
-        <div class="t-add-trading-names-prompt">
-          <p>
-            You have not added any trading names to the directory. You can add
-            a trading name from the list of available trading names below.
-          </p>
+        <div class="table-wrapper">
+          <table class="l-half-width">
+            <thead>
+              <tr>
+                <th><%= Firm.human_attribute_name(:fca_number) %></th>
+                <th><%= Firm.human_attribute_name(:registered_name)  %></th>
+                <th><%= t('dashboard.firms_index.principal_column_heading') %></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="t-add-trading-names-prompt" colspan="3">
+                  You have not added any trading names to the directory. You can add
+                  a trading name from the list of available trading names below.
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       <% else %>
         <%= filter_field :trading_names, locale_prefix: 'dashboard.firms_index.trading_names_filter' %>
