@@ -1,6 +1,7 @@
 module Dashboard
   class AdvisersController < ApplicationController
     before_action :authenticate_user!
+    before_action -> { @firm = current_firm }, except: [:index]
 
     def index
       @firm = principal.firm
@@ -8,13 +9,11 @@ module Dashboard
     end
 
     def new
-      @firm = Firm.find(params[:firm_id])
-      @adviser = advisers.build
+      @adviser = @firm.advisers.build
     end
 
     def create
-      @firm = Firm.find(params[:firm_id])
-      @adviser = advisers.build(adviser_params)
+      @adviser = @firm.advisers.build(adviser_params)
       @adviser.confirmed_disclaimer = true
       # ^^^ This needs to be resolved by some heavier refactoring
       # work across mas-rad_core and this codebase.
@@ -27,14 +26,11 @@ module Dashboard
     end
 
     def edit
-      @firm = Firm.find(params[:firm_id])
-      @adviser = advisers.find(params[:id])
+      @adviser = @firm.advisers.find(params[:id])
     end
 
     def update
-      @firm = Firm.find(params[:firm_id])
-      @adviser = advisers.find(params[:id])
-
+      @adviser = @firm.advisers.find(params[:id])
       @adviser.update(adviser_params) && flash[:notice] = I18n.t('dashboard.adviser_edit.saved')
 
       render :edit
@@ -46,9 +42,8 @@ module Dashboard
       current_user.principal
     end
 
-    def advisers
+    def current_firm
       Firm.find_by(id: params[:firm_id], fca_number: principal.fca_number)
-        .advisers
     end
 
     def adviser_params
