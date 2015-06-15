@@ -1,4 +1,6 @@
-<%= f.validation_summary %>
+  <div class="t-validation-summary">
+    <%= f.validation_summary %>
+  </div>
 
 <%= f.form_row :reference_number do %>
   <fieldset class="form__group">
@@ -59,7 +61,7 @@
 
       <%= f.collection_check_boxes(:accreditation_ids, Accreditation.all, :id, :name) do |b| %>
         <div class="form__group-item">
-          <%= b.label { b.check_box(class: 'form__group-input') + b.text } %>
+          <%= b.label { b.check_box(class: 'form__group-input t-accreditation-id') + b.text } %>
         </div>
       <% end %>
     <% end %>
@@ -74,7 +76,7 @@
 
       <%= f.collection_check_boxes(:qualification_ids, Qualification.all, :id, :name) do |b| %>
         <div class="form__group-item">
-          <%= b.label { b.check_box(class: 'form__group-input') + b.text } %>
+          <%= b.label { b.check_box(class: 'form__group-input t-qualification-id') + b.text } %>
         </div>
       <% end %>
     <% end %>

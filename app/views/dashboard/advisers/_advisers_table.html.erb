@@ -13,7 +13,7 @@
         <tr class="t-advisers-table-row">
           <td class="t-adviser-reference-number"><%= adviser.reference_number %></td>
           <td class="t-adviser-name">
-            <%= link_to adviser.name, edit_dashboard_firm_adviser_path(adviser.firm, adviser) %>
+            <%= link_to adviser.name, edit_dashboard_firm_adviser_path(adviser.firm, adviser), class: 't-edit-link' %>
           </td>
           <td>
             <ul class="l-comma-separated-list">
