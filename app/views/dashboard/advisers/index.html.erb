@@ -3,7 +3,7 @@
 
 <div class="l-constrained">
   <div class="l-top-right-action">
-    <%= link_to t('dashboard.advisers_index.add_adviser_button'), new_dashboard_adviser_path, class: 'button button--primary' %>
+    <%= add_adviser_button(firm: @firm) %>
   </div>
 
   <div class="t-parent-firm">
@@ -13,6 +13,10 @@
 
   <% @trading_names.each do |trading_name| %>
     <div class="t-trading-name">
+      <div class="l-top-right-action">
+        <%= add_adviser_button(firm: trading_name) %>
+      </div>
+
       <h2><%= t('dashboard.advisers_index.trading_names_heading', trading_name: trading_name.registered_name) %></h2>
       <%= render 'dashboard/advisers/advisers_table', advisers: trading_name.advisers %>
     </div>
