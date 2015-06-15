@@ -1,0 +1,22 @@
+<div class="table-wrapper">
+  <table class="l-half-width">
+    <thead>
+      <tr>
+        <th><%= Firm.human_attribute_name(:fca_number) %></th>
+        <th><%= Firm.human_attribute_name(:registered_name) %></th>
+        <th><%= t('dashboard.firms_index.principal_column_heading') %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="t-parent-firm-table-row">
+        <td class="t-frn"><%= @firm.fca_number %></td>
+        <td class="t-firm-name">
+          <%= link_to edit_dashboard_firm_path(@firm), class: 't-edit-link' do %>
+            <%= @firm.registered_name %>
+          <% end %>
+        </td>
+        <td class="t-principal-name"><%= @firm.principal.full_name %></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
