@@ -1,0 +1,10 @@
+<% if adviser.present? %>
+  <li class="dashboard-list__item">
+    <div class="dashboard-list__item__type">
+      <%= t("dashboard.adviser") %>
+    </div>
+    <div class="dashboard-list__item__name">
+      <%= adviser.name %>
+    </div>
+  </li>
+<% end %>

@@ -14,19 +14,9 @@
   <div class="l-3col-even">
     <h2><%= t('dashboard.advisers_heading') %> (<span class="t-adviser-count"><%= number_of_advisers(@firm) %></span>)</h2>
     <ul class="dashboard-list">
-      <% most_recently_edited_advisers(@firm).each do |adviser| %>
-        <% if adviser.present? %>
-          <li class="dashboard-list__item">
-            <div class="dashboard-list__item__type">
-              <%= t("dashboard.adviser") %>
-            </div>
-            <div class="dashboard-list__item__name">
-              <%= adviser.name %>
-            </div>
-          </li>
-        <% end %>
-      <% end %>
+      <%= render partial: 'dashboard/advisers/adviser', collection: most_recently_edited_advisers(@firm), as: :adviser %>
     </ul>
+
     <div class="dashboard__action-button">
       <%= button_primary t('dashboard.add_adviser_button') %>
     </div>
