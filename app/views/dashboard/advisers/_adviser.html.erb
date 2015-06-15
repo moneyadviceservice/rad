@@ -1,7 +1,7 @@
 <% if adviser.present? %>
   <li class="dashboard-list__item">
     <div class="dashboard-list__item__type">
-      <%= t("dashboard.adviser") %>
+      <%= adviser.model_name.human %>
     </div>
     <div class="dashboard-list__item__name">
       <%= adviser.name %>
