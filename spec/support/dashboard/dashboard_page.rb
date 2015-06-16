@@ -8,5 +8,7 @@ module Dashboard
     sections :firms, FirmListItemSection, '.t-firm-list-item'
     sections :trading_names, FirmListItemSection, '.t-trading-name'
     element :firm_count, '.t-firm-count'
+    element :adviser_count, '.t-adviser-count'
+    sections :advisers, AdviserListItemSection, '.t-adviser'
   end
 end
