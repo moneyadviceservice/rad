@@ -1,13 +1,24 @@
 <div class="l-constrained">
   <div class="l-3col-even">
     <h2><%= t('dashboard.firms_heading') %> (<span class="t-firm-count"><%= firm_count %></span>)</h2>
-    <ul class="firm-list t-dashboard-firms">
+    <ul class="dashboard-list">
       <%= render partial: 'dashboard/firms/firm', locals: { firm: @firm, firm_type: :main_firm } %>
       <%= render partial: 'dashboard/firms/firm', collection: @trading_names, locals: { firm_type: :trading_name } %>
     </ul>
 
     <div class="dashboard__action-button">
       <%= button_primary t('dashboard.add_trading_name_button') %>
+    </div>
+  </div>
+
+  <div class="l-3col-even">
+    <h2><%= t('dashboard.advisers_heading') %> (<span class="t-adviser-count"><%= @advisers.size %></span>)</h2>
+    <ul class="dashboard-list">
+      <%= render partial: 'dashboard/advisers/adviser', collection: @advisers.most_recently_edited %>
+    </ul>
+
+    <div class="dashboard__action-button">
+      <%= button_primary t('dashboard.add_adviser_button') %>
     </div>
   </div>
 </div>
