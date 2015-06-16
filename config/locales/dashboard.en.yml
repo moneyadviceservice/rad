@@ -13,6 +13,8 @@ en:
       trading_names_heading: "Trading Name: %{trading_name}"
       add_adviser_button: Add an adviser
       add_adviser_button_full: Add an adviser to %{firm_name}
+      add_adviser_link: Add an adviser to %{firm_name}.
+      no_advisers_message: You have not added any advisers to this firm.
 
     adviser_new:
       new_adviser_heading: Add an adviser

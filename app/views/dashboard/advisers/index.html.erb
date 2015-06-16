@@ -8,7 +8,7 @@
 
   <div class="t-parent-firm">
     <h2><%= @firm.registered_name %></h2>
-    <%= render 'dashboard/advisers/advisers_table', advisers: @firm.advisers %>
+    <%= render 'dashboard/advisers/advisers_table', firm: @firm %>
   </div>
 
   <% @trading_names.each do |trading_name| %>
@@ -18,7 +18,7 @@
       </div>
 
       <h2><%= t('dashboard.advisers_index.trading_names_heading', trading_name: trading_name.registered_name) %></h2>
-      <%= render 'dashboard/advisers/advisers_table', advisers: trading_name.advisers %>
+      <%= render 'dashboard/advisers/advisers_table', firm: trading_name %>
     </div>
   <% end %>
 </div>
