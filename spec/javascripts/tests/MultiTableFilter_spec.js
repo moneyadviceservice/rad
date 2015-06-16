@@ -6,18 +6,18 @@ describe('filter table based on text field criteria', function () {
   }
 
   function setFilterText(text) {
-    $('.js-filter-field').val(text);
-    $('.js-filter-field').change();
+    $('.js-filter-input').val(text);
+    $('.js-filter-input').change();
   }
 
   describe('on a table', function() {
     beforeEach(function (done) {
       var self = this;
 
-      requirejs(['jquery', 'jqueryFastLiveFilter', 'FilterTable'], function ($, jqueryFastLiveFilter, FilterTable) {
-        self.$html = $(window.__html__['spec/javascripts/fixtures/FilterTable.html']).appendTo('body');
-        self.component = self.$html.find('[data-dough-component="FilterTable"]');
-        self.filterTable = new FilterTable(self.component).init();
+      requirejs(['jquery', 'jqueryFastLiveFilter', 'MultiTableFilter'], function ($, jqueryFastLiveFilter, MultiTableFilter) {
+        self.$html = $(window.__html__['spec/javascripts/fixtures/MultiTableFilter.html']).appendTo('body');
+        self.component = self.$html.find('[data-dough-component="MultiTableFilter"]');
+        self.MultiTableFilter = new MultiTableFilter(self.component).init();
 
         done();
       }, done);

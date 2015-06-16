@@ -6,7 +6,7 @@
   <%= render 'table_parent_firm' %>
 
   <% if @trading_names.present? || @lookup_names.present? %>
-    <div id="firm-list" class="t-trading-names-block" data-dough-component="FilterTable">
+    <div id="firm-list" class="t-trading-names-block" data-dough-component="MultiTableFilter">
       <h2><%= t('dashboard.firms_index.trading_names_heading') %></h2>
 
       <% if @lookup_names.present? %>
@@ -19,7 +19,7 @@
   <% end %>
 
   <% if @lookup_names.present? %>
-    <div id="trading-name-list" class="t-available-trading-names-block" data-dough-component="FilterTable">
+    <div id="trading-name-list" class="t-available-trading-names-block" data-dough-component="MultiTableFilter">
       <h2><%= t('dashboard.firms_index.available_trading_names_heading') %></h2>
 
       <%= filter_field :trading_names, locale_prefix: 'dashboard.firms_index.available_trading_names_filter' %>

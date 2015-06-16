@@ -10,7 +10,7 @@ module Dashboard
         concat text_field_tag "#{name}_filter",
                               nil,
                               placeholder: t("#{locale_prefix}_placeholder"),
-                              class: 'filter-field__input js-filter-field'
+                              class: 'filter-field__input js-filter-input'
       end
     end
 
