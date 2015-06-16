@@ -12,9 +12,9 @@
   </div>
 
   <div class="l-3col-even">
-    <h2><%= t('dashboard.advisers_heading') %> (<span class="t-adviser-count"><%= number_of_advisers(@firm) %></span>)</h2>
+    <h2><%= t('dashboard.advisers_heading') %> (<span class="t-adviser-count"><%= @advisers.size %></span>)</h2>
     <ul class="dashboard-list">
-      <%= render partial: 'dashboard/advisers/adviser', collection: most_recently_edited_advisers(@firm), as: :adviser %>
+      <%= render partial: 'dashboard/advisers/adviser', collection: @advisers.most_recently_edited %>
     </ul>
 
     <div class="dashboard__action-button">

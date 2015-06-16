@@ -5,6 +5,7 @@ module Dashboard
     def index
       @firm = principal.firm
       @trading_names = @firm.subsidiaries
+      @advisers = Adviser.on_firms_with_fca_number(@firm.fca_number)
       render 'dashboard/index'
     end
 

@@ -22,18 +22,5 @@ module Dashboard
         concat content_tag(:span, sr_label, class: 'visually-hidden')
       end
     end
-
-    def number_of_advisers(firm)
-      all_advisers_for_firm_and_trading_names(firm).size
-    end
-
-    def most_recently_edited_advisers(firm, limit = 3)
-      all_advisers_for_firm_and_trading_names(firm).order(updated_at: 'DESC').limit(limit)
-    end
-
-    def all_advisers_for_firm_and_trading_names(firm)
-      firms = Firm.where(fca_number: firm.fca_number)
-      Adviser.where(firm: firms)
-    end
   end
 end
