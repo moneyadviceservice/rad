@@ -12,7 +12,10 @@ task :karma do
   puts
   puts 'Running JavaScript Karma specs'
   puts
+
+  fail 'ERROR: karma is not installed' unless File.exists? 'node_modules/.bin/karma'
   sh 'node_modules/.bin/karma start spec/javascripts/karma.conf.js --single-run=true'
+
   puts
 end
 
