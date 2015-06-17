@@ -17,7 +17,6 @@ RSpec.feature 'The principal dashboard' do
     and_i_am_logged_in
     when_i_am_on_the_principal_dashboard
     then_i_can_see_the_list_of_most_recently_edited_advisers
-    then_i_can_see_the_total_number_of_advisers
   end
 
   def given_i_am_a_fully_registered_principal_user
@@ -63,10 +62,5 @@ RSpec.feature 'The principal dashboard' do
     dashboard_page.advisers.each.with_index do |adviser, idx|
       expect(adviser).to have_name(text: advisers[idx].name)
     end
-  end
-
-  def then_i_can_see_the_total_number_of_advisers
-    adviser_count = Adviser.on_firms_with_fca_number(@principal.firm.fca_number).size
-    expect(dashboard_page.adviser_count).to have_text(adviser_count)
   end
 end
