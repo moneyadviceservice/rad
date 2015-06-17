@@ -9,6 +9,7 @@ require 'rake/file_utils'
 include FileUtils
 
 KARMA_COMMAND = 'node_modules/.bin/karma'
+JSHINT_COMMAND = 'node_modules/.bin/jshint'
 
 def described_task(name, description:)
   task name do
@@ -26,7 +27,8 @@ described_task :karma, description: 'Javascript Karma specs' do
 end
 
 described_task :jshint, description: 'JSHint' do
-  sh 'node_modules/.bin/jshint app/assets/javascripts spec/javascripts' do
+  fail 'ERROR: JSHint is not installed' unless File.exist? JSHINT_COMMAND
+  sh "#{JSHINT_COMMAND} app/assets/javascripts spec/javascripts" do
     puts 'JSHint found no style violations.'
   end
 end
