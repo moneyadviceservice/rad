@@ -1,0 +1,5 @@
+{
+  // Allow the use of expressions with assignments or function calls
+  // Needed for expect(thing).to.exist to pass in tests
+  "expr": true
+}
