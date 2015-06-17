@@ -72,6 +72,16 @@ describe('filter table based on text field criteria', function () {
       it('shows no rows', function () {
         expect(visibleRows().length).to.eq(0);
       });
+
+      describe('when the text is cleared', function() {
+        beforeEach(function() {
+          setFilterText('');
+        });
+
+        it('shows all rows again', function () {
+          expect(visibleRows().length).to.eq(3);
+        });
+      });
     });
 
     describe('when text matching the second column of one row is entered into the field', function () {

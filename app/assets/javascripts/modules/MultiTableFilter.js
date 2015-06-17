@@ -76,6 +76,11 @@ define(['jquery', 'jqueryFastLiveFilter', 'DoughBaseComponent'],
         $rows = $list.first().find('tr'),
         hiddenRows;
 
+    // We might use jQuery `:hidden` here — but we can't, because
+    // if we've hidden our filterGroup, then `:hidden` will be true
+    // for all our rows.
+    // But when fastLiveFilter unhides a row indivudally, we need to know
+    // so that we can unhide the group. So we test on individual elements.
     hiddenRows = $rows.filter(function() {
       return $(this).css('display') == 'none';
     });
