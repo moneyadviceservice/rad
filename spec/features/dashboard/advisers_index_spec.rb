@@ -88,8 +88,5 @@ RSpec.feature 'The dashboard adviser list page' do
     expect(section).to have_reference_number(text: record.reference_number)
     expect(section).to have_name(text: record.name)
     expect(section).to have_postcode(text: record.postcode)
-    record.qualifications.each do |qualification|
-      expect(section).to have_qualification(text: qualification.name)
-    end
   end
 end

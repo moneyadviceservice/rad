@@ -4,7 +4,6 @@
       <tr>
         <th class="reference-number-heading"><%= Adviser.human_attribute_name(:reference_number) %></th>
         <th class="name-heading"><%= Adviser.human_attribute_name(:name) %></th>
-        <th class="qualifications-heading"><%= Adviser.human_attribute_name(:qualifications) %></th>
         <th class="postcode-heading"><%= Adviser.human_attribute_name(:postcode) %></th>
       </tr>
     </thead>
@@ -15,13 +14,6 @@
             <td class="t-adviser-reference-number"><%= adviser.reference_number %></td>
             <td class="t-adviser-name">
               <%= link_to adviser.name, edit_dashboard_firm_adviser_path(adviser.firm, adviser), class: 't-edit-link' %>
-            </td>
-            <td>
-              <ul class="l-comma-separated-list">
-                <% adviser.qualifications.each do |qualification| %>
-                  <li class="t-adviser-qualification"><%= qualification.name %></li>
-                <% end %>
-              </ul>
             </td>
             <td class="t-adviser-postcode"><%= adviser.postcode %></td>
           </tr>
