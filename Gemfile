@@ -39,6 +39,7 @@ group :test, :development do
   gem 'factory_girl_rails'
   gem 'faker'
   gem 'pry-rails'
+  gem 'rspec-rails'
   gem 'rubocop'
   gem 'timecop'
 end
@@ -49,6 +50,5 @@ group :test do
   gem 'launchy'
   gem 'poltergeist'
   gem 'rspec-collection_matchers'
-  gem 'rspec-rails'
   gem 'site_prism'
 end
