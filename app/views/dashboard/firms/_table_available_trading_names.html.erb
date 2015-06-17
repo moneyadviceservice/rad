@@ -7,11 +7,11 @@
         <th></th>
       </tr>
     </thead>
-    <tbody class="js-filter-rows">
+    <tbody data-dough-filter-rows>
       <% @lookup_names.each do |lookup_name| %>
         <tr class="t-available-trading-name-table-row">
-          <td class="js-filterable t-frn"><%= lookup_name.fca_number %></td>
-          <td class="js-filterable t-firm-name">
+          <td class="t-frn" data-dough-filterable><%= lookup_name.fca_number %></td>
+          <td class="t-firm-name" data-dough-filterable>
             <%= lookup_name.name %>
           </td>
           <td>

@@ -7,15 +7,15 @@
         <th class="postcode-heading"><%= Adviser.human_attribute_name(:postcode) %></th>
       </tr>
     </thead>
-    <tbody class="js-filter-rows">
+    <tbody data-dough-filter-rows>
       <% if firm.advisers.present? %>
         <% firm.advisers.each do |adviser| %>
           <tr class="t-advisers-table-row">
-            <td class="t-adviser-reference-number js-filterable"><%= adviser.reference_number %></td>
-            <td class="t-adviser-name js-filterable">
+            <td class="t-adviser-reference-number" data-dough-filterable><%= adviser.reference_number %></td>
+            <td class="t-adviser-name" data-dough-filterable>
               <%= link_to adviser.name, edit_dashboard_firm_adviser_path(adviser.firm, adviser), class: 't-edit-link' %>
             </td>
-            <td class="t-adviser-postcode js-filterable"><%= adviser.postcode %></td>
+            <td class="t-adviser-postcode" data-dough-filterable><%= adviser.postcode %></td>
           </tr>
         <% end %>
       <% else %>

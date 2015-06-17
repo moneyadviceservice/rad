@@ -7,16 +7,16 @@
         <th><%= t('dashboard.firms_index.principal_column_heading') %></th>
       </tr>
     </thead>
-    <tbody class="js-filter-rows">
+    <tbody data-dough-filter-rows>
       <% @trading_names.sorted_by_registered_name.each do |trading_name| %>
         <tr class="t-trading-name-table-row">
-          <td class="js-filterable t-frn"><%= trading_name.fca_number %></td>
-          <td class="js-filterable t-firm-name">
+          <td class="t-frn" data-dough-filterable><%= trading_name.fca_number %></td>
+          <td class="t-firm-name" data-dough-filterable>
             <%= link_to edit_dashboard_trading_name_path(trading_name), class: 't-edit-link' do %>
               <%= trading_name.registered_name %>
             <% end %>
           </td>
-          <td class="js-filterable t-principal-name"><%= trading_name.principal.full_name %></td>
+          <td class="t-principal-name" data-dough-filterable><%= trading_name.principal.full_name %></td>
         </tr>
       <% end %>
     </tbody>

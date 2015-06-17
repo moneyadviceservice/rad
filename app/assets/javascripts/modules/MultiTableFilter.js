@@ -7,6 +7,9 @@
  *
  * Makes use of jquery.fastLiveFilter.
  * See test fixture for sample markup - /spec/js/fixtures/MultiTableFilter.html
+ *
+ * @module MultiTableFilter
+ * @returns {class} MultiTableFilter
  */
 
 define(['jquery', 'jqueryFastLiveFilter', 'DoughBaseComponent'],
@@ -15,20 +18,24 @@ define(['jquery', 'jqueryFastLiveFilter', 'DoughBaseComponent'],
 
   var MultiTableFilterProto,
       defaultConfig = {
-        filterTargetSelector: '.js-filterable',
-        filterFieldSelector: '.js-filter-input',
-        filterListSelector: '.js-filter-rows',
-        filterGroupSelector: '.js-filter-group'
+        filterTargetSelector: '[data-dough-filterable]',
+        filterFieldSelector:  '[data-dough-filter-input]',
+        filterListSelector:   '[data-dough-filter-rows]',
+        filterGroupSelector:  '[data-dough-filter-group]'
       };
 
+  /**
+   * @constructor
+   * @extends {DoughBaseComponent}
+   * @param {HTMLElement} $el    Element with dough-component on it
+   * @param {Object}      config Hash of config options
+   */
   function MultiTableFilter($el, config) {
     MultiTableFilter.baseConstructor.call(this, $el, config, defaultConfig);
   }
 
   /**
    * Inherit from base module, for shared methods and interface
-   * @type {[type]}
-   * @private
    */
   DoughBaseComponent.extend(MultiTableFilter);
   MultiTableFilter.componentName = 'MultiTableFilter';
@@ -39,8 +46,8 @@ define(['jquery', 'jqueryFastLiveFilter', 'DoughBaseComponent'],
    *
    * Set up listeners and accept promise
    *
-   * @param  {[type]} initialised [description]
-   * @return {[type]}             [description]
+   * @param {Object} initialised Promise passed from eventsWithPromises (RSVP Promise).
+   * @returns {MultiTableFilter}
    */
   MultiTableFilterProto.init = function(initialised) {
     this.bindFilterToElements();
@@ -49,7 +56,7 @@ define(['jquery', 'jqueryFastLiveFilter', 'DoughBaseComponent'],
   };
 
   /**
-   * show/hide filterGroups when all filterTargetSelectores are hidden
+   * Show/hide filterGroups when all filterTargetSelectors are hidden
    */
   MultiTableFilterProto.toggleFilterGroups = function() {
     var self = this;
@@ -60,9 +67,9 @@ define(['jquery', 'jqueryFastLiveFilter', 'DoughBaseComponent'],
   };
 
   /**
-   * show/hide filterGroup when all filterTargetSelectores are hidden
+   * Show/hide filterGroup when all filterTargetSelectors are hidden
+   * @param {HTMLElement} filterGroup Element for table group wrapper
    */
-
   MultiTableFilterProto.toggleFilterGroup = function(filterGroup) {
     var $filterGroup = $(filterGroup),
         $list = $filterGroup.find(this.config.filterListSelector),
@@ -80,6 +87,9 @@ define(['jquery', 'jqueryFastLiveFilter', 'DoughBaseComponent'],
     }
   };
 
+  /**
+   * Binds filter library to text field and table groups
+   */
   MultiTableFilterProto.bindFilterToElements = function() {
     var self = this;
 

@@ -2,19 +2,19 @@ describe('filter table based on text field criteria', function () {
   'use strict';
 
   function visibleRows() {
-    return $('.js-filter-rows').find('tr:visible');
+    return $('[data-dough-filter-rows]').find('tr:visible');
   }
 
   function setFilterText(text) {
-    $('.js-filter-input').val(text);
-    $('.js-filter-input').change();
+    $('[data-dough-filter-input]').val(text);
+    $('[data-dough-filter-input]').change();
   }
 
   describe('on a table', function() {
     beforeEach(function (done) {
       var self = this;
 
-      requirejs(['jquery', 'jqueryFastLiveFilter', 'MultiTableFilter'], function ($, jqueryFastLiveFilter, MultiTableFilter) {
+      requirejs(['jquery', 'MultiTableFilter'], function ($, MultiTableFilter) {
         self.$html = $(window.__html__['spec/javascripts/fixtures/MultiTableFilter.html']).appendTo('body');
         self.component = self.$html.find('[data-dough-component="MultiTableFilter"]');
         self.MultiTableFilter = new MultiTableFilter(self.component).init();
