@@ -8,13 +8,15 @@ Rails.application.load_tasks
 require 'rake/file_utils'
 include FileUtils
 
+KARMA_COMMAND = 'node_modules/.bin/karma'
+
 task :karma do
   puts
   puts 'Running JavaScript Karma specs'
   puts
 
-  fail 'ERROR: karma is not installed' unless File.exists? 'node_modules/.bin/karma'
-  sh 'node_modules/.bin/karma start spec/javascripts/karma.conf.js --single-run=true'
+  fail 'ERROR: karma is not installed' unless File.exists? KARMA_COMMAND
+  sh "#{KARMA_COMMAND} start spec/javascripts/karma.conf.js --single-run=true"
 
   puts
 end
