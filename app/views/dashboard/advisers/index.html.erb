@@ -1,23 +1,27 @@
 <%= render_breadcrumbs [{ locale_key: 'dashboard.navigation.root', url: dashboard_root_path },
                         { locale_key: 'dashboard.navigation.advisers' }] %>
 
-<div class="l-constrained">
-  <div class="l-top-right-action">
+<div class="l-constrained" data-dough-component="MultiTableFilter">
+  <div class="l-heading-with-button">
+    <h2><%= @firm.registered_name %></h2>
     <%= add_adviser_button(firm: @firm) %>
   </div>
 
   <div class="t-parent-firm">
-    <h2><%= @firm.registered_name %></h2>
-    <%= render 'dashboard/advisers/advisers_table', firm: @firm %>
+    <%= filter_field :trading_names, locale_prefix: 'dashboard.firms_index.trading_names_filter' %>
+
+    <div data-dough-filter-group>
+      <%= render 'dashboard/advisers/advisers_table', firm: @firm %>
+    </div>
   </div>
 
   <% @trading_names.each do |trading_name| %>
-    <div class="t-trading-name">
-      <div class="l-top-right-action">
+    <div class="t-trading-name" data-dough-filter-group>
+      <div class="l-heading-with-button">
+        <h2><%= t('dashboard.advisers_index.trading_names_heading', trading_name: trading_name.registered_name) %></h2>
         <%= add_adviser_button(firm: trading_name) %>
       </div>
 
-      <h2><%= t('dashboard.advisers_index.trading_names_heading', trading_name: trading_name.registered_name) %></h2>
       <%= render 'dashboard/advisers/advisers_table', firm: trading_name %>
     </div>
   <% end %>

@@ -25,8 +25,9 @@ require.config({
     componentLoader: 'vendor/assets/bower_components/dough/assets/js/lib/componentLoader',
     DoughBaseComponent: 'vendor/assets/bower_components/dough/assets/js/components/DoughBaseComponent',
     jquery: 'vendor/assets/bower_components/jquery/dist/jquery',
+    jqueryFastLiveFilter: 'vendor/assets/bower_components/jquery-fastlivefilter/jquery.fastLiveFilter',
     FieldToggleVisibility: 'app/assets/javascripts/modules/FieldToggleVisibility',
-    FilterTable: 'app/assets/javascripts/modules/FilterTable',
+    MultiTableFilter: 'app/assets/javascripts/modules/MultiTableFilter',
     List: 'vendor/assets/bower_components/list.js/dist/list'
   },
 
