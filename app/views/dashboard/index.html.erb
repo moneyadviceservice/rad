@@ -2,7 +2,7 @@
   <div class="l-3col-even">
     <h2><%= t('dashboard.firms_heading') %></h2>
     <ul class="dashboard-list">
-      <%= render partial: 'dashboard/firms/firm', collection: @firms %>
+      <%= render partial: 'dashboard/firms/firm', collection: @firms.most_recently_updated %>
     </ul>
 
     <div class="dashboard__action-button">
