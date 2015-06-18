@@ -21,9 +21,11 @@ RSpec.feature 'Principal views Firms and Subsidiaries' do
 
   def given_i_am_verified
     @principal = create(:principal)
+    @user = FactoryGirl.create(:user, principal: @principal)
   end
 
   def when_i_follow_my_email_verification_link
+    login_as(@user, scope: :user)
     firm_page.load(principal: @principal.token)
   end
 

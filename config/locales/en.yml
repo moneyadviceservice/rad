@@ -221,7 +221,7 @@ en:
         description: "Please confirm the professional bodies this adviser is a member of:"
 
       add_another_adviser_button: Add another adviser
-      landing_page_button: Or add more firms
+      landing_page_button: Visit Dashboard
       notice:
         heading: Thank you
         subheading: "%{name} was created."

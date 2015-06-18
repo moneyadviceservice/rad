@@ -12,9 +12,11 @@ RSpec.feature 'Verify principal e-mail address' do
 
   def given_i_am_a_verified_principal
     @principal = create(:principal)
+    @user = FactoryGirl.create(:user, principal: @principal)
   end
 
   def when_i_follow_the_customised_link
+    login_as(@user, scope: :user)
     firm_page.load(principal: @principal.token)
   end
 

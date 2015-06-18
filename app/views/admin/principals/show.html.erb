@@ -24,9 +24,6 @@
       <strong>Website Address:</strong> <%= @principal.website_address.present? ? @principal.website_address : 'not given' %>
     </p>
     <p>
-      <strong>Firm Selection URL:</strong> <%= link_to principal_firms_url(@principal), principal_firms_url(@principal) %>
-    </p>
-    <p>
       <strong>Added:</strong> <%= @principal.created_at.to_s(:long) %>
     </p>
   </div>
