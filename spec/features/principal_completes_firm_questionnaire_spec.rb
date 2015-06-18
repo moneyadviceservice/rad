@@ -1,4 +1,6 @@
 RSpec.feature 'Principal completes the firm questionnaire' do
+  include AuthenticationSteps
+
   let(:questionnaire_page) { QuestionnairePage.new }
   let(:adviser_page) { AdviserPage.new }
 
@@ -14,6 +16,7 @@ RSpec.feature 'Principal completes the firm questionnaire' do
 
   scenario 'Successfully complete the questionnaire' do
     given_my_principal_record_exists
+    and_i_sign_in(@user)
     given_i_have_selected_a_firm
     and_i_can_see_my_firm_name_and_fca_reference_number
     when_i_complete_all_mandatory_questions
@@ -23,6 +26,7 @@ RSpec.feature 'Principal completes the firm questionnaire' do
 
   scenario 'Successfully complete the subsidiary questionnaire' do
     given_my_principal_record_exists
+    and_i_sign_in(@user)
     given_i_have_selected_a_subsidiary
     and_i_can_see_my_firm_name_and_fca_reference_number
     when_i_complete_all_mandatory_questions
@@ -32,6 +36,7 @@ RSpec.feature 'Principal completes the firm questionnaire' do
 
   def given_my_principal_record_exists
     @principal = create(:principal)
+    @user = FactoryGirl.create(:user, principal: @principal)
   end
 
   def given_i_have_selected_a_firm

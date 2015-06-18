@@ -1,4 +1,6 @@
 class QuestionnairesController < PrincipalsBaseController
+  before_action :authenticate_user!
+
   def edit
     @firm = firm_or_subsidiary
   end

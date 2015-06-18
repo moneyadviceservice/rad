@@ -58,6 +58,7 @@ RSpec.feature 'Principal creates Adviser' do
 
   scenario 'Attempting to create an non-existent Adviser' do
     given_i_have_created_a_firm
+    and_i_sign_in(user)
     and_i_provide_a_valid_adviser_reference_number
     when_the_adviser_is_not_matched
     then_i_am_notified_of_this
