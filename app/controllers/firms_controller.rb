@@ -1,6 +1,4 @@
 class FirmsController < PrincipalsBaseController
-  before_action :authenticate_user!
-
   def index
     if current_principle.subsidiaries?
       @firm = current_principle.lookup_firm

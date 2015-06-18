@@ -1,4 +1,5 @@
 class PrincipalsBaseController < ApplicationController
+  before_action :authenticate_user!
   before_action :load_principle
 
   helper_method :current_principle
