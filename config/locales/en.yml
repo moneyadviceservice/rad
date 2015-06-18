@@ -40,6 +40,8 @@ en:
         fca_number: FRN
         registered_name: Registered name
         percent_total: Percentage total
+      user:
+        login: Email or FRN
     errors:
       models:
         firm:
