@@ -1,4 +1,6 @@
 class AdvisersController < PrincipalsBaseController
+  before_action :authenticate_user!
+
   def new
     @adviser = advisers.build
   end
