@@ -11,6 +11,7 @@ RSpec.feature 'Principal creates Adviser' do
   let(:user) { FactoryGirl.create(:user, principal: principal) }
   let(:adviser_page) { AdviserPage.new }
   let(:firm_page) { FirmPage.new }
+  let(:dashboard_page) { Dashboard::DashboardPage.new }
   let(:adviser_confirmation_page) { AdviserConfirmationPage.new }
 
   let!(:qualifications) { create_list(:qualification, 2) }
@@ -193,6 +194,6 @@ RSpec.feature 'Principal creates Adviser' do
   def and_i_can_return_to_the_landing_page
     adviser_confirmation_page.go_to_landing_page.click
 
-    expect(firm_page).to be_displayed
+    expect(dashboard_page).to be_displayed
   end
 end
