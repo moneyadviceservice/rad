@@ -11,6 +11,11 @@ module Dashboard
       end
     end
 
+    def firm_type_label(firm)
+      type = (firm.trading_name?) ? :trading_name : :main_firm
+      I18n.t("dashboard.#{type}")
+    end
+
     def add_adviser_button(firm:)
       label = t('dashboard.advisers_index.add_adviser_button')
       sr_label = t('dashboard.advisers_index.add_adviser_button_full', firm_name: firm.registered_name)

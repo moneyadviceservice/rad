@@ -1,6 +1,6 @@
-<li class="dashboard-list__item t-firm-list-item <%= 't-trading-name' if firm_type == :trading_name %>">
+<li class="dashboard-list__item t-firm-list-item <%= 't-trading-name' if firm.trading_name? %>">
   <div class="dashboard-list__item__type t-type">
-    <%= t("dashboard.#{firm_type.to_s}") %>
+    <%= firm_type_label(firm) %>
   </div>
   <div class="dashboard-list__item__name t-name">
     <%= firm.registered_name %>

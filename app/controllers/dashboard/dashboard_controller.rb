@@ -4,7 +4,7 @@ module Dashboard
 
     def index
       @firm = principal.firm
-      @trading_names = @firm.subsidiaries
+      @firms = Firm.where(fca_number: principal.fca_number).most_recently_updated
       @advisers = Adviser.on_firms_with_fca_number(@firm.fca_number)
       render 'dashboard/index'
     end

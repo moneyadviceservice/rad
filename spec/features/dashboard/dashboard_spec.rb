@@ -12,6 +12,10 @@ RSpec.feature 'The principal dashboard' do
     given_my_firm_has_trading_names(count: 2)
     when_i_go_to_the_principal_dashboard
     then_the_trading_names_are_present_and_labelled_trading_names
+
+    given_i_modify_a_trading_name_record
+    when_i_go_to_the_principal_dashboard
+    then_the_modified_trading_name_is_shown_first
   end
 
   scenario 'The principal can see a summary of the advisers they are associated with' do
@@ -39,6 +43,11 @@ RSpec.feature 'The principal dashboard' do
     expect(Firm.where(fca_number: @principal.fca_number).count).to eq(1 + count)
   end
 
+  def given_i_modify_a_trading_name_record
+    @modified_trading_name = @principal.firm.trading_names.last
+    @modified_trading_name.update!(updated_at: (Time.zone.now + 1.hour))
+  end
+
   def and_i_am_logged_in
     login_as(@user, scope: :user)
   end
@@ -64,6 +73,10 @@ RSpec.feature 'The principal dashboard' do
     expected_names = @principal.firm.trading_names.map(&:registered_name)
     actual_names = dashboard_page.trading_names.map { |trading_name| trading_name.name.text }
     expect(actual_names).to match_array(expected_names)
+  end
+
+  def then_the_modified_trading_name_is_shown_first
+    expect(dashboard_page.firms.first.name).to have_text(@modified_trading_name.registered_name)
   end
 
   def then_i_can_see_the_list_of_most_recently_edited_advisers
