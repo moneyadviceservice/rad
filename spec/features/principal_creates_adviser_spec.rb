@@ -1,4 +1,6 @@
 RSpec.feature 'Principal creates Adviser' do
+  include AuthenticationSteps
+
   let(:reference) { 'ABC12345' }
   let(:name) { 'Daisy Lovell' }
   let(:principal) do
@@ -6,6 +8,7 @@ RSpec.feature 'Principal creates Adviser' do
       p.lookup_firm.subsidiaries.create!(name: 'A Subsidiary Ltd')
     end
   end
+  let(:user) { FactoryGirl.create(:user, principal: principal) }
   let(:adviser_page) { AdviserPage.new }
   let(:firm_page) { FirmPage.new }
   let(:adviser_confirmation_page) { AdviserConfirmationPage.new }
@@ -17,6 +20,7 @@ RSpec.feature 'Principal creates Adviser' do
 
   scenario 'Creating a valid Adviser for a Firm', :js do
     given_i_have_created_a_firm
+    and_i_sign_in(user)
     and_the_adviser_exists
     when_i_provide_a_valid_adviser_reference_number
     and_the_adviser_is_matched
@@ -35,6 +39,7 @@ RSpec.feature 'Principal creates Adviser' do
 
   scenario 'Creating a valid Adviser for a Subsidiary', :js do
     given_i_have_created_a_subsidiary
+    and_i_sign_in(user)
     and_the_adviser_exists
     when_i_provide_a_valid_adviser_reference_number
     and_the_adviser_is_matched

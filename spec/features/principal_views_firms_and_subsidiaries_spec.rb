@@ -1,4 +1,6 @@
 RSpec.feature 'Principal views Firms and Subsidiaries' do
+  include AuthenticationSteps
+
   let(:firm_page) { FirmPage.new }
   let(:questionnaire_page) { QuestionnairePage.new }
 
@@ -21,9 +23,11 @@ RSpec.feature 'Principal views Firms and Subsidiaries' do
 
   def given_i_am_verified
     @principal = create(:principal)
+    @user = FactoryGirl.create(:user, principal: @principal)
   end
 
   def when_i_follow_my_email_verification_link
+    and_i_sign_in(@user)
     firm_page.load(principal: @principal.token)
   end
 
