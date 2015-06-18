@@ -16,6 +16,16 @@ RSpec.feature 'The principal dashboard' do
     given_i_modify_a_trading_name_record
     when_i_go_to_the_principal_dashboard
     then_the_modified_trading_name_is_shown_first
+
+    given_my_total_number_of_firms_is(3)
+    when_i_go_to_the_principal_dashboard
+    then_i_can_see_the_list_of_recently_edited_firms(count: 3)
+    then_there_is_no_link_to_see_all_firms
+
+    given_my_total_number_of_firms_is(4)
+    when_i_go_to_the_principal_dashboard
+    then_i_see_only_the_3_most_recently_updated_firms
+    then_there_is_a_link_to_see_all_firms
   end
 
   scenario 'The principal can see a summary of the advisers they are associated with' do
@@ -40,12 +50,17 @@ RSpec.feature 'The principal dashboard' do
                                                 count,
                                                 fca_number: @principal.fca_number)
     @principal.firm.save!
-    expect(Firm.where(fca_number: @principal.fca_number).count).to eq(1 + count)
+    expect(@principal.main_firm_with_trading_names).to have(1 + count).items
   end
 
   def given_i_modify_a_trading_name_record
     @modified_trading_name = @principal.firm.trading_names.last
     @modified_trading_name.update!(updated_at: (Time.zone.now + 1.hour))
+  end
+
+  def given_my_total_number_of_firms_is(total)
+    # main firm + n trading names
+    given_my_firm_has_trading_names(count: total - 1)
   end
 
   def and_i_am_logged_in
@@ -58,7 +73,8 @@ RSpec.feature 'The principal dashboard' do
   end
 
   def then_i_can_see_the_list_of_recently_edited_firms(count:)
-    expect(dashboard_page).to have_firms(count: count)
+    expect(dashboard_page).to have_firms
+    expect_recently_updated_firms(count: count)
   end
 
   def then_the_parent_firm_is_first_and_labelled_main
@@ -79,11 +95,37 @@ RSpec.feature 'The principal dashboard' do
     expect(dashboard_page.firms.first.name).to have_text(@modified_trading_name.registered_name)
   end
 
+  def then_i_see_only_the_3_most_recently_updated_firms
+    expect_recently_updated_firms(count: 3)
+  end
+
+  def then_there_is_no_link_to_see_all_firms
+    expect(dashboard_page).not_to have_view_all_firms_link
+  end
+
+  def then_there_is_a_link_to_see_all_firms
+    expect(dashboard_page).to have_view_all_firms_link
+    expect(dashboard_page.view_all_firms_link).to have_text(I18n.t('dashboard.view_all_firms_link'))
+  end
+
   def then_i_can_see_the_list_of_most_recently_edited_advisers
     advisers = Adviser.on_firms_with_fca_number(@principal.firm.fca_number).most_recently_edited
 
     dashboard_page.advisers.each.with_index do |adviser, idx|
       expect(adviser).to have_name(text: advisers[idx].name)
     end
+  end
+
+  private
+
+  def expect_recently_updated_firms(count:)
+    expect(dashboard_page).to have(count).firms
+
+    expected_names = @principal
+                     .main_firm_with_trading_names
+                     .most_recently_updated(limit: count)
+                     .map(&:registered_name)
+    actual_names = dashboard_page.firms.map { |firm| firm.name.text }
+    expect(actual_names).to match_array(expected_names)
   end
 end

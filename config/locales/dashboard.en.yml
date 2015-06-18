@@ -8,6 +8,7 @@ en:
     firms_heading: Recent Firms
     cancel_button: Cancel
     save_button: Save
+    view_all_firms_link: View all firms
 
     advisers_index:
       trading_names_heading: "Trading Name: %{trading_name}"
