@@ -1,6 +1,4 @@
 RSpec.feature 'Principal views Firms and Subsidiaries' do
-  include AuthenticationSteps
-
   let(:firm_page) { FirmPage.new }
   let(:questionnaire_page) { QuestionnairePage.new }
 
@@ -27,7 +25,7 @@ RSpec.feature 'Principal views Firms and Subsidiaries' do
   end
 
   def when_i_follow_my_email_verification_link
-    and_i_sign_in(@user)
+    login_as(@user, scope: :user)
     firm_page.load(principal: @principal.token)
   end
 

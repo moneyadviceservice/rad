@@ -1,6 +1,4 @@
 RSpec.feature 'Verify principal e-mail address' do
-  include AuthenticationSteps
-
   let(:firm_page) { FirmPage.new }
 
   before { Timecop.freeze(Time.zone.local(1990)) }
@@ -18,7 +16,7 @@ RSpec.feature 'Verify principal e-mail address' do
   end
 
   def when_i_follow_the_customised_link
-    and_i_sign_in(@user)
+    login_as(@user, scope: :user)
     firm_page.load(principal: @principal.token)
   end
 

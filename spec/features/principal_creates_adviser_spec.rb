@@ -1,6 +1,4 @@
 RSpec.feature 'Principal creates Adviser' do
-  include AuthenticationSteps
-
   let(:reference) { 'ABC12345' }
   let(:name) { 'Daisy Lovell' }
   let(:principal) do
@@ -21,7 +19,7 @@ RSpec.feature 'Principal creates Adviser' do
 
   scenario 'Creating a valid Adviser for a Firm', :js do
     given_i_have_created_a_firm
-    and_i_sign_in(user)
+    and_the_principal_logs_in
     and_the_adviser_exists
     when_i_provide_a_valid_adviser_reference_number
     and_the_adviser_is_matched
@@ -40,7 +38,7 @@ RSpec.feature 'Principal creates Adviser' do
 
   scenario 'Creating a valid Adviser for a Subsidiary', :js do
     given_i_have_created_a_subsidiary
-    and_i_sign_in(user)
+    and_the_principal_logs_in
     and_the_adviser_exists
     when_i_provide_a_valid_adviser_reference_number
     and_the_adviser_is_matched
@@ -59,7 +57,7 @@ RSpec.feature 'Principal creates Adviser' do
 
   scenario 'Attempting to create an non-existent Adviser' do
     given_i_have_created_a_firm
-    and_i_sign_in(user)
+    and_the_principal_logs_in
     and_i_provide_a_valid_adviser_reference_number
     when_the_adviser_is_not_matched
     then_i_am_notified_of_this
@@ -78,6 +76,10 @@ RSpec.feature 'Principal creates Adviser' do
     given_i_have_created_a_firm
     when_i_request_a_non_existent_adviser
     then_the_endpoint_responds_404
+  end
+
+  def and_the_principal_logs_in
+    login_as(user, scope: :user)
   end
 
   def and_the_adviser_exists
