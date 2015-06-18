@@ -1,4 +1,6 @@
 class SubsidiariesController < PrincipalsBaseController
+  before_action :authenticate_user!
+
   def convert
     firm = current_principle.find_or_create_subsidiary(params[:id])
 
