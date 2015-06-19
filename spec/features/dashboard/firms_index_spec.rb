@@ -76,6 +76,7 @@ RSpec.feature 'The dashboard firm list page' do
 
   def and_i_can_see_the_list_of_trading_names_i_am_associated_with
     expect(firms_index_page).to have_trading_names_block
+    expect(firms_index_page).to have_trading_names(count: 3)
 
     trading_names = @principal.firm.trading_names.sorted_by_registered_name
     firms_index_page.trading_names.zip(trading_names).each do |trading_name_section, trading_name|
