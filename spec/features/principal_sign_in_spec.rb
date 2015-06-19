@@ -2,9 +2,16 @@ RSpec.feature 'Principal can sign in' do
   let(:sign_in_page) { SignInPage.new }
   let(:dashboard_page) { Dashboard::DashboardPage.new }
 
-  scenario 'Principal can sign in with correct details' do
+  scenario 'Principal can sign in with email and password' do
     given_the_principal_user_exists
-    when_they_sign_in_with_correct_details
+    when_they_sign_in_with_email_and_password
+    they_see_the_dashboard_page
+    they_have_logged_in
+  end
+
+  scenario 'Principal can sign in with FRN and password' do
+    given_the_principal_user_exists
+    when_they_sign_in_with_frn_and_password
     they_see_the_dashboard_page
     they_have_logged_in
   end
@@ -21,16 +28,23 @@ RSpec.feature 'Principal can sign in' do
     @user = FactoryGirl.create(:user)
   end
 
-  def when_they_sign_in_with_correct_details
+  def when_they_sign_in_with_email_and_password
     sign_in_page.load
-    sign_in_page.email_field.set @user.email
+    sign_in_page.login_field.set @user.email
+    sign_in_page.password_field.set 'Password1!'
+    sign_in_page.submit_button.click
+  end
+
+  def when_they_sign_in_with_frn_and_password
+    sign_in_page.load
+    sign_in_page.login_field.set @user.principal.fca_number
     sign_in_page.password_field.set 'Password1!'
     sign_in_page.submit_button.click
   end
 
   def when_they_sign_in_with_incorrect_details
     sign_in_page.load
-    sign_in_page.email_field.set @user.email
+    sign_in_page.login_field.set @user.email
     sign_in_page.password_field.set 'not_a_password'
     sign_in_page.submit_button.click
   end
@@ -55,6 +69,6 @@ RSpec.feature 'Principal can sign in' do
 
   def and_they_see_a_notice_that_their_details_were_incorrect
     expect(sign_in_page.devise_form_errors).to have_text(
-      I18n.t('devise.failure.invalid', authentication_keys: 'email'))
+      I18n.t('devise.failure.invalid', authentication_keys: 'login'))
   end
 end

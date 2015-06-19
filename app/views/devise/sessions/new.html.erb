@@ -9,17 +9,17 @@
 
   <div class="registration__row">
     <div class="registration__field">
-      <%= f.form_row :email do %>
-        <%= f.errors_for :email %>
-        <%= f.label :email, class: "form__label-heading" %>
-        <%= f.email_field :email, class: 't-email-field', autofocus: true, "aria-describedby" => "tooltip_email" %>
+      <%= f.form_row :login do %>
+        <%= f.errors_for :login %>
+        <%= f.label :login, class: "form__label-heading" %>
+        <%= f.email_field :login, class: 't-login-field', autofocus: true, "aria-describedby" => "tooltip_login" %>
       <% end %>
     </div>
 
     <div class="registration__helper">
-      <div class="field-help-text field-help-text--jshide" id="tooltip_email" data-dough-component="FieldHelpText">
+      <div class="field-help-text field-help-text--jshide" id="tooltip_login" data-dough-component="FieldHelpText">
         <div class="tooltip__content-container">
-          <p class="tooltip__text"><%= t("authentication.sign_in_page.field_help_texts.email") %></p>
+          <p class="tooltip__text"><%= t("authentication.sign_in_page.field_help_texts.login") %></p>
         </div>
       </div>
     </div>
