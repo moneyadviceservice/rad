@@ -86,7 +86,7 @@ RSpec.feature 'The dashboard firm list page' do
 
   def and_i_can_see_the_list_of_available_trading_names
     expect(firms_index_page).to have_available_trading_names_block
-    expect(firms_index_page.available_trading_names.size).to eq 1
+    expect(firms_index_page).to have_available_trading_names(count: 1)
     expect(firms_index_page.available_trading_names.first).to have_name(text: @lookup_trading_name.name)
   end
 
