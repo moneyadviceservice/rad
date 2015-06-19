@@ -15,6 +15,21 @@ GIT
       rails (>= 3.2)
       sass-rails (~> 4.0.0)
 
+GIT
+  remote: git://github.com/moneyadviceservice/mas-rad_core.git
+  revision: 368ba70467298a4f0cb89fd9afeb0e09284d4f77
+  branch: refactor/rename_edited_to_updated
+  specs:
+    mas-rad_core (0.0.58)
+      active_model_serializers
+      geocoder
+      httpclient
+      pg
+      rails (~> 4.2)
+      redis
+      statsd-ruby
+      uk_phone_numbers
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -128,15 +143,6 @@ GEM
       nokogiri (>= 1.5.9)
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
-    mas-rad_core (0.0.58)
-      active_model_serializers
-      geocoder
-      httpclient
-      pg
-      rails (~> 4.2)
-      redis
-      statsd-ruby
-      uk_phone_numbers
     method_source (0.8.2)
     mime-types (2.5)
     mini_portile (0.6.2)
@@ -313,7 +319,7 @@ DEPENDENCIES
   kaminari
   launchy
   letter_opener
-  mas-rad_core (= 0.0.58)
+  mas-rad_core!
   oga
   pg
   poltergeist
@@ -334,4 +340,4 @@ DEPENDENCIES
   unicorn
 
 BUNDLED WITH
-   1.10.3
+   1.10.4
