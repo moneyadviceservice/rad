@@ -1,10 +1,11 @@
 <div class="l-constrained">
   <div class="l-3col-even">
-    <h2><%= t('dashboard.firms_heading') %></h2>
-
-    <%= link_to(t('dashboard.view_all_firms_link'),
-                dashboard_firms_path,
-                class: 't-view-all-firms') if @firms.count > 3 %>
+    <div class="l-heading-with-link">
+      <h2><%= t('dashboard.firms_heading') %></h2>
+      <%= link_to(t('dashboard.view_all_firms_link'),
+                  dashboard_firms_path,
+                  class: 't-view-all-firms') if @firms.count > 3 %>
+    </div>
 
     <ul class="dashboard-list">
       <%= render partial: 'dashboard/firms/firm', collection: @firms.most_recently_updated(limit: 3) %>
