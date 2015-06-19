@@ -229,7 +229,7 @@ en:
 
     principal:
       full_name:
-        label: Principal
+        label: Principal name
 
     about_your_firm:
       heading: About your firm
