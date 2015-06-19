@@ -65,8 +65,9 @@ module SelfService
           expect(firm.trading_names.max_by(&:id).parent_id).to eq firm.id
         end
 
-        it 'renders the edit page' do
-          expect(response).to render_template 'self_service/trading_names/edit'
+        it 'redirects to the edit page' do
+          redirect_path = edit_self_service_trading_name_path(assigns(:firm))
+          expect(response).to redirect_to redirect_path
         end
       end
 

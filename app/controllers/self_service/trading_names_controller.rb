@@ -9,7 +9,7 @@ module SelfService
       @firm.assign_attributes(firm_params)
       if @firm.save
         flash[:notice] = I18n.t('self_service.trading_name_edit.saved')
-        render :edit
+        redirect_to edit_self_service_trading_name_path(@firm)
       else
         render :new
       end
