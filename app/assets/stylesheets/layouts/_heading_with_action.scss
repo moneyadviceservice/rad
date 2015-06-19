@@ -1,0 +1,28 @@
+%heading-with-action {
+  @include clearfix();
+  @extend %heading-medium;
+  font-size: inherit;
+  font-weight: inherit;
+
+  h2,
+  h3 {
+    float: left;
+    margin: 0;
+  }
+}
+
+.l-heading-with-button {
+  @extend %heading-with-action;
+
+  .button {
+    float: right;
+  }
+}
+
+.l-heading-with-link {
+  @extend %heading-with-action;
+
+  a {
+    float: right;
+  }
+}

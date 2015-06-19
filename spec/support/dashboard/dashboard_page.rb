@@ -7,8 +7,7 @@ module Dashboard
     section :navigation, NavigationSection, '.t-navigation'
     sections :firms, DashboardListItemSection, '.t-firm-list-item'
     sections :trading_names, DashboardListItemSection, '.t-trading-name'
-    element :firm_count, '.t-firm-count'
-    element :adviser_count, '.t-adviser-count'
+    element :view_all_firms_link, '.t-view-all-firms'
     sections :advisers, DashboardListItemSection, '.t-adviser'
   end
 end

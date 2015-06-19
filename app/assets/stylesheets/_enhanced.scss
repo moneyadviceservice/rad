@@ -14,7 +14,7 @@
 @import 'layouts/footer';
 @import 'layouts/half_width';
 @import 'layouts/header';
-@import 'layouts/heading_with_button';
+@import 'layouts/heading_with_action';
 @import 'layouts/identity';
 @import 'layouts/notice';
 @import 'layouts/pre_qualification_questions';
@@ -23,10 +23,10 @@
 @import 'layouts/top_right_action';
 
 @import 'components/button';
+@import 'components/dashboard_list/all';
 @import 'components/firm_detail_links';
 @import 'components/firm/all';
 @import 'components/firm_filter';
-@import 'components/firm_list/all';
 @import 'components/footnote';
 @import 'components/form/all';
 @import 'components/navigation';
