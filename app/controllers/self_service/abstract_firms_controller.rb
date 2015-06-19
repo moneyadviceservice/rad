@@ -8,8 +8,12 @@ module SelfService
 
     def update
       @firm = Firm.find(params[:id])
-      @firm.update(firm_params) && flash[:notice] = I18n.t('self_service.firm_edit.saved')
-      render :edit
+      if @firm.update(firm_params)
+        flash[:notice] = I18n.t('self_service.firm_edit.saved')
+        redirect_to_edit
+      else
+        render :edit
+      end
     end
 
     protected
@@ -46,6 +50,14 @@ module SelfService
 
     def firm_params
       params.require(:firm).permit(*FIRM_PARAMS)
+    end
+
+    def redirect_to_edit(firm_id: params[:firm_id])
+      redirect_to(
+        controller: params[:controller],
+        action: :edit,
+        firm_id: firm_id
+      )
     end
   end
 end

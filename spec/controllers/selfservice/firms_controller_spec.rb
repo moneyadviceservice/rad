@@ -65,8 +65,9 @@ module SelfService
           expect(firm.reload.email_address).to eq firm_params[:email_address]
         end
 
-        it 'renders the edit page' do
-          expect(response).to render_template 'self_service/firms/edit'
+        it 'redirects to the edit page' do
+          redirect_path = edit_self_service_firm_path(assigns(:firm))
+          expect(response).to redirect_to redirect_path
         end
       end
 
