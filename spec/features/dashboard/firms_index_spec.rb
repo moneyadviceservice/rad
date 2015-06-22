@@ -1,9 +1,9 @@
 RSpec.feature 'The dashboard firm list page' do
   let(:firms_index_page) { Dashboard::FirmsIndexPage.new }
 
-  scenario 'The principal can see a list of the firms they are associated with' do
+  scenario 'When there are both available and added trading names' do
     given_i_am_a_fully_registered_principal_user
-    and_i_have_a_firm_with_trading_names
+    and_i_have_a_firm_with_both_available_and_added_trading_names
     and_i_am_logged_in
     when_i_am_on_the_principal_dashboard_firms_page
     then_i_can_see_the_parent_firm_i_am_associated_with
@@ -13,7 +13,7 @@ RSpec.feature 'The dashboard firm list page' do
 
   scenario 'When there are no added or available trading names' do
     given_i_am_a_fully_registered_principal_user
-    and_i_have_a_firm_with_no_trading_names
+    and_i_have_a_firm_with_no_available_or_added_trading_names
     and_i_am_logged_in
     when_i_am_on_the_principal_dashboard_firms_page
     then_i_can_see_the_parent_firm_i_am_associated_with
@@ -34,29 +34,30 @@ RSpec.feature 'The dashboard firm list page' do
   def given_i_am_a_fully_registered_principal_user
     @principal = FactoryGirl.create(:principal)
     @user = FactoryGirl.create(:user, principal: @principal)
-  end
-
-  def and_i_have_a_firm_with_trading_names
-    @lookup_trading_name = FactoryGirl.create(:lookup_subsidiary, fca_number: @principal.fca_number)
-    firm_attrs = FactoryGirl.attributes_for(:firm_with_trading_names,
-                                            fca_number: @principal.fca_number,
-                                            registered_name: @principal.lookup_firm.registered_name)
-    @principal.firm.update_attributes(firm_attrs)
-  end
-
-  def and_i_have_a_firm_with_no_trading_names
     firm_attrs = FactoryGirl.attributes_for(:firm,
                                             fca_number: @principal.fca_number,
                                             registered_name: @principal.lookup_firm.registered_name)
     @principal.firm.update_attributes(firm_attrs)
+  end
+
+  def and_i_have_a_firm_with_both_available_and_added_trading_names
+    @lookup_trading_name = FactoryGirl.create(:lookup_subsidiary, fca_number: @principal.fca_number)
+    @principal.firm.trading_names = create_list(:trading_name,
+                                                3,
+                                                fca_number: @principal.fca_number)
+    expect(@principal.firm.trading_names).to have(3).items
+    expect(@principal.lookup_firm.subsidiaries).to have(1).item
+  end
+
+  def and_i_have_a_firm_with_no_available_or_added_trading_names
+    expect(@principal.firm.trading_names).to be_empty
+    expect(@principal.lookup_firm.subsidiaries).to be_empty
   end
 
   def and_i_have_a_firm_with_available_trading_names_but_none_added
     @lookup_trading_name = FactoryGirl.create(:lookup_subsidiary, fca_number: @principal.fca_number)
-    firm_attrs = FactoryGirl.attributes_for(:firm,
-                                            fca_number: @principal.fca_number,
-                                            registered_name: @principal.lookup_firm.registered_name)
-    @principal.firm.update_attributes(firm_attrs)
+    expect(@principal.lookup_firm.subsidiaries).to have(1).item
+    expect(@principal.firm.trading_names).to be_empty
   end
 
   def and_i_am_logged_in
@@ -68,12 +69,6 @@ RSpec.feature 'The dashboard firm list page' do
     expect(firms_index_page).to be_displayed
   end
 
-  def expect_firm_table_row(firm_row, firm)
-    expect(firm_row).to have_frn(text: firm.fca_number)
-    expect(firm_row).to have_name(text: firm.registered_name)
-    expect(firm_row).to have_principal_name(text: firm.principal.full_name)
-  end
-
   def then_i_can_see_the_parent_firm_i_am_associated_with
     expect(firms_index_page).to have_parent_firm
     expect_firm_table_row(firms_index_page.parent_firm, @principal.firm)
@@ -81,6 +76,7 @@ RSpec.feature 'The dashboard firm list page' do
 
   def and_i_can_see_the_list_of_trading_names_i_am_associated_with
     expect(firms_index_page).to have_trading_names_block
+    expect(firms_index_page).to have_trading_names(count: 3)
 
     trading_names = @principal.firm.trading_names.sorted_by_registered_name
     firms_index_page.trading_names.zip(trading_names).each do |trading_name_section, trading_name|
@@ -90,7 +86,7 @@ RSpec.feature 'The dashboard firm list page' do
 
   def and_i_can_see_the_list_of_available_trading_names
     expect(firms_index_page).to have_available_trading_names_block
-    expect(firms_index_page.available_trading_names.size).to eq 1
+    expect(firms_index_page).to have_available_trading_names(count: 1)
     expect(firms_index_page.available_trading_names.first).to have_name(text: @lookup_trading_name.name)
   end
 
@@ -107,5 +103,13 @@ RSpec.feature 'The dashboard firm list page' do
     expect(firms_index_page).to have_add_trading_names_prompt(
       text: I18n.t('dashboard.firms_index.add_trading_names_prompt'))
     expect(firms_index_page).not_to have_trading_names
+  end
+
+  private
+
+  def expect_firm_table_row(firm_row, firm)
+    expect(firm_row).to have_frn(text: firm.fca_number)
+    expect(firm_row).to have_name(text: firm.registered_name)
+    expect(firm_row).to have_principal_name(text: firm.principal.full_name)
   end
 end

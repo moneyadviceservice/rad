@@ -9,7 +9,7 @@
     <div id="firm-list" class="t-trading-names-block" data-dough-component="MultiTableFilter">
       <h2><%= t('dashboard.firms_index.trading_names_heading') %></h2>
 
-      <% if @lookup_names.present? %>
+      <% if @trading_names.empty? %>
         <%= render 'table_empty_trading_names' %>
       <% else %>
         <%= filter_field :trading_names, locale_prefix: 'dashboard.firms_index.trading_names_filter' %>
