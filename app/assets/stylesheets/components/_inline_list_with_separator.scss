@@ -1,0 +1,15 @@
+.inline-list-with-separator {
+  @extend .unstyled-list;
+  @include clearfix;
+
+  li {
+    float: left;
+    padding-right: .75em;
+    padding-left: .75em;
+    border-right: 1px solid $color-grey-palest;
+
+    &:last-of-type {
+      border-right: 0;
+    }
+  }
+}

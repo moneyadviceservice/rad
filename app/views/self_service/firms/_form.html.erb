@@ -14,10 +14,6 @@
     <% end %>
   </div>
   <%= render partial: 'self_service/firms/questionnaire/firm_details', locals: {f: f} %>
-
-  <% if @firm.persisted? %>
-    <%= render partial: 'self_service/firms/questionnaire/links', locals: {f: f} %>
-  <% end %>
 </section>
 
 <section class="form-section">
