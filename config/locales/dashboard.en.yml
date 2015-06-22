@@ -11,6 +11,8 @@ en:
     view_all_firms_link: View all firms
 
     advisers_index:
+      adviser_names_filter_label: "Filter adviser names:"
+      adviser_names_filter_placeholder: e.g. adviser name
       trading_names_heading: "Trading Name: %{trading_name}"
       add_adviser_button: Add an adviser
       add_adviser_button_full: Add an adviser to %{firm_name}
