@@ -1,26 +1,13 @@
-<div class="l-2col-even-row">
-  <div class="l-2col-even">
-    <%= f.form_row do %>
-      <div class="form__label-heading"><%= t('questionnaire.registered_name.label') %></div>
-      <div class="form__static-value"><%= f.object.registered_name %></div>
-    <% end %>
+<fieldset class="form__group l-half-width">
+  <%= f.form_row :email_address do %>
+    <%= f.errors_for :email_address %>
+    <%= f.label :email_address, t('questionnaire.email_address.label'), class: 'form__label-heading' %>
+    <%= f.text_field :email_address, class: 't-email-address' %>
+  <% end %>
 
-    <%= f.form_row :email_address do %>
-      <%= f.errors_for :email_address %>
-      <%= f.label :email_address, t('questionnaire.email_address.label'), class: 'form__label-heading' %>
-      <%= f.text_field :email_address, class: 't-email-address' %>
-    <% end %>
-  </div>
-  <div class="l-2col-even">
-    <%= f.form_row do %>
-      <div class="form__label-heading"><%= t('questionnaire.principal.full_name.label') %></div>
-      <div class="form__static-value"><%= f.object.principal.full_name %></div>
-    <% end %>
-
-    <%= f.form_row do %>
-      <%= f.errors_for :telephone_number %>
-      <%= f.label :telephone_number, t('questionnaire.telephone_number.label'), class: 'form__label-heading' %>
-      <%= f.text_field :telephone_number, class: 't-telephone-number' %>
-    <% end %>
-  </div>
-</div>
+  <%= f.form_row do %>
+    <%= f.errors_for :telephone_number %>
+    <%= f.label :telephone_number, t('questionnaire.telephone_number.label'), class: 'form__label-heading' %>
+    <%= f.text_field :telephone_number, class: 't-telephone-number' %>
+  <% end %>
+</fieldset>
