@@ -19,7 +19,7 @@
   <div class="l-3col-even">
     <h2><%= t('dashboard.advisers_heading') %></h2>
     <ul class="dashboard-list">
-      <%= render partial: 'dashboard/advisers/adviser', collection: @advisers.most_recently_edited %>
+      <%= render partial: 'dashboard/advisers/adviser', collection: @advisers.most_recently_updated %>
     </ul>
 
     <div class="dashboard__action-button">

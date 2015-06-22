@@ -33,7 +33,7 @@ RSpec.feature 'The principal dashboard' do
     and_i_am_logged_in
 
     when_i_go_to_the_principal_dashboard
-    then_i_can_see_the_list_of_most_recently_edited_advisers
+    then_i_can_see_the_list_of_most_recently_updated_advisers
   end
 
   def given_i_am_a_fully_registered_principal_user
@@ -108,8 +108,8 @@ RSpec.feature 'The principal dashboard' do
     expect(dashboard_page.view_all_firms_link).to have_text(I18n.t('dashboard.view_all_firms_link'))
   end
 
-  def then_i_can_see_the_list_of_most_recently_edited_advisers
-    advisers = Adviser.on_firms_with_fca_number(@principal.firm.fca_number).most_recently_edited
+  def then_i_can_see_the_list_of_most_recently_updated_advisers
+    advisers = Adviser.on_firms_with_fca_number(@principal.firm.fca_number).most_recently_updated
 
     dashboard_page.advisers.each.with_index do |adviser, idx|
       expect(adviser).to have_name(text: advisers[idx].name)

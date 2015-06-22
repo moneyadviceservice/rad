@@ -24,7 +24,9 @@ gem 'dough-ruby',
 gem 'jquery-rails'
 gem 'kaminari'
 gem 'letter_opener', group: :development
-gem 'mas-rad_core', '0.0.58'
+gem 'mas-rad_core',
+    github: 'moneyadviceservice/mas-rad_core',
+    branch: 'refactor/rename_edited_to_updated'
 gem 'oga'
 gem 'pg'
 gem 'ransack'
