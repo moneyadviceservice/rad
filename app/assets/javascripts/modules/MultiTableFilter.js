@@ -61,7 +61,7 @@ define(['jquery', 'jqueryFastLiveFilter', 'DoughBaseComponent'],
   MultiTableFilterProto.toggleFilterGroups = function() {
     var self = this;
 
-    $(self.config.filterGroupSelector).each(function(_index, filterGroup) {
+    self.$find(self.config.filterGroupSelector).each(function(_index, filterGroup) {
       self.toggleFilterGroup(filterGroup);
     });
   };
@@ -71,7 +71,7 @@ define(['jquery', 'jqueryFastLiveFilter', 'DoughBaseComponent'],
    * @param {HTMLElement} filterGroup Element for table group wrapper
    */
   MultiTableFilterProto.toggleFilterGroup = function(filterGroup) {
-    var $filterGroup = $(filterGroup),
+    var $filterGroup = this.$find(filterGroup),
         $list = $filterGroup.find(this.config.filterListSelector),
         $rows = $list.first().find('tr'),
         hiddenRows;
@@ -96,14 +96,19 @@ define(['jquery', 'jqueryFastLiveFilter', 'DoughBaseComponent'],
    * Binds filter library to text field and table groups
    */
   MultiTableFilterProto.bindFilterToElements = function() {
-    var self = this;
+    var self = this,
+        $filterLists = self.$find(self.config.filterListSelector);
 
-    $(self.config.filterFieldSelector).fastLiveFilter(self.config.filterListSelector, {
+    self.$find(self.config.filterFieldSelector).fastLiveFilter($filterLists, {
       selector: self.config.filterTargetSelector,
       callback: function(total) {
         self.toggleFilterGroups();
       }
     });
+  };
+
+  MultiTableFilterProto.$find = function(selector) {
+    return this.$el.find(selector);
   };
 
   return MultiTableFilter;
