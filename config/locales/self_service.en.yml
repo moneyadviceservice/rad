@@ -52,6 +52,6 @@ en:
       saved: Saved successfully
 
     navigation: # name according to route name
-      root: Dashboard
+      root: Home
       firms: Firms
       advisers: Advisers
