@@ -112,8 +112,8 @@
   </fieldset>
 </section>
 
-<div class="l-dashboard-action-row">
-  <%= link_to t('self_service.cancel_button'), :back, class: 'l-dashboard-action-row__cancel' %>
+<div class="l-self-service-action-row">
+  <%= link_to t('self_service.cancel_button'), :back, class: 'l-self-service-action-row__cancel' %>
   <% if f.object.persisted? %>
     <%= f.submit t('self_service.adviser_edit.submit_button'), class: 'button button--primary t-submit' %>
   <% else %>
