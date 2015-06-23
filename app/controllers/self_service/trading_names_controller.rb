@@ -8,7 +8,7 @@ module SelfService
       @firm = initialize_firm_from_lookup_trading_name(params[:lookup_id])
       @firm.assign_attributes(firm_params)
       if @firm.save
-        flash[:notice] = I18n.t('dashboard.trading_name_edit.saved')
+        flash[:notice] = I18n.t('self_service.trading_name_edit.saved')
         render :edit
       else
         render :new

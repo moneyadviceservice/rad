@@ -105,7 +105,7 @@ RSpec.feature 'The principal dashboard' do
 
   def then_there_is_a_link_to_see_all_firms
     expect(dashboard_page).to have_view_all_firms_link
-    expect(dashboard_page.view_all_firms_link).to have_text(I18n.t('dashboard.view_all_firms_link'))
+    expect(dashboard_page.view_all_firms_link).to have_text(I18n.t('self_service.view_all_firms_link'))
   end
 
   def then_i_can_see_the_list_of_most_recently_edited_advisers

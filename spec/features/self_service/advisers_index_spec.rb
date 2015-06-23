@@ -61,7 +61,7 @@ RSpec.feature 'The self service adviser list page' do
   def then_the_parent_firm_section_shows_a_prompt_to_add_an_adviser
     expect(advisers_index_page).to have_parent_firm
     expect(advisers_index_page.parent_firm).to have_no_advisers_message(
-      text: I18n.t('dashboard.advisers_index.no_advisers_message'))
+      text: I18n.t('self_service.advisers_index.no_advisers_message'))
     expect(advisers_index_page.parent_firm).to have_add_adviser_link
   end
 
@@ -71,7 +71,7 @@ RSpec.feature 'The self service adviser list page' do
 
     advisers_index_page.trading_names.each do |trading_name_section|
       expect(trading_name_section).to have_no_advisers_message(
-        text: I18n.t('dashboard.advisers_index.no_advisers_message'))
+        text: I18n.t('self_service.advisers_index.no_advisers_message'))
       expect(trading_name_section).to have_add_adviser_link
     end
   end

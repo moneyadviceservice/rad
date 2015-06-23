@@ -13,12 +13,12 @@ module SelfService
 
     def firm_type_label(firm)
       type = (firm.trading_name?) ? :trading_name : :main_firm
-      I18n.t("dashboard.#{type}")
+      I18n.t("self_service.#{type}")
     end
 
     def add_adviser_button(firm:)
-      label = t('dashboard.advisers_index.add_adviser_button')
-      sr_label = t('dashboard.advisers_index.add_adviser_button_full', firm_name: firm.registered_name)
+      label = t('self_service.advisers_index.add_adviser_button')
+      sr_label = t('self_service.advisers_index.add_adviser_button_full', firm_name: firm.registered_name)
       link_to new_self_service_firm_adviser_path(firm), class: 'button button--primary' do
         concat content_tag(:span, label, 'aria-hidden' => true)
         concat content_tag(:span, sr_label, class: 'visually-hidden')

@@ -8,7 +8,7 @@ module SelfService
 
     def update
       @firm = Firm.find(params[:id])
-      @firm.update(firm_params) && flash[:notice] = I18n.t('dashboard.firm_edit.saved')
+      @firm.update(firm_params) && flash[:notice] = I18n.t('self_service.firm_edit.saved')
       render :edit
     end
 
