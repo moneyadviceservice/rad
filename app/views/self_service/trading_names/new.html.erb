@@ -1,3 +1,7 @@
+<%= render_breadcrumbs [{ locale_key: 'self_service.navigation.root', url: self_service_root_path },
+                        { locale_key: 'self_service.navigation.firms', url: self_service_firms_path },
+                        { name: t('self_service.trading_name_new.title', firm_name: @firm.registered_name) }] %>
+
 <div class="l-constrained">
 
   <h1 class="t-firm-name">
