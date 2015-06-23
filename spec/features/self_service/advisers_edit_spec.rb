@@ -87,7 +87,7 @@ RSpec.feature 'The self service firm edit page' do
   end
 
   def then_i_see_a_success_notice
-    expect(adviser_edit_page).to have_flash_message(text: I18n.t('dashboard.adviser_edit.saved'))
+    expect(adviser_edit_page).to have_flash_message(text: I18n.t('self_service.adviser_edit.saved'))
   end
 
   def then_i_see_validation_messages

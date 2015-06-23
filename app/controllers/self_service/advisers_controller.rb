@@ -18,7 +18,7 @@ module SelfService
       # ^^^ This needs to be resolved by some heavier refactoring
       # work across mas-rad_core and this codebase.
       if @adviser.save
-        flash[:notice] = I18n.t('dashboard.adviser_edit.saved')
+        flash[:notice] = I18n.t('self_service.adviser_edit.saved')
         render :edit
       else
         render :new
@@ -31,7 +31,7 @@ module SelfService
 
     def update
       @adviser = @firm.advisers.find(params[:id])
-      @adviser.update(adviser_params) && flash[:notice] = I18n.t('dashboard.adviser_edit.saved')
+      @adviser.update(adviser_params) && flash[:notice] = I18n.t('self_service.adviser_edit.saved')
 
       render :edit
     end

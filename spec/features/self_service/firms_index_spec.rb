@@ -101,7 +101,7 @@ RSpec.feature 'The self service firm list page' do
   def and_the_trading_names_section_is_showing_a_prompt_to_add_a_trading_name
     expect(firms_index_page).to have_trading_names_block
     expect(firms_index_page).to have_add_trading_names_prompt(
-      text: I18n.t('dashboard.firms_index.add_trading_names_prompt'))
+      text: I18n.t('self_service.firms_index.add_trading_names_prompt'))
     expect(firms_index_page).not_to have_trading_names
   end
 

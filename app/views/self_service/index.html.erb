@@ -1,8 +1,8 @@
 <div class="l-constrained">
   <div class="l-3col-even">
     <div class="l-heading-with-link">
-      <h2><%= t('dashboard.firms_heading') %></h2>
-      <%= link_to(t('dashboard.view_all_firms_link'),
+      <h2><%= t('self_service.firms_heading') %></h2>
+      <%= link_to(t('self_service.view_all_firms_link'),
                   self_service_firms_path,
                   class: 't-view-all-firms') if @firms.count > 3 %>
     </div>
@@ -12,18 +12,18 @@
     </ul>
 
     <div class="dashboard__action-button">
-      <%= button_primary t('dashboard.add_trading_name_button') %>
+      <%= button_primary t('self_service.add_trading_name_button') %>
     </div>
   </div>
 
   <div class="l-3col-even">
-    <h2><%= t('dashboard.advisers_heading') %></h2>
+    <h2><%= t('self_service.advisers_heading') %></h2>
     <ul class="dashboard-list">
       <%= render partial: 'self_service/advisers/adviser', collection: @advisers.most_recently_edited %>
     </ul>
 
     <div class="dashboard__action-button">
-      <%= button_primary t('dashboard.add_adviser_button') %>
+      <%= button_primary t('self_service.add_adviser_button') %>
     </div>
   </div>
 </div>

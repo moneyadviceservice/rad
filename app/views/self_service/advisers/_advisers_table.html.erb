@@ -21,8 +21,8 @@
       <% else %>
         <tr>
           <td class="t-no-advisers-message" colspan="4">
-            <%= t('dashboard.advisers_index.no_advisers_message') %>
-            <%= link_to(t('dashboard.advisers_index.add_adviser_link', firm_name: firm.registered_name),
+            <%= t('self_service.advisers_index.no_advisers_message') %>
+            <%= link_to(t('self_service.advisers_index.add_adviser_link', firm_name: firm.registered_name),
                         new_self_service_firm_adviser_path(firm),
                         class: 't-add-adviser-link')  %>
           </td>

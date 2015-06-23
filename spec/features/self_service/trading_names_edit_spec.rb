@@ -74,7 +74,7 @@ RSpec.feature 'The self service trading name edit page' do
   end
 
   def then_i_see_a_success_notice
-    expect(trading_name_edit_page).to have_flash_message(text: I18n.t('dashboard.firm_edit.saved'))
+    expect(trading_name_edit_page).to have_flash_message(text: I18n.t('self_service.firm_edit.saved'))
   end
 
   def then_i_see_validation_messages
