@@ -17,12 +17,10 @@ en:
 
     adviser_new:
       title: "Add an adviser to %{firm_name}"
-      new_adviser_heading: Add an adviser
       submit_button: Add adviser
 
     adviser_edit:
       title: "Edit adviser: %{adviser_name} (%{adviser_reference_number})"
-      edit_adviser_heading: Edit adviser
       submit_button: Save adviser
       saved: Saved successfully
 
