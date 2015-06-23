@@ -1,6 +1,6 @@
 RSpec.feature 'An invited principal can create a user account' do
   let(:accept_invitation_page) { AcceptInvitationPage.new }
-  let(:dashboard_page) { Dashboard::DashboardPage.new }
+  let(:dashboard_page) { SelfService::DashboardPage.new }
   let(:password) { 'ABCabc123@£$' }
 
   scenario 'Principal accepts the invite and sets a password' do

@@ -1,0 +1,24 @@
+<div class="table-wrapper">
+  <table class="l-half-width">
+    <thead>
+      <tr>
+        <th><%= Firm.human_attribute_name(:fca_number) %></th>
+        <th><%= Firm.human_attribute_name(:registered_name)  %></th>
+        <th><%= t('dashboard.firms_index.principal_column_heading') %></th>
+      </tr>
+    </thead>
+    <tbody data-dough-filter-rows>
+      <% @trading_names.sorted_by_registered_name.each do |trading_name| %>
+        <tr class="t-trading-name-table-row">
+          <td class="t-frn" data-dough-filterable><%= trading_name.fca_number %></td>
+          <td class="t-firm-name" data-dough-filterable>
+            <%= link_to edit_self_service_trading_name_path(trading_name), class: 't-edit-link' do %>
+              <%= trading_name.registered_name %>
+            <% end %>
+          </td>
+          <td class="t-principal-name" data-dough-filterable><%= trading_name.principal.full_name %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

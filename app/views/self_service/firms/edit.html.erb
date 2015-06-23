@@ -1,0 +1,18 @@
+<%= render_breadcrumbs [{ locale_key: 'dashboard.navigation.root', url: self_service_root_path },
+                        { locale_key: 'dashboard.navigation.firms', url: self_service_firms_path },
+                        { name: @firm.registered_name }] %>
+
+<div class="l-constrained">
+  <h1 class="t-firm-name">
+    <%= @firm.registered_name %>
+  </h1>
+
+  <%= form_for @firm,
+               url: self_service_firm_path(@firm),
+               builder: Dough::Forms::Builders::Validation,
+               html: { class: 'form' } do |f| %>
+
+    <%= render partial: 'self_service/firms/form', locals: {f: f} %>
+
+  <% end %>
+</div>
