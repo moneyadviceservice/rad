@@ -9,7 +9,7 @@
 
 @import 'layouts/advisers_table';
 @import 'layouts/constrained';
-@import 'layouts/dashboard';
+@import 'layouts/self_service';
 @import 'layouts/firm';
 @import 'layouts/footer';
 @import 'layouts/half_width';
@@ -23,7 +23,7 @@
 @import 'layouts/top_right_action';
 
 @import 'components/button';
-@import 'components/dashboard_list/all';
+@import 'components/self_service_list/all';
 @import 'components/firm_detail_links';
 @import 'components/firm/all';
 @import 'components/firm_filter';
@@ -33,7 +33,7 @@
 @import 'components/notice/all';
 @import 'components/form_section';
 
-@import 'page_specific/dashboard';
+@import 'page_specific/self_service';
 
 // Shame
 

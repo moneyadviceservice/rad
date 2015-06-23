@@ -1,6 +1,6 @@
 RSpec.feature 'Principal can sign in' do
   let(:sign_in_page) { SignInPage.new }
-  let(:dashboard_page) { Dashboard::DashboardPage.new }
+  let(:dashboard_page) { SelfService::DashboardPage.new }
 
   scenario 'Principal can sign in with email and password' do
     given_the_principal_user_exists

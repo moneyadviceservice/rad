@@ -1,0 +1,15 @@
+<div class="l-constrained">
+
+  <h1 class="t-firm-name">
+    <%= t('self_service.adviser_new.new_adviser_heading') %>
+  </h1>
+
+  <%= form_for @adviser,
+               url: self_service_firm_advisers_path(@firm),
+               builder: Dough::Forms::Builders::Validation,
+               html: { class: 'form' } do |f| %>
+
+    <%= render partial: 'self_service/advisers/form', locals: {f: f} %>
+
+  <% end %>
+</div>

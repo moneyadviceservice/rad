@@ -1,0 +1,59 @@
+<% if @firm.errors.any? %>
+  <div class="t-validation-summary">
+    <%= f.validation_summary %>
+  </div>
+<% end %>
+
+<section class="form-section">
+  <div class="l-heading-with-button form-section__heading">
+    <% if f.object.trading_name? %>
+      <h2><%= t('self_service.firm_edit.trading_name_heading') %></h2>
+    <% else %>
+      <h2><%= t('self_service.firm_edit.firm_heading') %></h2>
+      <a class="button button--primary"><%= t('self_service.add_trading_name_button') %></a>
+    <% end %>
+  </div>
+  <%= render partial: 'self_service/firms/questionnaire/firm_details', locals: {f: f} %>
+
+  <% if @firm.persisted? %>
+    <%= render partial: 'self_service/firms/questionnaire/links', locals: {f: f} %>
+  <% end %>
+</section>
+
+<section class="form-section">
+  <h2 class="form-section__heading"><%= t('self_service.firm_edit.address_heading') %></h2>
+  <%= render partial: 'self_service/firms/questionnaire/address', locals: {f: f} %>
+</section>
+
+<section class="form-section">
+  <h2 class="form-section__heading"><%= t('self_service.firm_edit.questionnaire_heading') %></h2>
+
+  <div class="l-3col-even-row">
+    <div class="l-3col-even">
+      <%= render partial: 'self_service/firms/questionnaire/advice_methods', locals: {f: f} %>
+      <%= render partial: 'self_service/firms/questionnaire/initial_meeting', locals: {f: f} %>
+      <%= render partial: 'self_service/firms/questionnaire/initial_advice', locals: {f: f} %>
+    </div>
+
+    <div class="l-3col-even">
+      <%= render partial: 'self_service/firms/questionnaire/ongoing_advice', locals: {f: f} %>
+      <%= render partial: 'self_service/firms/questionnaire/payment_methods', locals: {f: f} %>
+      <%= render partial: 'self_service/firms/questionnaire/minimum_fee', locals: {f: f} %>
+      <%= render partial: 'self_service/firms/questionnaire/investment_sizes', locals: {f: f} %>
+    </div>
+
+    <div class="l-3col-even">
+      <%= render partial: 'self_service/firms/questionnaire/business_split', locals: {f: f} %>
+    </div>
+  </div>
+</section>
+
+<section class="form-section">
+  <%= render partial: 'self_service/firms/questionnaire/supplementary_information', locals: {f: f} %>
+</section>
+
+
+<div class="l-self-service-action-row">
+  <%= link_to t('self_service.cancel_button'), :back, class: 'l-self-service-action-row__cancel' %>
+  <%= f.submit t('self_service.save_button'), class: 'button button--primary t-save-button' %>
+</div>

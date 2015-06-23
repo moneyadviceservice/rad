@@ -1,0 +1,28 @@
+<%= render_breadcrumbs [{ locale_key: 'self_service.navigation.root', url: self_service_root_path },
+                        { locale_key: 'self_service.navigation.advisers' }] %>
+
+<div class="l-constrained" data-dough-component="MultiTableFilter">
+  <div class="l-heading-with-button">
+    <h2><%= @firm.registered_name %></h2>
+    <%= add_adviser_button(firm: @firm) %>
+  </div>
+
+  <div class="t-parent-firm">
+    <%= filter_field :trading_names, locale_prefix: 'self_service.advisers_index.adviser_names_filter' %>
+
+    <div data-dough-filter-group>
+      <%= render 'self_service/advisers/advisers_table', firm: @firm %>
+    </div>
+  </div>
+
+  <% @trading_names.each do |trading_name| %>
+    <div class="t-trading-name" data-dough-filter-group>
+      <div class="l-heading-with-button">
+        <h2><%= t('self_service.advisers_index.trading_names_heading', trading_name: trading_name.registered_name) %></h2>
+        <%= add_adviser_button(firm: trading_name) %>
+      </div>
+
+      <%= render 'self_service/advisers/advisers_table', firm: trading_name %>
+    </div>
+  <% end %>
+</div>
