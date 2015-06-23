@@ -7,22 +7,22 @@
                   class: 't-view-all-firms') if @firms.count > 3 %>
     </div>
 
-    <ul class="dashboard-list">
+    <ul class="self-service-list">
       <%= render partial: 'self_service/firms/firm', collection: @firms.most_recently_updated(limit: 3) %>
     </ul>
 
-    <div class="dashboard__action-button">
+    <div class="self-service__action-button">
       <%= button_primary t('self_service.add_trading_name_button') %>
     </div>
   </div>
 
   <div class="l-3col-even">
     <h2><%= t('self_service.advisers_heading') %></h2>
-    <ul class="dashboard-list">
+    <ul class="self-service-list">
       <%= render partial: 'self_service/advisers/adviser', collection: @advisers.most_recently_edited %>
     </ul>
 
-    <div class="dashboard__action-button">
+    <div class="self-service__action-button">
       <%= button_primary t('self_service.add_adviser_button') %>
     </div>
   </div>
