@@ -5,19 +5,14 @@
 <% end %>
 
 <section class="form-section">
-  <div class="l-heading-with-button form-section__heading">
+  <h2 class="form-section__heading">
     <% if f.object.trading_name? %>
-      <h2><%= t('self_service.firm_edit.trading_name_heading') %></h2>
+      <%= t('self_service.firm_edit.trading_name_heading') %>
     <% else %>
-      <h2><%= t('self_service.firm_edit.firm_heading') %></h2>
-      <a class="button button--primary"><%= t('self_service.add_trading_name_button') %></a>
+      <%= t('self_service.firm_edit.firm_heading') %>
     <% end %>
-  </div>
+  </h2>
   <%= render partial: 'self_service/firms/questionnaire/firm_details', locals: {f: f} %>
-
-  <% if @firm.persisted? %>
-    <%= render partial: 'self_service/firms/questionnaire/links', locals: {f: f} %>
-  <% end %>
 </section>
 
 <section class="form-section">

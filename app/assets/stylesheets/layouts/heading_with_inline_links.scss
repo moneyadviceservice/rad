@@ -1,0 +1,21 @@
+.l-heading-with-inline-links {
+  // Only supports h1 ~ ul
+  @extend %heading-with-action;
+
+  ul {
+    @extend .unstyled-list;
+    display: inline-block;
+    padding-top: 18px;
+    margin-bottom: 0;
+    margin-left: 1em;
+
+    li {
+      font-size: 1.25rem;
+      margin-bottom: 0;
+
+      &:first-child {
+        padding-left: 0;
+      }
+    }
+  }
+}

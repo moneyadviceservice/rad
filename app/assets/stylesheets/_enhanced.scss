@@ -15,6 +15,7 @@
 @import 'layouts/half_width';
 @import 'layouts/header';
 @import 'layouts/heading_with_action';
+@import 'layouts/heading_with_inline_links';
 @import 'layouts/identity';
 @import 'layouts/notice';
 @import 'layouts/pre_qualification_questions';
@@ -24,7 +25,6 @@
 
 @import 'components/button';
 @import 'components/self_service_list/all';
-@import 'components/firm_detail_links';
 @import 'components/firm/all';
 @import 'components/firm_filter';
 @import 'components/footnote';
@@ -32,6 +32,7 @@
 @import 'components/navigation';
 @import 'components/notice/all';
 @import 'components/form_section';
+@import 'components/inline_list_with_separator';
 
 @import 'page_specific/self_service';
 
