@@ -1,6 +1,6 @@
 RSpec.feature 'An invited principal can create a user account' do
   let(:accept_invitation_page) { AcceptInvitationPage.new }
-  let(:dashboard_page) { SelfService::DashboardPage.new }
+  let(:firms_index_page) { SelfService::FirmsIndexPage.new }
   let(:password) { 'ABCabc123@£$' }
 
   scenario 'Principal accepts the invite and sets a password' do
@@ -19,7 +19,7 @@ RSpec.feature 'An invited principal can create a user account' do
 
     when_they_set_a_valid_password
     and_submit_the_form
-    then_they_are_on_the_dashboard_page
+    then_they_are_on_the_firms_index_page
     and_they_see_a_confirmation_message
     and_they_are_signed_in
   end
@@ -62,12 +62,12 @@ RSpec.feature 'An invited principal can create a user account' do
     accept_invitation_page.submit.click
   end
 
-  def then_they_are_on_the_dashboard_page
-    expect(dashboard_page).to be_displayed
+  def then_they_are_on_the_firms_index_page
+    expect(firms_index_page).to be_displayed
   end
 
   def and_they_see_a_confirmation_message
-    expect(dashboard_page)
+    expect(firms_index_page)
       .to have_flash_message(text: I18n.t('devise.invitations.updated'))
   end
 
@@ -77,12 +77,12 @@ RSpec.feature 'An invited principal can create a user account' do
 
   def and_they_are_signed_in
     expect(@user.reload.sign_in_count).to eq(1)
-    expect(dashboard_page.navigation).to have_sign_out
+    expect(firms_index_page.navigation).to have_sign_out
   end
 
   def and_they_are_not_signed_in
     expect(@user.reload.sign_in_count).to eq 0
-    expect(dashboard_page.navigation).to have_sign_in
+    expect(firms_index_page.navigation).to have_sign_in
   end
 
   private

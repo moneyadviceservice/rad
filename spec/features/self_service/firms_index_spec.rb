@@ -5,7 +5,7 @@ RSpec.feature 'The self service firm list page' do
     given_i_am_a_fully_registered_principal_user
     and_i_have_a_firm_with_both_available_and_added_trading_names
     and_i_am_logged_in
-    when_i_am_on_the_principal_dashboard_firms_page
+    when_i_am_on_the_principals_firms_index_page
     then_i_can_see_the_parent_firm_i_am_associated_with
     and_i_can_see_the_list_of_trading_names_i_am_associated_with
     and_i_can_see_the_list_of_available_trading_names
@@ -15,7 +15,7 @@ RSpec.feature 'The self service firm list page' do
     given_i_am_a_fully_registered_principal_user
     and_i_have_a_firm_with_no_available_or_added_trading_names
     and_i_am_logged_in
-    when_i_am_on_the_principal_dashboard_firms_page
+    when_i_am_on_the_principals_firms_index_page
     then_i_can_see_the_parent_firm_i_am_associated_with
     and_the_trading_names_block_is_not_shown
     and_the_available_trading_names_block_is_not_shown
@@ -25,7 +25,7 @@ RSpec.feature 'The self service firm list page' do
     given_i_am_a_fully_registered_principal_user
     and_i_have_a_firm_with_available_trading_names_but_none_added
     and_i_am_logged_in
-    when_i_am_on_the_principal_dashboard_firms_page
+    when_i_am_on_the_principals_firms_index_page
     then_i_can_see_the_parent_firm_i_am_associated_with
     and_the_trading_names_section_is_showing_a_prompt_to_add_a_trading_name
     and_i_can_see_the_list_of_available_trading_names
@@ -64,7 +64,7 @@ RSpec.feature 'The self service firm list page' do
     login_as(@user, scope: :user)
   end
 
-  def when_i_am_on_the_principal_dashboard_firms_page
+  def when_i_am_on_the_principals_firms_index_page
     firms_index_page.load
     expect(firms_index_page).to be_displayed
   end

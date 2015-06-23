@@ -1,18 +1,18 @@
 RSpec.feature 'Principal can sign in' do
   let(:sign_in_page) { SignInPage.new }
-  let(:dashboard_page) { SelfService::DashboardPage.new }
+  let(:firms_index_page) { SelfService::FirmsIndexPage.new }
 
   scenario 'Principal can sign in with email and password' do
     given_the_principal_user_exists
     when_they_sign_in_with_email_and_password
-    they_see_the_dashboard_page
+    they_see_the_firms_index_page
     they_have_logged_in
   end
 
   scenario 'Principal can sign in with FRN and password' do
     given_the_principal_user_exists
     when_they_sign_in_with_frn_and_password
-    they_see_the_dashboard_page
+    they_see_the_firms_index_page
     they_have_logged_in
   end
 
@@ -51,16 +51,16 @@ RSpec.feature 'Principal can sign in' do
 
   def they_have_logged_in
     expect(@user.reload.sign_in_count).to eq 1
-    expect(dashboard_page.navigation).to have_sign_out
+    expect(firms_index_page.navigation).to have_sign_out
   end
 
   def they_have_not_logged_in
     expect(@user.reload.sign_in_count).to eq 0
-    expect(dashboard_page.navigation).to have_sign_in
+    expect(firms_index_page.navigation).to have_sign_in
   end
 
-  def they_see_the_dashboard_page
-    expect(dashboard_page).to be_displayed
+  def they_see_the_firms_index_page
+    expect(firms_index_page).to be_displayed
   end
 
   def they_see_the_sign_in_page

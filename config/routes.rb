@@ -29,7 +29,7 @@ Rails.application.routes.draw do
   end
 
   namespace :self_service do
-    root 'dashboard#index'
+    root to: redirect('/self_service/firms')
     resources :advisers, only: [:index]
     resources :trading_names, only: [:new, :create, :edit, :update]
 

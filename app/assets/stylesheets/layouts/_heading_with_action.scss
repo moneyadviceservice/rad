@@ -19,10 +19,3 @@
   }
 }
 
-.l-heading-with-link {
-  @extend %heading-with-action;
-
-  a {
-    float: right;
-  }
-}

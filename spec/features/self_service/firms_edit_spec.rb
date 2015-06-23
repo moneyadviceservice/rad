@@ -18,7 +18,7 @@ RSpec.feature 'The self service firm edit page' do
     given_i_am_a_fully_registered_principal_user
     and_i_have_a_firm
     and_i_am_logged_in
-    when_i_am_on_the_principal_dashboard_firms_page
+    when_i_am_on_the_firms_page
     and_i_click_the_edit_link_for_my_firm
     then_i_see_the_edit_page_for_my_firm
     when_i_change_the_information
@@ -31,7 +31,7 @@ RSpec.feature 'The self service firm edit page' do
     given_i_am_a_fully_registered_principal_user
     and_i_have_a_firm
     and_i_am_logged_in
-    when_i_am_on_the_principal_dashboard_firms_page
+    when_i_am_on_the_firms_page
     and_i_click_the_edit_link_for_my_firm
     then_i_see_the_edit_page_for_my_firm
     when_i_invalidate_the_information
@@ -55,7 +55,7 @@ RSpec.feature 'The self service firm edit page' do
     login_as(@user, scope: :user)
   end
 
-  def when_i_am_on_the_principal_dashboard_firms_page
+  def when_i_am_on_the_firms_page
     firms_index_page.load
     expect(firms_index_page).to be_displayed
   end
