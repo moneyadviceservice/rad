@@ -1,0 +1,16 @@
+<ul class="firm-detail-links">
+  <% unless f.object.trading_name? %>
+    <li class="firm-detail-links__item">
+      <%= link_to self_service_firms_path do %>
+        <%= t('activerecord.models.trading_name.other') %>
+        (<%= f.object.trading_names.count %>)
+      <% end %>
+    </li>
+  <% end %>
+  <li class="firm-detail-links__item">
+    <%= link_to self_service_advisers_path do %>
+      <%= t('activerecord.models.adviser.other') %>
+      (<%= f.object.advisers.count %>)
+    <% end %>
+  </li>
+</ul>

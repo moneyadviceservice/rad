@@ -1,6 +1,6 @@
 require_relative 'advisers_table_row_section'
 
-module Dashboard
+module SelfService
   class AdvisersTableSection < SitePrism::Section
     sections :advisers, AdvisersTableRowSection, '.t-advisers-table-row'
 

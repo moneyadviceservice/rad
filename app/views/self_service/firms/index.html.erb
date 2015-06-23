@@ -1,0 +1,29 @@
+<%= render_breadcrumbs [{ locale_key: 'dashboard.navigation.root', url: self_service_root_path },
+                        { locale_key: 'dashboard.navigation.firms' }] %>
+
+<div class="l-constrained">
+  <h2><%= t('dashboard.firms_index.firm_heading') %></h2>
+  <%= render 'table_parent_firm' %>
+
+  <% if @trading_names.present? || @lookup_names.present? %>
+    <div id="firm-list" class="t-trading-names-block" data-dough-component="MultiTableFilter">
+      <h2><%= t('dashboard.firms_index.trading_names_heading') %></h2>
+
+      <% if @trading_names.empty? %>
+        <%= render 'table_empty_trading_names' %>
+      <% else %>
+        <%= filter_field :trading_names, locale_prefix: 'dashboard.firms_index.trading_names_filter' %>
+        <%= render 'table_trading_names' %>
+      <% end %>
+    </div>
+  <% end %>
+
+  <% if @lookup_names.present? %>
+    <div id="trading-name-list" class="t-available-trading-names-block" data-dough-component="MultiTableFilter">
+      <h2><%= t('dashboard.firms_index.available_trading_names_heading') %></h2>
+
+      <%= filter_field :trading_names, locale_prefix: 'dashboard.firms_index.available_trading_names_filter' %>
+      <%= render 'table_available_trading_names' %>
+    </div>
+  <% end %>
+</div>

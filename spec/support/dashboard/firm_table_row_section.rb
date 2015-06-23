@@ -1,4 +1,4 @@
-module Dashboard
+module SelfService
   class FirmTableRowSection < SitePrism::Section
     element :frn, '.t-frn'
     element :name, '.t-firm-name'

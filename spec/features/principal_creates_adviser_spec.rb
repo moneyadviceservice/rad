@@ -9,7 +9,7 @@ RSpec.feature 'Principal creates Adviser' do
   let(:user) { FactoryGirl.create(:user, principal: principal) }
   let(:adviser_page) { AdviserPage.new }
   let(:firm_page) { FirmPage.new }
-  let(:dashboard_page) { Dashboard::DashboardPage.new }
+  let(:dashboard_page) { SelfService::DashboardPage.new }
   let(:adviser_confirmation_page) { AdviserConfirmationPage.new }
 
   let!(:qualifications) { create_list(:qualification, 2) }

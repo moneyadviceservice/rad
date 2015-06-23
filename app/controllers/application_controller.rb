@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   def after_sign_in_path_for(user)
-    stored_location_for(user) || dashboard_root_path
+    stored_location_for(user) || self_service_root_path
   end
 
   def configure_permitted_parameters

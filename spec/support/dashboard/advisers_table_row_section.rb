@@ -1,4 +1,4 @@
-module Dashboard
+module SelfService
   class AdvisersTableRowSection < SitePrism::Section
     element :reference_number, '.t-adviser-reference-number'
     element :name, '.t-adviser-name'

@@ -1,7 +1,7 @@
-module Dashboard
+module SelfService
   class FirmsIndexPage < SitePrism::Page
-    set_url '/dashboard/firms'
-    set_url_matcher %r{/dashboard/firms}
+    set_url '/selfservice/firms'
+    set_url_matcher %r{/selfservice/firms}
 
     section :parent_firm, FirmTableRowSection, '.t-parent-firm-table-row'
     element :trading_names_block, '.t-trading-names-block'
