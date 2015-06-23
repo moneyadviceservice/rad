@@ -1,7 +1,7 @@
 module SelfService
   class DashboardPage < SitePrism::Page
-    set_url '/selfservice'
-    set_url_matcher %r{/selfservice}
+    set_url '/self_service'
+    set_url_matcher %r{/self_service}
 
     element :flash_message, '.t-flash-message'
     section :navigation, NavigationSection, '.t-navigation'

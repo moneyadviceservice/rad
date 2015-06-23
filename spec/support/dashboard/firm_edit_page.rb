@@ -1,7 +1,7 @@
 module SelfService
   class FirmEditPage < SitePrism::Page
-    set_url '/selfservice/firms/{firm}'
-    set_url_matcher %r{/selfservice/firms/\d+}
+    set_url '/self_service/firms/{firm}'
+    set_url_matcher %r{/self_service/firms/\d+}
 
     element :flash_message, '.t-flash-message'
     element :validation_summary, '.t-validation-summary'

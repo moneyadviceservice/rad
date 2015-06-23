@@ -1,7 +1,7 @@
 module SelfService
   class FirmsIndexPage < SitePrism::Page
-    set_url '/selfservice/firms'
-    set_url_matcher %r{/selfservice/firms}
+    set_url '/self_service/firms'
+    set_url_matcher %r{/self_service/firms}
 
     section :parent_firm, FirmTableRowSection, '.t-parent-firm-table-row'
     element :trading_names_block, '.t-trading-names-block'

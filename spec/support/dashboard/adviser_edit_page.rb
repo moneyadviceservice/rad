@@ -1,7 +1,7 @@
 module SelfService
   class AdviserEditPage < SitePrism::Page
-    set_url '/selfservice/firms/{firm}/advisers/{adviser}'
-    set_url_matcher %r{/selfservice/firms/\d+/advisers/\d+}
+    set_url '/self_service/firms/{firm}/advisers/{adviser}'
+    set_url_matcher %r{/self_service/firms/\d+/advisers/\d+}
 
     element :adviser_postcode, '.t-postcode'
     element :travel_distance, '.t-travel-distance'

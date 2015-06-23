@@ -28,7 +28,7 @@ Rails.application.routes.draw do
     resources :advisers, only: :show
   end
 
-  namespace :self_service, path: 'selfservice' do
+  namespace :self_service do
     root 'dashboard#index'
     resources :advisers, only: [:index]
     resources :trading_names, only: [:new, :create, :edit, :update]
