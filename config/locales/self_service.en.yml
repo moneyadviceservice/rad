@@ -73,6 +73,9 @@ en:
       title: "Edit: %{firm_name}"
       saved: Saved successfully
 
+    principal_edit:
+      saved: Saved successfully
+
     navigation: # name according to route name
       root: Home
       firms: Firms
