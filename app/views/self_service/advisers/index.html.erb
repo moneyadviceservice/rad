@@ -1,12 +1,10 @@
-<% content_for(:page_title) { t('self_service.advisers_index.title', firm_name: @firm.registered_name) } %>
-<%= render_breadcrumbs [{ locale_key: 'self_service.navigation.root', url: self_service_root_path },
-                        { locale_key: 'self_service.navigation.firms', url: self_service_firms_path },
-                        { name: t('self_service.firm_edit.title', firm_name: @firm.registered_name), url: edit_self_service_firm_path(@firm) },
-                        { name: content_for(:page_title) }] %>
+<%= render_breadcrumbs(breadcrumbs_firm_advisers) %>
 
 <div class="l-constrained" data-dough-component="MultiTableFilter">
   <div class="l-heading-with-button">
-    <h2 class="t-firm-name"><%= content_for(:page_title) %></h2>
+    <h2 class="t-firm-name">
+      <%= t('self_service.advisers_index.title', firm_name: @firm.registered_name) %>
+    </h2>
     <%= add_adviser_button(firm: @firm) %>
   </div>
 
