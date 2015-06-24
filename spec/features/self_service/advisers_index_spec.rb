@@ -5,7 +5,7 @@ RSpec.feature 'The self service adviser list page' do
     given_i_am_a_fully_registered_principal_user
     and_i_have_a_firm_with_trading_names_and_advisers
     and_i_am_logged_in
-    when_i_am_on_the_principal_dashboard_advisers_page
+    when_i_am_on_the_advisers_page
     then_i_can_see_the_advisers_for_the_parent_firm
     then_i_can_see_the_advisers_for_each_trading_name
   end
@@ -14,7 +14,7 @@ RSpec.feature 'The self service adviser list page' do
     given_i_am_a_fully_registered_principal_user
     and_i_have_a_firm_with_trading_names_and_no_advisers
     and_i_am_logged_in
-    when_i_am_on_the_principal_dashboard_advisers_page
+    when_i_am_on_the_advisers_page
     then_the_parent_firm_section_shows_a_prompt_to_add_an_adviser
     then_each_trading_name_section_shows_a_prompt_to_add_an_adviser
   end
@@ -42,7 +42,7 @@ RSpec.feature 'The self service adviser list page' do
     login_as(@user, scope: :user)
   end
 
-  def when_i_am_on_the_principal_dashboard_advisers_page
+  def when_i_am_on_the_advisers_page
     advisers_index_page.load
     expect(advisers_index_page).to be_displayed
   end

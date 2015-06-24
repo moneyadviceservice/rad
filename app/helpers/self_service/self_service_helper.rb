@@ -11,11 +11,6 @@ module SelfService
       end
     end
 
-    def firm_type_label(firm)
-      type = (firm.trading_name?) ? :trading_name : :main_firm
-      I18n.t("self_service.#{type}")
-    end
-
     def add_adviser_button(firm:)
       label = t('self_service.advisers_index.add_adviser_button')
       sr_label = t('self_service.advisers_index.add_adviser_button_full', firm_name: firm.registered_name)
