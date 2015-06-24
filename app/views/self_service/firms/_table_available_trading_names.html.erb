@@ -1,10 +1,14 @@
 <div class="table-wrapper">
-  <table class="l-half-width">
+  <table class="firms-table">
     <thead>
       <tr>
-        <th><%= Firm.human_attribute_name(:fca_number) %></th>
-        <th><%= Firm.human_attribute_name(:registered_name) %></th>
-        <th></th>
+        <th class="firms-table__frn">
+          <%= Firm.human_attribute_name(:fca_number) %>
+        </th>
+        <th class="firms-table__name">
+          <%= Firm.human_attribute_name(:registered_name) %>
+        </th>
+        <th class="firms-table__action"></th>
       </tr>
     </thead>
     <tbody data-dough-filter-rows>

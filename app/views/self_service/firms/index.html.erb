@@ -9,7 +9,9 @@
       <h2><%= t('self_service.firms_index.trading_names_heading') %></h2>
 
       <% if @trading_names.empty? %>
-        <%= render 'table_empty_trading_names' %>
+        <p class="t-add-trading-names-prompt">
+          <%= t('self_service.firms_index.add_trading_names_prompt') %>
+        </p>
       <% else %>
         <%= filter_field :trading_names, locale_prefix: 'self_service.firms_index.trading_names_filter' %>
         <%= render 'table_trading_names' %>
