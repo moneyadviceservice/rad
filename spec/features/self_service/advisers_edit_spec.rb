@@ -56,12 +56,12 @@ RSpec.feature 'The self service firm edit page' do
   end
 
   def when_i_am_on_the_advisers_page
-    advisers_index_page.load
+    advisers_index_page.load(firm_id: @principal.firm.id)
     expect(advisers_index_page).to be_displayed
   end
 
   def and_i_click_the_edit_link_for_my_adviser
-    advisers_index_page.parent_firm.advisers.first.edit_link.click
+    advisers_index_page.advisers.first.edit_link.click
   end
 
   def then_i_see_the_edit_page_for_my_adviser

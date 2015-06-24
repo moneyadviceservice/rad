@@ -1,9 +1,12 @@
+<% content_for(:page_title) { t('self_service.advisers_index.title', firm_name: @firm.registered_name) } %>
 <%= render_breadcrumbs [{ locale_key: 'self_service.navigation.root', url: self_service_root_path },
-                        { locale_key: 'self_service.navigation.advisers' }] %>
+                        { locale_key: 'self_service.navigation.firms', url: self_service_firms_path },
+                        { name: t('self_service.firm_edit.title', firm_name: @firm.registered_name), url: edit_self_service_firm_path(@firm) },
+                        { name: content_for(:page_title) }] %>
 
 <div class="l-constrained" data-dough-component="MultiTableFilter">
   <div class="l-heading-with-button">
-    <h2><%= @firm.registered_name %></h2>
+    <h2 class="t-firm-name"><%= content_for(:page_title) %></h2>
     <%= add_adviser_button(firm: @firm) %>
   </div>
 
@@ -14,15 +17,4 @@
       <%= render 'self_service/advisers/advisers_table', firm: @firm %>
     </div>
   </div>
-
-  <% @trading_names.each do |trading_name| %>
-    <div class="t-trading-name" data-dough-filter-group>
-      <div class="l-heading-with-button">
-        <h2><%= t('self_service.advisers_index.trading_names_heading', trading_name: trading_name.registered_name) %></h2>
-        <%= add_adviser_button(firm: trading_name) %>
-      </div>
-
-      <%= render 'self_service/advisers/advisers_table', firm: trading_name %>
-    </div>
-  <% end %>
 </div>

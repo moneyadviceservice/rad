@@ -7,7 +7,7 @@
           <li class="breadcrumbs__item" itemscope itemtype="http://data-vocabulary.org/Breadcrumb">
             <a class="breadcrumbs__link" href="<%= breadcrumb[:url] %>" itemprop="url">
               <span itemprop="title">
-                <%= t(breadcrumb[:locale_key]) %>
+                <%= breadcrumb[:name] || t(breadcrumb[:locale_key]) %>
               </span>
             </a>
             <span class="breadcrumbs__divider" aria-hidden="true"></span>

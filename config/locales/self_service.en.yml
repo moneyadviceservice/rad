@@ -7,6 +7,7 @@ en:
     save_button: Save
 
     advisers_index:
+      title: "%{firm_name} Advisers"
       adviser_names_filter_label: "Filter adviser names:"
       adviser_names_filter_placeholder: e.g. adviser name
       trading_names_heading: "Trading Name: %{trading_name}"
@@ -59,4 +60,3 @@ en:
     navigation: # name according to route name
       root: Home
       firms: Firms
-      advisers: Advisers
