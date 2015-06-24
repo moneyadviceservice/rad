@@ -1,7 +1,12 @@
+<% content_for(:page_title) { t('self_service.trading_name_edit.title', firm_name: @firm.registered_name) } %>
+<%= render_breadcrumbs [{ locale_key: 'self_service.navigation.root', url: self_service_root_path },
+                        { locale_key: 'self_service.navigation.firms', url: self_service_firms_path },
+                        { name: content_for(:page_title) }] %>
+
 <div class="l-constrained">
   <div class="l-heading-with-inline-links">
     <h1 class="t-firm-name">
-      <%= @firm.registered_name %>
+      <%= content_for(:page_title) %>
     </h1>
     <%= render partial: 'self_service/firms/questionnaire/links', locals: {firm: @firm} %>
   </div>

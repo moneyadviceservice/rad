@@ -1,6 +1,15 @@
+<% content_for(:page_title) do
+     t('self_service.adviser_edit.title',
+       adviser_name: @adviser.name,
+       adviser_reference_number: @adviser.reference_number)
+   end %>
+<%= render_breadcrumbs [{ locale_key: 'self_service.navigation.root', url: self_service_root_path },
+                        { locale_key: 'self_service.navigation.advisers', url: self_service_advisers_path },
+                        { name: content_for(:page_title) }] %>
+
 <div class="l-constrained">
   <h1 class="t-firm-name">
-    <%= t('self_service.adviser_edit.edit_adviser_heading') %>
+    <%= content_for(:page_title) %>
   </h1>
 
   <%= form_for @adviser,

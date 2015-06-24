@@ -16,11 +16,11 @@ en:
       no_advisers_message: You have not added any advisers to this firm.
 
     adviser_new:
-      new_adviser_heading: Add an adviser
+      title: "Add an adviser to %{firm_name}"
       submit_button: Add adviser
 
     adviser_edit:
-      edit_adviser_heading: Edit adviser
+      title: "Edit adviser: %{adviser_name} (%{adviser_reference_number})"
       submit_button: Save adviser
       saved: Saved successfully
 
@@ -39,6 +39,7 @@ en:
       new_trading_name_link: Add to directory
 
     firm_edit:
+      title: "Edit: %{firm_name}"
       saved: Saved successfully
       trading_name_heading: Trading name
       firm_heading: Firm
@@ -48,7 +49,11 @@ en:
       address_heading: Address
       questionnaire_heading: Questionnaire Responses
 
+    trading_name_new:
+      title: "Add to directory: %{firm_name}"
+
     trading_name_edit:
+      title: "Edit: %{firm_name}"
       saved: Saved successfully
 
     navigation: # name according to route name
