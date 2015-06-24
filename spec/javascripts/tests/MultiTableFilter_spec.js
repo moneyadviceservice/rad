@@ -2,12 +2,11 @@ describe('filter table based on text field criteria', function () {
   'use strict';
 
   function visibleRows() {
-    return $('[data-dough-filter-rows]').find('tr:visible');
+    return $('.t-rows').find('tr:visible');
   }
 
   function setFilterText(text) {
-    $('[data-dough-filter-input]').val(text);
-    $('[data-dough-filter-input]').change();
+    $('.t-input-field').val(text).change();
   }
 
   describe('on a table', function() {
@@ -16,7 +15,7 @@ describe('filter table based on text field criteria', function () {
 
       requirejs(['jquery', 'MultiTableFilter'], function ($, MultiTableFilter) {
         self.$html = $(window.__html__['spec/javascripts/fixtures/MultiTableFilter.html']).appendTo('body');
-        self.component = self.$html.find('[data-dough-component="MultiTableFilter"]');
+        self.component = self.$html.find('.t-group');
         self.MultiTableFilter = new MultiTableFilter(self.component).init();
 
         done();
