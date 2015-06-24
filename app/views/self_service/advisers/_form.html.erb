@@ -1,23 +1,26 @@
-  <div class="t-validation-summary">
-    <%= f.validation_summary %>
-  </div>
+<div class="t-validation-summary">
+  <%= f.validation_summary %>
+</div>
 
-<%= f.form_row :reference_number do %>
-  <fieldset class="form__group">
-    <legend class="l-questionnaire__legend"><%= t('questionnaire.adviser.advisers_details.heading') %></legend>
-    <p><%= t('questionnaire.adviser.advisers_details.description') %></p>
 
-    <div class="l-questionnaire__row">
-      <div class="l-questionnaire__field">
-        <%= f.errors_for :reference_number %>
-        <%= f.label :reference_number, t('questionnaire.adviser.advisers_details.label'), class: 'form__label-heading' %>
-        <%= f.text_field :reference_number, class: 't-reference-number', maxlength: 8, data: { transform: '', input: '', url: lookup_adviser_path(id: '') } %>
+<% if f.object.new_record? %>
+  <%= f.form_row :reference_number do %>
+    <fieldset class="form__group">
+      <legend class="l-questionnaire__legend"><%= t('questionnaire.adviser.advisers_details.heading') %></legend>
+      <p><%= t('questionnaire.adviser.advisers_details.description') %></p>
+
+      <div class="l-questionnaire__row">
+        <div class="l-questionnaire__field">
+          <%= f.errors_for :reference_number %>
+          <%= f.label :reference_number, t('questionnaire.adviser.advisers_details.label'), class: 'form__label-heading' %>
+          <%= f.text_field :reference_number, class: 't-reference-number', maxlength: 8, data: { transform: '', input: '', url: lookup_adviser_path(id: '') } %>
+        </div>
       </div>
-    </div>
 
-    <div class="notice is-hidden" data-notice="success"></div>
-    <div class="notice notice--error is-hidden" data-notice="error"></div>
-  </fieldset>
+      <div class="notice is-hidden" data-notice="success"></div>
+      <div class="notice notice--error is-hidden" data-notice="error"></div>
+    </fieldset>
+  <% end %>
 <% end %>
 
 <hr>
