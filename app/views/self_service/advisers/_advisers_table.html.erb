@@ -1,10 +1,16 @@
 <div class="table-wrapper">
-  <table class="l-adviser-table">
+  <table class="advisers-table">
     <thead>
       <tr>
-        <th class="reference-number-heading"><%= Adviser.human_attribute_name(:reference_number) %></th>
-        <th class="name-heading"><%= Adviser.human_attribute_name(:name) %></th>
-        <th class="postcode-heading"><%= Adviser.human_attribute_name(:postcode) %></th>
+        <th class="advisers-table__reference-number">
+          <%= Adviser.human_attribute_name(:reference_number) %>
+        </th>
+        <th class="advisers-table__name">
+          <%= Adviser.human_attribute_name(:name) %>
+        </th>
+        <th class="advisers-table__postcode">
+          <%= Adviser.human_attribute_name(:postcode) %>
+        </th>
       </tr>
     </thead>
     <tbody data-dough-filter-rows>

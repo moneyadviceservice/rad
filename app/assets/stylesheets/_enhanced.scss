@@ -7,7 +7,6 @@
 
 @import 'states/hidden';
 
-@import 'layouts/advisers_table';
 @import 'layouts/constrained';
 @import 'layouts/self_service';
 @import 'layouts/firm';
@@ -23,10 +22,12 @@
 @import 'layouts/rows';
 @import 'layouts/top_right_action';
 
+@import 'components/advisers_table';
 @import 'components/button';
 @import 'components/self_service_list/all';
 @import 'components/firm/all';
 @import 'components/firm_filter';
+@import 'components/firms_table';
 @import 'components/footnote';
 @import 'components/form/all';
 @import 'components/navigation';
