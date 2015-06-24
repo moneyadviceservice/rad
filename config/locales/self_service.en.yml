@@ -25,6 +25,9 @@ en:
       submit_button: Save adviser
       saved: Saved successfully
 
+    adviser_destroy:
+      deleted: "%{name} has been successfully removed."
+
     firms_index:
       firm_heading: Parent Firm
       trading_names_heading: Trading Names

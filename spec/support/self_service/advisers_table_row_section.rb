@@ -4,5 +4,6 @@ module SelfService
     element :name, '.t-adviser-name'
     element :postcode, '.t-adviser-postcode'
     element :edit_link, '.t-edit-link'
+    element :delete_link, '.t-remove-button'
   end
 end
