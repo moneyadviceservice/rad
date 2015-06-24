@@ -14,20 +14,15 @@ class User < ActiveRecord::Base
 
   def self.find_for_database_authentication(warden_conditions)
     conditions = warden_conditions.dup
-    email_or_frn = conditions.delete(:login)
-    return nil unless email_or_frn.present?
+    fca_number = conditions.delete(:login)
+    return nil unless fca_number.present?
 
-    find_user_by_email_or_frn(conditions, email_or_frn: email_or_frn)
+    find_user_by_fca_number(conditions, fca_number: fca_number)
   end
 
-  def self.find_user_by_email_or_frn(conditions, email_or_frn:)
+  def self.find_user_by_fca_number(conditions, fca_number:)
     where(conditions.to_hash)
       .joins(:principal)
-      .find_by(
-        [
-          '(lower(users.email) = :email OR principals.fca_number = :fca_number)',
-          { email: email_or_frn.downcase, fca_number: email_or_frn.to_i }
-        ]
-      )
+      .find_by(['principals.fca_number = :fca_number', { fca_number: fca_number.to_i }])
   end
 end
