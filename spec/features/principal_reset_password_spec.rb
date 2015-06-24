@@ -80,7 +80,7 @@ RSpec.feature 'Principal can reset their password' do
 
   def and_sign_in_with_new_details
     visit new_user_session_path
-    sign_in_page.login_field.set @user.email
+    sign_in_page.login_field.set @user.principal.fca_number
     sign_in_page.password_field.set 'new_Password1!'
     sign_in_page.submit_button.click
   end

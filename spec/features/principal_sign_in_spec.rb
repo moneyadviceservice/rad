@@ -2,18 +2,19 @@ RSpec.feature 'Principal can sign in' do
   let(:sign_in_page) { SignInPage.new }
   let(:firms_index_page) { SelfService::FirmsIndexPage.new }
 
-  scenario 'Principal can sign in with email and password' do
-    given_the_principal_user_exists
-    when_they_sign_in_with_email_and_password
-    they_see_the_firms_index_page
-    they_have_logged_in
-  end
-
   scenario 'Principal can sign in with FRN and password' do
     given_the_principal_user_exists
     when_they_sign_in_with_frn_and_password
     they_see_the_firms_index_page
     they_have_logged_in
+  end
+
+  scenario 'Principal cannot sign in with email' do
+    given_the_principal_user_exists
+    when_they_sign_in_with_email_and_password
+    they_have_not_logged_in
+    they_see_the_sign_in_page
+    and_they_see_a_notice_that_their_details_were_incorrect
   end
 
   scenario 'Principal cannot sign in with incorrect details' do

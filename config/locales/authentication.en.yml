@@ -38,7 +38,7 @@ en:
         register_html: "Get more from your money by <a href=\"%{url}\">registering with the Money Advice Service</a>."
       field_help_texts:
         email: "Enter your email used on registration"
-        login: "Enter your firm reference number or email used on registration"
+        login: "Enter your firm reference number"
         password: "Enter your password used on registration"
       forgot_password: "Forgot your password?"
     reset_password_page:

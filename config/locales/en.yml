@@ -41,7 +41,7 @@ en:
         registered_name: Registered name
         percent_total: Percentage total
       user:
-        login: Email or FRN
+        login: Firm Reference Number
     errors:
       models:
         firm:
