@@ -58,15 +58,17 @@ module SelfService
         before { post :create, firm: firm_params, lookup_id: lookup_subsidiary.id }
 
         it 'creates the firm' do
-          expect(firm.trading_names.max_by(&:id).email_address).to eq firm_params[:email_address]
+          expect(assigns(:firm).persisted?).to be_truthy
+          expect(assigns(:firm).email_address).to eq firm_params[:email_address]
         end
 
         it 'assigns the firm to the principal’s firm' do
-          expect(firm.trading_names.max_by(&:id).parent_id).to eq firm.id
+          expect(assigns(:firm).parent_id).to eq firm.id
         end
 
-        it 'renders the edit page' do
-          expect(response).to render_template 'self_service/trading_names/edit'
+        it 'redirects to the edit page' do
+          redirect_path = edit_self_service_trading_name_path(assigns(:firm))
+          expect(response).to redirect_to redirect_path
         end
       end
 

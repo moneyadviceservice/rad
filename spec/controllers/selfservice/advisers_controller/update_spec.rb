@@ -17,16 +17,13 @@ module SelfService
         let(:adviser_params) { { postcode: 'AB1 2GH' } }
         before { patch :update, firm_id: firm.id, id: adviser.id, adviser: adviser_params }
 
-        it 'provides the firm to the view' do
-          expect(assigns(:firm)).to eq(firm)
-        end
-
-        it 'provides the adviser to the view' do
-          expect(assigns(:adviser)).to eq(adviser)
-        end
-
         it 'adds a success message after successfully updating the adviser' do
           expect(flash[:notice]).to eq('Saved successfully')
+        end
+
+        it 'redirects to the edit page' do
+          redirect_path = edit_self_service_firm_adviser_path(assigns(:firm), assigns(:adviser))
+          expect(response).to redirect_to redirect_path
         end
       end
     end

@@ -19,7 +19,7 @@ module SelfService
       # work across mas-rad_core and this codebase.
       if @adviser.save
         flash[:notice] = I18n.t('self_service.adviser_edit.saved')
-        render :edit
+        redirect_to edit_self_service_firm_adviser_path(@firm, @adviser)
       else
         render :new
       end
@@ -31,9 +31,12 @@ module SelfService
 
     def update
       @adviser = @firm.advisers.find(params[:id])
-      @adviser.update(adviser_params) && flash[:notice] = I18n.t('self_service.adviser_edit.saved')
-
-      render :edit
+      if @adviser.update(adviser_params)
+        flash[:notice] = I18n.t('self_service.adviser_edit.saved')
+        redirect_to edit_self_service_firm_adviser_path(@firm, @adviser)
+      else
+        render :edit
+      end
     end
 
     private

@@ -17,8 +17,9 @@ module SelfService
           expect(assigns(:adviser)).to be_an Adviser
         end
 
-        it 'renders the adviser edit page' do
-          expect(response).to render_template :edit
+        it 'redirects to the adviser edit page' do
+          redirect_path = edit_self_service_firm_adviser_path(firm, assigns(:adviser).id)
+          expect(response).to redirect_to redirect_path
         end
 
         it 'adds a success flash message' do
