@@ -1,12 +1,9 @@
-<% content_for(:page_title) { t('self_service.trading_name_new.title', firm_name: @firm.registered_name) } %>
-<%= render_breadcrumbs [{ locale_key: 'self_service.navigation.root', url: self_service_root_path },
-                        { locale_key: 'self_service.navigation.firms', url: self_service_firms_path },
-                        { name: content_for(:page_title) }] %>
+<%= render_breadcrumbs(breadcrumbs_trading_name_new) %>
 
 <div class="l-constrained">
 
   <h1 class="t-firm-name">
-    <%= content_for(:page_title) %>
+    <%= t('self_service.trading_name_new.title', firm_name: @firm.registered_name) %>
   </h1>
 
   <%= form_for @firm,

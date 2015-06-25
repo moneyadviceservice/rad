@@ -1,11 +1,9 @@
 module SelfService
   class AdvisersController < ApplicationController
     before_action :authenticate_user!
-    before_action -> { @firm = current_firm }, except: [:index]
+    before_action -> { @firm = current_firm }
 
     def index
-      @firm = principal.firm
-      @trading_names = @firm.trading_names
     end
 
     def new

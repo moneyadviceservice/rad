@@ -1,6 +1,6 @@
 <ul class="inline-list-with-separator">
   <li>
-    <%= link_to self_service_advisers_path do %>
+    <%= link_to self_service_firm_advisers_path(firm) do %>
       <%= t('activerecord.models.adviser.other') %>
       (<%= firm.advisers.count %>)
     <% end %>
