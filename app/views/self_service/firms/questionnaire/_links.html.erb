@@ -5,4 +5,11 @@
       (<%= firm.advisers.count %>)
     <% end %>
   </li>
+  <% unless firm.trading_name? %>
+    <li>
+      <%= link_to edit_self_service_principal_path(firm.principal) do %>
+        <%= Principal.model_name.human %>
+      <% end %>
+    </li>
+  <% end %>
 </ul>
