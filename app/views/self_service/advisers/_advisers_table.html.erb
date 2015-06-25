@@ -24,7 +24,11 @@
             </td>
             <td class="t-adviser-postcode" data-dough-filterable><%= adviser.postcode %></td>
             <td>
-              <%= link_to 'Remove from Directory', self_service_firm_adviser_path(firm, adviser), method: :delete, data: {confirm: 'Are you sure?'}, :class => 'button button--small t-remove-button' %>
+              <%= button_to 'Remove from Directory',
+                            self_service_firm_adviser_path(firm, adviser),
+                            method: :delete,
+                            'data-dough-component' => 'ConfirmableForm',
+                            :class => 'button button--small t-remove-button' %>
             </td>
           </tr>
         <% end %>
