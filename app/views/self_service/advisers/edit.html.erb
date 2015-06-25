@@ -2,9 +2,7 @@
 
 <div class="l-constrained">
   <h1 class="t-firm-name">
-    <%= t('self_service.adviser_edit.title',
-          adviser_name: @adviser.name,
-          adviser_reference_number: @adviser.reference_number) %>
+    <%= t('self_service.adviser_edit.title', adviser_name: @adviser.name) %>
   </h1>
 
   <%= form_for @adviser,

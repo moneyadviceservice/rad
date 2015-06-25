@@ -7,6 +7,7 @@ en:
     save_button: Save
 
     advisers_index:
+      breadcrumb: Advisers
       title: "%{firm_name} Advisers"
       adviser_names_filter_label: "Filter adviser names:"
       adviser_names_filter_placeholder: e.g. adviser name
@@ -17,11 +18,13 @@ en:
       no_advisers_message: You have not added any advisers to this firm.
 
     adviser_new:
+      breadcrumb: Add an adviser
       title: "Add an adviser to %{firm_name}"
       submit_button: Add adviser
 
     adviser_edit:
-      title: "Edit adviser: %{adviser_name} (%{adviser_reference_number})"
+      breadcrumb: "%{adviser_name}"
+      title: "Edit adviser: %{adviser_name}"
       submit_button: Save adviser
       saved: Saved successfully
 
@@ -40,6 +43,7 @@ en:
       new_trading_name_link: Add to directory
 
     firm_edit:
+      breadcrumb: "%{firm_name}"
       title: "Edit: %{firm_name}"
       saved: Saved successfully
       trading_name_heading: Trading name
@@ -51,9 +55,11 @@ en:
       questionnaire_heading: Questionnaire Responses
 
     trading_name_new:
+      breadcrumb: "Add to directory: %{firm_name}"
       title: "Add to directory: %{firm_name}"
 
     trading_name_edit:
+      breadcrumb: "%{firm_name}"
       title: "Edit: %{firm_name}"
       saved: Saved successfully
 
