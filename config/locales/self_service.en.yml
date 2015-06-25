@@ -10,6 +10,8 @@ en:
       title: "%{firm_name} Advisers"
       adviser_names_filter_label: "Filter adviser names:"
       adviser_names_filter_placeholder: e.g. adviser name
+      delete_adviser_button: Remove from Directory
+      delete_adviser_confirmation: Are you sure you want to remove %{name} from the directory?
       trading_names_heading: "Trading Name: %{trading_name}"
       add_adviser_button: Add an adviser
       add_adviser_button_full: Add an adviser to %{firm_name}
@@ -24,6 +26,9 @@ en:
       title: "Edit adviser: %{adviser_name} (%{adviser_reference_number})"
       submit_button: Save adviser
       saved: Saved successfully
+
+    adviser_destroy:
+      deleted: "%{name} has been successfully removed."
 
     firms_index:
       firm_heading: Parent Firm

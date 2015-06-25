@@ -2,6 +2,7 @@ module SelfService
   class AdvisersController < ApplicationController
     before_action :authenticate_user!
     before_action -> { @firm = current_firm }
+    before_action -> { @adviser = current_adviser }, only: [:edit, :update, :destroy]
 
     def index
     end
@@ -24,17 +25,22 @@ module SelfService
     end
 
     def edit
-      @adviser = @firm.advisers.find(params[:id])
     end
 
     def update
-      @adviser = @firm.advisers.find(params[:id])
       if @adviser.update(adviser_params)
         flash[:notice] = I18n.t('self_service.adviser_edit.saved')
         redirect_to edit_self_service_firm_adviser_path(@firm, @adviser)
       else
         render :edit
       end
+    end
+
+    def destroy
+      @adviser.destroy
+      flash[:notice] = I18n.t('self_service.adviser_destroy.deleted', name: @adviser.name)
+
+      redirect_to :back
     end
 
     private
@@ -45,6 +51,10 @@ module SelfService
 
     def current_firm
       Firm.find_by(id: params[:firm_id], fca_number: principal.fca_number)
+    end
+
+    def current_adviser
+      @firm.advisers.find(params[:id])
     end
 
     def adviser_params

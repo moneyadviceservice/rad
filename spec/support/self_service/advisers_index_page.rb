@@ -4,11 +4,10 @@ module SelfService
     set_url_matcher %r{/self_service/firms/\d+/advisers}
 
     element :firm_name, '.t-firm-name'
-
     sections :advisers, AdvisersTableRowSection, '.t-advisers-table-row'
-
     element :add_adviser_link, '.t-add-adviser-link'
     element :edit_link, '.t-edit-link'
     element :no_advisers_message, '.t-no-advisers-message'
+    element :flash_message, '.t-flash-message'
   end
 end

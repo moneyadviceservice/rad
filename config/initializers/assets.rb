@@ -20,6 +20,7 @@ Rails.application.configure do
     rsvp/rsvp.js
     dough/assets/js/**/*.js
     modules/MultiTableFilter.js
+    modules/ConfirmableForm.js
     modules/FieldToggleVisibility.js
     modules/DataTransform.js
     modules/AdviserAjaxCall.js

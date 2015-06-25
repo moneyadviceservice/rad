@@ -33,7 +33,7 @@ Rails.application.routes.draw do
     resources :trading_names, only: [:new, :create, :edit, :update]
 
     resources :firms, only: [:index, :edit, :update] do
-      resources :advisers, only: [:index, :new, :create, :edit, :update]
+      resources :advisers, except: [:show]
     end
   end
 

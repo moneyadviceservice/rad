@@ -13,6 +13,37 @@ RSpec.feature 'The self service adviser list page' do
     then_i_can_see_the_advisers_for(firm: @principal.firm.trading_names.first)
   end
 
+  scenario 'The principal can delete advisers' do
+    given_i_am_a_fully_registered_principal_user
+    and_i_have_a_firm_with_trading_names_and_advisers
+    and_i_am_logged_in
+    and_i_am_on_the_advisers_page_for(firm: @principal.firm)
+    when_i_delete_the_first_adviser
+    then_i_am_on_the_advisers_page_for(firm: @principal.firm)
+    and_i_can_see_a_success_message
+    and_i_cannot_see_the_deleted_adviser
+  end
+
+  def when_i_delete_the_first_adviser
+    @adviser_name = advisers_index_page.advisers.first.name.text
+    advisers_index_page.advisers.first.delete_link.click
+  end
+
+  def then_i_am_on_the_advisers_page_for(firm:)
+    expect(advisers_index_page).to be_displayed
+    expect(advisers_index_page).to have_firm_name(text: firm.registered_name)
+  end
+
+  def and_i_can_see_a_success_message
+    expected_message = "#{@adviser_name} has been successfully removed."
+    expect(advisers_index_page).to have_flash_message(text: expected_message)
+  end
+
+  def and_i_cannot_see_the_deleted_adviser
+    advisers = advisers_index_page.advisers
+    expect(advisers.any? { |a| a.name == @adviser_name }).to be_falsey
+  end
+
   scenario 'The principal has not added any advisers yet' do
     given_i_am_a_fully_registered_principal_user
     and_i_am_logged_in
@@ -49,6 +80,8 @@ RSpec.feature 'The self service adviser list page' do
     advisers_index_page.load(firm_id: firm.id)
     expect(advisers_index_page).to be_displayed
   end
+
+  alias_method :and_i_am_on_the_advisers_page_for, :when_i_am_on_the_advisers_page_for
 
   def then_i_can_see_the_advisers_for(firm:)
     expect(advisers_index_page).to have_firm_name

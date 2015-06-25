@@ -28,6 +28,7 @@ require.config({
     jqueryFastLiveFilter: 'vendor/assets/bower_components/jquery-fastlivefilter/jquery.fastLiveFilter',
     FieldToggleVisibility: 'app/assets/javascripts/modules/FieldToggleVisibility',
     MultiTableFilter: 'app/assets/javascripts/modules/MultiTableFilter',
+    ConfirmableForm: 'app/assets/javascripts/modules/ConfirmableForm',
     List: 'vendor/assets/bower_components/list.js/dist/list'
   },
 

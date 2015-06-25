@@ -11,6 +11,7 @@
         <th class="advisers-table__postcode">
           <%= Adviser.human_attribute_name(:postcode) %>
         </th>
+        <th class="advisers-table__action"></th>
       </tr>
     </thead>
     <tbody data-dough-filter-rows>
@@ -22,6 +23,14 @@
               <%= link_to adviser.name, edit_self_service_firm_adviser_path(adviser.firm, adviser), class: 't-edit-link' %>
             </td>
             <td class="t-adviser-postcode" data-dough-filterable><%= adviser.postcode %></td>
+            <td>
+              <%= button_to t('self_service.advisers_index.delete_adviser_button'),
+                            self_service_firm_adviser_path(firm, adviser),
+                            method: :delete,
+                            'data-dough-component' => 'ConfirmableForm',
+                            'data-dough-confirmation-message' => t('self_service.advisers_index.delete_adviser_confirmation', name: adviser.name),
+                            :class => 'button button--small t-remove-button' %>
+            </td>
           </tr>
         <% end %>
       <% else %>
