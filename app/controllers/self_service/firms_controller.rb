@@ -7,5 +7,9 @@ module SelfService
         @trading_names.map(&:registered_name).include? lookup_name.name
       end
     end
+
+    def destroy
+      redirect_to :back
+    end
   end
 end
