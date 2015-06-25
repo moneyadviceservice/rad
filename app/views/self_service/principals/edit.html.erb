@@ -1,0 +1,14 @@
+<%= render_breadcrumbs(breadcrumbs_principal_edit) %>
+
+<div class="l-self-service">
+  <h1>
+    <%= t('self_service.principal_edit.title', firm_name: @principal.firm.registered_name) %>
+  </h1>
+
+  <%= form_for @principal,
+              url: self_service_principal_path(@principal),
+              html: { class: 'form' },
+              builder: Dough::Forms::Builders::Validation do |f| %>
+    <%= render 'self_service/principals/form', {f: f} %>
+  <% end %>
+</div>

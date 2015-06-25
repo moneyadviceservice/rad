@@ -74,7 +74,13 @@ en:
       saved: Saved successfully
 
     principal_edit:
+      breadcrumb: Edit Principal
+      title: Edit Principal for %{firm_name}
       saved: Saved successfully
+      submit_button: Save principal
+      firm_section_heading: Firm details
+      principal_section_heading: Principal Details
+      firm_section_explanation: Please enter the details of the person completing the registration process on behalf of your firm. We recommend that registration is completed by a Principal, Compliance officer or the equivalent.
 
     navigation: # name according to route name
       root: Home
