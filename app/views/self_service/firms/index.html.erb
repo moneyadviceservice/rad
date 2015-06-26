@@ -1,7 +1,14 @@
 <%= render_breadcrumbs(breadcrumbs_root) %>
 
 <div class="l-self-service">
-  <h2><%= t('self_service.firms_index.firm_heading') %></h2>
+  <h1 class="t-page-title">
+    <%= t('self_service.firms_index.title', count: (1 + @trading_names.count + @lookup_names.count)) %>
+  </h1>
+
+  <% if @trading_names.present? || @lookup_names.present? %>
+    <h2 class="t-parent-firm-heading"><%= t('self_service.firms_index.firm_heading') %></h2>
+  <% end %>
+
   <%= render 'table_parent_firm' %>
 
   <% if @trading_names.present? || @lookup_names.present? %>

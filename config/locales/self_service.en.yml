@@ -34,6 +34,9 @@ en:
       deleted: "%{name} has been successfully removed."
 
     firms_index:
+      title:
+        one: Firm
+        other: Firms
       firm_heading: Parent Firm
       trading_names_heading: Trading Names
       add_trading_names_prompt: >-
