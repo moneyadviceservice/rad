@@ -1,10 +1,8 @@
 <%= render_breadcrumbs(breadcrumbs_firm_adviser_edit) %>
 
 <div class="l-constrained">
-  <h1 class="t-firm-name">
-    <%= t('self_service.adviser_edit.title',
-          adviser_name: @adviser.name,
-          adviser_reference_number: @adviser.reference_number) %>
+  <h1>
+    <%= t('self_service.adviser_edit.title', adviser_name: @adviser.name) %>
   </h1>
 
   <%= form_for @adviser,
