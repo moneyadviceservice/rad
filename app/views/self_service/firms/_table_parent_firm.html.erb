@@ -2,11 +2,11 @@
   <table class="firms-table">
     <thead>
       <tr>
-        <th class="firms-table__frn">
-          <%= Firm.human_attribute_name(:fca_number) %>
-        </th>
         <th class="firms-table__name">
           <%= Firm.human_attribute_name(:registered_name) %>
+        </th>
+        <th class="firms-table__frn">
+          <%= Firm.human_attribute_name(:fca_number) %>
         </th>
         <th class="firms-table__principal">
           <%= t('self_service.firms_index.principal_column_heading') %>
@@ -15,12 +15,12 @@
     </thead>
     <tbody>
       <tr class="t-parent-firm-table-row">
-        <td class="t-frn"><%= @firm.fca_number %></td>
         <td class="t-firm-name">
           <%= link_to edit_self_service_firm_path(@firm), class: 't-edit-link' do %>
             <%= @firm.registered_name %>
           <% end %>
         </td>
+        <td class="t-frn"><%= @firm.fca_number %></td>
         <td class="t-principal-name"><%= @firm.principal.full_name %></td>
       </tr>
     </tbody>
