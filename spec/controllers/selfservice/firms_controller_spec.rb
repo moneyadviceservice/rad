@@ -20,6 +20,11 @@ module SelfService
     end
 
     describe 'GET #index' do
+      it 'creates and assigns the presenter' do
+        get :index
+        expect(assigns(:presenter)).to be_a SelfService::FirmsIndexPresenter
+      end
+
       context 'when all trading names are registered' do
         it 'assigns all trading names' do
           get :index
