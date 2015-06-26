@@ -28,7 +28,7 @@ module SelfService
       context 'when all trading names are registered' do
         it 'assigns all trading names' do
           get :index
-          expect(assigns(:presenter).trading_names.count).to eq 3
+          expect(assigns(:presenter)).to have(3).trading_names
         end
       end
 
@@ -41,7 +41,7 @@ module SelfService
 
         it 'assigns only registered trading names' do
           get :index
-          expect(assigns(:presenter).trading_names.count).to eq 2
+          expect(assigns(:presenter)).to have(2).trading_names
         end
       end
     end
