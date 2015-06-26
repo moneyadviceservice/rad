@@ -135,7 +135,7 @@ GEM
       nokogiri (>= 1.5.9)
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
-    mas-rad_core (0.0.58)
+    mas-rad_core (0.0.59)
       active_model_serializers
       geocoder
       httpclient
@@ -322,7 +322,7 @@ DEPENDENCIES
   kaminari
   launchy
   letter_opener
-  mas-rad_core (= 0.0.58)
+  mas-rad_core (= 0.0.59)
   oga
   pg
   poltergeist

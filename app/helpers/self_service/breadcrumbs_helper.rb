@@ -24,6 +24,10 @@ module SelfService
       breadcrumbs_root << crumb_trading_name_new
     end
 
+    def breadcrumbs_principal_edit
+      breadcrumbs_firm_edit << crumb_principal_edit
+    end
+
     def crumb_root
       { locale_key: 'self_service.navigation.root', url: self_service_root_path }
     end
@@ -61,6 +65,10 @@ module SelfService
 
     def crumb_trading_name_new
       { name: t('self_service.trading_name_new.breadcrumb', firm_name: @firm.registered_name) }
+    end
+
+    def crumb_principal_edit
+      { name: t('self_service.principal_edit.breadcrumb', firm_name: @firm.registered_name) }
     end
   end
 end

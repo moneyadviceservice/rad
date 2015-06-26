@@ -1,6 +1,11 @@
+.l-self-service {
+  @extend .l-constrained;
+  margin-bottom: $baseline-unit*8;
+}
+
 .l-self-service-action-row {
   text-align: right;
-  margin: $baseline-unit*4 0;
+  margin: $baseline-unit*4 0 0;
 }
 
 .l-self-service-action-row__cancel {
