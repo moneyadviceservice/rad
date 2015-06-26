@@ -46,6 +46,8 @@ en:
       trading_names_filter_placeholder: e.g. firm name
       available_trading_names_filter_placeholder: e.g. firm name
       new_trading_name_link: Add to directory
+      delete_trading_name_button: Remove from Directory
+      delete_trading_name_confirmation: Are you sure you want to remove %{name} and all associated advisers from the directory?
 
     firm_edit:
       breadcrumb: "%{firm_name}"
@@ -58,6 +60,9 @@ en:
       principal_details_heading: Principal Details
       address_heading: Address
       questionnaire_heading: Questionnaire Responses
+
+    trading_name_destroy:
+      deleted: "%{name} has been successfully removed."
 
     trading_name_new:
       breadcrumb: "Add to directory: %{firm_name}"

@@ -31,6 +31,18 @@ RSpec.feature 'The self service firm list page' do
     and_i_can_see_the_list_of_available_trading_names
   end
 
+  scenario 'The principal can delete trading names' do
+    given_i_am_a_fully_registered_principal_user
+    and_i_have_a_firm_with_both_available_and_added_trading_names
+    and_i_am_logged_in
+    and_i_am_on_the_principals_firms_index_page
+    and_i_can_see_the_first_trading_name
+    when_i_delete_the_first_trading_name
+    then_i_am_on_the_principals_firms_index_page
+    and_i_cannot_see_the_deleted_trading_name
+    and_i_can_see_a_success_message
+  end
+
   def given_i_am_a_fully_registered_principal_user
     @principal = FactoryGirl.create(:principal)
     @user = FactoryGirl.create(:user, principal: @principal)
@@ -68,6 +80,11 @@ RSpec.feature 'The self service firm list page' do
     firms_index_page.load
     expect(firms_index_page).to be_displayed
   end
+  alias_method :and_i_am_on_the_principals_firms_index_page, :when_i_am_on_the_principals_firms_index_page
+
+  def then_i_am_on_the_principals_firms_index_page
+    expect(firms_index_page).to be_displayed
+  end
 
   def then_i_can_see_the_parent_firm_i_am_associated_with
     expect(firms_index_page).to have_parent_firm
@@ -103,6 +120,26 @@ RSpec.feature 'The self service firm list page' do
     expect(firms_index_page).to have_add_trading_names_prompt(
       text: I18n.t('self_service.firms_index.add_trading_names_prompt'))
     expect(firms_index_page).not_to have_trading_names
+  end
+
+  def when_i_delete_the_first_trading_name
+    firms_index_page.trading_names.first.delete_button.click
+  end
+
+  def and_i_can_see_a_success_message
+    expected_text = I18n.t!('self_service.trading_name_destroy.deleted', name: @trading_name_registered_name_to_delete)
+    expect(firms_index_page).to have_flash_message(text: expected_text)
+  end
+
+  def and_i_can_see_the_first_trading_name
+    @trading_name_registered_name_to_delete = firms_index_page.trading_names.first.name.text
+    firms = firms_index_page.trading_names
+    expect(firms.any? { |a| a.name.text == @trading_name_registered_name_to_delete }).to be_truthy
+  end
+
+  def and_i_cannot_see_the_deleted_trading_name
+    firms = firms_index_page.trading_names
+    expect(firms.any? { |a| a.name.text == @trading_name_registered_name_to_delete }).to be_falsey
   end
 
   private

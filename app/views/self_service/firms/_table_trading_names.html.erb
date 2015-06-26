@@ -11,6 +11,9 @@
         <th class="firms-table__principal">
           <%= t('self_service.firms_index.principal_column_heading') %>
         </th>
+        <th class="firms-table__principal">
+          <%= t('self_service.firms_index.principal_column_heading') %>
+        </th>
       </tr>
     </thead>
     <tbody data-dough-filter-rows>
@@ -23,6 +26,15 @@
             <% end %>
           </td>
           <td class="t-principal-name" data-dough-filterable><%= trading_name.principal.full_name %></td>
+          <td class="t-principal-name" data-dough-filterable>
+            <%= button_to t('self_service.firms_index.delete_trading_name_button'),
+                          self_service_trading_name_path(trading_name),
+                          method: :delete,
+                          'data-dough-component' => 'ConfirmableForm',
+                          'data-dough-confirmation-message' => t('self_service.firms_index.delete_trading_name_confirmation', name: trading_name.registered_name),
+                          :class => 'button button--small t-remove-button' %>
+
+          </td>
         </tr>
       <% end %>
     </tbody>
