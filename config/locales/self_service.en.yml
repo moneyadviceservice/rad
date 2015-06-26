@@ -57,7 +57,7 @@ en:
       address_heading: Address
       questionnaire_heading: Questionnaire Responses
 
-    firm_destroy:
+    trading_name_destroy:
       deleted: "%{name} has been successfully removed."
 
     trading_name_new:
