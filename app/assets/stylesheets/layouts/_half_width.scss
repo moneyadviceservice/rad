@@ -1,4 +1,8 @@
 .l-half-width {
-  padding-right: $gutter-width/2;
-  width: percentage(1/2);
+  width: percentage(1);
+
+  @include respond-to($mq-l) {
+    padding-right: $gutter-width/2;
+    width: percentage(1/2);
+  }
 }
