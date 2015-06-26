@@ -127,8 +127,8 @@ RSpec.feature 'The self service firm list page' do
   end
 
   def and_i_can_see_a_success_message
-    expected_message = "#{@first_trading_name_registered_name} has been successfully removed."
-    expect(firms_index_page).to have_flash_message(text: expected_message)
+    expected_text = I18n.t!('self_service.trading_name_destroy.deleted', name: @trading_name_registered_name_to_delete)
+    expect(firms_index_page).to have_flash_message(text: expected_text)
   end
 
   def and_i_can_see_the_first_trading_name
