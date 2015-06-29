@@ -87,7 +87,7 @@ RSpec.feature 'The self service adviser list page' do
     expect(advisers_index_page).to have_firm_name
     expect(advisers_index_page.firm_name).to have_text(firm.registered_name)
     expect(firm.advisers).not_to be_empty
-    expect_table_to_match_advisers(advisers_index_page, firm.advisers)
+    expect_table_to_match_advisers(advisers_index_page, firm.advisers.sorted_by_name)
   end
 
   def then_there_is_a_prompt_to_add_an_adviser
