@@ -4,17 +4,17 @@
       <li class='navigation__item'>
         <%= link_to t('authentication_sign_in'), new_user_session_path, class: 'navigation__link t-sign-in' %>
       </li>
-      <li class='navigation__item--last'>
+      <li class='navigation__item'>
         <%= link_to t('authentication_sign_up'), register_path, class: 'navigation__link' %>
       </li>
     <% else %>
       <li class='navigation__item'>
         <%= link_to t('self_service.navigation.firms'), self_service_firms_path, class: 'navigation__link t-navigation-link' %>
       </li>
-      <li class='navigation__item--last'>
+      <li class='navigation__item'>
         <%= link_to t('authentication_sign_out'), destroy_user_session_path, class: 'navigation__link t-sign-out' %>
       </li>
-      <li class='navigation__item--desktop-only--last'>
+      <li class='navigation__item--desktop-only'>
         <%= link_to t('authentication_change_password'), edit_user_registration_path(current_user), class: 'navigation__link' %>
       </li>
     <% end %>
