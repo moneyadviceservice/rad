@@ -4,6 +4,8 @@ module SelfService
     set_url_matcher %r{/self_service/firms}
 
     element :flash_message, '.t-flash-message'
+    element :page_title, '.t-page-title'
+    element :parent_firm_heading, '.t-parent-firm-heading'
     section :parent_firm, FirmTableRowSection, '.t-parent-firm-table-row'
     element :trading_names_block, '.t-trading-names-block'
     element :add_trading_names_prompt, '.t-add-trading-names-prompt'

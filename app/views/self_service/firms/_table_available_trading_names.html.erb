@@ -12,7 +12,7 @@
       </tr>
     </thead>
     <tbody data-dough-filter-rows>
-      <% @lookup_names.each do |lookup_name| %>
+      <% @presenter.lookup_names.each do |lookup_name| %>
         <tr class="t-available-trading-name-table-row">
           <td class="t-firm-name" data-dough-filterable>
             <%= lookup_name.name %>

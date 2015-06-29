@@ -16,12 +16,12 @@
     <tbody>
       <tr class="t-parent-firm-table-row">
         <td class="t-firm-name">
-          <%= link_to edit_self_service_firm_path(@firm), class: 't-edit-link' do %>
-            <%= @firm.registered_name %>
+          <%= link_to edit_self_service_firm_path(@presenter.firm), class: 't-edit-link' do %>
+            <%= @presenter.firm.registered_name %>
           <% end %>
         </td>
-        <td class="t-frn"><%= @firm.fca_number %></td>
-        <td class="t-principal-name"><%= @firm.principal.full_name %></td>
+        <td class="t-frn"><%= @presenter.firm.fca_number %></td>
+        <td class="t-principal-name"><%= @presenter.firm.principal.full_name %></td>
       </tr>
     </tbody>
   </table>

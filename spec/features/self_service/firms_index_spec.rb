@@ -9,6 +9,8 @@ RSpec.feature 'The self service firm list page' do
     then_i_can_see_the_parent_firm_i_am_associated_with
     and_i_can_see_the_list_of_trading_names_i_am_associated_with
     and_i_can_see_the_list_of_available_trading_names
+    and_the_page_title_indicates_a_plural
+    and_the_parent_firm_section_heading_is_visible
   end
 
   scenario 'When there are no added or available trading names' do
@@ -19,6 +21,8 @@ RSpec.feature 'The self service firm list page' do
     then_i_can_see_the_parent_firm_i_am_associated_with
     and_the_trading_names_block_is_not_shown
     and_the_available_trading_names_block_is_not_shown
+    and_the_page_title_indicates_a_singular
+    and_the_parent_firm_section_heading_is_not_visible
   end
 
   scenario 'When there are available trading names but none have been added' do
@@ -29,6 +33,8 @@ RSpec.feature 'The self service firm list page' do
     then_i_can_see_the_parent_firm_i_am_associated_with
     and_the_trading_names_section_is_showing_a_prompt_to_add_a_trading_name
     and_i_can_see_the_list_of_available_trading_names
+    and_the_page_title_indicates_a_plural
+    and_the_parent_firm_section_heading_is_visible
   end
 
   scenario 'The principal can delete trading names' do
@@ -140,6 +146,25 @@ RSpec.feature 'The self service firm list page' do
   def and_i_cannot_see_the_deleted_trading_name
     firms = firms_index_page.trading_names
     expect(firms.any? { |a| a.name.text == @trading_name_registered_name_to_delete }).to be_falsey
+  end
+
+  def and_the_page_title_indicates_a_plural
+    plural_form = I18n.t!('self_service.firms_index.title', count: 2)
+    expect(firms_index_page.page_title).to have_text(/^#{plural_form}$/)
+  end
+
+  def and_the_page_title_indicates_a_singular
+    singular_form = I18n.t!('self_service.firms_index.title', count: 1)
+    expect(firms_index_page.page_title).to have_text(/^#{singular_form}$/)
+  end
+
+  def and_the_parent_firm_section_heading_is_visible
+    expect(firms_index_page.parent_firm_heading)
+      .to have_text(I18n.t!('self_service.firms_index.firm_heading'))
+  end
+
+  def and_the_parent_firm_section_heading_is_not_visible
+    expect(firms_index_page).not_to have_parent_firm_heading
   end
 
   private

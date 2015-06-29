@@ -1,14 +1,21 @@
 <%= render_breadcrumbs(breadcrumbs_root) %>
 
 <div class="l-self-service">
-  <h2><%= t('self_service.firms_index.firm_heading') %></h2>
+  <h1 class="t-page-title">
+    <%= t('self_service.firms_index.title', count: @presenter.total_firms) %>
+  </h1>
+
+  <% if @presenter.firm_has_trading_names? %>
+    <h2 class="t-parent-firm-heading"><%= t('self_service.firms_index.firm_heading') %></h2>
+  <% end %>
+
   <%= render 'table_parent_firm' %>
 
-  <% if @trading_names.present? || @lookup_names.present? %>
+  <% if @presenter.firm_has_trading_names? %>
     <div id="firm-list" class="t-trading-names-block" data-dough-component="MultiTableFilter">
       <h2><%= t('self_service.firms_index.trading_names_heading') %></h2>
 
-      <% if @trading_names.empty? %>
+      <% if @presenter.no_trading_names_have_been_added? %>
         <p class="t-add-trading-names-prompt">
           <%= t('self_service.firms_index.add_trading_names_prompt') %>
         </p>
@@ -19,7 +26,7 @@
     </div>
   <% end %>
 
-  <% if @lookup_names.present? %>
+  <% if @presenter.trading_names_are_available_to_add? %>
     <div id="trading-name-list" class="t-available-trading-names-block" data-dough-component="MultiTableFilter">
       <h2><%= t('self_service.firms_index.available_trading_names_heading') %></h2>
 
