@@ -1,6 +1,6 @@
 <%= render_breadcrumbs(breadcrumbs_firm_advisers) %>
 
-<div class="l-self-service" data-dough-component="MultiTableFilter">
+<div class="l-self-service">
   <div class="l-heading-with-button">
     <h1 class="t-firm-name">
       <%= t('self_service.advisers_index.title', firm_name: @firm.registered_name) %>
@@ -8,11 +8,17 @@
     <%= add_adviser_button(firm: @firm) %>
   </div>
 
-  <div class="t-parent-firm">
-    <%= filter_field :trading_names, locale_prefix: 'self_service.advisers_index.adviser_names_filter' %>
-
-    <div data-dough-filter-group>
-      <%= render 'self_service/advisers/advisers_table', firm: @firm %>
+  <% if @firm.advisers.present? %>
+    <div data-dough-component="MultiTableFilter">
+      <%= filter_field :trading_names, locale_prefix: 'self_service.advisers_index.adviser_names_filter' %>
+      <%= render 'self_service/advisers/advisers_table', advisers: @firm.advisers %>
     </div>
-  </div>
+  <% else %>
+    <p class="t-no-advisers-message">
+      <%= t('self_service.advisers_index.no_advisers_message') %>
+      <%= link_to(t('self_service.advisers_index.add_adviser_link', firm_name: @firm.registered_name),
+                  new_self_service_firm_adviser_path(@firm),
+                  class: 't-add-adviser-link')  %>
+    </p>
+  <% end %>
 </div>

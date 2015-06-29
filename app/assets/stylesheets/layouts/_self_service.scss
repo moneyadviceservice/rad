@@ -1,6 +1,8 @@
 .l-self-service {
   @extend .l-constrained;
   margin-bottom: $baseline-unit*8;
+  padding-left: $baseline-unit*2;
+  padding-right: $baseline-unit*2;
 }
 
 .l-self-service-action-row {
