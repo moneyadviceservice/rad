@@ -315,20 +315,19 @@ en:
         subheading: "Percentage of overall business income taken from the following types of advice:"
 
         advice_options:
-          retirement_income_products_percent: Conversion of pension pot/other liquid savings into retirement income
-          pension_transfer_percent: Defined benefit pensions (including transfers)
-          long_term_care_percent: Long term care
-          equity_release_percent: Equity release
-          inheritance_tax_and_estate_planning_percent: Inheritance Tax and Estate Planning
-          wills_and_probate_percent: Wills & Probate
-          other_percent: Other <a href="#other_description">&#185;</a>
+          retirement_income_products_flag: Conversion of pension pot/other liquid savings into retirement income
+          pension_transfer_flag: Defined benefit pensions (including transfers)
+          long_term_care_flag: Long term care
+          equity_release_flag: Equity release
+          inheritance_tax_and_estate_planning_flag: Inheritance Tax and Estate Planning
+          wills_and_probate_flag: Wills & Probate
+          other_flag: Other <a href="#other_description">&#185;</a>
 
         footnotes:
           heading: Supplementary Information
           other_html: |
             <span class="footnote__number">1.</span>This would include investment/pensions advice to clients in the accumulation phase i.e. not seeking ‘at’ or ‘post’ retirement advice - e.g. non-equity release mortgage advice;  protection advice, etc.
 
-        explanation: Together, the entries into all of the fields must add up to a total of 100%.
         disclaimer:
           heading: How do we use this information?
           text: This information is for internal processes and will not appear on your profile page.  We will use this information to filter results so that consumers looking for a particular type of advice will be matched to a firm that provides that type of advice.

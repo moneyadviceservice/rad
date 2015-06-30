@@ -5,13 +5,13 @@ RSpec.feature 'The self service firm edit page' do
   let(:firm_edit_page) { SelfService::FirmEditPage.new }
   let!(:firm_changes) do
     FactoryGirl.build(:firm,
-                      retirement_income_products_percent: 3,
-                      pension_transfer_percent: 5,
-                      long_term_care_percent: 7,
-                      equity_release_percent: 9,
-                      inheritance_tax_and_estate_planning_percent: 11,
-                      wills_and_probate_percent: 13,
-                      other_percent: 52)
+                      retirement_income_products_flag: true,
+                      pension_transfer_flag: false,
+                      long_term_care_flag: true,
+                      equity_release_flag: false,
+                      inheritance_tax_and_estate_planning_flag: true,
+                      wills_and_probate_flag: false,
+                      other_flag: true)
   end
 
   scenario 'The principal can edit their firm' do
@@ -130,27 +130,26 @@ RSpec.feature 'The self service firm edit page' do
 
   def complete_part_2
     firm_edit_page.tap do |p|
-      p.retirement_income_products_percent.set firm_changes.retirement_income_products_percent
-      p.pension_transfer_percent.set firm_changes.pension_transfer_percent
-      p.long_term_care_percent.set firm_changes.long_term_care_percent
-      p.equity_release_percent.set firm_changes.equity_release_percent
-      p.inheritance_tax_and_estate_planning_percent.set firm_changes.inheritance_tax_and_estate_planning_percent
-      p.wills_and_probate_percent.set firm_changes.wills_and_probate_percent
-      p.other_percent.set firm_changes.other_percent
+      p.retirement_income_products_flag.set firm_changes.retirement_income_products_flag
+      p.pension_transfer_flag.set firm_changes.pension_transfer_flag
+      p.long_term_care_flag.set firm_changes.long_term_care_flag
+      p.equity_release_flag.set firm_changes.equity_release_flag
+      p.inheritance_tax_and_estate_planning_flag.set firm_changes.inheritance_tax_and_estate_planning_flag
+      p.wills_and_probate_flag.set firm_changes.wills_and_probate_flag
+      p.other_flag.set firm_changes.other_flag
       p.minimum_fee.set firm_changes.minimum_fixed_fee
     end
   end
 
   def validate_part_2
     firm_edit_page.tap do |p|
-      expect(p.retirement_income_products_percent.value).to eq firm_changes.retirement_income_products_percent.to_s
-      expect(p.pension_transfer_percent.value).to eq firm_changes.pension_transfer_percent.to_s
-      expect(p.long_term_care_percent.value).to eq firm_changes.long_term_care_percent.to_s
-      expect(p.equity_release_percent.value).to eq firm_changes.equity_release_percent.to_s
-      expect(p.inheritance_tax_and_estate_planning_percent.value)
-        .to eq firm_changes.inheritance_tax_and_estate_planning_percent.to_s
-      expect(p.wills_and_probate_percent.value).to eq firm_changes.wills_and_probate_percent.to_s
-      expect(p.other_percent.value).to eq firm_changes.other_percent.to_s
+      expect(p.retirement_income_products_flag?).to eq firm_changes.retirement_income_products_flag
+      expect(p.pension_transfer_flag?).to eq firm_changes.pension_transfer_flag
+      expect(p.long_term_care_flag?).to eq firm_changes.long_term_care_flag
+      expect(p.equity_release_flag?).to eq firm_changes.equity_release_flag
+      expect(p.inheritance_tax_and_estate_planning_flag?).to eq firm_changes.inheritance_tax_and_estate_planning_flag
+      expect(p.wills_and_probate_flag?).to eq firm_changes.wills_and_probate_flag
+      expect(p.other_flag?).to eq firm_changes.other_flag
       expect(p.minimum_fee.value).to eq firm_changes.minimum_fixed_fee.to_s
     end
   end

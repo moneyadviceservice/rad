@@ -66,13 +66,13 @@ namespace :export do
           firm.ongoing_advice_fee_structures.map(&:name).join(', '),
           firm.allowed_payment_methods.map(&:name).join(', '),
           firm.minimum_fixed_fee,
-          firm.retirement_income_products_percent,
-          firm.pension_transfer_percent,
-          firm.long_term_care_percent,
-          firm.equity_release_percent,
-          firm.inheritance_tax_and_estate_planning_percent,
-          firm.wills_and_probate_percent,
-          firm.other_percent,
+          firm.retirement_income_products_flag,
+          firm.pension_transfer_flag,
+          firm.long_term_care_flag,
+          firm.equity_release_flag,
+          firm.inheritance_tax_and_estate_planning_flag,
+          firm.wills_and_probate_flag,
+          firm.other_flag,
           firm.investment_sizes.map(&:name).join(', ')
         ]
       end
