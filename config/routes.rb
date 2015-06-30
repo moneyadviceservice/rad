@@ -2,7 +2,15 @@ require 'sidekiq/web'
 
 Rails.application.routes.draw do
   devise_for :users
-  root 'principals#pre_qualification_form'
+
+  unauthenticated do
+    root 'principals#pre_qualification_form'
+  end
+
+  authenticated do
+    # This root is given an explicit name to prevent a root route name collision
+    root to: redirect('/self_service/'), as: :authenticated_root
+  end
 
   get 'error', to: 'pages#error'
 
