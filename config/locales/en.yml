@@ -39,7 +39,6 @@ en:
       firm:
         fca_number: FRN
         registered_name: Registered name
-        percent_total: Percentage total
       user:
         login: Firm Reference Number
     errors:
