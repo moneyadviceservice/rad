@@ -311,7 +311,7 @@ en:
       business_split:
         heading: Describe your firm's business split as it relates to ‘at’ or ‘post’ retirement advice
         description: In your last financial year, please tell us how active your firm was in the following areas of retirement planning / advice.
-        subheading: "Percentage of overall business income taken from the following types of advice:"
+        subheading: "Types of advice provided"
 
         advice_options:
           retirement_income_products_flag: Conversion of pension pot/other liquid savings into retirement income
