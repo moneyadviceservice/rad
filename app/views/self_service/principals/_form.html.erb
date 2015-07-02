@@ -1,4 +1,6 @@
 <div class="l-half-width">
+  <p><%= t('self_service.required_fields_message') %></p>
+
   <% if f.object.errors.any? %>
     <div class="t-validation-summary">
       <%= f.validation_summary %>

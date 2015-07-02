@@ -5,6 +5,7 @@ en:
     add_trading_name_button: Add a trading name
     cancel_button: Cancel
     save_button: Save
+    required_fields_message: "* Indicates required fields"
 
     advisers_index:
       breadcrumb: Advisers
