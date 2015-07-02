@@ -22,13 +22,13 @@ class QuestionnairePage < SitePrism::Page
   elements :allowed_payment_methods, '.t-questionnaire__allowed-payment-method-id'
   element :minimum_fee, '#firm_minimum_fixed_fee'
 
-  element :retirement_income_products_percent, '#firm_retirement_income_products_percent'
-  element :pension_transfer_percent, '#firm_pension_transfer_percent'
-  element :long_term_care_percent, '#firm_long_term_care_percent'
-  element :equity_release_percent, '#firm_equity_release_percent'
-  element :inheritance_tax_and_estate_planning_percent, '#firm_inheritance_tax_and_estate_planning_percent'
-  element :wills_and_probate_percent, '#firm_wills_and_probate_percent'
-  element :other_percent, '#firm_other_percent'
+  element :retirement_income_products_flag, '#firm_retirement_income_products_flag'
+  element :pension_transfer_flag, '#firm_pension_transfer_flag'
+  element :long_term_care_flag, '#firm_long_term_care_flag'
+  element :equity_release_flag, '#firm_equity_release_flag'
+  element :inheritance_tax_and_estate_planning_flag, '#firm_inheritance_tax_and_estate_planning_flag'
+  element :wills_and_probate_flag, '#firm_wills_and_probate_flag'
+  element :other_flag, '#firm_other_flag'
 
   elements :investment_sizes, '.t-questionnaire__firm-investment-size-id'
 

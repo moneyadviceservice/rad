@@ -78,13 +78,13 @@ RSpec.feature 'Principal completes the firm questionnaire' do
   end
 
   def complete_part_3(page)
-    page.retirement_income_products_percent.set 15
-    page.pension_transfer_percent.set 15
-    page.long_term_care_percent.set 15
-    page.equity_release_percent.set 15
-    page.inheritance_tax_and_estate_planning_percent.set 15
-    page.wills_and_probate_percent.set 15
-    page.other_percent.set 10
+    page.retirement_income_products_flag.set true
+    page.pension_transfer_flag.set true
+    page.long_term_care_flag.set true
+    page.equity_release_flag.set true
+    page.inheritance_tax_and_estate_planning_flag.set true
+    page.wills_and_probate_flag.set true
+    page.other_flag.set true
   end
 
   def when_i_complete_all_mandatory_questions

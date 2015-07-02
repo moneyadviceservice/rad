@@ -27,13 +27,13 @@ module SelfService
     elements :allowed_payment_methods, '.t-questionnaire__allowed-payment-method-id'
     element :minimum_fee, '.t-minimum_fixed_fee'
 
-    element :retirement_income_products_percent, '.t-retirement-income-products-percent'
-    element :pension_transfer_percent, '.t-pension-transfer-percent'
-    element :long_term_care_percent, '.t-long-term-care-percent'
-    element :equity_release_percent, '.t-equity-release-percent'
-    element :inheritance_tax_and_estate_planning_percent, '.t-inheritance-tax-and-estate-planning-percent'
-    element :wills_and_probate_percent, '.t-wills-and-probate-percent'
-    element :other_percent, '.t-other-percent'
+    element :retirement_income_products_flag, '.t-retirement-income-products-flag'
+    element :pension_transfer_flag, '.t-pension-transfer-flag'
+    element :long_term_care_flag, '.t-long-term-care-flag'
+    element :equity_release_flag, '.t-equity-release-flag'
+    element :inheritance_tax_and_estate_planning_flag, '.t-inheritance-tax-and-estate-planning-flag'
+    element :wills_and_probate_flag, '.t-wills-and-probate-flag'
+    element :other_flag, '.t-other-flag'
 
     elements :investment_sizes, '.t-questionnaire__firm-investment-size-id'
 
@@ -45,6 +45,34 @@ module SelfService
 
     def offers_free_initial_meeting?
       !!offers_free_initial_meeting_true.checked?
+    end
+
+    def retirement_income_products_flag?
+      !!retirement_income_products_flag.checked?
+    end
+
+    def pension_transfer_flag?
+      !!pension_transfer_flag.checked?
+    end
+
+    def long_term_care_flag?
+      !!long_term_care_flag.checked?
+    end
+
+    def equity_release_flag?
+      !!equity_release_flag.checked?
+    end
+
+    def inheritance_tax_and_estate_planning_flag?
+      !!inheritance_tax_and_estate_planning_flag.checked?
+    end
+
+    def wills_and_probate_flag?
+      !!wills_and_probate_flag.checked?
+    end
+
+    def other_flag?
+      !!other_flag.checked?
     end
   end
 end

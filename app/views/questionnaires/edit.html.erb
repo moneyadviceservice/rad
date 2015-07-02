@@ -221,23 +221,15 @@
         <fieldset class="form__group">
           <legend class="l-questionnaire__legend"><%= t('questionnaire.retirement_advice.business_split.subheading') %></legend>
 
-          <%= f.form_row :percent_total do %>
-            <%= f.errors_for :percent_total %>
-            <p class="l-questionnaire__section-description l-questionnaire__section-description--collapsed"><%= t('questionnaire.retirement_advice.business_split.explanation') %></p>
-          <% end %>
-
           <div class="l-questionnaire__row">
             <div class="l-questionnaire__field">
               <% t('questionnaire.retirement_advice.business_split.advice_options').each do |attribute, heading| %>
-                <%= f.form_row attribute do %>
-                  <%= f.errors_for attribute %>
-                  <%= f.label attribute, raw(heading), class: 'form__label-heading', id: "form-label-#{attribute}".dasherize %>
-                  <span class="form__input-container form__input-container--small">
-                    <%= f.text_field attribute, type: 'number', class: 'form__input', aria_labelledby: "form-label-#{attribute} input-label-#{attribute}-b".dasherize %>
-                    <span class="form__input-label" id="<%= "input-label-#{attribute}-b".dasherize %>">%</span>
-                    <span class="form__input-outline"></span>
-                  </span>
-                <% end %>
+                <div class="form__group-item">
+                  <label>
+                    <%= f.check_box attribute, class: "form__input t-#{attribute.to_s.dasherize}", aria_labelledby: "form-label-#{attribute} input-label-#{attribute}-b".dasherize %>
+                    <%= raw heading %>
+                  </label>
+                </div>
               <% end %>
             </div>
           </div>

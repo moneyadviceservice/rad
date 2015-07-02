@@ -1,3 +1,5 @@
+require_relative 'firm_edit_page'
+
 module SelfService
   class TradingNameEditPage < FirmEditPage
     set_url '/self_service/trading_names/{trading_name}'
