@@ -3,7 +3,7 @@ require File.expand_path('../../config/environment',  __FILE__)
 require 'csv'
 
 def get_adviser_status(reference_number)
-  `./adviser_status.sh #{reference_number}`.split(':').last.strip.upcase
+  `./lib/adviser_status.sh #{reference_number}`.split(':').last.strip.upcase
 end
 
 invalid_advisers = Adviser.all.select { |a| !a.valid? }
