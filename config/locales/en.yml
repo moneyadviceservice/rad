@@ -202,8 +202,8 @@ en:
         travel_distance: How far is your adviser willing to travel?
 
       advisers_qualifications:
-        heading: What are your advisers details?
-        description: You will then be asked to complete some basic information about that adviser.
+        heading: Accreditations and qualifications
+        description: Please tell us what accreditations and/or qualifications this adviser holds.
 
       accreditations:
         heading: Accreditations
