@@ -2,12 +2,22 @@
   // Only supports h1 ~ ul
   @extend %heading-with-action;
 
+  h1,
+  h2,
+  h3 {
+    @include respond-to($mq-m) {
+      margin-right: 0.5em;
+    }
+  }
+
   ul {
     @extend .unstyled-list;
-    display: inline-block;
-    padding-top: 18px;
-    margin-bottom: 0;
-    margin-left: 1em;
+
+    @include respond-to($mq-m) {
+      display: inline-block;
+      padding-top: 18px;
+      margin-bottom: 0;
+    }
 
     li {
       font-size: 1.25rem;
