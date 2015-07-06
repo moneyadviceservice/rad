@@ -207,11 +207,9 @@ en:
 
       accreditations:
         heading: Accreditations
-        description: Please provide all the accreditations held by this adviser.
 
       qualifications:
         heading: Qualifications
-        description: Please provide all the qualifications held by this adviser.
 
       professional_standing:
         heading: Statement of Professional Standing

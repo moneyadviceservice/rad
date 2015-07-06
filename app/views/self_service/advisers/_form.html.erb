@@ -59,7 +59,6 @@
 
   <fieldset class="form__group">
     <legend class="l-questionnaire__legend"><%= t('questionnaire.adviser.accreditations.heading') %></legend>
-    <p><%= t('questionnaire.adviser.accreditations.description') %></p>
 
     <%= f.form_row :accreditation_ids do %>
       <%= f.errors_for :accreditation_ids %>
@@ -74,7 +73,6 @@
 
   <fieldset class="form__group">
     <legend class="l-questionnaire__legend"><%= t('questionnaire.adviser.qualifications.heading') %></legend>
-    <p><%= t('questionnaire.adviser.qualifications.description') %></p>
 
     <%= f.form_row :qualification_ids do %>
       <%= f.errors_for :qualification_ids %>
