@@ -11,6 +11,7 @@ STATUS_STRINGS = {
 }.freeze
 FRN_INDEX = 0
 STATUS_INDEX = 4
+HEADERS = ['FCA REF', 'ADVISER NAME', 'FIRM NAME', 'ERROR TYPE', 'LINK'].to_csv
 
 def log(message)
   STDERR.puts(message)
@@ -46,6 +47,7 @@ log 'Searching for invalid advisers'
 invalid_advisers = Adviser.all.select { |a| !a.valid? }
 
 log 'Processing list of invalid advisers'
+puts HEADERS
 invalid_advisers.each do |adviser|
   if adviser.errors.full_messages.size == 1
     if adviser.errors.first[0] == :reference_number
