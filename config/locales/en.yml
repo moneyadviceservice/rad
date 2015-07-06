@@ -194,10 +194,22 @@ en:
         label: Adviser FCA individual reference number *
 
       geographical_coverage:
-        heading: Where does your adviser provide their services? *
-        description: This is to show customers if your adviser is willing to travel to provide their services.
+        heading: Where is your adviser based? *
+        description: Please provide the postcode where your adviser is normally based.
+        explanation:
+          heading: Why are we asking for this?
+          para_1: >-
+            The search function picks up the postcode entered against advisers,
+            rather than against firms. This is to accommodate those firms who
+            have more than one adviser and/or have advisers who work from home.
+            You should enter the postcode the adviser normally works from –
+            even if this is their home postcode. This won’t be shown on the
+            customer facing page, but will be picked up in the search results.
+          para_2: >-
+            However, make sure at least one adviser has the office postcode
+            entered against them, otherwise the office address won’t get picked
+            up in the search results.
         national_coverage: Does your adviser provide UK wide coverage?
-        adviser_services_postcode: Please provide details of the area your adviser offers their services
         postcode: What is your adviser's postcode?
         travel_distance: How far is your adviser willing to travel?
 
