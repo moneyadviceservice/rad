@@ -10,6 +10,7 @@ module SelfService
     element :firm_fca_number, '.t-firm-fca-number'
 
     element :email_address, '.t-email-address'
+    element :website_address, '.t-website-address'
     element :telephone_number, '.t-telephone-number'
     element :address_line_one, '.t-address-line-one'
     element :address_town, '.t-address-town'

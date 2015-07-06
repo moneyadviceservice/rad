@@ -31,7 +31,6 @@ RSpec.feature 'Principal provides identifying information', :inline_job_queue do
   def when_i_provide_incorrect_or_invalid_information
     identification_page.tap do |p|
       p.email.set 'welp'
-      p.website_address.set 'wwwelp'
       p.first_name.set ''
       p.last_name.set ''
       p.telephone_number.set 'welp'
@@ -66,7 +65,6 @@ RSpec.feature 'Principal provides identifying information', :inline_job_queue do
 
   def and_i_provide_my_identifying_particulars
     identification_page.tap do |p|
-      p.website_address.set 'http://www.example.com'
       p.first_name.set 'Ben'
       p.last_name.set 'Lovell'
       p.job_title.set 'Director'

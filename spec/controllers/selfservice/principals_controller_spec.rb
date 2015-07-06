@@ -26,7 +26,6 @@ RSpec.describe SelfService::PrincipalsController, type: :controller do
         expect(principal.first_name).to eq principal_params[:first_name]
         expect(principal.last_name).to eq principal_params[:last_name]
         expect(principal.email_address).to eq principal_params[:email_address]
-        expect(principal.website_address).to eq principal_params[:website_address]
         expect(principal.job_title).to eq principal_params[:job_title]
         expect(principal.telephone_number).to eq principal_params[:telephone_number]
       end

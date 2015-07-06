@@ -10,4 +10,10 @@
     <%= f.label :telephone_number, t('questionnaire.telephone_number.label'), class: 'form__label-heading' %>
     <%= f.text_field :telephone_number, class: 't-telephone-number' %>
   <% end %>
+
+  <%= f.form_row do %>
+    <%= f.errors_for :website_address %>
+    <%= f.label :website_address, t('questionnaire.website_address.label'), class: 'form__label-heading' %>
+    <%= f.text_field :website_address, class: 't-website-address' %>
+  <% end %>
 </fieldset>

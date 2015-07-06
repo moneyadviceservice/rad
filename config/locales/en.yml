@@ -55,8 +55,6 @@ en:
               too_short: "- please select at least one"
             investment_sizes:
               too_short: "- please select at least one"
-        principal:
-          attributes:
             website_address:
               invalid: " is invalid. The address must be in the format: http://www.example.com"
         adviser:
@@ -131,7 +129,6 @@ en:
     firm:
       heading: Firm FCA information
       reference_number: Firm reference number *
-      website_address: Firm website address
     principal:
       heading: Authorisation
       explanation: Please enter the details of the person completing the registration process on behalf of your firm. We recommend that registration is completed by a Principal, Compliance officer or the equivalent.
@@ -268,6 +265,11 @@ en:
       heading: Firm telephone number for enquiries
       description: Please provide a contact number for customers who wish to call you.
       label: Firm telephone number *
+
+    website_address:
+      heading: Firm website address
+      description: Please provide a website address for customers who wish to visit your website.
+      label: Firm website address *
 
     address:
       heading: Main office where customers will meet you

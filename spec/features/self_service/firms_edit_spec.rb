@@ -109,6 +109,7 @@ RSpec.feature 'The self service firm edit page' do
   def complete_part_1
     firm_edit_page.tap do |p|
       p.email_address.set firm_changes.email_address
+      p.website_address.set firm_changes.website_address
       p.telephone_number.set firm_changes.telephone_number
       p.address_line_one.set firm_changes.address_line_one
       p.address_town.set firm_changes.address_town
@@ -120,6 +121,7 @@ RSpec.feature 'The self service firm edit page' do
   def validate_part_1
     firm_edit_page.tap do |p|
       expect(p.email_address.value).to eq firm_changes.email_address
+      expect(p.website_address.value).to eq firm_changes.website_address
       expect(p.telephone_number.value).to eq firm_changes.telephone_number
       expect(p.address_line_one.value).to eq firm_changes.address_line_one
       expect(p.address_town.value).to eq firm_changes.address_town

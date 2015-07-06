@@ -21,16 +21,6 @@
           </div>
         </div>
 
-        <div class="l-identity__row">
-          <div class="l-identity__field">
-            <%= principle_form.form_row(:website_address) do %>
-              <%= user_form.errors_for :website_address %>
-              <%= principle_form.label :website_address, t('registration.firm.website_address'), class: 'form__label-heading' %>
-              <%= principle_form.text_field :website_address, class: 't-website-address', placeholder: 'http://www.example.com' %>
-            <% end %>
-          </div>
-        </div>
-
         <hr>
 
         <div class="l-identity__row">
