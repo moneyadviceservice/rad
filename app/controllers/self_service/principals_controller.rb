@@ -28,7 +28,6 @@ module SelfService
         :first_name,
         :last_name,
         :email_address,
-        :website_address,
         :telephone_number,
         :job_title
       )
