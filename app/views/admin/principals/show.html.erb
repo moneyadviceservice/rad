@@ -21,12 +21,7 @@
       <strong>Phone Number:</strong> <%= @principal.telephone_number %>
     </p>
     <p>
-      <strong>Website Address:</strong> <%= @principal.website_address.present? ? @principal.website_address : 'not given' %>
-    </p>
-    <p>
       <strong>Added:</strong> <%= @principal.created_at.to_s(:long) %>
     </p>
   </div>
 </div>
-
-<p><%= link_to('Edit Principal', edit_admin_principal_path) %></p>
