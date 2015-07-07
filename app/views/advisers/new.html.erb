@@ -32,7 +32,6 @@
         <p class="l-questionnaire__section-description"><%= t('questionnaire.adviser.geographical_coverage.description') %></p>
 
         <fieldset class="form__group" data-dough-field-target="1">
-          <legend class="l-questionnaire__legend"><%= t('questionnaire.adviser.geographical_coverage.adviser_services_postcode') %></legend>
           <%= f.form_row :postcode do %>
             <div>
               <%= f.errors_for :postcode %>
@@ -40,6 +39,12 @@
               <%= f.text_field :postcode, class: 't-postcode form__input-container--medium' %>
             </div>
           <% end %>
+
+          <div class="callout l-questionnaire__section-description">
+            <h3><%= t('questionnaire.adviser.geographical_coverage.explanation.heading') %></h3>
+            <p><%= t('questionnaire.adviser.geographical_coverage.explanation.para_1') %></p>
+            <p><%= t('questionnaire.adviser.geographical_coverage.explanation.para_2') %></p>
+          </div>
 
           <%= f.form_row :travel_distance do %>
             <div>
@@ -59,7 +64,6 @@
 
         <fieldset class="form__group">
           <legend class="l-questionnaire__legend"><%= t('questionnaire.adviser.accreditations.heading') %></legend>
-          <p><%= t('questionnaire.adviser.accreditations.description') %></p>
 
           <%= f.form_row :accreditation_ids do %>
             <%= f.errors_for :accreditation_ids %>
@@ -74,7 +78,6 @@
 
         <fieldset class="form__group">
           <legend class="l-questionnaire__legend"><%= t('questionnaire.adviser.qualifications.heading') %></legend>
-          <p><%= t('questionnaire.adviser.qualifications.description') %></p>
 
           <%= f.form_row :qualification_ids do %>
             <%= f.errors_for :qualification_ids %>
