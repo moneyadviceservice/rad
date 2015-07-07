@@ -43,6 +43,21 @@
         </fieldset>
 
         <fieldset class="form__group">
+          <legend class="l-questionnaire__legend"><%= t('questionnaire.website_address.heading') %></legend>
+          <p><%= t('questionnaire.website_address.description') %></p>
+
+          <div class="l-questionnaire__row">
+            <div class="l-questionnaire__field form__group-item">
+              <%= f.form_row :website_address do %>
+                <%= f.errors_for :website_address %>
+                <%= f.label :website_address, t('questionnaire.website_address.label'), class: 'form__label-heading' %>
+                <%= f.text_field :website_address %>
+              <% end %>
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset class="form__group">
           <legend class="l-questionnaire__legend"><%= t('questionnaire.address.heading') %></legend>
           <p><%= t('questionnaire.address.description') %></p>
 
