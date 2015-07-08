@@ -44,6 +44,23 @@ module SelfService
           expect(assigns(:presenter)).to have(2).trading_names
         end
       end
+
+      context 'when there are lookup names' do
+        before { FactoryGirl.create_list(:lookup_subsidiary, 8, fca_number: firm.fca_number) }
+
+        it 'assigns lookup names' do
+          get :index
+          expect(assigns(:presenter)).to have(8).lookup_names
+        end
+
+        it 'sorts lookup names by lowercase name (alpha ascending)' do
+          get :index
+          assigned_names = assigns(:presenter).lookup_names.map(&:name)
+          sorted_names = assigned_names.sort_by(&:downcase)
+
+          expect(assigned_names).to eq sorted_names
+        end
+      end
     end
 
     describe 'GET #edit' do
