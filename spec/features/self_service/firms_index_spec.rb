@@ -172,6 +172,5 @@ RSpec.feature 'The self service firm list page' do
   def expect_firm_table_row(firm_row, firm)
     expect(firm_row).to have_frn(text: firm.fca_number)
     expect(firm_row).to have_name(text: firm.registered_name)
-    expect(firm_row).to have_principal_name(text: firm.principal.full_name)
   end
 end

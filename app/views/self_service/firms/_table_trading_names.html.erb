@@ -8,9 +8,6 @@
         <th class="firms-table__frn">
           <%= Firm.human_attribute_name(:fca_number) %>
         </th>
-        <th class="firms-table__principal">
-          <%= t('self_service.firms_index.principal_column_heading') %>
-        </th>
         <th class="firms-table__action"></th>
       </tr>
     </thead>
@@ -23,7 +20,6 @@
             <% end %>
           </td>
           <td class="t-frn" data-dough-filterable><%= trading_name.fca_number %></td>
-          <td class="t-principal-name" data-dough-filterable><%= trading_name.principal.full_name %></td>
           <td>
             <%= button_to t('self_service.firms_index.delete_trading_name_button'),
                           self_service_trading_name_path(trading_name),
