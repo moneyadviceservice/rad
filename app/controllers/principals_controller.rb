@@ -53,7 +53,6 @@ class PrincipalsController < ApplicationController
     params.require(:principal)
       .permit(
         :fca_number,
-        :website_address,
         :first_name,
         :last_name,
         :job_title,

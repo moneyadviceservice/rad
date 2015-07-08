@@ -7,17 +7,6 @@
     </div>
   <% end %>
 
-  <%= heading_tag(t('self_service.principal_edit.firm_section_heading'), level: 2) %>
-
-  <%= f.form_row(:website_address) do %>
-    <%= f.errors_for :website_address %>
-    <%= f.label :website_address, t('registration.firm.website_address'), class: 'form__label-heading' %>
-    <%= f.text_field :website_address, class: 't-website-address', placeholder: 'http://www.example.com' %>
-  <% end %>
-
-  <hr>
-
-  <%= heading_tag(t('self_service.principal_edit.principal_section_heading'), level: 2) %>
   <p><%= t('self_service.principal_edit.firm_section_explanation') %></p>
 
   <%= f.form_row(:first_name) do %>
@@ -53,5 +42,5 @@
 
 <div class="l-self-service-action-row">
   <%= link_to t('self_service.cancel_button'), :back, class: 'l-self-service-action-row__cancel' %>
-  <%= f.submit t('self_service.principal_edit.submit_button'), class: 'button button--primary' %>
+  <%= f.submit t('self_service.principal_edit.submit_button'), class: 'button button--primary t-save-button' %>
 </div>

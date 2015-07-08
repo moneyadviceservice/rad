@@ -23,10 +23,6 @@
         <%= f.search_field :last_name_cont, class: 'form-control', placeholder: 'Last name' %>
       </div>
       <div class="form-group">
-        <%= f.label :website_address_cont, 'Search Website URLs' %>
-        <%= f.search_field :website_address_cont, class: 'form-control' %>
-      </div>
-      <div class="form-group">
         <button type="submit" class="btn btn-default">Submit</button>
       </div>
     <% end %>
@@ -44,7 +40,6 @@
           &
           <%= sort_link(@search, :last_name, 'Last Name') %>
         </th>
-        <th><%= sort_link(@search, :website_address, 'Website') %></th>
         <th><%= sort_link(@search, :created_at, 'Added') %></th>
       </tr>
       <% if @principals.present? %>
@@ -53,7 +48,6 @@
             <td><%= link_to principal.firm.registered_name, admin_firm_path(principal.firm) %></td>
             <td><%= principal.fca_number %></td>
             <td><%= link_to "#{principal.first_name} #{principal.last_name}", admin_principal_path(principal) %></td>
-            <td><%= principal.website_address %></td>
             <td><%= principal.created_at.to_s(:short) %></td>
           </tr>
         <% end %>

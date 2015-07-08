@@ -70,7 +70,7 @@ Rails.application.routes.draw do
       resources :firms, only: :index
       resources :subsidiaries, only: :index
     end
-    resources :principals, only: [:index, :show, :edit, :update]
+    resources :principals, only: [:index, :show]
   end
 
   if HttpAuthentication.required?
