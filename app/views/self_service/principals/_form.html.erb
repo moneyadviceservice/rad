@@ -41,6 +41,6 @@
 </div>
 
 <div class="l-self-service-action-row">
-  <%= link_to t('self_service.cancel_button'), :back, class: 'l-self-service-action-row__cancel' %>
+  <%= link_to t('self_service.cancel_button'), edit_self_service_firm_path(f.object.firm), class: 'l-self-service-action-row__cancel' %>
   <%= f.submit t('self_service.principal_edit.submit_button'), class: 'button button--primary t-save-button' %>
 </div>
