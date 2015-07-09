@@ -19,5 +19,10 @@ module SelfService
         concat content_tag(:span, sr_label, class: 'visually-hidden')
       end
     end
+
+    def create_or_update_self_service_trading_names_path(firm)
+      return self_service_trading_name_path(firm) if firm.persisted?
+      self_service_trading_names_path
+    end
   end
 end

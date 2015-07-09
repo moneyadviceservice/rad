@@ -7,7 +7,7 @@
   </h1>
 
   <%= form_for @firm,
-               url: self_service_trading_names_path(@firm),
+               url: create_or_update_self_service_trading_names_path(@firm),
                builder: Dough::Forms::Builders::Validation,
                html: { class: 'form' } do |f| %>
 
