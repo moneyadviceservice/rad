@@ -2,9 +2,9 @@ module SelfService
   class PrincipalsController < ApplicationController
     before_action :authenticate_user!
     before_action -> { @principal = principal }
+    before_action -> { @firm = principal.firm }
 
     def edit
-      @firm = principal.firm
     end
 
     def update
