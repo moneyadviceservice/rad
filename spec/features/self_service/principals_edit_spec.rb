@@ -18,6 +18,16 @@ RSpec.feature 'The self service principal edit page' do
     then_my_principal_details_are_changed
   end
 
+  scenario 'The principal cannot update their principal with invalid details' do
+    given_i_am_a_fully_registered_principal_user
+    and_i_am_logged_in
+    and_i_am_on_my_principal_edit_page
+    and_i_change_my_principal_details_to_invalid_details
+    and_i_submit_the_form
+    then_my_principal_details_are_not_changed
+    and_i_see_validation_messages
+  end
+
   def given_i_am_a_fully_registered_principal_user
     @principal = FactoryGirl.create(:principal)
     @user = FactoryGirl.create(:user, principal: @principal)
@@ -47,6 +57,10 @@ RSpec.feature 'The self service principal edit page' do
     principal_edit_page.telephone_number.set principal_changes.telephone_number
   end
 
+  def and_i_change_my_principal_details_to_invalid_details
+    principal_edit_page.email_address.set 'not an email'
+  end
+
   def and_i_submit_the_form
     principal_edit_page.save_button.click
   end
@@ -58,5 +72,14 @@ RSpec.feature 'The self service principal edit page' do
     expect(@principal.job_title).to eq principal_changes.job_title
     expect(@principal.email_address).to eq principal_changes.email_address
     expect(@principal.telephone_number).to eq principal_changes.telephone_number
+  end
+
+  def then_my_principal_details_are_not_changed
+    @principal.reload
+    expect(@principal.email_address).to_not eq 'not an email'
+  end
+
+  def and_i_see_validation_messages
+    expect(principal_edit_page).to have_validation_summary
   end
 end
