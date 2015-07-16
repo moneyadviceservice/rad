@@ -39,6 +39,7 @@ en:
       firm:
         fca_number: FRN
         registered_name: Registered name
+        business_offering: Types of advice provided
       user:
         login: Firm Reference Number
     errors:
@@ -55,6 +56,8 @@ en:
               too_short: "- please select at least one"
             investment_sizes:
               too_short: "- please select at least one"
+            business_offering:
+              invalid: "- please select at least one"
             website_address:
               invalid: " is invalid. The address must be in the format: http://www.example.com"
         adviser:
@@ -322,7 +325,7 @@ en:
 
       business_split:
         heading: Describe your firm's business split as it relates to ‘at’ or ‘post’ retirement advice
-        subheading: "Types of advice provided"
+        subheading: "Types of advice provided *"
 
         advice_options:
           retirement_income_products_flag: Conversion of pension pot/other liquid savings into retirement income
