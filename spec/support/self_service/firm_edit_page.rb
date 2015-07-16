@@ -34,7 +34,6 @@ module SelfService
     element :equity_release_flag, '.t-equity-release-flag'
     element :inheritance_tax_and_estate_planning_flag, '.t-inheritance-tax-and-estate-planning-flag'
     element :wills_and_probate_flag, '.t-wills-and-probate-flag'
-    element :other_flag, '.t-other-flag'
 
     elements :investment_sizes, '.t-questionnaire__firm-investment-size-id'
 
@@ -70,10 +69,6 @@ module SelfService
 
     def wills_and_probate_flag?
       !!wills_and_probate_flag.checked?
-    end
-
-    def other_flag?
-      !!other_flag.checked?
     end
   end
 end

@@ -334,7 +334,6 @@ en:
           equity_release_flag: Equity release
           inheritance_tax_and_estate_planning_flag: Inheritance Tax and Estate Planning
           wills_and_probate_flag: Wills & Probate
-          other_flag: Other <a href="#other_description">&#185;</a>
 
         footnotes:
           heading: Supplementary Information
