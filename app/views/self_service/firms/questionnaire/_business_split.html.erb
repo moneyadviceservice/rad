@@ -1,12 +1,15 @@
 <fieldset class="form__group">
   <legend class="l-questionnaire__legend"><%= t('questionnaire.retirement_advice.business_split.subheading') %></legend>
 
-  <% t('questionnaire.retirement_advice.business_split.advice_options').each do |attribute, heading| %>
-    <div class="form__group-item">
-      <label>
-        <%= f.check_box attribute, class: "form__input t-#{attribute.to_s.dasherize}", aria_labelledby: "form-label-#{attribute} input-label-#{attribute}-b".dasherize %>
-        <%= raw heading %>
-      </label>
-    </div>
+  <%= f.form_row :advice_types do %>
+  <%= f.errors_for :advice_types %>
+    <% t('questionnaire.retirement_advice.business_split.advice_options').each do |attribute, heading| %>
+      <div class="form__group-item">
+        <label>
+          <%= f.check_box attribute, class: "form__input t-#{attribute.to_s.dasherize}", aria_labelledby: "form-label-#{attribute} input-label-#{attribute}-b".dasherize %>
+          <%= raw heading %>
+        </label>
+      </div>
+    <% end %>
   <% end %>
 </fieldset>

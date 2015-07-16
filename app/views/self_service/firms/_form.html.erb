@@ -45,11 +45,6 @@
   </div>
 </section>
 
-<section class="form-section">
-  <%= render partial: 'self_service/firms/questionnaire/supplementary_information', locals: {f: f} %>
-</section>
-
-
 <div class="l-self-service-action-row">
   <%= link_to t('self_service.cancel_button'), self_service_firms_path, class: 'l-self-service-action-row__cancel' %>
   <%= f.submit t('self_service.save_button'), class: 'button button--primary t-save-button' %>

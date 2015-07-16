@@ -40,7 +40,6 @@ module SelfService
       :equity_release_flag,
       :inheritance_tax_and_estate_planning_flag,
       :wills_and_probate_flag,
-      :other_flag,
       in_person_advice_method_ids: [],
       other_advice_method_ids: [],
       initial_advice_fee_structure_ids: [],

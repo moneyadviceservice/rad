@@ -10,8 +10,7 @@ RSpec.feature 'The self service firm edit page' do
                       long_term_care_flag: true,
                       equity_release_flag: false,
                       inheritance_tax_and_estate_planning_flag: true,
-                      wills_and_probate_flag: false,
-                      other_flag: true)
+                      wills_and_probate_flag: false)
   end
 
   scenario 'The principal can edit their firm' do
@@ -138,7 +137,6 @@ RSpec.feature 'The self service firm edit page' do
       p.equity_release_flag.set firm_changes.equity_release_flag
       p.inheritance_tax_and_estate_planning_flag.set firm_changes.inheritance_tax_and_estate_planning_flag
       p.wills_and_probate_flag.set firm_changes.wills_and_probate_flag
-      p.other_flag.set firm_changes.other_flag
       p.minimum_fee.set firm_changes.minimum_fixed_fee
     end
   end
@@ -151,7 +149,6 @@ RSpec.feature 'The self service firm edit page' do
       expect(p.equity_release_flag?).to eq firm_changes.equity_release_flag
       expect(p.inheritance_tax_and_estate_planning_flag?).to eq firm_changes.inheritance_tax_and_estate_planning_flag
       expect(p.wills_and_probate_flag?).to eq firm_changes.wills_and_probate_flag
-      expect(p.other_flag?).to eq firm_changes.other_flag
       expect(p.minimum_fee.value).to eq firm_changes.minimum_fixed_fee.to_s
     end
   end

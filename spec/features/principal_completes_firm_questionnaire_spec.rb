@@ -84,7 +84,6 @@ RSpec.feature 'Principal completes the firm questionnaire' do
     page.equity_release_flag.set true
     page.inheritance_tax_and_estate_planning_flag.set true
     page.wills_and_probate_flag.set true
-    page.other_flag.set true
   end
 
   def when_i_complete_all_mandatory_questions

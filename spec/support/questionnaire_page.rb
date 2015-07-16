@@ -28,7 +28,6 @@ class QuestionnairePage < SitePrism::Page
   element :equity_release_flag, '#firm_equity_release_flag'
   element :inheritance_tax_and_estate_planning_flag, '#firm_inheritance_tax_and_estate_planning_flag'
   element :wills_and_probate_flag, '#firm_wills_and_probate_flag'
-  element :other_flag, '#firm_other_flag'
 
   elements :investment_sizes, '.t-questionnaire__firm-investment-size-id'
 

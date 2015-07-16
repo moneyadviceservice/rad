@@ -72,7 +72,6 @@ namespace :export do
           firm.equity_release_flag,
           firm.inheritance_tax_and_estate_planning_flag,
           firm.wills_and_probate_flag,
-          firm.other_flag,
           firm.investment_sizes.map(&:name).join(', ')
         ]
       end
