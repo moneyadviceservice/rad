@@ -2,7 +2,8 @@
   <legend class="l-questionnaire__legend"><%= t('questionnaire.retirement_advice.business_split.subheading') %></legend>
 
   <%= f.form_row :advice_types do %>
-  <%= f.errors_for :advice_types %>
+    <%= f.errors_for :advice_types %>
+    
     <% t('questionnaire.retirement_advice.business_split.advice_options').each do |attribute, heading| %>
       <div class="form__group-item">
         <label>
