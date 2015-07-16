@@ -39,7 +39,7 @@ en:
       firm:
         fca_number: FRN
         registered_name: Registered name
-        business_offering: Types of advice provided
+        advice_types: Types of advice provided
       user:
         login: Firm Reference Number
     errors:
@@ -56,7 +56,7 @@ en:
               too_short: "- please select at least one"
             investment_sizes:
               too_short: "- please select at least one"
-            business_offering:
+            advice_types:
               invalid: "- please select at least one"
             website_address:
               invalid: " is invalid. The address must be in the format: http://www.example.com"
