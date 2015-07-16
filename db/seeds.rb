@@ -67,5 +67,7 @@ end
   'Certified Financial Planner',
   'Pension transfer qualifications - holder of G60, AF3, AwPETR®, or equivalent',
   'Equity release qualifications i.e. holder of Certificate in Equity Release or equivalent',
-  'Long term care planning qualifications i.e. holder of CF8, CeLTCI®. or equivalent'
+  'Long term care planning qualifications i.e. holder of CF8, CeLTCI®. or equivalent',
+  'Holder of Trust and Estate Practitioner qualification (TEP) i.e. full member of STEP',
+  'Fellow of the Chartered Insurance Institute (FCII)'
 ].each.with_index(1) { |item, index| Qualification.find_or_create_by(name: item, order: index) }
