@@ -1,107 +1,109 @@
+class StubInvitationHelper
+  def invitation_url(user)
+    "invitation for user #{user.id}"
+  end
+end
+
 module Tasks
   RSpec.describe ExistingFirmsSignUpTask do
     describe '#notify' do
-      let!(:bills_firm) { create :firm }
-      let!(:bill) { create :principal, email_address: 'bill@example.com', firm: bills_firm }
+      let!(:firm) { create :firm, registered_name: 'Wright, Johnston & MacKenzie LLP' }
+      let!(:principal) { create :principal, firm: firm, first_name: 'Bill', last_name: 'Junior, the third' }
+      let(:stub_inviter) { StubInvitationHelper.new }
+      let(:output) { [] }
 
-      before do
+      it 'invites principals that have no account' do
+        expect(User.count).to eq(0)
+        described_class.notify(stub_inviter, output)
+        expect(User.first).to be_invited_to_sign_up
+      end
+
+      it 'sets user.invitation_sent_at' do
+        expected_invitation_sent_at = DateTime.current
+        allow(DateTime).to receive(:current).and_return(expected_invitation_sent_at)
+
+        described_class.notify(stub_inviter, output)
+        expect(User.first.invitation_sent_at.to_datetime).to be_within(1.second).of(expected_invitation_sent_at)
+      end
+
+      it 'invites but does not send email' do
         ActionMailer::Base.deliveries = []
+        described_class.notify(stub_inviter, output)
+        expect(ActionMailer::Base.deliveries).to be_empty
       end
 
-      it 'mails principals that have no account' do
-        create :principal, email_address: 'ben@example.com', firm: create(:firm)
+      describe 'when creating a csv entry for a principal' do
+        before do
+          described_class.notify(stub_inviter, output)
+        end
 
-        described_class.notify
+        it 'contains the frn' do
+          CSV.parse(output.first) do |line_data|
+            expect(line_data[0].to_i).to eq(principal.firm.fca_number)
+          end
+        end
 
-        expect(emails_sent.size).to eq(2)
-        expect(emails_sent).to all(have_attributes(subject: 'Invitation instructions'))
+        it 'contains the firm name' do
+          CSV.parse(output.first) do |line_data|
+            expect(line_data[1]).to eq(principal.firm.registered_name)
+          end
+        end
 
-        emails_sent.sort_by(&:to).tap do |sorted_emails_sent|
-          expect(sorted_emails_sent.first.to).to include('ben@example.com')
-          expect(sorted_emails_sent.last.to).to include(bill.email_address)
+        it 'contains the principal name' do
+          CSV.parse(output.first) do |line_data|
+            expect(line_data[2]).to eq(principal.full_name)
+          end
+        end
+
+        it 'contains the email' do
+          CSV.parse(output.first) do |line_data|
+            expect(line_data[3]).to eq(principal.email_address)
+          end
+        end
+
+        it 'contains the invitation url' do
+          CSV.parse(output.first) do |line_data|
+            expected_output = stub_inviter.invitation_url(User.first)
+            expect(line_data[4]).to eq(expected_output)
+          end
         end
       end
 
-      it 'mails only principals for firms with no parent' do
-        subsidiary = create(:firm, parent: bills_firm)
-        create :principal, email_address: 'firm@example.com', firm: bills_firm
-        create :principal, email_address: 'subsidiary@example.com', firm: subsidiary
+      it 'does not create output for trading names' do
+        subsidiary = create(:firm, parent: firm)
+        create :principal, email_address: 'firm@example.com', firm: firm
+        create :principal, email_address: 'tradingname@example.com', firm: subsidiary
 
-        described_class.notify
+        described_class.notify(stub_inviter, output)
 
-        expect(emails_sent.first.to).to include('firm@example.com')
-      end
-
-      it 'does not mail principals thats firm is not registered' do
-        bill.firm.update_attribute(:email_address, nil)
-
-        described_class.notify
-
-        expect(emails_sent).to be_empty
-      end
-
-      it 'does not mail principals thats firm are invalid' do
-        bill.firm.update_attribute(:telephone_number, nil)
-
-        described_class.notify
-
-        expect(emails_sent).to be_empty
-      end
-
-      it 'does not mail principals that have an already have an account' do
-        create :user, principal: bill
-        allow_any_instance_of(User).to receive(:invited_to_sign_up?).and_return(false)
-
-        described_class.notify
-
-        expect(emails_sent).to be_empty
-      end
-
-      it 'does not mail principals that have an account' do
-        create :user, principal: bill
-        allow_any_instance_of(User).to receive(:invited_to_sign_up?).and_return(false)
-
-        described_class.notify
-
-        expect(emails_sent).to be_empty
-      end
-
-      context 'rerunning task' do
-        it 'mails principals that have an account that have not accepted an invitation' do
-          create :user, principal: bill
-          allow_any_instance_of(User).to receive(:invited_to_sign_up?).and_return(true)
-          allow_any_instance_of(User).to receive(:invitation_accepted?).and_return(false)
-
-          described_class.notify
-
-          expect(emails_sent.size).to eq(1)
-          expect(emails_sent.first.subject).to eq('Invitation instructions')
-        end
-
-        it 'does not mail principals that have not been previously invited' do
-          create :user, principal: bill
-          allow_any_instance_of(User).to receive(:invited_to_sign_up?).and_return(false)
-
-          described_class.notify
-
-          expect(emails_sent.size).to eq(0)
-        end
-
-        it 'does not mail principals that have been invited and accepted the invitation' do
-          create :user, principal: bill
-          allow_any_instance_of(User).to receive(:invited_to_sign_up?).and_return(true)
-          allow_any_instance_of(User).to receive(:invitation_accepted?).and_return(true)
-
-          described_class.notify
-
-          expect(emails_sent.size).to eq(0)
+        expect(output.length).to eq(1)
+        CSV.parse(output.first) do |line_data|
+          expect(line_data[3]).to eq('firm@example.com')
         end
       end
 
-      private
+      it 'does not output including details where the firm is not registered' do
+        principal.firm.update_attribute(:email_address, nil)
 
-      def emails_sent
-        ActionMailer::Base.deliveries
+        described_class.notify(stub_inviter, output)
+
+        expect(output).to be_empty
+      end
+
+      it 'does not create output including details where the firm is not registered' do
+        principal.firm.update_attribute(:telephone_number, nil)
+
+        described_class.notify(stub_inviter, output)
+
+        expect(output).to be_empty
+      end
+
+      it 'does not create output including details where the firm already has an account' do
+        create :user, principal: principal
+
+        described_class.notify(stub_inviter, output)
+
+        expect(output).to be_empty
       end
     end
   end
