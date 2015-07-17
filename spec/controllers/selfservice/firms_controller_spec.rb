@@ -16,6 +16,9 @@ module SelfService
       firm_params[:ongoing_advice_fee_structure_ids] = firm.ongoing_advice_fee_structure_ids
       firm_params[:allowed_payment_method_ids] = firm.allowed_payment_method_ids
       firm_params[:investment_size_ids] = firm.investment_size_ids
+      firm_params[:remote_or_local_advice] = firm.remote_or_local_advice
+      firm_params[:other_advice_method_ids] = firm.other_advice_method_ids
+      firm_params[:in_person_advice_method_ids] = firm.in_person_advice_method_ids
       firm_params.merge(params)
     end
 
@@ -103,6 +106,23 @@ module SelfService
 
         it 'renders the edit page' do
           expect(response).to render_template 'self_service/firms/edit'
+        end
+      end
+
+      context 'when the advice type is changed from local to remote' do
+        let(:other_advice_method_ids) { create_list(:other_advice_method, rand(1..3)).map(&:id) }
+        let(:firm_params) do
+          extract_firm_params(firm, remote_or_local_advice: :remote,
+                                    other_advice_method_ids: other_advice_method_ids)
+        end
+        before { patch :update, id: firm.id, firm: firm_params }
+
+        it 'clears the local advice types' do
+          expect(firm.reload.in_person_advice_methods).to be_empty
+        end
+
+        it 'sets the remote advice types' do
+          expect(firm.reload.other_advice_method_ids).to eq other_advice_method_ids
         end
       end
     end

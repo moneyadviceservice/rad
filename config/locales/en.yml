@@ -58,6 +58,10 @@ en:
               too_short: "- please select at least one"
             advice_types:
               invalid: "- please select at least one"
+            other_advice_methods:
+              blank: "- please select at least one"
+            in_person_advice_methods:
+              blank: "- please select at least one"
             website_address:
               invalid: " is invalid. The address must be in the format: http://www.example.com"
         adviser:
