@@ -99,23 +99,32 @@
 
       <hr>
 
-      <section>
+      <section data-dough-component="FieldToggleVisibility">
         <%= heading_tag(t('questionnaire.providing_your_services.heading'), level: 2, class: 'heading-small') %>
         <p class="l-questionnaire__section-description"><%= t('questionnaire.providing_your_services.description') %></p>
 
-        <fieldset class="form__group">
-          <legend class="l-questionnaire__legend"><%= t('questionnaire.in_person_advice_methods.heading') %></legend>
 
-          <%= f.form_row :in_person_advice_methods do %>
-            <%= f.collection_check_boxes(:in_person_advice_method_ids, InPersonAdviceMethod.all, :id, :name) do |b| %>
-              <div class="form__group-item">
-                <%= b.label { b.check_box(class: 'form__group-input t-questionnaire__in-person-advice-method-id') + b.text } %>
-              </div>
-            <% end %>
+        <fieldset class="form__group">
+          <legend class="l-questionnaire__legend"><%= t('questionnaire.remote_or_local_advice.heading') %></legend>
+
+          <%= f.form_row :remote_or_local_advice do %>
+            <div class="form__group-item">
+              <label>
+                <%= f.radio_button :remote_or_local_advice, :remote, class: 'form__group-input js-radio-button', data: { dough_field_show: '1', dough_field_hide: '2'  } %>
+                <%= t('questionnaire.remote_or_local_advice.answer_remote') %>
+              </label>
+            </div>
+
+            <div class="form__group-item">
+              <label>
+                <%= f.radio_button :remote_or_local_advice, :local, class: 'form__group-input js-radio-button', data: { dough_field_show: '2', dough_field_hide: '1' } %>
+                <%= t('questionnaire.remote_or_local_advice.answer_local') %>
+              </label>
+            </div>
           <% end %>
         </fieldset>
 
-        <fieldset class="form__group">
+        <fieldset class="form__group" data-dough-field-target="1">
           <legend class="l-questionnaire__legend"><%= t('questionnaire.other_advice_methods.heading') %></legend>
 
           <%= f.form_row :other_advice_methods do %>
@@ -123,6 +132,18 @@
             <%= f.collection_check_boxes(:other_advice_method_ids, OtherAdviceMethod.all, :id, :name) do |b| %>
               <div class="form__group-item">
                 <%= b.label { b.check_box(class: 'form__group-input t-questionnaire__other-advice-method-id') + b.text } %>
+              </div>
+            <% end %>
+          <% end %>
+        </fieldset>
+
+        <fieldset class="form__group" data-dough-field-target="2">
+          <legend class="l-questionnaire__legend"><%= t('questionnaire.in_person_advice_methods.heading') %></legend>
+
+          <%= f.form_row :in_person_advice_methods do %>
+            <%= f.collection_check_boxes(:in_person_advice_method_ids, InPersonAdviceMethod.all, :id, :name) do |b| %>
+              <div class="form__group-item">
+                <%= b.label { b.check_box(class: 'form__group-input t-questionnaire__in-person-advice-method-id') + b.text } %>
               </div>
             <% end %>
           <% end %>
