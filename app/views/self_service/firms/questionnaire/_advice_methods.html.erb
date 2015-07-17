@@ -24,7 +24,7 @@
 
     <%= f.form_row :other_advice_methods do %>
       <%= f.errors_for :other_advice_methods %>
-      <%= f.collection_check_boxes(:other_advice_method_ids, OtherAdviceMethod.all, :id, :name) do |b| %>
+      <%= f.collection_check_boxes(:other_advice_method_ids, OtherAdviceMethod.all, :id, :friendly_name) do |b| %>
         <div class="form__group-item">
           <%= b.label { b.check_box(class: 'form__group-input t-questionnaire__other-advice-method-id') + b.text } %>
         </div>
@@ -36,7 +36,7 @@
     <legend class="l-questionnaire__legend"><%= t('questionnaire.in_person_advice_methods.heading') %></legend>
 
     <%= f.form_row :in_person_advice_methods do %>
-      <%= f.collection_check_boxes(:in_person_advice_method_ids, InPersonAdviceMethod.all, :id, :name) do |b| %>
+      <%= f.collection_check_boxes(:in_person_advice_method_ids, InPersonAdviceMethod.all, :id, :friendly_name) do |b| %>
         <div class="form__group-item">
           <%= b.label { b.check_box(class: 'form__group-input t-questionnaire__in-person-advice-method-id') + b.text } %>
         </div>

@@ -360,3 +360,14 @@ en:
       pension_pot:
         heading: Total pension pot / investment size *
         description: Please tell us what size pension pot(s) you are willing to provide advice on. Check all that apply.
+
+  in_person_advice_method:
+    ordinal:
+      '1': At a customer's home
+      '2': At your offices
+      '3': At an agreed location
+
+  other_advice_method:
+    ordinal:
+      '1': 'By telephone'
+      '2': 'By video conferencing'
