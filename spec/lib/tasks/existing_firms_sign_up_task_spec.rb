@@ -7,14 +7,22 @@ end
 module Tasks
   RSpec.describe ExistingFirmsSignUpTask do
     describe '#notify' do
-      let!(:firm) { create :firm, registered_name: 'Wright, Johnston & MacKenzie LLP' }
-      let!(:principal) { create :principal, firm: firm, first_name: 'Bill', last_name: 'Junior, the third' }
       let(:stub_inviter) { StubInvitationHelper.new }
       let(:output) { [] }
 
+      before do
+        @principal = FactoryGirl.create(:principal)
+
+        firm_attrs = FactoryGirl.attributes_for(:firm,
+                                                fca_number: @principal.fca_number,
+                                                registered_name: @principal.lookup_firm.registered_name)
+        @principal.firm.update_attributes(firm_attrs)
+        @firm = @principal.firm
+      end
+
       it 'invites principals that have no account' do
-        expect(User.count).to eq(0)
         described_class.notify(stub_inviter, output)
+        expect(User.count).to eq(1)
         expect(User.first).to be_invited_to_sign_up
       end
 
@@ -39,25 +47,25 @@ module Tasks
 
         it 'contains the frn' do
           CSV.parse(output.first) do |line_data|
-            expect(line_data[0].to_i).to eq(principal.firm.fca_number)
+            expect(line_data[0].to_i).to eq(@principal.firm.fca_number)
           end
         end
 
         it 'contains the firm name' do
           CSV.parse(output.first) do |line_data|
-            expect(line_data[1]).to eq(principal.firm.registered_name)
+            expect(line_data[1]).to eq(@principal.firm.registered_name)
           end
         end
 
         it 'contains the principal name' do
           CSV.parse(output.first) do |line_data|
-            expect(line_data[2]).to eq(principal.full_name)
+            expect(line_data[2]).to eq(@principal.full_name)
           end
         end
 
         it 'contains the email' do
           CSV.parse(output.first) do |line_data|
-            expect(line_data[3]).to eq(principal.email_address)
+            expect(line_data[3]).to eq(@principal.email_address)
           end
         end
 
@@ -67,39 +75,42 @@ module Tasks
             expect(line_data[4]).to eq(expected_output)
           end
         end
-      end
 
-      it 'does not create output for trading names' do
-        subsidiary = create(:firm, parent: firm)
-        create :principal, email_address: 'firm@example.com', firm: firm
-        create :principal, email_address: 'tradingname@example.com', firm: subsidiary
-
-        described_class.notify(stub_inviter, output)
-
-        expect(output.length).to eq(1)
-        CSV.parse(output.first) do |line_data|
-          expect(line_data[3]).to eq('firm@example.com')
+        it 'contains the registered flag' do
+          CSV.parse(output.first) do |line_data|
+            expect(line_data[5]).to eq('registered')
+          end
         end
       end
 
-      it 'does not output including details where the firm is not registered' do
-        principal.firm.update_attribute(:email_address, nil)
+      context 'when principal has not verified account via email link' do
+        before do
+          @firm.update_attribute :email_address, nil
+          described_class.notify(stub_inviter, output)
+        end
 
-        described_class.notify(stub_inviter, output)
-
-        expect(output).to be_empty
+        it 'contains the registered flag' do
+          CSV.parse(output.first) do |line_data|
+            expect(line_data[5]).to eq('not registered')
+          end
+        end
       end
 
-      it 'does not create output including details where the firm is not registered' do
-        principal.firm.update_attribute(:telephone_number, nil)
+      context 'when firm has trading names' do
+        it 'does not create output for trading names' do
+          @firm.subsidiaries = create_list(:trading_name, 3, fca_number: @firm.fca_number)
+          @firm.save!
+          described_class.notify(stub_inviter, output)
 
-        described_class.notify(stub_inviter, output)
-
-        expect(output).to be_empty
+          expect(output.length).to eq(1)
+          CSV.parse(output.first) do |line_data|
+            expect(line_data[1]).to eq(@principal.firm.registered_name)
+          end
+        end
       end
 
       it 'does not create output including details where the firm already has an account' do
-        create :user, principal: principal
+        create :user, principal: @principal
 
         described_class.notify(stub_inviter, output)
 

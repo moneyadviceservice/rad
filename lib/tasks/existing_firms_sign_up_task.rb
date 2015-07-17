@@ -1,24 +1,16 @@
 module Tasks
   class ExistingFirmsSignUpTask
     def self.notify(inviter, output = STDOUT)
-      valid_registered_parent_firms.each do |firm|
-        principal = firm.principal
-        user = User.find_by_principal_token principal.token
-        next if user.present?
-
-        user = invite principal
-        output << CSV.generate_line(build_csv_data(inviter, user, firm))
+      Principal.all.each do |principal|
+        if invitable?(principal)
+          user = invite principal
+          output << CSV.generate_line(build_csv_data(inviter, user))
+        end
       end
     end
 
-    def self.build_csv_data(inviter, user, firm)
-      result = []
-      result << firm.fca_number
-      result << firm.registered_name
-      result << user.principal.full_name
-      result << user.principal.email_address
-      result << inviter.invitation_url(user)
-      result
+    def self.invitable?(principal)
+      principal.firm.parent_id.nil? && User.find_by_principal_token(principal.token).nil?
     end
 
     def self.invite(principal)
@@ -30,8 +22,18 @@ module Tasks
       )
     end
 
-    def self.valid_registered_parent_firms
-      Firm.registered.all.select { |f| f.valid? && f.parent.nil? }
+    def self.build_csv_data(inviter, user)
+      principal = user.principal
+      firm = principal.firm
+
+      [
+        firm.fca_number,
+        firm.registered_name,
+        principal.full_name,
+        principal.email_address,
+        inviter.invitation_url(user),
+        (firm.email_address.present? ? 'registered' : 'not registered')
+      ]
     end
   end
 end
