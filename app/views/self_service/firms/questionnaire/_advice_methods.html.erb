@@ -1,5 +1,5 @@
 <div data-dough-component="FieldToggleVisibility">
-  <fieldset class="form__group" data-dough-field-show="show_options">
+  <fieldset class="form__group" data-remote-and-face-to-face-picker>
     <legend class="l-questionnaire__legend"><%= t('questionnaire.remote_or_local_advice.heading') %></legend>
 
     <%= f.form_row :remote_or_local_advice do %>
@@ -31,7 +31,7 @@
     <% end %>
   </fieldset>
 
-  <fieldset class="form__group" data-dough-field-target="show_options">
+  <fieldset class="form__group" data-remote-and-face-to-face-conditional-fieldset>
     <legend class="l-questionnaire__legend" data-dough-field-target="remote"><%= t('questionnaire.other_advice_methods.heading') %></legend>
     <legend class="l-questionnaire__legend" data-dough-field-target="in_person"><%= t('questionnaire.other_advice_methods.alternative_heading') %></legend>
 

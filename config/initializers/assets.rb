@@ -23,6 +23,7 @@ Rails.application.configure do
     modules/ConfirmableForm.js
     modules/FieldToggleVisibility.js
     modules/DataTransform.js
+    modules/RemoteAndFaceToFaceOptions.js
     modules/AdviserAjaxCall.js
   )
 
