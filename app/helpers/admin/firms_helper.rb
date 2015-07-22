@@ -16,6 +16,10 @@ module Admin::FirmsHelper
     end
   end
 
+  def user_for(principal)
+    User.find_by_principal_token principal.token
+  end
+
   private
 
   def render_literal_or_fee_or_percentage(value, attribute_name)

@@ -48,6 +48,9 @@
   </div>
 </div>
 
+
+<%= render 'admin/shared/sign_in_as_principal', principal: @firm.principal %>
+
 <% if @firm.subsidiary? %>
   <h2>Parent Firm</h2>
   <p>

@@ -50,6 +50,9 @@ Rails.application.routes.draw do
 
   namespace :admin do
     root 'pages#home'
+
+    post '/users/sign_in', to: 'users#switch_user'
+
     resources :advisers, only: [:index, :show, :edit, :update, :destroy]
 
     resources :firms, only: [:index, :show] do
