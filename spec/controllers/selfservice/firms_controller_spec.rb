@@ -15,7 +15,7 @@ RSpec.describe SelfService::FirmsController, type: :controller do
     firm_params[:ongoing_advice_fee_structure_ids] = firm.ongoing_advice_fee_structure_ids
     firm_params[:allowed_payment_method_ids] = firm.allowed_payment_method_ids
     firm_params[:investment_size_ids] = firm.investment_size_ids
-    firm_params[:remote_or_local_advice] = firm.remote_or_local_advice
+    firm_params[:primary_advice_method] = firm.primary_advice_method
     firm_params[:other_advice_method_ids] = firm.other_advice_method_ids
     firm_params[:in_person_advice_method_ids] = firm.in_person_advice_method_ids
     firm_params.merge(params)
@@ -111,7 +111,7 @@ RSpec.describe SelfService::FirmsController, type: :controller do
     context 'when the advice type is changed from local to remote' do
       let(:other_advice_method_ids) { create_list(:other_advice_method, rand(1..3)).map(&:id) }
       let(:firm_params) do
-        extract_firm_params(firm, remote_or_local_advice: :remote,
+        extract_firm_params(firm, primary_advice_method: :remote,
                                   other_advice_method_ids: other_advice_method_ids)
       end
       before { patch :update, id: firm.id, firm: firm_params }

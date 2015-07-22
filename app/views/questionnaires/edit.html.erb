@@ -105,20 +105,20 @@
 
 
         <fieldset class="form__group" data-remote-and-face-to-face-picker>
-          <legend class="l-questionnaire__legend"><%= t('questionnaire.remote_or_local_advice.heading') %></legend>
+          <legend class="l-questionnaire__legend"><%= t('questionnaire.primary_advice_method.heading') %></legend>
 
-          <%= f.form_row :remote_or_local_advice do %>
+          <%= f.form_row :primary_advice_method do %>
             <div class="form__group-item">
               <label>
-                <%= f.radio_button :remote_or_local_advice, :remote, class: 'form__group-input js-radio-button', data: { dough_field_show: 'remote', dough_field_hide: 'in_person' } %>
-                <%= t('questionnaire.remote_or_local_advice.answer_remote') %>
+                <%= f.radio_button :primary_advice_method, :remote, class: 'form__group-input js-radio-button', data: { dough_field_show: 'remote', dough_field_hide: 'in_person' } %>
+                <%= t('questionnaire.primary_advice_method.answer_remote') %>
               </label>
             </div>
 
             <div class="form__group-item">
               <label>
-                <%= f.radio_button :remote_or_local_advice, :local, class: 'form__group-input js-radio-button', data: { dough_field_show: 'in_person', dough_field_hide: 'remote' } %>
-                <%= t('questionnaire.remote_or_local_advice.answer_local') %>
+                <%= f.radio_button :primary_advice_method, :local, class: 'form__group-input js-radio-button', data: { dough_field_show: 'in_person', dough_field_hide: 'remote' } %>
+                <%= t('questionnaire.primary_advice_method.answer_local') %>
               </label>
             </div>
           <% end %>

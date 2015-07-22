@@ -287,7 +287,7 @@ en:
       label_four: County *
       label_five: Post code *
 
-    remote_or_local_advice:
+    primary_advice_method:
       heading: How does your firm primarily offer advice through to transaction? *
       answer_remote: Remotely (e.g. telephone, video conferencing, automated advice)
       answer_local: Face-to-face
