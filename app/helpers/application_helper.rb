@@ -11,4 +11,8 @@ module ApplicationHelper
   def register_path
     prequalify_principals_path
   end
+
+  def required_asterisk(string)
+    string + "\u00a0*" # \u00a0 is a non breaking space
+  end
 end

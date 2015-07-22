@@ -290,7 +290,7 @@ en:
       heading: Does your firm offer advice by other methods through to transaction?
 
     free_initial_meeting:
-      heading: Does your firm offer a free initial meeting? *
+      heading: Does your firm offer a free initial meeting?
       answer_yes: "Yes"
       answer_no: "No"
 
@@ -299,13 +299,13 @@ en:
       duration_unit: minutes
 
     initial_advice_fee:
-      heading: Initial advice *
+      heading: Initial advice
 
     ongoing_advice_fee:
-      heading: Ongoing advice *
+      heading: Ongoing advice
 
     allowed_payment_methods:
-      heading: Do you allow customers to pay for advice? *
+      heading: Do you allow customers to pay for advice?
 
     minimum_fixed_fee:
       heading: Do you have a minimum fee?
@@ -325,7 +325,7 @@ en:
 
       business_split:
         heading: Describe your firm's business split as it relates to ‘at’ or ‘post’ retirement advice
-        subheading: "Types of advice provided *"
+        subheading: "Types of advice provided"
 
         advice_options:
           retirement_income_products_flag: Conversion of pension pot/other liquid savings into retirement income
@@ -349,5 +349,5 @@ en:
         description: Customers searching for advice on converting their pension pot into retirement income and/or advice on pension transfers will be asked to provide the size of pension pot they wish to invest and/or transfer.
 
       pension_pot:
-        heading: Total pension pot / investment size *
+        heading: Total pension pot / investment size
         description: Please tell us what size pension pot(s) you are willing to provide advice on. Check all that apply.

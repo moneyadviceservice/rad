@@ -129,7 +129,7 @@
         </fieldset>
 
         <fieldset class="form__group form__group--inline">
-          <legend class="l-questionnaire__legend"><%= t('questionnaire.free_initial_meeting.heading') %></legend>
+          <legend class="l-questionnaire__legend"><%= required_asterisk t('questionnaire.free_initial_meeting.heading') %></legend>
 
           <%= f.form_row :free_initial_meeting do %>
             <%= f.errors_for :free_initial_meeting %>
@@ -174,7 +174,7 @@
         <p class="l-questionnaire__section-description"><%= t('questionnaire.service_charges.hint') %></p>
 
         <fieldset class="form__group">
-          <legend class="l-questionnaire__legend"><%= t('questionnaire.initial_advice_fee.heading') %></legend>
+          <legend class="l-questionnaire__legend"><%= required_asterisk t('questionnaire.initial_advice_fee.heading') %></legend>
 
           <%= f.form_row :initial_advice_fee_structures do %>
             <%= f.errors_for :initial_advice_fee_structures %>
@@ -187,7 +187,7 @@
         </fieldset>
 
         <fieldset class="form__group">
-          <legend class="l-questionnaire__legend"><%= t('questionnaire.ongoing_advice_fee.heading') %></legend>
+          <legend class="l-questionnaire__legend"><%= required_asterisk t('questionnaire.ongoing_advice_fee.heading') %></legend>
 
           <%= f.form_row :ongoing_advice_fee_structures do %>
             <%= f.errors_for :ongoing_advice_fee_structures %>
@@ -200,7 +200,7 @@
         </fieldset>
 
         <fieldset class="form__group">
-          <legend class="l-questionnaire__legend"><%= t('questionnaire.allowed_payment_methods.heading') %></legend>
+          <legend class="l-questionnaire__legend"><%= required_asterisk t('questionnaire.allowed_payment_methods.heading') %></legend>
 
           <%= f.form_row :allowed_payment_methods do %>
             <%= f.errors_for :allowed_payment_methods %>
@@ -233,7 +233,7 @@
         <%= heading_tag(t('questionnaire.retirement_advice.business_split.heading'), level: 2, class: 'heading-small') %>
 
         <fieldset class="form__group">
-          <legend class="l-questionnaire__legend"><%= t('questionnaire.retirement_advice.business_split.subheading') %></legend>
+          <legend class="l-questionnaire__legend"><%= required_asterisk t('questionnaire.retirement_advice.business_split.subheading') %></legend>
 
           <div class="l-questionnaire__row">
             <div class="l-questionnaire__field">
@@ -267,7 +267,7 @@
         <p class="l-questionnaire__section-description"><%= t('questionnaire.retirement_advice.typical_customer.description') %></p>
 
         <fieldset class="form__group">
-          <legend class="l-questionnaire__legend"><%= t('questionnaire.retirement_advice.pension_pot.heading') %></legend>
+          <legend class="l-questionnaire__legend"><%= required_asterisk t('questionnaire.retirement_advice.pension_pot.heading') %></legend>
           <p><%= t('questionnaire.retirement_advice.pension_pot.description') %></p>
           <%= f.form_row :investment_sizes do %>
             <%= f.errors_for :investment_sizes %>

@@ -1,5 +1,5 @@
 <fieldset class="form__group form__group--inline">
-  <legend class="l-questionnaire__legend"><%= t('questionnaire.free_initial_meeting.heading') %></legend>
+  <legend class="l-questionnaire__legend"><%= required_asterisk t('questionnaire.free_initial_meeting.heading') %></legend>
 
   <%= f.form_row :free_initial_meeting do %>
     <%= f.errors_for :free_initial_meeting %>
