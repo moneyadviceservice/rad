@@ -7,7 +7,7 @@
     </div>
   <% end %>
 
-  <p><%= t('self_service.principal_edit.firm_section_explanation') %></p>
+  <%= paragraphs t('self_service.principal_edit.firm_section_explanation') %>
 
   <%= f.form_row(:first_name) do %>
     <%= f.errors_for :first_name %>
