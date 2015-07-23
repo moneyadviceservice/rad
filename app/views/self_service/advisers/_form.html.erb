@@ -29,27 +29,23 @@
 
 <section>
   <%= heading_tag(t('questionnaire.adviser.geographical_coverage.heading'), level: 2, class: 'heading-small') %>
-  <p class="l-questionnaire__section-description"><%= t('questionnaire.adviser.geographical_coverage.description') %></p>
+  <% t('questionnaire.adviser.geographical_coverage.description').each do |paragraph| %>
+    <p><%= paragraph %></p>
+  <% end %>
 
   <fieldset class="form__group" data-dough-field-target="1">
     <%= f.form_row :postcode do %>
       <div>
         <%= f.errors_for :postcode %>
-        <%= f.label :postcode, t('questionnaire.adviser.geographical_coverage.postcode'), class: 'form__label-heading' %>
+        <%= f.label :postcode, required_asterisk(t('questionnaire.adviser.geographical_coverage.postcode')), class: 'form__label-heading' %>
         <%= f.text_field :postcode, class: 't-postcode form__input-container--medium' %>
       </div>
     <% end %>
 
-    <div class="callout l-questionnaire__section-description">
-      <h3><%= t('questionnaire.adviser.geographical_coverage.explanation.heading') %></h3>
-      <p><%= t('questionnaire.adviser.geographical_coverage.explanation.para_1') %></p>
-      <p><%= t('questionnaire.adviser.geographical_coverage.explanation.para_2') %></p>
-    </div>
-
     <%= f.form_row :travel_distance do %>
       <div>
         <%= f.errors_for :travel_distance %>
-        <%= f.label :travel_distance, t('questionnaire.adviser.geographical_coverage.travel_distance'), class: 'form__label-heading' %>
+        <%= f.label :travel_distance, required_asterisk(t('questionnaire.adviser.geographical_coverage.travel_distance')), class: 'form__label-heading' %>
         <%= f.select :travel_distance, TravelDistance.all, { include_blank: true }, { class: 't-travel-distance' } %>
       </div>
     <% end %>
