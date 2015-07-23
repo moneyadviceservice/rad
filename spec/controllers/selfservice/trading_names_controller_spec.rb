@@ -18,6 +18,9 @@ module SelfService
       firm_params[:ongoing_advice_fee_structure_ids] = firm.ongoing_advice_fee_structure_ids
       firm_params[:allowed_payment_method_ids] = firm.allowed_payment_method_ids
       firm_params[:investment_size_ids] = firm.investment_size_ids
+      firm_params[:primary_advice_method] = firm.primary_advice_method
+      firm_params[:in_person_advice_method_ids] = firm.in_person_advice_method_ids
+      firm_params[:other_advice_method_ids] = firm.other_advice_method_ids
       firm_params.merge(params)
     end
 

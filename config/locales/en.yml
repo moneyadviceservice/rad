@@ -58,6 +58,10 @@ en:
               too_short: "- please select at least one"
             advice_types:
               invalid: "- please select at least one"
+            other_advice_methods:
+              blank: "- please select at least one"
+            in_person_advice_methods:
+              blank: "- please select at least one"
             website_address:
               invalid: " is invalid. The address must be in the format: http://www.example.com"
         adviser:
@@ -283,11 +287,17 @@ en:
       label_four: County *
       label_five: Post code *
 
+    primary_advice_method:
+      heading: How does your firm primarily offer advice through to transaction? *
+      answer_remote: Remotely (e.g. telephone, video conferencing, automated advice)
+      answer_local: Face-to-face
+
     in_person_advice_methods:
-      heading: Does your firm offer advice (through to transaction) in person?
+      heading: How can customers receive face-to-face advice? *
 
     other_advice_methods:
-      heading: Does your firm offer advice by other methods through to transaction?
+      heading: How can customers receive remote advice? *
+      alternative_heading: What other ways can customers receive advice?
 
     free_initial_meeting:
       heading: Does your firm offer a free initial meeting?
@@ -351,3 +361,14 @@ en:
       pension_pot:
         heading: Total pension pot / investment size
         description: Please tell us what size pension pot(s) you are willing to provide advice on. Check all that apply.
+
+  in_person_advice_method:
+    ordinal:
+      '1': At a customer's home
+      '2': At your offices
+      '3': At an agreed location
+
+  other_advice_method:
+    ordinal:
+      '1': 'By telephone'
+      '2': 'By video conferencing'

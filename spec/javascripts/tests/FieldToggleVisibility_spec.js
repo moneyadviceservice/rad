@@ -34,7 +34,7 @@ describe('show content block on click of radio button', function () {
 
     it('shows the target element when radio button is checked', function () {
       var fieldToggleVisibility = new this.FieldToggleVisibility(this.component).init(),
-          $showTrigger = fieldToggleVisibility.$triggers.filter('[data-dough-field-trigger-type="show"]'),
+          $showTrigger = fieldToggleVisibility.$triggers.filter('[data-dough-field-show]'),
           triggerTarget = $showTrigger.attr('data-dough-field-trigger'),
           $target = fieldToggleVisibility.$el.find('[data-dough-field-target="' + triggerTarget + '"]');
 
@@ -45,8 +45,8 @@ describe('show content block on click of radio button', function () {
 
     it('hides the target element when radio button is checked', function () {
       var fieldToggleVisibility = new this.FieldToggleVisibility(this.component).init(),
-          $hideTrigger = fieldToggleVisibility.$triggers.filter('[data-dough-field-trigger-type="hide"]'),
-          triggerTarget = $hideTrigger.attr('data-dough-field-trigger'),
+          $hideTrigger = fieldToggleVisibility.$triggers.filter('[data-dough-field-hide]'),
+          triggerTarget = $hideTrigger.attr('data-dough-field-hide'),
           $target = fieldToggleVisibility.$el.find('[data-dough-field-target="' + triggerTarget + '"]');
 
       $hideTrigger.trigger('click');
@@ -82,8 +82,8 @@ describe('show content block on click of radio button', function () {
 
     it('shows the correct target', function() {
       var fieldToggleVisibility = new this.FieldToggleVisibility(this.component).init(),
-          $showTrigger1 = fieldToggleVisibility.$triggers.filter('[data-dough-field-trigger-type="show"]').filter('[data-dough-field-trigger="1"]'),
-          $showTrigger2 = fieldToggleVisibility.$triggers.filter('[data-dough-field-trigger-type="show"]').filter('[data-dough-field-trigger="2"]'),
+          $showTrigger1 = fieldToggleVisibility.$triggers.filter('[data-dough-field-show="1"]'),
+          $showTrigger2 = fieldToggleVisibility.$triggers.filter('[data-dough-field-show="2"]'),
           $target1 = fieldToggleVisibility.$el.find('[data-dough-field-target="1"]'),
           $target2 = fieldToggleVisibility.$el.find('[data-dough-field-target="2"]');
 
@@ -95,8 +95,8 @@ describe('show content block on click of radio button', function () {
 
     it('hides the correct target', function() {
       var fieldToggleVisibility = new this.FieldToggleVisibility(this.component).init(),
-          $hideTrigger1 = fieldToggleVisibility.$triggers.filter('[data-dough-field-trigger-type="hide"]').filter('[data-dough-field-trigger="1"]'),
-          $hideTrigger2 = fieldToggleVisibility.$triggers.filter('[data-dough-field-trigger-type="hide"]').filter('[data-dough-field-trigger="2"]'),
+          $hideTrigger1 = fieldToggleVisibility.$triggers.filter('[data-dough-field-hide="1"]'),
+          $hideTrigger2 = fieldToggleVisibility.$triggers.filter('[data-dough-field-hide="2"]'),
           $target1 = fieldToggleVisibility.$el.find('[data-dough-field-target="1"]'),
           $target2 = fieldToggleVisibility.$el.find('[data-dough-field-target="2"]');
 

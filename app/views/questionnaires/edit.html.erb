@@ -99,11 +99,32 @@
 
       <hr>
 
-      <section>
+      <section data-dough-component="FieldToggleVisibility">
         <%= heading_tag(t('questionnaire.providing_your_services.heading'), level: 2, class: 'heading-small') %>
         <p class="l-questionnaire__section-description"><%= t('questionnaire.providing_your_services.description') %></p>
 
-        <fieldset class="form__group">
+
+        <fieldset class="form__group" data-remote-and-face-to-face-picker>
+          <legend class="l-questionnaire__legend"><%= t('questionnaire.primary_advice_method.heading') %></legend>
+
+          <%= f.form_row :primary_advice_method do %>
+            <div class="form__group-item">
+              <label>
+                <%= f.radio_button :primary_advice_method, :remote, class: 'form__group-input js-radio-button', data: { dough_field_show: 'remote', dough_field_hide: 'in_person' } %>
+                <%= t('questionnaire.primary_advice_method.answer_remote') %>
+              </label>
+            </div>
+
+            <div class="form__group-item">
+              <label>
+                <%= f.radio_button :primary_advice_method, :local, class: 'form__group-input js-radio-button', data: { dough_field_show: 'in_person', dough_field_hide: 'remote' } %>
+                <%= t('questionnaire.primary_advice_method.answer_local') %>
+              </label>
+            </div>
+          <% end %>
+        </fieldset>
+
+        <fieldset class="form__group" data-dough-field-target="in_person">
           <legend class="l-questionnaire__legend"><%= t('questionnaire.in_person_advice_methods.heading') %></legend>
 
           <%= f.form_row :in_person_advice_methods do %>
@@ -115,8 +136,9 @@
           <% end %>
         </fieldset>
 
-        <fieldset class="form__group">
-          <legend class="l-questionnaire__legend"><%= t('questionnaire.other_advice_methods.heading') %></legend>
+        <fieldset class="form__group" data-remote-and-face-to-face-conditional-fieldset>
+          <legend class="l-questionnaire__legend" data-dough-field-target="remote"><%= t('questionnaire.other_advice_methods.heading') %></legend>
+          <legend class="l-questionnaire__legend" data-dough-field-target="in_person"><%= t('questionnaire.other_advice_methods.alternative_heading') %></legend>
 
           <%= f.form_row :other_advice_methods do %>
             <%= f.errors_for :other_advice_methods %>

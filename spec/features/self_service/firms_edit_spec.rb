@@ -155,8 +155,10 @@ RSpec.feature 'The self service firm edit page' do
 
   def complete_part_3
     firm_edit_page.tap do |p|
-      set_checkbox_group_state(p, InPersonAdviceMethod.all, firm_changes.in_person_advice_methods)
-      set_checkbox_group_state(p, OtherAdviceMethod.all, firm_changes.other_advice_methods)
+      set_checkbox_group_state(p, InPersonAdviceMethod.all, firm_changes.in_person_advice_methods,
+                               label: :friendly_name)
+      set_checkbox_group_state(p, OtherAdviceMethod.all, firm_changes.other_advice_methods,
+                               label: :friendly_name)
       p.offers_free_initial_meeting = firm_changes.free_initial_meeting
       p.choose(firm_changes.initial_meeting_duration.name)
       set_checkbox_group_state(p, InitialAdviceFeeStructure.all, firm_changes.initial_advice_fee_structures)
@@ -167,8 +169,10 @@ RSpec.feature 'The self service firm edit page' do
 
   def validate_part_3
     firm_edit_page.tap do |p|
-      expect_checkbox_group_state(p, InPersonAdviceMethod.all, firm_changes.in_person_advice_methods)
-      expect_checkbox_group_state(p, OtherAdviceMethod.all, firm_changes.other_advice_methods)
+      expect_checkbox_group_state(p, InPersonAdviceMethod.all, firm_changes.in_person_advice_methods,
+                                  label: :friendly_name)
+      expect_checkbox_group_state(p, OtherAdviceMethod.all, firm_changes.other_advice_methods,
+                                  label: :friendly_name)
       expect(p.offers_free_initial_meeting?).to eq(firm_changes.free_initial_meeting)
       expect(p).to have_checked_field(firm_changes.initial_meeting_duration.name)
       expect_checkbox_group_state(p, InitialAdviceFeeStructure.all, firm_changes.initial_advice_fee_structures)

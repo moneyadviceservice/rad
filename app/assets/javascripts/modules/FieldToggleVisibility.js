@@ -24,7 +24,7 @@ define(['jquery', 'DoughBaseComponent'], function($, DoughBaseComponent) {
   function FieldToggleVisibility($el, config) {
     FieldToggleVisibility.baseConstructor.call(this, $el, config, defaultConfig);
 
-    this.$triggers = this.$el.find('[data-dough-field-trigger]');
+    this.$triggers = this.$el.find('[data-dough-field-show],[data-dough-field-hide]');
     this.$targets = this.$el.find('[data-dough-field-target]');
 
     this.hideRelevantTargets();
@@ -53,10 +53,11 @@ define(['jquery', 'DoughBaseComponent'], function($, DoughBaseComponent) {
 
     self.$triggers.on('change', function(i, o) {
       var $trigger = $(this),
-          triggerTarget = $trigger.attr('data-dough-field-trigger'),
-          triggerAction = $trigger.attr('data-dough-field-trigger-type');
+          actions = self.getActionsFromTrigger($trigger);
 
-      self.onChange.call(self, $trigger, triggerTarget, triggerAction);
+      $.each(actions, function(i, action) {
+        self.onChange.call(self, $trigger, action.target, action.action);
+      });
     });
 
     this._initialisedSuccess(initialised);
@@ -67,9 +68,9 @@ define(['jquery', 'DoughBaseComponent'], function($, DoughBaseComponent) {
   FieldToggleVisibilityProto.hideRelevantTargets = function() {
     var self = this;
 
-    this.$triggers.filter('[data-dough-field-trigger-type="show"]:not(:checked)').each(function() {
+    this.$triggers.filter('[data-dough-field-show]:not(:checked)').each(function() {
       var $trigger = $(this),
-        target = $trigger.attr('data-dough-field-trigger'),
+        target = $trigger.attr('data-dough-field-show'),
         $target = self.$targets.filter('[data-dough-field-target="' + target + '"]');
 
         $target.addClass('is-hidden');
@@ -83,6 +84,20 @@ define(['jquery', 'DoughBaseComponent'], function($, DoughBaseComponent) {
     $target[triggerAction === 'show' ? 'removeClass' : 'addClass']('is-hidden');
 
     return this;
+  };
+
+  FieldToggleVisibilityProto.getActionsFromTrigger = function($trigger) {
+    var actions = [];
+
+    if ($trigger.is('[data-dough-field-show]')) {
+      actions.push({action: 'show', target: $trigger.attr('data-dough-field-show')});
+    }
+
+    if ($trigger.is('[data-dough-field-hide]')) {
+      actions.push({action: 'hide', target: $trigger.attr('data-dough-field-hide')});
+    }
+
+    return actions;
   };
 
   return FieldToggleVisibility;
