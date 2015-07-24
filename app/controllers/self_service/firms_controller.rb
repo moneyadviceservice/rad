@@ -7,6 +7,20 @@ module SelfService
       @presenter = FirmsIndexPresenter.new(firm, trading_names, available_trading_names(firm: firm))
     end
 
+    def edit
+      @firm = principal.firm
+    end
+
+    def update
+      @firm = principal.firm
+      if @firm.update(firm_params)
+        flash[:notice] = I18n.t('self_service.firm_edit.saved')
+        redirect_to_edit
+      else
+        render :edit
+      end
+    end
+
     private
 
     def available_trading_names(firm:)
