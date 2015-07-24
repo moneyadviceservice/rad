@@ -9,6 +9,10 @@ RSpec.feature 'Move advisers between firms' do
   let(:confirm_page) { Admin::MoveAdvisers::ConfirmPage.new }
   let(:move_page) { Admin::MoveAdvisers::MovePage.new }
 
+  before do
+    create :user, principal: from_firm.principal
+  end
+
   scenario 'Moving an adviser from one firm to another' do
     given_i_want_to_move_an_adviser_from_firm(from_firm)
     and_i_want_to_move_adviser(adviser)
