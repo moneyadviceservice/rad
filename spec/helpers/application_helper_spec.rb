@@ -16,4 +16,29 @@ RSpec.describe ApplicationHelper, type: :helper do
       expect(helper.register_path).to eq(prequalify_principals_path)
     end
   end
+
+  describe '#paragraphs' do
+    subject { helper.paragraphs(paragraphs, options) }
+    let(:options) { {} }
+
+    context 'when passed a list' do
+      let(:paragraphs) { %w(hello world) }
+      it { is_expected.to eq '<p>hello</p><p>world</p>' }
+
+      context 'when passed html options' do
+        let(:options) { { class: 'hello' } }
+        it { is_expected.to eq '<p class="hello">hello</p><p class="hello">world</p>' }
+      end
+    end
+
+    context 'when passed an empty array' do
+      let(:paragraphs) { [] }
+      it { is_expected.to eq '' }
+    end
+
+    context 'when passed a string' do
+      let(:paragraphs) { 'hello' }
+      it { is_expected.to eq '<p>hello</p>' }
+    end
+  end
 end

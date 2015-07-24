@@ -29,9 +29,7 @@
 
       <section>
         <%= heading_tag(t('questionnaire.adviser.geographical_coverage.heading'), level: 2, class: 'heading-small') %>
-        <% t('questionnaire.adviser.geographical_coverage.description').each do |paragraph| %>
-          <p><%= paragraph %></p>
-        <% end %>
+        <%= paragraphs t('questionnaire.adviser.geographical_coverage.description') %>
 
         <fieldset class="form__group" data-dough-field-target="1">
           <%= f.form_row :postcode do %>

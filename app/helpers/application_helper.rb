@@ -15,4 +15,11 @@ module ApplicationHelper
   def required_asterisk(string)
     string + "\u00a0*" # \u00a0 is a non breaking space
   end
+
+  def paragraphs(paragraph_list, html_options = {})
+    tags = Array(paragraph_list).map do |paragraph|
+      content_tag :p, paragraph, html_options
+    end
+    safe_join(tags)
+  end
 end
