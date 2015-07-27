@@ -278,7 +278,7 @@ en:
 
     primary_advice_method:
       heading: How does your firm primarily offer advice through to transaction? *
-      answer_remote: Remotely (e.g. telephone, video conferencing, automated advice)
+      answer_remote: Remotely (e.g. telephone, video conferencing)
       answer_local: Face-to-face
 
     in_person_advice_methods:
