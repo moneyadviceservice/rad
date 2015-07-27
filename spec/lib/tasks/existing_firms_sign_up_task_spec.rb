@@ -81,6 +81,12 @@ module Tasks
             expect(line_data[5]).to eq('registered')
           end
         end
+
+        it 'contains the trading names flag' do
+          CSV.parse(output.first) do |line_data|
+            expect(line_data[6]).to eq('no trading names')
+          end
+        end
       end
 
       context 'when principal has not verified account via email link' do
@@ -97,14 +103,21 @@ module Tasks
       end
 
       context 'when firm has trading names' do
+        before { @firm.update(subsidiaries: create_list(:trading_name, 3, fca_number: @firm.fca_number)) }
+
         it 'does not create output for trading names' do
-          @firm.subsidiaries = create_list(:trading_name, 3, fca_number: @firm.fca_number)
-          @firm.save!
           described_class.notify(stub_inviter, output)
 
           expect(output.length).to eq(1)
           CSV.parse(output.first) do |line_data|
             expect(line_data[1]).to eq(@principal.firm.registered_name)
+          end
+        end
+
+        it 'sets the trading names flag appropriately' do
+          described_class.notify(stub_inviter, output)
+          CSV.parse(output.first) do |line_data|
+            expect(line_data[6]).to eq('has trading names')
           end
         end
       end
