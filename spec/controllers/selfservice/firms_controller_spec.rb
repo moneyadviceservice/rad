@@ -69,42 +69,44 @@ RSpec.describe SelfService::FirmsController, type: :controller do
     let(:trading_name) { FactoryGirl.create(:firm, parent_id: firm.id) }
     before { get :edit, id: firm.id }
 
-    it 'assigns the firm' do
-      expect(assigns(:firm)).to eq firm
+    context 'when accessing current users firm' do
+      before { get :edit, id: 'ignored' }
+
+      it 'assigns the firm' do
+        expect(assigns(:firm)).to eq firm
+      end
+
+      it 'renders the edit page' do
+        expect(response).to render_template 'self_service/firms/edit'
+      end
     end
 
-    it 'renders the edit page' do
-      expect(response).to render_template 'self_service/firms/edit'
+    context 'when trying to access another users firm' do
+      let!(:other_principal) { create :principal }
+      before { get :edit, id: other_principal.firm.id }
+
+      it 'does not assign the other principals firm' do
+        expect(assigns(:firm)).not_to eq other_principal.firm
+      end
+
+      it 'assigns the current users firm' do
+        expect(assigns(:firm)).to eq firm
+      end
     end
   end
 
   describe 'PATCH #update' do
-    let(:firm) { FactoryGirl.create(:firm) }
-
+    let(:firm_params) { extract_firm_params(firm, email_address: 'valid@example.com') }
     context 'when passed valid details' do
-      let(:firm_params) { extract_firm_params(firm, email_address: 'valid@example.com') }
-      before { patch :update, id: firm.id, firm: firm_params }
+      before { patch :update, id: 'ignored', firm: firm_params }
 
       it 'updates the firm' do
         expect(firm.reload.email_address).to eq firm_params[:email_address]
       end
 
       it 'redirects to the edit page' do
-        redirect_path = edit_self_service_firm_path(assigns(:firm))
+        redirect_path = edit_self_service_firm_path(id: 'ignored')
         expect(response).to redirect_to redirect_path
-      end
-    end
-
-    context 'when passed invalid details' do
-      let(:firm_params) { extract_firm_params(firm, email_address: 'not_valid') }
-      before { patch :update, id: firm.id, firm: firm_params }
-
-      it 'does not update the firm' do
-        expect(firm.reload.email_address).not_to eq firm_params[:email_address]
-      end
-
-      it 'renders the edit page' do
-        expect(response).to render_template 'self_service/firms/edit'
       end
     end
 
@@ -114,7 +116,7 @@ RSpec.describe SelfService::FirmsController, type: :controller do
         extract_firm_params(firm, primary_advice_method: :remote,
                                   other_advice_method_ids: other_advice_method_ids)
       end
-      before { patch :update, id: firm.id, firm: firm_params }
+      before { patch :update, id: 'ignored', firm: firm_params }
 
       it 'clears the local advice types' do
         expect(firm.reload.in_person_advice_methods).to be_empty
@@ -122,6 +124,34 @@ RSpec.describe SelfService::FirmsController, type: :controller do
 
       it 'sets the remote advice types' do
         expect(firm.reload.other_advice_method_ids).to eq other_advice_method_ids
+      end
+
+      it 'redirects to the edit page' do
+        redirect_path = edit_self_service_firm_path(id: 'ignored')
+        expect(response).to redirect_to redirect_path
+      end
+    end
+
+    context 'when trying to access another users firm' do
+      let!(:other_principal) { create :principal }
+      let!(:other_firm) { other_principal.firm }
+      before { patch :update, id: other_firm.id, firm: firm_params }
+
+      it 'fails to update the firm' do
+        expect(other_firm.email_address).not_to eq('valid@example.com')
+      end
+    end
+
+    context 'when passed invalid details' do
+      let(:firm_params) { extract_firm_params(firm, email_address: 'not_valid') }
+      before { patch :update, id: 'ignored', firm: firm_params }
+
+      it 'does not update the firm' do
+        expect(firm.reload.email_address).not_to eq firm_params[:email_address]
+      end
+
+      it 'renders the edit page' do
+        expect(response).to render_template 'self_service/firms/edit'
       end
     end
   end

@@ -15,6 +15,20 @@ module SelfService
       end
     end
 
+    def edit
+      @firm = principal.firm.trading_names.find(params[:id])
+    end
+
+    def update
+      @firm = principal.firm.trading_names.find(params[:id])
+      if @firm.update(firm_params)
+        flash[:notice] = I18n.t('self_service.firm_edit.saved')
+        redirect_to_edit
+      else
+        render :edit
+      end
+    end
+
     def destroy
       trading_name = principal.firm.trading_names.registered.find(params[:id])
       trading_name.destroy
@@ -27,7 +41,7 @@ module SelfService
 
     def initialize_firm_from_lookup_trading_name(id)
       lookup_name = Lookup::Subsidiary.find_by!(id: id, fca_number: principal.fca_number)
-      @firm = principal.firm.subsidiaries.find_or_initialize_by(
+      @firm = principal.firm.trading_names.find_or_initialize_by(
         registered_name: lookup_name.name,
         fca_number: lookup_name.fca_number
       )

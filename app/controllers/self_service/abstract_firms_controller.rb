@@ -2,20 +2,6 @@ module SelfService
   class AbstractFirmsController < ApplicationController
     before_action :authenticate_user!
 
-    def edit
-      @firm = Firm.find(params[:id])
-    end
-
-    def update
-      @firm = Firm.find(params[:id])
-      if @firm.update(firm_params)
-        flash[:notice] = I18n.t('self_service.firm_edit.saved')
-        redirect_to_edit
-      else
-        render :edit
-      end
-    end
-
     protected
 
     def principal
