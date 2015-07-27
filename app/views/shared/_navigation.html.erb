@@ -15,7 +15,7 @@
         <%= link_to t('authentication_sign_out'), destroy_user_session_path, class: 'navigation__link t-sign-out' %>
       </li>
       <li class='navigation__item--desktop-only'>
-        <%= link_to t('authentication_change_password'), edit_user_registration_path(current_user), class: 'navigation__link' %>
+        <%= link_to t('authentication_change_password'), edit_user_registration_path, class: 'navigation__link' %>
       </li>
     <% end %>
   </ul>
