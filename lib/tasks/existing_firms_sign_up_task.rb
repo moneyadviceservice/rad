@@ -32,7 +32,8 @@ module Tasks
         principal.full_name,
         principal.email_address,
         inviter.invitation_url(user),
-        (firm.email_address.present? ? 'registered' : 'not registered')
+        (firm.email_address.present? ? 'registered' : 'not registered'),
+        (firm.trading_names.registered.any? ? 'has trading names' : 'no trading names')
       ]
     end
   end
