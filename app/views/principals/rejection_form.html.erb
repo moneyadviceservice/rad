@@ -1,5 +1,5 @@
 <div class="l-constrained">
-  <%= form_for @message, url: contact_path, as: :contact, html: { class: 'form form--collapse l-pre-qualification' },
+  <%= form_for @message, url: contact_path, as: :contact, html: { class: 'form form--collapse l-pre-qualification l-pre-qualification--restricted-width' },
     builder: Dough::Forms::Builders::Validation do |f| %>
     <%= f.validation_summary %>
     <%= heading_tag(t('rejection.heading'), level: 1) %>
@@ -19,7 +19,7 @@
       <label class="form__label-heading"><%= t('rejection.email_address') %></label>
       <%= f.email_field :email, class: 't-email' %>
     <% end %>
-    
+
     <%= f.form_row :message do %>
       <%= f.errors_for :message %>
       <label class="form__label-heading"><%= t('rejection.message') %></label>
