@@ -1,4 +1,4 @@
-<div class="panel">
+<div class="panel t-sign-in-panel">
   <%= heading_tag(t('sign_in_panel.heading'), level: 2, class: 'sign-in-panel__heading') %>
   <p><%= t('sign_in_panel.description') %></p>
 
@@ -29,8 +29,8 @@
 
     <div class="registration__row">
       <div class="registration__field sign-in-panel__actions">
-        <%= link_to t('authentication.sign_in_page.forgot_password'), new_password_path(sign_in_resource_name), class: 'sign-in-panel__actions__link' %>
-        <%= f.submit t('authentication.sign_in_page.label'), class: 'button button--primary sign-in-panel__actions__submit' %>
+        <%= link_to t('authentication.sign_in_page.forgot_password'), new_password_path(sign_in_resource_name), class: 'sign-in-panel__actions__link t-forgot-password' %>
+        <%= f.submit t('authentication.sign_in_page.label'), class: 'button button--primary sign-in-panel__actions__submit t-sign-in-button' %>
       </div>
     </div>
   <% end %>
