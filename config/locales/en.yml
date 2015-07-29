@@ -118,7 +118,7 @@ en:
     sub_heading: Register your firm
     eligibility_explanation: Answer the following questions to see if your firm is eligible to appear on the directory.
     notice: Selecting this option will reveal a further question below.
-    button_next: Register now
+    submit_button: Register now
 
     answer_yes: "Yes"
     answer_no: "No"
