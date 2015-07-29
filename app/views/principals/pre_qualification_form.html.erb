@@ -5,6 +5,10 @@
   </div>
 
   <div class="l-2col">
+    <section class="l-2col-side l-2col-side--pull-right">
+      <%= render 'shared/sign_in_panel' %>
+    </section>
+
     <section class="l-2col-main">
       <%= heading_tag(t('registration.sub_heading'), level: 2) %>
       <p><%= t('registration.eligibility_explanation') %></p>
@@ -120,10 +124,6 @@
 
         <button class="button button--primary t-submit-button"><%= t('registration.submit_button') %></button>
       <% end %>
-    </section>
-
-    <section class="l-2col-side">
-      <%= render 'shared/sign_in_panel' %>
     </section>
   </div>
 </div>
