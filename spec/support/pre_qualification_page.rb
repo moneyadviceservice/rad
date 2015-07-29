@@ -7,7 +7,7 @@ class PreQualificationPage < SitePrism::Page
   element :status_question, '.t-status-question'
   element :particular_market_question, '.t-particular-market-question'
   element :consider_available_providers_question, '.t-consider-available-providers-question'
-  element :submit, '.button--primary'
+  element :submit, '.t-submit-button'
 
   element :error_message, '.global-alert--error'
 end

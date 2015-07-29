@@ -1,0 +1,16 @@
+.sign-in-panel__heading {
+  margin: 0 0 $baseline-unit 0;
+}
+
+.sign-in-panel__actions {
+  @extend %clearfix;
+}
+
+.sign-in-panel__actions__link {
+  display: inline-block;
+  padding: 12px 0;
+}
+
+.sign-in-panel__actions__submit {
+  float: right;
+}
