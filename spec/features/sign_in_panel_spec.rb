@@ -4,19 +4,17 @@ RSpec.feature 'Principal can sign in using the embedded sign in panel' do
   let(:after_signin_page) { SelfService::FirmsIndexPage.new }
   let(:forgot_password_page) { ForgotPasswordPage.new }
 
-  before do
-    panel_host_page.load
-  end
-
   scenario 'Principal can sign in with FRN and password' do
-    given_the_principal_user_exists
+    given_the_login_page_is_loaded
+    and_the_principal_user_exists
     when_they_sign_in_with_frn_and_password
     they_see_the_after_signin_page
     they_have_logged_in
   end
 
   scenario 'Principal cannot sign in with incorrect details' do
-    given_the_principal_user_exists
+    given_the_login_page_is_loaded
+    and_the_principal_user_exists
     when_they_sign_in_with_incorrect_details
     they_have_not_logged_in
     they_see_the_sign_in_page
@@ -24,11 +22,17 @@ RSpec.feature 'Principal can sign in using the embedded sign in panel' do
   end
 
   scenario 'Principal clicks the forgotten password link' do
+    given_the_login_page_is_loaded
     when_the_principal_clicks_the_forgotten_password_link
     then_they_see_the_forgotten_password_page
   end
 
-  def given_the_principal_user_exists
+  def given_the_login_page_is_loaded
+    panel_host_page.load
+    expect(panel_host_page).to be_displayed
+  end
+
+  def and_the_principal_user_exists
     @user = FactoryGirl.create(:user)
   end
 
