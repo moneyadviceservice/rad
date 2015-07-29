@@ -36,6 +36,7 @@ define(['jquery', 'DoughBaseComponent'], function($, DoughBaseComponent) {
    * @private
    */
   DoughBaseComponent.extend(FieldToggleVisibility);
+  FieldToggleVisibility.componentName = 'FieldToggleVisibility';
   FieldToggleVisibilityProto = FieldToggleVisibility.prototype;
 
   /**
