@@ -21,16 +21,10 @@ def described_task(name, description:)
   end
 end
 
-described_task :karma, description: 'Javascript Karma specs' do
+described_task :npm_test, description: 'npm test' do
   fail 'ERROR: karma is not installed' unless File.exist? KARMA_COMMAND
-  sh "#{KARMA_COMMAND} start spec/javascripts/karma.conf.js --single-run=true"
-end
-
-described_task :jshint, description: 'JSHint' do
   fail 'ERROR: JSHint is not installed' unless File.exist? JSHINT_COMMAND
-  sh "#{JSHINT_COMMAND} app/assets/javascripts spec/javascripts" do
-    puts 'JSHint found no style violations.'
-  end
+  sh 'npm test'
 end
 
 if Rails.env.production?
@@ -38,5 +32,5 @@ if Rails.env.production?
 else
   require 'rubocop/rake_task'
   RuboCop::RakeTask.new
-  task default: [:spec, :karma, :rubocop, :jshint]
+  task default: [:spec, :rubocop, :npm_test]
 end
