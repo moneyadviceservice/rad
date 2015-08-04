@@ -9,14 +9,14 @@ RSpec.describe Admin::FirmsController, type: :controller do
     FactoryGirl.create :user, { principal: principal }.merge(user_attrs)
   end
 
-  describe '#invitation_report' do
+  describe '#login_report' do
     let!(:first_user)  { create_user_with_firm({ invitation_accepted_at: Time.zone.today }, registered_name: 'Delta') }
     let!(:second_user) { create_user_with_firm({ invitation_accepted_at: Time.zone.today }, registered_name: 'Alpha') }
     let!(:third_user)  { create_user_with_firm({ invitation_accepted_at: nil }, registered_name: 'Gamma') }
     let!(:fourth_user)  { create_user_with_firm({ invitation_accepted_at: nil }, registered_name: 'Charlie') }
 
     before :each do
-      get :invitation_report
+      get :login_report
     end
 
     describe 'accepted_firms assignment' do
