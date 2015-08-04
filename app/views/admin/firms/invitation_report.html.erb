@@ -1,0 +1,22 @@
+<h1>Invitation Report</h1>
+<h2>Total number of firms: <%= User.count %></h2>
+
+<div>
+  <ul class="nav nav-tabs">
+    <li class="active">
+      <a href="#accepted" data-toggle="tab">List of Firms accepted (<%= @accepted_firms.count %>)</a>
+    </li>
+    <li>
+      <a href="#pending" data-toggle="tab">List of Firms pending (<%= @not_accepted_firms.count %>)</a>
+    </li>
+  </ul>
+
+   <div class="tab-content">
+    <div class="tab-pane active" id="accepted">
+      <%= render 'invitation_table', users: @accepted_firms, display_invitation_accepted_at: true %>
+    </div>
+    <div class="tab-pane" id="pending">
+      <%= render 'invitation_table', users: @not_accepted_firms, display_invitation_accepted_at: false %>
+    </div>
+  </div>
+</div>
