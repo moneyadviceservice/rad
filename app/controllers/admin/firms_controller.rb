@@ -8,7 +8,7 @@ class Admin::FirmsController < Admin::ApplicationController
     @firm = Firm.find(params[:id])
   end
 
-  def invitation_report
+  def login_report
     users = User.includes(principal: [:firm]).order('firms.registered_name ASC')
     @accepted_firms = users.where.not(invitation_accepted_at: nil)
     @not_accepted_firms = users.where(invitation_accepted_at: nil)

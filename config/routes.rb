@@ -57,7 +57,7 @@ Rails.application.routes.draw do
 
     resources :firms, only: [:index, :show] do
       collection do
-        get :invitation_report
+        get :login_report
       end
 
       resources :advisers, only: :index
