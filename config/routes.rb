@@ -56,6 +56,10 @@ Rails.application.routes.draw do
     resources :advisers, only: [:index, :show, :edit, :update, :destroy]
 
     resources :firms, only: [:index, :show] do
+      collection do
+        get :invitation_report
+      end
+
       resources :advisers, only: :index
       member do
         resources :move_advisers, only: [:new] do

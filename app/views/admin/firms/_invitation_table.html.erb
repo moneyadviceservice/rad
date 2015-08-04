@@ -1,0 +1,30 @@
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>FCA Number</th>
+      <th>Name</th>
+      <% if display_invitation_accepted_at %>
+        <th>Accepted invitation at</th>
+        <th>Sign in count</th>
+        <th>Last signed in at</th>
+      <% else %>
+        <th>Principal email</th>
+      <% end %>
+    </tr>
+  </thead>
+  <tbody>
+    <% users.each do |user| %>
+    <tr>
+      <td><%= user.principal.firm.fca_number %></td>
+      <td><%= user.principal.firm.registered_name %></td>
+      <% if display_invitation_accepted_at %>
+        <td><%= user.invitation_accepted_at.to_s(:long)%></td>
+        <td><%= user.sign_in_count %></td>
+        <td><%= user.last_sign_in_at.to_s(:long) %></td>
+      <% else %>
+        <td><%= user.principal.email_address %></td>
+      <% end %>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
