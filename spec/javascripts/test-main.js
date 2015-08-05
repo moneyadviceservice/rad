@@ -29,6 +29,7 @@ require.config({
     FieldToggleVisibility: 'app/assets/javascripts/modules/FieldToggleVisibility',
     MultiTableFilter: 'app/assets/javascripts/modules/MultiTableFilter',
     ConfirmableForm: 'app/assets/javascripts/modules/ConfirmableForm',
+    utilities: 'vendor/assets/bower_components/dough/assets/js/lib/utilities',
     List: 'vendor/assets/bower_components/list.js/dist/list'
   },
 
