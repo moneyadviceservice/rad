@@ -4,7 +4,7 @@ define(['jquery'], function($) {
 
   var $inputField = $('[data-input]');
 
-  $inputField.keyup(function(){
+  $inputField.on('input onpropertychange', function(){
     if ( $inputField.val() ) {
 
       var $success = $('[data-notice="success"]'),
