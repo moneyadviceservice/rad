@@ -99,6 +99,13 @@ define(['jquery', 'jqueryFastLiveFilter', 'DoughBaseComponent'],
     var self = this,
         $filterLists = self.$find(self.config.filterListSelector);
 
+    // Our JS library expects keydown === any input. In these enlightened days,
+    // we know this to be false. Let's bind to the input event ourselves and
+    // trigger keydown so the library is aware of changes like paste or IE's clear
+    self.$find(self.config.filterFieldSelector).on('input', function(e) {
+      $(e.target).trigger('keydown');
+    });
+
     self.$find(self.config.filterFieldSelector).fastLiveFilter($filterLists, {
       selector: self.config.filterTargetSelector,
       callback: function(total) {
