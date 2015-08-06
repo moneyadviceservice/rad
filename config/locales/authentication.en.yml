@@ -3,7 +3,7 @@ en:
     sign_in: Sign in
     sign_out: Sign out
     register: Register
-    my_account: My Account
+    edit_account: Edit account
     mandatory_warning: "All fields are required"
     links:
       sign_in_html: "Already registered? <a href=\"%{url}\">Sign in</a>."
@@ -39,7 +39,7 @@ en:
         current_password: We need your current password to confirm your changes
       change_password: 'Change my password'
       label: Update
-      title: Edit my settings
+      title: Edit my account
     accept_invitation_page:
       field_help_texts:
         password: Please enter a password to keep your information private
