@@ -36,6 +36,16 @@ RSpec.feature 'Principal creates Adviser' do
     and_i_can_return_to_the_landing_page
   end
 
+  context 'with a lower-case adviser reference number' do
+    scenario 'Creating a valid Adviser for a Firm', :js do
+      given_i_have_created_a_firm
+      and_the_principal_logs_in
+      and_the_adviser_exists
+      when_i_provide_a_valid_adviser_reference_number('abc12345')
+      and_the_adviser_is_matched
+    end
+  end
+
   scenario 'Creating a valid Adviser for a Subsidiary', :js do
     given_i_have_created_a_subsidiary
     and_the_principal_logs_in
@@ -133,10 +143,10 @@ RSpec.feature 'Principal creates Adviser' do
     )
   end
 
-  def when_i_provide_a_valid_adviser_reference_number
+  def when_i_provide_a_valid_adviser_reference_number(ref = reference)
     adviser_page.tap do |p|
       p.load(principal: principal.token, firm: @firm.to_param)
-      p.reference_number.set reference
+      p.reference_number.set ref
     end
   end
 

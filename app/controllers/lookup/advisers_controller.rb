@@ -1,12 +1,12 @@
 module Lookup
   class AdvisersController < ApplicationController
     def show
-      @adviser = ::Adviser.find_by(reference_number: params[:id])
+      @adviser = ::Adviser.find_by(reference_number: adviser_reference_number)
 
       if @adviser
         errors_for :conflict
       else
-        @lookup_adviser = Lookup::Adviser.find_by(reference_number: params[:id])
+        @lookup_adviser = Lookup::Adviser.find_by(reference_number: adviser_reference_number)
 
         if @lookup_adviser
           json_for @lookup_adviser
@@ -40,6 +40,10 @@ module Lookup
       else
         :already_matched
       end
+    end
+
+    def adviser_reference_number
+      params[:id].upcase
     end
   end
 end

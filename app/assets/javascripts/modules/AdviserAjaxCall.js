@@ -2,15 +2,16 @@ define(['jquery'], function($) {
 
   'use strict';
 
+  // This only works if there's at most one `[data-input]` fields on a page.
   var $inputField = $('[data-input]');
 
-  $inputField.keyup(function(){
+  $inputField.on('input onpropertychange', function(){
     if ( $inputField.val() ) {
 
       var $success = $('[data-notice="success"]'),
           $error = $('[data-notice="error"]'),
-          inputFieldValue = $(this).val(),
-          url = $(this).attr('data-url') + inputFieldValue + ".json",
+          inputFieldValue = $inputField.val(),
+          url = $inputField.attr('data-url') + inputFieldValue + ".json",
           error500 = "<p>The server is not responding. We are unable to check whether that individual reference number is valid. Please try again later.</p>";
 
       $.ajax(url, {
