@@ -285,6 +285,16 @@ en:
       answer_yes: "Yes"
       answer_no: "No"
 
+    ethical_investing_flag:
+      heading: Does your firm offer ethical investing?
+      answer_yes: "Yes"
+      answer_no: "No"
+
+    sharia_investing_flag:
+      heading: Does your firm offer sharia investing?
+      answer_yes: "Yes"
+      answer_no: "No"
+
     initial_meeting_duration:
       heading: If yes, for how long?
       duration_unit: minutes
