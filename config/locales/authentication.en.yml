@@ -7,6 +7,11 @@ en:
       new_password: New password
       new_password_confirmation: Confirm new password
 
+    field_help_texts: &field_help_texts
+      password: At least 8 characters. Leave blank if you don't want to change your password.
+      password_confirmation: Leave blank if you don't want to change your password
+      current_password: We need your current password to confirm your changes
+
     sign_in: Sign in
     sign_out: Sign out
     register: Register
@@ -41,9 +46,7 @@ en:
         <<: *new_password_fields
       field_help_texts:
         email: Please enter a valid email address if you would like to change your current one
-        password: At least 8 characters. Leave blank if you don't want to change your password.
-        password_confirmation: Leave blank if you don't want to change your password
-        current_password: We need your current password to confirm your changes
+        <<: *field_help_texts
       change_password: 'Change my password'
       label: Update
       title: Edit my account
@@ -83,4 +86,5 @@ en:
     password_expiry_page:
       field_labels:
         <<: *new_password_fields
-
+      field_help_texts:
+        <<: *field_help_texts
