@@ -1,17 +1,21 @@
 en:
   authentication:
+    password_fields: &password_fields
+      password_confirmation: Confirm password
+
+    new_password_fields: &new_password_fields
+      new_password: New password
+      new_password_confirmation: Confirm new password
+
     sign_in: Sign in
     sign_out: Sign out
     register: Register
     edit_account: Edit account
     mandatory_warning: "All fields are required"
+
     links:
       sign_in_html: "Already registered? <a href=\"%{url}\">Sign in</a>."
-    common:
-      field_label:
-        new_password: New password
-        new_password_confirmation: Confirm new password
-        password_confirmation: Confirm password
+
     registration:
       title: Register to get more from your money
       intro: Registering allows you to save your data when you use our tools and calculators and receive our free fortnightly newsletter packed with money-saving tips and advice.
@@ -31,7 +35,10 @@ en:
           - Setting your own personal money goals
           - The true cost of running a car
           - How to afford to buy a home
+
     settings:
+      field_labels:
+        <<: *new_password_fields
       field_help_texts:
         email: Please enter a valid email address if you would like to change your current one
         password: At least 8 characters. Leave blank if you don't want to change your password.
@@ -40,10 +47,14 @@ en:
       change_password: 'Change my password'
       label: Update
       title: Edit my account
+
     accept_invitation_page:
+      field_labels:
+        <<: *password_fields
       field_help_texts:
         password: Please enter a password to keep your information private
         password_confirmation: Please confirm the password you entered above
+
     sign_in_page:
       title: Sign in
       label: Sign in
@@ -55,12 +66,21 @@ en:
         login: "Enter your firm reference number"
         password: "Enter your password used on registration"
       forgot_password: "Forgot your password?"
+
     reset_password_page:
       title: Forgotten your password?
       intro: No problem!
       instructions: Enter your email address below and we'll send you an email containing all the information you need to reset your password.
       button_label: Send
+
     edit_password_page:
+      field_labels:
+        <<: *password_fields
       title: Choose a new password
       steps: It needs to be at least 8 characters long and must contain a capital letter and a number.
       button_label: Change my password
+
+    password_expiry_page:
+      field_labels:
+        <<: *new_password_fields
+
