@@ -7,6 +7,11 @@ en:
     mandatory_warning: "All fields are required"
     links:
       sign_in_html: "Already registered? <a href=\"%{url}\">Sign in</a>."
+    common:
+      field_label:
+        new_password: New password
+        new_password_confirmation: Confirm new password
+        password_confirmation: Confirm password
     registration:
       title: Register to get more from your money
       intro: Registering allows you to save your data when you use our tools and calculators and receive our free fortnightly newsletter packed with money-saving tips and advice.
@@ -26,6 +31,15 @@ en:
           - Setting your own personal money goals
           - The true cost of running a car
           - How to afford to buy a home
+    settings:
+      field_help_texts:
+        email: Please enter a valid email address if you would like to change your current one
+        password: At least 8 characters. Leave blank if you don't want to change your password.
+        password_confirmation: Leave blank if you don't want to change your password
+        current_password: We need your current password to confirm your changes
+      change_password: 'Change my password'
+      label: Update
+      title: Edit my settings
     accept_invitation_page:
       field_help_texts:
         password: Please enter a password to keep your information private
@@ -49,6 +63,4 @@ en:
     edit_password_page:
       title: Choose a new password
       steps: It needs to be at least 8 characters long and must contain a capital letter and a number.
-      field_label_password: New password
-      field_label_confirm: Repeat new password
       button_label: Change my password
