@@ -285,15 +285,14 @@ en:
       answer_yes: "Yes"
       answer_no: "No"
 
+    other_services:
+      heading: Other services provided
+
     ethical_investing_flag:
-      heading: Does your firm offer ethical investing?
-      answer_yes: "Yes"
-      answer_no: "No"
+      label: Ethical investing
 
     sharia_investing_flag:
-      heading: Does your firm offer sharia investing?
-      answer_yes: "Yes"
-      answer_no: "No"
+      label: Sharia investing
 
     initial_meeting_duration:
       heading: If yes, for how long?

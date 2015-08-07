@@ -187,15 +187,15 @@ RSpec.feature 'The self service firm edit page' do
 
   def complete_part_4
     firm_edit_page.tap do |p|
-      p.offers_ethical_investing = firm_changes.ethical_investing_flag
-      p.offers_sharia_investing = firm_changes.sharia_investing_flag
+      p.ethical_investing_flag.set firm_changes.ethical_investing_flag
+      p.sharia_investing_flag.set firm_changes.sharia_investing_flag
     end
   end
 
   def validate_part_4
     firm_edit_page.tap do |p|
-      expect(p.offers_ethical_investing?).to eq(firm_changes.ethical_investing_flag)
-      expect(p.offers_sharia_investing?).to eq(firm_changes.sharia_investing_flag)
+      expect(p.ethical_investing_flag?).to eq(firm_changes.ethical_investing_flag)
+      expect(p.sharia_investing_flag?).to eq(firm_changes.sharia_investing_flag)
     end
   end
 end
