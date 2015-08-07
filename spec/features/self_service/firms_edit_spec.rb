@@ -10,7 +10,9 @@ RSpec.feature 'The self service firm edit page' do
                       long_term_care_flag: true,
                       equity_release_flag: false,
                       inheritance_tax_and_estate_planning_flag: true,
-                      wills_and_probate_flag: false)
+                      wills_and_probate_flag: false,
+                      ethical_investing_flag: true,
+                      sharia_investing_flag: true)
   end
 
   scenario 'The principal can edit their firm' do
@@ -72,6 +74,7 @@ RSpec.feature 'The self service firm edit page' do
     complete_part_1
     complete_part_2
     complete_part_3
+    complete_part_4
   end
 
   def when_i_invalidate_the_information
@@ -94,6 +97,7 @@ RSpec.feature 'The self service firm edit page' do
     validate_part_1
     validate_part_2
     validate_part_3
+    validate_part_4
 
     @principal.reload
     expect(@principal.firm.email_address).to eq firm_changes.email_address
@@ -178,6 +182,20 @@ RSpec.feature 'The self service firm edit page' do
       expect_checkbox_group_state(p, InitialAdviceFeeStructure.all, firm_changes.initial_advice_fee_structures)
       expect_checkbox_group_state(p, OngoingAdviceFeeStructure.all, firm_changes.ongoing_advice_fee_structures)
       expect_checkbox_group_state(p, AllowedPaymentMethod.all, firm_changes.allowed_payment_methods)
+    end
+  end
+
+  def complete_part_4
+    firm_edit_page.tap do |p|
+      p.offers_ethical_investing = firm_changes.ethical_investing_flag
+      p.offers_sharia_investing = firm_changes.sharia_investing_flag
+    end
+  end
+
+  def validate_part_4
+    firm_edit_page.tap do |p|
+      expect(p.offers_ethical_investing?).to eq(firm_changes.ethical_investing_flag)
+      expect(p.offers_sharia_investing?).to eq(firm_changes.sharia_investing_flag)
     end
   end
 end
