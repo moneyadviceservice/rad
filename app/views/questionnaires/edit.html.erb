@@ -150,42 +150,44 @@
           <% end %>
         </fieldset>
 
-        <fieldset class="form__group form__group--inline">
-          <legend class="l-questionnaire__legend"><%= required_asterisk t('questionnaire.free_initial_meeting.heading') %></legend>
+        <div data-dough-component="FieldToggleVisibility">
+          <fieldset class="form__group form__group--inline">
+            <legend class="l-questionnaire__legend"><%= required_asterisk t('questionnaire.free_initial_meeting.heading') %></legend>
 
-          <%= f.form_row :free_initial_meeting do %>
-            <%= f.errors_for :free_initial_meeting %>
-            <div class="form__group-item">
-              <label>
-                <%= f.radio_button :free_initial_meeting, true, class: 'form__group-input' %>
-                <%= t('questionnaire.free_initial_meeting.answer_yes') %>
-              </label>
-            </div>
-
-            <div class="form__group-item">
-              <label>
-                <%= f.radio_button :free_initial_meeting, false, class: 'form__group-input' %>
-                <%= t('questionnaire.free_initial_meeting.answer_no') %>
-              </label>
-            </div>
-          <% end %>
-        </fieldset>
-
-        <fieldset class="form__group form__group--inline">
-          <legend class="l-questionnaire__legend"><%= t('questionnaire.initial_meeting_duration.heading') %></legend>
-
-          <%= f.form_row :initial_meeting_duration do %>
-            <%= f.errors_for :initial_meeting_duration %>
-            <% InitialMeetingDuration.all.each do |initial_meeting_duration| %>
+            <%= f.form_row :free_initial_meeting do %>
+              <%= f.errors_for :free_initial_meeting %>
               <div class="form__group-item">
                 <label>
-                  <%= radio_button_tag 'firm[initial_meeting_duration_id]', initial_meeting_duration.id, @firm.initial_meeting_duration == initial_meeting_duration, class: 'form__group-input t-questionnaire__firm-initial-meeting-duration-id' %>
-                  <%= initial_meeting_duration.name %>
+                  <%= f.radio_button :free_initial_meeting, true, class: 'form__group-input', data: { dough_field_show: 'how_long' } %>
+                  <%= t('questionnaire.free_initial_meeting.answer_yes') %>
+                </label>
+              </div>
+
+              <div class="form__group-item">
+                <label>
+                  <%= f.radio_button :free_initial_meeting, false, class: 'form__group-input', data: { dough_field_hide: 'how_long' } %>
+                  <%= t('questionnaire.free_initial_meeting.answer_no') %>
                 </label>
               </div>
             <% end %>
-          <% end %>
-        </fieldset>
+          </fieldset>
+
+          <fieldset class="form__group form__group--inline" data-dough-field-target="how_long">
+            <legend class="l-questionnaire__legend"><%= t('questionnaire.initial_meeting_duration.heading') %></legend>
+
+            <%= f.form_row :initial_meeting_duration do %>
+              <%= f.errors_for :initial_meeting_duration %>
+              <% InitialMeetingDuration.all.each do |initial_meeting_duration| %>
+                <div class="form__group-item">
+                  <label>
+                    <%= radio_button_tag 'firm[initial_meeting_duration_id]', initial_meeting_duration.id, @firm.initial_meeting_duration == initial_meeting_duration, class: 'form__group-input t-questionnaire__firm-initial-meeting-duration-id' %>
+                    <%= initial_meeting_duration.name %>
+                  </label>
+                </div>
+              <% end %>
+            <% end %>
+          </fieldset>
+        </div>
       </section>
 
       <hr>
