@@ -173,7 +173,7 @@
           </fieldset>
 
           <fieldset class="form__group form__group--inline" data-dough-field-target="how_long">
-            <legend class="l-questionnaire__legend"><%= t('questionnaire.initial_meeting_duration.heading') %></legend>
+            <legend class="l-questionnaire__legend"><%= required_asterisk t('questionnaire.initial_meeting_duration.heading') %></legend>
 
             <%= f.form_row :initial_meeting_duration do %>
               <%= f.errors_for :initial_meeting_duration %>
