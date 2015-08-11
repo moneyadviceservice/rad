@@ -1,5 +1,7 @@
 <%= render_breadcrumbs(breadcrumbs_firm_adviser_new) %>
 
+<%= render partial: 'self_service/onboarding_message', locals: { principal: @firm.principal } %>
+
 <div class="l-self-service">
 
   <h1>
