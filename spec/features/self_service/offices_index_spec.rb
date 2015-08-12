@@ -19,6 +19,13 @@ RSpec.feature 'The self service firm offices list page' do
     then_i_see_the_firm_name_in_the_page_title
   end
 
+  scenario 'The page shows the list of offices for the given firm' do
+    given_i_am_a_fully_registered_principal_user
+    and_i_am_logged_in
+    when_i_navigate_to_the_offices_page_for_my_firm
+    then_i_see_the_list_of_offices_associated_with_my_firm
+  end
+
   def given_i_am_a_fully_registered_principal_user
     firm_attrs = FactoryGirl.attributes_for(:firm, fca_number: principal.fca_number)
     principal.firm.update_attributes(firm_attrs)
@@ -44,5 +51,9 @@ RSpec.feature 'The self service firm offices list page' do
 
   def then_i_see_the_firm_name_in_the_page_title
     expect(offices_index_page.page_title).to have_text(principal.firm.registered_name)
+  end
+
+  def then_i_see_the_list_of_offices_associated_with_my_firm
+    expect(offices_index_page.offices).not_to be_empty
   end
 end

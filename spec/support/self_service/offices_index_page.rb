@@ -4,5 +4,6 @@ module SelfService
     set_url_matcher %r{/self_service/firms/\d+/offices}
 
     element :page_title, '.t-page-title'
+    elements :offices, '.t-office-table-row'
   end
 end
