@@ -66,6 +66,7 @@ en:
       questionnaire_heading: Questionnaire Responses
 
     offices_index:
+      breadcrumb: Offices
       title: "Offices for %{firm_name}"
 
     trading_name_destroy:
