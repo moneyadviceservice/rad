@@ -35,10 +35,8 @@ module SelfService
     element :inheritance_tax_and_estate_planning_flag, '.t-inheritance-tax-and-estate-planning-flag'
     element :wills_and_probate_flag, '.t-wills-and-probate-flag'
 
-    element :offers_ethical_investing_true, '.t-ethical-investing-true'
-    element :offers_ethical_investing_false, '.t-ethical-investing-false'
-    element :offers_sharia_investing_true, '.t-sharia-investing-true'
-    element :offers_sharia_investing_false, '.t-sharia-investing-false'
+    element :ethical_investing_flag, '.t-ethical-investing-flag'
+    element :sharia_investing_flag, '.t-sharia-investing-flag'
 
     elements :investment_sizes, '.t-questionnaire__firm-investment-size-id'
 
@@ -50,22 +48,6 @@ module SelfService
 
     def offers_free_initial_meeting?
       !!offers_free_initial_meeting_true.checked?
-    end
-
-    def offers_ethical_investing=(choice)
-      send("offers_ethical_investing_#{choice}").set(true)
-    end
-
-    def offers_ethical_investing?
-      !!offers_ethical_investing_true.checked?
-    end
-
-    def offers_sharia_investing=(choice)
-      send("offers_sharia_investing_#{choice}").set(true)
-    end
-
-    def offers_sharia_investing?
-      !!offers_sharia_investing_true.checked?
     end
 
     def retirement_income_products_flag?
@@ -90,6 +72,14 @@ module SelfService
 
     def wills_and_probate_flag?
       !!wills_and_probate_flag.checked?
+    end
+
+    def ethical_investing_flag?
+      !!ethical_investing_flag.checked?
+    end
+
+    def sharia_investing_flag?
+      !!sharia_investing_flag.checked?
     end
   end
 end
