@@ -65,6 +65,9 @@ en:
       address_heading: Address
       questionnaire_heading: Questionnaire Responses
 
+    offices_index:
+      title: "Offices for %{firm_name}"
+
     trading_name_destroy:
       deleted: "%{name} has been successfully removed."
 

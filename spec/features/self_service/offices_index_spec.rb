@@ -16,6 +16,7 @@ RSpec.feature 'The self service firm offices list page' do
     when_i_navigate_to_the_offices_page_for_my_firm
     then_i_see(the_page: offices_index_page)
     then_no_errors_are_displayed_on(the_page: offices_index_page)
+    then_i_see_the_firm_name_in_the_page_title
   end
 
   def given_i_am_a_fully_registered_principal_user
@@ -39,5 +40,9 @@ RSpec.feature 'The self service firm offices list page' do
   def then_no_errors_are_displayed_on(the_page:)
     expect(the_page).not_to have_text %r{[Ee]rror|[Ww]arn|[Ee]xception}
     expect(the_page.status_code).not_to eq(500)
+  end
+
+  def then_i_see_the_firm_name_in_the_page_title
+    expect(offices_index_page.page_title).to have_text(principal.firm.registered_name)
   end
 end
