@@ -24,5 +24,16 @@ module SelfService
       return self_service_trading_name_path(firm) if firm.persisted?
       self_service_trading_names_path
     end
+
+    def office_address_table_cell(office)
+      [
+        :address_line_one,
+        :address_line_two,
+        :address_town,
+        :address_county
+      ].map { |field| office.send(field) }
+        .reject(&:blank?)
+        .join(', ')
+    end
   end
 end
