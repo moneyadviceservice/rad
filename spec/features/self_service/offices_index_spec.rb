@@ -27,6 +27,7 @@ RSpec.feature 'The self service firm offices list page' do
     when_i_navigate_to_the_offices_page_for_my_firm
     then_no_errors_are_displayed_on(the_page: offices_index_page)
     then_i_see_the_list_of_offices_associated_with_my_firm
+    then_i_see_the_first_office_in_the_list_is_the_main_office
   end
 
   def given_i_am_a_fully_registered_principal_user
@@ -63,6 +64,12 @@ RSpec.feature 'The self service firm offices list page' do
   def then_i_see_the_list_of_offices_associated_with_my_firm
     expect(offices_index_page.offices).not_to be_empty
     expect_table_to_match_offices(offices_index_page, principal.firm.offices)
+  end
+
+  def then_i_see_the_first_office_in_the_list_is_the_main_office
+    expect(offices_index_page.offices.first).to be_the_main_office
+    expect(offices_index_page.offices.drop(1))
+      .to rspec_all(have_attributes(the_main_office?: false))
   end
 
   private
