@@ -1,17 +1,20 @@
 <fieldset class="form__group l-half-width">
+  <p><%= t('questionnaire.email_address.description') %></p>
   <%= f.form_row :email_address do %>
     <%= f.errors_for :email_address %>
     <%= f.label :email_address, t('questionnaire.email_address.label'), class: 'form__label-heading' %>
     <%= f.text_field :email_address, class: 't-email-address' %>
   <% end %>
 
-  <%= f.form_row do %>
+  <p><%= t('questionnaire.telephone_number.description') %></p>
+  <%= f.form_row :telephone_number do %>
     <%= f.errors_for :telephone_number %>
     <%= f.label :telephone_number, t('questionnaire.telephone_number.label'), class: 'form__label-heading' %>
     <%= f.text_field :telephone_number, class: 't-telephone-number' %>
   <% end %>
 
-  <%= f.form_row do %>
+  <p><%= t('questionnaire.website_address.description') %></p>
+  <%= f.form_row :website_address do %>
     <%= f.errors_for :website_address %>
     <%= f.label :website_address, t('questionnaire.website_address.label'), class: 'form__label-heading' %>
     <%= f.text_field :website_address, class: 't-website-address' %>
