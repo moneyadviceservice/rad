@@ -5,7 +5,6 @@ class AdviserPage < SitePrism::Page
   element :reference_number, '.t-reference-number'
   element :postcode, '.t-postcode'
   element :travel_distance, '.t-travel-distance'
-  element :confirmed_disclaimer, '.t-confirmed-disclaimer'
   element :submit, '.t-submit'
 
   def adviser_unmatched?

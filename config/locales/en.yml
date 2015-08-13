@@ -30,7 +30,6 @@ en:
         other: Trading names
     attributes:
       adviser:
-        confirmed_disclaimer: Truth confirmation statement
         name: Name
         postcode: Postcode
         qualifications: Qualifications

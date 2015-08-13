@@ -177,10 +177,6 @@ RSpec.feature 'Principal creates Adviser' do
     professional_bodies.each { |p| adviser_page.check(p.name) }
   end
 
-  def and_i_have_confirmed_the_statement_of_truth
-    adviser_page.confirmed_disclaimer.set true
-  end
-
   def when_i_submit_the_advisers_details
     adviser_page.submit.click
   end
