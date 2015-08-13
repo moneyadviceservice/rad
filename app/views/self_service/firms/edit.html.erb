@@ -1,6 +1,5 @@
 <%= render_breadcrumbs(breadcrumbs_firm_edit) %>
-
-<%= render partial: 'self_service/onboarding_message', locals: { principal: @firm.principal } %>
+<%= render_onboarding_message(:firm_form) %>
 
 <div class="l-self-service">
   <div class="l-heading-with-inline-links">

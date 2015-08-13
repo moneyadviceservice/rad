@@ -44,5 +44,10 @@ module SelfService
         .reject(&:blank?)
         .join(', ')
     end
+
+    def render_onboarding_message(page)
+      render partial: "self_service/onboarding/#{page}",
+             locals: { principal: current_user.principal }
+    end
   end
 end
