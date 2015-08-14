@@ -68,6 +68,8 @@ en:
     offices_index:
       breadcrumb: Offices
       title: "Offices for %{firm_name}"
+      add_office_button: Add an office
+      add_office_button_full: Add an office to %{firm_name}
 
     trading_name_destroy:
       deleted: "%{name} has been successfully removed."

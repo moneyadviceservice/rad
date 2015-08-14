@@ -1,0 +1,40 @@
+<div class="table-wrapper">
+  <table class="offices-table">
+    <thead>
+      <tr>
+        <th class="offices-table__address">
+          <%= Office.human_attribute_name(:address) %>
+        </th>
+        <th class="offices-table__address-postcode">
+          <%= Office.human_attribute_name(:address_postcode) %>
+        </th>
+        <th class="offices-table__telephone-number">
+          <%= Office.human_attribute_name(:telephone_number) %>
+        </th>
+        <th class="offices-table__email-address">
+          <%= Office.human_attribute_name(:email_address) %>
+        </th>
+        <th class="offices-table__disabled-access">
+          <%= Office.human_attribute_name(:disabled_access) %>
+        </th>
+        <th class="offices-table__action"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% offices.each do |office| %>
+        <tr class="t-office-table-row">
+          <td class="t-address"><%= office_address_table_cell(office) %></td>
+          <td class="t-address-postcode"><%= office.address_postcode %></td>
+          <td class="t-telephone-number"><%= office.telephone_number %></td>
+          <td class="t-email-address"><%= office.email_address %></td>
+          <td class="t-disabled-access"><%= office.disabled_access ? 'Yes' : 'No' %></td>
+          <td>
+            <% if office == @firm.main_office %>
+              <span class="t-main-office">Main Office</span>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

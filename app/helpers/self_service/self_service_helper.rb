@@ -20,6 +20,15 @@ module SelfService
       end
     end
 
+    def add_office_button(firm:)
+      label = t('self_service.offices_index.add_office_button')
+      sr_label = t('self_service.offices_index.add_office_button_full', firm_name: firm.registered_name)
+      link_to new_self_service_firm_office_path(firm), class: 'button button--primary' do
+        concat content_tag(:span, label, 'aria-hidden' => true)
+        concat content_tag(:span, sr_label, class: 'visually-hidden')
+      end
+    end
+
     def create_or_update_self_service_trading_names_path(firm)
       return self_service_trading_name_path(firm) if firm.persisted?
       self_service_trading_names_path
