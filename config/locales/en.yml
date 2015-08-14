@@ -22,6 +22,9 @@ en:
       adviser:
         one: Adviser
         other: Advisers
+      office:
+        one: Office
+        other: Offices
       trading_name:
         one: Trading name
         other: Trading names
