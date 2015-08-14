@@ -4,6 +4,9 @@ module SelfService
     before_action -> { @firm = current_firm }
     before_action -> { @office = current_office }, only: [:destroy]
 
+    def index
+    end
+
     def destroy
       @office.destroy
       flash[:notice] = I18n.t('self_service.office_destroy.deleted', postcode: @office.address_postcode)
