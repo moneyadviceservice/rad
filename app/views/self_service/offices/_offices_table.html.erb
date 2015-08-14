@@ -20,13 +20,13 @@
         <th class="offices-table__action"></th>
       </tr>
     </thead>
-    <tbody>
+    <tbody data-dough-filter-rows>
       <% offices.each do |office| %>
         <tr class="t-office-table-row">
-          <td class="t-address"><%= office_address_table_cell(office) %></td>
-          <td class="t-address-postcode"><%= office.address_postcode %></td>
-          <td class="t-telephone-number"><%= office.telephone_number %></td>
-          <td class="t-email-address"><%= office.email_address %></td>
+          <td class="t-address" data-dough-filterable><%= office_address_table_cell(office) %></td>
+          <td class="t-address-postcode" data-dough-filterable><%= office.address_postcode %></td>
+          <td class="t-telephone-number" data-dough-filterable><%= office.telephone_number %></td>
+          <td class="t-email-address" data-dough-filterable><%= office.email_address %></td>
           <td class="t-disabled-access"><%= office.disabled_access ? 'Yes' : 'No' %></td>
           <td>
             <% if office == @firm.main_office %>

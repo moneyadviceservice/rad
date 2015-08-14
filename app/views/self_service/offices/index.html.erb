@@ -7,7 +7,10 @@
   </div>
 
   <% if @firm.offices.present? %>
-    <%= render 'self_service/offices/offices_table', offices: @firm.offices %>
+    <div data-dough-component="MultiTableFilter">
+      <%= filter_field :offices, locale_prefix: 'self_service.offices_index.office_filter' %>
+      <%= render 'self_service/offices/offices_table', offices: @firm.offices %>
+    </div>
   <% else %>
     <p class="t-no-offices-message">
       <%= t('self_service.offices_index.no_offices_message') %>
