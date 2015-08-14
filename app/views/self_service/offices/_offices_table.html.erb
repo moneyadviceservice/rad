@@ -31,6 +31,14 @@
           <td>
             <% if office == @firm.main_office %>
               <span class="t-main-office">Main Office</span>
+            <% else %>
+              <%= button_to t('self_service.offices_index.delete_office_button'),
+                            self_service_firm_office_path(office.firm, office),
+                            method: :delete,
+                            'data-dough-component' => 'ConfirmableForm',
+                            'data-dough-confirmation-message' => t('self_service.offices_index.delete_office_confirmation',
+                                                                   postcode: office.address_postcode),
+                            :class => 'button button--small t-delete-button' %>
             <% end %>
           </td>
         </tr>

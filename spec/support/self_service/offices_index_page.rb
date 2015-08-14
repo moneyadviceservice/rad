@@ -9,5 +9,6 @@ module SelfService
     sections :offices, OfficesTableRowSection, '.t-office-table-row'
     element :add_office_link, '.t-add-office-link'
     element :no_offices_message, '.t-no-offices-message'
+    element :flash_message, '.t-flash-message'
   end
 end
