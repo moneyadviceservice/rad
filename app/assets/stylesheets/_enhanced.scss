@@ -9,8 +9,6 @@
 
 @import 'layouts/2col';
 @import 'layouts/constrained';
-@import 'layouts/self_service';
-@import 'layouts/firm';
 @import 'layouts/footer';
 @import 'layouts/half_width';
 @import 'layouts/header';
@@ -21,23 +19,20 @@
 @import 'layouts/pre_qualification_questions';
 @import 'layouts/questionnaire';
 @import 'layouts/rows';
-@import 'layouts/top_right_action';
+@import 'layouts/self_service';
 
-@import 'components/advisers_table';
 @import 'components/adviser_reference_number_field';
+@import 'components/advisers_table';
 @import 'components/button';
-@import 'components/self_service_list/all';
-@import 'components/firm/all';
-@import 'components/firm_filter';
+@import 'components/filter_field';
 @import 'components/firms_table';
-@import 'components/footnote';
 @import 'components/form/all';
+@import 'components/form_section';
+@import 'components/inline_list_with_separator';
 @import 'components/navigation';
 @import 'components/notice/all';
 @import 'components/offices_table';
 @import 'components/onboarding_message';
-@import 'components/form_section';
-@import 'components/inline_list_with_separator';
 @import 'components/sign_in_panel';
 
 // Shame
