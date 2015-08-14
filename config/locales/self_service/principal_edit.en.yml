@@ -1,0 +1,11 @@
+en:
+  self_service:
+    principal_edit:
+      breadcrumb: Edit Principal
+      title: Edit Principal for %{firm_name}
+      saved: Saved successfully
+      submit_button: Save principal
+      firm_section_explanation:
+        - Below are details of the person who completed the registration process on behalf of your firm. Please check this is correct and amend if necessary.
+        - Registration must be authorised by the Principal or the Compliance Officer for the parent firm on behalf of all firms or trading names registered under the FCA firm reference number (FRN) supplied. However you may empower someone within your firm to act on your behalf.
+        - I confirm the person named below is either the Principal or Compliance Officer for this firm, or an individual empowered to act on behalf of the Principal or Compliance Officer of this firm.

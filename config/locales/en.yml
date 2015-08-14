@@ -137,7 +137,7 @@ en:
       job_title: Job title *
       email_address: Email address *
       telephone_number: Telephone number *
-      fca_number_un_matched: could not be matched
+      fca_number_unmatched: could not be matched
       validation_error_html: If you have any queries, please contact <a href="mailto:RADenquiries@moneyadviceservice.org.uk">RADenquiries@moneyadviceservice.org.uk</a>.
     register_button: Register my firm
     user:
@@ -160,131 +160,6 @@ en:
     input_label: If you believe you've been excluded in error, please send us an explanatory message and we will be in touch with you.
     submit_button: Send message
 
-  questionnaire:
-    adviser:
-      reference_number_un_matched: could not be matched with an existing adviser reference
-      description: Please provide details of advisers in your firm who are eligible to be entered onto the Retirement Adviser Directory.
-
-      error_responses:
-        conflict: An adviser with that reference number already exists.
-        not_found: We cannot find that adviser. Please try entering the reference number again.
-
-      advisers_details:
-        heading: Enter the adviser’s FCA individual reference number.
-        description: You will then be asked to complete some basic information about that adviser.
-        label: Adviser FCA individual reference number *
-
-      geographical_coverage:
-        heading: Where is your adviser based?
-        description:
-          - Customers search the Directory using a postcode-based location search that shows the closest advisers.
-          - We allow firms to enter postcodes for each adviser to accommodate firms who have more than one adviser or have advisers who work from different locations.
-        postcode: Enter the postcode this adviser normally works from (even if this is their home postcode)
-        travel_distance: How far is your adviser willing to travel?
-
-      advisers_qualifications:
-        heading: Accreditations and qualifications
-        description: Please tell us what accreditations and/or qualifications this adviser holds.
-
-      accreditations:
-        heading: Accreditations
-
-      qualifications:
-        heading: Qualifications
-
-      professional_standing:
-        heading: Statement of Professional Standing
-        description: "Please confirm the professional body this adviser’s Statement of Professional Standing is issued by:"
-
-      professional_body:
-        heading: Professional body memberships
-        description: "Please confirm the professional bodies this adviser is a member of:"
-
-    providing_your_services:
-      description: Select the different communication channels your firm uses to advise customers. Check all that apply.
-
-    service_charges:
-      description: Confirm the way(s) your firm charges for its services. Check all that apply.
-
-    email_address:
-      description: This is the email account where you wish to receive messages from customers.
-      label: Firm email address *
-
-    telephone_number:
-      description: Please provide a contact number for customers who wish to call you.
-      label: Firm telephone number *
-
-    website_address:
-      description: Please provide a website address for customers who wish to visit your website.
-      label: Firm website address *
-
-    address:
-      heading: Main office where customers will meet you
-      description: This is to help customers understand how far they will need to travel if they want to visit you.
-      label_one: Address line 1 *
-      label_two: Address line 2
-      label_three: Town *
-      label_four: County *
-      label_five: Post code *
-
-    primary_advice_method:
-      heading: How does your firm primarily offer advice through to transaction? *
-      answer_remote: Remotely (e.g. telephone, video conferencing)
-      answer_local: Face-to-face
-
-    in_person_advice_methods:
-      heading: How can customers receive face-to-face advice? *
-
-    other_advice_methods:
-      heading: How can customers receive remote advice? *
-      alternative_heading: What other ways can customers receive advice?
-
-    free_initial_meeting:
-      heading: Does your firm offer a free initial meeting?
-      answer_yes: "Yes"
-      answer_no: "No"
-
-    other_services:
-      heading: Other services provided
-
-    ethical_investing_flag:
-      label: Ethical investing
-
-    sharia_investing_flag:
-      label: Sharia investing
-
-    initial_meeting_duration:
-      heading: If yes, for how long?
-
-    initial_advice_fee:
-      heading: Initial advice
-
-    ongoing_advice_fee:
-      heading: Ongoing advice
-
-    allowed_payment_methods:
-      heading: How can customers pay for their advice?
-
-    minimum_fixed_fee:
-      heading: Do you have a minimum fee?
-      label: If yes, please state your minimum fee to the nearest pound.
-
-    retirement_advice:
-      business_split:
-        subheading: "Types of advice provided"
-
-        advice_options:
-          retirement_income_products_flag: Conversion of pension pot/other liquid savings into retirement income
-          pension_transfer_flag: Defined benefit pensions (including transfers)
-          long_term_care_flag: Long term care
-          equity_release_flag: Equity release
-          inheritance_tax_and_estate_planning_flag: Inheritance Tax and Estate Planning
-          wills_and_probate_flag: Wills & Probate
-
-      pension_pot:
-        heading: Total pension pot / investment size
-        description: Please tell us what size pension pot(s) you are willing to provide advice on. Check all that apply.
-
   in_person_advice_method:
     ordinal:
       '1': At a customer's home
@@ -295,3 +170,11 @@ en:
     ordinal:
       '1': 'By telephone'
       '2': 'By video conferencing'
+
+  adviser:
+    reference_number_unmatched: could not be matched with an existing adviser reference
+
+  lookup_adviser:
+    error_responses:
+      conflict: An adviser with that reference number already exists.
+      not_found: We cannot find that adviser. Please try entering the reference number again.

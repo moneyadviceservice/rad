@@ -1,5 +1,5 @@
 <fieldset class="form__group">
-  <legend class="l-questionnaire__legend"><%= t('questionnaire.other_services.heading') %></legend>
+  <legend class="l-questionnaire__legend"><%= t('self_service.firm_form.other_services_heading') %></legend>
 
   <%= f.form_row :other_services do %>
     <%= f.errors_for :other_services %>
@@ -7,13 +7,13 @@
     <div class="form__group-item">
       <label>
         <%= f.check_box :ethical_investing_flag, class: "form__input t-ethical-investing-flag"%>
-        <%= t('questionnaire.ethical_investing_flag.label')  %>
+        <%= t('self_service.firm_form.ethical_investing_label')  %>
       </label>
     </div>
     <div class="form__group-item">
       <label>
         <%= f.check_box :sharia_investing_flag, class: "form__input t-sharia-investing-flag" %>
-        <%= t('questionnaire.sharia_investing_flag.label') %>
+        <%= t('self_service.firm_form.sharia_investing_label') %>
       </label>
     </div>
   <% end %>

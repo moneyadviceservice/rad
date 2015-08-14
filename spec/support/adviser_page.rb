@@ -10,7 +10,7 @@ class AdviserPage < SitePrism::Page
   def adviser_unmatched?
     first(
       '.validation-summary__error',
-      text: I18n.t('questionnaire.adviser.reference_number_un_matched')
+      text: I18n.t('questionnaire.adviser.reference_number_unmatched')
     )
   end
 
