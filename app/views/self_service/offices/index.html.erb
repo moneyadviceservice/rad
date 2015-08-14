@@ -6,5 +6,14 @@
     <%= add_office_button(firm: @firm) %>
   </div>
 
-  <%= render 'self_service/offices/offices_table', offices: @firm.offices %>
+  <% if @firm.offices.present? %>
+    <%= render 'self_service/offices/offices_table', offices: @firm.offices %>
+  <% else %>
+    <p class="t-no-offices-message">
+      <%= t('self_service.offices_index.no_offices_message') %>
+      <%= link_to(t('self_service.offices_index.add_office_link', firm_name: @firm.registered_name),
+                  new_self_service_firm_office_path(@firm),
+                  class: 't-add-office-link')  %>
+    </p>
+  <% end %>
 </div>

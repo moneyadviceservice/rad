@@ -7,5 +7,7 @@ module SelfService
 
     element :page_title, '.t-page-title'
     sections :offices, OfficesTableRowSection, '.t-office-table-row'
+    element :add_office_link, '.t-add-office-link'
+    element :no_offices_message, '.t-no-offices-message'
   end
 end

@@ -30,6 +30,13 @@ RSpec.feature 'The self service firm offices list page' do
     then_i_see_the_first_office_in_the_list_is_the_main_office
   end
 
+  scenario 'The principal has not added any offices yet' do
+    given_i_am_a_fully_registered_principal_user
+    and_i_am_logged_in
+    when_i_navigate_to_the_offices_page_for_my_firm
+    then_there_is_a_prompt_to_add_an_office
+  end
+
   def given_i_am_a_fully_registered_principal_user
     firm_attrs = FactoryGirl.attributes_for(:firm, fca_number: principal.fca_number)
     principal.firm.update_attributes(firm_attrs)
@@ -62,7 +69,7 @@ RSpec.feature 'The self service firm offices list page' do
   end
 
   def then_i_see_the_list_of_offices_associated_with_my_firm
-    expect(offices_index_page.offices).not_to be_empty
+    expect(offices_index_page).to have_offices
     expect_table_to_match_offices(offices_index_page, principal.firm.offices)
   end
 
@@ -70,6 +77,13 @@ RSpec.feature 'The self service firm offices list page' do
     expect(offices_index_page.offices.first).to be_the_main_office
     expect(offices_index_page.offices.drop(1))
       .to rspec_all(have_attributes(the_main_office?: false))
+  end
+
+  def then_there_is_a_prompt_to_add_an_office
+    expect(offices_index_page).not_to have_offices
+    expect(offices_index_page).to have_no_offices_message(
+      text: I18n.t('self_service.offices_index.no_offices_message'))
+    expect(offices_index_page).to have_add_office_link
   end
 
   private
