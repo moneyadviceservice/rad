@@ -2,7 +2,7 @@
 <h1 class="t-page-title"><%= t('self_service.offices_index.title', firm_name: @firm.registered_name) %></h1>
 
 <table>
-  <% @firm.offices.each_with_index do |office, index| %>
+  <% @firm.offices.each do |office| %>
     <tr class="t-office-table-row">
       <td class="t-address"><%= office_address_table_cell(office) %></td>
       <td class="t-address-postcode"><%= office.address_postcode %></td>
@@ -10,7 +10,7 @@
       <td class="t-email-address"><%= office.email_address %></td>
       <td class="t-disabled-access"><%= office.disabled_access ? 'Yes' : 'No' %></td>
       <td>
-        <% if index == 0 %>
+        <% if office == @firm.main_office %>
           <span class="t-main-office">Main Office</span>
         <% end %>
       </td>
