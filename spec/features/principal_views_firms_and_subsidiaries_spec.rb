@@ -8,7 +8,7 @@ RSpec.feature 'Principal views Firms and Subsidiaries' do
     then_i_am_directed_to_the_questionnaire_for_my_firm
   end
 
-  scenario 'My Firm has Subsidiaries' do
+  pending 'My Firm has Subsidiaries' do
     given_i_am_verified
     and_my_firm_has_associated_subsidiaries
     when_i_follow_my_email_verification_link
