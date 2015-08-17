@@ -7,7 +7,7 @@
   <div class="onboarding-message callout">
     <%= paragraphs t('self_service.onboarding.firm_form.complete_an_adviser_callout') %>
     <p>
-      <% firm = principal.main_firm_with_trading_names.registered.first %>
+      <% firm = first_registered_firm_for(principal) %>
       <%= link_to t('self_service.onboarding.firm_form.complete_an_adviser_button', firm_name: firm.registered_name), new_self_service_firm_adviser_path(firm), class: 'button button--primary' %>
     </p>
   </div>
