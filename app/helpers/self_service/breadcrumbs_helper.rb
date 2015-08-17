@@ -20,6 +20,10 @@ module SelfService
       breadcrumbs_firm_advisers << crumb_firm_adviser_new
     end
 
+    def breadcrumbs_firm_offices
+      breadcrumbs_firm_edit << crumb_firm_offices
+    end
+
     def breadcrumbs_trading_name_new
       breadcrumbs_root << crumb_trading_name_new
     end
@@ -61,6 +65,13 @@ module SelfService
 
     def crumb_firm_adviser_new
       { name: t('self_service.adviser_new.breadcrumb') }
+    end
+
+    def crumb_firm_offices
+      {
+        name: t('self_service.offices_index.breadcrumb'),
+        url: self_service_firm_offices_path(@firm)
+      }
     end
 
     def crumb_trading_name_new

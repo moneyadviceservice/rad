@@ -1,0 +1,22 @@
+<%= render_breadcrumbs(breadcrumbs_firm_offices) %>
+
+<div class="l-self-service">
+  <div class="l-heading-with-button">
+    <h1 class="t-page-title"><%= t('self_service.offices_index.title', firm_name: @firm.registered_name) %></h1>
+    <%= add_office_button(firm: @firm) %>
+  </div>
+
+  <% if @firm.offices.present? %>
+    <div data-dough-component="MultiTableFilter">
+      <%= filter_field :offices, locale_prefix: 'self_service.offices_index.office_filter' %>
+      <%= render 'self_service/offices/offices_table', offices: @firm.offices %>
+    </div>
+  <% else %>
+    <p class="t-no-offices-message">
+      <%= t('self_service.offices_index.no_offices_message') %>
+      <%= link_to(t('self_service.offices_index.add_office_link', firm_name: @firm.registered_name),
+                  new_self_service_firm_office_path(@firm),
+                  class: 't-add-office-link')  %>
+    </p>
+  <% end %>
+</div>
