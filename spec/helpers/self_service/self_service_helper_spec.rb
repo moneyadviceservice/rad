@@ -41,5 +41,39 @@ module SelfService
         expect(subject).to eq('a, d')
       end
     end
+
+    describe '#first_registered_firm_for' do
+      let(:principal) { create(:principal, fca_number: '123456') }
+
+      context 'when the principal has no registered firms' do
+        it 'is nil' do
+          expect(helper.first_registered_firm_for(principal)).to be_nil
+        end
+      end
+
+      context 'when the principal has registered firm and has no trading names' do
+        it 'provides the firm' do
+          principal.firm.update_attribute(:email_address, 'test@example.com')
+          expect(helper.first_registered_firm_for(principal)).to eq(principal.firm)
+        end
+      end
+
+      context 'principal has not registered firm but has a registered trading name' do
+        it 'returns the trading name' do
+          trading_name = create(:trading_name, fca_number: principal.fca_number)
+
+          expect(helper.first_registered_firm_for(principal)).to eq(trading_name)
+        end
+      end
+
+      context 'principal has registered firm and registered trading name' do
+        it 'returns the firm' do
+          principal.firm.update_attribute(:email_address, 'test@example.com')
+          create(:trading_name, fca_number: principal.fca_number)
+
+          expect(helper.first_registered_firm_for(principal)).to eq(principal.firm)
+        end
+      end
+    end
   end
 end

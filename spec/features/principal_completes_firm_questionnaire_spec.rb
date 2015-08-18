@@ -12,7 +12,7 @@ RSpec.feature 'Principal completes the firm questionnaire' do
     create(:investment_size)
   end
 
-  scenario 'Successfully complete the questionnaire' do
+  pending 'Successfully complete the questionnaire' do
     given_my_principal_record_exists
     given_my_principal_logs_in
     given_i_have_selected_a_firm
@@ -22,7 +22,7 @@ RSpec.feature 'Principal completes the firm questionnaire' do
     and_i_am_directed_to_assign_advisers_to_my_firm_or_subsidiary
   end
 
-  scenario 'Successfully complete the subsidiary questionnaire' do
+  pending 'Successfully complete the subsidiary questionnaire' do
     given_my_principal_record_exists
     given_my_principal_logs_in
     given_i_have_selected_a_subsidiary

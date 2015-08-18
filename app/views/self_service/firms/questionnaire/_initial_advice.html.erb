@@ -1,6 +1,8 @@
 <fieldset class="form__group">
   <legend class="l-questionnaire__legend"><%= required_asterisk t('questionnaire.initial_advice_fee.heading') %></legend>
 
+  <p><%= t('questionnaire.service_charges.description') %></p>
+
   <%= f.form_row :initial_advice_fee_structures do %>
     <%= f.errors_for :initial_advice_fee_structures %>
     <%= f.collection_check_boxes(:initial_advice_fee_structure_ids, InitialAdviceFeeStructure.all, :id, :name) do |b| %>

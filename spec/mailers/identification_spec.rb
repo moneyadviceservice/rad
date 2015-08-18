@@ -16,8 +16,8 @@ RSpec.describe Identification, '#contact' do
   end
 
   describe 'body' do
-    it 'contains the tokenized URL' do
-      expect(subject.body.decoded).to include(principal_firms_path(principal))
+    it 'contains self service url' do
+      expect(subject.body.decoded).to include(self_service_root_path)
     end
   end
 end

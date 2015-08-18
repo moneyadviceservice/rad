@@ -44,5 +44,14 @@ module SelfService
         .reject(&:blank?)
         .join(', ')
     end
+
+    def render_onboarding_message(page)
+      render partial: "self_service/onboarding/#{page}",
+             locals: { principal: current_user.principal }
+    end
+
+    def first_registered_firm_for(principal)
+      principal.main_firm_with_trading_names.registered.first
+    end
   end
 end

@@ -241,8 +241,7 @@ en:
 
     service_charges:
       heading: How does your firm charge for its services? *
-      description: Confirm the way(s) your firm charges for its services.
-      hint: Check all that apply.
+      description: Confirm the way(s) your firm charges for its services. Check all that apply.
 
     registered_name:
       label: Registered name

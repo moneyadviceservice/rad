@@ -1,0 +1,14 @@
+<% if principal.next_onboarding_action == :complete_a_firm %>
+  <div class="onboarding-message callout">
+    <%= paragraphs t('self_service.onboarding.firm_form.complete_a_firm_callout') %>
+  </div>
+<% end %>
+<% if principal.next_onboarding_action == :complete_an_adviser %>
+  <div class="onboarding-message callout">
+    <%= paragraphs t('self_service.onboarding.firm_form.complete_an_adviser_callout') %>
+    <p>
+      <% firm = first_registered_firm_for(principal) %>
+      <%= link_to t('self_service.onboarding.firm_form.complete_an_adviser_button', firm_name: firm.registered_name), new_self_service_firm_adviser_path(firm), class: 'button button--primary' %>
+    </p>
+  </div>
+<% end %>

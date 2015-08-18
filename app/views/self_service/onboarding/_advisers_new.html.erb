@@ -1,0 +1,10 @@
+<% if principal.next_onboarding_action == :complete_a_firm %>
+  <div class="onboarding-message callout">
+    <%= paragraphs t('self_service.onboarding.advisers_new.complete_a_firm_callout') %>
+  </div>
+<% end %>
+<% if principal.next_onboarding_action == :complete_an_adviser %>
+  <div class="onboarding-message callout">
+    <%= paragraphs t('self_service.onboarding.advisers_new.complete_an_adviser_callout') %>
+  </div>
+<% end %>
