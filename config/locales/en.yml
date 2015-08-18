@@ -66,6 +66,8 @@ en:
               blank: "- please select at least one"
             website_address:
               invalid: " is invalid. The address must be in the format: http://www.example.com"
+            status:
+              blank: '- please select "independent" or "restricted"'
         adviser:
           attributes:
             covers_whole_of_uk:

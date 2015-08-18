@@ -18,6 +18,7 @@ RSpec.describe SelfService::FirmsController, type: :controller do
     firm_params[:primary_advice_method] = firm.primary_advice_method
     firm_params[:other_advice_method_ids] = firm.other_advice_method_ids
     firm_params[:in_person_advice_method_ids] = firm.in_person_advice_method_ids
+    firm_params[:status] = firm.status
     firm_params.merge(params)
   end
 

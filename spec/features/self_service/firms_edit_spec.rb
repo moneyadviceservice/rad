@@ -12,7 +12,8 @@ RSpec.feature 'The self service firm edit page' do
                       inheritance_tax_and_estate_planning_flag: true,
                       wills_and_probate_flag: false,
                       ethical_investing_flag: true,
-                      sharia_investing_flag: true)
+                      sharia_investing_flag: true,
+                      status: :restricted)
   end
 
   scenario 'The principal can edit their firm' do
@@ -189,6 +190,7 @@ RSpec.feature 'The self service firm edit page' do
     firm_edit_page.tap do |p|
       p.ethical_investing_flag.set firm_changes.ethical_investing_flag
       p.sharia_investing_flag.set firm_changes.sharia_investing_flag
+      p.status = firm_changes.status
     end
   end
 
@@ -196,6 +198,7 @@ RSpec.feature 'The self service firm edit page' do
     firm_edit_page.tap do |p|
       expect(p.ethical_investing_flag?).to eq(firm_changes.ethical_investing_flag)
       expect(p.sharia_investing_flag?).to eq(firm_changes.sharia_investing_flag)
+      expect(p.status).to eq(firm_changes.status)
     end
   end
 end

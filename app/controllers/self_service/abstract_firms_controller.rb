@@ -29,6 +29,7 @@ module SelfService
       :primary_advice_method,
       :ethical_investing_flag,
       :sharia_investing_flag,
+      :status,
       in_person_advice_method_ids: [],
       other_advice_method_ids: [],
       initial_advice_fee_structure_ids: [],
