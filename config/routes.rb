@@ -20,16 +20,6 @@ Rails.application.routes.draw do
       post 'prequalify', action: 'pre_qualification'
       get 'reject',      action: 'rejection_form'
     end
-
-    resources :firms, only: :index do
-      resource :questionnaire, only: [:edit, :update]
-      resources :advisers
-      resources :subsidiaries, only: [] do
-        member do
-          post 'convert'
-        end
-      end
-    end
   end
 
   namespace :lookup do

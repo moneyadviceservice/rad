@@ -1,6 +1,6 @@
 <fieldset class="form__group">
-  <legend class="l-questionnaire__legend"><%= required_asterisk t('questionnaire.retirement_advice.pension_pot.heading') %></legend>
-  <p><%= t('questionnaire.retirement_advice.pension_pot.description') %></p>
+  <legend class="l-questionnaire__legend"><%= required_asterisk t('self_service.firm_form.investment_sizes_heading') %></legend>
+  <p><%= t('self_service.firm_form.investment_sizes_description') %></p>
   <%= f.form_row :investment_sizes do %>
     <%= f.errors_for :investment_sizes %>
     <%= f.collection_check_boxes(:investment_size_ids, InvestmentSize.all, :id, :name) do |b| %>

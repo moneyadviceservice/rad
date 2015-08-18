@@ -7,23 +7,9 @@ en:
     save_button: Save
     required_fields_message: "* Indicates required fields"
 
-    advisers_index:
-      breadcrumb: Advisers
-      title: "Advisers for %{firm_name}"
-      adviser_names_filter_label: "Filter adviser names:"
-      adviser_names_filter_placeholder: e.g. adviser name
-      delete_adviser_button: Remove from Directory
-      delete_adviser_confirmation: Are you sure you want to remove %{name} from the directory?
-      trading_names_heading: "Trading Name: %{trading_name}"
-      add_adviser_button: Add an adviser
-      add_adviser_button_full: Add an adviser to %{firm_name}
-      add_adviser_link: Add an adviser to %{firm_name}.
-      no_advisers_message: You have not added any advisers to this firm.
-
-    adviser_new:
-      breadcrumb: Add an adviser
-      title: "Add an adviser to %{firm_name}"
-      submit_button: Add adviser
+    navigation: # name according to route name
+      root: Home
+      firms: Firms
 
     adviser_edit:
       breadcrumb: "%{adviser_name}"
@@ -31,51 +17,14 @@ en:
       submit_button: Save adviser
       saved: Saved successfully
 
+    adviser_new:
+      breadcrumb: Add an adviser
+      description: Please provide details of advisers in your firm who are eligible to be entered onto the Retirement Adviser Directory.
+      title: "Add an adviser to %{firm_name}"
+      submit_button: Add adviser
+
     adviser_destroy:
       deleted: "%{name} has been successfully removed."
-
-    firms_index:
-      title:
-        one: Firm
-        other: Firms
-      firm_heading: Parent Firm
-      trading_names_heading: Trading Names
-      add_trading_names_prompt: >-
-        You have not added any trading names to the directory. You can add a
-        trading name from the list of available trading names below.
-      available_trading_names_heading: Available Trading Names
-      principal_column_heading: Principal
-      trading_names_filter_label: "Filter trading names:"
-      available_trading_names_filter_label: "Filter available trading names:"
-      trading_names_filter_placeholder: e.g. firm name
-      available_trading_names_filter_placeholder: e.g. firm name
-      new_trading_name_link: Add to directory
-      delete_trading_name_button: Remove from Directory
-      delete_trading_name_confirmation: Are you sure you want to remove %{name} and all associated advisers from the directory?
-
-    firm_edit:
-      breadcrumb: "%{firm_name}"
-      title: "Edit: %{firm_name}"
-      saved: Saved successfully
-      trading_name_heading: Trading name
-      firm_heading: Firm
-      trading_name_contact_details_heading: Trading Name Contact Details
-      firm_contact_details_heading: Firm Contact Details
-      principal_details_heading: Principal Details
-      address_heading: Address
-      questionnaire_heading: Questionnaire Responses
-
-    offices_index:
-      breadcrumb: Offices
-      title: "Offices for %{firm_name}"
-      office_filter_label: "Filter offices:"
-      office_filter_placeholder: e.g. office postcode
-      add_office_button: Add an office
-      add_office_button_full: Add an office to %{firm_name}
-      add_office_link: Add an office to %{firm_name}.
-      no_offices_message: You have not added any offices to this firm.
-      delete_office_button: Remove
-      delete_office_confirmation: Are you sure you want to remove the %{postcode} office from the directory?
 
     office_destroy:
       deleted: "The %{postcode} office has been successfully removed."
@@ -91,39 +40,3 @@ en:
       breadcrumb: "%{firm_name}"
       title: "Edit: %{firm_name}"
       saved: Saved successfully
-
-    principal_edit:
-      breadcrumb: Edit Principal
-      title: Edit Principal for %{firm_name}
-      saved: Saved successfully
-      submit_button: Save principal
-      firm_section_explanation:
-        - Below are details of the person who completed the registration process on behalf of your firm. Please check this is correct and amend if necessary.
-        - Registration must be authorised by the Principal or the Compliance Officer for the parent firm on behalf of all firms or trading names registered under the FCA firm reference number (FRN) supplied. However you may empower someone within your firm to act on your behalf.
-        - I confirm the person named below is either the Principal or Compliance Officer for this firm, or an individual empowered to act on behalf of the Principal or Compliance Officer of this firm.
-
-    onboarding:
-      advisers_index:
-        complete_a_firm_callout: First you need to fill out a firm. Go back!
-        complete_an_adviser_callout:
-          - You've added a firm — now the final step is to add some advisers for that firm.
-          - Click 'Add an adviser' below to continue
-      advisers_new:
-        complete_a_firm_callout: First you need to fill out a firm. Go back!
-        complete_an_adviser_callout: You've added a firm — now the final step is to add an adviser by filling out the details below.
-      firms_index:
-        complete_a_firm_callout:
-          - To appear on the directory you need to fill out details for one of your firms or trading names.
-          - Click one below to continue.
-        complete_an_adviser_callout: You've added a firm — now the final step is to add some advisers for that firm.
-        complete_an_adviser_button: Click here to add an adviser to %{firm_name}
-      firm_form:
-        complete_a_firm_callout:
-          - To appear on the directory you need to fill out details for one of your firms or trading names.
-          - Fill out the details below to continue.
-        complete_an_adviser_callout: Great — you have added a firm — now the final step is to add some advisers for that firm.
-        complete_an_adviser_button: Click here to add an adviser to %{firm_name}
-
-    navigation: # name according to route name
-      root: Home
-      firms: Firms

@@ -1,0 +1,22 @@
+en:
+  self_service:
+    adviser_form:
+      reference_number_heading: Enter the adviser’s FCA individual reference number.
+      reference_number_description: You will then be asked to complete some basic information about that adviser.
+      reference_number_label: Adviser FCA individual reference number *
+
+      geographical_coverage_heading: Where is your adviser based?
+      geographical_coverage_description:
+        - Customers search the Directory using a postcode-based location search that shows the closest advisers.
+        - We allow firms to enter postcodes for each adviser to accommodate firms who have more than one adviser or have advisers who work from different locations.
+      postcode_label: Enter the postcode this adviser normally works from (even if this is their home postcode)
+      travel_distance_label: How far is your adviser willing to travel?
+
+      accreditations_and_qualifications_heading: Accreditations and qualifications
+      accreditations_and_qualifications_description: Please tell us what accreditations and/or qualifications this adviser holds.
+      accreditations_heading: Accreditations
+      qualifications_heading: Qualifications
+      professional_standing_heading: Statement of Professional Standing
+      professional_standing_description: "Please confirm the professional body this adviser’s Statement of Professional Standing is issued by:"
+      professional_body_heading: Professional body memberships
+      professional_body_description: "Please confirm the professional bodies this adviser is a member of:"

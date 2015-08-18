@@ -1,9 +1,9 @@
 <fieldset class="form__group">
-  <legend class="l-questionnaire__legend"><%= t('questionnaire.minimum_fixed_fee.heading') %></legend>
+  <legend class="l-questionnaire__legend"><%= t('self_service.firm_form.minimum_fixed_fee_heading') %></legend>
 
   <%= f.form_row :minimum_fixed_fee do %>
     <%= f.errors_for :minimum_fixed_fee %>
-    <%= f.label :minimum_fixed_fee, t('questionnaire.minimum_fixed_fee.label'), class: 'form__label-heading', id: 'form-label-one' %>
+    <%= f.label :minimum_fixed_fee, t('self_service.firm_form.minimum_fixed_fee_label'), class: 'form__label-heading', id: 'form-label-one' %>
     <span class="form__input-container form__input-container--medium">
       <span class="form__input-label" id="input-label-one-a">£</span>
       <%= f.text_field :minimum_fixed_fee, class: 'form__input t-minimum_fixed_fee', type: 'number', aria_labelledby: 'form-label-one input-label-one-a' %>

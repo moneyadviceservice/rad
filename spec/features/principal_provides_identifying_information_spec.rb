@@ -1,6 +1,8 @@
 RSpec.feature 'Principal provides identifying information', :inline_job_queue do
   let(:identification_page) { IdentificationPage.new }
   let(:identity_confirmed_page) { IdentityConfirmedPage.new }
+  let(:firms_index_page) { SelfService::FirmsIndexPage.new }
+  let(:sign_in_page) { SignInPage.new }
 
   scenario 'Identifying as a Firm Principal' do
     given_i_have_passed_the_pre_qualification_step
@@ -9,6 +11,11 @@ RSpec.feature 'Principal provides identifying information', :inline_job_queue do
     then_my_firms_fca_reference_number_is_matched_to_the_directory
     and_i_am_shown_a_confirmation_message
     and_i_am_sent_a_verification_email
+
+    when_i_visit_the_email_link
+    then_i_am_asked_to_sign_in
+    when_i_enter_correct_details
+    then_i_am_on_the_self_service_home_page
   end
 
   scenario 'My FCA number cannot be matched' do
@@ -89,5 +96,24 @@ RSpec.feature 'Principal provides identifying information', :inline_job_queue do
 
   def and_i_am_sent_a_verification_email
     expect(ActionMailer::Base.deliveries).to_not be_empty
+    expect(ActionMailer::Base.deliveries.last.body).to include self_service_root_path
+  end
+
+  def when_i_visit_the_email_link
+    firms_index_page.load
+  end
+
+  def then_i_am_asked_to_sign_in
+    expect(sign_in_page).to be_displayed
+  end
+
+  def when_i_enter_correct_details
+    sign_in_page.login_field.set '123456'
+    sign_in_page.password_field.set 'Password1!'
+    sign_in_page.submit_button.click
+  end
+
+  def then_i_am_on_the_self_service_home_page
+    expect(firms_index_page).to be_displayed
   end
 end

@@ -1,0 +1,13 @@
+en:
+  self_service:
+    offices_index:
+      breadcrumb: Offices
+      title: "Offices for %{firm_name}"
+      office_filter_label: "Filter offices:"
+      office_filter_placeholder: e.g. office postcode
+      add_office_button: Add an office
+      add_office_button_full: Add an office to %{firm_name}
+      add_office_link: Add an office to %{firm_name}.
+      no_offices_message: You have not added any offices to this firm.
+      delete_office_button: Remove
+      delete_office_confirmation: Are you sure you want to remove the %{postcode} office from the directory?

@@ -13,9 +13,6 @@ module SelfService
 
     def create
       @adviser = @firm.advisers.build(adviser_params)
-      @adviser.confirmed_disclaimer = true
-      # ^^^ This needs to be resolved by some heavier refactoring
-      # work across mas-rad_core and this codebase.
       if @adviser.save
         flash[:notice] = I18n.t('self_service.adviser_edit.saved')
         redirect_to edit_self_service_firm_adviser_path(@firm, @adviser)

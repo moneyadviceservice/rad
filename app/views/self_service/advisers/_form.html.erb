@@ -8,13 +8,13 @@
 <% if f.object.new_record? %>
   <%= f.form_row :reference_number do %>
     <fieldset class="form__group">
-      <legend class="l-questionnaire__legend"><%= t('questionnaire.adviser.advisers_details.heading') %></legend>
-      <p><%= t('questionnaire.adviser.advisers_details.description') %></p>
+      <legend class="l-questionnaire__legend"><%= t('self_service.adviser_form.reference_number_heading') %></legend>
+      <%= paragraphs t('self_service.adviser_form.reference_number_description') %>
 
       <div class="l-questionnaire__row">
         <div class="l-questionnaire__field">
           <%= f.errors_for :reference_number %>
-          <%= f.label :reference_number, t('questionnaire.adviser.advisers_details.label'), class: 'form__label-heading' %>
+          <%= f.label :reference_number, t('self_service.adviser_form.reference_number_label'), class: 'form__label-heading' %>
           <%= f.text_field :reference_number, class: 'adviser-reference-number-field t-reference-number', maxlength: 8, data: { input: '', url: lookup_adviser_path(id: '') } %>
         </div>
       </div>
@@ -28,14 +28,14 @@
 <hr>
 
 <section>
-  <%= heading_tag(t('questionnaire.adviser.geographical_coverage.heading'), level: 2, class: 'heading-small') %>
-  <%= paragraphs t('questionnaire.adviser.geographical_coverage.description') %>
+  <%= heading_tag(t('self_service.adviser_form.geographical_coverage_heading'), level: 2, class: 'heading-small') %>
+  <%= paragraphs t('self_service.adviser_form.geographical_coverage_description') %>
 
   <fieldset class="form__group" data-dough-field-target="1">
     <%= f.form_row :postcode do %>
       <div>
         <%= f.errors_for :postcode %>
-        <%= f.label :postcode, required_asterisk(t('questionnaire.adviser.geographical_coverage.postcode')), class: 'form__label-heading' %>
+        <%= f.label :postcode, required_asterisk(t('self_service.adviser_form.postcode_label')), class: 'form__label-heading' %>
         <%= f.text_field :postcode, class: 't-postcode form__input-container--medium' %>
       </div>
     <% end %>
@@ -43,7 +43,7 @@
     <%= f.form_row :travel_distance do %>
       <div>
         <%= f.errors_for :travel_distance %>
-        <%= f.label :travel_distance, required_asterisk(t('questionnaire.adviser.geographical_coverage.travel_distance')), class: 'form__label-heading' %>
+        <%= f.label :travel_distance, required_asterisk(t('self_service.adviser_form.travel_distance_label')), class: 'form__label-heading' %>
         <%= f.select :travel_distance, TravelDistance.all, { include_blank: true }, { class: 't-travel-distance' } %>
       </div>
     <% end %>
@@ -53,11 +53,11 @@
 <hr>
 
 <section>
-  <%= heading_tag(t('questionnaire.adviser.advisers_qualifications.heading'), level: 2, class: 'heading-small') %>
-  <p class="l-questionnaire__section-description"><%= t('questionnaire.adviser.advisers_qualifications.description') %></p>
+  <%= heading_tag(t('self_service.adviser_form.accreditations_and_qualifications_heading'), level: 2, class: 'heading-small') %>
+  <%= paragraphs t('self_service.adviser_form.accreditations_and_qualifications_description') %>
 
   <fieldset class="form__group">
-    <legend class="l-questionnaire__legend"><%= t('questionnaire.adviser.accreditations.heading') %></legend>
+    <legend class="l-questionnaire__legend"><%= t('self_service.adviser_form.accreditations_heading') %></legend>
 
     <%= f.form_row :accreditation_ids do %>
       <%= f.errors_for :accreditation_ids %>
@@ -71,7 +71,7 @@
   </fieldset>
 
   <fieldset class="form__group">
-    <legend class="l-questionnaire__legend"><%= t('questionnaire.adviser.qualifications.heading') %></legend>
+    <legend class="l-questionnaire__legend"><%= t('self_service.adviser_form.qualifications_heading') %></legend>
 
     <%= f.form_row :qualification_ids do %>
       <%= f.errors_for :qualification_ids %>
@@ -85,8 +85,8 @@
   </fieldset>
 
   <fieldset class="form__group">
-    <legend class="l-questionnaire__legend"><%= t('questionnaire.adviser.professional_standing.heading') %></legend>
-    <p><%= t('questionnaire.adviser.professional_standing.description') %></p>
+    <legend class="l-questionnaire__legend"><%= t('self_service.adviser_form.professional_standing_heading') %></legend>
+    <%= paragraphs t('self_service.adviser_form.professional_standing_description') %>
 
     <%= f.form_row :professional_standing_ids do %>
       <%= f.errors_for :professional_standing_ids %>
@@ -99,8 +99,8 @@
   </fieldset>
 
   <fieldset class="form__group">
-    <legend class="l-questionnaire__legend"><%= t('questionnaire.adviser.professional_body.heading') %></legend>
-    <p><%= t('questionnaire.adviser.professional_body.description') %></p>
+    <legend class="l-questionnaire__legend"><%= t('self_service.adviser_form.professional_body_heading') %></legend>
+    <%= paragraphs t('self_service.adviser_form.professional_body_description') %>
 
     <%= f.form_row :professional_body_ids do %>
       <%= f.errors_for :professional_body_ids %>

@@ -1,0 +1,60 @@
+en:
+  self_service:
+    firm_form:
+      initial_advice_fee_structures_heading: Initial advice
+      initial_advice_fee_structures_description: Confirm the way(s) your firm charges for its services. Check all that apply.
+
+      email_address_description: This is the email account where you wish to receive messages from customers.
+      email_address_label: Firm email address *
+
+      telephone_number_description: Please provide a contact number for customers who wish to call you.
+      telephone_number_label: Firm telephone number *
+
+      website_address_description: Please provide a website address for customers who wish to visit your website.
+      website_address_label: Firm website address *
+
+      address_heading: Main office where customers will meet you
+      address_description: This is to help customers understand how far they will need to travel if they want to visit you.
+      address_line_one_label: Address line 1 *
+      address_line_two_label: Address line 2
+      address_town_label: Town *
+      address_county_label: County *
+      address_postcode_label: Post code *
+
+      primary_advice_method_heading: How does your firm primarily offer advice through to transaction? *
+      primary_advice_method_answer_remote: Remotely (e.g. telephone, video conferencing)
+      primary_advice_method_answer_local: Face-to-face
+
+      in_person_advice_methods_heading: How can customers receive face-to-face advice? *
+
+      other_advice_methods_heading: How can customers receive remote advice? *
+      other_advice_methods_alternative_heading: What other ways can customers receive advice?
+
+      free_initial_meeting_heading: Does your firm offer a free initial meeting?
+      free_initial_meeting_answer_yes: "Yes"
+      free_initial_meeting_answer_no: "No"
+
+      initial_meeting_duration_heading: If yes, for how long?
+
+      other_services_heading: Other services provided
+      ethical_investing_label: Ethical investing
+      sharia_investing_label: Sharia investing
+
+      ongoing_advice_fee_heading: Ongoing advice
+
+      allowed_payment_methods_heading: How can customers pay for their advice?
+
+      minimum_fixed_fee_heading: Do you have a minimum fee?
+      minimum_fixed_fee_label: If yes, please state your minimum fee to the nearest pound.
+
+      business_split_heading: "Types of advice provided"
+      business_split_options:
+        retirement_income_products_flag: Conversion of pension pot/other liquid savings into retirement income
+        pension_transfer_flag: Defined benefit pensions (including transfers)
+        long_term_care_flag: Long term care
+        equity_release_flag: Equity release
+        inheritance_tax_and_estate_planning_flag: Inheritance Tax and Estate Planning
+        wills_and_probate_flag: Wills & Probate
+
+      investment_sizes_heading: Total pension pot / investment size
+      investment_sizes_description: Please tell us what size pension pot(s) you are willing to provide advice on. Check all that apply.

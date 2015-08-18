@@ -30,7 +30,6 @@ en:
         other: Trading names
     attributes:
       adviser:
-        confirmed_disclaimer: Truth confirmation statement
         name: Name
         postcode: Postcode
         qualifications: Qualifications
@@ -78,7 +77,6 @@ en:
   authentication_sign_in: Sign in
   authentication_sign_up: Register
   authentication_sign_out: Sign out
-  adviser_forgot_password: Forgot password
   required: "* indicates required fields"
   email_address: "RADenquiries@moneyadviceservice.org.uk"
   confirmation_statement: By registering your firm's details with the Money Advice Service, you are confirming that these details and any responses you give to our registration questions are true and accurate.
@@ -139,18 +137,16 @@ en:
       job_title: Job title *
       email_address: Email address *
       telephone_number: Telephone number *
-      fca_number_un_matched: could not be matched
+      fca_number_unmatched: could not be matched
       validation_error_html: If you have any queries, please contact <a href="mailto:RADenquiries@moneyadviceservice.org.uk">RADenquiries@moneyadviceservice.org.uk</a>.
     register_button: Register my firm
     user:
-      email: Email address *
       password: Password *
       password_confirmation: Password confirmation *
 
   rejection:
     contact_sent: Your message has been sent and we will respond shortly.
     heading: Sorry...
-    try_again: Go back and try again
     subheading: "Unfortunately your firm can't be listed on our directory unless you:"
     reasons:
      - heading: Are active in the retirement planning market
@@ -164,196 +160,6 @@ en:
     input_label: If you believe you've been excluded in error, please send us an explanatory message and we will be in touch with you.
     submit_button: Send message
 
-  firms:
-    title: Firm and subsidiaries
-    headings:
-      provide_us_info: Provide us with information about your Firm
-      currently_known_as: 'Currently known as:'
-      trading_name: 'Or select the trading name:'
-    introduction: Below you will find a list of Firms that match the FCA reference number you provided when you registered with us. Select the Firm you wish to provide information for and you will be guided to a page where you can fill in the required details.
-    select_firm: Select this firm
-
-  questionnaire:
-    title: Provide details about your firm
-    introduction: The more information you provide about your firm and the advisers in your firm, the easier it will be for us to match the right customers to you. A complete profile will also help to increase the number of views your firm receives.
-
-    adviser:
-      reference_number_un_matched: could not be matched with an existing adviser reference
-      title: Your advisers
-      description: Please provide details of advisers in your firm who are eligible to be entered onto the Retirement Adviser Directory.
-      button_add: Add adviser
-
-      error_responses:
-        conflict: An adviser with that reference number already exists.
-        not_found: We cannot find that adviser. Please try entering the reference number again.
-
-      advisers_details:
-        heading: Enter the adviser’s FCA individual reference number.
-        description: You will then be asked to complete some basic information about that adviser.
-        label: Adviser FCA individual reference number *
-
-      geographical_coverage:
-        heading: Where is your adviser based?
-        description:
-          - Customers search the Directory using a postcode-based location search that shows the closest advisers.
-          - We allow firms to enter postcodes for each adviser to accommodate firms who have more than one adviser or have advisers who work from different locations.
-        national_coverage: Does your adviser provide UK wide coverage?
-        postcode: Enter the postcode this adviser normally works from (even if this is their home postcode)
-        travel_distance: How far is your adviser willing to travel?
-
-      advisers_qualifications:
-        heading: Accreditations and qualifications
-        description: Please tell us what accreditations and/or qualifications this adviser holds.
-
-      accreditations:
-        heading: Accreditations
-
-      qualifications:
-        heading: Qualifications
-
-      professional_standing:
-        heading: Statement of Professional Standing
-        description: "Please confirm the professional body this adviser’s Statement of Professional Standing is issued by:"
-
-      professional_body:
-        heading: Professional body memberships
-        description: "Please confirm the professional bodies this adviser is a member of:"
-
-      add_another_adviser_button: Add another adviser
-      landing_page_button: Visit Dashboard
-      notice:
-        heading: Thank you
-        subheading: "%{name} was created."
-        description: Your registration details have been received and have been sent for verification. The information you have provided will appear in the directory when we launch it. We will also be adding a 'Firm profile' feature to allow you to manage your information and add further details to your profile in the near future.
-
-    principal:
-      full_name:
-        label: Principal name
-
-    about_your_firm:
-      heading: About your firm
-      callout_html: '<p><span class="t-firm-name">%{registered_name}</span>, firm registration number <span class="t-firm-fca-number">%{fca_number}</span></p>'
-      description: Please provide these details about your firm.
-
-    providing_your_services:
-      heading: How does your firm provide its services?
-      description: Select the different communication channels your firm uses to advise customers. Check all that apply.
-
-    service_charges:
-      heading: How does your firm charge for its services? *
-      description: Confirm the way(s) your firm charges for its services. Check all that apply.
-
-    registered_name:
-      label: Registered name
-
-    email_address:
-      heading: Firm email address for enquiries
-      description: This is the email account where you wish to receive messages from customers.
-      label: Firm email address *
-
-    telephone_number:
-      heading: Firm telephone number for enquiries
-      description: Please provide a contact number for customers who wish to call you.
-      label: Firm telephone number *
-
-    website_address:
-      heading: Firm website address
-      description: Please provide a website address for customers who wish to visit your website.
-      label: Firm website address *
-
-    address:
-      heading: Main office where customers will meet you
-      description: This is to help customers understand how far they will need to travel if they want to visit you.
-      label_one: Address line 1 *
-      label_two: Address line 2
-      label_three: Town *
-      label_four: County *
-      label_five: Post code *
-
-    primary_advice_method:
-      heading: How does your firm primarily offer advice through to transaction? *
-      answer_remote: Remotely (e.g. telephone, video conferencing)
-      answer_local: Face-to-face
-
-    in_person_advice_methods:
-      heading: How can customers receive face-to-face advice? *
-
-    other_advice_methods:
-      heading: How can customers receive remote advice? *
-      alternative_heading: What other ways can customers receive advice?
-
-    free_initial_meeting:
-      heading: Does your firm offer a free initial meeting?
-      answer_yes: "Yes"
-      answer_no: "No"
-
-    other_services:
-      heading: Other services provided
-
-    ethical_investing_flag:
-      label: Ethical investing
-
-    sharia_investing_flag:
-      label: Sharia investing
-
-    initial_meeting_duration:
-      heading: If yes, for how long?
-      duration_unit: minutes
-
-    initial_advice_fee:
-      heading: Initial advice
-
-    ongoing_advice_fee:
-      heading: Ongoing advice
-
-    allowed_payment_methods:
-      heading: How can customers pay for their advice?
-
-    minimum_fixed_fee:
-      heading: Do you have a minimum fee?
-      label: If yes, please state your minimum fee to the nearest pound.
-
-    button_next: Submit your firm's details
-
-    retirement_advice:
-      title: Retirement advice offered by your firm
-      introduction:
-        - text: Help us match you with customers who are looking for the main type(s) of advice that you provide.
-        - text: Providing this information means you are more likely to receive customers enquiries relevant to your firm’s area(s) of focus.
-      button_next: Select the advisers who work here
-
-      percent_total:
-        not_one_hundred: across advice types must equal 100%. Please adjust your figures.
-
-      business_split:
-        heading: Describe your firm's business split as it relates to ‘at’ or ‘post’ retirement advice
-        subheading: "Types of advice provided"
-
-        advice_options:
-          retirement_income_products_flag: Conversion of pension pot/other liquid savings into retirement income
-          pension_transfer_flag: Defined benefit pensions (including transfers)
-          long_term_care_flag: Long term care
-          equity_release_flag: Equity release
-          inheritance_tax_and_estate_planning_flag: Inheritance Tax and Estate Planning
-          wills_and_probate_flag: Wills & Probate
-
-        footnotes:
-          heading: Supplementary Information
-          other_html: |
-            <span class="footnote__number">1.</span>This would include investment/pensions advice to clients in the accumulation phase i.e. not seeking ‘at’ or ‘post’ retirement advice - e.g. non-equity release mortgage advice;  protection advice, etc.
-
-        disclaimer:
-          heading: How do we use this information?
-          text: This information is for internal processes and will not appear on your profile page.  We will use this information to filter results so that consumers looking for a particular type of advice will be matched to a firm that provides that type of advice.
-
-      typical_customer:
-        heading: Your firm's typical customer
-        description: Customers searching for advice on converting their pension pot into retirement income and/or advice on pension transfers will be asked to provide the size of pension pot they wish to invest and/or transfer.
-
-      pension_pot:
-        heading: Total pension pot / investment size
-        description: Please tell us what size pension pot(s) you are willing to provide advice on. Check all that apply.
-
   in_person_advice_method:
     ordinal:
       '1': At a customer's home
@@ -364,3 +170,11 @@ en:
     ordinal:
       '1': 'By telephone'
       '2': 'By video conferencing'
+
+  adviser:
+    reference_number_unmatched: could not be matched with an existing adviser reference
+
+  lookup_adviser:
+    error_responses:
+      conflict: An adviser with that reference number already exists.
+      not_found: We cannot find that adviser. Please try entering the reference number again.

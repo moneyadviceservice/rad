@@ -1,0 +1,20 @@
+en:
+  self_service:
+    firms_index:
+      title:
+        one: Firm
+        other: Firms
+      firm_heading: Parent Firm
+      trading_names_heading: Trading Names
+      add_trading_names_prompt: >-
+        You have not added any trading names to the directory. You can add a
+        trading name from the list of available trading names below.
+      available_trading_names_heading: Available Trading Names
+      principal_column_heading: Principal
+      trading_names_filter_label: "Filter trading names:"
+      available_trading_names_filter_label: "Filter available trading names:"
+      trading_names_filter_placeholder: e.g. firm name
+      available_trading_names_filter_placeholder: e.g. firm name
+      new_trading_name_link: Add to directory
+      delete_trading_name_button: Remove from Directory
+      delete_trading_name_confirmation: Are you sure you want to remove %{name} and all associated advisers from the directory?
