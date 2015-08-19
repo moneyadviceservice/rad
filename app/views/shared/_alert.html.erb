@@ -1,5 +1,12 @@
 <div class="global-alert global-alert--<%= name %>">
   <div class="global-alert__content-container global-alert__content-container--<%= name %>">
+
+    <% if name == 'onboarding' %>
+      <svg class="notification-icon--notice">
+        <use xlink:href="#notification-icon--exclamation"></use>
+      <svg>
+    <% end %>
+
     <strong class="global-alert__heading"><%= name.titleize %></strong>
     <% if msg.is_a?(Array) %>
       <% msg.each do |message| %>

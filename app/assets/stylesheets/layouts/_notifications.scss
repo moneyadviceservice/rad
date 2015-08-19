@@ -40,11 +40,15 @@ $notification-radius: 5px;
   background-image: url('images/icon-tick.png');
 }
 
+.notification-icon--notice {
+
+}
+
 .global-alert__content-container--onboarding:before {
   background-color: #F89E54;
   background-repeat: no-repeat;
   background-position: center center;
-  background-image: url('images/icon-exclamation.png');
+  /*background-image: url('images/icon-exclamation.png');*/
 }
 
 .global-alert--warning .global-alert__content-container.global-alert__content-container--warning:before {
