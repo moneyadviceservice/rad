@@ -1,0 +1,16 @@
+.language-selector__select {
+  margin-bottom: $baseline-unit*2;
+}
+
+.language-selector__delete {
+  margin-left: 0.5em;
+  cursor: pointer;
+}
+
+.language-selector__selectors {
+  margin-bottom: $baseline-unit*4;
+}
+
+.language-selector__add {
+  cursor: pointer;
+}

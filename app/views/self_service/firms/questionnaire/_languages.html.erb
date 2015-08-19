@@ -1,25 +1,32 @@
 <fieldset class="form__group" data-dough-component="LanguageSelector">
   <legend class="l-questionnaire__legend"><%= t('self_service.firm_form.languages_heading') %></legend>
 
-  <div class="is-hidden" data-dough-language-selector-template>
+  <div class="is-hidden language-selector__select" data-dough-language-selector-template>
     <%= firm_language_select nil, class: 't-languages' %>
     <%= firm_language_delete_link %>
   </div>
 
-    <%= f.form_row :other_services do %>
-      <%= f.errors_for :other_services %>
-      <div data-dough-language-selector-selectors>
-        <% f.object.languages.each do |language| %>
-          <div data-dough-language-selector-selector>
-            <%= firm_language_select language, class: 't-languages' %>
-            <%= firm_language_delete_link %>
-          </div>
-        <% end %>
-      </div>
-    <% end %>
+  <%= f.form_row :other_services do %>
+    <%= f.errors_for :other_services %>
 
-  <a data-dough-language-selector-add-language>
-    <%= t('self_service.firm_form.languages_add_language') %>
-  </a>
+    <div class="language-selector__selectors" data-dough-language-selector-selectors>
+      <% if f.object.languages.empty? %>
+        <div class="language-selector__select" data-dough-language-selector-selector>
+          <%= firm_language_select nil, class: 't-languages' %>
+          <%= firm_language_delete_link %>
+        </div>
+      <% end %>
 
+      <% f.object.languages.each do |language| %>
+        <div class="language-selector__select" data-dough-language-selector-selector>
+          <%= firm_language_select language, class: 't-languages' %>
+          <%= firm_language_delete_link %>
+        </div>
+      <% end %>
+    </div>
+
+    <a class="language-selector__add" data-dough-language-selector-add-language>
+      <%= t('self_service.firm_form.languages_add_language') %>
+    </a>
+  <% end %>
 </fieldset>

@@ -62,12 +62,14 @@ module SelfService
         value)
       select_tag('firm[languages][]', options,
                  {
-                   prompt: t('self_service.firm_form.languages_select_prompt'),
+                   prompt: t('self_service.firm_form.languages_select_prompt')
                  }.merge(html_options))
     end
 
     def firm_language_delete_link
-      content_tag(:a, 'data-dough-language-selector-delete-language' => true) do
+      content_tag(:a,
+                  class: 'language-selector__delete',
+                  'data-dough-language-selector-delete-language' => true) do
         t('self_service.firm_form.languages_delete_language')
       end
     end
