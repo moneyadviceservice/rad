@@ -45,7 +45,7 @@ RSpec.feature 'The self service firm edit page' do
   end
 
   def and_i_have_a_firm_with_an_adviser
-    @adviser = FactoryGirl.create :adviser, postcode: updated_postcode
+    @adviser = FactoryGirl.create :adviser, postcode: original_postcode
     firm_attrs = FactoryGirl.attributes_for(:firm, fca_number: @principal.fca_number)
     @principal.firm.advisers << @adviser
     @principal.firm.update_attributes(firm_attrs)
@@ -108,6 +108,6 @@ RSpec.feature 'The self service firm edit page' do
     expect(adviser_edit_page.adviser_postcode.value).to eq 'clearly_not_a_valid_postcode'
 
     @adviser.reload
-    expect(@adviser.postcode).to eq updated_postcode
+    expect(@adviser.postcode).to eq original_postcode
   end
 end
