@@ -1,7 +1,5 @@
 <% if principal.next_onboarding_action == :complete_a_firm %>
-  <div class="onboarding-message callout">
-    <%= paragraphs t('self_service.onboarding.firms_index.complete_a_firm_callout') %>
-  </div>
+  <%= render partial: 'shared/alert', locals: {name: 'onboarding', msg: t('self_service.onboarding.firms_index.complete_a_firm_callout')} %>
 <% end %>
 <% if principal.next_onboarding_action == :complete_an_adviser %>
   <div class="onboarding-message callout">

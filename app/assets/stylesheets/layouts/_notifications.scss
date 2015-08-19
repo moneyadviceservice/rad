@@ -1,0 +1,56 @@
+$notification-radius: 5px;
+
+.global-alert {
+  border-radius: $notification-radius;
+  margin-bottom: 1em;
+  position: relative;
+}
+
+.global-alert__content-container:before {
+  border-bottom-left-radius: $notification-radius;
+  border-top-left-radius: $notification-radius;
+}
+
+.global-alert--alert .global-alert__content-container.global-alert__content-container--alert:before {
+  background-color: $color-red-medium;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-image: url('images/icon-cross.png');
+}
+
+.global-alert__content-container--info:before {
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-image: url('images/icon-tick.png');
+}
+
+.global-alert__content-container--notice:before {
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-image: url('images/icon-tick.png');
+}
+
+.global-alert__content-container--success:before {
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-image: url('images/icon-tick.png');
+}
+
+.global-alert__content-container--onboarding:before {
+  background-color: #F89E54;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-image: url('images/icon-exclamation.png');
+}
+
+.global-alert--warning .global-alert__content-container.global-alert__content-container--warning:before {
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-image: url('images/icon-exclamation.png');
+}
+
+.global-alert--error .global-alert__content-container.global-alert__content-container--error:before {
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-image: url('images/icon-cross.png');
+}
