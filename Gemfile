@@ -23,7 +23,6 @@ gem 'dough-ruby',
     ref: '77dc86f'
 gem 'jquery-rails'
 gem 'kaminari'
-gem 'language_list'
 gem 'letter_opener', group: :development
 gem 'mas-rad_core', '0.0.70'
 gem 'oga'

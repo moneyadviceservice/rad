@@ -56,7 +56,7 @@ module SelfService
 
     def firm_language_select(value, html_options = {})
       options = options_from_collection_for_select(
-        LanguageList::COMMON_LANGUAGES,
+        Firm.available_languages,
         :iso_639_1,
         :name,
         value)

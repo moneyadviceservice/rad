@@ -322,7 +322,6 @@ DEPENDENCIES
   faker
   jquery-rails
   kaminari
-  language_list
   launchy
   letter_opener
   mas-rad_core (= 0.0.70)
