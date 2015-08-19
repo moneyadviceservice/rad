@@ -6,6 +6,10 @@ $notification-radius: 5px;
   position: relative;
 }
 
+.global-alert__content-container {
+  overflow: auto;
+}
+
 .global-alert__content-container:before {
   border-bottom-left-radius: $notification-radius;
   border-top-left-radius: $notification-radius;
