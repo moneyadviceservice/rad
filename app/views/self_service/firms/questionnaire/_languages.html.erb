@@ -1,0 +1,9 @@
+<fieldset class="form__group">
+  <legend class="l-questionnaire__legend"><%= t('self_service.firm_form.languages_heading') %></legend>
+
+  <%= f.form_row :other_services do %>
+    <%= f.errors_for :other_services %>
+    <%= language_select f, class: 't-languages' %>
+  <% end %>
+
+</fieldset>

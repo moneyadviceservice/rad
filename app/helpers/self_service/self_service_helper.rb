@@ -53,5 +53,11 @@ module SelfService
     def first_registered_firm_for(principal)
       principal.main_firm_with_trading_names.registered.first
     end
+
+    def language_select(f, html_options = {})
+      f.collection_select(:languages, LanguageList::COMMON_LANGUAGES, :iso_639_1, :name,
+                          { prompt: t('self_service.firm_form.languages_select_prompt') },
+                          { name: "#{f.object_name}[languages][]" }.merge(html_options))
+    end
   end
 end
