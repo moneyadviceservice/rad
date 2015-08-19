@@ -1,9 +1,25 @@
-<fieldset class="form__group">
+<fieldset class="form__group" data-dough-component="LanguageSelector">
   <legend class="l-questionnaire__legend"><%= t('self_service.firm_form.languages_heading') %></legend>
 
-  <%= f.form_row :other_services do %>
-    <%= f.errors_for :other_services %>
-    <%= language_select f, class: 't-languages' %>
-  <% end %>
+  <div class="is-hidden" data-dough-language-selector-template>
+    <%= firm_language_select nil, class: 't-languages' %>
+    <%= firm_language_delete_link %>
+  </div>
+
+    <%= f.form_row :other_services do %>
+      <%= f.errors_for :other_services %>
+      <div data-dough-language-selector-selectors>
+        <% f.object.languages.each do |language| %>
+          <div data-dough-language-selector-selector>
+            <%= firm_language_select language, class: 't-languages' %>
+            <%= firm_language_delete_link %>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+
+  <a data-dough-language-selector-add-language>
+    <%= t('self_service.firm_form.languages_add_language') %>
+  </a>
 
 </fieldset>

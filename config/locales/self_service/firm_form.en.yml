@@ -65,3 +65,5 @@ en:
 
       languages_heading: Which languages (other than English) can your firm's advisers offer advice in?
       languages_select_prompt: Please select
+      languages_add_language: Add another language
+      languages_delete_language: Remove

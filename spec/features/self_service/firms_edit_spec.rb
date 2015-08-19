@@ -192,7 +192,7 @@ RSpec.feature 'The self service firm edit page' do
       p.ethical_investing_flag.set firm_changes.ethical_investing_flag
       p.sharia_investing_flag.set firm_changes.sharia_investing_flag
       p.status = firm_changes.status
-      p.languages.select LanguageList::LanguageInfo.find(firm_changes.languages.first).name
+      p.languages.first.select LanguageList::LanguageInfo.find(firm_changes.languages.first).name
     end
   end
 
@@ -201,7 +201,7 @@ RSpec.feature 'The self service firm edit page' do
       expect(p.ethical_investing_flag?).to eq(firm_changes.ethical_investing_flag)
       expect(p.sharia_investing_flag?).to eq(firm_changes.sharia_investing_flag)
       expect(p.status).to eq(firm_changes.status)
-      expect(p.languages.value).to eq('fr')
+      expect(p.languages.map &:value).to include('fr')
     end
   end
 end

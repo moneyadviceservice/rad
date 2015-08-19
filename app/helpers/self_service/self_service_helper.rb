@@ -54,10 +54,22 @@ module SelfService
       principal.main_firm_with_trading_names.registered.first
     end
 
-    def language_select(f, html_options = {})
-      f.collection_select(:languages, LanguageList::COMMON_LANGUAGES, :iso_639_1, :name,
-                          { prompt: t('self_service.firm_form.languages_select_prompt') },
-                          { name: "#{f.object_name}[languages][]" }.merge(html_options))
+    def firm_language_select(value, html_options = {})
+      options = options_from_collection_for_select(
+        LanguageList::COMMON_LANGUAGES,
+        :iso_639_1,
+        :name,
+        value)
+      select_tag('firm[languages][]', options,
+                 {
+                   prompt: t('self_service.firm_form.languages_select_prompt'),
+                 }.merge(html_options))
+    end
+
+    def firm_language_delete_link
+      content_tag(:a, 'data-dough-language-selector-delete-language' => true) do
+        t('self_service.firm_form.languages_delete_language')
+      end
     end
   end
 end

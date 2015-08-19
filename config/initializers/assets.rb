@@ -21,6 +21,7 @@ Rails.application.configure do
     dough/assets/js/**/*.js
     modules/MultiTableFilter.js
     modules/ConfirmableForm.js
+    modules/LanguageSelector.js
     modules/FieldToggleVisibility.js
     modules/RemoteAndFaceToFaceOptions.js
     modules/AdviserAjaxCall.js

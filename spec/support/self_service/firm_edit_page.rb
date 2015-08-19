@@ -43,7 +43,7 @@ module SelfService
 
     elements :investment_sizes, '.t-questionnaire__firm-investment-size-id'
 
-    element :languages, '.t-languages'
+    elements :languages, '.t-languages'
 
     element :save_button, '.t-save-button'
 
