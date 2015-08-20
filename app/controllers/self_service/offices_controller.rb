@@ -7,6 +7,20 @@ module SelfService
     def index
     end
 
+    def new
+      @office = @firm.offices.build
+    end
+
+    def create
+      @office = @firm.offices.build(office_params)
+      if @office.save
+        flash[:notice] = I18n.t('self_service.office_add.saved')
+        redirect_to edit_self_service_firm_office_path(@firm, @office)
+      else
+        render :new
+      end
+    end
+
     def edit
     end
 

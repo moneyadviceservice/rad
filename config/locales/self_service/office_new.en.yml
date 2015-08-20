@@ -1,0 +1,6 @@
+en:
+  self_service:
+    office_new:
+      breadcrumb: Add an office
+      title: "Add an office to %{firm_name}"
+      submit_button: Add office
