@@ -1,9 +1,0 @@
-<% if principal.next_onboarding_action == :complete_a_firm %>
-  <%= render partial: 'shared/alert', locals: {name: 'onboarding', msg: t('self_service.onboarding.firm_form.complete_a_firm_callout'), button_html: nil} %>
-<% end %>
-<% if principal.next_onboarding_action == :complete_an_adviser %>
-  <% firm = first_registered_firm_for(principal) %>
-  <% button_html = link_to t('self_service.onboarding.firm_form.complete_an_adviser_button', firm_name: firm.registered_name), new_self_service_firm_adviser_path(firm), class: 'button button--primary' %>
-
-  <%= render partial: 'shared/alert', locals: {name: 'onboarding', msg: t('self_service.onboarding.firm_form.complete_an_adviser_callout'), button_html: button_html} %>
-<% end %>

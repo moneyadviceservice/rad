@@ -1,6 +1,0 @@
-<% if principal.next_onboarding_action == :complete_a_firm %>
-  <%= render partial: 'shared/alert', locals: {name: 'onboarding', msg: t('self_service.onboarding.advisers_index.complete_a_firm_callout'), button_html: nil} %>
-<% end %>
-<% if principal.next_onboarding_action == :complete_an_adviser %>
-  <%= render partial: 'shared/alert', locals: {name: 'onboarding', msg: t('self_service.onboarding.advisers_index.complete_an_adviser_callout'), button_html: nil} %>
-<% end %>

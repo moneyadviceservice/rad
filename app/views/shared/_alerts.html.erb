@@ -1,3 +1,8 @@
 <% flash.to_hash.slice('notice', 'success', 'info', 'alert', 'error').each do |name, msg| %>
-  <%= render partial: 'shared/alert', locals: {name: name, msg: msg, button_html: nil} %>
+  <div class="global-alert global-alert--<%= name %>">
+    <div class="global-alert__content-container global-alert__content-container--<%= name %>">
+      <strong class="global-alert__heading"><%= name.titleize %></strong>
+      <%= content_tag :p, msg.html_safe, class: 'global-alert__message t-flash-message' %>
+    </div>
+  </div>
 <% end %>
