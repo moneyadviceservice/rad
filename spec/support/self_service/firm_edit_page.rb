@@ -38,6 +38,9 @@ module SelfService
     element :ethical_investing_flag, '.t-ethical-investing-flag'
     element :sharia_investing_flag, '.t-sharia-investing-flag'
 
+    element :status_restricted, '.t-status-restricted'
+    element :status_independent, '.t-status-independent'
+
     elements :investment_sizes, '.t-questionnaire__firm-investment-size-id'
 
     element :save_button, '.t-save-button'
@@ -80,6 +83,16 @@ module SelfService
 
     def sharia_investing_flag?
       !!sharia_investing_flag.checked?
+    end
+
+    def status
+      return 'restricted' if status_restricted.checked?
+      'independent'
+    end
+
+    def status=(status)
+      status_restricted.set(true) if status == 'restricted'
+      status_independent.set(true) if status == 'independent'
     end
   end
 end

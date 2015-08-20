@@ -58,3 +58,7 @@ en:
 
       investment_sizes_heading: Total pension pot / investment size
       investment_sizes_description: Please tell us what size pension pot(s) you are willing to provide advice on. Check all that apply.
+
+      status_heading: Does your firm offer restricted or independent advice?
+      status_answer_independent: "Independent"
+      status_answer_restricted: "Restricted"
