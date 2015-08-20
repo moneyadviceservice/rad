@@ -66,9 +66,10 @@ module SelfService
                  }.merge(html_options))
     end
 
-    def firm_language_delete_link
-      content_tag(:a,
-                  class: 'language-selector__delete',
+    def firm_language_delete_button
+      content_tag(:button,
+                  type: 'button',
+                  class: 'button-link language-selector__delete',
                   'data-dough-language-selector-delete-language' => true) do
         t('self_service.firm_form.languages_delete_language')
       end
