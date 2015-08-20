@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Retirement Adviser Directory",
   "scripts": {
-    "test": "./node_modules/.bin/karma start spec/javascripts/karma.conf.js --single-run=true && ./node_modules/.bin/jshint app/assets/javascripts/"
+    "test": "./node_modules/.bin/karma start spec/javascripts/karma.conf.js --single-run=true && ./node_modules/.bin/jshint app/assets/javascripts/ spec/javascripts"
   },
   "devDependencies": {
     "chai": "^1.9.1",
