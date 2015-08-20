@@ -23,7 +23,12 @@
     <tbody data-dough-filter-rows>
       <% offices.each do |office| %>
         <tr class="t-office-table-row">
-          <td class="t-address" data-dough-filterable><%= office_address_table_cell(office) %></td>
+          <td class="t-address" data-dough-filterable>
+
+            <%= link_to office_address_table_cell(office),
+                        edit_self_service_firm_office_path(office.firm, office),
+                        class: 't-edit-link' %>
+          </td>
           <td class="t-address-postcode" data-dough-filterable><%= office.address_postcode %></td>
           <td class="t-telephone-number" data-dough-filterable><%= office.telephone_number %></td>
           <td class="t-email-address" data-dough-filterable><%= office.email_address %></td>

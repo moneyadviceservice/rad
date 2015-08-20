@@ -24,6 +24,14 @@ module SelfService
       breadcrumbs_firm_edit << crumb_firm_offices
     end
 
+    def breadcrumbs_firm_office_edit
+      breadcrumbs_firm_offices << crumb_firm_office_edit
+    end
+
+    def breadcrumbs_firm_office_new
+      breadcrumbs_firm_offices << crumb_firm_office_new
+    end
+
     def breadcrumbs_trading_name_new
       breadcrumbs_root << crumb_trading_name_new
     end
@@ -72,6 +80,14 @@ module SelfService
         name: t('self_service.offices_index.breadcrumb'),
         url: self_service_firm_offices_path(@firm)
       }
+    end
+
+    def crumb_firm_office_edit
+      { name: t('self_service.office_edit.breadcrumb', postcode: @office.address_postcode) }
+    end
+
+    def crumb_firm_office_new
+      { name: t('self_service.office_new.breadcrumb') }
     end
 
     def crumb_trading_name_new
