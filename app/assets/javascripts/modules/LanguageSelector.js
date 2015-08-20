@@ -73,7 +73,7 @@ define(['jquery', 'DoughBaseComponent'],
     $template.find('select')
       .attr('id', '');
     $template
-      .removeClass('is-hidden')
+      .removeClass('language-selector__template')
       .removeAttr(this.config.selectorPrefix + '-template')
       .attr(this.config.selectorPrefix + '-selector', true)
       .appendTo($container);
