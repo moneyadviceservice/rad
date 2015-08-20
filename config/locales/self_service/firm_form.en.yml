@@ -62,3 +62,8 @@ en:
       status_heading: Does your firm offer restricted or independent advice?
       status_answer_independent: "Independent"
       status_answer_restricted: "Restricted"
+
+      languages_heading: Which languages (other than English) can your firm's advisers offer advice in?
+      languages_select_prompt: Please select
+      languages_add_language: Add another language
+      languages_delete_language: Remove

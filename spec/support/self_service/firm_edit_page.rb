@@ -43,6 +43,8 @@ module SelfService
 
     elements :investment_sizes, '.t-questionnaire__firm-investment-size-id'
 
+    elements :languages, '.t-languages'
+
     element :save_button, '.t-save-button'
 
     def offers_free_initial_meeting=(choice)

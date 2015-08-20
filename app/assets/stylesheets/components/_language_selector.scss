@@ -1,0 +1,30 @@
+.language-selector__select {
+  margin-bottom: $baseline-unit*2;
+}
+
+.language-selector__template {
+  display: none;
+}
+
+.language-selector__delete {
+  display: none;
+  margin-left: 0.5em;
+  padding: 0;
+
+  html.js & {
+    display: inline-block;
+  }
+}
+
+.language-selector__selectors {
+  margin-bottom: $baseline-unit*4;
+}
+
+.language-selector__add {
+  display: none;
+  padding: 0;
+
+  html.js & {
+    display: inline-block;
+  }
+}

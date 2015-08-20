@@ -35,7 +35,8 @@ module SelfService
       initial_advice_fee_structure_ids: [],
       ongoing_advice_fee_structure_ids: [],
       allowed_payment_method_ids: [],
-      investment_size_ids: []
+      investment_size_ids: [],
+      languages: []
     ].freeze
 
     def firm_params

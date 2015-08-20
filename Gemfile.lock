@@ -127,6 +127,7 @@ GEM
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
     kgio (2.9.3)
+    language_list (1.1.0)
     launchy (2.4.3)
       addressable (~> 2.3)
     letter_opener (1.3.0)
@@ -135,10 +136,11 @@ GEM
       nokogiri (>= 1.5.9)
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
-    mas-rad_core (0.0.69)
+    mas-rad_core (0.0.70)
       active_model_serializers
       geocoder
       httpclient
+      language_list
       pg
       rails (~> 4.2)
       redis
@@ -322,7 +324,7 @@ DEPENDENCIES
   kaminari
   launchy
   letter_opener
-  mas-rad_core (= 0.0.69)
+  mas-rad_core (= 0.0.70)
   oga
   pg
   poltergeist
