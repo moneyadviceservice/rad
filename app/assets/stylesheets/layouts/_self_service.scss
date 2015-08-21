@@ -1,7 +1,5 @@
 .l-self-service {
-  margin-bottom: $baseline-unit*8;
-  padding-left: $baseline-unit*2;
-  padding-right: $baseline-unit*2;
+  @extend %l-content;
 }
 
 .l-self-service-action-row {
