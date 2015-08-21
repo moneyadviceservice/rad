@@ -34,15 +34,7 @@
 <main role="main" id="main">
   <div class='l-constrained'>
 
-    <% if devise_controller? %>
-      <div class='l-registration'>
-    <% end %>
-
     <%= yield %>
-
-    <% if devise_controller? %>
-      </div>
-    <% end %>
 
   </div>
 </main>
