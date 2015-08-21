@@ -1,0 +1,7 @@
+en:
+  self_service:
+    office_edit:
+      breadcrumb: "%{postcode}"
+      title: "Edit office: %{postcode}"
+      submit_button: Save office
+      saved: Saved successfully

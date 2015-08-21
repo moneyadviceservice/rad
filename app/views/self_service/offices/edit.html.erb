@@ -1,0 +1,16 @@
+<%= render_breadcrumbs(breadcrumbs_firm_office_edit) %>
+
+<div class="l-self-service">
+  <h1>
+    <%= t('self_service.office_edit.title', postcode: @office.address_postcode) %>
+  </h1>
+
+  <%= form_for @office,
+               url: self_service_firm_office_path(@firm, @office),
+               builder: Dough::Forms::Builders::Validation,
+               html: { class: 'form' } do |f| %>
+
+    <%= render partial: 'self_service/offices/form', locals: {f: f} %>
+
+  <% end %>
+</div>
