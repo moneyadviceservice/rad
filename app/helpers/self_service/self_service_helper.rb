@@ -50,9 +50,12 @@ module SelfService
       return if principal.next_onboarding_action == :onboarded
 
       message = t("self_service.onboarding.#{page}.#{principal.next_onboarding_action}_callout")
-      render 'shared/onboarding_message', page: page.to_s,
-                                          firm: first_registered_firm_for(principal),
-                                          msg: message
+
+      content_for :onboarding_message do
+        render 'shared/onboarding_message', page: page.to_s,
+                                            firm: first_registered_firm_for(principal),
+                                            msg: message
+      end
     end
 
     def first_registered_firm_for(principal)

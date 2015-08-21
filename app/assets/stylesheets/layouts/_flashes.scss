@@ -1,0 +1,5 @@
+.l-flashes {
+  @extend .l-constrained;
+  padding-left: $baseline-unit*2;
+  padding-right: $baseline-unit*2;
+}

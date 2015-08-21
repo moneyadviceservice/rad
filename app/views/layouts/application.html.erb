@@ -29,13 +29,17 @@
 <body>
 <%= render 'shared/skip_links' %>
 <%= render 'shared/header' %>
-<%= render 'shared/alerts' %>
 <%= yield :breadcrumbs %>
 
 <main role="main" id="main">
   <div class='l-constrained'>
 
-    <%= yield %>
+  <div class="l-flashes">
+    <%= render 'shared/alerts' %>
+    <%= yield :onboarding_message %>
+  </div>
+
+  <%= yield %>
 
   </div>
 </main>

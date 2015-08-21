@@ -1,8 +1,7 @@
 <% render_breadcrumbs(breadcrumbs_root) %>
+<%= render_onboarding_message(:firms_index) %>
 
 <div class="l-self-service">
-  <%= render_onboarding_message(:firms_index) %>
-
   <h1 class="t-page-title">
     <%= t('self_service.firms_index.title', count: @presenter.total_firms) %>
   </h1>
