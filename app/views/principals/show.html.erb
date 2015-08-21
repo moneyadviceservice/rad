@@ -1,7 +1,5 @@
-<div class="l-constrained">
-  <section class="l-notice">
-    <%= heading_tag(t('success.heading'), level: 1, class: '') %>
-    <p><%= t('success.message') %></p>
-    <p><%= t('success.contact_us') %> <%= mail_to t('email_address'), t('email_address') %></p>
-  </section>
-</div>
+<section class="l-notice">
+  <%= heading_tag(t('success.heading'), level: 1, class: '') %>
+  <p><%= t('success.message') %></p>
+  <p><%= t('success.contact_us') %> <%= mail_to t('email_address'), t('email_address') %></p>
+</section>

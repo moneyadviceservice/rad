@@ -29,19 +29,22 @@
 <%= render 'shared/skip_links' %>
 <%= render 'shared/header' %>
 <%= render 'shared/alerts' %>
+<%= yield :breadcrumbs %>
 
 <main role="main" id="main">
-  <% if devise_controller? %>
-    <div class='l-constrained'>
+  <div class='l-constrained'>
+
+    <% if devise_controller? %>
       <div class='l-registration'>
-  <% end %>
+    <% end %>
 
-  <%= yield %>
+    <%= yield %>
 
-  <% if devise_controller? %>
+    <% if devise_controller? %>
       </div>
-    </div>
-  <% end %>
+    <% end %>
+
+  </div>
 </main>
 
 <%= render 'shared/footer' %>
