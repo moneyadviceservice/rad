@@ -33,13 +33,12 @@
 
 <main role="main" id="main">
   <div class='l-constrained'>
+    <div class="l-flashes">
+      <%= render 'shared/alerts' %>
+      <%= yield :onboarding_message %>
+    </div>
 
-  <div class="l-flashes">
-    <%= render 'shared/alerts' %>
-    <%= yield :onboarding_message %>
-  </div>
-
-  <%= yield %>
+    <%= yield %>
 
   </div>
 </main>
