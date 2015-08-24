@@ -5,7 +5,9 @@ module ApplicationHelper
   end
 
   def render_breadcrumbs(crumbs)
-    render 'shared/breadcrumbs', breadcrumbs: crumbs
+    content_for :breadcrumbs do
+      render 'shared/breadcrumbs', breadcrumbs: crumbs
+    end
   end
 
   def register_path

@@ -1,31 +1,29 @@
-<div class="l-constrained">
-  <%= form_for @message, url: contact_path, as: :contact, html: { class: 'form form--collapse l-pre-qualification l-pre-qualification--restricted-width' },
-    builder: Dough::Forms::Builders::Validation do |f| %>
-    <%= f.validation_summary %>
-    <%= heading_tag(t('rejection.heading'), level: 1) %>
-    <p><%= t('rejection.subheading') %></p>
+<%= form_for @message, url: contact_path, as: :contact, html: { class: 'form form--collapse l-pre-qualification l-pre-qualification--restricted-width' },
+  builder: Dough::Forms::Builders::Validation do |f| %>
+  <%= f.validation_summary %>
+  <%= heading_tag(t('rejection.heading'), level: 1) %>
+  <p><%= t('rejection.subheading') %></p>
 
-    <section class="l-pre-qualification__explanation">
-      <% t('rejection.reasons').each do |item| %>
-        <%= heading_tag(item[:heading], level: 2, class: 'l-pre-qualification__question') %>
-        <p><%= item[:explanation] %></p>
-      <% end %>
-    </section>
-
-    <p class="form__label-heading"><%= t('rejection.input_label') %></p>
-
-    <%= f.form_row :email do %>
-      <%= f.errors_for :email %>
-      <label class="form__label-heading"><%= t('rejection.email_address') %></label>
-      <%= f.email_field :email, class: 't-email' %>
+  <section class="l-pre-qualification__explanation">
+    <% t('rejection.reasons').each do |item| %>
+      <%= heading_tag(item[:heading], level: 2, class: 'l-pre-qualification__question') %>
+      <p><%= item[:explanation] %></p>
     <% end %>
+  </section>
 
-    <%= f.form_row :message do %>
-      <%= f.errors_for :message %>
-      <label class="form__label-heading"><%= t('rejection.message') %></label>
-      <%= f.text_area :message, cols: 30, rows: 10, class: 't-message' %>
-    <% end %>
+  <p class="form__label-heading"><%= t('rejection.input_label') %></p>
 
-    <%= button_primary t('rejection.submit_button') %>
+  <%= f.form_row :email do %>
+    <%= f.errors_for :email %>
+    <label class="form__label-heading"><%= t('rejection.email_address') %></label>
+    <%= f.email_field :email, class: 't-email' %>
   <% end %>
-</div>
+
+  <%= f.form_row :message do %>
+    <%= f.errors_for :message %>
+    <label class="form__label-heading"><%= t('rejection.message') %></label>
+    <%= f.text_area :message, cols: 30, rows: 10, class: 't-message' %>
+  <% end %>
+
+  <%= button_primary t('rejection.submit_button') %>
+<% end %>
