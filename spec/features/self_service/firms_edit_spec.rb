@@ -14,7 +14,7 @@ RSpec.feature 'The self service firm edit page' do
                       ethical_investing_flag: true,
                       sharia_investing_flag: true,
                       status: :restricted,
-                      languages: ['fr'])
+                      languages: ['fra'])
   end
 
   scenario 'The principal can edit their firm' do
@@ -201,7 +201,7 @@ RSpec.feature 'The self service firm edit page' do
       expect(p.ethical_investing_flag?).to eq(firm_changes.ethical_investing_flag)
       expect(p.sharia_investing_flag?).to eq(firm_changes.sharia_investing_flag)
       expect(p.status).to eq(firm_changes.status)
-      expect(p.languages.map(&:value)).to include('fr')
+      expect(p.languages.map(&:value)).to include('fra')
     end
   end
 end
