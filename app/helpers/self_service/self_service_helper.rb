@@ -21,7 +21,8 @@ module SelfService
     end
 
     def add_office_button(firm:)
-      label = t('self_service.offices_index.add_office_button')
+      key = firm.main_office.present? ? :add_office_button : :add_main_office_button
+      label = t("self_service.offices_index.#{key}")
       sr_label = t('self_service.offices_index.add_office_button_full', firm_name: firm.registered_name)
       link_to new_self_service_firm_office_path(firm), class: 'button button--primary' do
         concat content_tag(:span, label, 'aria-hidden' => true)
