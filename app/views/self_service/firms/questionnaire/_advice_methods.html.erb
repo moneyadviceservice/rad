@@ -3,6 +3,7 @@
     <legend class="l-questionnaire__legend"><%= t('self_service.firm_form.primary_advice_method_heading') %></legend>
 
     <%= f.form_row :primary_advice_method do %>
+    <%= f.errors_for :primary_advice_method %>
       <div class="form__group-item">
         <label>
           <%= f.radio_button :primary_advice_method, :remote, class: 'form__group-input js-radio-button', data: { dough_field_show: 'remote', dough_field_hide: 'in_person'  } %>
@@ -23,6 +24,7 @@
     <legend class="l-questionnaire__legend"><%= t('self_service.firm_form.in_person_advice_methods_heading') %></legend>
 
     <%= f.form_row :in_person_advice_methods do %>
+    <%= f.errors_for :in_person_advice_methods %>
       <%= f.collection_check_boxes(:in_person_advice_method_ids, InPersonAdviceMethod.all, :id, :friendly_name) do |b| %>
         <div class="form__group-item">
           <%= b.label { b.check_box(class: 'form__group-input t-questionnaire__in-person-advice-method-id') + b.text } %>
