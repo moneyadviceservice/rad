@@ -1,20 +1,6 @@
 <div class="global-alert global-alert--onboarding">
   <div class="global-alert__content-container global-alert__content-container--onboarding">
-
-    <strong class="global-alert__heading">Onboarding</strong>
-
-    <% msg = [msg] unless msg.is_a?(Array) %>
-    <% msg.each do |message| %>
-      <%= content_tag :p, message.html_safe, class: 'global-alert__message t-flash-message' %>
-    <% end %>
-
-    <% if page.starts_with?('firm') && firm %>
-      <p class='global-alert--button'>
-        <%= link_to(
-              t("self_service.onboarding.#{page}.complete_an_adviser_button", firm_name: firm.registered_name),
-              new_self_service_firm_adviser_path(firm),
-              class: 'button button--primary') %>
-      </p>
-    <% end %>
+    <strong class="global-alert__heading"><%= t('self_service.onboarding.title') %></strong>
+      <%= content_tag :p, t('self_service.onboarding.message').html_safe, class: 'global-alert__message t-flash-message' %>
   </div>
 </div>

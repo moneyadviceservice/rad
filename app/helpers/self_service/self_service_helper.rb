@@ -45,16 +45,11 @@ module SelfService
         .join(', ')
     end
 
-    def render_onboarding_message(page)
-      principal = current_user.principal
-      return if principal.next_onboarding_action == :onboarded
-
-      message = t("self_service.onboarding.#{page}.#{principal.next_onboarding_action}_callout")
+    def render_onboarding_message
+      return if current_user.principal.next_onboarding_action == :onboarded
 
       content_for :onboarding_message do
-        render 'shared/onboarding_message', page: page.to_s,
-                                            firm: first_registered_firm_for(principal),
-                                            msg: message
+        render 'shared/onboarding_message'
       end
     end
 
