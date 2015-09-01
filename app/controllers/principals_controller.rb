@@ -20,23 +20,25 @@ class PrincipalsController < ApplicationController
   end
 
   def new
+    @form = NewPrincipalForm.new
     Stats.increment('radsignup.prequalification.success')
-    @user = User.new
-    @principal = @user.build_principal
   end
 
   def show
   end
 
   def create
-    @user = User.new(user_params)
-    @principal = @user.build_principal(principal_params.merge(email_address: user_params[:email]))
+    @form = NewPrincipalForm.new(new_principal_form_params)
 
-    if @user.save
+    if @form.valid?
+      user = User.new(@form.user_params)
+      user.build_principal(@form.principal_params)
+      user.save!
+
       Stats.increment('radsignup.principal.created')
 
-      Identification.contact(@principal).deliver_later
-      redirect_to @principal
+      Identification.contact(user.principal).deliver_later
+      redirect_to user.principal
     else
       flash.now[:error] = t('registration.principal.validation_error_html')
       render 'new'
@@ -45,20 +47,17 @@ class PrincipalsController < ApplicationController
 
   private
 
-  def user_params
-    params.require(:user).permit!
-  end
-
-  def principal_params
-    params.require(:principal)
-      .permit(
-        :fca_number,
-        :first_name,
-        :last_name,
-        :job_title,
-        :email_address,
-        :telephone_number,
-        :confirmed_disclaimer
-      )
+  def new_principal_form_params
+    params.require(:new_principal_form).permit(
+      :fca_number,
+      :first_name,
+      :last_name,
+      :job_title,
+      :email,
+      :telephone_number,
+      :password,
+      :password_confirmation,
+      :confirmed_disclaimer
+    )
   end
 end
