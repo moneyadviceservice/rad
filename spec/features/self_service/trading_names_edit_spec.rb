@@ -3,7 +3,7 @@ RSpec.feature 'The self service trading name edit page' do
 
   let(:firms_index_page) { SelfService::FirmsIndexPage.new }
   let(:trading_name_edit_page) { SelfService::TradingNameEditPage.new }
-  let(:new_address) { 'Somewhere else' }
+  let(:telephone_number) { '07777999999' }
 
   scenario 'The principal can visit the edit page for the first trading name' do
     given_i_am_a_fully_registered_principal_user
@@ -62,7 +62,7 @@ RSpec.feature 'The self service trading name edit page' do
   end
 
   def when_i_change_the_information
-    trading_name_edit_page.address_line_one.set(new_address)
+    trading_name_edit_page.telephone_number.set(telephone_number)
   end
 
   def when_i_invalidate_the_information
@@ -82,10 +82,10 @@ RSpec.feature 'The self service trading name edit page' do
   end
 
   def and_the_information_is_changed
-    expect(trading_name_edit_page.address_line_one.value).to eq new_address
+    expect(trading_name_edit_page.telephone_number.value).to eq telephone_number
 
     @principal.reload
-    expect(trading_names(@principal).first.address_line_one).to eq new_address
+    expect(trading_names(@principal).first.telephone_number).to eq telephone_number
   end
 
   def and_the_information_is_not_changed

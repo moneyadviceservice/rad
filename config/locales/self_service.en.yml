@@ -26,6 +26,9 @@ en:
     adviser_destroy:
       deleted: "%{name} has been successfully removed."
 
+    office_add:
+      saved: Saved successfully
+
     office_destroy:
       deleted: "The %{postcode} office has been successfully removed."
 
