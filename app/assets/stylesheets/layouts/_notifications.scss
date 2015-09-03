@@ -41,7 +41,7 @@ $notification-radius: 5px;
 }
 
 .global-alert__content-container--onboarding:before {
-  background-color: #F89E54;
+  background-color: $warning_orange;
   background-repeat: no-repeat;
   background-position: center center;
   background-image: image-url('icon-exclamation.svg');
