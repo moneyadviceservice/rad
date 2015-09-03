@@ -2,7 +2,7 @@ $notification-radius: 5px;
 
 .global-alert {
   border-radius: $notification-radius;
-  margin-top: 1.5em;
+  margin-top: $baseline-unit * 4;
   position: relative;
 }
 
