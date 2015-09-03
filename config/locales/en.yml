@@ -4,6 +4,9 @@ en:
       admin/move_advisers_form:
         adviser_ids: 'Advisers to move:'
         destination_firm_fca_number: 'FCA Number:'
+      new_principal_form:
+        fca_number: FCA Number
+        confirmed_disclaimer: Confirmation statement
     errors:
       models:
         admin/move_advisers_form:
