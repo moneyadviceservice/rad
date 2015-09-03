@@ -47,7 +47,7 @@ module SelfService
     end
 
     def render_onboarding_message
-      return if current_user.principal.next_onboarding_action == :onboarded
+      return if current_user.principal.onboarded?
 
       content_for :onboarding_message do
         render 'shared/onboarding_message'
