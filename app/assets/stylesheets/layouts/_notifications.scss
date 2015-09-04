@@ -1,4 +1,5 @@
 $notification-radius: 5px;
+$warning-orange: #F89E54;
 
 .global-alert {
   border-radius: $notification-radius;
@@ -41,7 +42,7 @@ $notification-radius: 5px;
 }
 
 .global-alert__content-container--onboarding:before {
-  background-color: $warning_orange;
+  background-color: $warning-orange;
   background-repeat: no-repeat;
   background-position: center center;
   background-image: image-url('icon-exclamation.svg');
