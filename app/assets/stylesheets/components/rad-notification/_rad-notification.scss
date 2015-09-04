@@ -1,52 +1,66 @@
-.global-alert {
-  border-radius: $notification-radius;
+.rad-notification {
+  background: $color-rad-notification-message-bg;
+  @include clearfix();
+  border-radius: $rad-notification-radius;
   margin-top: $baseline-unit * 4;
   position: relative;
 }
 
-.global-alert__content-container {
+.rad-notification__content-container {
+  min-height: $baseline-unit*4;
+  padding: $baseline-unit*2 20px 0 35px;
+  position: relative;
+
   overflow: auto;
+
+  @include respond-to($mq-m) {
+    min-height: $baseline-unit*8;
+    padding-left: 70px;
+  };
+
+
+  &:before {
+    background: $color-rad-notification-default;
+    bottom: 0;
+    content: '';
+    display: block;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: $baseline-unit*4;
+
+    border-bottom-left-radius: $rad-notification-radius;
+    border-top-left-radius: $rad-notification-radius;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-image: image-url('icon-tick.svg');
+
+    @include respond-to($mq-m) {
+      width: $baseline-unit*8;
+    };
+  }
 }
 
-.global-alert__content-container:before {
-  border-bottom-left-radius: $notification-radius;
-  border-top-left-radius: $notification-radius;
-}
-
-.global-alert--alert .global-alert__content-container.global-alert__content-container--alert:before {
-  background-color: $color-red-medium;
-  background-repeat: no-repeat;
-  background-position: center center;
+.rad-notification__content-container--error:before, .rad-notification__content-container--alert:before {
+  background-color: $color-rad-notification-error;
   background-image: image-url('icon-cross.svg');
 }
 
-.global-alert__content-container--info:before {
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-image: image-url('icon-tick.svg');
-}
-
-.global-alert__content-container--notice:before {
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-image: image-url('icon-tick.svg');
-}
-
-.global-alert__content-container--success:before {
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-image: image-url('icon-tick.svg');
-}
-
-.global-alert__content-container--onboarding:before {
-  background-color: $warning-orange;
-  background-repeat: no-repeat;
-  background-position: center center;
+.rad-notification__content-container--onboarding:before {
+  background-color: $color-rad-notification-warning;
   background-image: image-url('icon-exclamation.svg');
 }
 
-.global-alert--error .global-alert__content-container.global-alert__content-container--error:before {
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-image: image-url('icon-cross.svg');
+.rad-notification__heading {
+  display: block;
+  font-weight: 700;
+  margin-bottom: $baseline-unit;
 }
+
+.rad-notification__message {
+  @extend %type-small;
+  margin: 0;
+  padding-bottom: $baseline-unit*2;
+}
+
