@@ -49,7 +49,7 @@ module SelfService
     def render_onboarding_message
       return if current_user.principal.onboarded?
 
-      content_for :onboarding_message do
+      content_for :notifications do
         render 'shared/onboarding_message'
       end
     end
