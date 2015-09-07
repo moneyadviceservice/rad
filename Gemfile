@@ -24,7 +24,7 @@ gem 'dough-ruby',
 gem 'jquery-rails'
 gem 'kaminari'
 gem 'letter_opener', group: :development
-gem 'mas-rad_core', '0.0.75'
+gem 'mas-rad_core', '0.0.77'
 gem 'oga'
 gem 'pg'
 gem 'ransack'
