@@ -1,12 +1,1 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
-    <!-- Generator: Sketch 3.3.3 (12072) - http://www.bohemiancoding.com/sketch -->
-    <title>icon-cross</title>
-    <desc>Created with Sketch.</desc>
-    <defs></defs>
-    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
-        <g id="icon-cross" sketch:type="MSArtboardGroup" fill="#FFFFFF">
-            <path d="M10.001768,5 L5.00176803,0 L0,5 L5.00176803,10 L0,15 L5.00176803,20 L10.001768,15 L15.001768,20 L20.001768,15 L15.001768,10 L20.001768,5 L15.001768,0 L10.001768,5 Z" id="Imported-Layers-Copy" sketch:type="MSShapeGroup"></path>
-        </g>
-    </g>
-</svg>
+<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>icon-cross</title><path d="M10.002 5l-5-5L0 5l5.002 5L0 15l5.002 5 5-5 5 5 5-5-5-5 5-5-5-5-5 5z" fill="#FFF" fill-rule="evenodd"/></svg>
