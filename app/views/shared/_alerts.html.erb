@@ -1,8 +1,3 @@
 <% flash.to_hash.slice('notice', 'success', 'info', 'alert', 'error').each do |name, msg| %>
-  <div class="rad-notification rad-notification--<%= name %>">
-    <div class="rad-notification__content-container rad-notification__content-container--<%= name %>">
-      <strong class="rad-notification__heading"><%= name.titleize %></strong>
-      <%= content_tag :p, msg.html_safe, class: 'rad-notification__message t-flash-message' %>
-    </div>
-  </div>
+  <%= render 'shared/notification', name: name, title: name.titleize, msg: msg, test_class: 't-flash-message' %>
 <% end %>

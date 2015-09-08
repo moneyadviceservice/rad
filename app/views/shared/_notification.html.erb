@@ -1,0 +1,6 @@
+<div class="rad-notification rad-notification--<%= name %>">
+  <div class="rad-notification__content-container rad-notification__content-container--<%= name %>">
+    <strong class="rad-notification__heading"><%= title %></strong>
+    <%= content_tag :p, msg.html_safe, class: "rad-notification__message #{test_class}" %>
+  </div>
+</div>
