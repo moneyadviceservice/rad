@@ -50,7 +50,10 @@ module SelfService
       return if current_user.principal.onboarded?
 
       content_for :notifications do
-        render 'shared/notification', name: 'onboarding', title: t('self_service.onboarding.title'), msg: t('self_service.onboarding.message'), test_class: 't-onboarding-message'
+        render 'shared/notification', name: 'onboarding',
+                                      title: t('self_service.onboarding.title'),
+                                      msg: t('self_service.onboarding.message'),
+                                      test_class: 't-onboarding-message'
       end
     end
 
