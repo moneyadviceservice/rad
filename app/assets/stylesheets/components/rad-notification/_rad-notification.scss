@@ -42,7 +42,8 @@
   }
 }
 
-.rad-notification__content-container--error:before, .rad-notification__content-container--alert:before {
+.rad-notification__content-container--error:before,
+.rad-notification__content-container--alert:before {
   background-color: $color-rad-notification-error;
   background-image: image-url('icon-cross.svg');
 }
