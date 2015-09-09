@@ -28,11 +28,14 @@
 <body>
 <%= render 'shared/skip_links' %>
 <%= render 'shared/header' %>
-<%= render 'shared/alerts' %>
 <%= yield :breadcrumbs %>
 
 <main role="main" id="main">
   <div class='l-constrained'>
+    <div class="l-flashes">
+      <%= render 'shared/alerts' %>
+      <%= yield :notifications %>
+    </div>
 
     <%= yield %>
 

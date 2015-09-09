@@ -21,7 +21,8 @@ module SelfService
     end
 
     def add_office_button(firm:)
-      label = t('self_service.offices_index.add_office_button')
+      key = firm.main_office.present? ? :add_office_button : :add_main_office_button
+      label = t("self_service.offices_index.#{key}")
       sr_label = t('self_service.offices_index.add_office_button_full', firm_name: firm.registered_name)
       link_to new_self_service_firm_office_path(firm), class: 'button button--primary' do
         concat content_tag(:span, label, 'aria-hidden' => true)
@@ -45,9 +46,15 @@ module SelfService
         .join(', ')
     end
 
-    def render_onboarding_message(page)
-      render partial: "self_service/onboarding/#{page}",
-             locals: { principal: current_user.principal }
+    def render_onboarding_message
+      return if current_user.principal.onboarded?
+
+      content_for :notifications do
+        render 'shared/notification', name: 'onboarding',
+                                      title: t('self_service.onboarding.title'),
+                                      msg: t('self_service.onboarding.message'),
+                                      test_class: 't-onboarding-message'
+      end
     end
 
     def first_registered_firm_for(principal)

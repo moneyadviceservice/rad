@@ -24,6 +24,6 @@ class IdentificationPage < SitePrism::Page
   end
 
   def errored?
-    find('.global-alert--error')
+    find('.rad-notification--error')
   end
 end

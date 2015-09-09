@@ -3,13 +3,14 @@
 @import 'dough/assets/stylesheets/optional';
 @import 'yeast/assets/lib/all';
 
-@import 'settings';
+@import 'variables';
 
 @import 'states/hidden';
 
 @import 'layouts/2col';
 @import 'layouts/constrained';
 @import 'layouts/content';
+@import 'layouts/flashes';
 @import 'layouts/footer';
 @import 'layouts/half_width';
 @import 'layouts/header';
@@ -33,8 +34,8 @@
 @import 'components/language_selector';
 @import 'components/navigation';
 @import 'components/notice/all';
+@import 'components/rad-notification/all';
 @import 'components/offices_table';
-@import 'components/onboarding_message';
 @import 'components/sign_in_panel';
 
 // Shame
