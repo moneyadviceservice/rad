@@ -3,7 +3,8 @@ require 'net/http'
 class ByCountryReport
   def initialize
     @registered_firms = Firm.registered
-    @lookup = fetch_countries
+    @lookup = {}
+    generate_lookup
   end
 
   def firm_report
@@ -42,35 +43,37 @@ class ByCountryReport
 
   private
 
-  def fetch_countries
-    lookup = {}
-    request = Net::HTTP::Post.new('/postcodes')
-
-    unique_postcodes.each_slice(100) do |postcode_slice| # API restricted to 100 postcodes at a time
-      request.set_form_data(postcodes: postcode_slice)
-      response = Net::HTTP.new('api.postcodes.io').request(request)
-
-      if response.code.to_i == 200
-        result = JSON.parse(response.read_body)['result'].map { |r| r['result'] }.compact
-
-        lookup_slice = result.each_with_object({}) do |item, obj|
-          key = item['postcode'].gsub(' ', '')
-          obj[key] = item['country']
-          obj
-        end
-
-        lookup.merge!(lookup_slice)
-      else
-        fail "ERROR [#{response.code}]:  #{response.read_body}"
-      end
+  def generate_lookup
+    # API restricted to 100 postcodes at a time
+    unique_postcodes.each_slice(100) do |postcode_slice|
+      fetch_countries(postcode_slice)
     end
-
-    lookup
   end
 
   def unique_postcodes
     # has to include all postcodes that could be linked to either a firm or an advisor
     @registered_firms.map(&:address_postcode).uniq
+  end
+
+  def fetch_countries(postcode_slice)
+    request = Net::HTTP::Post.new('/postcodes')
+    request.set_form_data(postcodes: postcode_slice)
+
+    response = Net::HTTP.new('api.postcodes.io').request(request)
+
+    if response.code.to_i == 200
+      result = JSON.parse(response.read_body)['result'].map { |r| r['result'] }.compact
+
+      lookup_slice = result.each_with_object({}) do |item, obj|
+        key = item['postcode'].gsub(' ', '')
+        obj[key] = item['country']
+        obj
+      end
+
+      @lookup.merge!(lookup_slice)
+    else
+      fail "ERROR [#{response.code}]:  #{response.read_body}"
+    end
   end
 
   def postcode_slug_for(firm)

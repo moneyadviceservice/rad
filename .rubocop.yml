@@ -32,7 +32,6 @@ AllCops:
   - 'bin/**/*'
   - 'config/**/*'
   - 'db/schema.rb'
-  - 'lib/reports/by_country_report.rb'
   - 'node_modules/**/*'
   - 'tmp/**/*'
   - 'vendor/**/*'
