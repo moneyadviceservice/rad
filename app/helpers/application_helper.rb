@@ -24,4 +24,8 @@ module ApplicationHelper
     end
     safe_join(tags)
   end
+
+  def layout_class
+    controller.devise_controller? ? 'l-registration' : 'l-content'
+  end
 end

@@ -1,19 +1,17 @@
 <% render_breadcrumbs(breadcrumbs_firm_edit) %>
 <% render_onboarding_message %>
 
-<div class="l-self-service">
-  <div class="l-heading-with-inline-links">
-    <h1 class="t-firm-name">
-      <%= t('self_service.trading_name_edit.title', firm_name: @firm.registered_name) %>
-    </h1>
-    <%= render partial: 'self_service/firms/questionnaire/links', locals: {firm: @firm} %>
-  </div>
-
-  <%= form_for @firm,
-               url: self_service_trading_name_path(@firm),
-               builder: Dough::Forms::Builders::Validation do |f| %>
-
-    <%= render partial: 'self_service/firms/form', locals: {f: f} %>
-
-  <% end %>
+<div class="l-heading-with-inline-links">
+  <h1 class="t-firm-name">
+    <%= t('self_service.trading_name_edit.title', firm_name: @firm.registered_name) %>
+  </h1>
+  <%= render partial: 'self_service/firms/questionnaire/links', locals: {firm: @firm} %>
 </div>
+
+<%= form_for @firm,
+             url: self_service_trading_name_path(@firm),
+             builder: Dough::Forms::Builders::Validation do |f| %>
+
+  <%= render partial: 'self_service/firms/form', locals: {f: f} %>
+
+<% end %>

@@ -1,38 +1,36 @@
 <% render_breadcrumbs(breadcrumbs_root) %>
 <% render_onboarding_message %>
 
-<div class="l-self-service">
-  <h1 class="t-page-title">
-    <%= t('self_service.firms_index.title', count: @presenter.total_firms) %>
-  </h1>
+<h1 class="t-page-title">
+  <%= t('self_service.firms_index.title', count: @presenter.total_firms) %>
+</h1>
 
-  <% if @presenter.firm_has_trading_names? %>
-    <h2 class="t-parent-firm-heading"><%= t('self_service.firms_index.firm_heading') %></h2>
-  <% end %>
+<% if @presenter.firm_has_trading_names? %>
+  <h2 class="t-parent-firm-heading"><%= t('self_service.firms_index.firm_heading') %></h2>
+<% end %>
 
-  <%= render 'table_parent_firm' %>
+<%= render 'table_parent_firm' %>
 
-  <% if @presenter.firm_has_trading_names? %>
-    <div id="firm-list" class="t-trading-names-block" data-dough-component="MultiTableFilter">
-      <h2><%= t('self_service.firms_index.trading_names_heading') %></h2>
+<% if @presenter.firm_has_trading_names? %>
+  <div id="firm-list" class="t-trading-names-block" data-dough-component="MultiTableFilter">
+    <h2><%= t('self_service.firms_index.trading_names_heading') %></h2>
 
-      <% if @presenter.no_trading_names_have_been_added? %>
-        <p class="t-add-trading-names-prompt">
-          <%= t('self_service.firms_index.add_trading_names_prompt') %>
-        </p>
-      <% else %>
-        <%= filter_field :trading_names, locale_prefix: 'self_service.firms_index.trading_names_filter' %>
-        <%= render 'table_trading_names' %>
-      <% end %>
-    </div>
-  <% end %>
+    <% if @presenter.no_trading_names_have_been_added? %>
+      <p class="t-add-trading-names-prompt">
+        <%= t('self_service.firms_index.add_trading_names_prompt') %>
+      </p>
+    <% else %>
+      <%= filter_field :trading_names, locale_prefix: 'self_service.firms_index.trading_names_filter' %>
+      <%= render 'table_trading_names' %>
+    <% end %>
+  </div>
+<% end %>
 
-  <% if @presenter.trading_names_are_available_to_add? %>
-    <div id="trading-name-list" class="t-available-trading-names-block" data-dough-component="MultiTableFilter">
-      <h2><%= t('self_service.firms_index.available_trading_names_heading') %></h2>
+<% if @presenter.trading_names_are_available_to_add? %>
+  <div id="trading-name-list" class="t-available-trading-names-block" data-dough-component="MultiTableFilter">
+    <h2><%= t('self_service.firms_index.available_trading_names_heading') %></h2>
 
-      <%= filter_field :trading_names, locale_prefix: 'self_service.firms_index.available_trading_names_filter' %>
-      <%= render 'table_available_trading_names' %>
-    </div>
-  <% end %>
-</div>
+    <%= filter_field :trading_names, locale_prefix: 'self_service.firms_index.available_trading_names_filter' %>
+    <%= render 'table_available_trading_names' %>
+  </div>
+<% end %>

@@ -41,4 +41,16 @@ RSpec.describe ApplicationHelper, type: :helper do
       it { is_expected.to eq '<p>hello</p>' }
     end
   end
+
+  describe '#layout_class' do
+    it 'provides l-content for a non-devise controller' do
+      allow(controller).to receive(:devise_controller?).and_return(false)
+      expect(helper.layout_class).to eq('l-content')
+    end
+
+    it 'provides l-registration for a devise controller' do
+      allow(controller).to receive(:devise_controller?).and_return(true)
+      expect(helper.layout_class).to eq('l-registration')
+    end
+  end
 end

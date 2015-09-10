@@ -32,13 +32,11 @@
 
 <main role="main" id="main">
   <div class='l-constrained'>
-    <div class="l-flashes">
+    <div class="<%= layout_class %>">
       <%= render 'shared/alerts' %>
       <%= yield :notifications %>
+      <%= yield %>
     </div>
-
-    <%= yield %>
-
   </div>
 </main>
 

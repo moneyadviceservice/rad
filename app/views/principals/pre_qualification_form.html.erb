@@ -1,129 +1,127 @@
-<div class="l-pre-qualification">
-  <div class="l-1col">
-    <%= heading_tag(t('registration.heading'), level: 1) %>
-    <p class="intro"><%= t('registration.introduction') %></p>
-  </div>
+<div class="l-1col">
+  <%= heading_tag(t('registration.heading'), level: 1) %>
+  <p class="intro"><%= t('registration.introduction') %></p>
+</div>
 
-  <div class="l-2col">
-    <section class="l-2col-side l-2col-side--pull-right">
-      <%= render 'shared/sign_in_panel' %>
-    </section>
+<div class="l-2col">
+  <section class="l-2col-side l-2col-side--pull-right">
+    <%= render 'shared/sign_in_panel' %>
+  </section>
 
-    <section class="l-2col-main">
-      <%= heading_tag(t('registration.sub_heading'), level: 2) %>
-      <p><%= t('registration.eligibility_explanation') %></p>
-      <%= form_for @prequalification, url: prequalify_principals_path, html: { class: 'form' } do |f| %>
-        <%= f.form_row :active_question do %>
-          <fieldset class="form__group form__group--inline t-active-question">
-            <legend class="l-pre-qualification__question l-pre-qualification__question--with-desc"><%= t('registration.active_question.heading') %></legend>
-            <p><%= t('registration.active_question.description') %></p>
+  <section class="l-2col-main">
+    <%= heading_tag(t('registration.sub_heading'), level: 2) %>
+    <p><%= t('registration.eligibility_explanation') %></p>
+    <%= form_for @prequalification, url: prequalify_principals_path, html: { class: 'form' } do |f| %>
+      <%= f.form_row :active_question do %>
+        <fieldset class="form__group form__group--inline t-active-question">
+          <legend class="l-pre-qualification__question l-pre-qualification__question--with-desc"><%= t('registration.active_question.heading') %></legend>
+          <p><%= t('registration.active_question.description') %></p>
+
+          <div class="form__group-item">
+            <label>
+              <%= f.radio_button :active_question, 1, class: 'form__group-input' %>
+              <%= t('registration.answer_yes') %>
+            </label>
+          </div>
+
+          <div class="form__group-item">
+            <label>
+              <%= f.radio_button :active_question, 0, class: 'form__group-input' %>
+              <%= t('registration.answer_no') %>
+            </label>
+          </div>
+        </fieldset>
+      <% end %>
+
+      <%= f.form_row :business_model_question do %>
+        <fieldset class="form__group form__group--inline t-business-model-question">
+          <legend class="l-pre-qualification__question l-pre-qualification__question--with-desc"><%= t('registration.business_model_question.heading') %></legend>
+          <p><%= t('registration.business_model_question.description') %></p>
+
+          <div class="form__group-item">
+            <label>
+              <%= f.radio_button :business_model_question, 1, class: 'form__group-input' %>
+              <%= t('registration.answer_yes') %>
+            </label>
+          </div>
+
+          <div class="form__group-item">
+            <label>
+              <%= f.radio_button :business_model_question, 0, class: 'form__group-input' %>
+              <%= t('registration.answer_no') %>
+            </label>
+          </div>
+        </fieldset>
+      <% end %>
+
+      <div data-dough-component="FieldToggleVisibility">
+        <%= f.form_row :status_question do %>
+          <fieldset class="form__group form__group--inline t-status-question">
+            <legend class="l-pre-qualification__question l-pre-qualification__question--with-desc"><%= t('registration.status_question.heading') %></legend>
+            <p><%= t('registration.status_question.description') %></p>
 
             <div class="form__group-item">
               <label>
-                <%= f.radio_button :active_question, 1, class: 'form__group-input' %>
-                <%= t('registration.answer_yes') %>
+                <%= f.radio_button :status_question, 1, class: 'form__group-input js-radio-button', data: { dough_field_hide: '1'  } %>
+                <%= t('registration.status_question.answer_one') %>
               </label>
             </div>
 
             <div class="form__group-item">
               <label>
-                <%= f.radio_button :active_question, 0, class: 'form__group-input' %>
-                <%= t('registration.answer_no') %>
+                <%= f.radio_button :status_question, 0, class: 'form__group-input js-radio-button', data: { dough_field_show: '1' } %>
+                <%= t('registration.status_question.answer_two') %>
+                <span class="visually-hidden"><%= t('registration.notice') %></span>
               </label>
             </div>
           </fieldset>
         <% end %>
 
-        <%= f.form_row :business_model_question do %>
-          <fieldset class="form__group form__group--inline t-business-model-question">
-            <legend class="l-pre-qualification__question l-pre-qualification__question--with-desc"><%= t('registration.business_model_question.heading') %></legend>
-            <p><%= t('registration.business_model_question.description') %></p>
-
-            <div class="form__group-item">
-              <label>
-                <%= f.radio_button :business_model_question, 1, class: 'form__group-input' %>
-                <%= t('registration.answer_yes') %>
-              </label>
-            </div>
-
-            <div class="form__group-item">
-              <label>
-                <%= f.radio_button :business_model_question, 0, class: 'form__group-input' %>
-                <%= t('registration.answer_no') %>
-              </label>
-            </div>
-          </fieldset>
-        <% end %>
-
-        <div data-dough-component="FieldToggleVisibility">
-          <%= f.form_row :status_question do %>
-            <fieldset class="form__group form__group--inline t-status-question">
-              <legend class="l-pre-qualification__question l-pre-qualification__question--with-desc"><%= t('registration.status_question.heading') %></legend>
-              <p><%= t('registration.status_question.description') %></p>
+        <div data-dough-field-target="1">
+          <%= f.form_row :particular_market_question do %>
+            <fieldset class="form__group form__group--inline t-particular-market-question">
+              <legend class="l-pre-qualification__question l-pre-qualification__question--with-desc"><%= t('registration.particular_market_question.heading') %></legend>
 
               <div class="form__group-item">
                 <label>
-                  <%= f.radio_button :status_question, 1, class: 'form__group-input js-radio-button', data: { dough_field_hide: '1'  } %>
-                  <%= t('registration.status_question.answer_one') %>
+                  <%= f.radio_button :particular_market_question, 1, class: 'form__group-input', data: { dough_field_show: '2'  } %>
+                  <%= t('registration.answer_yes') %>
+                  <span class="visually-hidden"><%= t('registration.notice') %></span>
                 </label>
               </div>
 
               <div class="form__group-item">
                 <label>
-                  <%= f.radio_button :status_question, 0, class: 'form__group-input js-radio-button', data: { dough_field_show: '1' } %>
-                  <%= t('registration.status_question.answer_two') %>
-                  <span class="visually-hidden"><%= t('registration.notice') %></span>
+                  <%= f.radio_button :particular_market_question, 0, class: 'form__group-input', data: { dough_field_hide: '2'  } %>
+                  <%= t('registration.answer_no') %>
                 </label>
               </div>
             </fieldset>
           <% end %>
 
-          <div data-dough-field-target="1">
-            <%= f.form_row :particular_market_question do %>
-              <fieldset class="form__group form__group--inline t-particular-market-question">
-                <legend class="l-pre-qualification__question l-pre-qualification__question--with-desc"><%= t('registration.particular_market_question.heading') %></legend>
+          <%= f.form_row :consider_available_providers_question do %>
+            <fieldset class="form__group form__group--inline t-consider-available-providers-question" data-dough-field-target="2">
+              <legend class="l-pre-qualification__question"><%= t('registration.consider_available_providers_question.heading') %></legend>
 
-                <div class="form__group-item">
-                  <label>
-                    <%= f.radio_button :particular_market_question, 1, class: 'form__group-input', data: { dough_field_show: '2'  } %>
-                    <%= t('registration.answer_yes') %>
-                    <span class="visually-hidden"><%= t('registration.notice') %></span>
-                  </label>
-                </div>
+              <div class="form__group-item">
+                <label>
+                  <%= f.radio_button :consider_available_providers_question, 1, class: 'form__group-input' %>
+                  <%= t('registration.answer_yes') %>
+                </label>
+              </div>
 
-                <div class="form__group-item">
-                  <label>
-                    <%= f.radio_button :particular_market_question, 0, class: 'form__group-input', data: { dough_field_hide: '2'  } %>
-                    <%= t('registration.answer_no') %>
-                  </label>
-                </div>
-              </fieldset>
-            <% end %>
-
-            <%= f.form_row :consider_available_providers_question do %>
-              <fieldset class="form__group form__group--inline t-consider-available-providers-question" data-dough-field-target="2">
-                <legend class="l-pre-qualification__question"><%= t('registration.consider_available_providers_question.heading') %></legend>
-
-                <div class="form__group-item">
-                  <label>
-                    <%= f.radio_button :consider_available_providers_question, 1, class: 'form__group-input' %>
-                    <%= t('registration.answer_yes') %>
-                  </label>
-                </div>
-
-                <div class="form__group-item">
-                  <label>
-                    <%= f.radio_button :consider_available_providers_question, 0, class: 'form__group-input' %>
-                    <%= t('registration.answer_no') %>
-                  </label>
-                </div>
-              </fieldset>
-            <% end %>
-          </div>
+              <div class="form__group-item">
+                <label>
+                  <%= f.radio_button :consider_available_providers_question, 0, class: 'form__group-input' %>
+                  <%= t('registration.answer_no') %>
+                </label>
+              </div>
+            </fieldset>
+          <% end %>
         </div>
+      </div>
 
-        <button class="button button--primary t-submit-button"><%= t('registration.submit_button') %></button>
-      <% end %>
-    </section>
-  </div>
+      <button class="button button--primary t-submit-button"><%= t('registration.submit_button') %></button>
+    <% end %>
+  </section>
 </div>
