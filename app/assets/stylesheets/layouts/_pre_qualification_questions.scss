@@ -1,7 +1,3 @@
-.l-pre-qualification {
-  @extend %l-content;
-}
-
 .l-pre-qualification--restricted-width {
   @include column(12);
 

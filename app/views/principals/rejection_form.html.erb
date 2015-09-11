@@ -1,4 +1,4 @@
-<%= form_for @message, url: contact_path, as: :contact, html: { class: 'form form--collapse l-pre-qualification l-pre-qualification--restricted-width' },
+<%= form_for @message, url: contact_path, as: :contact, html: { class: 'form form--collapse l-pre-qualification--restricted-width' },
   builder: Dough::Forms::Builders::Validation do |f| %>
   <%= f.validation_summary %>
   <%= heading_tag(t('rejection.heading'), level: 1) %>

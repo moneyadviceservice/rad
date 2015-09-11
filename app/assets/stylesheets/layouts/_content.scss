@@ -1,6 +1,6 @@
 // This mimics the Front End l-registration style as we needed to use that for our user registration
 // https://github.com/moneyadviceservice/frontend/blob/master/app/assets/stylesheets/layout/page_specific/_registration.scss#L1
-%l-content {
+.l-content {
   @include column(12);
   margin-bottom: $baseline-unit*4;
 }

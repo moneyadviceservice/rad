@@ -1,16 +1,15 @@
 <% render_breadcrumbs(breadcrumbs_firm_adviser_edit) %>
+<% render_onboarding_message %>
 
-<div class="l-self-service">
-  <h1>
-    <%= t('self_service.adviser_edit.title', adviser_name: @adviser.name) %>
-  </h1>
+<h1>
+  <%= t('self_service.adviser_edit.title', adviser_name: @adviser.name) %>
+</h1>
 
-  <%= form_for @adviser,
-               url: self_service_firm_adviser_path(@firm, @adviser),
-               builder: Dough::Forms::Builders::Validation,
-               html: { class: 'form' } do |f| %>
+<%= form_for @adviser,
+             url: self_service_firm_adviser_path(@firm, @adviser),
+             builder: Dough::Forms::Builders::Validation,
+             html: { class: 'form' } do |f| %>
 
-    <%= render partial: 'self_service/advisers/form', locals: {f: f} %>
+  <%= render partial: 'self_service/advisers/form', locals: {f: f} %>
 
-  <% end %>
-</div>
+<% end %>
