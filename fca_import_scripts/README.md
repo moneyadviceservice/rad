@@ -27,16 +27,26 @@ Or to Heroku:
 heroku pg:psql --app mas-rad-staging < sql/all.sql
 ```
 
-## Dealing with advisers that are no longer in the lookup data
+# Reports
 
-Advisers whose statuses have changed and are therefore no longer included in
-the lookup data will need to be checked and possibly removed from the system.
+Several reports need to be generated to audit the existing data against the
+newly imported feed.
+
+* Advisers whose statuses have changed and are therefore no longer included in
+  the lookup data will need to be checked and possibly removed from the system.
+* Firm names may have changed since they signed up
+
+Steps:
 
 1) Make a backup of production and restore it into your local database
 
 2) Load the generated sql/all.sql script into your local database
 
-3) Now run `./report_invalid_advisers.rb > invalid_advisers.csv` to get a
-report of which advisers need to be to be checked.
+3) Run the reports below.
 
-4) Send the report to the MAS administration team for investigation.
+```
+./report_invalid_advisers.rb > invalid_advisers.csv
+bundle exec rake reports:firms_with_out_of_date_names > firms_with_out_of_date_names.csv
+```
+
+4) Send the CSV files to the RAD administration team (Sandrine).
