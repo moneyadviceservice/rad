@@ -96,7 +96,7 @@ RSpec.feature 'Principal provides identifying information', :inline_job_queue do
 
   def and_i_am_sent_a_verification_email
     expect(ActionMailer::Base.deliveries).to_not be_empty
-    expect(ActionMailer::Base.deliveries.last.body).to include self_service_root_path
+    expect(ActionMailer::Base.deliveries.last.body).to include new_user_session_path
   end
 
   def when_i_visit_the_email_link

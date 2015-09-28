@@ -17,7 +17,7 @@ RSpec.describe Identification, '#contact' do
 
   describe 'body' do
     it 'contains self service url' do
-      expect(subject.body.decoded).to include(self_service_root_path)
+      expect(subject.body.decoded).to include(new_user_session_path)
     end
   end
 end
