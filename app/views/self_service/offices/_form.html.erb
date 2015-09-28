@@ -32,7 +32,7 @@
   <%= f.form_row :address_county do %>
     <%= f.errors_for :address_county %>
     <%= f.label :address_county,
-                required_asterisk(Office.human_attribute_name(:address_county)),
+                Office.human_attribute_name(:address_county),
                 class: 'form__label-heading' %>
     <%= f.text_field :address_county, class: 't-address-county' %>
   <% end %>
