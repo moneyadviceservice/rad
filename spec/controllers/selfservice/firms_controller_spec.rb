@@ -38,8 +38,7 @@ RSpec.describe SelfService::FirmsController, type: :controller do
     context 'when some trading names are registered' do
       before do
         trading_name = firm.trading_names.first
-        trading_name.email_address = nil
-        trading_name.save(validate: false)
+        trading_name.update_attribute(Firm::REGISTERED_MARKER_FIELD, nil)
       end
 
       it 'assigns only registered trading names' do
@@ -97,12 +96,12 @@ RSpec.describe SelfService::FirmsController, type: :controller do
   end
 
   describe 'PATCH #update' do
-    let(:firm_params) { extract_firm_params(firm, email_address: 'valid@example.com') }
+    let(:firm_params) { extract_firm_params(firm, website_address: 'http://www.valid.com') }
     context 'when passed valid details' do
       before { patch :update, id: 'ignored', firm: firm_params }
 
       it 'updates the firm' do
-        expect(firm.reload.email_address).to eq firm_params[:email_address]
+        expect(firm.reload.website_address).to eq firm_params[:website_address]
       end
 
       it 'redirects to the edit page' do
@@ -139,16 +138,16 @@ RSpec.describe SelfService::FirmsController, type: :controller do
       before { patch :update, id: other_firm.id, firm: firm_params }
 
       it 'fails to update the firm' do
-        expect(other_firm.email_address).not_to eq('valid@example.com')
+        expect(other_firm.website_address).not_to eq('http://www.valid.com')
       end
     end
 
     context 'when passed invalid details' do
-      let(:firm_params) { extract_firm_params(firm, email_address: 'not_valid') }
+      let(:firm_params) { extract_firm_params(firm, website_address: 'not_valid') }
       before { patch :update, id: 'ignored', firm: firm_params }
 
       it 'does not update the firm' do
-        expect(firm.reload.email_address).not_to eq firm_params[:email_address]
+        expect(firm.reload.website_address).not_to eq firm_params[:website_address]
       end
 
       it 'renders the edit page' do
