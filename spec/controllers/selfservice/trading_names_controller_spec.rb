@@ -62,7 +62,7 @@ RSpec.describe SelfService::TradingNamesController, type: :controller do
 
       it 'creates the firm' do
         expect(assigns(:firm).persisted?).to be_truthy
-        expect(assigns(:firm).email_address).to eq firm_params[:email_address]
+        expect(assigns(:firm).website_address).to eq firm_params[:website_address]
       end
 
       it 'assigns the firm to the principal’s firm' do
@@ -76,7 +76,7 @@ RSpec.describe SelfService::TradingNamesController, type: :controller do
     end
 
     context 'when passed invalid details' do
-      let(:firm_params) { build_firm_params(email_address: 'not_valid') }
+      let(:firm_params) { build_firm_params(website_address: 'not_valid') }
       before { post :create, firm: firm_params, lookup_id: lookup_subsidiary.id }
 
       it 'does not create the firm' do
@@ -115,12 +115,12 @@ RSpec.describe SelfService::TradingNamesController, type: :controller do
 
   describe 'PATCH #update' do
     let!(:trading_name) { create :firm, parent: firm }
-    let(:trading_name_params) { build_firm_params(firm: trading_name, email_address: 'valid@example.com') }
+    let(:trading_name_params) { build_firm_params(firm: trading_name, website_address: 'http://www.valid.com') }
     context 'when passed valid details' do
       before { patch :update, id: trading_name.id, firm: trading_name_params }
 
       it 'updates the trading_name' do
-        expect(trading_name.reload.email_address).to eq trading_name_params[:email_address]
+        expect(trading_name.reload.website_address).to eq trading_name_params[:website_address]
       end
 
       it 'redirects to the edit page' do
@@ -131,7 +131,7 @@ RSpec.describe SelfService::TradingNamesController, type: :controller do
 
     context 'when trying to access another users trading_name' do
       let!(:other_principal) { create :principal }
-      let(:trading_name_params) { build_firm_params(firm: trading_name, email_address: 'valid@example.com') }
+      let(:trading_name_params) { build_firm_params(firm: trading_name, website_address: 'http://www.valid.com') }
 
       it 'fails to respond successfully' do
         other_trading_name = create :firm, parent: other_principal.firm
@@ -140,11 +140,11 @@ RSpec.describe SelfService::TradingNamesController, type: :controller do
     end
 
     context 'when passed invalid details' do
-      let(:firm_params) { build_firm_params(firm: trading_name, email_address: 'not_valid') }
+      let(:firm_params) { build_firm_params(firm: trading_name, website_address: 'not_valid') }
       before { patch :update, id: trading_name.id, firm: firm_params }
 
       it 'does not update the firm' do
-        expect(trading_name.reload.email_address).not_to eq firm_params[:email_address]
+        expect(trading_name.reload.website_address).not_to eq firm_params[:website_address]
       end
 
       it 'renders the edit page' do
