@@ -46,8 +46,8 @@ module SelfService
       let(:principal) { create(:principal, fca_number: '123456') }
 
       def make_firm_look_registered(firm)
-        firm.update_attribute(Firm::REGISTERED_MARKER_FIELD,
-                              Firm::REGISTERED_MARKER_FIELD_VALID_VALUES.first)
+        firm.__set_registered(true)
+        firm.save(validate: false)
       end
 
       context 'when the principal has no registered firms' do

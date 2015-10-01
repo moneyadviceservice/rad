@@ -90,7 +90,8 @@ RSpec.describe Tasks::ExistingFirmsSignUpTask do
 
     context 'when principal has not verified account via email link' do
       before do
-        @firm.update_attribute Firm::REGISTERED_MARKER_FIELD, nil
+        @firm.__set_registered(false)
+        @firm.save(validate: false)
         described_class.notify(stub_inviter, output)
       end
 

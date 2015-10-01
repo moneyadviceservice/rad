@@ -38,7 +38,8 @@ RSpec.describe SelfService::FirmsController, type: :controller do
     context 'when some trading names are registered' do
       before do
         trading_name = firm.trading_names.first
-        trading_name.update_attribute(Firm::REGISTERED_MARKER_FIELD, nil)
+        trading_name.__set_registered(false)
+        trading_name.save(validate: false)
       end
 
       it 'assigns only registered trading names' do
