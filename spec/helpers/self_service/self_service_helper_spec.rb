@@ -45,6 +45,11 @@ module SelfService
     describe '#first_registered_firm_for' do
       let(:principal) { create(:principal, fca_number: '123456') }
 
+      def make_firm_look_registered(firm)
+        firm.update_attribute(Firm::REGISTERED_MARKER_FIELD,
+                              Firm::REGISTERED_MARKER_FIELD_VALID_VALUES.first)
+      end
+
       context 'when the principal has no registered firms' do
         it 'is nil' do
           expect(helper.first_registered_firm_for(principal)).to be_nil
@@ -53,7 +58,7 @@ module SelfService
 
       context 'when the principal has registered firm and has no trading names' do
         it 'provides the firm' do
-          principal.firm.update_attribute(:email_address, 'test@example.com')
+          make_firm_look_registered(principal.firm)
           expect(helper.first_registered_firm_for(principal)).to eq(principal.firm)
         end
       end
@@ -68,7 +73,7 @@ module SelfService
 
       context 'principal has registered firm and registered trading name' do
         it 'returns the firm' do
-          principal.firm.update_attribute(:email_address, 'test@example.com')
+          make_firm_look_registered(principal.firm)
           create(:trading_name, fca_number: principal.fca_number)
 
           expect(helper.first_registered_firm_for(principal)).to eq(principal.firm)
