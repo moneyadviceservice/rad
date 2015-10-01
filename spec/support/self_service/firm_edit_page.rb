@@ -9,13 +9,7 @@ module SelfService
     element :firm_name, '.t-firm-name'
     element :firm_fca_number, '.t-firm-fca-number'
 
-    element :email_address, '.t-email-address'
     element :website_address, '.t-website-address'
-    element :telephone_number, '.t-telephone-number'
-    element :address_line_one, '.t-address-line-one'
-    element :address_town, '.t-address-town'
-    element :address_county, '.t-address-county'
-    element :address_postcode, '.t-address-postcode'
 
     elements :in_person_advice_methods, '.t-questionnaire__in-person-advice-method-id'
     elements :other_advice_methods, '.t-questionnaire__other-advice-method-id'

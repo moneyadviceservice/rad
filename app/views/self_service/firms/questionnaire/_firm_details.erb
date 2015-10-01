@@ -1,18 +1,4 @@
 <fieldset class="form__group l-half-width">
-  <p><%= t('self_service.firm_form.email_address_description') %></p>
-  <%= f.form_row :email_address do %>
-    <%= f.errors_for :email_address %>
-    <%= f.label :email_address, t('self_service.firm_form.email_address_label'), class: 'form__label-heading' %>
-    <%= f.text_field :email_address, class: 't-email-address' %>
-  <% end %>
-
-  <p><%= t('self_service.firm_form.telephone_number_description') %></p>
-  <%= f.form_row :telephone_number do %>
-    <%= f.errors_for :telephone_number %>
-    <%= f.label :telephone_number, t('self_service.firm_form.telephone_number_label'), class: 'form__label-heading' %>
-    <%= f.text_field :telephone_number, class: 't-telephone-number' %>
-  <% end %>
-
   <p><%= t('self_service.firm_form.website_address_description') %></p>
   <%= f.form_row :website_address do %>
     <%= f.errors_for :website_address %>
