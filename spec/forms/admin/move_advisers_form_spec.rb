@@ -112,7 +112,7 @@ RSpec.describe Admin::MoveAdvisersForm, type: :model do
 
         context 'destination_firm_fca_number returns only invalid/unregistered firm records' do
           let!(:invalid_firm) do
-            f = build(:firm, email_address: nil)
+            f = build(:invalid_firm)
             f.save!(validate: false)
             f
           end
@@ -170,7 +170,7 @@ RSpec.describe Admin::MoveAdvisersForm, type: :model do
     let!(:sandras_firm) { create(:firm, registered_name: 'Sandras Firm', fca_number: shared_fca_number) }
     let!(:unrelated_firm) { create(:firm, registered_name: 'Unrelated Firm', fca_number: 999999) }
     let!(:no_registered_firm) do
-      f = build(:firm, email_address: nil, fca_number: shared_fca_number)
+      f = build(:invalid_firm, fca_number: shared_fca_number)
       f.save!(validate: false)
       f
     end

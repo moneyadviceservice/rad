@@ -4,12 +4,6 @@ en:
       initial_advice_fee_structures_heading: Initial advice
       initial_advice_fee_structures_description: Confirm the way(s) your firm charges for its services. Check all that apply.
 
-      email_address_description: This is the email account where you wish to receive messages from customers.
-      email_address_label: Firm email address *
-
-      telephone_number_description: Please provide a contact number for customers who wish to call you.
-      telephone_number_label: Firm telephone number *
-
       website_address_description: Please provide a website address for customers who wish to visit your website.
       website_address_label: Firm website address *
 

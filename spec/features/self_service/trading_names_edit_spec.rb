@@ -3,7 +3,7 @@ RSpec.feature 'The self service trading name edit page' do
 
   let(:firms_index_page) { SelfService::FirmsIndexPage.new }
   let(:trading_name_edit_page) { SelfService::TradingNameEditPage.new }
-  let(:telephone_number) { '07777999999' }
+  let(:website_address) { 'http://www.blahblah.com' }
 
   scenario 'The principal can visit the edit page for the first trading name' do
     given_i_am_a_fully_registered_principal_user
@@ -39,7 +39,7 @@ RSpec.feature 'The self service trading name edit page' do
   def and_i_have_a_firm_with_trading_names
     firm_attrs = FactoryGirl.attributes_for(:firm_with_trading_names, fca_number: @principal.fca_number)
     @principal.firm.update_attributes(firm_attrs)
-    @original_trading_name_email = trading_names(@principal).first.email_address
+    @original_website_address = trading_names(@principal).first.website_address
   end
 
   def and_i_am_logged_in
@@ -62,11 +62,11 @@ RSpec.feature 'The self service trading name edit page' do
   end
 
   def when_i_change_the_information
-    trading_name_edit_page.telephone_number.set(telephone_number)
+    trading_name_edit_page.website_address.set(website_address)
   end
 
   def when_i_invalidate_the_information
-    trading_name_edit_page.email_address.set 'clearly_not_a_valid_email!'
+    trading_name_edit_page.website_address.set 'clearly_not_a_valid_web_address!'
   end
 
   def and_i_click_save
@@ -82,16 +82,16 @@ RSpec.feature 'The self service trading name edit page' do
   end
 
   def and_the_information_is_changed
-    expect(trading_name_edit_page.telephone_number.value).to eq telephone_number
+    expect(trading_name_edit_page.website_address.value).to eq website_address
 
     @principal.reload
-    expect(trading_names(@principal).first.telephone_number).to eq telephone_number
+    expect(trading_names(@principal).first.website_address).to eq website_address
   end
 
   def and_the_information_is_not_changed
-    expect(trading_name_edit_page.email_address.value).to eq 'clearly_not_a_valid_email!'
+    expect(trading_name_edit_page.website_address.value).to eq 'clearly_not_a_valid_web_address!'
     @principal.reload
-    expect(trading_names(@principal).first.email_address).to eq @original_trading_name_email
+    expect(trading_names(@principal).first.website_address).to eq @original_website_address
   end
 
   private

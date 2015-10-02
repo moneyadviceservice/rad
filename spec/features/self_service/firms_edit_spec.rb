@@ -51,7 +51,7 @@ RSpec.feature 'The self service firm edit page' do
   def and_i_have_a_firm
     firm_attrs = FactoryGirl.attributes_for(:firm, fca_number: @principal.fca_number)
     @principal.firm.update_attributes(firm_attrs)
-    @original_firm_email = @principal.firm.email_address
+    @original_firm_website = @principal.firm.website_address
   end
 
   def and_i_am_logged_in
@@ -76,11 +76,10 @@ RSpec.feature 'The self service firm edit page' do
     complete_part_1
     complete_part_2
     complete_part_3
-    complete_part_4
   end
 
   def when_i_invalidate_the_information
-    firm_edit_page.email_address.set 'clearly_not_a_valid_email!'
+    firm_edit_page.website_address.set 'clearly_not_a_valid_web_address!'
   end
 
   def and_i_click_save
@@ -99,36 +98,20 @@ RSpec.feature 'The self service firm edit page' do
     validate_part_1
     validate_part_2
     validate_part_3
-    validate_part_4
 
     @principal.reload
-    expect(@principal.firm.email_address).to eq firm_changes.email_address
+    expect(@principal.firm.minimum_fixed_fee).to eq firm_changes.minimum_fixed_fee
   end
 
   def and_the_information_is_not_changed
-    expect(firm_edit_page.email_address.value).to eq 'clearly_not_a_valid_email!'
+    expect(firm_edit_page.website_address.value).to eq 'clearly_not_a_valid_web_address!'
     @principal.reload
-    expect(@principal.firm.email_address).to eq @original_firm_email
+    expect(@principal.firm.website_address).to eq @original_firm_website
   end
 
   def complete_part_1
     firm_edit_page.tap do |p|
-      p.email_address.set firm_changes.email_address
       p.website_address.set firm_changes.website_address
-      p.telephone_number.set firm_changes.telephone_number
-    end
-  end
-
-  def validate_part_1
-    firm_edit_page.tap do |p|
-      expect(p.email_address.value).to eq firm_changes.email_address
-      expect(p.website_address.value).to eq firm_changes.website_address
-      expect(p.telephone_number.value).to eq firm_changes.telephone_number
-    end
-  end
-
-  def complete_part_2
-    firm_edit_page.tap do |p|
       p.retirement_income_products_flag.set firm_changes.retirement_income_products_flag
       p.pension_transfer_flag.set firm_changes.pension_transfer_flag
       p.long_term_care_flag.set firm_changes.long_term_care_flag
@@ -139,8 +122,9 @@ RSpec.feature 'The self service firm edit page' do
     end
   end
 
-  def validate_part_2
+  def validate_part_1
     firm_edit_page.tap do |p|
+      expect(p.website_address.value).to eq firm_changes.website_address
       expect(p.retirement_income_products_flag?).to eq firm_changes.retirement_income_products_flag
       expect(p.pension_transfer_flag?).to eq firm_changes.pension_transfer_flag
       expect(p.long_term_care_flag?).to eq firm_changes.long_term_care_flag
@@ -151,7 +135,7 @@ RSpec.feature 'The self service firm edit page' do
     end
   end
 
-  def complete_part_3
+  def complete_part_2
     firm_edit_page.tap do |p|
       set_checkbox_group_state(p, InPersonAdviceMethod.all, firm_changes.in_person_advice_methods,
                                label: :friendly_name)
@@ -165,7 +149,7 @@ RSpec.feature 'The self service firm edit page' do
     end
   end
 
-  def validate_part_3
+  def validate_part_2
     firm_edit_page.tap do |p|
       expect_checkbox_group_state(p, InPersonAdviceMethod.all, firm_changes.in_person_advice_methods,
                                   label: :friendly_name)
@@ -179,7 +163,7 @@ RSpec.feature 'The self service firm edit page' do
     end
   end
 
-  def complete_part_4
+  def complete_part_3
     firm_edit_page.tap do |p|
       p.ethical_investing_flag.set firm_changes.ethical_investing_flag
       p.sharia_investing_flag.set firm_changes.sharia_investing_flag
@@ -188,7 +172,7 @@ RSpec.feature 'The self service firm edit page' do
     end
   end
 
-  def validate_part_4
+  def validate_part_3
     firm_edit_page.tap do |p|
       expect(p.ethical_investing_flag?).to eq(firm_changes.ethical_investing_flag)
       expect(p.sharia_investing_flag?).to eq(firm_changes.sharia_investing_flag)
