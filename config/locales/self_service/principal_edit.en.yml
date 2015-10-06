@@ -3,7 +3,7 @@ en:
     principal_edit:
       breadcrumb: Edit Principal
       title: Edit Principal for %{firm_name}
-      saved: Saved successfully
+      saved: Your principal has been saved
       submit_button: Save principal
       firm_section_explanation:
         - Below are details of the person who completed the registration process on behalf of your firm. Please check this is correct and amend if necessary.

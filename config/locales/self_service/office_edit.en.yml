@@ -4,4 +4,4 @@ en:
       breadcrumb: "%{postcode}"
       title: "Edit office: %{postcode}"
       submit_button: Save office
-      saved: Saved successfully
+      saved: The office has been saved

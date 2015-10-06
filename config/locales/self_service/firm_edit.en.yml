@@ -3,7 +3,7 @@ en:
     firm_edit:
       breadcrumb: "%{firm_name}"
       title: "Edit: %{firm_name}"
-      saved: Saved successfully
+      saved: Your firm has been saved
       trading_name_heading: Trading name
       firm_heading: Firm
       trading_name_contact_details_heading: Trading Name Contact Details

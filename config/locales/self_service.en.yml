@@ -15,7 +15,7 @@ en:
       breadcrumb: "%{adviser_name}"
       title: "Edit adviser: %{adviser_name}"
       submit_button: Save adviser
-      saved: Saved successfully
+      saved: The adviser has been saved
 
     adviser_new:
       breadcrumb: Add an adviser
@@ -27,7 +27,7 @@ en:
       deleted: "%{name} has been successfully removed."
 
     office_add:
-      saved: Saved successfully
+      saved: The office has been saved
 
     office_destroy:
       deleted: "The %{postcode} office has been successfully removed."
@@ -42,8 +42,8 @@ en:
     trading_name_edit:
       breadcrumb: "%{firm_name}"
       title: "Edit: %{firm_name}"
-      saved: Saved successfully
+      saved: The trading name has been saved
 
     onboarding:
       title: Welcome
-      message: Enter details about your firm, advisers and offices to add it to the directory
+      message: Please enter details about your firm, advisers and offices to add it to the directory
