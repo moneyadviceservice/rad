@@ -80,6 +80,14 @@ en:
             travel_distance:
               inclusion: "- please select at least one"
 
+  notification:
+    notice: Notice
+    success: Success
+    info: Information
+    alert: Alert
+    error: There's an error
+    onboarding: Welcome
+
   error_message: Error
   authentication_sign_in: Sign in
   authentication_sign_up: Register
