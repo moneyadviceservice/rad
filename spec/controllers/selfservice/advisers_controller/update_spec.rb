@@ -18,7 +18,7 @@ module SelfService
         before { patch :update, firm_id: firm.id, id: adviser.id, adviser: adviser_params }
 
         it 'adds a success message after successfully updating the adviser' do
-          expect(flash[:notice]).to eq('Saved successfully')
+          expect(flash[:notice]).to eq(I18n.t('self_service.adviser_edit.saved'))
         end
 
         it 'redirects to the edit page' do

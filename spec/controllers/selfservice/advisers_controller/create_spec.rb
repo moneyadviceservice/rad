@@ -23,7 +23,7 @@ module SelfService
         end
 
         it 'adds a success flash message' do
-          expect(flash[:notice]).to eq('Saved successfully')
+          expect(flash[:notice]).to eq(I18n.t('self_service.adviser_edit.saved'))
         end
       end
 
