@@ -37,6 +37,8 @@ en:
         postcode: Postcode
         qualifications: Qualifications
         reference_number: Number
+      office:
+        address: Postcode
       principal:
         fca_number: FCA Number
         confirmed_disclaimer: Truth confirmation statement
@@ -192,7 +194,7 @@ en:
   office:
     geocoding:
       failure_message: could not be found by the mapping service.
-      failure_explanation: We could not find the coordinates of your office address to plot it on the map in the directory. Please double-check the details and try again. If the address is correct and still cannot be found please contact RADenquiries@moneyadviceservice.org.uk for assistance.
+      failure_explanation: We could not find the coordinates of your office postcode to plot it on the map in the directory. Please check and try again. If the postcode is correct and still cannot be found please contact RADenquiries@moneyadviceservice.org.uk for assistance.
 
   lookup_adviser:
     error_responses:
