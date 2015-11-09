@@ -39,7 +39,7 @@
         <p><%= t('adviser.geocoding.failure_explanation') %></p>
       <% end %>
 
-      <%= f.form_row :postcode do %>
+      <%= f.form_row :postcode, html_options: { classes: 'form-row--collapsed-margin-bottom' } do %>
         <div>
           <%= f.errors_for :postcode %>
           <%= f.label :postcode, required_asterisk(t('self_service.adviser_form.postcode_label')), class: 'form__label-heading' %>

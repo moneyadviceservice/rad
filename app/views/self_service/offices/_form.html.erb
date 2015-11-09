@@ -45,7 +45,7 @@
       <p><%= t('office.geocoding.failure_explanation') %></p>
     <% end %>
 
-    <%= f.form_row :address_postcode do %>
+    <%= f.form_row :address_postcode, html_options: { classes: 'form-row--collapsed-margin-bottom' } do %>
       <%= f.errors_for :address_postcode %>
       <%= f.label :address_postcode,
                   required_asterisk(Office.human_attribute_name(:address_postcode)),
