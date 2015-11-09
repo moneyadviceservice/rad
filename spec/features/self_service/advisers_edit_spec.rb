@@ -1,4 +1,4 @@
-RSpec.feature 'The self service firm edit page' do
+RSpec.feature 'The self service firm edit page', vcr: vcr_options_for(:features_self_service_advisers_edit_spec) do
   include CheckboxGroupHelpers
 
   let(:advisers_index_page) { SelfService::AdvisersIndexPage.new }

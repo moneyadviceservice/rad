@@ -1,4 +1,4 @@
-RSpec.feature 'The self service office edit page' do
+RSpec.feature 'The self service office edit page', vcr: vcr_options_for(:features_self_service_offices_edit_spec) do
   let(:offices_index_page) { SelfService::OfficesIndexPage.new }
   let(:office_edit_page) { SelfService::OfficeEditPage.new }
   let(:original_postcode) { 'L1 2NH' }
