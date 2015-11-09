@@ -32,12 +32,20 @@
   <%= paragraphs t('self_service.adviser_form.geographical_coverage_description') %>
 
   <fieldset class="form__group" data-dough-field-target="1">
-    <%= f.form_row :postcode do %>
-      <div>
-        <%= f.errors_for :postcode %>
-        <%= f.label :postcode, required_asterisk(t('self_service.adviser_form.postcode_label')), class: 'form__label-heading' %>
-        <%= f.text_field :postcode, class: 't-postcode form__input-container--medium' %>
-      </div>
+    <%= f.form_row :address do %>
+      <%= f.errors_for :address %>
+
+      <% if f.object.errors.include?(:address) %>
+        <p><%= t('adviser.geocoding.failure_explanation') %></p>
+      <% end %>
+
+      <%= f.form_row :postcode do %>
+        <div>
+          <%= f.errors_for :postcode %>
+          <%= f.label :postcode, required_asterisk(t('self_service.adviser_form.postcode_label')), class: 'form__label-heading' %>
+          <%= f.text_field :postcode, class: 't-postcode form__input-container--medium' %>
+        </div>
+      <% end %>
     <% end %>
 
     <%= f.form_row :travel_distance do %>
