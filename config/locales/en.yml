@@ -35,6 +35,7 @@ en:
       adviser:
         name: Name
         postcode: Postcode
+        address: Postcode
         qualifications: Qualifications
         reference_number: Number
       office:
@@ -190,6 +191,9 @@ en:
 
   adviser:
     reference_number_unmatched: could not be matched with an existing adviser reference
+    geocoding:
+      failure_message: could not be found by the mapping service.
+      failure_explanation: We could not find the coordinates of the adviser's postcode to plot it on the map in the directory. Please check and try again. If the postcode is correct and still cannot be found please contact RADenquiries@moneyadviceservice.org.uk for assistance.
 
   office:
     geocoding:
