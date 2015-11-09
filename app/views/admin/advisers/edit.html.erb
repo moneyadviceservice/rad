@@ -10,6 +10,9 @@
 
     <div class="form-group">
       <%= f.label :postcode %>
+      <% if @adviser.errors.include?(:address) %>
+        <p class="bg-danger"><%= t('adviser.geocoding.failure_explanation') %></p>
+      <% end %>
       <%= f.text_field(:postcode, class: 'form-control') %>
     </div>
 

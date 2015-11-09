@@ -18,7 +18,7 @@ class Admin::AdvisersController < Admin::ApplicationController
   def update
     @adviser = adviser
 
-    if @adviser.update(adviser_params)
+    if @adviser.update_with_geocoding(adviser_params)
       redirect_to admin_adviser_path(@adviser)
     else
       render 'edit'
