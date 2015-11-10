@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: http://maps.googleapis.com/maps/api/geocode/json?address=364%20Tyrel%20Way,%20Suite%20323,%20EC1N%202TD,%20United%20Kingdom&language=en&sensor=false
+    uri: http://maps.googleapis.com/maps/api/geocode/json?address=EC1N%202TD,%20United%20Kingdom&language=en&sensor=false
     body:
       encoding: US-ASCII
       string: ''
@@ -21,9 +21,9 @@ http_interactions:
       Content-Type:
       - application/json; charset=UTF-8
       Date:
-      - Tue, 10 Nov 2015 15:51:34 GMT
+      - Tue, 10 Nov 2015 16:52:42 GMT
       Expires:
-      - Wed, 11 Nov 2015 15:51:34 GMT
+      - Wed, 11 Nov 2015 16:52:42 GMT
       Cache-Control:
       - public, max-age=86400
       Access-Control-Allow-Origin:
@@ -31,7 +31,7 @@ http_interactions:
       Server:
       - mafe
       Content-Length:
-      - '511'
+      - '495'
       X-Xss-Protection:
       - 1; mode=block
       X-Frame-Options:
@@ -97,7 +97,6 @@ http_interactions:
                        }
                     }
                  },
-                 "partial_match" : true,
                  "place_id" : "ChIJ5_7trE0bdkgRKFWaw55y3rM",
                  "types" : [ "postal_code" ]
               }
@@ -105,5 +104,5 @@ http_interactions:
            "status" : "OK"
         }
     http_version: 
-  recorded_at: Tue, 10 Nov 2015 15:51:34 GMT
+  recorded_at: Tue, 10 Nov 2015 16:52:42 GMT
 recorded_with: VCR 2.9.3
