@@ -5,5 +5,5 @@ VCR.configure do |config|
 end
 
 def vcr_options_for(cassette_name)
-  { cassette_name: cassette_name, record: :new_episodes }
+  { cassette_name: cassette_name, record: :none }
 end
