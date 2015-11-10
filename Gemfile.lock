@@ -86,6 +86,8 @@ GEM
     cliver (0.3.2)
     coderay (1.1.0)
     connection_pool (2.2.0)
+    crack (0.4.2)
+      safe_yaml (~> 1.0.0)
     database_cleaner (1.4.1)
     debug_inspector (0.0.2)
     devise (3.4.1)
@@ -250,6 +252,7 @@ GEM
       ansi
       ast
     ruby-progressbar (1.7.5)
+    safe_yaml (1.0.4)
     sass (3.2.19)
     sass-rails (4.0.5)
       railties (>= 4.0.0, < 5.0)
@@ -296,8 +299,12 @@ GEM
       kgio (~> 2.6)
       rack
       raindrops (~> 0.7)
+    vcr (2.9.3)
     warden (1.2.3)
       rack (>= 1.0)
+    webmock (1.21.0)
+      addressable (>= 2.3.6)
+      crack (>= 0.3.2)
     websocket-driver (0.5.4)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.2)
@@ -343,6 +350,8 @@ DEPENDENCIES
   timecop
   uglifier (>= 1.3.0)
   unicorn
+  vcr
+  webmock
 
 BUNDLED WITH
    1.10.6

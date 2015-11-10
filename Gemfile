@@ -53,4 +53,6 @@ group :test do
   gem 'poltergeist'
   gem 'rspec-collection_matchers'
   gem 'site_prism'
+  gem 'vcr'
+  gem 'webmock'
 end
