@@ -45,7 +45,7 @@ module Tasks
           exists_in_es?: true,
           exists_in_db?: exists_in_db,
           publishable?: firm.try(&:publishable?),
-          geocoded?: firm.try(&:geocoded?),
+          geocoded?: !!firm.try { |f| f.main_office.try(&:geocoded?) },
           frn: firm.try(&:fca_number),
           name: firm.try(&:registered_name)
         }
@@ -65,7 +65,7 @@ module Tasks
           exists_in_es?: false,
           exists_in_db?: true,
           publishable?: firm.publishable?,
-          geocoded?: firm.geocoded?,
+          geocoded?: !!firm.main_office.try(&:geocoded?),
           frn: firm.fca_number,
           name: firm.registered_name
         }
@@ -126,7 +126,7 @@ module Tasks
     end
 
     def find_all_pg_firm_ids
-      Firm.registered.geocoded.pluck(:id).sort.freeze
+      Firm.registered.pluck(:id).sort.freeze
     end
   end
 end
