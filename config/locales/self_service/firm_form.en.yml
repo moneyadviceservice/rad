@@ -7,14 +7,6 @@ en:
       website_address_description: Please provide a website address for customers who wish to visit your website.
       website_address_label: Firm website address *
 
-      address_heading: Main office where customers will meet you
-      address_description: This is to help customers understand how far they will need to travel if they want to visit you.
-      address_line_one_label: Address line 1 *
-      address_line_two_label: Address line 2
-      address_town_label: Town *
-      address_county_label: County *
-      address_postcode_label: Post code *
-
       primary_advice_method_heading: How does your firm primarily offer advice through to transaction? *
       primary_advice_method_answer_remote: Remotely (e.g. telephone, video conferencing)
       primary_advice_method_answer_local: Face-to-face

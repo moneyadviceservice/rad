@@ -19,24 +19,6 @@
       <strong>Website Address:</strong> <%= link_to @firm.website_address %>
     </p>
     <p>
-      <strong>Address:</strong>
-      <% if @firm.address_line_one.present? %>
-        <%= @firm.address_line_one %>,
-        <%= "#{@firm.address_line_two}," if @firm.address_line_two.present? %>
-        <%= @firm.address_town %>,
-        <%= @firm.address_county %>,
-        <%= @firm.address_postcode %>
-      <% else %>
-        Not provided
-      <% end %>
-    </p>
-    <% if @firm.latitude.present? && @firm.longitude.present? %>
-      <p>
-        <strong>Map:</strong>
-        <%= link_to "#{@firm.latitude}, #{@firm.longitude}", "http://maps.google.com/maps?z=12&t=m&q=#{@firm.latitude},#{@firm.longitude}" %>
-      </p>
-    <% end %>
-    <p>
       <strong>Added:</strong> <%= @firm.created_at.to_s(:long) %>
     </p>
   </div>
