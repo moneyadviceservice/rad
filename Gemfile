@@ -24,7 +24,7 @@ gem 'dough-ruby',
 gem 'jquery-rails'
 gem 'kaminari'
 gem 'letter_opener', group: :development
-gem 'mas-rad_core', '0.0.89'
+gem 'mas-rad_core', '0.0.91'
 gem 'oga'
 gem 'pg'
 gem 'ransack'
@@ -53,4 +53,6 @@ group :test do
   gem 'poltergeist'
   gem 'rspec-collection_matchers'
   gem 'site_prism'
+  gem 'vcr'
+  gem 'webmock'
 end

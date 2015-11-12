@@ -1,6 +1,9 @@
 module SelfService
-  RSpec.describe SelfService::AdvisersController, type: :controller do
+  RSpec.describe SelfService::AdvisersController, type: :controller,
+                                                  vcr: vcr_options_for(:adviser_controller_create_spec) do
     include_context 'advisers controller'
+
+    let(:postcode) { 'EH1 2AS' }
 
     describe '#create' do
       let(:reference_number) { FactoryGirl.create(:lookup_adviser).reference_number }
@@ -9,7 +12,11 @@ module SelfService
 
       context 'with valid params' do
         let(:lookup_adviser) { FactoryGirl.create :lookup_adviser }
-        let(:adviser_params) { FactoryGirl.attributes_for :adviser, reference_number: lookup_adviser.reference_number }
+        let(:adviser_params) do
+          FactoryGirl.attributes_for(:adviser,
+                                     reference_number: lookup_adviser.reference_number,
+                                     postcode: postcode)
+        end
         before { post :create, firm_id: firm.id, adviser: adviser_params }
 
         it 'creates a new adviser' do
@@ -38,7 +45,7 @@ module SelfService
     end
 
     def expect_create_to_set(attributes)
-      valid_attributes = FactoryGirl.attributes_for(:adviser)
+      valid_attributes = FactoryGirl.attributes_for(:adviser, postcode: postcode)
       post :create, firm_id: firm.id, adviser: valid_attributes.merge(attributes)
       attributes.each do |key, value|
         expect(assigns(:adviser).send(key)).to eq(value)

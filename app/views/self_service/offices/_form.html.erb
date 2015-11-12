@@ -5,6 +5,7 @@
 </div>
 
 <div class="l-half-width">
+
   <%= f.form_row :address_line_one do %>
     <%= f.errors_for :address_line_one %>
     <%= f.label :address_line_one,
@@ -37,12 +38,20 @@
     <%= f.text_field :address_county, class: 't-address-county' %>
   <% end %>
 
-  <%= f.form_row :address_postcode do %>
-    <%= f.errors_for :address_postcode %>
-    <%= f.label :address_postcode,
-                required_asterisk(Office.human_attribute_name(:address_postcode)),
-                class: 'form__label-heading' %>
-    <%= f.text_field :address_postcode, class: 't-address-postcode form__input-container--medium' %>
+  <%= f.form_row :address do %>
+    <%= f.errors_for :address %>
+
+    <% if f.object.errors.include?(:address) %>
+      <p><%= t('office.geocoding.failure_explanation') %></p>
+    <% end %>
+
+    <%= f.form_row :address_postcode, html_options: { classes: 'form-row--collapsed-margin-bottom' } do %>
+      <%= f.errors_for :address_postcode %>
+      <%= f.label :address_postcode,
+                  required_asterisk(Office.human_attribute_name(:address_postcode)),
+                  class: 'form__label-heading' %>
+      <%= f.text_field :address_postcode, class: 't-address-postcode form__input-container--medium' %>
+    <% end %>
   <% end %>
 
   <%= f.form_row :email_address do %>

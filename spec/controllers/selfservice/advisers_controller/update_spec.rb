@@ -1,5 +1,6 @@
 module SelfService
-  RSpec.describe SelfService::AdvisersController, type: :controller do
+  RSpec.describe SelfService::AdvisersController, type: :controller,
+                                                  vcr: vcr_options_for(:adviser_controller_update_spec) do
     include_context 'advisers controller'
 
     describe '#update' do
@@ -14,7 +15,7 @@ module SelfService
       end
 
       context 'with valid params' do
-        let(:adviser_params) { { postcode: 'AB1 2GH' } }
+        let(:adviser_params) { { postcode: 'EH1 3DX' } }
         before { patch :update, firm_id: firm.id, id: adviser.id, adviser: adviser_params }
 
         it 'adds a success message after successfully updating the adviser' do
