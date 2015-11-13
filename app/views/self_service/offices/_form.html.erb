@@ -6,43 +6,43 @@
 
 <div class="l-half-width">
 
-  <%= f.form_row :address_line_one do %>
-    <%= f.errors_for :address_line_one %>
-    <%= f.label :address_line_one,
-                required_asterisk(Office.human_attribute_name(:address_line_one)),
-                class: 'form__label-heading' %>
-    <%= f.text_field :address_line_one, class: 't-address-line-one' %>
-  <% end %>
+  <%= f.form_row :geocoding do %>
+    <%= f.errors_for :geocoding %>
 
-  <%= f.form_row :address_line_two do %>
-    <%= f.errors_for :address_line_two %>
-    <%= f.label :address_line_two,
-                Office.human_attribute_name(:address_line_two),
-                class: 'form__label-heading' %>
-    <%= f.text_field :address_line_two, class: 't-address-line-two' %>
-  <% end %>
-
-  <%= f.form_row :address_town do %>
-    <%= f.errors_for :address_town %>
-    <%= f.label :address_town,
-                required_asterisk(Office.human_attribute_name(:address_town)),
-                class: 'form__label-heading' %>
-    <%= f.text_field :address_town, class: 't-address-town' %>
-  <% end %>
-
-  <%= f.form_row :address_county do %>
-    <%= f.errors_for :address_county %>
-    <%= f.label :address_county,
-                Office.human_attribute_name(:address_county),
-                class: 'form__label-heading' %>
-    <%= f.text_field :address_county, class: 't-address-county' %>
-  <% end %>
-
-  <%= f.form_row :address do %>
-    <%= f.errors_for :address %>
-
-    <% if f.object.errors.include?(:address) %>
+    <% if f.object.errors.include?(:geocoding) %>
       <p><%= t('office.geocoding.failure_explanation') %></p>
+    <% end %>
+
+    <%= f.form_row :address_line_one do %>
+      <%= f.errors_for :address_line_one %>
+      <%= f.label :address_line_one,
+                  required_asterisk(Office.human_attribute_name(:address_line_one)),
+                  class: 'form__label-heading' %>
+      <%= f.text_field :address_line_one, class: 't-address-line-one' %>
+    <% end %>
+
+    <%= f.form_row :address_line_two do %>
+      <%= f.errors_for :address_line_two %>
+      <%= f.label :address_line_two,
+                  Office.human_attribute_name(:address_line_two),
+                  class: 'form__label-heading' %>
+      <%= f.text_field :address_line_two, class: 't-address-line-two' %>
+    <% end %>
+
+    <%= f.form_row :address_town do %>
+      <%= f.errors_for :address_town %>
+      <%= f.label :address_town,
+                  required_asterisk(Office.human_attribute_name(:address_town)),
+                  class: 'form__label-heading' %>
+      <%= f.text_field :address_town, class: 't-address-town' %>
+    <% end %>
+
+    <%= f.form_row :address_county do %>
+      <%= f.errors_for :address_county %>
+      <%= f.label :address_county,
+                  Office.human_attribute_name(:address_county),
+                  class: 'form__label-heading' %>
+      <%= f.text_field :address_county, class: 't-address-county' %>
     <% end %>
 
     <%= f.form_row :address_postcode, html_options: { classes: 'form-row--collapsed-margin-bottom' } do %>

@@ -3,9 +3,20 @@ RSpec.feature 'The self service office add page', vcr: vcr_options_for(:features
   let(:office_add_page) { SelfService::OfficeAddPage.new }
   let(:office_edit_page) { SelfService::OfficeEditPage.new }
 
+  let(:address_line_one) { '120 Holborn' }
+  let(:address_town) { 'London' }
+  let(:address_postcode) { 'EC1N 2TD' }
+
   let(:principal) { FactoryGirl.create(:principal) }
   let(:user) { FactoryGirl.create(:user, principal: principal) }
-  let(:office) { FactoryGirl.attributes_for(:office) }
+  let(:office) do
+    FactoryGirl.attributes_for(:office,
+                               address_line_one: address_line_one,
+                               address_line_two: '',
+                               address_town: address_town,
+                               address_county: '',
+                               address_postcode: address_postcode)
+  end
 
   scenario 'The principal can create a new office' do
     given_i_am_a_fully_registered_principal_user

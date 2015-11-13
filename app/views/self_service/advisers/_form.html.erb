@@ -32,10 +32,10 @@
   <%= paragraphs t('self_service.adviser_form.geographical_coverage_description') %>
 
   <fieldset class="form__group" data-dough-field-target="1">
-    <%= f.form_row :address do %>
-      <%= f.errors_for :address %>
+    <%= f.form_row :geocoding do %>
+      <%= f.errors_for :geocoding %>
 
-      <% if f.object.errors.include?(:address) %>
+      <% if f.object.errors.include?(:geocoding) %>
         <p><%= t('adviser.geocoding.failure_explanation') %></p>
       <% end %>
 

@@ -1,15 +1,25 @@
 RSpec.feature 'The self service office edit page', vcr: vcr_options_for(:features_self_service_offices_edit_spec) do
   let(:offices_index_page) { SelfService::OfficesIndexPage.new }
   let(:office_edit_page) { SelfService::OfficeEditPage.new }
-  let(:original_postcode) { 'L1 2NH' }
-  let(:updated_postcode) { 'EH11 2AB' }
+
+  let(:address_line_one) { '119 Holborn' }
+  let(:address_town) { 'London' }
+  let(:address_postcode) { 'EC1N 2TD' }
+
+  let(:original_line_one) { address_line_one }
+  let(:updated_line_one) { '120 Holborn' }
+  let(:original_postcode) { address_postcode }
 
   let(:principal) { FactoryGirl.create(:principal) }
   let(:user) { FactoryGirl.create(:user, principal: principal) }
   let(:office) do
     FactoryGirl.create(:office,
                        firm: principal.firm,
-                       address_postcode: original_postcode,
+                       address_line_one: address_line_one,
+                       address_line_two: '',
+                       address_town: address_town,
+                       address_county: '',
+                       address_postcode: address_postcode,
                        disabled_access: false)
   end
   let(:offices) { [office] }
@@ -84,7 +94,7 @@ RSpec.feature 'The self service office edit page', vcr: vcr_options_for(:feature
   end
 
   def when_i_change_the_information
-    office_edit_page.address_postcode.set updated_postcode
+    office_edit_page.address_line_one.set updated_line_one
     office_edit_page.disabled_access.set true
   end
 
@@ -106,7 +116,7 @@ RSpec.feature 'The self service office edit page', vcr: vcr_options_for(:feature
 
   def then_the_information_is_changed
     office.reload
-    expect(office.address_postcode).to eq updated_postcode
+    expect(office.address_line_one).to eq updated_line_one
     expect(office.disabled_access).to eq true
   end
 
