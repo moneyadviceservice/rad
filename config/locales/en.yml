@@ -39,7 +39,7 @@ en:
         qualifications: Qualifications
         reference_number: Number
       office:
-        geocoding: Postcode
+        geocoding: Address
       principal:
         fca_number: FCA Number
         confirmed_disclaimer: Truth confirmation statement
