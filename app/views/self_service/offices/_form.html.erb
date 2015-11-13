@@ -38,10 +38,10 @@
     <%= f.text_field :address_county, class: 't-address-county' %>
   <% end %>
 
-  <%= f.form_row :address do %>
-    <%= f.errors_for :address %>
+  <%= f.form_row :geocoding do %>
+    <%= f.errors_for :geocoding %>
 
-    <% if f.object.errors.include?(:address) %>
+    <% if f.object.errors.include?(:geocoding) %>
       <p><%= t('office.geocoding.failure_explanation') %></p>
     <% end %>
 
