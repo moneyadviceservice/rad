@@ -2,17 +2,17 @@ require 'net/http'
 
 class ByCountryReport
   def initialize
-    @registered_firms = Firm.registered
+    @registered_firms = Firm.registered.select { |f| f.main_office.present? }
     @lookup = {}
     generate_lookup
   end
 
   def firm_report
-    firms = @registered_firms.where(parent_id: nil) # don't include trading names
+    firms = @registered_firms.reject { |f| f.parent_id.nil? } # don't include trading names
     grouped_firms = firms.group_by do |firm|
       @lookup[postcode_slug_for(firm)]
     end
-    generate_report('Firms', grouped_firms, firms.count)
+    generate_report('Firms (not including trading names)', grouped_firms, firms.count)
   end
 
   def adviser_report
@@ -34,7 +34,7 @@ class ByCountryReport
     report << "\n======"
     firms.each do |firm|
       report << "\n"
-      report << "#{firm.address_postcode} : "
+      report << "#{firm_postcode(firm)} : "
       report << "#{firm.registered_name} (#{firm.fca_number}) "
       report << "#{firm.advisers.count} advisers"
     end
@@ -42,6 +42,10 @@ class ByCountryReport
   end
 
   private
+
+  def firm_postcode(firm)
+    firm.main_office.try(:address_postcode)
+  end
 
   def generate_lookup
     # API restricted to 100 postcodes at a time
@@ -52,7 +56,7 @@ class ByCountryReport
 
   def unique_postcodes
     # has to include all postcodes that could be linked to either a firm or an advisor
-    @registered_firms.map(&:address_postcode).uniq
+    @registered_firms.map { |f| firm_postcode(f) }.uniq
   end
 
   def fetch_countries(postcode_slice)
@@ -77,7 +81,7 @@ class ByCountryReport
   end
 
   def postcode_slug_for(firm)
-    firm.address_postcode.gsub(' ', '')
+    firm_postcode(firm).gsub(' ', '')
   end
 
   def generate_report(name, grouped_items, total_count)
