@@ -2,21 +2,20 @@ require 'net/http'
 
 class ByCountryReport
   def initialize
-    @registered_firms = Firm.registered.select { |f| f.main_office.present? }
+    @published_firms = Firm.registered.select(&:publishable?)
     @lookup = {}
     generate_lookup
   end
 
   def firm_report
-    firms = @registered_firms.reject { |f| f.parent_id.nil? } # don't include trading names
-    grouped_firms = firms.group_by do |firm|
+    grouped_firms = @published_firms.group_by do |firm|
       @lookup[postcode_slug_for(firm)]
     end
-    generate_report('Firms (not including trading names)', grouped_firms, firms.count)
+    generate_report('Firms', grouped_firms, @published_firms.count)
   end
 
   def adviser_report
-    advisers = @registered_firms.map(&:advisers).flatten # include trading names
+    advisers = @published_firms.map(&:advisers).flatten
     grouped_advisers = advisers.group_by do |adviser|
       @lookup[postcode_slug_for(adviser.firm)]
     end
@@ -24,7 +23,7 @@ class ByCountryReport
   end
 
   def error_report
-    grouped_firms = @registered_firms.group_by do |firm|
+    grouped_firms = @published_firms.group_by do |firm|
       @lookup[postcode_slug_for(firm)]
     end
     firms_with_errors = grouped_firms.select { |k, _| k.blank? }.values.flatten.map(&:id).uniq
@@ -56,7 +55,7 @@ class ByCountryReport
 
   def unique_postcodes
     # has to include all postcodes that could be linked to either a firm or an advisor
-    @registered_firms.map { |f| firm_postcode(f) }.uniq
+    @published_firms.map { |f| firm_postcode(f) }.uniq
   end
 
   def fetch_countries(postcode_slice)
