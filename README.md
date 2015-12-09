@@ -12,8 +12,15 @@ A directory to help people nearing retirement find an Independent Financial Advi
 * [Node.js](http://nodejs.org/)
 * [Bundler](http://bundler.io)
 * [PostgreSQL](http://www.postgresql.org/)
+* [rad_consumer](https://github.com/moneyadviceservice/rad_consumer) (for Elasticsearch)
 
 ## Installation
+
+---
+
+**NOTE this application needs access to an Elasticsearch index owned by the rad_consumer application. Follow the configuration steps for this in [the rad_consumer README](https://github.com/moneyadviceservice/rad_consumer/blob/master/README.md).**
+
+---
 
 Clone the repository:
 
