@@ -113,8 +113,11 @@ These are all the metric descriptions that were requested:
   published_firms.select { |f| f.languages.present? }
   ```
 * Disabled access
-  > Dan G: some firms have more than one office. In that case, which office
-  > should we query?
+  ```
+  Office.where(disabled_access: true).count
+  # or
+  Office.includes(:firms).where(disabled_access: true, firms: { id: [Firm.registered.map(&:id)] }).count
+  ```
 
 ## ADVISERS
 
