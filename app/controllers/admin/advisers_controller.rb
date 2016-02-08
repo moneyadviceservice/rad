@@ -15,7 +15,7 @@ class Admin::AdvisersController < Admin::ApplicationController
   def create
     @firm = Firm.find(params[:firm_id])
     @adviser = @firm.advisers.build(adviser_params)
-    @adviser.reference_number = "NOREF"
+    @adviser.reference_number = 'NOREF'
     @adviser.bypass_reference_number_check = true
 
     if @adviser.save
