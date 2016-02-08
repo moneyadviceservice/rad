@@ -51,7 +51,7 @@ Rails.application.routes.draw do
         get :login_report
       end
 
-      resources :advisers, only: :index
+      resources :advisers, only: [:index, :new, :create]
       member do
         resources :move_advisers, only: [:new] do
           collection do

@@ -7,6 +7,24 @@ class Admin::AdvisersController < Admin::ApplicationController
     @advisers = @advisers.page(params[:page]).per(20)
   end
 
+  def new
+    @adviser = Adviser.new
+    @firm = Firm.find(params[:firm_id])
+  end
+
+  def create
+    @firm = Firm.find(params[:firm_id])
+    @adviser = @firm.advisers.build(adviser_params)
+    @adviser.reference_number = "NOREF"
+    @adviser.bypass_reference_number_check = true
+
+    if @adviser.save
+      redirect_to admin_firm_path(firm)
+    else
+      render :new
+    end
+  end
+
   def show
     @adviser = adviser
   end
@@ -45,6 +63,7 @@ class Admin::AdvisersController < Admin::ApplicationController
 
   def adviser_params
     params.require(:adviser).permit(
+      :name,
       :postcode,
       :travel_distance,
       qualification_ids: [],
