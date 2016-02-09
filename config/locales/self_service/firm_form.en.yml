@@ -5,7 +5,7 @@ en:
       initial_advice_fee_structures_description: Confirm the way(s) your firm charges for its services. Check all that apply.
 
       website_address_description: Please provide a website address for customers who wish to visit your website.
-      website_address_label: Firm website address *
+      website_address_label: Firm website address
 
       primary_advice_method_heading: How does your firm primarily offer advice through to transaction? *
       primary_advice_method_answer_remote: Remotely (e.g. telephone, video conferencing)
