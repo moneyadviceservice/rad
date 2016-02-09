@@ -92,9 +92,7 @@ RSpec.feature 'Add a new adviser without an FCA number' do
     # validation message preamble
     # expect(the_page).not_to have_text %r{Error|[Ww]arn|[Ee]xception}
 
-    if the_page.status_code == 500
-      puts the_page.text
-    end
+    puts the_page.text if the_page.status_code == 500
 
     expect(the_page.status_code).not_to eq(500)
   end
