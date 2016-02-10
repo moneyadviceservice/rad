@@ -65,7 +65,7 @@
   <p>No advisers registered.</p>
 <% end %>
 
-<%= link_to 'New adviser', new_admin_firm_adviser_path(@firm), class: 'btn btn-success t-new-adviser', method: :get %>
+<%= link_to 'New adviser (without reference number)', new_admin_firm_adviser_path(@firm), class: 'btn btn-success t-new-adviser', method: :get %>
 
 <% if @firm.registered? %>
   <h2>Questionnaire Responses</h2>
