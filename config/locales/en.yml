@@ -71,7 +71,7 @@ en:
             in_person_advice_methods:
               blank: "- please select at least one"
             website_address:
-              invalid: " is invalid. The address must be in the format: http://www.example.com"
+              invalid: " is invalid. The address must be in the format: www.example.com"
             primary_advice_method:
               blank: "- please select at least one"
             status:
