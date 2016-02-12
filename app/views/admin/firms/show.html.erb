@@ -56,15 +56,16 @@
 
   <ul>
     <% @firm.advisers.each do |adviser| %>
-      <li><%= link_to adviser.name, admin_adviser_path(adviser) %>, added <%= adviser.created_at.to_s(:short) %></li>
+      <li class='t-adviser'><%= link_to adviser.name, admin_adviser_path(adviser) %>, added <%= adviser.created_at.to_s(:short) %></li>
     <% end %>
   </ul>
 
-  <%= button_to 'Move advisers', new_admin_move_adviser_path,
-                :class => "t-move-advisers", :method => :get %>
+  <%= link_to 'Move advisers', new_admin_move_adviser_path, class: 'btn btn-default t-move-advisers', method: :get %>
 <% else %>
   <p>No advisers registered.</p>
 <% end %>
+
+<%= link_to 'New adviser (without reference number)', new_admin_firm_adviser_path(@firm), class: 'btn btn-success t-new-adviser', method: :get %>
 
 <% if @firm.registered? %>
   <h2>Questionnaire Responses</h2>

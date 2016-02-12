@@ -1,0 +1,16 @@
+<h1>New adviser (without reference number)</h1>
+
+<div class="panel panel-default">
+  <div class="panel-body">
+  <%= form_for([:admin, @firm, @adviser]) do |f| %>
+    <%= render 'admin/shared/errors', model: @adviser %>
+
+    <div class="form-group">
+      <%= f.label(:name) %>
+      <%= f.text_field(:name, class: 'form-control t-name') %>
+    </div>
+
+    <%= render partial: 'admin/advisers/form', locals: {f: f} %>
+  <% end %>
+  </div>
+</div>
