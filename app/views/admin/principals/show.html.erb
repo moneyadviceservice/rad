@@ -21,6 +21,9 @@
       <strong>Phone Number:</strong> <%= @principal.telephone_number %>
     </p>
     <p>
+      <strong>Email:</strong> <%= mail_to @principal.email_address %>
+    </p>
+    <p>
       <strong>Added:</strong> <%= @principal.created_at.to_s(:long) %>
     </p>
   </div>
