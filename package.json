@@ -17,13 +17,13 @@
     "karma-jquery": "^0.1.0",
     "karma-mocha": "^0.1.4",
     "karma-osx-reporter": "*",
-    "karma-phantomjs-launcher": ">= 0.1.4",
+    "karma-phantomjs-launcher": ">= 1.0",
     "karma-requirejs": "~0.2.0",
     "karma-sinon": "^1.0.3",
     "karma-sinon-chai": "^0.2.0",
     "karma-spec-reporter": "0.0.13",
     "mocha": "~1.15.1",
-    "phantomjs": ">= 2.0.0",
+    "phantomjs-prebuilt": ">= 1.9",
     "requirejs": "2.1.22",
     "sinon": "^1.9.0"
   }
