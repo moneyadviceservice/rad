@@ -1,0 +1,27 @@
+<div class="row">
+  <div class="col-xs-12">
+    <h1>Registered Firms</h1>
+  </div>
+</div>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Date</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @snapshots.each do |snapshot| %>
+      <tr class="t-snapshot-table-row">
+        <td><%= snapshot.created_at.strftime('%e %B %Y') %></td>
+        <td>
+          <%= link_to 'View', admin_metric_path(snapshot), class: 'btn btn-default t-snapshot-view-button' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<p><%= paginate @snapshots %></p>

@@ -26,6 +26,7 @@
         <li class="<%= 'active' if current_page?(controller: '/admin/firms') %>"><%= link_to 'Firms', admin_firms_path %></li>
         <li class="<%= 'active' if current_page?(controller: '/admin/advisers') %>"><%= link_to 'Advisers', admin_advisers_path %></li>
         <li class="<%= 'active' if current_page?(controller: '/admin/principals') %>"><%= link_to 'Principals', admin_principals_path %></li>
+        <li class="<%= 'active' if current_page?(controller: '/admin/metrics') %>"><%= link_to 'Metrics', admin_metrics_path %></li>
         <li class="<%= 'active' if current_page?(controller: '/admin/lookup/firms') || current_page?(controller: '/admin/lookup/subsidiaries') %>">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Lookup Data <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
