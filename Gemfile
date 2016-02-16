@@ -9,13 +9,12 @@ ruby '2.2.2'
 # 3. Place dependencies in the group they belong
 # 4. Only use version specifiers where appropriate
 
-gem 'rails', '~> 4.2'
+gem 'rails', '~> 4.2.5.1'
 
 gem 'bootstrap-sass', '~> 3.3.3'
 gem 'bowndler', github: 'moneyadviceservice/bowndler'
 gem 'devise'
 gem 'devise_invitable'
-gem 'rails_email_validator'
 gem 'devise_security_extension'
 gem 'dough-ruby',
     github: 'moneyadviceservice/dough',
@@ -27,6 +26,7 @@ gem 'letter_opener', group: :development
 gem 'mas-rad_core', '0.0.98'
 gem 'oga'
 gem 'pg'
+gem 'rails_email_validator'
 gem 'ransack'
 gem 'rollbar'
 gem 'sass-rails'
@@ -36,14 +36,14 @@ gem 'uglifier', '>= 1.3.0'
 gem 'unicorn'
 
 group :test, :development do
+  gem 'better_errors'
+  gem 'binding_of_caller'
   gem 'factory_girl_rails'
   gem 'faker'
   gem 'pry-rails'
   gem 'rspec-rails'
   gem 'rubocop'
   gem 'timecop'
-  gem 'better_errors'
-  gem 'binding_of_caller'
 end
 
 group :test do
