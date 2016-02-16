@@ -8,6 +8,10 @@
     <p>
       <strong>Principal:</strong>
       <%= link_to "#{@firm.principal.first_name} #{@firm.principal.last_name}", admin_principal_path(@firm.principal) %>
+      <ul>
+        <li><strong>Principal Email:</strong> <%= mail_to @firm.principal.email_address %></li>
+        <li><strong>Principal Phone:</strong> <%= @firm.principal.telephone_number %></li>
+      </ul>
     </p>
     <p>
       <strong>FCA Number:</strong> <%= @firm.fca_number %>
