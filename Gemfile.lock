@@ -336,7 +336,7 @@ DEPENDENCIES
   pg
   poltergeist
   pry-rails
-  rails (~> 4.2)
+  rails (~> 4.2.5.1)
   rails_email_validator
   ransack
   rollbar
