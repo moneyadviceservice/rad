@@ -1,0 +1,60 @@
+en:
+  snapshot:
+    attributes:
+      firms_with_no_minimum_fee: Firms with no minimum fee
+      firms_with_no_minimum_fee: Firms with no minimum fee
+      firms_with_min_fee_between_1_500: Firms who have a minimum fee between £1.00 - £500
+      firms_with_min_fee_between_501_1000: Firms who have a minimum fee between £501 - £1000
+      firms_any_pot_size: Firms who will deal with any pot size
+      firms_any_pot_size_min_fee_less_than_500: Firms who will deal with any pot size and have a minimum fee of less than £500
+      registered_firms: Total number of firms registered on RAD
+      published_firms: Total number of firms appearing on the directory
+      firms_offering_face_to_face_advice: Firms who only offer face-to-face advice
+      firms_offering_remote_advice: Firms who only offer remote advice
+      firms_in_england: Firms in England
+      firms_in_scotland: Firms in Scotland
+      firms_in_wales: Firms in Wales
+      firms_in_northern_ireland: Firms in Northern Ireland
+      firms_providing_retirement_income_products: Firms providing conversion of pension pot/other liquid savings into retirement income
+      firms_providing_pension_transfer: Firms providing defined benefit pensions (including transfers)
+      firms_providing_long_term_care: Firms providing long term care
+      firms_providing_equity_release: Firms providing equity release
+      firms_providing_inheritance_tax_and_estate_planning: Firms providing inheritance Tax and Estate Planning
+      firms_providing_wills_and_probate: Firms providing wills & Probate
+      firms_providing_ethical_investing: Firms providing ethical investing
+      firms_providing_sharia_investing: Firms providing sharia investing
+      firms_offering_languages_other_than_english: Firms providing languages other than English
+      offices_with_disabled_access: Offices with disabled access
+      registered_advisers: Total number of registered advisers
+      advisers_in_england: Advisers in England
+      advisers_in_scotland: Advisers in Scotland
+      advisers_in_wales: Advisers in Wales
+      advisers_in_northern_ireland: Advisers in Northern Ireland
+      advisers_who_travel_5_miles: Advisers who will travel 5 miles
+      advisers_who_travel_10_miles: Advisers who will travel 10 miles
+      advisers_who_travel_25_miles: Advisers who will travel 25 miles
+      advisers_who_travel_50_miles: Advisers who will travel 50 miles
+      advisers_who_travel_100_miles: Advisers who will travel 100 miles
+      advisers_who_travel_150_miles: Advisers who will travel 150 miles
+      advisers_who_travel_250_miles: Advisers who will travel 250 miles
+      advisers_who_travel_uk_wide: Advisers who will travel UK wide
+      advisers_accredited_in_solla: Advisers accredited in SOLLA
+      advisers_accredited_in_later_life_academy: Advisers accredited in Later Life Academy
+      advisers_accredited_in_iso22222: Advisers accredited in ISO 22222
+      advisers_accredited_in_bs8577: Advisers accredited in British Standard in Financial Planning BS8577
+      advisers_with_qualification_in_level_4: Advisers who hold qualification in Level 4
+      advisers_with_qualification_in_level_6: Advisers who hold qualification in Level 6
+      advisers_with_qualification_in_chartered_financial_planner: Advisers who hold qualification in Chartered Financial Planner
+      advisers_with_qualification_in_certified_financial_planner: Advisers who hold qualification in Certified Financial Planner
+      advisers_with_qualification_in_pension_transfer: Advisers who hold qualification in Pension transfer
+      advisers_with_qualification_in_equity_release: Advisers who hold qualification in Equity release
+      advisers_with_qualification_in_long_term_care_planning: Advisers who hold qualification in Long term care planning
+      advisers_with_qualification_in_tep: Advisers who hold qualification in Trust and Estate Practitioner (TEP) i.e. full member of STEP
+      advisers_with_qualification_in_fcii: Advisers who hold qualification in Fellow of the Chartered Insurance Institute (FCII)
+      advisers_part_of_personal_finance_society: Advisers part of Personal Finance Society/Chartered Insurance Institute
+      advisers_part_of_institute_financial_planning: Advisers part of Institute of Financial Planning
+      advisers_part_of_institute_financial_services: Advisers part of Institute of Financial Services
+      advisers_part_of_ci_bankers_scotland: Advisers part of The Chartered Institute of Bankers in Scotland
+      advisers_part_of_ci_securities_and_investments: Advisers part of The Chartered Institute of Securities and Investments
+      advisers_part_of_cfa_institute: Advisers part of CFA Institute
+      advisers_part_of_chartered_accountants: Advisers part of Institute of Chartered Accountants for England and Wales
