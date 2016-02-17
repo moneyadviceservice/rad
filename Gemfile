@@ -31,6 +31,7 @@ gem 'ransack'
 gem 'rollbar'
 gem 'sass-rails'
 gem 'sidekiq'
+gem 'sidetiq'
 gem 'sinatra', require: false
 gem 'uglifier', '>= 1.3.0'
 gem 'unicorn'

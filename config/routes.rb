@@ -1,4 +1,5 @@
 require 'sidekiq/web'
+require 'sidetiq/web'
 
 Rails.application.routes.draw do
   devise_for :users
@@ -80,7 +81,7 @@ Rails.application.routes.draw do
     Sidekiq::Web.use Rack::Auth::Basic do |username, password|
       HttpAuthentication.authenticate(username, password)
     end
-
-    mount Sidekiq::Web, at: '/sidekiq'
   end
+
+  mount Sidekiq::Web, at: '/sidekiq'
 end
