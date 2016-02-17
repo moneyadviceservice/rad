@@ -69,7 +69,11 @@ Rails.application.routes.draw do
       resources :subsidiaries, only: :index
     end
     resources :principals, only: [:index, :show]
-    resources :metrics, only: [:index, :show]
+    resources :metrics, only: [:index, :show] do
+      member do
+        get :download
+      end
+    end
   end
 
   if HttpAuthentication.required?

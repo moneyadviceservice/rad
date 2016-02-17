@@ -1,3 +1,5 @@
+require 'csv'
+
 class Admin::MetricsController < Admin::ApplicationController
   def index
     @snapshots = Snapshot.order(created_at: :desc).page(params[:page]).per(20)
@@ -8,7 +10,21 @@ class Admin::MetricsController < Admin::ApplicationController
     @attributes = snapshot_attributes
   end
 
+  def download
+    snapshot = Snapshot.find(params[:id])
+    send_data snapshot_to_csv(snapshot), filename: csv_filename(snapshot), type: 'text/csv'
+  end
+
   private
+
+  def csv_filename(snapshot)
+    date = snapshot.created_at
+    "snapshot-#{date.year}-#{date.month}-#{date.day}.csv"
+  end
+
+  def csv_headers
+    %w(metric value)
+  end
 
   # rubocop:disable Metrics/MethodLength
   def snapshot_attributes
@@ -47,5 +63,15 @@ class Admin::MetricsController < Admin::ApplicationController
      :advisers_part_of_ci_bankers_scotland,
      :advisers_part_of_ci_securities_and_investments,
      :advisers_part_of_cfa_institute, :advisers_part_of_chartered_accountants]
+  end
+
+  def snapshot_to_csv(snapshot)
+    CSV.generate do |csv|
+      csv << csv_headers
+
+      snapshot_attributes.each do |attr|
+        csv << [I18n.t("snapshot.attributes.#{attr}"), snapshot[attr]]
+      end
+    end
   end
 end
