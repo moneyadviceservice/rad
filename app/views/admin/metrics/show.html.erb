@@ -16,7 +16,7 @@
   </thead>
 
   <tbody>
-    <% @attributes.each do |key| %>
+    <% @snapshot.metrics_in_order.each do |key| %>
       <tr>
         <td><%= t("snapshot.attributes.#{key}") %></td>
         <td><%= @snapshot[key] %></td>
