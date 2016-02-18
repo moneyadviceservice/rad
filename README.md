@@ -61,10 +61,14 @@ To start the application:
 
 ```sh
 $ bundle exec rails s -p 5000
+$ bundle exec sidekiq
 ```
 
 Then navigate to [http://localhost:5000/](http://localhost:5000/) to access the
 application locally.
+
+Sidekiq is used for processing any background jobs. You can see the sidekiq
+dashboard at [http://localhost:5000/sidekiq](http://localhost:5000/sidekiq).
 
 ## Running the Tests
 
