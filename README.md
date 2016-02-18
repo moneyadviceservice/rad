@@ -13,6 +13,7 @@ A directory to help people nearing retirement find an Independent Financial Advi
 * [Bundler](http://bundler.io)
 * [PostgreSQL](http://www.postgresql.org/)
 * [rad_consumer](https://github.com/moneyadviceservice/rad_consumer) (for Elasticsearch)
+* [redis](http://redis.io)
 
 ## Installation
 
@@ -63,6 +64,8 @@ To start the application:
 $ bundle exec rails s -p 5000
 $ bundle exec sidekiq
 ```
+
+Make sure redis is running before trying to run sidekiq.
 
 Then navigate to [http://localhost:5000/](http://localhost:5000/) to access the
 application locally.
