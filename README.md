@@ -13,6 +13,7 @@ A directory to help people nearing retirement find an Independent Financial Advi
 * [Bundler](http://bundler.io)
 * [PostgreSQL](http://www.postgresql.org/)
 * [rad_consumer](https://github.com/moneyadviceservice/rad_consumer) (for Elasticsearch)
+* [redis](http://redis.io)
 
 ## Installation
 
@@ -66,6 +67,9 @@ $ bundle exec rails s -p 5000
 Then navigate to [http://localhost:5000/](http://localhost:5000/) to access the
 application locally.
 
+Sidekiq is used for processing any background jobs. You can see the sidekiq
+dashboard at [http://localhost:5000/sidekiq](http://localhost:5000/sidekiq).
+
 ## Running the Tests
 
 To run the Ruby tests:
@@ -80,7 +84,17 @@ To run the javascript tests:
 $ node_modules/.bin/karma start spec/javascripts/karma.conf.js --single-run=true
 ```
 
-# Style Checking
+## Background jobs
+
+If you need to run the background jobs during development, you'll need to have
+a running instance of sidekiq. Sidekiq depends on redis, so make sure you have
+redis running, then:
+
+```sh
+$ bundle exec sidekiq
+```
+
+## Style Checking
 
 To run the Rubocop style checker:
 

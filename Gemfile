@@ -11,6 +11,7 @@ ruby '2.2.2'
 
 gem 'rails', '~> 4.2.5.1'
 
+gem 'active_link_to'
 gem 'bootstrap-sass', '~> 3.3.3'
 gem 'bowndler', github: 'moneyadviceservice/bowndler'
 gem 'devise'
@@ -23,7 +24,7 @@ gem 'dough-ruby',
 gem 'jquery-rails'
 gem 'kaminari'
 gem 'letter_opener', group: :development
-gem 'mas-rad_core', '0.0.98'
+gem 'mas-rad_core', '0.0.99'
 gem 'oga'
 gem 'pg'
 gem 'rails_email_validator'
@@ -31,6 +32,7 @@ gem 'ransack'
 gem 'rollbar'
 gem 'sass-rails'
 gem 'sidekiq'
+gem 'sidetiq'
 gem 'sinatra', require: false
 gem 'uglifier', '>= 1.3.0'
 gem 'unicorn'

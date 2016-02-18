@@ -1,4 +1,5 @@
 require 'sidekiq/web'
+require 'sidetiq/web'
 
 Rails.application.routes.draw do
   devise_for :users
@@ -69,13 +70,18 @@ Rails.application.routes.draw do
       resources :subsidiaries, only: :index
     end
     resources :principals, only: [:index, :show]
+    resources :metrics, only: [:index, :show] do
+      member do
+        get :download
+      end
+    end
   end
 
   if HttpAuthentication.required?
     Sidekiq::Web.use Rack::Auth::Basic do |username, password|
       HttpAuthentication.authenticate(username, password)
     end
-
-    mount Sidekiq::Web, at: '/sidekiq'
   end
+
+  mount Sidekiq::Web, at: '/sidekiq'
 end
