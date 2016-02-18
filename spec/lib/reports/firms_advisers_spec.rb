@@ -1,6 +1,6 @@
-RSpec.describe Reports::Firms do
+RSpec.describe Reports::FirmsAdvisers do
   describe '#data' do
-    subject(:data_with_header) { CSV.parse(Reports::Firms.new.data) }
+    subject(:data_with_header) { CSV.parse(Reports::FirmsAdvisers.data) }
     subject(:data_without_header) do
       data = data_with_header
       data.shift
@@ -14,7 +14,7 @@ RSpec.describe Reports::Firms do
     end
 
     it 'has a header row' do
-      expect(data_with_header.first).to eq(Reports::Firms::HEADER_ROW)
+      expect(data_with_header.first).to eq(Reports::FirmsAdvisers::HEADER_ROW)
     end
 
     it 'has a row for each firm' do

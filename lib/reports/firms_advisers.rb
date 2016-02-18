@@ -1,4 +1,4 @@
-class Reports::Firms
+class Reports::FirmsAdvisers
   HEADER_ROW = [
     'FCA Number',
     'Name',
@@ -8,7 +8,7 @@ class Reports::Firms
     'Adviser Count'
   ]
 
-  def data
+  def self.data
     CSV.generate do |csv|
       csv << HEADER_ROW
 
@@ -18,9 +18,7 @@ class Reports::Firms
     end
   end
 
-  private
-
-  def row_for_firm(firm)
+  def self.row_for_firm(firm)
     [
       firm.fca_number,
       firm.registered_name,
