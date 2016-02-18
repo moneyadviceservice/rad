@@ -50,6 +50,7 @@ Rails.application.routes.draw do
     resources :firms, only: [:index, :show] do
       collection do
         get :login_report
+        get :adviser_report
       end
 
       resources :advisers, only: [:index, :new, :create]
