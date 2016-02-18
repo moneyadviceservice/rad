@@ -62,10 +62,7 @@ To start the application:
 
 ```sh
 $ bundle exec rails s -p 5000
-$ bundle exec sidekiq
 ```
-
-Make sure redis is running before trying to run sidekiq.
 
 Then navigate to [http://localhost:5000/](http://localhost:5000/) to access the
 application locally.
@@ -87,7 +84,17 @@ To run the javascript tests:
 $ node_modules/.bin/karma start spec/javascripts/karma.conf.js --single-run=true
 ```
 
-# Style Checking
+## Background jobs
+
+If you need to run the background jobs during development, you'll need to have
+a running instance of sidekiq. Sidekiq depends on redis, so make sure you have
+redis running, then:
+
+```sh
+$ bundle exec sidekiq
+```
+
+## Style Checking
 
 To run the Rubocop style checker:
 
