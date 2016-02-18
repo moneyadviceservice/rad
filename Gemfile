@@ -11,6 +11,7 @@ ruby '2.2.2'
 
 gem 'rails', '~> 4.2.5.1'
 
+gem 'active_link_to'
 gem 'bootstrap-sass', '~> 3.3.3'
 gem 'bowndler', github: 'moneyadviceservice/bowndler'
 gem 'devise'
