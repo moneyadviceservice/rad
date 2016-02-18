@@ -15,7 +15,7 @@
   <tbody>
     <% @snapshots.each do |snapshot| %>
       <tr class="t-snapshot-table-row">
-        <td style="vertical-align: middle"><%= snapshot.created_at.strftime('%e %B %Y') %></td>
+        <td class="table__cell--middle"><%= snapshot.created_at.strftime('%e %B %Y') %></td>
         <td>
           <%= link_to 'View', admin_metric_path(snapshot), class: 'btn btn-primary btn-block t-snapshot-view-button' %>
         </td>
