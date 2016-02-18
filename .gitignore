@@ -10,3 +10,4 @@ fca_import_scripts/archives
 fca_import_scripts/ext
 fca_import_scripts/sql
 fca_import_scripts/invalid_advisers.csv
+.ruby-env
