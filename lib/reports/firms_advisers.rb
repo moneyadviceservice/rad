@@ -12,7 +12,13 @@ class Reports::FirmsAdvisers
     CSV.generate do |csv|
       csv << HEADER_ROW
 
-      Firm.all.each do |firm|
+      Firm.includes(
+        :advisers,
+        :principal,
+        :in_person_advice_methods,
+        :other_advice_methods,
+        :principal
+      ).find_each do |firm|
         csv << row_for_firm(firm)
       end
     end
