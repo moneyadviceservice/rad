@@ -24,7 +24,7 @@ gem 'dough-ruby',
 gem 'jquery-rails'
 gem 'kaminari'
 gem 'letter_opener', group: :development
-gem 'mas-rad_core', '0.0.99'
+gem 'mas-rad_core', '0.0.100'
 gem 'oga'
 gem 'pg'
 gem 'rails_email_validator'
