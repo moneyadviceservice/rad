@@ -190,6 +190,7 @@ RSpec.feature 'The self service firm list page' do
   def and_the_overall_status_should_be_unpublished
     expected_text = I18n.t!('self_service.firms_index.status.unpublished')
     expect(firms_index_page.parent_firm.overall_status).to have_text(expected_text)
+    expect(firms_index_page.parent_firm).to have_unpublished
   end
 
   private

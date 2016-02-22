@@ -6,5 +6,6 @@ module SelfService
     element :edit_link, '.t-edit-link'
     element :remove_button, '.t-remove-button'
     element :overall_status, '.t-overall-status'
+    element :unpublished, '.status__overall-status--unpublished'
   end
 end

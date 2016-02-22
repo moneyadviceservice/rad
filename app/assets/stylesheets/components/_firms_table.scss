@@ -1,16 +1,11 @@
 .firms-table {
   width: 100%;
 
-  .firms-table__frn {
-    width: 10%;
-  }
-
   .firms-table__name {
-    width: 70%;
+    width: 50%;
   }
 
-  .firms-table__action,
-  .firms-table__principal {
-    width: 20%;
+  .firms-table__status {
+    width: 30%;
   }
 }
