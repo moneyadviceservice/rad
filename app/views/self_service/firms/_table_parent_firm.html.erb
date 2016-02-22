@@ -22,13 +22,7 @@
         </td>
         <td class="t-frn"><%= @presenter.firm.fca_number %></td>
         <td class="t-status">
-          <% presenter = SelfService::StatusPresenter.new(@presenter.firm) %>
-          <div class="t-overall-status status__overall-status status__overall-status--<%= presenter.overall_status %>">
-            <svg class="status__icon">
-              <use xlink:href="<%= image_path('icon_spritesheet.svg') %>#icon-<%= presenter.overall_status_icon %>">
-            </svg>
-            <%= t("self_service.firms_index.status.#{presenter.overall_status}") %>
-          </div>
+          <%= render 'status', presenter: SelfService::StatusPresenter.new(@presenter.firm) %>
         </td>
       </tr>
     </tbody>

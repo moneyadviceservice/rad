@@ -1,0 +1,6 @@
+<div class="t-overall-status status__overall-status status__overall-status--<%= presenter.overall_status %>">
+  <svg class="status__icon">
+    <use xlink:href="<%= image_path('icon_spritesheet.svg') %>#icon-<%= presenter.overall_status_icon %>">
+  </svg>
+  <%= t("self_service.firms_index.status.#{presenter.overall_status}") %>
+</div>
