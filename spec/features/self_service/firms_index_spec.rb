@@ -37,13 +37,13 @@ RSpec.feature 'The self service firm list page' do
     and_the_parent_firm_section_heading_is_visible
   end
 
-  scenario 'The principal can delete trading names' do
+  scenario 'The principal can remove trading names' do
     given_i_am_a_fully_registered_principal_user
     and_i_have_a_firm_with_both_available_and_added_trading_names
     and_i_am_logged_in
     and_i_am_on_the_principals_firms_index_page
     and_i_can_see_the_first_trading_name
-    when_i_delete_the_first_trading_name
+    when_i_remove_the_first_trading_name
     then_i_am_on_the_principals_firms_index_page
     and_i_cannot_see_the_deleted_trading_name
     and_i_can_see_a_success_message
@@ -128,8 +128,8 @@ RSpec.feature 'The self service firm list page' do
     expect(firms_index_page).not_to have_trading_names
   end
 
-  def when_i_delete_the_first_trading_name
-    firms_index_page.trading_names.first.delete_button.click
+  def when_i_remove_the_first_trading_name
+    firms_index_page.trading_names.first.remove_button.click
   end
 
   def and_i_can_see_a_success_message

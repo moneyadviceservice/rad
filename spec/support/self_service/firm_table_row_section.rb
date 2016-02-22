@@ -4,6 +4,6 @@ module SelfService
     element :name, '.t-firm-name'
     element :principal_name, '.t-principal-name'
     element :edit_link, '.t-edit-link'
-    element :delete_button, '.t-remove-button'
+    element :remove_button, '.t-remove-button'
   end
 end
