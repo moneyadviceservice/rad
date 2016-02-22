@@ -199,6 +199,8 @@ en:
     geocoding:
       failure_message: could not be found by the mapping service.
       failure_explanation: We could not find the coordinates of your office address to plot it on the map in the directory. Please check and try again. If the details are correct and still cannot be found please contact RADenquiries@moneyadviceservice.org.uk for assistance.
+    telephone_number:
+      invalid_format: must be a valid UK phone number (including the area code) or mobile number
 
   lookup_adviser:
     error_responses:
