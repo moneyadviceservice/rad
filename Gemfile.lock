@@ -141,7 +141,7 @@ GEM
       nokogiri (>= 1.5.9)
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
-    mas-rad_core (0.0.100)
+    mas-rad_core (0.0.101)
       active_model_serializers
       geocoder
       httpclient
@@ -151,6 +151,7 @@ GEM
       redis
       statsd-ruby
       uk_phone_numbers
+      uk_postcode
     method_source (0.8.2)
     mime-types (2.99)
     mini_portile2 (2.0.0)
@@ -302,6 +303,7 @@ GEM
       execjs (>= 0.3.0)
       json (>= 1.8.0)
     uk_phone_numbers (0.1.1)
+    uk_postcode (2.1.0)
     unicorn (4.8.3)
       kgio (~> 2.6)
       rack
@@ -339,7 +341,7 @@ DEPENDENCIES
   kaminari
   launchy
   letter_opener
-  mas-rad_core (= 0.0.100)
+  mas-rad_core (= 0.0.101)
   oga
   pg
   poltergeist
