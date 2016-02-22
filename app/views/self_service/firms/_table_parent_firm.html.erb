@@ -8,9 +8,6 @@
         <th class="firms-table__frn">
           <%= Firm.human_attribute_name(:fca_number) %>
         </th>
-        <th class="firms-table__principal">
-          <%= t('self_service.firms_index.principal_column_heading') %>
-        </th>
         <th class="firms-table__status">
           <%= t('self_service.firms_index.status_column_heading') %>
         </th>
@@ -24,7 +21,6 @@
           <% end %>
         </td>
         <td class="t-frn"><%= @presenter.firm.fca_number %></td>
-        <td class="t-principal-name"><%= @presenter.firm.principal.full_name %></td>
         <td class="t-status">
           <div class="t-overall-status status__overall-status status__overall-status--unpublished">
             <%= t('self_service.firms_index.status.unpublished') %>
