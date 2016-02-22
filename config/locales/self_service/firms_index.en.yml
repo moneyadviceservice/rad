@@ -11,6 +11,7 @@ en:
         trading name from the list of available trading names below.
       available_trading_names_heading: Available Trading Names
       principal_column_heading: Principal
+      status_column_heading: Status
       trading_names_filter_label: "Filter trading names:"
       available_trading_names_filter_label: "Filter available trading names:"
       trading_names_filter_placeholder: e.g. firm name
@@ -18,3 +19,5 @@ en:
       new_trading_name_link: Add to directory
       delete_trading_name_button: Remove from Directory
       delete_trading_name_confirmation: Are you sure you want to remove %{name} and all associated advisers from the directory?
+      status:
+        unpublished: Needs more information

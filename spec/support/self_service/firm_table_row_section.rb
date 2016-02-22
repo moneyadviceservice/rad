@@ -5,5 +5,6 @@ module SelfService
     element :principal_name, '.t-principal-name'
     element :edit_link, '.t-edit-link'
     element :remove_button, '.t-remove-button'
+    element :overall_status, '.t-overall-status'
   end
 end
