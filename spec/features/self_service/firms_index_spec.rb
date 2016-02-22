@@ -56,7 +56,17 @@ RSpec.feature 'The self service firm list page' do
     and_i_am_on_the_principals_firms_index_page
     then_i_can_see_the_parent_firm_i_am_associated_with
     and_i_should_see_the_overall_status_for_the_parent_firm
-    and_the_overall_status_should_be_unpublished
+    and_the_overall_status_is_unpublished
+  end
+
+  scenario 'when the parent firm is published' do
+    given_i_am_a_fully_registered_principal_user
+    and_i_have_a_published_firm
+    when_i_am_logged_in
+    and_i_am_on_the_principals_firms_index_page
+    then_i_can_see_the_parent_firm_i_am_associated_with
+    and_i_should_see_the_overall_status_for_the_parent_firm
+    and_the_overall_status_is_published
   end
 
   def given_i_am_a_fully_registered_principal_user
@@ -88,8 +98,16 @@ RSpec.feature 'The self service firm list page' do
     expect(@principal.firm.trading_names).to be_empty
   end
 
+  def and_i_have_a_published_firm
+    @firm = FactoryGirl.create(:firm)
+    @principal.firm = @firm
+
+    expect(@firm).to be_publishable
+  end
+
   def and_i_have_an_unpublished_firm
     @firm = @principal.firm
+
     expect(@firm).not_to be_publishable
   end
 
@@ -187,10 +205,16 @@ RSpec.feature 'The self service firm list page' do
     expect(firms_index_page.parent_firm).to have_overall_status
   end
 
-  def and_the_overall_status_should_be_unpublished
+  def and_the_overall_status_is_unpublished
     expected_text = I18n.t!('self_service.firms_index.status.unpublished')
     expect(firms_index_page.parent_firm.overall_status).to have_text(expected_text)
     expect(firms_index_page.parent_firm).to have_unpublished
+  end
+
+  def and_the_overall_status_is_published
+    expected_text = I18n.t!('self_service.firms_index.status.published')
+    expect(firms_index_page.parent_firm.overall_status).to have_text(expected_text)
+    expect(firms_index_page.parent_firm).to have_published
   end
 
   private

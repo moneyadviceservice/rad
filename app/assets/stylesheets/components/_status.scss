@@ -9,6 +9,7 @@
 
 .status__icon {
   height: 20px;
+  margin-right: 4px;
   vertical-align: middle;
   width: 20px;
 }
@@ -17,4 +18,9 @@
   background-color: $color-yellow-dark;
   border: none;
   color: $color-white;
+  fill: $color-white;
+}
+
+.status__overall-status--published {
+  fill: $color-green-secondary;
 }

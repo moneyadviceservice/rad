@@ -20,4 +20,5 @@ en:
       delete_trading_name_button: Remove from Directory
       delete_trading_name_confirmation: Are you sure you want to remove %{name} and all associated advisers from the directory?
       status:
+        published: Visible on directory
         unpublished: Needs more information

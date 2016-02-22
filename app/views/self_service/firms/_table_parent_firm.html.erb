@@ -22,12 +22,21 @@
         </td>
         <td class="t-frn"><%= @presenter.firm.fca_number %></td>
         <td class="t-status">
-          <div class="t-overall-status status__overall-status status__overall-status--unpublished">
-            <svg class="status__icon">
-              <use xlink:href="<%= image_path('icon_spritesheet.svg') %>#icon-exclamation">
-            </svg>
-            <%= t('self_service.firms_index.status.unpublished') %>
-          </div>
+          <% if @presenter.firm.publishable? %>
+            <div class="t-overall-status status__overall-status status__overall-status--published">
+              <svg class="status__icon">
+                <use xlink:href="<%= image_path('icon_spritesheet.svg') %>#icon-tick">
+              </svg>
+              <%= t('self_service.firms_index.status.published') %>
+            </div>
+          <% else %>
+            <div class="t-overall-status status__overall-status status__overall-status--unpublished">
+              <svg class="status__icon">
+                <use xlink:href="<%= image_path('icon_spritesheet.svg') %>#icon-exclamation">
+              </svg>
+              <%= t('self_service.firms_index.status.unpublished') %>
+            </div>
+          <% end %>
         </td>
       </tr>
     </tbody>
