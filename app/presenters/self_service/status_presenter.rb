@@ -20,7 +20,7 @@ module SelfService
     end
 
     def advisers_icon
-      icon_toggle @firm.advisers.any?
+      icon_toggle(remote? || @firm.advisers.any?)
     end
 
     def offices_icon
@@ -55,10 +55,18 @@ module SelfService
       @firm.advisers.count
     end
 
+    def offices_count
+      @firm.offices.count
+    end
+
     private
 
     def icon_toggle(condition_met)
       condition_met ? 'tick' : 'exclamation'
+    end
+
+    def remote?
+      @firm.primary_advice_method == :remote
     end
   end
 end

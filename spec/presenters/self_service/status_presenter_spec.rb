@@ -83,16 +83,60 @@ RSpec.describe SelfService::StatusPresenter do
     context 'when the firm has advisers' do
       let(:advisers) { ['an adviser'] }
 
-      it 'provides "tick"' do
-        expect(presenter.advisers_icon).to eq('tick')
+      before { allow(firm).to receive(:primary_advice_method).and_return(primary_advice_method) }
+
+      context 'and is local' do
+        let(:primary_advice_method) { :local }
+
+        it 'provides "tick"' do
+          expect(presenter.advisers_icon).to eq('tick')
+        end
+      end
+
+      context 'and is remote' do
+        let(:primary_advice_method) { :remote }
+
+        it 'provides "tick"' do
+          expect(presenter.advisers_icon).to eq('tick')
+        end
+      end
+
+      context 'and is nil' do
+        let(:primary_advice_method) { nil }
+
+        it 'provides "tick"' do
+          expect(presenter.advisers_icon).to eq('tick')
+        end
       end
     end
 
     context 'when the firm has no advisers' do
       let(:advisers) { [] }
 
-      it 'provides "exclamation"' do
-        expect(presenter.advisers_icon).to eq('exclamation')
+      before { allow(firm).to receive(:primary_advice_method).and_return(primary_advice_method) }
+
+      context 'and is local' do
+        let(:primary_advice_method) { :local }
+
+        it 'provides "exclamation"' do
+          expect(presenter.advisers_icon).to eq('exclamation')
+        end
+      end
+
+      context 'and is remote' do
+        let(:primary_advice_method) { :remote }
+
+        it 'provides "tick"' do
+          expect(presenter.advisers_icon).to eq('tick')
+        end
+      end
+
+      context 'and is nil' do
+        let(:primary_advice_method) { nil }
+
+        it 'provides "exclamation"' do
+          expect(presenter.advisers_icon).to eq('exclamation')
+        end
       end
     end
   end
