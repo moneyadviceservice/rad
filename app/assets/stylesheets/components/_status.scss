@@ -1,8 +1,8 @@
 .status__icon {
-  height: 20px;
+  height: $status-icon-size;
   margin-right: 4px;
   vertical-align: middle;
-  width: 20px;
+  width: $status-icon-size;
 }
 
 .status__icon--exclamation {
@@ -15,7 +15,7 @@
 
 .status__overall-status {
   @include clearfix;
-  border-bottom: 1px solid grey;
+  border-bottom: 1px solid $color-grey-light;
   font-weight: bold;
   line-height: 3;
   margin-bottom: $baseline-unit*2;
