@@ -166,4 +166,11 @@ RSpec.describe SelfService::StatusPresenter do
       end
     end
   end
+
+  describe '#advisers_count' do
+    it 'shows the number of advisers for the given firm' do
+      allow(firm).to receive(:advisers).and_return(%w(adviser_1 adviser_2))
+      expect(presenter.advisers_count).to eq(2)
+    end
+  end
 end

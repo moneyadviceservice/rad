@@ -51,6 +51,10 @@ module SelfService
       end
     end
 
+    def advisers_count
+      @firm.advisers.count
+    end
+
     private
 
     def icon_toggle(condition_met)
