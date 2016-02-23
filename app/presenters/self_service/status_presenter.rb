@@ -12,22 +12,37 @@ module SelfService
     end
 
     def overall_status_icon
-      @firm.publishable? ? 'tick' : 'exclamation'
+      icon_toggle @firm.publishable?
     end
 
     def firm_details_icon
-      @firm.registered? ? 'tick' : 'exclamation'
+      icon_toggle @firm.registered?
+    end
+
+    def advisers_icon
+      icon_toggle @firm.advisers.any?
     end
 
     def firm_details_link(opts = {})
-      link_to 'Edit', firm_details_link_path, opts
+      if @firm.trading_name?
+        link_to 'Edit', edit_self_service_trading_name_path(@firm), opts
+      else
+        link_to 'Edit', edit_self_service_firm_path(@firm), opts
+      end
+    end
+
+    def advisers_link(opts = {})
+      if @firm.advisers.present?
+        link_to 'Manage', self_service_firm_advisers_path(@firm), opts
+      else
+        link_to 'Add', new_self_service_firm_adviser_path(@firm), opts
+      end
     end
 
     private
 
-    def firm_details_link_path
-      route = @firm.trading_name? ? 'trading_name' : 'firm'
-      send "edit_self_service_#{route}_path", @firm
+    def icon_toggle(condition_met)
+      condition_met ? 'tick' : 'exclamation'
     end
   end
 end

@@ -1,6 +1,11 @@
 RSpec.describe SelfService::StatusPresenter do
-  def link_regex_for(route, text)
-    /^<a.*href=.*#{route}.*#{firm.id}.*edit.*>#{text}<\/a>/
+  def firm_link_regex(model, text)
+    /^<a.*href=.*#{model}.*#{firm.id}.*edit.*>#{text}<\/a>/
+  end
+
+  def adviser_link_regex(model, text)
+    action = model == 'adviser' ? '.*new' : ''
+    /^<a.*href=.*#{firm.id}.*#{model}#{action}.*>#{text}<\/a>/
   end
 
   let(:firm) { FactoryGirl.create(:firm) }
@@ -64,7 +69,7 @@ RSpec.describe SelfService::StatusPresenter do
       let(:is_trading_name) { true }
 
       it 'provides a link to the trading name edit page' do
-        expect(presenter.firm_details_link).to match(link_regex_for('trading_names', 'Edit'))
+        expect(presenter.firm_details_link).to match(firm_link_regex('trading_names', 'Edit'))
       end
     end
 
@@ -72,7 +77,47 @@ RSpec.describe SelfService::StatusPresenter do
       let(:is_trading_name) { false }
 
       it 'provides a link to the parent firm edit page' do
-        expect(presenter.firm_details_link).to match(link_regex_for('firms', 'Edit'))
+        expect(presenter.firm_details_link).to match(firm_link_regex('firms', 'Edit'))
+      end
+    end
+  end
+
+  describe '#advisers_icon' do
+    before { allow(firm).to receive(:advisers).and_return(advisers) }
+
+    context 'when the firm has advisers' do
+      let(:advisers) { ['an adviser'] }
+
+      it 'provides "tick"' do
+        expect(presenter.advisers_icon).to eq('tick')
+      end
+    end
+
+    context 'when the firm has no advisers' do
+      let(:advisers) { [] }
+
+      it 'provides "exclamation"' do
+        expect(presenter.advisers_icon).to eq('exclamation')
+      end
+    end
+  end
+
+  describe '#advisers_link' do
+    before { allow(firm).to receive(:advisers).and_return(advisers) }
+
+    context 'when the firm has advisers' do
+      let(:advisers) { ['an adviser'] }
+
+      it 'provides a link to the trading name edit page' do
+        expect(presenter.advisers_link).to match(adviser_link_regex('advisers', 'Manage'))
+      end
+    end
+
+    context 'when the firm has no advisers' do
+      let(:advisers) { [] }
+
+      it 'provides a link to the parent firm edit page' do
+        expect(presenter.advisers_link).to match(adviser_link_regex('adviser', 'Add'))
       end
     end
   end

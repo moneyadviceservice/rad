@@ -12,3 +12,13 @@
     <%= presenter.firm_details_link(class: 'button button--small') %>
   </div>
 </div>
+
+<div class="l-2col status__row">
+  <div class="l-2col-main">
+    <%= status_icon(presenter.advisers_icon) %>
+    <%= t("self_service.firms_index.status.advisers") %>
+  </div>
+  <div class="l-2col-side">
+    <%= presenter.advisers_link(class: 'button button--small') %>
+  </div>
+</div>

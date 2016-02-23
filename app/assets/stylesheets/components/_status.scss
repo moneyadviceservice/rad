@@ -1,12 +1,3 @@
-.status__overall-status {
-  @include clearfix;
-  border-bottom: 1px solid grey;
-  font-weight: bold;
-  line-height: 3;
-  margin-bottom: $baseline-unit*2;
-  padding: 0 $baseline-unit;
-}
-
 .status__icon {
   height: 20px;
   margin-right: 4px;
@@ -18,8 +9,17 @@
   fill: $color-yellow-dark;
 }
 
-.status__overall-status--published, .status__icon--tick {
+.status__icon--tick, .status__overall-status--published {
   fill: $color-green-secondary;
+}
+
+.status__overall-status {
+  @include clearfix;
+  border-bottom: 1px solid grey;
+  font-weight: bold;
+  line-height: 3;
+  margin-bottom: $baseline-unit*2;
+  padding: 0 $baseline-unit;
 }
 
 .status__overall-status--unpublished {
@@ -30,4 +30,9 @@
   & > .status__icon--exclamation {
     fill: $color-white;
   }
+}
+
+.status__row {
+  @include clearfix;
+  padding-bottom: $baseline-unit;
 }
