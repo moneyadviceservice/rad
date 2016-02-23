@@ -8,7 +8,7 @@
     <%= status_icon(presenter.firm_details_icon) %>
     <%= t("self_service.firms_index.status.firm_details") %>
   </div>
-  <div class="l-2col-side">
+  <div class="l-2col-side l-2col-side--align-right">
     <%= presenter.firm_details_link(class: 'button button--small') %>
   </div>
 </div>
@@ -19,7 +19,7 @@
     <%= t("self_service.firms_index.status.advisers") %>
     (<%= presenter.advisers_count %>)
   </div>
-  <div class="l-2col-side">
+  <div class="l-2col-side l-2col-side--align-right">
     <%= presenter.advisers_link(class: 'button button--small') %>
   </div>
 </div>
@@ -30,7 +30,7 @@
     <%= t("self_service.firms_index.status.offices") %>
     (<%= presenter.offices_count %>)
   </div>
-  <div class="l-2col-side">
+  <div class="l-2col-side l-2col-side--align-right">
     <%= presenter.offices_link(class: 'button button--small') %>
   </div>
 </div>

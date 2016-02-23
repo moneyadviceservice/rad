@@ -25,5 +25,5 @@ en:
         firm_details: Firm Details
         advisers: Advisers
         offices: Offices
-        edit_button_text: Edit
-        add_edit_button_text: Add/Edit
+        edit: Edit
+        add: Add

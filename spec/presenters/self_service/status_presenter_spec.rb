@@ -152,8 +152,8 @@ RSpec.describe SelfService::StatusPresenter do
     context 'when the firm has advisers' do
       let(:advisers) { ['an adviser'] }
 
-      it 'provides a link to the manage advisers page' do
-        expect(presenter.advisers_link).to match(adviser_link_regex('advisers', 'Add/Edit'))
+      it 'provides a link to the advisers index page' do
+        expect(presenter.advisers_link).to match(adviser_link_regex('advisers', 'Edit'))
       end
     end
 
@@ -161,7 +161,7 @@ RSpec.describe SelfService::StatusPresenter do
       let(:advisers) { [] }
 
       it 'provides a link to the new adviser page' do
-        expect(presenter.advisers_link).to match(adviser_link_regex('adviser', 'Add/Edit'))
+        expect(presenter.advisers_link).to match(adviser_link_regex('adviser', 'Add'))
       end
     end
   end
@@ -197,8 +197,8 @@ RSpec.describe SelfService::StatusPresenter do
     context 'when the firm has offices' do
       let(:offices) { ['an office'] }
 
-      it 'provides a link to the manage offices page' do
-        expect(presenter.offices_link).to match(office_link_regex('offices', 'Add/Edit'))
+      it 'provides a link to the offices index page' do
+        expect(presenter.offices_link).to match(office_link_regex('offices', 'Edit'))
       end
     end
 
@@ -206,7 +206,7 @@ RSpec.describe SelfService::StatusPresenter do
       let(:offices) { [] }
 
       it 'provides a link to the new office page' do
-        expect(presenter.offices_link).to match(office_link_regex('office', 'Add/Edit'))
+        expect(presenter.offices_link).to match(office_link_regex('office', 'Add'))
       end
     end
   end
