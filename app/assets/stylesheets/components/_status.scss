@@ -14,13 +14,17 @@
   width: 20px;
 }
 
+.status__icon--exclamation {
+  fill: $color-yellow-dark;
+}
+
+.status__overall-status--published, .status__icon--tick {
+  fill: $color-green-secondary;
+}
+
 .status__overall-status--unpublished {
   background-color: $color-yellow-dark;
   border: none;
   color: $color-white;
   fill: $color-white;
-}
-
-.status__overall-status--published {
-  fill: $color-green-secondary;
 }

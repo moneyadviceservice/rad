@@ -4,3 +4,15 @@
   </svg>
   <%= t("self_service.firms_index.status.#{presenter.overall_status}") %>
 </div>
+
+<div class="l-2col status__row">
+  <div class="l-2col-main">
+    <svg class="status__icon status__icon--<%= presenter.firm_details_icon %>">
+      <use xlink:href="<%= image_path('icon_spritesheet.svg') %>#icon-<%= presenter.firm_details_icon %>">
+    </svg>
+    Firm Details
+  </div>
+  <div class="l-2col-side">
+    <%= presenter.firm_details_link(class: 'button button--small') %>
+  </div>
+</div>
