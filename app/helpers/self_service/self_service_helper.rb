@@ -81,5 +81,11 @@ module SelfService
         t('self_service.firm_form.languages_delete_language')
       end
     end
+
+    def status_icon(icon_type)
+      content_tag :svg, class: "status__icon status__icon--#{icon_type}" do
+        tag :use, 'xlink:href': "#{image_path('icon_spritesheet.svg')}#icon-#{icon_type}"
+      end
+    end
   end
 end

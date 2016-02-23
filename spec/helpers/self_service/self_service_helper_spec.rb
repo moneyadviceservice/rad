@@ -80,5 +80,19 @@ module SelfService
         end
       end
     end
+
+    describe '#status_icon' do
+      it 'returns an svg tag' do
+        expect(helper.status_icon('tick')).to match(/<svg /)
+      end
+
+      it 'adds a class for the icon type' do
+        expect(helper.status_icon('tick')).to include('status__icon--tick')
+      end
+
+      it 'includes the image for the icon type' do
+        expect(helper.status_icon('tick')).to include('icon_spritesheet.svg#icon-tick')
+      end
+    end
   end
 end

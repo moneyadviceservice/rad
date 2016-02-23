@@ -22,3 +22,4 @@ en:
       status:
         published: Visible on directory
         unpublished: Needs more information
+        firm_details: Firm Details

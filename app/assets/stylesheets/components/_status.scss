@@ -26,5 +26,8 @@
   background-color: $color-yellow-dark;
   border: none;
   color: $color-white;
-  fill: $color-white;
+
+  & > .status__icon--exclamation {
+    fill: $color-white;
+  }
 }

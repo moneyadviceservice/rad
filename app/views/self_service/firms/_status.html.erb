@@ -1,16 +1,12 @@
 <div class="t-overall-status status__overall-status status__overall-status--<%= presenter.overall_status %>">
-  <svg class="status__icon">
-    <use xlink:href="<%= image_path('icon_spritesheet.svg') %>#icon-<%= presenter.overall_status_icon %>">
-  </svg>
+  <%= status_icon(presenter.overall_status_icon) %>
   <%= t("self_service.firms_index.status.#{presenter.overall_status}") %>
 </div>
 
 <div class="l-2col status__row">
   <div class="l-2col-main">
-    <svg class="status__icon status__icon--<%= presenter.firm_details_icon %>">
-      <use xlink:href="<%= image_path('icon_spritesheet.svg') %>#icon-<%= presenter.firm_details_icon %>">
-    </svg>
-    Firm Details
+    <%= status_icon(presenter.firm_details_icon) %>
+    <%= t("self_service.firms_index.status.firm_details") %>
   </div>
   <div class="l-2col-side">
     <%= presenter.firm_details_link(class: 'button button--small') %>
