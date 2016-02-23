@@ -56,7 +56,7 @@ RSpec.feature 'The self service firm list page' do
     and_i_am_on_the_principals_firms_index_page
     then_i_can_see_the_parent_firm_i_am_associated_with
     and_i_should_see_the_overall_status_for_the_parent_firm
-    and_the_overall_status_is_unpublished
+    and_the_parent_firm_overall_status_is_unpublished
   end
 
   scenario 'when the parent firm is published' do
@@ -66,7 +66,27 @@ RSpec.feature 'The self service firm list page' do
     and_i_am_on_the_principals_firms_index_page
     then_i_can_see_the_parent_firm_i_am_associated_with
     and_i_should_see_the_overall_status_for_the_parent_firm
-    and_the_overall_status_is_published
+    and_the_parent_firm_overall_status_is_published
+  end
+
+  scenario 'The principal can see the status of unpublishable trading names' do
+    given_i_am_a_fully_registered_principal_user
+    and_i_have_a_firm_with_both_available_and_added_trading_names
+    and_one_of_those_trading_names_is_unpublishable
+    when_i_am_logged_in
+    and_i_am_on_the_principals_firms_index_page
+    then_i_can_see_the_status_of_the_trading_name
+    and_the_trading_name_overall_status_is_unpublished
+  end
+
+  scenario 'The principal can see the status of publishable trading names' do
+    given_i_am_a_fully_registered_principal_user
+    and_i_have_a_firm_with_both_available_and_added_trading_names
+    and_one_of_those_trading_names_is_publishable
+    when_i_am_logged_in
+    and_i_am_on_the_principals_firms_index_page
+    then_i_can_see_the_status_of_the_trading_name
+    and_the_trading_name_overall_status_is_published
   end
 
   def given_i_am_a_fully_registered_principal_user
@@ -109,6 +129,17 @@ RSpec.feature 'The self service firm list page' do
     @firm = @principal.firm
 
     expect(@firm).not_to be_publishable
+  end
+
+  def and_one_of_those_trading_names_is_unpublishable
+    unpublished_trading_name = @principal.firm.trading_names.first
+    unpublished_trading_name.offices = []
+    expect(unpublished_trading_name).not_to be_publishable
+  end
+
+  def and_one_of_those_trading_names_is_publishable
+    published_trading_name = @principal.firm.trading_names.first
+    expect(published_trading_name).to be_publishable
   end
 
   def and_i_am_logged_in
@@ -205,16 +236,32 @@ RSpec.feature 'The self service firm list page' do
     expect(firms_index_page.parent_firm).to have_overall_status
   end
 
-  def and_the_overall_status_is_unpublished
+  def and_the_parent_firm_overall_status_is_unpublished
     expected_text = I18n.t!('self_service.firms_index.status.unpublished')
     expect(firms_index_page.parent_firm.overall_status).to have_text(expected_text)
     expect(firms_index_page.parent_firm).to have_unpublished
   end
 
-  def and_the_overall_status_is_published
+  def and_the_parent_firm_overall_status_is_published
     expected_text = I18n.t!('self_service.firms_index.status.published')
     expect(firms_index_page.parent_firm.overall_status).to have_text(expected_text)
     expect(firms_index_page.parent_firm).to have_published
+  end
+
+  def then_i_can_see_the_status_of_the_trading_name
+    expect(firms_index_page.trading_names.first).to have_overall_status
+  end
+
+  def and_the_trading_name_overall_status_is_unpublished
+    expected_text = I18n.t!('self_service.firms_index.status.unpublished')
+    expect(firms_index_page.trading_names.first.overall_status).to have_text(expected_text)
+    expect(firms_index_page.trading_names.first).to have_unpublished
+  end
+
+  def and_the_trading_name_overall_status_is_published
+    expected_text = I18n.t!('self_service.firms_index.status.published')
+    expect(firms_index_page.trading_names.first.overall_status).to have_text(expected_text)
+    expect(firms_index_page.trading_names.first).to have_published
   end
 
   private
