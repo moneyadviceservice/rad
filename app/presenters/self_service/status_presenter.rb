@@ -28,27 +28,33 @@ module SelfService
     end
 
     def firm_details_link(opts = {})
-      if @firm.trading_name?
-        link_to 'Edit', edit_self_service_trading_name_path(@firm), opts
-      else
-        link_to 'Edit', edit_self_service_firm_path(@firm), opts
-      end
+      path = if @firm.trading_name?
+               edit_self_service_trading_name_path(@firm)
+             else
+               edit_self_service_firm_path(@firm)
+             end
+
+      link_to I18n.t('self_service.firms_index.status.edit_button_text'), path, opts
     end
 
     def advisers_link(opts = {})
-      if @firm.advisers.present?
-        link_to 'Manage', self_service_firm_advisers_path(@firm), opts
-      else
-        link_to 'Add', new_self_service_firm_adviser_path(@firm), opts
-      end
+      path = if @firm.advisers.present?
+               self_service_firm_advisers_path(@firm)
+             else
+               new_self_service_firm_adviser_path(@firm)
+             end
+
+      link_to I18n.t('self_service.firms_index.status.add_edit_button_text'), path, opts
     end
 
     def offices_link(opts = {})
-      if @firm.offices.present?
-        link_to 'Manage', self_service_firm_offices_path(@firm), opts
-      else
-        link_to 'Add', new_self_service_firm_office_path(@firm), opts
-      end
+      path = if @firm.offices.present?
+               self_service_firm_offices_path(@firm)
+             else
+               new_self_service_firm_office_path(@firm)
+             end
+
+      link_to I18n.t('self_service.firms_index.status.add_edit_button_text'), path, opts
     end
 
     def advisers_count
