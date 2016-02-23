@@ -49,19 +49,23 @@ RSpec.describe SelfService::FirmsController, type: :controller do
     end
 
     context 'when there are lookup names' do
-      before { FactoryGirl.create_list(:lookup_subsidiary, 8, fca_number: firm.fca_number) }
+      before do
+        FactoryGirl.create(:lookup_subsidiary, fca_number: firm.fca_number, name: 'Bertie')
+        FactoryGirl.create(:lookup_subsidiary, fca_number: firm.fca_number, name: 'Anne')
+        FactoryGirl.create(:lookup_subsidiary, fca_number: firm.fca_number, name: 'Deirdre')
+        FactoryGirl.create(:lookup_subsidiary, fca_number: firm.fca_number, name: 'Colin')
+      end
 
       it 'assigns lookup names' do
         get :index
-        expect(assigns(:presenter)).to have(8).lookup_names
+        expect(assigns(:presenter)).to have(4).lookup_names
       end
 
       it 'sorts lookup names by lowercase name (alpha ascending)' do
         get :index
         assigned_names = assigns(:presenter).lookup_names.map(&:name)
-        sorted_names = assigned_names.sort_by(&:downcase)
 
-        expect(assigned_names).to eq sorted_names
+        expect(assigned_names).to eq %w(Anne Bertie Colin Deirdre)
       end
     end
   end
