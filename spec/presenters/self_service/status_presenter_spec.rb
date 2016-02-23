@@ -173,4 +173,11 @@ RSpec.describe SelfService::StatusPresenter do
       expect(presenter.advisers_count).to eq(2)
     end
   end
+
+  describe '#offices_count' do
+    it 'shows the number of offices for the given firm' do
+      allow(firm).to receive(:offices).and_return(%w(office_1 office_2 office_3))
+      expect(presenter.offices_count).to eq(3)
+    end
+  end
 end

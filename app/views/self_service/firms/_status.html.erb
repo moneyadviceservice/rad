@@ -28,6 +28,7 @@
   <div class="l-2col-main">
     <%= status_icon(presenter.offices_icon) %>
     <%= t("self_service.firms_index.status.offices") %>
+    (<%= presenter.offices_count %>)
   </div>
   <div class="l-2col-side">
     <%= presenter.offices_link(class: 'button button--small') %>
