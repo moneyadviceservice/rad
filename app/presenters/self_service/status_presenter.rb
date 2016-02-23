@@ -23,6 +23,10 @@ module SelfService
       icon_toggle @firm.advisers.any?
     end
 
+    def offices_icon
+      icon_toggle @firm.offices.any?
+    end
+
     def firm_details_link(opts = {})
       if @firm.trading_name?
         link_to 'Edit', edit_self_service_trading_name_path(@firm), opts
@@ -36,6 +40,14 @@ module SelfService
         link_to 'Manage', self_service_firm_advisers_path(@firm), opts
       else
         link_to 'Add', new_self_service_firm_adviser_path(@firm), opts
+      end
+    end
+
+    def offices_link(opts = {})
+      if @firm.offices.present?
+        link_to 'Manage', self_service_firm_offices_path(@firm), opts
+      else
+        link_to 'Add', new_self_service_firm_office_path(@firm), opts
       end
     end
 

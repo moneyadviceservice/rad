@@ -1,13 +1,4 @@
 RSpec.describe SelfService::StatusPresenter do
-  def firm_link_regex(model, text)
-    /^<a.*href=.*#{model}.*#{firm.id}.*edit.*>#{text}<\/a>/
-  end
-
-  def adviser_link_regex(model, text)
-    action = model == 'adviser' ? '.*new' : ''
-    /^<a.*href=.*#{firm.id}.*#{model}#{action}.*>#{text}<\/a>/
-  end
-
   let(:firm) { FactoryGirl.create(:firm) }
 
   subject(:presenter) { described_class.new(firm) }
@@ -62,6 +53,10 @@ RSpec.describe SelfService::StatusPresenter do
     end
   end
 
+  def firm_link_regex(model, text)
+    /^<a.*href=.*#{model}.*#{firm.id}.*edit.*>#{text}<\/a>/
+  end
+
   describe '#firm_details_link' do
     before { allow(firm).to receive(:trading_name?).and_return(is_trading_name) }
 
@@ -102,13 +97,18 @@ RSpec.describe SelfService::StatusPresenter do
     end
   end
 
+  def adviser_link_regex(model, text)
+    action = model == 'adviser' ? '.*new' : ''
+    /^<a.*href=.*#{firm.id}.*#{model}#{action}.*>#{text}<\/a>/
+  end
+
   describe '#advisers_link' do
     before { allow(firm).to receive(:advisers).and_return(advisers) }
 
     context 'when the firm has advisers' do
       let(:advisers) { ['an adviser'] }
 
-      it 'provides a link to the trading name edit page' do
+      it 'provides a link to the manage advisers page' do
         expect(presenter.advisers_link).to match(adviser_link_regex('advisers', 'Manage'))
       end
     end
@@ -116,8 +116,53 @@ RSpec.describe SelfService::StatusPresenter do
     context 'when the firm has no advisers' do
       let(:advisers) { [] }
 
-      it 'provides a link to the parent firm edit page' do
+      it 'provides a link to the new adviser page' do
         expect(presenter.advisers_link).to match(adviser_link_regex('adviser', 'Add'))
+      end
+    end
+  end
+
+  describe '#offices_icon' do
+    before { allow(firm).to receive(:offices).and_return(offices) }
+
+    context 'when the firm has offices' do
+      let(:offices) { ['an office'] }
+
+      it 'provides "tick"' do
+        expect(presenter.offices_icon).to eq('tick')
+      end
+    end
+
+    context 'when the firm has no offices' do
+      let(:offices) { [] }
+
+      it 'provides "exclamation"' do
+        expect(presenter.offices_icon).to eq('exclamation')
+      end
+    end
+  end
+
+  def office_link_regex(model, text)
+    action = model == 'office' ? '.*new' : ''
+    /^<a.*href=.*#{firm.id}.*#{model}#{action}.*>#{text}<\/a>/
+  end
+
+  describe '#offices_link' do
+    before { allow(firm).to receive(:offices).and_return(offices) }
+
+    context 'when the firm has offices' do
+      let(:offices) { ['an office'] }
+
+      it 'provides a link to the manage offices page' do
+        expect(presenter.offices_link).to match(office_link_regex('offices', 'Manage'))
+      end
+    end
+
+    context 'when the firm has no offices' do
+      let(:offices) { [] }
+
+      it 'provides a link to the new office page' do
+        expect(presenter.offices_link).to match(office_link_regex('office', 'Add'))
       end
     end
   end
