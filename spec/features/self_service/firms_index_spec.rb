@@ -37,16 +37,56 @@ RSpec.feature 'The self service firm list page' do
     and_the_parent_firm_section_heading_is_visible
   end
 
-  scenario 'The principal can delete trading names' do
+  scenario 'The principal can remove trading names' do
     given_i_am_a_fully_registered_principal_user
     and_i_have_a_firm_with_both_available_and_added_trading_names
     and_i_am_logged_in
     and_i_am_on_the_principals_firms_index_page
     and_i_can_see_the_first_trading_name
-    when_i_delete_the_first_trading_name
+    when_i_remove_the_first_trading_name
     then_i_am_on_the_principals_firms_index_page
     and_i_cannot_see_the_deleted_trading_name
     and_i_can_see_a_success_message
+  end
+
+  scenario 'when the parent firm is not published' do
+    given_i_am_a_fully_registered_principal_user
+    and_i_have_an_unpublished_firm
+    when_i_am_logged_in
+    and_i_am_on_the_principals_firms_index_page
+    then_i_can_see_the_parent_firm_i_am_associated_with
+    and_i_should_see_the_overall_status_for_the_parent_firm
+    and_the_parent_firm_overall_status_is_unpublished
+  end
+
+  scenario 'when the parent firm is published' do
+    given_i_am_a_fully_registered_principal_user
+    and_i_have_a_published_firm
+    when_i_am_logged_in
+    and_i_am_on_the_principals_firms_index_page
+    then_i_can_see_the_parent_firm_i_am_associated_with
+    and_i_should_see_the_overall_status_for_the_parent_firm
+    and_the_parent_firm_overall_status_is_published
+  end
+
+  scenario 'The principal can see the status of unpublishable trading names' do
+    given_i_am_a_fully_registered_principal_user
+    and_i_have_a_firm_with_both_available_and_added_trading_names
+    and_one_of_those_trading_names_is_unpublishable
+    when_i_am_logged_in
+    and_i_am_on_the_principals_firms_index_page
+    then_i_can_see_the_status_of_the_trading_name
+    and_the_trading_name_overall_status_is_unpublished
+  end
+
+  scenario 'The principal can see the status of publishable trading names' do
+    given_i_am_a_fully_registered_principal_user
+    and_i_have_a_firm_with_both_available_and_added_trading_names
+    and_one_of_those_trading_names_is_publishable
+    when_i_am_logged_in
+    and_i_am_on_the_principals_firms_index_page
+    then_i_can_see_the_status_of_the_trading_name
+    and_the_trading_name_overall_status_is_published
   end
 
   def given_i_am_a_fully_registered_principal_user
@@ -78,9 +118,34 @@ RSpec.feature 'The self service firm list page' do
     expect(@principal.firm.trading_names).to be_empty
   end
 
+  def and_i_have_a_published_firm
+    @firm = FactoryGirl.create(:firm)
+    @principal.firm = @firm
+
+    expect(@firm).to be_publishable
+  end
+
+  def and_i_have_an_unpublished_firm
+    @firm = @principal.firm
+
+    expect(@firm).not_to be_publishable
+  end
+
+  def and_one_of_those_trading_names_is_unpublishable
+    unpublished_trading_name = @principal.firm.trading_names.first
+    unpublished_trading_name.offices = []
+    expect(unpublished_trading_name).not_to be_publishable
+  end
+
+  def and_one_of_those_trading_names_is_publishable
+    published_trading_name = @principal.firm.trading_names.first
+    expect(published_trading_name).to be_publishable
+  end
+
   def and_i_am_logged_in
     login_as(@user, scope: :user)
   end
+  alias_method :when_i_am_logged_in, :and_i_am_logged_in
 
   def when_i_am_on_the_principals_firms_index_page
     firms_index_page.load
@@ -128,8 +193,8 @@ RSpec.feature 'The self service firm list page' do
     expect(firms_index_page).not_to have_trading_names
   end
 
-  def when_i_delete_the_first_trading_name
-    firms_index_page.trading_names.first.delete_button.click
+  def when_i_remove_the_first_trading_name
+    firms_index_page.trading_names.first.remove_button.click
   end
 
   def and_i_can_see_a_success_message
@@ -165,6 +230,38 @@ RSpec.feature 'The self service firm list page' do
 
   def and_the_parent_firm_section_heading_is_not_visible
     expect(firms_index_page).not_to have_parent_firm_heading
+  end
+
+  def and_i_should_see_the_overall_status_for_the_parent_firm
+    expect(firms_index_page.parent_firm).to have_overall_status
+  end
+
+  def and_the_parent_firm_overall_status_is_unpublished
+    expected_text = I18n.t!('self_service.firms_index.status.unpublished')
+    expect(firms_index_page.parent_firm.overall_status).to have_text(expected_text)
+    expect(firms_index_page.parent_firm).to have_unpublished
+  end
+
+  def and_the_parent_firm_overall_status_is_published
+    expected_text = I18n.t!('self_service.firms_index.status.published')
+    expect(firms_index_page.parent_firm.overall_status).to have_text(expected_text)
+    expect(firms_index_page.parent_firm).to have_published
+  end
+
+  def then_i_can_see_the_status_of_the_trading_name
+    expect(firms_index_page.trading_names.first).to have_overall_status
+  end
+
+  def and_the_trading_name_overall_status_is_unpublished
+    expected_text = I18n.t!('self_service.firms_index.status.unpublished')
+    expect(firms_index_page.trading_names.first.overall_status).to have_text(expected_text)
+    expect(firms_index_page.trading_names.first).to have_unpublished
+  end
+
+  def and_the_trading_name_overall_status_is_published
+    expected_text = I18n.t!('self_service.firms_index.status.published')
+    expect(firms_index_page.trading_names.first.overall_status).to have_text(expected_text)
+    expect(firms_index_page.trading_names.first).to have_published
   end
 
   private

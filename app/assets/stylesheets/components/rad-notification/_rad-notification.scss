@@ -32,9 +32,6 @@
 
     border-bottom-left-radius: $rad-notification-radius;
     border-top-left-radius: $rad-notification-radius;
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-image: image-url('icon-tick.svg');
 
     @include respond-to($mq-m) {
       width: $baseline-unit*8;
@@ -45,12 +42,10 @@
 .rad-notification__content-container--error:before,
 .rad-notification__content-container--alert:before {
   background-color: $color-rad-notification-error;
-  background-image: image-url('icon-cross.svg');
 }
 
 .rad-notification__content-container--onboarding:before {
   background-color: $color-rad-notification-warning;
-  background-image: image-url('icon-exclamation.svg');
 }
 
 .rad-notification__heading {

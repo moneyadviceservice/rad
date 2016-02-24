@@ -4,6 +4,9 @@ module SelfService
     element :name, '.t-firm-name'
     element :principal_name, '.t-principal-name'
     element :edit_link, '.t-edit-link'
-    element :delete_button, '.t-remove-button'
+    element :remove_button, '.t-remove-button'
+    element :overall_status, '.t-overall-status'
+    element :published, '.status__overall-status--published'
+    element :unpublished, '.status__overall-status--unpublished'
   end
 end
