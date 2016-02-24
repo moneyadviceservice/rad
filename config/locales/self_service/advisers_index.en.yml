@@ -2,7 +2,6 @@ en:
   self_service:
     advisers_index:
       breadcrumb: Advisers
-      title: "Advisers for %{firm_name}"
       adviser_names_filter_label: "Filter adviser names:"
       adviser_names_filter_placeholder: e.g. adviser name
       delete_adviser_button: Remove from Directory

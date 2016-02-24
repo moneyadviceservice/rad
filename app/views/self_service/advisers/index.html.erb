@@ -3,9 +3,6 @@
 <%= render partial: 'self_service/shared/header_and_nav', locals: { firm: @firm } %>
 
 <div class="l-heading-with-button">
-  <h1 class="t-firm-name">
-    <%= t('self_service.advisers_index.title', firm_name: @firm.registered_name) %>
-  </h1>
   <%= add_adviser_button(firm: @firm) %>
 </div>
 

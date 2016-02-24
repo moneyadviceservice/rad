@@ -2,7 +2,6 @@ en:
   self_service:
     offices_index:
       breadcrumb: Offices
-      title: "Offices for %{firm_name}"
       office_filter_label: "Filter offices:"
       office_filter_placeholder: e.g. office postcode
       add_office_button: Add an office
