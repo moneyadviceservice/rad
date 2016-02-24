@@ -1,20 +1,20 @@
 <div class="panel">
   <% if presenter.publishable? %>
     <%= status_icon('tick') %>
-    Visible on the directory
+    <%= t('self_service.status.published') %>
   <% end %>
 
   <% if presenter.needs_advisers? %>
     <div>
       <%= status_icon('exclamation') %>
-      You need to add one or more advisers
+      <%= t('self_service.status.needs_advisers') %>
     </div>
   <% end %>
 
   <% if presenter.needs_offices? %>
     <div>
       <%= status_icon('exclamation') %>
-      You need to add one or more offices
+      <%= t('self_service.status.needs_offices') %>
     </div>
   <% end %>
 </div>
