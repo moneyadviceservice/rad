@@ -1,0 +1,14 @@
+.l-top-action-buttons {
+  @include clearfix();
+  position: relative;
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+
+  @include respond-to($mq-m) {
+    .button {
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
+  }
+}
