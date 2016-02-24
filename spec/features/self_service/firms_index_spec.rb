@@ -49,6 +49,22 @@ RSpec.feature 'The self service firm list page' do
     and_i_can_see_a_success_message
   end
 
+  scenario 'when the principal is not onboarded' do
+    given_i_am_a_fully_registered_principal_user
+    and_i_have_no_publishable_firms
+    when_i_am_logged_in
+    and_i_am_on_the_principals_firms_index_page
+    then_i_can_see_the_onboading_message
+  end
+
+  scenario 'when the principal is onboarded' do
+    given_i_am_a_fully_registered_principal_user
+    and_i_have_publishable_firms
+    when_i_am_logged_in
+    and_i_am_on_the_principals_firms_index_page
+    then_i_can_not_see_the_onboading_message
+  end
+
   scenario 'when the parent firm is not published' do
     given_i_am_a_fully_registered_principal_user
     and_i_have_an_unpublished_firm
@@ -124,22 +140,24 @@ RSpec.feature 'The self service firm list page' do
 
     expect(@firm).to be_publishable
   end
+  alias_method :and_i_have_publishable_firms, :and_i_have_a_published_firm
 
   def and_i_have_an_unpublished_firm
     @firm = @principal.firm
 
     expect(@firm).not_to be_publishable
   end
+  alias_method :and_i_have_no_publishable_firms, :and_i_have_an_unpublished_firm
 
   def and_one_of_those_trading_names_is_unpublishable
-    unpublished_trading_name = @principal.firm.trading_names.first
-    unpublished_trading_name.offices = []
-    expect(unpublished_trading_name).not_to be_publishable
+    @unpublished_trading_name = @principal.firm.trading_names.first
+    @unpublished_trading_name.offices = []
+    expect(@unpublished_trading_name).not_to be_publishable
   end
 
   def and_one_of_those_trading_names_is_publishable
-    published_trading_name = @principal.firm.trading_names.first
-    expect(published_trading_name).to be_publishable
+    @published_trading_name = @principal.firm.trading_names.first
+    expect(@published_trading_name).to be_publishable
   end
 
   def and_i_am_logged_in
@@ -254,14 +272,30 @@ RSpec.feature 'The self service firm list page' do
 
   def and_the_trading_name_overall_status_is_unpublished
     expected_text = I18n.t!('self_service.firms_index.status.unpublished')
-    expect(firms_index_page.trading_names.first.overall_status).to have_text(expected_text)
-    expect(firms_index_page.trading_names.first).to have_unpublished
+    trading_name = firms_index_page.trading_names.find do |tn|
+      tn.name.text == @unpublished_trading_name.registered_name
+    end
+
+    expect(trading_name.overall_status).to have_text(expected_text)
+    expect(trading_name).to have_unpublished
   end
 
   def and_the_trading_name_overall_status_is_published
     expected_text = I18n.t!('self_service.firms_index.status.published')
-    expect(firms_index_page.trading_names.first.overall_status).to have_text(expected_text)
-    expect(firms_index_page.trading_names.first).to have_published
+    trading_name = firms_index_page.trading_names.find do |tn|
+      tn.name.text == @published_trading_name.registered_name
+    end
+
+    expect(trading_name.overall_status).to have_text(expected_text)
+    expect(trading_name).to have_published
+  end
+
+  def then_i_can_see_the_onboading_message
+    expect(firms_index_page).to have_onboarding_message
+  end
+
+  def then_i_can_not_see_the_onboading_message
+    expect(firms_index_page).not_to have_onboarding_message
   end
 
   private
