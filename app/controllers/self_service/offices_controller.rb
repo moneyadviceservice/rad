@@ -27,7 +27,7 @@ module SelfService
     def update
       if @office.update_with_geocoding(office_params)
         flash[:notice] = I18n.t('self_service.office_edit.saved')
-        redirect_to edit_self_service_firm_office_path(@firm, @office)
+        redirect_to self_service_firm_offices_path(@firm)
       else
         render :edit
       end
