@@ -2,9 +2,6 @@
 
 <%= render partial: 'self_service/shared/header_and_nav', locals: { firm: @firm } %>
 
-<div class="l-heading-with-inline-links">
-</div>
-
 <%= form_for @firm,
              url: self_service_firm_path(@firm),
              builder: Dough::Forms::Builders::Validation do |f| %>
