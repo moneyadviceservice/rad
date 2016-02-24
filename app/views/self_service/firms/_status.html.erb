@@ -17,7 +17,7 @@
   <div class="l-2col-main">
     <%= status_icon(presenter.advisers_icon) %>
     <%= t("self_service.firms_index.status.advisers") %>
-    (<%= presenter.advisers_count %>)
+    (<%= presenter.advisers.count %>)
   </div>
   <div class="l-2col-side l-2col-side--align-right">
     <%= presenter.advisers_link(class: 'button button--small') %>
@@ -28,7 +28,7 @@
   <div class="l-2col-main">
     <%= status_icon(presenter.offices_icon) %>
     <%= t("self_service.firms_index.status.offices") %>
-    (<%= presenter.offices_count %>)
+    (<%= presenter.offices.count %>)
   </div>
   <div class="l-2col-side l-2col-side--align-right">
     <%= presenter.offices_link(class: 'button button--small') %>
