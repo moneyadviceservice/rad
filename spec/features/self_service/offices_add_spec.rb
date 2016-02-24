@@ -4,7 +4,8 @@ RSpec.feature 'The self service office add page', vcr: vcr_options_for(:features
   let(:office_edit_page) { SelfService::OfficeEditPage.new }
 
   let(:address_line_one) { '120 Holborn' }
-  let(:address_town) { 'London' }
+  let(:address_line_two) { 'Floor 5' }
+  let(:address_town)     { 'London' }
   let(:address_postcode) { 'EC1N 2TD' }
 
   let(:principal) { FactoryGirl.create(:principal) }
@@ -12,7 +13,7 @@ RSpec.feature 'The self service office add page', vcr: vcr_options_for(:features
   let(:office) do
     FactoryGirl.attributes_for(:office,
                                address_line_one: address_line_one,
-                               address_line_two: '',
+                               address_line_two: address_line_two,
                                address_town: address_town,
                                address_county: '',
                                address_postcode: address_postcode)
@@ -31,11 +32,9 @@ RSpec.feature 'The self service office add page', vcr: vcr_options_for(:features
 
     when_i_fill_out_the_form
     and_i_click_save
-    the_i_see(the_page: office_edit_page)
-    then_no_errors_are_displayed_on(the_page: office_edit_page)
+    the_i_see(the_page: offices_index_page)
+    then_no_errors_are_displayed_on(the_page: offices_index_page)
     then_i_see_a_success_notice
-
-    when_i_am_on_the_offices_page
     then_the_new_office_is_listed
   end
 

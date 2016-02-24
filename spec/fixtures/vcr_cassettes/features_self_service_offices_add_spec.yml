@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: http://maps.googleapis.com/maps/api/geocode/json?address=120%20Holborn,%20EC1N%202TD,%20United%20Kingdom&language=en&sensor=false
+    uri: http://maps.googleapis.com/maps/api/geocode/json?address=120%20Holborn,%20Floor%205,%20EC1N%202TD,%20United%20Kingdom&language=en&sensor=false
     body:
       encoding: US-ASCII
       string: ''
@@ -103,6 +103,6 @@ http_interactions:
            ],
            "status" : "OK"
         }
-    http_version: 
+    http_version:
   recorded_at: Fri, 13 Nov 2015 13:18:09 GMT
 recorded_with: VCR 2.9.3
