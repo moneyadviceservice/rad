@@ -15,7 +15,7 @@ module SelfService
       @adviser = @firm.advisers.build(adviser_params)
       if @adviser.save_with_geocoding
         flash[:notice] = I18n.t('self_service.adviser_edit.saved')
-        redirect_to edit_self_service_firm_adviser_path(@firm, @adviser)
+        redirect_to self_service_firm_advisers_path(@firm)
       else
         render :new
       end
@@ -27,7 +27,7 @@ module SelfService
     def update
       if @adviser.update_with_geocoding(adviser_params)
         flash[:notice] = I18n.t('self_service.adviser_edit.saved')
-        redirect_to edit_self_service_firm_adviser_path(@firm, @adviser)
+        redirect_to self_service_firm_advisers_path(@firm)
       else
         render :edit
       end
