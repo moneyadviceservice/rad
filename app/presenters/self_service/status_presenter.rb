@@ -16,7 +16,7 @@ module SelfService
     end
 
     def advisers_icon
-      icon_toggle(remote? || advisers.any?)
+      icon_toggle advisers?
     end
 
     def offices_icon
@@ -57,6 +57,14 @@ module SelfService
       link_to text, path, opts
     end
 
+    def needs_advisers?
+      !advisers?
+    end
+
+    def needs_offices?
+      offices.none?
+    end
+
     private
 
     def icon_toggle(condition_met)
@@ -65,6 +73,10 @@ module SelfService
 
     def remote?
       primary_advice_method == :remote
+    end
+
+    def advisers?
+      remote? || advisers.any?
     end
   end
 end

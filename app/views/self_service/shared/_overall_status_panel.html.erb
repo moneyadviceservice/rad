@@ -1,0 +1,20 @@
+<div class="panel">
+  <% if presenter.publishable? %>
+    <%= status_icon('tick') %>
+    Visible on the directory
+  <% end %>
+
+  <% if presenter.needs_advisers? %>
+    <div>
+      <%= status_icon('exclamation') %>
+      You need to add one or more advisers
+    </div>
+  <% end %>
+
+  <% if presenter.needs_offices? %>
+    <div>
+      <%= status_icon('exclamation') %>
+      You need to add one or more offices
+    </div>
+  <% end %>
+</div>
