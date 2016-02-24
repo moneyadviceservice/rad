@@ -1,5 +1,6 @@
 <% render_breadcrumbs(breadcrumbs_root) %>
-<% render_onboarding_message %>
+
+<%= render 'onboarding_message' unless current_user.principal.onboarded? %>
 
 <h1 class="t-page-title">
   <%= t('self_service.firms_index.title', count: @presenter.total_firms) %>

@@ -13,5 +13,6 @@ module SelfService
     element :available_trading_names_block, '.t-available-trading-names-block'
     sections :available_trading_names, FirmTableRowSection, '.t-available-trading-name-table-row'
     section :navigation, NavigationSection, '.t-navigation'
+    element :onboarding_message, '.t-onboarding-message'
   end
 end
