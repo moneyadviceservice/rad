@@ -46,17 +46,6 @@ module SelfService
         .join(', ')
     end
 
-    def render_onboarding_message
-      return if current_user.principal.onboarded?
-
-      content_for :notifications do
-        render 'shared/notification', name: 'onboarding',
-                                      title: t('self_service.onboarding.title'),
-                                      msg: t('self_service.onboarding.message'),
-                                      test_class: 't-onboarding-message'
-      end
-    end
-
     def first_registered_firm_for(principal)
       principal.main_firm_with_trading_names.registered.first
     end
