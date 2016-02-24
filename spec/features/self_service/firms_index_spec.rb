@@ -132,14 +132,14 @@ RSpec.feature 'The self service firm list page' do
   end
 
   def and_one_of_those_trading_names_is_unpublishable
-    unpublished_trading_name = @principal.firm.trading_names.first
-    unpublished_trading_name.offices = []
-    expect(unpublished_trading_name).not_to be_publishable
+    @unpublished_trading_name = @principal.firm.trading_names.first
+    @unpublished_trading_name.offices = []
+    expect(@unpublished_trading_name).not_to be_publishable
   end
 
   def and_one_of_those_trading_names_is_publishable
-    published_trading_name = @principal.firm.trading_names.first
-    expect(published_trading_name).to be_publishable
+    @published_trading_name = @principal.firm.trading_names.first
+    expect(@published_trading_name).to be_publishable
   end
 
   def and_i_am_logged_in
@@ -254,14 +254,22 @@ RSpec.feature 'The self service firm list page' do
 
   def and_the_trading_name_overall_status_is_unpublished
     expected_text = I18n.t!('self_service.firms_index.status.unpublished')
-    expect(firms_index_page.trading_names.first.overall_status).to have_text(expected_text)
-    expect(firms_index_page.trading_names.first).to have_unpublished
+    trading_name = firms_index_page.trading_names.find do |tn|
+      tn.name.text == @unpublished_trading_name.registered_name
+    end
+
+    expect(trading_name.overall_status).to have_text(expected_text)
+    expect(trading_name).to have_unpublished
   end
 
   def and_the_trading_name_overall_status_is_published
     expected_text = I18n.t!('self_service.firms_index.status.published')
-    expect(firms_index_page.trading_names.first.overall_status).to have_text(expected_text)
-    expect(firms_index_page.trading_names.first).to have_published
+    trading_name = firms_index_page.trading_names.find do |tn|
+      tn.name.text == @published_trading_name.registered_name
+    end
+
+    expect(trading_name.overall_status).to have_text(expected_text)
+    expect(trading_name).to have_published
   end
 
   private
