@@ -43,7 +43,3 @@ en:
       breadcrumb: "%{firm_name}"
       title: "Edit: %{firm_name}"
       saved: The trading name has been saved
-
-    onboarding:
-      title: Welcome
-      message: Please enter details about your firm, advisers and offices to add it to the directory
