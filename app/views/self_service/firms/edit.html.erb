@@ -6,7 +6,6 @@
   <h1 class="t-firm-name">
     <%= t('self_service.firm_edit.title', firm_name: @firm.registered_name) %>
   </h1>
-  <%= render partial: 'self_service/firms/questionnaire/links', locals: {firm: @firm} %>
 </div>
 
 <%= form_for @firm,
