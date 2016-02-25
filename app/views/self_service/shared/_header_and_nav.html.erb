@@ -1,3 +1,5 @@
+<% presenter = SelfService::StatusPresenter.new(firm) %>
+
 <div class="l-back-link t-back-to-firm-list">
   <%= link_to '< Back to firm list', self_service_root_path %>
 </div>
@@ -6,24 +8,27 @@
   <%= firm.registered_name %>
 </h1>
 
-<%= render 'self_service/shared/overall_status_panel', presenter: SelfService::StatusPresenter.new(firm) %>
+<%= render 'self_service/shared/overall_status_panel', presenter: presenter %>
 
 <div class="tab-selector tab-selector--without-js">
   <div class="tab-selector__triggers-outer">
     <div class="tab-selector__triggers-inner">
-      <div class="tab-selector__trigger-container">
+      <div class="tab-selector__trigger-container t-firm-details-tab">
         <%= tab_link self_service_firm_details_url(firm), 'tab-selector__trigger' do %>
+          <%= status_icon('exclamation') unless presenter.valid? %>
           Firm details
         <% end %>
       </div>
-      <div class="tab-selector__trigger-container">
+      <div class="tab-selector__trigger-container t-adviser-tab">
         <%= tab_link self_service_firm_advisers_path(firm), 'tab-selector__trigger' do %>
+          <%= status_icon('exclamation') if presenter.needs_advisers? %>
           <%= t('activerecord.models.adviser.other') %>
           (<%= firm.advisers.count %>)
         <% end %>
       </div>
-      <div class="tab-selector__trigger-container">
+      <div class="tab-selector__trigger-container t-office-tab">
         <%= tab_link self_service_firm_offices_path(firm), 'tab-selector__trigger' do %>
+          <%= status_icon('exclamation') if presenter.needs_offices? %>
           <%= t('activerecord.models.office.other') %>
           (<%= firm.offices.count %>)
         <% end %>

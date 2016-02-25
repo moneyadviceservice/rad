@@ -4,15 +4,22 @@
     <%= t('self_service.status.published') %>
   <% end %>
 
+  <% if presenter.invalid? %>
+    <div class="status__row">
+      <%= status_icon('exclamation') %>
+      <%= t('self_service.status.needs_firm_details') %>
+    </div>
+  <% end %>
+
   <% if presenter.needs_advisers? %>
-    <div>
+    <div class="status__row">
       <%= status_icon('exclamation') %>
       <%= t('self_service.status.needs_advisers') %>
     </div>
   <% end %>
 
   <% if presenter.needs_offices? %>
-    <div>
+    <div class="status__row">
       <%= status_icon('exclamation') %>
       <%= t('self_service.status.needs_offices') %>
     </div>
