@@ -2,8 +2,7 @@
   'SOLLA',
   'Later Life Academy',
   'ISO 22222',
-  'British Standard in Financial Planning BS8577',
-  'Other'
+  'British Standard in Financial Planning BS8577'
 ].each.with_index(1) { |item, index| Accreditation.find_or_create_by(name: item, order: index) }
 
 [
