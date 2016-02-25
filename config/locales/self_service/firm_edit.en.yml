@@ -2,7 +2,6 @@ en:
   self_service:
     firm_edit:
       breadcrumb: "%{firm_name}"
-      title: "Edit: %{firm_name}"
       saved: Your firm has been saved
       trading_name_heading: Trading name
       firm_heading: Firm

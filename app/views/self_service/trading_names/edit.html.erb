@@ -1,11 +1,6 @@
 <% render_breadcrumbs(breadcrumbs_firm_edit) %>
 
-<div class="l-heading-with-inline-links">
-  <h1 class="t-firm-name">
-    <%= t('self_service.trading_name_edit.title', firm_name: @firm.registered_name) %>
-  </h1>
-  <%= render partial: 'self_service/firms/questionnaire/links', locals: {firm: @firm} %>
-</div>
+<%= render partial: 'self_service/shared/header_and_nav', locals: { firm: @firm } %>
 
 <%= form_for @firm,
              url: self_service_trading_name_path(@firm),

@@ -1,8 +1,8 @@
 <% render_breadcrumbs(breadcrumbs_firm_offices) %>
 
+<%= render partial: 'self_service/shared/header_and_nav', locals: { firm: @firm } %>
 
-<div class="l-heading-with-button">
-  <h1 class="t-page-title"><%= t('self_service.offices_index.title', firm_name: @firm.registered_name) %></h1>
+<div class="l-top-action-buttons">
   <%= add_office_button(firm: @firm) %>
 </div>
 

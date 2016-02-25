@@ -1,0 +1,27 @@
+<h1 class="t-firm-name">
+  <%= firm.registered_name %>
+</h1>
+
+<div class="tab-selector tab-selector--without-js">
+  <div class="tab-selector__triggers-outer">
+    <div class="tab-selector__triggers-inner">
+      <div class="tab-selector__trigger-container">
+        <%= tab_link self_service_firm_details_url(firm), 'tab-selector__trigger' do %>
+          Firm details
+        <% end %>
+      </div>
+      <div class="tab-selector__trigger-container">
+        <%= tab_link self_service_firm_advisers_path(firm), 'tab-selector__trigger' do %>
+          <%= t('activerecord.models.adviser.other') %>
+          (<%= firm.advisers.count %>)
+        <% end %>
+      </div>
+      <div class="tab-selector__trigger-container">
+        <%= tab_link self_service_firm_offices_path(firm), 'tab-selector__trigger' do %>
+          <%= t('activerecord.models.office.other') %>
+          (<%= firm.offices.count %>)
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
