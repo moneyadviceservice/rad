@@ -1,6 +1,18 @@
 RSpec.feature 'The self service adviser list page' do
   let(:advisers_index_page) { SelfService::AdvisersIndexPage.new }
 
+  scenario 'The principal can see a back to firms list link' do
+    given_i_am_a_fully_registered_principal_user
+    and_i_am_logged_in
+    and_i_have_a_firm_with_trading_names_and_advisers
+
+    when_i_am_on_the_advisers_page_for(firm: @principal.firm)
+    then_i_see_a_back_to_firms_list_link
+
+    when_i_am_on_the_advisers_page_for(firm: @principal.firm.trading_names.first)
+    then_i_see_a_back_to_firms_list_link
+  end
+
   scenario 'The principal can see a list of the advisers on their parent firm' do
     given_i_am_a_fully_registered_principal_user
     and_i_am_logged_in
@@ -95,6 +107,10 @@ RSpec.feature 'The self service adviser list page' do
     expect(advisers_index_page).to have_no_advisers_message(
       text: I18n.t('self_service.advisers_index.no_advisers_message'))
     expect(advisers_index_page).to have_add_adviser_link
+  end
+
+  def then_i_see_a_back_to_firms_list_link
+    expect(advisers_index_page).to have_back_to_firms_list_link
   end
 
   private

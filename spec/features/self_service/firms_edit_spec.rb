@@ -17,6 +17,16 @@ RSpec.feature 'The self service firm edit page' do
                       languages: ['fra'])
   end
 
+  scenario 'The principal can see a back to firms list link' do
+    given_i_am_a_fully_registered_principal_user
+    and_i_have_a_firm
+    and_i_am_logged_in
+    when_i_am_on_the_firms_page
+    and_i_click_the_edit_link_for_my_firm
+    then_i_see_the_edit_page_for_my_firm
+    then_i_see_a_back_to_firms_list_link
+  end
+
   scenario 'The principal can edit their firm' do
     given_i_am_a_fully_registered_principal_user
     and_i_have_a_firm
@@ -107,6 +117,10 @@ RSpec.feature 'The self service firm edit page' do
     expect(firm_edit_page.website_address.value).to eq 'clearly_not_a_valid_web_address!'
     @principal.reload
     expect(@principal.firm.website_address).to eq @original_firm_website
+  end
+
+  def then_i_see_a_back_to_firms_list_link
+    expect(firm_edit_page).to have_back_to_firms_list_link
   end
 
   def complete_part_1
