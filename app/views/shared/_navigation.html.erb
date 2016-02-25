@@ -11,11 +11,14 @@
       <li class='navigation__item'>
         <%= link_to t('self_service.navigation.root'), self_service_root_path, class: 'navigation__link t-navigation-link' %>
       </li>
-      <li class='navigation__item'>
-        <%= link_to t('authentication_sign_out'), destroy_user_session_path, class: 'navigation__link t-sign-out' %>
+      <li class='navigation__item--desktop-only'>
+        <%= link_to t('self_service.navigation.edit_principal'), edit_self_service_principal_path(@current_user.principal), class: 'navigation__link t-navigation-link' %>
       </li>
       <li class='navigation__item--desktop-only'>
         <%= link_to t('authentication.edit_account'), edit_user_registration_path, class: 'navigation__link' %>
+      </li>
+      <li class='navigation__item'>
+        <%= link_to t('authentication_sign_out'), destroy_user_session_path, class: 'navigation__link t-sign-out' %>
       </li>
     <% end %>
   </ul>
