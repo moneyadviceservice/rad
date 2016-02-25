@@ -1,8 +1,8 @@
 .l-top-action-buttons {
   @include clearfix();
   position: relative;
-  margin-top: 1.5rem;
-  margin-bottom: 0.75rem;
+  margin-top: $baseline-unit * 4;
+  margin-bottom: $baseline-unit * 2;
 
   @include respond-to($mq-m) {
     .button {
