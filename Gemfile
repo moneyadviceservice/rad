@@ -20,7 +20,7 @@ gem 'devise_security_extension'
 gem 'dough-ruby',
     github: 'moneyadviceservice/dough',
     require: 'dough',
-    ref: '77dc86f'
+    ref: '1bba610'
 gem 'jquery-rails'
 gem 'kaminari'
 gem 'letter_opener', group: :development
