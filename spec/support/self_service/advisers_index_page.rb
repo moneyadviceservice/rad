@@ -5,6 +5,7 @@ module SelfService
 
     element :back_to_firms_list_link, '.t-back-to-firm-list a'
     element :firm_name, '.t-firm-name'
+    element :overall_status_panel, '.t-overall-status-panel'
     sections :advisers, AdvisersTableRowSection, '.t-advisers-table-row'
     element :add_adviser_link, '.t-add-adviser-link'
     element :edit_link, '.t-edit-link'

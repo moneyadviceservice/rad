@@ -10,6 +10,8 @@ module SelfService
     element :firm_name, '.t-firm-name'
     element :firm_fca_number, '.t-firm-fca-number'
 
+    element :overall_status_panel, '.t-overall-status-panel'
+
     element :website_address, '.t-website-address'
 
     elements :in_person_advice_methods, '.t-questionnaire__in-person-advice-method-id'

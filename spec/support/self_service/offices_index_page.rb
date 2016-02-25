@@ -7,6 +7,7 @@ module SelfService
 
     element :back_to_firms_list_link, '.t-back-to-firm-list a'
     element :page_title, '.t-firm-name'
+    element :overall_status_panel, '.t-overall-status-panel'
     sections :offices, OfficesTableRowSection, '.t-office-table-row'
     element :add_office_link, '.t-add-office-link'
     element :no_offices_message, '.t-no-offices-message'

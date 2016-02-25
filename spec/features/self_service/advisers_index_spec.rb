@@ -13,6 +13,18 @@ RSpec.feature 'The self service adviser list page' do
     then_i_see_a_back_to_firms_list_link
   end
 
+  scenario 'The principal can see the overall status panel for the firm' do
+    given_i_am_a_fully_registered_principal_user
+    and_i_am_logged_in
+    and_i_have_a_firm_with_trading_names_and_advisers
+
+    when_i_am_on_the_advisers_page_for(firm: @principal.firm)
+    then_i_can_see_the_overall_status_panel
+
+    when_i_am_on_the_advisers_page_for(firm: @principal.firm.trading_names.first)
+    then_i_can_see_the_overall_status_panel
+  end
+
   scenario 'The principal can see a list of the advisers on their parent firm' do
     given_i_am_a_fully_registered_principal_user
     and_i_am_logged_in
@@ -111,6 +123,10 @@ RSpec.feature 'The self service adviser list page' do
 
   def then_i_see_a_back_to_firms_list_link
     expect(advisers_index_page).to have_back_to_firms_list_link
+  end
+
+  def then_i_can_see_the_overall_status_panel
+    expect(advisers_index_page).to have_overall_status_panel
   end
 
   private
