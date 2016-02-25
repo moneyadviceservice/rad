@@ -22,8 +22,8 @@ module SelfService
           expect(flash[:notice]).to eq(I18n.t('self_service.adviser_edit.saved'))
         end
 
-        it 'redirects to the edit page' do
-          redirect_path = edit_self_service_firm_adviser_path(assigns(:firm), assigns(:adviser))
+        it 'redirects to the adviser index page' do
+          redirect_path = self_service_firm_advisers_path(assigns(:firm))
           expect(response).to redirect_to redirect_path
         end
       end

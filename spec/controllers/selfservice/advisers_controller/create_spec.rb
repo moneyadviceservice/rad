@@ -24,8 +24,8 @@ module SelfService
           expect(assigns(:adviser)).to be_an Adviser
         end
 
-        it 'redirects to the adviser edit page' do
-          redirect_path = edit_self_service_firm_adviser_path(firm, assigns(:adviser).id)
+        it 'redirects to the adviser index page' do
+          redirect_path = self_service_firm_advisers_path(firm)
           expect(response).to redirect_to redirect_path
         end
 
