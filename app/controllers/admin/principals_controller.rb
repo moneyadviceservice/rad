@@ -10,10 +10,15 @@ class Admin::PrincipalsController < Admin::ApplicationController
 
   def destroy
     user = User.find_by(principal: principal)
+
+    message = "Successfully deleted #{principal.full_name}, " \
+              "#{principal.firm.registered_name} and " \
+              "#{principal.firm.trading_names.count} related trading names."
+
     user.principal.destroy
     user.destroy
 
-    redirect_to admin_principals_path
+    redirect_to admin_principals_path, notice: message
   end
 
   private
