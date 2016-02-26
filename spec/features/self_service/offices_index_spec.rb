@@ -28,6 +28,14 @@ RSpec.feature 'The self service firm offices list page' do
     then_i_see_a_back_to_firms_list_link
   end
 
+  scenario 'The page shows the overall status panel for the given firm' do
+    given_i_am_a_fully_registered_principal_user
+    and_my_firm_has_offices
+    and_i_am_logged_in
+    when_i_navigate_to_the_offices_page_for_my_firm
+    then_i_can_see_the_overall_status_panel
+  end
+
   scenario 'The page shows the list of offices for the given firm' do
     given_i_am_a_fully_registered_principal_user
     and_my_firm_has_offices
@@ -140,6 +148,10 @@ RSpec.feature 'The self service firm offices list page' do
 
   def then_i_see_a_back_to_firms_list_link
     expect(offices_index_page).to have_back_to_firms_list_link
+  end
+
+  def then_i_can_see_the_overall_status_panel
+    expect(offices_index_page).to have_overall_status_panel
   end
 
   private

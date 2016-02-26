@@ -211,17 +211,87 @@ RSpec.describe SelfService::StatusPresenter do
     end
   end
 
-  describe '#advisers_count' do
-    it 'shows the number of advisers for the given firm' do
-      allow(firm).to receive(:advisers).and_return(%w(adviser_1 adviser_2))
-      expect(presenter.advisers_count).to eq(2)
+  describe '#needs_advisers?' do
+    before { allow(firm).to receive(:advisers).and_return(advisers) }
+
+    context 'when the firm has advisers' do
+      let(:advisers) { ['an adviser'] }
+
+      before { allow(firm).to receive(:primary_advice_method).and_return(primary_advice_method) }
+
+      context 'and is local' do
+        let(:primary_advice_method) { :local }
+
+        it 'is false' do
+          expect(presenter.needs_advisers?).to eq(false)
+        end
+      end
+
+      context 'and is remote' do
+        let(:primary_advice_method) { :remote }
+
+        it 'is false' do
+          expect(presenter.needs_advisers?).to eq(false)
+        end
+      end
+
+      context 'and is nil' do
+        let(:primary_advice_method) { nil }
+
+        it 'is false' do
+          expect(presenter.needs_advisers?).to eq(false)
+        end
+      end
+    end
+
+    context 'when the firm has no advisers' do
+      let(:advisers) { [] }
+
+      before { allow(firm).to receive(:primary_advice_method).and_return(primary_advice_method) }
+
+      context 'and is local' do
+        let(:primary_advice_method) { :local }
+
+        it 'is true' do
+          expect(presenter.needs_advisers?).to eq(true)
+        end
+      end
+
+      context 'and is remote' do
+        let(:primary_advice_method) { :remote }
+
+        it 'is false' do
+          expect(presenter.needs_advisers?).to eq(false)
+        end
+      end
+
+      context 'and is nil' do
+        let(:primary_advice_method) { nil }
+
+        it 'provides "exclamation"' do
+          expect(presenter.needs_advisers?).to eq(true)
+        end
+      end
     end
   end
 
-  describe '#offices_count' do
-    it 'shows the number of offices for the given firm' do
-      allow(firm).to receive(:offices).and_return(%w(office_1 office_2 office_3))
-      expect(presenter.offices_count).to eq(3)
+  describe '#needs_offices?' do
+    before { allow(firm).to receive(:offices).and_return(offices) }
+
+    context 'when the firm has offices' do
+      let(:offices) { ['an office'] }
+
+      it 'is false' do
+        expect(presenter.needs_offices?).to eq(false)
+      end
+    end
+
+    context 'when the firm has no offices' do
+      let(:offices) { [] }
+
+      it 'is true' do
+        expect(presenter.needs_offices?).to eq(true)
+      end
     end
   end
 end

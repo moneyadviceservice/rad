@@ -6,6 +6,8 @@
   <%= firm.registered_name %>
 </h1>
 
+<%= render 'self_service/shared/overall_status_panel', presenter: SelfService::StatusPresenter.new(firm) %>
+
 <div class="tab-selector tab-selector--without-js">
   <div class="tab-selector__triggers-outer">
     <div class="tab-selector__triggers-inner">
