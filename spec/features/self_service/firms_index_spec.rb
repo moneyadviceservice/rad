@@ -255,13 +255,13 @@ RSpec.feature 'The self service firm list page' do
   end
 
   def and_the_parent_firm_overall_status_is_unpublished
-    expected_text = I18n.t!('self_service.firms_index.status.unpublished')
+    expected_text = I18n.t!('self_service.status.unpublished')
     expect(firms_index_page.parent_firm.overall_status).to have_text(expected_text)
     expect(firms_index_page.parent_firm).to have_unpublished
   end
 
   def and_the_parent_firm_overall_status_is_published
-    expected_text = I18n.t!('self_service.firms_index.status.published')
+    expected_text = I18n.t!('self_service.status.published')
     expect(firms_index_page.parent_firm.overall_status).to have_text(expected_text)
     expect(firms_index_page.parent_firm).to have_published
   end
@@ -271,7 +271,7 @@ RSpec.feature 'The self service firm list page' do
   end
 
   def and_the_trading_name_overall_status_is_unpublished
-    expected_text = I18n.t!('self_service.firms_index.status.unpublished')
+    expected_text = I18n.t!('self_service.status.unpublished')
     trading_name = firms_index_page.trading_names.find do |tn|
       tn.name.text == @unpublished_trading_name.registered_name
     end
@@ -281,7 +281,7 @@ RSpec.feature 'The self service firm list page' do
   end
 
   def and_the_trading_name_overall_status_is_published
-    expected_text = I18n.t!('self_service.firms_index.status.published')
+    expected_text = I18n.t!('self_service.status.published')
     trading_name = firms_index_page.trading_names.find do |tn|
       tn.name.text == @published_trading_name.registered_name
     end

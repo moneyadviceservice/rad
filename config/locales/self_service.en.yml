@@ -34,9 +34,15 @@ en:
       deleted: "The %{postcode} office has been successfully removed."
 
     status:
-      published: Visible on directory
+      add: Add
+      advisers: Advisers
+      edit: Edit
+      firm_details: Firm Details
       needs_advisers: You need to add one or more advisers
       needs_offices: You need to add one or more offices
+      offices: Offices
+      published: Visible on directory
+      unpublished: Needs more information
 
     trading_name_destroy:
       deleted: "%{name} has been successfully removed."

@@ -1,12 +1,12 @@
 <div class="t-overall-status status__overall-status status__overall-status--<%= presenter.overall_status %>">
   <%= status_icon(presenter.overall_status_icon) %>
-  <%= t("self_service.firms_index.status.#{presenter.overall_status}") %>
+  <%= t("self_service.status.#{presenter.overall_status}") %>
 </div>
 
 <div class="l-2col status__row">
   <div class="l-2col-main">
     <%= status_icon(presenter.firm_details_icon) %>
-    <%= t("self_service.firms_index.status.firm_details") %>
+    <%= t("self_service.status.firm_details") %>
   </div>
   <div class="l-2col-side l-2col-side--align-right">
     <%= presenter.firm_details_link(class: 'button button--small') %>
@@ -16,7 +16,7 @@
 <div class="l-2col status__row">
   <div class="l-2col-main">
     <%= status_icon(presenter.advisers_icon) %>
-    <%= t("self_service.firms_index.status.advisers") %>
+    <%= t("self_service.status.advisers") %>
     (<%= presenter.advisers.count %>)
   </div>
   <div class="l-2col-side l-2col-side--align-right">
@@ -27,7 +27,7 @@
 <div class="l-2col status__row">
   <div class="l-2col-main">
     <%= status_icon(presenter.offices_icon) %>
-    <%= t("self_service.firms_index.status.offices") %>
+    <%= t("self_service.status.offices") %>
     (<%= presenter.offices.count %>)
   </div>
   <div class="l-2col-side l-2col-side--align-right">
