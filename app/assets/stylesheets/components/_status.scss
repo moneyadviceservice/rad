@@ -1,17 +1,15 @@
 .status__icon {
   height: $status-icon-size;
   margin-right: 4px;
+  padding: $status-icon-padding;
   vertical-align: middle;
   width: $status-icon-size;
 }
 
 .status__icon--exclamation {
   background-color: $color-yellow-light;
-  border-radius: 100%;
+  border-radius: 50%;
   fill: $color-black;
-  height: 27px;
-  padding: 3px;
-  width: 27px;
 }
 
 .status__icon--tick, .status__overall-status--published {
