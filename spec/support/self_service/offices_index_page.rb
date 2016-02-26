@@ -5,6 +5,7 @@ module SelfService
     set_url '/self_service/firms/{firm_id}/offices'
     set_url_matcher %r{/self_service/firms/\d+/offices}
 
+    element :back_to_firms_list_link, '.t-back-to-firm-list a'
     element :page_title, '.t-firm-name'
     sections :offices, OfficesTableRowSection, '.t-office-table-row'
     element :add_office_link, '.t-add-office-link'

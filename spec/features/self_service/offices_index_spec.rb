@@ -20,6 +20,14 @@ RSpec.feature 'The self service firm offices list page' do
     then_i_see_the_firm_name_in_the_page_title
   end
 
+  scenario 'The principal can see a back to firms list link' do
+    given_i_am_a_fully_registered_principal_user
+    and_my_firm_has_offices
+    and_i_am_logged_in
+    when_i_navigate_to_the_offices_page_for_my_firm
+    then_i_see_a_back_to_firms_list_link
+  end
+
   scenario 'The page shows the list of offices for the given firm' do
     given_i_am_a_fully_registered_principal_user
     and_my_firm_has_offices
@@ -128,6 +136,10 @@ RSpec.feature 'The self service firm offices list page' do
 
   def then_there_is_one_less_office
     expect(offices_index_page.offices.count).to eq(@num_offices_before - 1)
+  end
+
+  def then_i_see_a_back_to_firms_list_link
+    expect(offices_index_page).to have_back_to_firms_list_link
   end
 
   private

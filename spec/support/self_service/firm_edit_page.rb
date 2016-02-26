@@ -6,6 +6,7 @@ module SelfService
     element :flash_message, '.t-flash-message'
     element :validation_summary, '.t-validation-summary'
 
+    element :back_to_firms_list_link, '.t-back-to-firm-list a'
     element :firm_name, '.t-firm-name'
     element :firm_fca_number, '.t-firm-fca-number'
 
