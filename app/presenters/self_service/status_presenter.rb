@@ -30,16 +30,16 @@ module SelfService
                edit_self_service_firm_path(self)
              end
 
-      link_to I18n.t('self_service.firms_index.status.edit'), path, opts
+      link_to I18n.t('self_service.status.edit'), path, opts
     end
 
     def advisers_link(opts = {})
       if advisers.present?
         path = self_service_firm_advisers_path(self)
-        text = I18n.t('self_service.firms_index.status.edit')
+        text = I18n.t('self_service.status.edit')
       else
         path = new_self_service_firm_adviser_path(self)
-        text = I18n.t('self_service.firms_index.status.add')
+        text = I18n.t('self_service.status.add')
       end
 
       link_to text, path, opts
@@ -48,10 +48,10 @@ module SelfService
     def offices_link(opts = {})
       if offices.present?
         path = self_service_firm_offices_path(self)
-        text = I18n.t('self_service.firms_index.status.edit')
+        text = I18n.t('self_service.status.edit')
       else
         path = new_self_service_firm_office_path(self)
-        text = I18n.t('self_service.firms_index.status.add')
+        text = I18n.t('self_service.status.add')
       end
 
       link_to text, path, opts

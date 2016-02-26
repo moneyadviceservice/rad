@@ -19,11 +19,3 @@ en:
       new_trading_name_link: Add to directory
       delete_trading_name_button: Remove
       delete_trading_name_confirmation: Are you sure you want to remove %{name} and all associated advisers from the directory?
-      status:
-        published: Visible on directory
-        unpublished: Needs more information
-        firm_details: Firm Details
-        advisers: Advisers
-        offices: Offices
-        edit: Edit
-        add: Add
