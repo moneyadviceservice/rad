@@ -34,7 +34,7 @@
     <%= render 'admin/shared/sign_in_as_principal', principal: @principal %>
   </div>
   <div class="col-xs-6 text-right">
-    <%= button_to 'Delete principal and entire firm',
+    <%= button_to 'Delete principal, firm and all related trading names',
                   admin_principal_path(@principal.id),
                   class: 't-delete btn btn-danger',
                   method: :delete,
