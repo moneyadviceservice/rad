@@ -38,6 +38,7 @@ en:
       advisers: Advisers
       edit: Edit
       firm_details: Firm Details
+      needs_firm_details: You need to add details for this firm
       needs_advisers: You need to add one or more advisers
       needs_offices: You need to add one or more offices
       offices: Offices

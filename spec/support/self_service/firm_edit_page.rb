@@ -11,6 +11,9 @@ module SelfService
     element :firm_fca_number, '.t-firm-fca-number'
 
     element :overall_status_panel, '.t-overall-status-panel'
+    element :firm_details_exclamation, '.t-firm-details-tab .status__icon--exclamation'
+    element :adviser_exclamation, '.t-adviser-tab .status__icon--exclamation'
+    element :office_exclamation, '.t-office-tab .status__icon--exclamation'
 
     element :website_address, '.t-website-address'
 
