@@ -29,4 +29,15 @@
   </div>
 </div>
 
-<%= render 'admin/shared/sign_in_as_principal', principal: @principal %>
+<div class="row">
+  <div class="col-xs-6">
+    <%= render 'admin/shared/sign_in_as_principal', principal: @principal %>
+  </div>
+  <div class="col-xs-6 text-right">
+    <%= button_to 'Delete principal and entire firm',
+                  admin_principal_path(@principal.id),
+                  class: 't-delete btn btn-danger',
+                  method: :delete,
+                  data: { confirm: 'Are you sure you want to delete this principal and all related firm, adviser, office and trading name data?' } %></p>
+  </div>
+</div>

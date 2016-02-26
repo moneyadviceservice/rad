@@ -8,6 +8,14 @@ class Admin::PrincipalsController < Admin::ApplicationController
     @principal = principal
   end
 
+  def destroy
+    user = User.find_by(principal: principal)
+    user.principal.destroy
+    user.destroy
+
+    redirect_to admin_principals_path
+  end
+
   private
 
   def principal
