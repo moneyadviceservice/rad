@@ -42,6 +42,12 @@
 </nav>
 
 <div class="container">
+  <% if flash.notice %>
+    <div class="t-flash-message alert alert-warning" role="alert">
+      <%= flash.notice %>
+    </div>
+  <% end %>
+
   <%= yield %>
 </div>
 

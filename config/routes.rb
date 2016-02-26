@@ -70,7 +70,7 @@ Rails.application.routes.draw do
       resources :firms, only: :index
       resources :subsidiaries, only: :index
     end
-    resources :principals, only: [:index, :show]
+    resources :principals, only: [:index, :show, :destroy]
     resources :metrics, only: [:index, :show] do
       member do
         get :download
