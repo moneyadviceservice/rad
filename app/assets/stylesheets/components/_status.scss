@@ -6,7 +6,12 @@
 }
 
 .status__icon--exclamation {
-  fill: $color-yellow-dark;
+  background-color: $color-yellow-light;
+  border-radius: 100%;
+  fill: $color-black;
+  height: 27px;
+  padding: 3px;
+  width: 27px;
 }
 
 .status__icon--tick, .status__overall-status--published {
@@ -23,13 +28,9 @@
 }
 
 .status__overall-status--unpublished {
-  background-color: $color-yellow-dark;
+  background-color: $color-yellow-light;
   border: none;
-  color: $color-white;
-
-  & > .status__icon--exclamation {
-    fill: $color-white;
-  }
+  color: $color-black;
 }
 
 .status__row {
