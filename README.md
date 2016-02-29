@@ -32,9 +32,10 @@ $ git clone https://github.com/moneyadviceservice/rad.git
 Make sure all dependencies are available to the application:
 
 ```sh
+$ npm install
+$ npm install bower -g
 $ bundle install
 $ bundle exec bowndler update
-$ npm install
 ```
 
 Make sure PostgreSQL is running.
