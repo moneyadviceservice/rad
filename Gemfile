@@ -9,7 +9,7 @@ ruby '2.2.2'
 # 3. Place dependencies in the group they belong
 # 4. Only use version specifiers where appropriate
 
-gem 'rails', '~> 4.2.5.1'
+gem 'rails', '~> 4.2.5.2'
 
 gem 'active_link_to'
 gem 'bootstrap-sass', '~> 3.3.3'
@@ -25,7 +25,7 @@ gem 'jquery-rails'
 gem 'kaminari'
 gem 'letter_opener', group: :development
 gem 'mailjet'
-gem 'mas-rad_core', '0.0.102'
+gem 'mas-rad_core', '0.0.103'
 gem 'oga'
 gem 'pg'
 gem 'rails_email_validator'
