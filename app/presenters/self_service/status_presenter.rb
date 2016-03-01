@@ -30,7 +30,13 @@ module SelfService
                edit_self_service_firm_path(self)
              end
 
-      link_to I18n.t('self_service.status.edit'), path, opts
+      label = if registered?
+                I18n.t('self_service.status.edit')
+              else
+                I18n.t('self_service.status.add')
+              end
+
+      link_to label, path, opts
     end
 
     def advisers_link(opts = {})
