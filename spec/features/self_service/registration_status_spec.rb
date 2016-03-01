@@ -16,6 +16,7 @@ RSpec.feature 'The registration status' do
     and_i_can_see_the_overall_status_panel
     and_i_see_a_status_item_for_adding_firm_details
     and_i_see_an_exclamation_mark_on_firm_details
+    and_i_do_not_see_validation_errors
   end
 
   scenario 'Firm has filled in details for the selected firm' do
@@ -175,5 +176,9 @@ RSpec.feature 'The registration status' do
 
   def and_i_do_not_see_an_exclamation_mark_on_offices
     expect(firm_edit_page).not_to have_office_exclamation
+  end
+
+  def and_i_do_not_see_validation_errors
+    expect(firm_edit_page).to_not have_validation_summary
   end
 end
