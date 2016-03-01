@@ -58,21 +58,43 @@ RSpec.describe SelfService::StatusPresenter do
   end
 
   describe '#firm_details_link' do
-    before { allow(firm).to receive(:trading_name?).and_return(is_trading_name) }
+    describe 'edit page link' do
+      before { allow(firm).to receive(:trading_name?).and_return(is_trading_name) }
 
-    context 'when the firm is a trading name' do
-      let(:is_trading_name) { true }
+      context 'when the firm is a trading name' do
+        let(:is_trading_name) { true }
 
-      it 'provides a link to the trading name edit page' do
-        expect(presenter.firm_details_link).to match(firm_link_regex('trading_names', 'Edit'))
+        it 'provides a link to the trading name edit page' do
+          expect(presenter.firm_details_link).to match(firm_link_regex('trading_names', 'Edit'))
+        end
+      end
+
+      context 'when the firm is not a trading name' do
+        let(:is_trading_name) { false }
+
+        it 'provides a link to the parent firm edit page' do
+          expect(presenter.firm_details_link).to match(firm_link_regex('firms', 'Edit'))
+        end
       end
     end
 
-    context 'when the firm is not a trading name' do
-      let(:is_trading_name) { false }
+    describe 'button label' do
+      before { allow(firm).to receive(:registered?).and_return(firm_registered) }
 
-      it 'provides a link to the parent firm edit page' do
-        expect(presenter.firm_details_link).to match(firm_link_regex('firms', 'Edit'))
+      context 'when the firm is registered' do
+        let(:firm_registered) { true }
+
+        it 'sets the button text to edit' do
+          expect(presenter.firm_details_link).to match('Edit')
+        end
+      end
+
+      context 'when the firm is not registered' do
+        let(:firm_registered) { false }
+
+        it 'sets the button text to add' do
+          expect(presenter.firm_details_link).to match('Add')
+        end
       end
     end
   end
