@@ -9,7 +9,7 @@ ruby '2.2.2'
 # 3. Place dependencies in the group they belong
 # 4. Only use version specifiers where appropriate
 
-gem 'rails', '~> 4.2.5.1'
+gem 'rails', '~> 4.2.5.2'
 
 gem 'active_link_to'
 gem 'bootstrap-sass', '~> 3.3.3'
