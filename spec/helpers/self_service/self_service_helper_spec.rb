@@ -91,7 +91,7 @@ module SelfService
       end
 
       it 'includes the image for the icon type' do
-        expect(helper.status_icon('tick')).to include('icon_spritesheet.svg#icon-tick')
+        expect(helper.status_icon('tick')).to include('#icon-tick')
       end
     end
   end
