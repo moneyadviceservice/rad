@@ -97,5 +97,16 @@ RSpec.describe ExtToSql do
         expect(subject[4]).to eq '\.'
       end
     end
+
+    context 'subsidiaries file with out of date records' do
+      let(:fixture_name) { 'firm_names_with_end_dates' }
+
+      it 'filters out any rows with an End Date' do
+        expect(subject[0]).to eq 'COPY lookup_subsidiaries (fca_number, name, created_at, updated_at) FROM stdin;'
+        expect(subject[1]).to start_with "100013\tMedical Insurance Agency (MIA)\t"
+        expect(subject[2]).to start_with "100013\tSFS Invest Direct\t"
+        expect(subject[3]).to eq '\.'
+      end
+    end
   end
 end

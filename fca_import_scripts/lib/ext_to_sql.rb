@@ -11,6 +11,7 @@ class ExtToSql
     NAME = 1
     ADVISER_STATUS_CODE = 4
     FIRM_AUTHORISATION_STATUS_CODE = 19
+    SUBSIDIARY_END_DATE = 4
   end
 
   def initialize(stderr = nil)
@@ -85,7 +86,7 @@ class ExtToSql
        'Registered',
        'EEA Authorised'].include?(row[COLUMNS::FIRM_AUTHORISATION_STATUS_CODE])
     when :subsidiary
-      true
+      row[COLUMNS::SUBSIDIARY_END_DATE].empty?
     end
   end
 
