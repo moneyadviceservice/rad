@@ -73,7 +73,7 @@ module SelfService
 
     def status_icon(icon_type)
       content_tag :svg, class: "status__icon status__icon--#{icon_type}" do
-        tag :use, 'xlink:href': "#{image_path('icon_spritesheet.svg')}#icon-#{icon_type}"
+        tag :use, 'xlink:href': "#icon-#{icon_type}"
       end
     end
   end
