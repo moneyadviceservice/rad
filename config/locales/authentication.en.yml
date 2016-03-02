@@ -1,5 +1,14 @@
 en:
   authentication:
+    password_policy:
+      label: "Password policy:"
+      criteria_intro: "Passwords must be at least 8 characters long and contain the following:"
+      criteria:
+        - an uppercase character
+        - a lowercase character
+        - a number
+        - and a symbol
+
     password_fields: &password_fields
       password_confirmation: Confirm password
 
