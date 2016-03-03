@@ -1,4 +1,5 @@
 require 'date'
+require 'set'
 require 'yaml'
 
 class ExtToSql
@@ -16,6 +17,7 @@ class ExtToSql
 
   def initialize(stderr = nil)
     @stderr = stderr
+    @seen_trading_names = Set.new
   end
 
   def process_ext_file(path, &block)
@@ -86,7 +88,7 @@ class ExtToSql
        'Registered',
        'EEA Authorised'].include?(row[COLUMNS::FIRM_AUTHORISATION_STATUS_CODE])
     when :subsidiary
-      row[COLUMNS::SUBSIDIARY_END_DATE].empty?
+      row[COLUMNS::SUBSIDIARY_END_DATE].empty? && is_unique_trading_name(row)
     end
   end
 
@@ -108,6 +110,13 @@ class ExtToSql
   def warn_on_possibly_broken_line(line)
     return unless line.include? '""'
     log "\n  • \033[33;31mPossibly malformed row detected:\033[0m #{line}\n    ", newline: false
+  end
+
+  def is_unique_trading_name(row)
+    key = "#{row[0]}|#{row[1]}"
+    return false if @seen_trading_names.include?(key)
+    @seen_trading_names << key
+    true
   end
 
   def end_copy_statement
