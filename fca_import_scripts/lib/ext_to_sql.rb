@@ -84,9 +84,7 @@ class ExtToSql
       row[COLUMNS::ADVISER_STATUS_CODE] == '4' # Value 4 means 'Active'
     when :firm
       # Col 19 - Current Authorisation Status code
-      ['Authorised',
-       'Registered',
-       'EEA Authorised'].include?(row[COLUMNS::FIRM_AUTHORISATION_STATUS_CODE])
+      ['Authorised', 'Registered', 'EEA Authorised'].include?(row[COLUMNS::FIRM_AUTHORISATION_STATUS_CODE])
     when :subsidiary
       row[COLUMNS::SUBSIDIARY_END_DATE].empty? && unique_trading_name?(row)
     end
