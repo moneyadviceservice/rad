@@ -113,10 +113,8 @@ class ExtToSql
   end
 
   def is_unique_trading_name(row)
-    key = "#{row[0]}|#{row[1]}"
-    return false if @seen_trading_names.include?(key)
-    @seen_trading_names << key
-    true
+    # Returns nil if the key already exists. Otherwise returns self.
+    @seen_trading_names.add?("#{row[0]}|#{row[1]}")
   end
 
   def end_copy_statement
