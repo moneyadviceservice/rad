@@ -88,7 +88,7 @@ class ExtToSql
        'Registered',
        'EEA Authorised'].include?(row[COLUMNS::FIRM_AUTHORISATION_STATUS_CODE])
     when :subsidiary
-      row[COLUMNS::SUBSIDIARY_END_DATE].empty? && is_unique_trading_name(row)
+      row[COLUMNS::SUBSIDIARY_END_DATE].empty? && unique_trading_name?(row)
     end
   end
 
@@ -112,7 +112,7 @@ class ExtToSql
     log "\n  • \033[33;31mPossibly malformed row detected:\033[0m #{line}\n    ", newline: false
   end
 
-  def is_unique_trading_name(row)
+  def unique_trading_name?(row)
     # Returns nil if the key already exists. Otherwise returns self.
     @seen_trading_names.add?("#{row[0]}|#{row[1]}")
   end
