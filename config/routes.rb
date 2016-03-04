@@ -71,9 +71,12 @@ Rails.application.routes.draw do
       resources :subsidiaries, only: :index
     end
     resources :principals, only: [:index, :show, :destroy]
-    resources :metrics, only: [:index, :show] do
-      member do
-        get :download
+
+    namespace :reports do
+      resources :metrics, only: [:index, :show] do
+        member do
+          get :download
+        end
       end
     end
   end

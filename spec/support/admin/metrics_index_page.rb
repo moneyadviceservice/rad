@@ -4,8 +4,8 @@ module Admin
   end
 
   class MetricsIndexPage < SitePrism::Page
-    set_url '/admin/metrics'
-    set_url_matcher %r{/admin/metrics}
+    set_url '/admin/reports/metrics'
+    set_url_matcher %r{/admin/reports/metrics}
 
     sections :snapshots, MetricsTableRow, '.t-snapshot-table-row'
   end

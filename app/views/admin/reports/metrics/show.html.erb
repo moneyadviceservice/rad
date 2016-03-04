@@ -5,7 +5,7 @@
       <small><%= @snapshot.created_at.strftime('%e %B %Y') %></small>
     </h1>
 
-    <p><%= link_to 'Download as CSV', download_admin_metric_path(@snapshot), class: 'btn btn-primary' %></p>
+    <p><%= link_to 'Download as CSV', download_admin_reports_metric_path(@snapshot), class: 'btn btn-primary' %></p>
   </div>
 </div>
 
