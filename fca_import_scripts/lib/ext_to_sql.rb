@@ -112,7 +112,7 @@ class ExtToSql
 
   def unique_trading_name?(row)
     # Returns nil if the key already exists. Otherwise returns self.
-    @seen_trading_names.add?("#{row[0]}|#{row[1]}")
+    @seen_trading_names.add?("#{row[COLUMNS::REFERENCE_NUMBER]}|#{row[COLUMNS::NAME]}")
   end
 
   def end_copy_statement
