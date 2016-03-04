@@ -78,6 +78,7 @@ Rails.application.routes.draw do
           get :download
         end
       end
+      resource :inactive_adviser, only: [:show]
     end
   end
 

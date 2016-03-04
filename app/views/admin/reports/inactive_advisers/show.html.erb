@@ -1,0 +1,31 @@
+<h2>Inactive Advisers</h2>
+
+<p>
+  This report shows all advisers whose FCA status is no longer 'Active'.
+</p>
+
+<p>
+  The <a href="https://register.fca.org.uk/">Financial Services Register</a>
+  can be searched to determine exactly what status change has occurred.
+</p>
+
+<table class="table table-bordered">
+  <tr>
+    <th>Ref Number</th>
+    <th>Name</th>
+    <th>Firm</th>
+  </tr>
+  <% if @inactive_advisers.present? %>
+    <% @inactive_advisers.each do |adviser| %>
+      <tr>
+        <td><%= adviser.reference_number %></td>
+        <td><%= link_to adviser.name, admin_adviser_path(adviser) %></td>
+        <td><%= link_to adviser.firm.registered_name, admin_firm_path(adviser.firm) %></td>
+      </tr>
+    <% end %>
+  <% else %>
+    <tr>
+      <td colspan="3">No advisers to display</td>
+    </tr>
+  <% end %>
+</table>
