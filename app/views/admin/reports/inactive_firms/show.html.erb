@@ -1,0 +1,31 @@
+<h2>Inactive Firms</h2>
+
+<p>
+  This report shows all firms whose FCA status is no longer 'Authorised'.
+</p>
+
+<p>
+  The <a href="https://register.fca.org.uk/">Financial Services Register</a>
+  can be searched to determine exactly what status change has occurred.
+</p>
+
+<table class="table table-bordered">
+  <tr>
+    <th>FCA Number</th>
+    <th>Registered Name</th>
+    <th>Visible on Directory?</th>
+  </tr>
+  <% if @inactive_firms.present? %>
+    <% @inactive_firms.each do |firm| %>
+      <tr>
+        <td><%= firm.fca_number %></td>
+        <td><%= link_to firm.registered_name, admin_firm_path(firm) %></td>
+        <td><%= firm.publishable? ? 'Yes' : 'No' %></td>
+      </tr>
+    <% end %>
+  <% else %>
+    <tr>
+      <td colspan="3">No firms to display</td>
+    </tr>
+  <% end %>
+</table>
