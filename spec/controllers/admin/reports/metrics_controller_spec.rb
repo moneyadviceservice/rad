@@ -1,4 +1,4 @@
-RSpec.describe Admin::MetricsController, type: :controller do
+RSpec.describe Admin::Reports::MetricsController, type: :controller do
   describe '#download' do
     let(:snapshot) { Snapshot.create(firms_with_no_minimum_fee: 123) }
     let(:snapshot_filename) do
