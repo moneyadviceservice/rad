@@ -1,0 +1,31 @@
+<h2>Inactive Trading Names</h2>
+
+<p>
+  This report shows all trading names whose FCA status is no longer considered 'Current'.
+</p>
+
+<p>
+  The <a href="https://register.fca.org.uk/">Financial Services Register</a>
+  can be searched to determine exactly what status change has occurred.
+</p>
+
+<table class="table table-bordered">
+  <tr>
+    <th>FCA Number</th>
+    <th>Registered Name</th>
+    <th>Visible on Directory?</th>
+  </tr>
+  <% if @inactive_trading_names.present? %>
+    <% @inactive_trading_names.each do |trading_name| %>
+      <tr>
+        <td><%= trading_name.fca_number %></td>
+        <td><%= link_to trading_name.registered_name, admin_firm_path(trading_name) %></td>
+        <td><%= trading_name.publishable? ? 'Yes' : 'No' %></td>
+      </tr>
+    <% end %>
+  <% else %>
+    <tr>
+      <td colspan="3">No trading names to display</td>
+    </tr>
+  <% end %>
+</table>
