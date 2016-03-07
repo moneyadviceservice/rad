@@ -1,4 +1,5 @@
 require 'date'
+require 'set'
 require 'yaml'
 
 class ExtToSql
@@ -11,10 +12,12 @@ class ExtToSql
     NAME = 1
     ADVISER_STATUS_CODE = 4
     FIRM_AUTHORISATION_STATUS_CODE = 19
+    SUBSIDIARY_END_DATE = 4
   end
 
   def initialize(stderr = nil)
     @stderr = stderr
+    @seen_trading_names = Set.new
   end
 
   def process_ext_file(path, &block)
@@ -81,11 +84,9 @@ class ExtToSql
       row[COLUMNS::ADVISER_STATUS_CODE] == '4' # Value 4 means 'Active'
     when :firm
       # Col 19 - Current Authorisation Status code
-      ['Authorised',
-       'Registered',
-       'EEA Authorised'].include?(row[COLUMNS::FIRM_AUTHORISATION_STATUS_CODE])
+      ['Authorised', 'Registered', 'EEA Authorised'].include?(row[COLUMNS::FIRM_AUTHORISATION_STATUS_CODE])
     when :subsidiary
-      true
+      row[COLUMNS::SUBSIDIARY_END_DATE].empty? && unique_trading_name?(row)
     end
   end
 
@@ -107,6 +108,11 @@ class ExtToSql
   def warn_on_possibly_broken_line(line)
     return unless line.include? '""'
     log "\n  • \033[33;31mPossibly malformed row detected:\033[0m #{line}\n    ", newline: false
+  end
+
+  def unique_trading_name?(row)
+    # Returns nil if the key already exists. Otherwise returns self.
+    @seen_trading_names.add?("#{row[COLUMNS::REFERENCE_NUMBER]}|#{row[COLUMNS::NAME]}")
   end
 
   def end_copy_statement
