@@ -78,6 +78,12 @@
 
     <div class="l-identity__row">
       <div class="l-identity__field">
+        <%= render 'shared/password_policy' %>
+      </div>
+    </div>
+
+    <div class="l-identity__row">
+      <div class="l-identity__field">
         <%= f.form_row(:password) do %>
           <%= f.errors_for :password %>
           <%= f.label :password, t('registration.user.password'), class: 'form__label-heading' %>
