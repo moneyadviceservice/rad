@@ -1,0 +1,26 @@
+<h2>Out of Date Firms</h2>
+
+<p>
+  This report shows all firms where the registered name no longer matches FCA records.
+</p>
+
+<table class="table table-bordered">
+  <tr>
+    <th>FRN</th>
+    <th>Name in directory</th>
+    <th>Name in the last FCA import</th>
+  </tr>
+  <% if @firms.present? %>
+    <% @firms.each do |firm| %>
+      <tr>
+        <td><%= firm[0] %></td>
+        <td><%= link_to firm[1], admin_firm_path(firm[2]) %></td>
+        <td><%= firm[3] %></td>
+      </tr>
+    <% end %>
+  <% else %>
+    <tr>
+      <td colspan="3">No advisers to display</td>
+    </tr>
+  <% end %>
+</table>
