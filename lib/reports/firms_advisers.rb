@@ -1,3 +1,5 @@
+require 'csv'
+
 class Reports::FirmsAdvisers
   HEADER_ROW = [
     'FCA Number',
