@@ -1,7 +1,7 @@
 RSpec.describe Admin::Reports::OutOfDateFirmsController, type: :controller do
-  describe '#show' do
+  describe '#index' do
     it 'successfully renders' do
-      get :show
+      get :index
       expect(response).to be_success
     end
 
@@ -12,20 +12,19 @@ RSpec.describe Admin::Reports::OutOfDateFirmsController, type: :controller do
       FactoryGirl.create(:lookup_firm, registered_name: 'Acme Inc', fca_number: 222222)
       firm = FactoryGirl.create(:firm, registered_name: 'Acme Finance', fca_number: 222222)
 
-      get :show
-      expect(assigns[:firms]).to eq([[222222, 'Acme Finance', firm.id, 'Acme Inc']])
+      get :index
+      expect(assigns[:firms]).to eq([[222222, 'Acme Inc', 'Acme Finance', firm.id]])
     end
+  end
 
-    describe 'names to be intentionally ignored' do
-      described_class::REGISTERED_NAMES_TO_IGNORE.each do |name|
-        it "allows the name '#{name}'" do
-          FactoryGirl.create(:lookup_firm, registered_name: 'Different Name', fca_number: 111111)
-          FactoryGirl.create(:firm, registered_name: name, fca_number: 111111)
+  describe '#update' do
+    it 'replaces the name of the firm with the name from the lookup firm' do
+      FactoryGirl.create(:lookup_firm, registered_name: 'Acme Inc', fca_number: 222222)
+      firm = FactoryGirl.create(:firm, registered_name: 'Acme Finance', fca_number: 222222)
 
-          get :show
-          expect(assigns[:firms]).to eq([])
-        end
-      end
+      patch :update, id: firm.id
+
+      expect(Firm.find_by(fca_number: 222222).registered_name).to eq('Acme Inc')
     end
   end
 end
