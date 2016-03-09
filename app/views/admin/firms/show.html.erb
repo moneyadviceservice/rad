@@ -64,7 +64,7 @@
     <% end %>
   </ul>
 
-  <%= link_to 'Move advisers', new_admin_move_adviser_path, class: 'btn btn-default t-move-advisers', method: :get %>
+  <%= button_to 'Move advisers', new_admin_move_adviser_path, class: 't-move-advisers', method: :get, form_class: 'firm__move-advisers' %>
 <% else %>
   <p>No advisers registered.</p>
 <% end %>
