@@ -18,7 +18,7 @@ class Admin::AdvisersController < Admin::ApplicationController
     @adviser.reference_number = 'NOREF'
     @adviser.bypass_reference_number_check = true
 
-    if @adviser.save
+    if @adviser.save_with_geocoding
       redirect_to admin_firm_path(firm)
     else
       render :new
