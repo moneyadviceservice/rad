@@ -65,3 +65,7 @@ code {
 .adviser__actions__edit {
   @include make-xs-column(6);
 }
+
+.firm__move-advisers {
+  display: inline;
+}
