@@ -1,0 +1,10 @@
+<%=
+require 'csv'
+
+CSV.generate do |csv|
+  csv << ['Ref Number', 'Name', 'Firm']
+
+  @inactive_advisers.each do |adviser|
+    csv << [adviser.reference_number, adviser.name, adviser.firm.registered_name]
+  end
+end -%>
