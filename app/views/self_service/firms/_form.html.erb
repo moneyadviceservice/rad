@@ -1,3 +1,4 @@
+
 <p><%= t('self_service.required_fields_message') %></p>
 
 <% if @firm.errors.any? %>
@@ -7,13 +8,25 @@
 <% end %>
 
 <section class="form-section">
-  <h2 class="form-section__heading">
-    <% if f.object.trading_name? %>
-      <%= t('self_service.firm_edit.trading_name_heading') %>
-    <% else %>
-      <%= t('self_service.firm_edit.firm_heading') %>
-    <% end %>
-  </h2>
+  <div class="l-2-col">
+    <div class="l-2col-even l-2col-even--no-left-margin">
+      <h2 class="form-section__heading">
+        <% if f.object.trading_name? %>
+          <%= t('self_service.firm_edit.trading_name_heading') %>
+        <% else %>
+          <%= t('self_service.firm_edit.firm_heading') %>
+        <% end %>
+      </h2>
+    </div>
+
+    <div>
+      <div class="l-self-service-action-row">
+        <%= link_to t('self_service.cancel_button'), self_service_firms_path, class: 'l-self-service-action-row__cancel' %>
+        <%= f.submit t('self_service.save_button'), class: 'button button--primary' %>
+      </div>
+    </div>
+  </div>
+
   <%= render partial: 'self_service/firms/questionnaire/firm_details', locals: {f: f} %>
 </section>
 
