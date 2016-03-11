@@ -8,6 +8,11 @@ module Admin
                                          'AND lookup_subsidiaries.name = firms.registered_name')
                                   .where('lookup_subsidiaries.id' => nil)
                                   .where.not('parent_id' => nil)
+
+        respond_to do |format|
+          format.html
+          format.csv
+        end
       end
     end
   end

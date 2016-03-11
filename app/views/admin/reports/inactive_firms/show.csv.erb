@@ -1,0 +1,10 @@
+<%=
+require 'csv'
+
+CSV.generate do |csv|
+  csv << ['FCA Number', 'Registered Name', 'Visible on Directory?']
+
+  @inactive_firms.each do |firm|
+    csv << [firm.fca_number, firm.registered_name, firm.publishable? ? 'Yes' : 'No']
+  end
+end -%>
