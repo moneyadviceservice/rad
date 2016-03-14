@@ -15,7 +15,7 @@ class Admin::FirmsController < Admin::ApplicationController
   end
 
   def adviser_report
-    data = Reports::FirmsAdvisers.data
+    data = ::Reports::FirmsAdvisers.data
     time_string = Time.zone.now.to_formatted_s(:number)
     respond_to do |format|
       format.csv { send_data data, filename: "firms-advisers-#{time_string}.csv" }
