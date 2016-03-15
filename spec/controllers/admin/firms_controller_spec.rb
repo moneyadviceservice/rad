@@ -43,28 +43,35 @@ RSpec.describe Admin::FirmsController, type: :controller do
   end
 
   describe 'GET adviser_report' do
-    before :each do
-      allow(Reports::FirmsAdvisers).to receive(:data)
+    context 'contents' do
+      before :each do
+        allow(Reports::FirmsAdvisers).to receive(:data)
 
-      Timecop.freeze(Time.zone.parse('2016-05-04 00:00:00'))
+        Timecop.freeze(Time.zone.parse('2016-05-04 00:00:00'))
 
-      get :adviser_report, format: :csv
+        get :adviser_report, format: :csv
+      end
+
+      after :each do
+        Timecop.return
+      end
+
+      it 'gets data from the Firms report' do
+        expect(Reports::FirmsAdvisers).to have_received(:data)
+      end
+
+      it 'provides it as a CSV' do
+        expect(response.header['Content-Type']).to eq('text/csv')
+      end
+
+      it 'has a timestamped filename' do
+        expect(response.header['Content-Disposition']).to eq('attachment; filename="firms-advisers-20160504000000.csv"')
+      end
     end
+  end
 
-    after :each do
-      Timecop.return
-    end
-
-    it 'gets data from the Firms report' do
-      expect(Reports::FirmsAdvisers).to have_received(:data)
-    end
-
-    it 'provides it as a CSV' do
-      expect(response.header['Content-Type']).to eq('text/csv')
-    end
-
-    it 'has a timestamped filename' do
-      expect(response.header['Content-Disposition']).to eq('attachment; filename="firms-advisers-20160504000000.csv"')
-    end
+  it 'responds succesfully' do
+    get :adviser_report, format: :csv
+    expect(response).to be_success
   end
 end
