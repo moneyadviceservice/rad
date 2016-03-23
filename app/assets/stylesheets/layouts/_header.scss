@@ -1,5 +1,5 @@
 .l-header {
-  height: $baseline-unit*12;
+  // Needed to prevent the header disappearing on IE8.
   display: block;
 }
 
