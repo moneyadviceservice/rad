@@ -1,8 +1,12 @@
 .navigation {
   @extend .unstyled-list;
   float: right;
-  margin-top: 22px;
+  margin-top: $baseline-unit*2.5;
   padding-right: 0.5em;
+
+  @include respond-to($mq-m) {
+    margin-top: $baseline-unit*3;
+  }
 }
 
 %navigation-item {

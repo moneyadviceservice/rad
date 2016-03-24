@@ -17,10 +17,12 @@ gem 'bowndler', github: 'moneyadviceservice/bowndler'
 gem 'devise'
 gem 'devise_invitable'
 gem 'devise_security_extension'
+# Dough assets are loaded from a CDN instead of from the Gem. Do make sure that
+# the CDN version is the same as the Gem version.
 gem 'dough-ruby',
     github: 'moneyadviceservice/dough',
     require: 'dough',
-    ref: '1bba610'
+    tag: 'v5.12.0.267'
 gem 'jquery-rails'
 gem 'kaminari'
 gem 'letter_opener', group: :development
