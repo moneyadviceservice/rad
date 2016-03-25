@@ -23,6 +23,20 @@
         <%= f.search_field :registered_name_cont, class: 'form-control' %>
       </div>
       <div class="form-group">
+        <label>Filter by Service</label>
+        <div class="checkbox">
+          <%= f.label :ethical_investing_flag_true do %>
+            <%= f.check_box :ethical_investing_flag_true, {}, '1', nil %>Ethical investments
+          <% end %>
+          <%= f.label :sharia_investing_flag_true do %>
+            <%= f.check_box :sharia_investing_flag_true, {}, '1', nil %>Sharia compliant investments
+          <% end %>
+          <%= f.label :languages_array_present do %>
+            <%= f.check_box :languages_array_present %>Languages selected
+          <% end %>
+        </div>
+      </div>
+      <div class="form-group">
         <button type="submit" class="btn btn-default">Submit</button>
       </div>
     <% end %>

@@ -25,10 +25,29 @@
           <%= f.search_field :firm_registered_name_cont, class: 'form-control' %>
         </div>
       <% end %>
-        <div class="form-group">
-          <%= f.label :postcode_cont, 'Search Post Codes' %>
-          <%= f.search_field :postcode_cont, class: 'form-control' %>
-        </div>
+      <div class="form-group">
+        <%= f.label :postcode_cont, 'Search Post Codes' %>
+        <%= f.search_field :postcode_cont, class: 'form-control' %>
+      </div>
+      <div class="form-group">
+        <%= f.label :accreditations_id_eq, 'Search Accreditations' %>
+        <%= f.collection_select(:accreditations_id_eq,
+                                Accreditation.all,
+                                :id,
+                                :name,
+                                { include_blank: '-- Please select --' },
+                                { class: 'form-control' }) %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :qualifications_id_eq, 'Search Qualifications' %>
+        <%= f.collection_select(:qualifications_id_eq,
+                                Qualification.all,
+                                :id,
+                                :name,
+                                { include_blank: '-- Please select --' },
+                                { class: 'form-control' }) %>
+      </div>
       <div class="form-group">
         <button type="submit" class="btn btn-default">Submit</button>
       </div>
