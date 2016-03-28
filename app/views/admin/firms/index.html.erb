@@ -15,12 +15,12 @@
       </div>
       <div class="form-group">
         <%= f.label :fca_number_eq, 'Find by FCA Number' %>
-        <%= f.search_field :fca_number_eq, class: 'form-control' %>
+        <%= f.search_field :fca_number_eq, class: 'form-control t-fca-number-field' %>
         <small>Exact matches returned only</small>
       </div>
       <div class="form-group">
         <%= f.label :registered_name_cont, 'Search Firm Names' %>
-        <%= f.search_field :registered_name_cont, class: 'form-control' %>
+        <%= f.search_field :registered_name_cont, class: 'form-control t-registered-name-field' %>
       </div>
       <div class="form-group">
         <label>Filter by Service</label>
@@ -37,10 +37,10 @@
         </div>
       </div>
       <div class="form-group">
-        <button type="submit" class="btn btn-default">Submit</button>
+        <button type="submit" class="btn btn-default t-submit">Submit</button>
       </div>
     <% end %>
-    <p>
+    <p class="t-page-entries-info">
       <%= page_entries_info @firms %>
     </p>
     <p>
@@ -65,7 +65,7 @@
       </tr>
       <% if @firms.present? %>
         <% @firms.each do |firm| %>
-          <tr>
+          <tr class="t-firm-row">
             <td>
               <% if firm.principal.present? %>
                 <%= link_to "#{firm.principal.first_name} #{firm.principal.last_name}", admin_principal_path(firm.principal) %>
@@ -73,9 +73,9 @@
                 N/A
               <% end %>
             </td>
-            <td><%= firm.fca_number %></td>
+            <td class="t-fca-number"><%= firm.fca_number %></td>
             <td>
-              <%= link_to firm.registered_name, admin_firm_path(firm) %>
+              <%= link_to firm.registered_name, admin_firm_path(firm), class: 't-registered-name' %>
               <% if firm.subsidiary? %>
                 <br />
                 <em>subsidiary of <%= link_to firm.parent.registered_name, admin_firm_path(firm.parent) %></em>
