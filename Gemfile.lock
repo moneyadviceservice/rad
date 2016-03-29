@@ -149,7 +149,7 @@ GEM
       activesupport (>= 3.1.0)
       rack (>= 1.4.0)
       rest-client
-    mas-rad_core (0.0.108)
+    mas-rad_core (0.0.109)
       active_model_serializers
       geocoder
       httpclient
@@ -358,7 +358,7 @@ DEPENDENCIES
   launchy
   letter_opener
   mailjet
-  mas-rad_core (= 0.0.108)
+  mas-rad_core (= 0.0.109)
   oga
   pg
   poltergeist
