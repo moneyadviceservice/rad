@@ -1,5 +1,6 @@
 RSpec.feature 'Searching for firms on the admin interface' do
   let(:the_page) { Admin::FirmsIndexPage.new }
+  let(:example_language) { Languages::AVAILABLE_LANGUAGES[0].iso_639_3 }
 
   before do
     given_there_are_firms
@@ -25,7 +26,7 @@ RSpec.feature 'Searching for firms on the admin interface' do
     then_i_see_all_firms
   end
 
-  scenario 'Filtering by services' do
+  scenario 'Filtering by ethical & sharia investing services' do
     when_i_filter_by ethical_investing_flag: true
     then_i_see_n_results(2)
     then_i_only_see_firms 'Ethical & sharia', 'Only ethical'
@@ -42,6 +43,18 @@ RSpec.feature 'Searching for firms on the admin interface' do
     then_i_see_all_firms
   end
 
+  scenario 'Filtering for firms that have selected languages' do
+    when_i_filter_by languages: true
+    then_i_see_n_results(2)
+    then_i_only_see_firms_with fca_number: '234567'
+
+    when_i_filter_by languages: true, registered_name: 'With languages 1'
+    then_i_see_n_results(1)
+    then_i_only_see_firms_with registered_name: 'With languages 1', fca_number: '234567'
+
+    when_i_clear_all_filters
+    then_i_see_all_firms
+  end
 
   def given_i_am_on_the_admin_firms_index_page
     the_page.load
@@ -61,6 +74,11 @@ RSpec.feature 'Searching for firms on the admin interface' do
                                 ethical_investing_flag: true, sharia_investing_flag: false),
       FactoryGirl.create(:firm, registered_name: 'Only sharia',
                                 ethical_investing_flag: false, sharia_investing_flag: true),
+
+      FactoryGirl.create(:firm, registered_name: 'With languages 1',
+                                fca_number: '234567', languages: [example_language]),
+      FactoryGirl.create(:firm, registered_name: 'With languages 2',
+                                fca_number: '234567', languages: [example_language])
     ]
   end
 

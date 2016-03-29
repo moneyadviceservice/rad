@@ -21,6 +21,7 @@ class Admin::FirmsIndexPage < SitePrism::Page
   element :registered_name_field, '.t-registered-name-field'
   element :ethical_investing_flag_field, '.t-ethical-investing-flag-field'
   element :sharia_investing_flag_field, '.t-sharia-investing-flag-field'
+  element :languages_field, '.t-languages-field'
   element :submit, '.t-submit'
 
   sections :firms, RowSection, '.t-firm-row'
@@ -33,7 +34,8 @@ class Admin::FirmsIndexPage < SitePrism::Page
     fill_out_form(fca_number: '',
                   registered_name: '',
                   ethical_investing_flag: false,
-                  sharia_investing_flag: false)
+                  sharia_investing_flag: false,
+                  languages: false)
   end
 
   def total_firms

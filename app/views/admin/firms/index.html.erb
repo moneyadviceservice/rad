@@ -36,7 +36,8 @@
                             '1', nil %>Sharia compliant investments
           <% end %>
           <%= f.label :languages_array_present do %>
-            <%= f.check_box :languages_array_present %>Languages selected
+            <%= f.check_box :languages_array_present,
+                            class: 't-languages-field' %>Languages selected
           <% end %>
         </div>
       </div>
