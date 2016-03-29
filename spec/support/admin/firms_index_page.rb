@@ -16,17 +16,24 @@ class Admin::FirmsIndexPage < SitePrism::Page
   end
 
   element :page_entries_info, '.t-page-entries-info'
+
   element :fca_number_field, '.t-fca-number-field'
   element :registered_name_field, '.t-registered-name-field'
-  sections :firms, RowSection, '.t-firm-row'
+  element :ethical_investing_flag_field, '.t-ethical-investing-flag-field'
+  element :sharia_investing_flag_field, '.t-sharia-investing-flag-field'
   element :submit, '.t-submit'
+
+  sections :firms, RowSection, '.t-firm-row'
 
   def fill_out_form(field_values)
     field_values.each { |field, value| public_send("#{field}_field").set(value) }
   end
 
   def clear_form
-    fill_out_form(fca_number: '', registered_name: '')
+    fill_out_form(fca_number: '',
+                  registered_name: '',
+                  ethical_investing_flag: false,
+                  sharia_investing_flag: false)
   end
 
   def total_firms

@@ -25,6 +25,24 @@ RSpec.feature 'Searching for firms on the admin interface' do
     then_i_see_all_firms
   end
 
+  scenario 'Filtering by services' do
+    when_i_filter_by ethical_investing_flag: true
+    then_i_see_n_results(2)
+    then_i_only_see_firms 'Ethical & sharia', 'Only ethical'
+
+    when_i_filter_by sharia_investing_flag: true
+    then_i_see_n_results(2)
+    then_i_only_see_firms 'Ethical & sharia', 'Only sharia'
+
+    when_i_filter_by ethical_investing_flag: true, sharia_investing_flag: true
+    then_i_see_n_results(1)
+    then_i_only_see_firms 'Ethical & sharia'
+
+    when_i_clear_all_filters
+    then_i_see_all_firms
+  end
+
+
   def given_i_am_on_the_admin_firms_index_page
     the_page.load
     expect(the_page).to be_displayed
@@ -35,7 +53,14 @@ RSpec.feature 'Searching for firms on the admin interface' do
     @firms = [
       FactoryGirl.create(:firm, registered_name: 'Acme Finance'),
       FactoryGirl.create(:firm, fca_number: '123456'),
-      FactoryGirl.create(:firm, fca_number: '123456')
+      FactoryGirl.create(:firm, fca_number: '123456'),
+
+      FactoryGirl.create(:firm, registered_name: 'Ethical & sharia',
+                                ethical_investing_flag: true, sharia_investing_flag: true),
+      FactoryGirl.create(:firm, registered_name: 'Only ethical',
+                                ethical_investing_flag: true, sharia_investing_flag: false),
+      FactoryGirl.create(:firm, registered_name: 'Only sharia',
+                                ethical_investing_flag: false, sharia_investing_flag: true),
     ]
   end
 
@@ -45,6 +70,7 @@ RSpec.feature 'Searching for firms on the admin interface' do
   end
 
   def when_i_filter_by(field_values)
+    the_page.clear_form
     the_page.fill_out_form(field_values)
     submit_the_form
   end
@@ -55,6 +81,10 @@ RSpec.feature 'Searching for firms on the admin interface' do
 
   def then_i_only_see_firms_with(expected_common_attrs)
     expect(the_page.firms).to rspec_all(have_attributes(expected_common_attrs))
+  end
+
+  def then_i_only_see_firms(*expected_firm_names)
+    expect(the_page.firms.map(&:registered_name)).to match_array(expected_firm_names)
   end
 
   def then_i_see_all_firms
