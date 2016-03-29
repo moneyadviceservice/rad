@@ -26,19 +26,37 @@ class Admin::AdvisersIndexPage < SitePrism::Page
   end
 
   element :page_entries_info, '.t-page-entries-info'
+
   element :reference_number_field, '.t-reference-number-field'
   element :name_field, '.t-name-field'
   element :firm_registered_name_field, '.t-firm-registered-name-field'
   element :postcode_field, '.t-postcode-field'
-  sections :advisers, RowSection, '.t-adviser-row'
+  element :qualifications_field, '.t-qualifications-field'
+  element :accreditations_field, '.t-accreditations-field'
   element :submit, '.t-submit'
 
+  sections :advisers, RowSection, '.t-adviser-row'
+
   def fill_out_form(field_values)
-    field_values.each { |field, value| public_send("#{field}_field").set(value) }
+    field_values.each do |field, value|
+      element = public_send("#{field}_field")
+
+      case field
+      when :qualifications, :accreditations
+        element.select(value)
+      else
+        element.set(value)
+      end
+    end
   end
 
   def clear_form
-    fill_out_form(reference_number: '', name: '', firm_registered_name: '', postcode: '')
+    fill_out_form(reference_number: '',
+                  name: '',
+                  firm_registered_name: '',
+                  postcode: '',
+                  accreditations: '-- Please select --',
+                  qualifications: '-- Please select --')
   end
 
   def total_advisers

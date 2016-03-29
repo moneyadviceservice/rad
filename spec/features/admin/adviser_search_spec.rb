@@ -1,6 +1,14 @@
 RSpec.feature 'Searching for advisers on the admin interface' do
   let(:the_page) { Admin::AdvisersIndexPage.new }
 
+  let(:qualification_1) { FactoryGirl.create(:qualification, name: 'Qual 1') }
+  let(:qualification_2) { FactoryGirl.create(:qualification, name: 'Qual 2') }
+  let(:qualifications) { [qualification_1, qualification_2] }
+
+  let(:accreditation_1) { FactoryGirl.create(:accreditation, name: 'Accr 1') }
+  let(:accreditation_2) { FactoryGirl.create(:accreditation, name: 'Accr 2') }
+  let(:accreditations) { [accreditation_1, accreditation_2] }
+
   before do
     given_there_are_advisers
     given_i_am_on_the_admin_advisers_index_page
@@ -43,12 +51,48 @@ RSpec.feature 'Searching for advisers on the admin interface' do
     then_i_see_all_advisers
   end
 
+  scenario 'Filtering by qualifications' do
+    when_i_filter_by qualifications: 'Qual 1'
+    then_i_see_n_results(2)
+    then_i_only_see_advisers 'A1', 'A2'
+
+    when_i_filter_by qualifications: 'Qual 2'
+    then_i_see_n_results(1)
+    then_i_only_see_advisers 'A1'
+
+    when_i_clear_all_filters
+    then_i_see_all_advisers
+  end
+
+  scenario 'Filtering by accreditations' do
+    when_i_filter_by accreditations: 'Accr 1'
+    then_i_see_n_results(2)
+    then_i_only_see_advisers 'A2', 'A3'
+
+    when_i_filter_by accreditations: 'Accr 2'
+    then_i_see_n_results(1)
+    then_i_only_see_advisers 'A3'
+
+    when_i_clear_all_filters
+    then_i_see_all_advisers
+  end
+
+  scenario 'Filtering by qualifications and accreditations' do
+    when_i_filter_by accreditations: 'Accr 1', qualifications: 'Qual 1'
+    then_i_see_n_results(1)
+    then_i_only_see_advisers 'A2'
+
+    when_i_clear_all_filters
+    then_i_see_all_advisers
+  end
+
   def given_i_am_on_the_admin_advisers_index_page
     the_page.load
     expect(the_page).to be_displayed
     expect_no_errors
   end
 
+  # rubocop:disable Metrics/MethodLength
   def given_there_are_advisers
     FactoryGirl.create(:firm_without_advisers, registered_name: 'W. Montgomery Financial') do |f|
       FactoryGirl.create(:adviser, firm: f, name: 'Wes Montgomery')
@@ -57,8 +101,22 @@ RSpec.feature 'Searching for advisers on the admin interface' do
 
     FactoryGirl.create(:adviser, reference_number: 'CHP12345')
 
+    FactoryGirl.create(:adviser,
+                       name: 'A1',
+                       qualifications: qualifications.take(2),
+                       accreditations: accreditations.take(0))
+    FactoryGirl.create(:adviser,
+                       name: 'A2',
+                       qualifications: qualifications.take(1),
+                       accreditations: accreditations.take(1))
+    FactoryGirl.create(:adviser,
+                       name: 'A3',
+                       qualifications: qualifications.take(0),
+                       accreditations: accreditations.take(2))
+
     @advisers = Adviser.all.to_a
   end
+  # rubocop:enable Metrics/MethodLength
 
   def when_i_clear_all_filters
     the_page.clear_form
@@ -66,6 +124,7 @@ RSpec.feature 'Searching for advisers on the admin interface' do
   end
 
   def when_i_filter_by(field_values)
+    the_page.clear_form
     the_page.fill_out_form(field_values)
     submit_the_form
   end
@@ -76,6 +135,10 @@ RSpec.feature 'Searching for advisers on the admin interface' do
 
   def then_i_only_see_advisers_with(expected_common_attrs)
     expect(the_page.advisers).to rspec_all(have_attributes(expected_common_attrs))
+  end
+
+  def then_i_only_see_advisers(*expected_adviser_names)
+    expect(the_page.advisers.map(&:name)).to match_array(expected_adviser_names)
   end
 
   def then_i_see_all_advisers
