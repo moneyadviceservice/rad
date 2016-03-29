@@ -16,6 +16,14 @@ module Admin::FirmsHelper
     end
   end
 
+  def render_inline_language_list(firm)
+    firm.languages
+      .map(&LanguageList::LanguageInfo.method(:find))
+      .map(&:common_name)
+      .sort
+      .join(', ')
+  end
+
   def user_for(principal)
     User.find_by_principal_token principal.token
   end

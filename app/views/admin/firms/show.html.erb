@@ -84,7 +84,10 @@
          :allowed_payment_methods,
          :minimum_fixed_fee,
          *t('self_service.firm_form.business_split_options').keys,
-         :investment_sizes
+         :investment_sizes,
+         :ethical_investing_flag,
+         :sharia_investing_flag,
+         :workplace_financial_advice_flag,
        ].each do |attribute|
     %>
       <li>
@@ -92,5 +95,10 @@
         <%= render_questionnaire_response(@firm, attribute) %>
       </li>
     <% end %>
+
+    <li>
+      <strong>Languages:</strong>
+      <%= render_inline_language_list(@firm) %>
+    </li>
   </ul>
 <% end %>
