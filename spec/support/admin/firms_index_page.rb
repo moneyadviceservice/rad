@@ -21,6 +21,7 @@ class Admin::FirmsIndexPage < SitePrism::Page
   element :registered_name_field, '.t-registered-name-field'
   element :ethical_investing_flag_field, '.t-ethical-investing-flag-field'
   element :sharia_investing_flag_field, '.t-sharia-investing-flag-field'
+  element :workplace_financial_advice_flag_field, '.t-workplace-financial-advice-flag'
   element :languages_field, '.t-languages-field'
   element :submit, '.t-submit'
 
@@ -35,6 +36,7 @@ class Admin::FirmsIndexPage < SitePrism::Page
                   registered_name: '',
                   ethical_investing_flag: false,
                   sharia_investing_flag: false,
+                  workplace_financial_advice_flag: false,
                   languages: false)
   end
 

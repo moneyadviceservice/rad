@@ -56,6 +56,15 @@ RSpec.feature 'Searching for firms on the admin interface' do
     then_i_see_all_firms
   end
 
+  scenario 'Filtering for firms that offer Workplace Financial Advice' do
+    when_i_filter_by workplace_financial_advice_flag: true
+    then_i_see_n_results(1)
+    then_i_only_see_firms_with registered_name: 'Acme Finance'
+
+    when_i_clear_all_filters
+    then_i_see_all_firms
+  end
+
   def given_i_am_on_the_admin_firms_index_page
     the_page.load
     expect(the_page).to be_displayed
@@ -64,7 +73,7 @@ RSpec.feature 'Searching for firms on the admin interface' do
 
   def given_there_are_firms
     @firms = [
-      FactoryGirl.create(:firm, registered_name: 'Acme Finance'),
+      FactoryGirl.create(:firm, registered_name: 'Acme Finance', workplace_financial_advice_flag: true),
       FactoryGirl.create(:firm, fca_number: '123456'),
       FactoryGirl.create(:firm, fca_number: '123456'),
 

@@ -35,6 +35,11 @@
                             { class: 't-sharia-investing-flag-field' },
                             '1', nil %>Sharia compliant investments
           <% end %>
+          <%= f.label :workplace_financial_advice_flag_true do %>
+            <%= f.check_box :workplace_financial_advice_flag_true,
+                            { class: 't-workplace-financial-advice-flag' },
+                            '1', nil %>Workplace financial advice
+          <% end %>
           <%= f.label :languages_array_present do %>
             <%= f.check_box :languages_array_present,
                             class: 't-languages-field' %>Languages selected
