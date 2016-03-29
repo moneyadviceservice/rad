@@ -25,6 +25,7 @@ module SelfService
       :ethical_investing_flag,
       :sharia_investing_flag,
       :workplace_financial_advice_flag,
+      :non_uk_residents_flag,
       :status,
       in_person_advice_method_ids: [],
       other_advice_method_ids: [],

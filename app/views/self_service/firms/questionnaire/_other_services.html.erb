@@ -22,5 +22,11 @@
         <%= t('self_service.firm_form.workplace_financial_advice_label') %>
       </label>
     </div>
+    <div class="form__group-item">
+      <label>
+        <%= f.check_box :non_uk_residents_flag, class: "form__input t-non-uk-residents-flag" %>
+        <%= t('self_service.firm_form.non_uk_residents_label') %>
+      </label>
+    </div>
   <% end %>
 </fieldset>
