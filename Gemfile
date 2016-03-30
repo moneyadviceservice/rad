@@ -27,7 +27,7 @@ gem 'jquery-rails'
 gem 'kaminari'
 gem 'letter_opener', group: :development
 gem 'mailjet'
-gem 'mas-rad_core', '0.0.108'
+gem 'mas-rad_core', '0.0.109'
 gem 'oga'
 gem 'pg'
 gem 'rails_email_validator'
