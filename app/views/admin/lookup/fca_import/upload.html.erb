@@ -1,0 +1,32 @@
+<h1>Files Uploaded</h1> Please note we ain't done yet!
+
+<br/>
+<table style="border: black solid 1px;">
+  <tr>
+    <th></th>
+    <th>Uploaded</th>
+    <th>Existing</th>
+  </tr>
+  <tr>
+    <td>Firms</td>
+    <td>2652</td>
+    <td>2343</td>
+  </tr>
+  <tr>
+    <td>Subsidiary</td>
+    <td>9652</td>
+    <td>8943</td>
+  </tr>
+  <tr>
+    <td>Advisers</td>
+    <td>20323</td>
+    <td>19543</td>
+  </tr>
+</table>
+
+<br/><br/>
+If you are happy with this, to make the changes available to users please
+<br/>
+<%= form_tag import_admin_lookup_fca_import_index_path, multipart: true do %>
+  <%= submit_tag 'IMPORT ALL THE THINGS!' %>
+<% end %>

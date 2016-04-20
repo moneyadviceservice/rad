@@ -69,6 +69,12 @@ Rails.application.routes.draw do
       resources :advisers, only: :index
       resources :firms, only: :index
       resources :subsidiaries, only: :index
+      resources :fca_import, controller: 'fca_import', only: [:new] do
+        collection do
+          post :upload
+          post :import
+        end
+      end
     end
     resources :principals, only: [:index, :show, :destroy]
 

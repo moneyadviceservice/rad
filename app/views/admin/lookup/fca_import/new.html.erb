@@ -1,0 +1,13 @@
+<h1>FCA Import</h1>
+
+<p>
+  Last Successful Import: 20 Jan 2013
+</p>
+
+<%= form_tag upload_admin_lookup_fca_import_index_path, multipart: true do %>
+  <% ['f', 'c', 'a'].each do |file_bit| %>
+    <label for="<%= file_bit %>-file">*<%= file_bit %>.zip to upload</label> <%= file_field_tag "#{file_bit}_file" %>
+  <% end %>
+  <br/>
+  <%= submit_tag 'Upload' %>
+<% end %>
