@@ -27,7 +27,7 @@ gem 'jquery-rails'
 gem 'kaminari'
 gem 'letter_opener', group: :development
 gem 'mailjet'
-gem 'mas-rad_core', '0.0.109'
+gem 'mas-rad_core', github: 'moneyadviceservice/mas-rad_core', branch: 'feature/automate_fca_import'
 gem 'oga'
 gem 'pg'
 gem 'rails_email_validator'
