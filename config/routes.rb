@@ -71,7 +71,10 @@ Rails.application.routes.draw do
       resources :subsidiaries, only: :index
       resources :fca_import, controller: 'fca_import', only: [:new] do
         collection do
-          post :upload
+          post :upload_firms
+          post :upload_subsidiaries
+          post :upload_advisers
+          get :upload_status
           post :import
         end
       end

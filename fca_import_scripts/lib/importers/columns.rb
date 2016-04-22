@@ -1,0 +1,10 @@
+module Importers
+  module COLUMNS
+    HEADER_NAME = 1
+    REFERENCE_NUMBER = 0
+    NAME = 1
+    ADVISER_STATUS_CODE = 4
+    FIRM_AUTHORISATION_STATUS_CODE = 19
+    SUBSIDIARY_END_DATE = 4
+  end
+end

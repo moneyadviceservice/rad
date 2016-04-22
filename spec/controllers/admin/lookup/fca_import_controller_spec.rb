@@ -1,8 +1,44 @@
 RSpec.describe Admin::Lookup::FcaImportController, type: :controller do
+  let(:email) { 'bob@example.com' }
+
   describe '#new' do
     it 'renders the new view' do
       get :new
       expect(response).to render_template(:new)
+    end
+  end
+
+  describe '#upload_firms' do
+    it 'unzips uploaded file and passes on the contents of firms file' do
+      upload_double = class_double('UploadFcaDataJob').as_stubbed_const
+      expect(upload_double).to receive(:perform_later).with("firm file contents\n", email, 'date_a.zip')
+
+      post :upload_firms, a_file: fixture_file_upload('spec/fixtures/date_a.zip'), email: email
+    end
+  end
+
+  describe '#upload_subsidiaries' do
+    it 'unzips uploaded file and passes on the contents of subsidiaries file' do
+      upload_double = class_double('UploadFcaDataJob').as_stubbed_const
+      expect(upload_double).to receive(:perform_later).with("Subsidiary file contents\n", email, 'date_c.zip')
+
+      post :upload_subsidiaries, c_file: fixture_file_upload('spec/fixtures/date_c.zip'), email: email
+    end
+  end
+
+  describe '#upload_advisers' do
+    it 'unzips uploaded file and passes on the contents of subsidiaries file' do
+      upload_double = class_double('UploadFcaDataJob').as_stubbed_const
+      expect(upload_double).to receive(:perform_later).with("Adviser file contents\n", email, 'date_f.zip')
+
+      post :upload_advisers, f_file: fixture_file_upload('spec/fixtures/date_f.zip'), email: email
+    end
+  end
+
+  describe '#upload_status' do
+    it 'renders the upload_status view' do
+      get :upload_status
+      expect(response).to render_template(:upload_status)
     end
   end
 

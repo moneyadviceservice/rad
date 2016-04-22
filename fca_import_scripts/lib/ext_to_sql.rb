@@ -2,92 +2,67 @@ require 'date'
 require 'set'
 require 'yaml'
 
+require_relative 'importers/firm_importer'
+require_relative 'importers/subsidiary_importer'
+require_relative 'importers/adviser_importer'
+require_relative 'importers/columns'
+
 class ExtToSql
   TIMESTAMP = Time.now.strftime('%Y-%m-%d %H:%M:%S.%N') # rubocop:disable Rails/TimeZone
   REPAIR_FILE = File.join(File.dirname(__FILE__), '..', 'repairs.yml')
 
-  module COLUMNS
-    HEADER_NAME = 1
-    REFERENCE_NUMBER = 0
-    NAME = 1
-    ADVISER_STATUS_CODE = 4
-    FIRM_AUTHORISATION_STATUS_CODE = 19
-    SUBSIDIARY_END_DATE = 4
-  end
-
-  def initialize(stderr = nil)
+  def initialize(zip_file_contents, stderr = nil)
     @stderr = stderr
-    @seen_trading_names = Set.new
+    @zip_file_contents = zip_file_contents
+    @type_importer = find_type zip_file_contents
   end
 
-  def process_ext_file(path, &block)
-    File.foreach(path) do |line|
+  def truncate_and_copy_sql
+    truncate + copy
+  end
+
+  def process_ext_file_content(&block)
+    @zip_file_contents.split("\n").each do |line|
       line = repair_line line
       row = line.split('|')
 
-      next if row.first == 'Footer'
+      next if row.first == 'Header' || row.first == 'Footer'
 
-      if row.first == 'Header'
-        @type = determine_type_from_header(row)
-        block.call build_copy_statement
-        log "  • \033[33;36mConverting #{@type} EXT to SQL.\033[0m ", newline: false
-        next
-      end
-
-      block.call build_row(row) if record_active?(row)
-
-      write_progress
+      block.call build_row(row) if @type_importer.record_active? row
     end
-
-    block.call end_copy_statement
   end
 
   private
 
-  def determine_type_from_header(row)
-    case row[COLUMNS::HEADER_NAME]
-    when 'Individual Details'
-      :adviser
-    when 'Firm Authorisation'
-      :firm
-    when 'Alternative Firm Name'
-      :subsidiary
-    else
-      fail "Unable to determine file type from header: #{row[COLUMNS::HEADER_NAME]}"
-    end
+  def truncate
+    "TRUNCATE #{@type_importer.table_name};"
   end
 
-  def build_copy_statement
-    case @type
-    when :adviser
-      'COPY lookup_advisers (reference_number, name, created_at, updated_at) FROM stdin;'
-    when :firm
-      'COPY lookup_firms (fca_number, registered_name, created_at, updated_at) FROM stdin;'
-    when :subsidiary
-      'COPY lookup_subsidiaries (fca_number, name, created_at, updated_at) FROM stdin;'
-    end
+  def copy
+    @type_importer.copy
+  end
+
+  def find_type(content)
+    header_row = content.split("\n").first
+    row = header_row.split('|')
+    determine_type_from_header(row)
+  end
+
+  def determine_type_from_header(row)
+    header = row[Importers::COLUMNS::HEADER_NAME]
+    importers = [Importers::AdviserImporter.new, Importers::FirmImporter.new, Importers::SubsidiaryImporter.new]
+    importer = importers.find { |klass| klass.can_process? header }
+
+    fail "Unable to determine file type from header: #{row[Importers::COLUMNS::HEADER_NAME]}" if importer.nil?
+
+    importer
   end
 
   def build_row(row)
-    number = row[COLUMNS::REFERENCE_NUMBER] # reference number for advisers or firms
-    name = escape(row[COLUMNS::NAME].strip)
+    number = row[Importers::COLUMNS::REFERENCE_NUMBER] # reference number for advisers or firms
+    name = escape(row[Importers::COLUMNS::NAME].strip)
 
     "#{number}\t#{name}\t#{TIMESTAMP}\t#{TIMESTAMP}"
-  end
-
-  def record_active?(row)
-    # For details on this, see FS Register Extract Service on Computer Readable
-    # Media Subscriber's Handbook
-
-    case @type
-    when :adviser
-      row[COLUMNS::ADVISER_STATUS_CODE] == '4' # Value 4 means 'Active'
-    when :firm
-      # Col 19 - Current Authorisation Status code
-      ['Authorised', 'Registered', 'EEA Authorised'].include?(row[COLUMNS::FIRM_AUTHORISATION_STATUS_CODE])
-    when :subsidiary
-      row[COLUMNS::SUBSIDIARY_END_DATE].empty? && unique_trading_name?(row)
-    end
   end
 
   def repairs
@@ -110,13 +85,8 @@ class ExtToSql
     log "\n  • \033[33;31mPossibly malformed row detected:\033[0m #{line}\n    ", newline: false
   end
 
-  def unique_trading_name?(row)
-    # Returns nil if the key already exists. Otherwise returns self.
-    @seen_trading_names.add?("#{row[COLUMNS::REFERENCE_NUMBER]}|#{row[COLUMNS::NAME]}")
-  end
-
-  def end_copy_statement
-    '\.'
+  def escape(str)
+    str.gsub("\t", '\t').gsub("'", "''")
   end
 
   def log(str, newline: true)
@@ -127,14 +97,5 @@ class ExtToSql
       @stderr.print str
       @stderr.flush
     end
-  end
-
-  def write_progress
-    @i ||= 0
-    log '.', newline: false if (@i += 1) % 10_000 == 0
-  end
-
-  def escape(str)
-    str.gsub("\t", '\t')
   end
 end

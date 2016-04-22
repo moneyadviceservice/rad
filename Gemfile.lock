@@ -275,6 +275,7 @@ GEM
       ansi
       ast
     ruby-progressbar (1.7.5)
+    rubyzip (1.1.7)
     safe_yaml (1.0.4)
     sass (3.2.19)
     sass-rails (4.0.5)
@@ -376,6 +377,7 @@ DEPENDENCIES
   rspec-collection_matchers
   rspec-rails
   rubocop
+  rubyzip
   sass-rails
   sidekiq
   sidetiq
