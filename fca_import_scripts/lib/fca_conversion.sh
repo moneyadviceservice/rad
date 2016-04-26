@@ -10,17 +10,20 @@ clear_data() {
   mkdir sql ext
 }
 
-warn_if_no_archives() {
-  if [[ ! -d archives ]]; then
-    echo -e "${CR}No FCA archives found in archives/.${RC}"
+warn_if_no() {
+  directory=$1
+  msg=$2
+  if [[ ! -d $directory ]]; then
+    echo -e "${CR}No directory found: $directory${RC}"
+    [[ -n "$msg" ]] && echo -e "${CR}$msg${RC}"
     echo -e "${CR}Check README.md${RC}"
     exit 1
   fi
 }
 
-extract_archives() {
-  echo -e "• ${CC}Extracting archives.${RC}"
-  ls archives/*.zip | xargs -Ifile unzip file -d ext/ > /dev/null
+extract_incoming() {
+  echo -e "• ${CC}Extracting FCA files in incoming.${RC}"
+  ls incoming/*.zip | xargs -Ifile unzip file -d ext/ > /dev/null
 }
 
 convert_to_utf8() {
@@ -53,4 +56,8 @@ write_batch_sql() {
 
 report_done() {
   echo -e "• ${CG}Done.${RC}"
+}
+
+archive_incoming() {
+  mv -i incoming/* archives/
 }
