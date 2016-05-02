@@ -8,7 +8,7 @@ RSpec.describe ExtToSql do
       File.open(File.expand_path("spec/fixtures/#{fixture_name}.ext"), 'rb').read
     end
     let(:stderr) { StringIO.new }
-    let(:instance) { ExtToSql.new(fixture_content, stderr) }
+    let(:instance) { ExtToSql.new(fixture_content) }
 
     let(:truncate_and_copy_sql) { instance.truncate_and_copy_sql }
 
@@ -77,8 +77,10 @@ RSpec.describe ExtToSql do
       let(:fixture_name) { 'advisers_with_broken_row' }
 
       it 'warns of a broken row' do
+        line = 'Possibly malformed row detected: ' \
+                "AAA00001|Mr \"\"Alaba Adewale Adebajo|||4|ADEBAJOALABAADEWALE|20110426|\n"
+        expect(Rails.logger).to receive(:error).with(line)
         content_data
-        expect(stderr.string).to include 'Possibly malformed row detected'
       end
 
       context 'when there is a stored repair' do
@@ -140,7 +142,7 @@ FILE_CONTENT
       it 'raises an error' do
         expected_error = 'Unable to determine file type from header: Made up'
         begin
-          ExtToSql.new(fixture_content, stderr)
+          ExtToSql.new(fixture_content)
         rescue RuntimeError => e
           expect(e.message).to eql(expected_error)
         end

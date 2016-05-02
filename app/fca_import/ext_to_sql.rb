@@ -6,8 +6,7 @@ class ExtToSql
   TIMESTAMP = Time.now.strftime('%Y-%m-%d %H:%M:%S.%N') # rubocop:disable Rails/TimeZone
   REPAIR_FILE = File.join(File.dirname(__FILE__), 'repairs.yml')
 
-  def initialize(zip_file_contents, stderr = nil)
-    @stderr = stderr
+  def initialize(zip_file_contents)
     @zip_file_contents = zip_file_contents
     @type_importer = find_type zip_file_contents
   end
@@ -73,20 +72,10 @@ class ExtToSql
 
   def warn_on_possibly_broken_line(line)
     return unless line.include? '""'
-    log "\n  • \033[33;31mPossibly malformed row detected:\033[0m #{line}\n    ", newline: false
+    Rails.logger.error "Possibly malformed row detected: #{line}\n"
   end
 
   def escape(str)
-    str.gsub("\t", '\t').gsub("'", "''")
-  end
-
-  def log(str, newline: true)
-    return if @stderr.nil?
-    if newline
-      @stderr.puts str
-    else
-      @stderr.print str
-      @stderr.flush
-    end
+    str.gsub("\t", '\t')
   end
 end

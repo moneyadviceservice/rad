@@ -15,7 +15,7 @@ class UploadFcaDataJob < ActiveJob::Base
 
   def upload_data(zip_file_content)
     raw_connection = ActiveRecord::Base.connection.raw_connection
-    ext_to_sql = ::ExtToSql.new(zip_file_content, STDERR)
+    ext_to_sql = ::ExtToSql.new(zip_file_content)
     raw_connection.exec ext_to_sql.truncate_and_copy_sql
 
     ext_to_sql.process_ext_file_content do |line|
