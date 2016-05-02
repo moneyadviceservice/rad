@@ -5,7 +5,7 @@ module Importers
     end
 
     def copy
-      "COPY #{table_name} (fca_number, registered_name, created_at, updated_at) FROM stdin;"
+      Lookup::Import::Firm.fca_import_copy_statement
     end
 
     def record_active?(row)
@@ -14,7 +14,7 @@ module Importers
     end
 
     def table_name
-      'lookup_import_firms'
+      Lookup::Import::Firm.table_name
     end
   end
 end

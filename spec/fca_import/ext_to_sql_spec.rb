@@ -1,6 +1,6 @@
 require 'spec_helper'
 require 'stringio'
-require Rails.root.join('fca_import_scripts', 'lib', 'ext_to_sql')
+# require Rails.root.join('fca_import_scripts', 'lib', 'ext_to_sql')
 
 RSpec.describe ExtToSql do
   describe '#process_ext_file_content' do

@@ -1,5 +1,3 @@
-require Rails.root.join('fca_import_scripts', 'lib', 'ext_to_sql')
-
 class UploadFcaDataJob < ActiveJob::Base
   include Sidekiq::Worker
 
@@ -17,7 +15,6 @@ class UploadFcaDataJob < ActiveJob::Base
 
   def upload_data(zip_file_content)
     raw_connection = ActiveRecord::Base.connection.raw_connection
-
     ext_to_sql = ::ExtToSql.new(zip_file_content, STDERR)
     raw_connection.exec ext_to_sql.truncate_and_copy_sql
 

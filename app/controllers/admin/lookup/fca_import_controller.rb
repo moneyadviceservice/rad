@@ -1,5 +1,4 @@
 require 'zip'
-require File.join(Rails.root, 'fca_import_scripts', 'lib', 'ext_to_sql')
 
 class Admin::Lookup::FcaImportController < Admin::ApplicationController
   def new

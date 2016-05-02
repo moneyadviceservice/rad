@@ -2,14 +2,9 @@ require 'date'
 require 'set'
 require 'yaml'
 
-require_relative 'importers/firm_importer'
-require_relative 'importers/subsidiary_importer'
-require_relative 'importers/adviser_importer'
-require_relative 'importers/columns'
-
 class ExtToSql
   TIMESTAMP = Time.now.strftime('%Y-%m-%d %H:%M:%S.%N') # rubocop:disable Rails/TimeZone
-  REPAIR_FILE = File.join(File.dirname(__FILE__), '..', 'repairs.yml')
+  REPAIR_FILE = File.join(File.dirname(__FILE__), 'repairs.yml')
 
   def initialize(zip_file_contents, stderr = nil)
     @stderr = stderr

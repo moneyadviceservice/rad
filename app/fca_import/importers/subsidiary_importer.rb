@@ -9,7 +9,7 @@ module Importers
     end
 
     def copy
-      "COPY #{table_name} (fca_number, name, created_at, updated_at) FROM stdin;"
+      Lookup::Import::Subsidiary.fca_import_copy_statement
     end
 
     def record_active?(row)
@@ -17,7 +17,7 @@ module Importers
     end
 
     def table_name
-      'lookup_import_subsidiaries'
+      Lookup::Import::Subsidiary.table_name
     end
 
     private
