@@ -17,7 +17,7 @@ GIT
 
 GIT
   remote: git://github.com/moneyadviceservice/mas-rad_core.git
-  revision: cdbd872ab83b02b4139fe2c5bef0e0d3e79f986a
+  revision: 2b752b273a330455523174d230ed376d73c8d0d7
   branch: feature/automate_fca_import
   specs:
     mas-rad_core (0.0.110)
