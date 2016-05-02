@@ -8,16 +8,12 @@ module Importers
       'Alternative Firm Name' == header
     end
 
-    def copy
-      Lookup::Import::Subsidiary.fca_import_copy_statement
-    end
-
     def record_active?(row)
       row[COLUMNS::SUBSIDIARY_END_DATE].empty? && unique_trading_name?(row)
     end
 
-    def table_name
-      Lookup::Import::Subsidiary.table_name
+    def model_class
+      Lookup::Import::Subsidiary
     end
 
     private

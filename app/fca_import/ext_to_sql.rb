@@ -13,7 +13,7 @@ class ExtToSql
   end
 
   def truncate_and_copy_sql
-    truncate + copy
+    truncate + model_class.fca_import_copy_statement
   end
 
   def process_ext_file_content(&block)
@@ -29,12 +29,12 @@ class ExtToSql
 
   private
 
-  def truncate
-    "TRUNCATE #{@type_importer.table_name};"
+  def model_class
+    @type_importer.model_class
   end
 
-  def copy
-    @type_importer.copy
+  def truncate
+    model_class.truncate_sql
   end
 
   def find_type(content)
