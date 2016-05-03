@@ -33,6 +33,19 @@ RSpec.describe UploadFcaDataJob, type: :job do
       end
     end
 
+    context 'sql injection attack' do
+      let(:fixture_content) do
+        File.open(File.expand_path('spec/fixtures/adviser_sql_injection_attack.ext'), 'rb').read
+      end
+
+      it 'retains lookup_import_firms table' do
+        perform_enqueued_jobs do
+          subject.perform fixture_content, email_recipient, zip_file
+          expect(Lookup::Import::Firm.count).to eql(0)  # can we still see the table
+        end
+      end
+    end
+
     context 'exception handling' do
       it 'fails when there is an error applying sql to db' do
         allow_any_instance_of(PG::Result).to receive(:error_message).and_return('issue uploading adviser file')
