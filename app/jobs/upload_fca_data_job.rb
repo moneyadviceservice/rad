@@ -21,10 +21,19 @@ class UploadFcaDataJob < ActiveJob::Base
     ext_to_sql.process_ext_file_content do |line|
       raw_connection.put_copy_data(line + "\n")
     end
+  rescue StandardError => e
+    ruby_exception_message = e.message + ' ' + e.backtrace.join
   ensure
+    postgres_exception_message = clean_up_connection raw_connection
+
+    fail(ruby_exception_message) if ruby_exception_message.present?
+    fail(postgres_exception_message) if postgres_exception_message.present?
+  end
+
+  def clean_up_connection(raw_connection)
     raw_connection.put_copy_end
     res = raw_connection.get_result
 
-    fail('Error uploading: ' + res.error_message) if res.error_message.present?
+    res.error_message.present? ? ('Error applying generated SQL: ' + res.error_message) : nil
   end
 end

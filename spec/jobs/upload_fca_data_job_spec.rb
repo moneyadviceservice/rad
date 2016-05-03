@@ -12,12 +12,11 @@ RSpec.describe UploadFcaDataJob, type: :job do
 
     let(:email_recipient) { 'someone@mas.org.uk' }
     let(:zip_file) { 'date_c.zip' }
+    let(:fixture_name) { 'advisers' }
 
     subject { described_class.new }
 
     context 'imports advisers file' do
-      let(:fixture_name) { 'advisers' }
-
       it 'creates the advisers in the db' do
         subject.perform fixture_content, email_recipient, zip_file
         expect(Lookup::Import::Adviser.count).to eql(2)
@@ -34,13 +33,27 @@ RSpec.describe UploadFcaDataJob, type: :job do
       end
     end
 
-    context 'broken data' do
-      let(:fixture_name) { 'advisers_with_bad_row' }
-
-      it 'fails' do
+    context 'exception handling' do
+      it 'fails when there is an error applying sql to db' do
         allow_any_instance_of(PG::Result).to receive(:error_message).and_return('issue uploading adviser file')
-        expected_message = 'Error uploading: issue uploading adviser file'
+        expected_message = 'Error applying generated SQL: issue uploading adviser file'
         expect { subject.perform(fixture_content, email_recipient, zip_file) }.to raise_exception(expected_message)
+      end
+
+      it 'fails when generating sql' do
+        allow_any_instance_of(ExtToSql).to receive(:process_ext_file_content).and_raise('Exception raised by our code')
+        expect do
+          subject.perform(fixture_content, email_recipient, zip_file)
+        end.to raise_error(/^Exception raised by our code/)
+      end
+
+      it 'reports exception generating sql when generating sql and db throw exceptions' do
+        allow_any_instance_of(ExtToSql).to receive(:process_ext_file_content).and_raise('Exception raised by our code')
+        allow_any_instance_of(PG::Result).to receive(:error_message).and_return('Execption raised by postgres')
+
+        expect do
+          subject.perform(fixture_content, email_recipient, zip_file)
+        end.to raise_error(/^Exception raised by our code/)
       end
 
       it 'sends failure email' do
