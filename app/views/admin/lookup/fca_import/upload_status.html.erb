@@ -1,0 +1,36 @@
+<style>
+  td,th{ border: gray solid 1px; padding: 2px;}
+</style>
+
+<h1>Files Uploaded</h1> Please note we are not complete yet!
+
+<br/>
+<table>
+  <tr>
+    <th></th>
+    <th>Uploaded</th>
+    <th>Existing</th>
+  </tr>
+  <tr>
+    <td>Firms</td>
+    <td><%= Lookup::Import::Firm.count %></td>
+    <td><%= Lookup::Firm.count %></td>
+  </tr>
+  <tr>
+    <td>Subsidiary</td>
+    <td><%= Lookup::Import::Subsidiary.count %></td>
+    <td><%= Lookup::Subsidiary.count %></td>
+  </tr>
+  <tr>
+    <td>Advisers</td>
+    <td><%= Lookup::Import::Adviser.count %></td>
+    <td><%= Lookup::Adviser.count %></td>
+  </tr>
+</table>
+
+<p>
+  If you are happy with this, to make the changes available to users please
+<p/>
+<%= form_tag import_admin_lookup_fca_import_index_path do %>
+  <%= submit_tag 'IMPORT', data: {confirm: 'Are you sure?'} %>
+<% end %>

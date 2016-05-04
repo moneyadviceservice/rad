@@ -1,0 +1,17 @@
+<h1>FCA Import: Part 3</h1>
+
+<p>
+  Upload adviser data from FCA download: Please upload the file ending with ......f.zip
+</p>
+
+<%= form_tag upload_advisers_admin_lookup_fca_import_index_path, multipart: true do %>
+  <p>
+    <%= file_field_tag "zip_file" %>
+  </p>
+  <p>
+    <%= hidden_field_tag "email", params['email'] %>
+  </p>
+  <p>
+    <%= submit_tag 'Upload' %>
+  </p>
+<% end %>

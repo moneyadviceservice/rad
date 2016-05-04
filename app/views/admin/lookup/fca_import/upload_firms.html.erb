@@ -1,0 +1,17 @@
+<h1>FCA Import: Part 2</h1>
+
+<p>
+  Upload subsidiary data from FCA download: Please upload the file ending with ......c.zip
+</p>
+
+<%= form_tag upload_subsidiaries_admin_lookup_fca_import_index_path, multipart: true do %>
+  <p>
+    <%= file_field_tag "zip_file" %>
+  </p>
+  <p>
+    <%= hidden_field_tag "email", params['email'] %>
+  </p>
+  <p>
+    <%= submit_tag 'Upload' %>
+  </p>
+<% end %>

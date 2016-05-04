@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160329110348) do
+ActiveRecord::Schema.define(version: 20160420134053) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -185,6 +185,31 @@ ActiveRecord::Schema.define(version: 20160329110348) do
   end
 
   add_index "lookup_firms", ["fca_number"], name: "index_lookup_firms_on_fca_number", unique: true, using: :btree
+
+  create_table "lookup_import_advisers", force: :cascade do |t|
+    t.string   "reference_number", null: false
+    t.string   "name",             null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
+
+  create_table "lookup_import_firms", force: :cascade do |t|
+    t.integer  "fca_number",                   null: false
+    t.string   "registered_name", default: "", null: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+  end
+
+  add_index "lookup_import_firms", ["fca_number"], name: "index_lookup_import_firms_on_fca_number", unique: true, using: :btree
+
+  create_table "lookup_import_subsidiaries", force: :cascade do |t|
+    t.integer  "fca_number",              null: false
+    t.string   "name",       default: "", null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+  end
+
+  add_index "lookup_import_subsidiaries", ["fca_number"], name: "index_lookup_import_subsidiaries_on_fca_number", using: :btree
 
   create_table "lookup_subsidiaries", force: :cascade do |t|
     t.integer  "fca_number",              null: false
