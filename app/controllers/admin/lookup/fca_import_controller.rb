@@ -5,21 +5,15 @@ class Admin::Lookup::FcaImportController < Admin::ApplicationController
   end
 
   def upload_firms
-    firm_file_content = unzip params['a_file'], 'firms2'
-    original_filename = params['a_file'].original_filename
-    UploadFcaDataJob.perform_later(firm_file_content, params['email'], original_filename)
+    upload 'firms2'
   end
 
   def upload_subsidiaries
-    subsidiary_file_content = unzip params['c_file'], 'firm_names'
-    original_filename = params['c_file'].original_filename
-    UploadFcaDataJob.perform_later(subsidiary_file_content, params['email'], original_filename)
+    upload 'firm_names'
   end
 
   def upload_advisers
-    adviser_file_content = unzip params['f_file'], 'indiv_apprvd'
-    original_filename = params['f_file'].original_filename
-    UploadFcaDataJob.perform_later(adviser_file_content, params['email'], original_filename)
+    upload 'indiv_apprvd'
   end
 
   def upload_status
@@ -34,6 +28,12 @@ class Admin::Lookup::FcaImportController < Admin::ApplicationController
   end
 
   private
+
+  def upload(file_prefix)
+    file_content = unzip params['zip_file'], file_prefix
+    original_filename = params['zip_file'].original_filename
+    UploadFcaDataJob.perform_later(file_content, params['email'], original_filename)
+  end
 
   def unzip(uploaded_zip, compressed_filename_prefix)
     result = nil

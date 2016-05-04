@@ -13,7 +13,7 @@ RSpec.describe Admin::Lookup::FcaImportController, type: :controller do
       upload_double = class_double('UploadFcaDataJob').as_stubbed_const
       expect(upload_double).to receive(:perform_later).with("firm file contents\n", email, 'date_a.zip')
 
-      post :upload_firms, a_file: fixture_file_upload('spec/fixtures/date_a.zip'), email: email
+      post :upload_firms, zip_file: fixture_file_upload('spec/fixtures/date_a.zip'), email: email
     end
   end
 
@@ -22,7 +22,7 @@ RSpec.describe Admin::Lookup::FcaImportController, type: :controller do
       upload_double = class_double('UploadFcaDataJob').as_stubbed_const
       expect(upload_double).to receive(:perform_later).with("Subsidiary file contents\n", email, 'date_c.zip')
 
-      post :upload_subsidiaries, c_file: fixture_file_upload('spec/fixtures/date_c.zip'), email: email
+      post :upload_subsidiaries, zip_file: fixture_file_upload('spec/fixtures/date_c.zip'), email: email
     end
   end
 
@@ -31,7 +31,7 @@ RSpec.describe Admin::Lookup::FcaImportController, type: :controller do
       upload_double = class_double('UploadFcaDataJob').as_stubbed_const
       expect(upload_double).to receive(:perform_later).with("Adviser file contents\n", email, 'date_f.zip')
 
-      post :upload_advisers, f_file: fixture_file_upload('spec/fixtures/date_f.zip'), email: email
+      post :upload_advisers, zip_file: fixture_file_upload('spec/fixtures/date_f.zip'), email: email
     end
   end
 

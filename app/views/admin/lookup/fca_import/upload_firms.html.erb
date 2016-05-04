@@ -6,7 +6,7 @@
 
 <%= form_tag upload_subsidiaries_admin_lookup_fca_import_index_path, multipart: true do %>
   <p>
-    <%= file_field_tag "c_file" %>
+    <%= file_field_tag "zip_file" %>
   </p>
   <p>
     <%= hidden_field_tag "email", params['email'] %>
