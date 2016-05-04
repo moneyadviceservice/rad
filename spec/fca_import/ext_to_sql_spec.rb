@@ -10,7 +10,7 @@ RSpec.describe ExtToSql do
     let(:stderr) { StringIO.new }
     let(:instance) { ExtToSql.new(fixture_content) }
 
-    let(:truncate_and_copy_sql) { instance.truncate_and_copy_sql }
+    let(:prefix_sql) { instance.prefix_sql }
 
     let(:content_data) do
       output_lines = []
@@ -26,7 +26,7 @@ RSpec.describe ExtToSql do
       it 'generates the right truncate and copy sql' do
         truncate = 'TRUNCATE lookup_import_advisers;'
         copy = 'COPY lookup_import_advisers (reference_number, name, created_at, updated_at) FROM stdin;'
-        expect(truncate_and_copy_sql).to eq(truncate + copy)
+        expect(prefix_sql).to eq(truncate + copy)
       end
 
       it 'generates the right SQL' do
@@ -41,7 +41,7 @@ RSpec.describe ExtToSql do
       it 'generates the right truncate and copy sql' do
         truncate = 'TRUNCATE lookup_import_firms;'
         copy = 'COPY lookup_import_firms (fca_number, registered_name, created_at, updated_at) FROM stdin;'
-        expect(truncate_and_copy_sql).to eq(truncate + copy)
+        expect(prefix_sql).to eq(truncate + copy)
       end
 
       it 'generates the right SQL' do
@@ -55,7 +55,7 @@ RSpec.describe ExtToSql do
       it 'generates the right truncate and copy sql' do
         truncate = 'TRUNCATE lookup_import_subsidiaries;'
         copy = 'COPY lookup_import_subsidiaries (fca_number, name, created_at, updated_at) FROM stdin;'
-        expect(truncate_and_copy_sql).to eq(truncate + copy)
+        expect(prefix_sql).to eq(truncate + copy)
       end
 
       it 'generates the right SQL' do

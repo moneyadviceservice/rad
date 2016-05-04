@@ -11,7 +11,7 @@ class ExtToSql
     @type_importer = find_type zip_file_contents
   end
 
-  def truncate_and_copy_sql
+  def prefix_sql
     model_class.truncate_sql + model_class.fca_import_copy_statement
   end
 
