@@ -32,6 +32,11 @@
 <div class="row">
   <div class="col-xs-6">
     <%= render 'admin/shared/sign_in_as_principal', principal: @principal %>
+
+    <h2>Edit</h2>
+    <p>
+      <%= link_to "Edit Principal's directory information", edit_admin_principal_path(@principal), class: 'btn btn-success t-edit-principal' %>
+    </p>
   </div>
   <div class="col-xs-6 text-right">
     <%= button_to 'Delete principal, firm and all related trading names',

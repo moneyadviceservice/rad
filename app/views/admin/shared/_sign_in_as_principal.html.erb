@@ -1,8 +1,8 @@
 <% if user_for(principal).present? %>
-  <h2>Edit</h2>
+  <h2>Sign in as Principal</h2>
 
   <%= form_tag(admin_users_sign_in_path) do %>
     <%= hidden_field_tag(:user_id, user_for(principal).id) %>
-    <%= submit_tag "Sign in as #{principal.full_name}", class: 't-sign-in-as-principal' %>
+    <%= submit_tag "Access RAD as #{principal.full_name}", class: 't-sign-in-as-principal' %>
   <% end %>
 <% end %>
