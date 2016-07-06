@@ -21,7 +21,11 @@
       <strong>Phone Number:</strong> <%= @principal.telephone_number %>
     </p>
     <p>
-      <strong>Email:</strong> <%= mail_to @principal.email_address %>
+      <strong>Email:</strong>
+      <%= mail_to @principal.email_address %>
+      <% if @principal.email_address != @user.email %>
+        (login with <%= mail_to @user.email %>)
+      <% end %>
     </p>
     <p>
       <strong>Added:</strong> <%= @principal.created_at.to_s(:long) %>
@@ -36,6 +40,10 @@
     <h2>Edit</h2>
     <p>
       <%= link_to "Edit Principal's directory information", edit_admin_principal_path(@principal), class: 'btn btn-success t-edit-principal' %>
+    </p>
+
+    <p>
+      <%= link_to "Edit Principal's login in credentials", edit_admin_principal_user_path(@principal), class: 'btn btn-success t-edit-user' %>
     </p>
   </div>
   <div class="col-xs-6 text-right">

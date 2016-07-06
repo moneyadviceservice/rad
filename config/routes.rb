@@ -70,7 +70,9 @@ Rails.application.routes.draw do
       resources :firms, only: :index
       resources :subsidiaries, only: :index
     end
-    resources :principals, except: [:new, :create]
+    resources :principals, except: [:new, :create] do
+      resource :user, only: [:edit, :update]
+    end
 
     namespace :reports do
       resources :metrics, only: [:index, :show] do

@@ -6,6 +6,7 @@ class Admin::PrincipalsController < Admin::ApplicationController
 
   def show
     @principal = principal
+    @user = User.find_by(principal_token: principal.token)
   end
 
   def edit
