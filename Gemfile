@@ -46,6 +46,7 @@ group :test, :development do
   gem 'factory_girl_rails'
   gem 'faker'
   gem 'pry-rails'
+  gem 'pry-byebug'
   gem 'rspec-rails'
   gem 'rubocop'
   gem 'timecop'
