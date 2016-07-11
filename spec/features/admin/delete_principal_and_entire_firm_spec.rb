@@ -1,5 +1,5 @@
 RSpec.feature 'Deleting principal and all related firm, adviser, office and trading name data' do
-  let(:admin_principal_page) { Admin::EditPrincipalPage.new }
+  let(:admin_principal_page) { Admin::PrincipalPage.new }
 
   scenario 'Admin deletes a principal and all related data' do
     given_there_is_firm
