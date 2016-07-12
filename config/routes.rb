@@ -43,7 +43,7 @@ Rails.application.routes.draw do
   namespace :admin do
     root 'pages#home'
 
-    post '/users/sign_in', to: 'users#switch_user'
+    post '/users/:user_id/sign_in', to: 'user_sessions#create', as: :user_session
 
     resources :advisers, only: [:index, :show, :edit, :update, :destroy]
 
@@ -70,7 +70,9 @@ Rails.application.routes.draw do
       resources :firms, only: :index
       resources :subsidiaries, only: :index
     end
-    resources :principals, only: [:index, :show, :destroy]
+    resources :principals, except: [:new, :create] do
+      resource :user, only: [:edit, :update]
+    end
 
     namespace :reports do
       resources :metrics, only: [:index, :show] do
