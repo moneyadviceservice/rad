@@ -1,15 +1,17 @@
 Given(/^that I am logged in as an admin$/) do
-  pending # Write code here that turns the phrase above into concrete actions
+  login_as('admin')
 end
 
-Given(/^the file '.*' have been uploaded$/) do |file_name|
-  pending # Write code here that turns the phrase above into concrete actions
+Given(/^the file '(.+)' have been uploaded$/) do |file_name|
+  upload_to_azure file_name
 end
 
 When(/^I am on the FCA import page$/) do
-  pending # Write code here that turns the phrase above into concrete actions
+  pending
+  # goto_listing_page
 end
 
 Then(/^I should see the file '.*' ready for import$/) do |file_name|
-  pending # Write code here that turns the phrase above into concrete actions
+  pending
+  # expect(list_azure_files).to include(file_name)
 end

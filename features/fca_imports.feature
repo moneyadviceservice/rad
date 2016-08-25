@@ -3,7 +3,7 @@ Feature: Manage FCA Import
 # Background
 #   RAD, the Retirement Advisor Directory, requires a weekly import of data
 #    from the FCA, to update the list of
-#   authorised advisors. This data is emailed over to MAS as an encrypted file
+#   authorized advisors. This data is emailed over to MAS as an encrypted file
 #    every week.
 #
 #   Currently RAD maintenance requires a weekly back-end dev task to refactor
