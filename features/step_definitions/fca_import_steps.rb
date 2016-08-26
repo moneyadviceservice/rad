@@ -11,5 +11,5 @@ When(/^I am on the FCA import page$/) do
 end
 
 Then(/^I should see the file '(.+)' ready for import$/) do |file_name|
-  expect(page).to have_content "#{file_name} is ready to be imported."
+  expect(page).to have_content "#{file_name}"
 end
