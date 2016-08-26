@@ -11,7 +11,7 @@ module Cloud
       end
 
       def list
-        blob_client.list_blobs(container.name)
+        blob_client.list_blobs(container.name).map {|e| e.try(:name) }
       end
 
       def download(file_name)
