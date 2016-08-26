@@ -13,6 +13,10 @@ module FcaImportPage
   end
 
   def goto_listing_page
-    visit admin_fca_imports_listing_path
+    visit admin_lookup_fca_import_index_path
+  end
+
+  def upload(filename)
+    Cloud::Storage.init.provider.upload(filename)
   end
 end

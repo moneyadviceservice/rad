@@ -59,10 +59,4 @@ end
 # See https://github.com/cucumber/cucumber-rails/blob/master/features/choose_javascript_database_strategy.feature
 Cucumber::Rails::Database.javascript_strategy = :truncation
 
-module MockAzure
-  def upload_to_azure(file)
-    puts "I'm in azure #{file}"
-  end
-end
-
-World(FcaImportPage, MockAzure)
+World(FcaImportPage)
