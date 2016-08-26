@@ -35,6 +35,7 @@ AllCops:
   - 'node_modules/**/*'
   - 'tmp/**/*'
   - 'vendor/**/*'
+  - 'lib/tasks/*.rake'
 
 #
 # Project specific settings

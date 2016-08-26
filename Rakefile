@@ -32,5 +32,5 @@ if Rails.env.production?
 else
   require 'rubocop/rake_task'
   RuboCop::RakeTask.new
-  task default: [:spec, :rubocop, :npm_test]
+  task default: [:spec, :cucumber, :rubocop, :npm_test]
 end

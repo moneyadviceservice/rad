@@ -6,7 +6,7 @@ module Cloud
 
     attr_reader :provider
 
-    def initialize(provider_name, settings={})
+    def initialize(provider_name, settings = {})
       @provider = find_provider_class(provider_name).new(settings)
     end
 
@@ -27,7 +27,7 @@ module Cloud
         new(config.provider_name, config.settings)
       end
     end
-    
+
     private
 
     def find_provider_class(name)

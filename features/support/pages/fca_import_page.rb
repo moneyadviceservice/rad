@@ -7,8 +7,8 @@ module FcaImportPage
   def login_as(user)
     visit new_user_session_path
     within('#new_user') do
-      fill_in 'user[login]',    with: admin.principal.fca_number
-      fill_in 'user[password]', with: admin.password
+      fill_in 'user[login]',    with: user.principal.fca_number
+      fill_in 'user[password]', with: user.password
     end
   end
 

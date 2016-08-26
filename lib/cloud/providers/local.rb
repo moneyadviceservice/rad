@@ -1,13 +1,14 @@
 module Cloud
   module Providers
     class Local
-      PATH='/tmp/azure'.freeze
+      PATH = '/tmp/azure'.freeze
 
       attr_reader :settings
-      def initialize(settings={})
+      def initialize(settings = {})
         @settings = settings
       end
 
+      # rubocop:disable all
       def list
         %x(ls #{path('.')}).split
       end
@@ -31,6 +32,7 @@ module Cloud
       def teardown
         %x(rm -rf #{path('')})
       end
+      # rubocop:enable all
 
       private
 
