@@ -63,6 +63,15 @@ $ bundle exec rake db:create \
 **NOTE** `db:schema:load` loads into both the test and development databases.
 But `db:migrate` does not.
 
+## Connect FCA Import application to Microsoft Azure
+These changes must be made before using the FCA import feature on the admin
+panel.
+
+```
+$ cp config/cloud_storage.yml.example config/cloud_storage.yml
+```
+Edit this file to suit your requirements.
+
 ## Usage
 
 To start the application:
