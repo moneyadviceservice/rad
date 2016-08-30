@@ -30,7 +30,7 @@ RSpec.describe Cloud::Providers::Azure do
     describe '.download' do
       it 'invokes `get_blob`' do
         expect_any_instance_of(Azure::Storage::Blob::BlobService)
-          .to receive(:get_blob).with(container_name, 'file_to_download.txt')
+          .to receive(:get_blob).with(container_name, 'file_to_download.txt').and_return(['', ''])
 
         subject.download('file_to_download.txt')
       end

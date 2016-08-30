@@ -1,5 +1,6 @@
 require 'azure/storage'
 require 'tempfile'
+require 'stringio'
 
 module Cloud
   module Providers
@@ -11,15 +12,12 @@ module Cloud
       end
 
       def list
-        blob_client.list_blobs(container.name).map {|e| e.try(:name) }
+        blob_client.list_blobs(container.name).map(&:name)
       end
 
       def download(file_name)
         _, content = blob_client.get_blob(container.name, file_name)
-        file = Tempfile.new(file_name)
-        file.write(content)
-        file.rewind
-        file
+        StringIO.new(content, 'r')
       end
 
       def move(src, dst)

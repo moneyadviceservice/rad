@@ -69,7 +69,7 @@ Rails.application.routes.draw do
       resources :advisers, only: :index
       resources :firms, only: :index
       resources :subsidiaries, only: :index
-      resources :fca_import, only: :index
+      resources :fca_import, only: [:index, :create]
     end
     resources :principals, except: [:new, :create] do
       resource :user, only: [:edit, :update]
