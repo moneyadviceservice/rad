@@ -17,8 +17,9 @@ module Cloud
         File.open(path(file))
       end
 
-      def upload(file)
+      def upload(file, content = nil)
         %x(touch #{path(file)})
+        %x(echo '#{content}' > #{path(file)}) if content
       end
 
       def move(src, dst)
