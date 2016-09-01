@@ -9,6 +9,7 @@ rvm:
 before_install: gem update bundler
 before_script:
   - cp config/database.example.yml config/database.yml
+  - cp config/cloud_storage.example.yml config/cloud_storage.yml
   - psql -c "create database rad_test;" -U postgres
   - bundle exec rake db:migrate
   - npm install
@@ -16,5 +17,6 @@ before_script:
   - bundle exec bowndler update
 script:
   - bundle exec rspec
+  - bundle exec cucumber
   - karma start spec/javascripts/karma.conf.js --single-run=true
   - bundle exec rubocop -DS
