@@ -8,10 +8,10 @@ Not much in it here :)
 EOF
   end
 
-  before(:all) { Cloud::Storage.init.provider.setup }
-  after(:all)  { Cloud::Storage.init.provider.teardown }
+  before(:all) { Cloud::Storage.setup }
+  after(:all)  { Cloud::Storage.teardown }
 
-  before { Cloud::Storage.init.provider.upload(filename, content) }
+  before { Cloud::Storage.upload(filename, content) }
   after  { source.reader.close unless source.reader.closed? }
 
   describe '.source' do
@@ -25,7 +25,7 @@ EOF
   end
 
   describe '.step' do
-    let(:upcase) { ->(data, ctx) { ctx.write(data.upcase) } }
+    let(:upcase) { ->(s, c) { c.write(s.read.upcase) } }
 
     it 'runs given block' do
       source.step(&upcase)

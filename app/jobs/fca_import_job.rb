@@ -1,4 +1,5 @@
 require 'digest/sha1'
+require File.join(Rails.root, 'lib/fca')
 
 class FcaImportJob < ActiveJob::Base
   include Sidekiq::Worker
@@ -6,7 +7,9 @@ class FcaImportJob < ActiveJob::Base
                   unique_args: ->(args) { Digest::SHA1.hexdigest(args.first.to_s) }
   queue_as :default
 
-  def perform(files, users)
-    FCA::Import.call(files) { |outcome, log| MAS::Notify.call(users, outcome, log) }
+  def perform(files = [], emails = [])
+    FCA::Import.call(files) do |outcomes, log|
+      FcaImportMailer.notify(emails, outcomes).deliver_now
+    end
   end
 end

@@ -17,6 +17,6 @@ module FcaImportPage
   end
 
   def upload(filename)
-    Cloud::Storage.init.provider.upload(filename)
+    Cloud::Storage.upload(filename)
   end
 end

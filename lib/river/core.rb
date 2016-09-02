@@ -1,8 +1,11 @@
+require_relative 'outcome'
+require 'pg'
+
 module River
   class Core
-    attr_reader :filename, :context, :reader
+    attr_reader :filename, :context, :reader, :error
 
-    def initialize(filename, client = Cloud::Storage.init)
+    def initialize(filename, client = Cloud::Storage.client)
       @filename = filename
       @context = Context.new
       @client = client
@@ -14,26 +17,57 @@ module River
     end
 
     def step(&blk)
-      # rubocop:disable all
       rd, wr = IO.pipe
       context.writer = wr
-      while line = reader.gets
-        blk.call(line, context)
+      begin
+        blk.call(reader, context)
+      rescue Exception => e
+        @error = e
       end
       wr.close
       reader.close
       @reader = rd
-      # rubocop:enable all
       self
     end
 
     def sink(&blk)
-      # expect block to return an instanciated db object
-      # the db object must respond to :execute
-      conn = blk.call(context)
-      res = conn.execute(reader.read)
-      reader.close
-      Outcome.new(res)
+      return Outcome.new(error) if error
+      begin
+        conf = blk.call(context)
+        conn = PG::Connection.new(conf)
+
+        line = reader.gets
+        if copy_statement?(line)
+          begin
+          res = conn.copy_data(line) do
+            while line = reader.gets
+              break if !data_statement?(line)
+              STDOUT.write("PG: ->>>>>>> #{line}")
+              conn.put_copy_data(line)
+            end
+          end
+          rescue Exception => e
+            STDOUT.write("ERROR: #{e.to_s}\n")
+            STDERR.write("ERROR: #{e.to_s}\n")
+          end
+        end
+
+        reader.close
+        Outcome.new(res)
+      rescue Exception => e
+        @error = e
+        Outcome.new(error)
+      end
+    end
+
+    private
+
+    def copy_statement?(line)
+      !!(line && line =~ /^copy .+/i)
+    end
+
+    def data_statement?(line)
+      line.split('|').split('|').count > 1
     end
   end
 end

@@ -9,6 +9,8 @@ require 'capybara/poltergeist'
 Dir[File.join(File.dirname(__FILE__), 'support', '**', '*_section.rb')].each { |f| require f }
 Dir[File.join(File.dirname(__FILE__), 'support', '**', '*.rb')].each { |f| require f }
 
+require File.join(File.dirname(__FILE__), 'support/fca_test_helpers.rb')
+
 Faker::Config.locale = 'en-GB'
 
 Capybara.javascript_driver = :poltergeist
@@ -36,6 +38,7 @@ RSpec.configure do |c|
 
   c.include Devise::TestHelpers, type: :controller
   c.include Warden::Test::Helpers
+  c.include FcaTestHelpers
   c.before :suite do
     Warden.test_mode!
   end

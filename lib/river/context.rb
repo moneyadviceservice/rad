@@ -1,9 +1,11 @@
+require 'forwardable'
+
 module River
   class Context < Hash
-    attr_writer :writer
+    extend Forwardable
 
-    def write(data)
-      @writer.write(data)
-    end
+    attr_accessor :writer
+
+    def_delegators :writer, :write
   end
 end

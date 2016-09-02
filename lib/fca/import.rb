@@ -1,10 +1,16 @@
+require 'zip'
+
 module FCA
   class Import
     class << self
-      def call(files, logger = FCA::Config.logger)
-        logger.debug(name) { 'Starting FCA data import' }
+      def call(files)
+        import(files, ActiveRecord::Base.connection_config, 'FCA::Import', FCA::Config.logger)
+      end
+
+      def import(files, db_conf, name, logger)
+        logger.info(name) { 'Starting FCA data import' }
         start_time = Time.zone.now
-        outcome = new(files, logger).call
+        outcome = new(files, db_conf, logger).import_all
         logger.info(name) { "Duration: #{Time.zone.now - start_time} seconds" }
 
         if block_given?
@@ -13,56 +19,89 @@ module FCA
           logger.info(name) { "Callback outcome: #{cb_outcome}" }
         end
 
-        logger.close
         outcome
       end
-
-      private
-
-      def name
-        'FCA::Import'
-      end
     end
 
-    attr_reader :files, :logger
+    attr_reader :files, :db_conf, :logger
 
-    def initialize(files, logger)
-      @files = files
-      @logger = logger
+    def initialize(files, db_conf, logger)
+      @files   = files
+      @db_conf = db_conf
+      @logger  = logger
     end
 
-    def call
-      files.map do |file|
-        # River.source(file)
-        #   .step(&unzip)
-        #   .step(&ext_to_sql)
-        #   .sink(&db_connection)
+    def import_all
+      result = files.map { |file| import(file) }
+      if import_successful?(result)
+        logger.info('FCA import') { 'files imported successfully' }
+      else
+        logger.info('FCA import') { 'import failed' }
       end
-      #   .map do |outcome|
-      #     (success?(outcome) ? compute_diff(outcome) : outcome)
-      # end
+      result
+    end
+
+    def import(file)
+      outcome = River
+                .source(file)
+                .step(&unzip_and_convert)
+                .sink(&db_configuration)
+
+      if outcome.success?
+        logger.info("Import #{file}") { 'imported successfully' }
+      else
+        logger.info("Import #{file}") { "import error #{outcome.result}" }
+      end
+
+      [file, outcome.success?, outcome]
     end
 
     private
 
-    def unzip
-      ->(data, ctx) {}
+    def unzip_and_convert
+      lambda do |stream, context|
+        stream.set_encoding('ISO8859-1')
+        Zip::InputStream.open(stream) do |io|
+          while (entry = io.get_next_entry)
+            if ignore_file?(entry.name)
+              FCA::Config.logger.info('UNZIP') { "Ignoring file `#{entry.name}`" }
+              next
+            else
+              FCA::Config.logger.info('UNZIP') { "Processing file `#{entry.name}`" }
+              FCA::File.open(io, FCA::Config.logger) do |io|
+                line = io.read
+                FCA::Config.logger.debug('TOSQL') { "converted  #{line}" }
+                context.write(line)
+              end
+            end
+          end
+        end
+      end
     end
 
-    def ext_to_sql
-      ->(data, ctx) {}
+    def ignore_file?(filename)
+      filename_regexps = {
+        lookup_firms:        /^firms2\d+\.ext$/,
+        lookup_advisers:     /^indiv_apprvd2\d+\.ext$/,
+        lookup_subsidiaries: /^firm_names2\d+\.ext$/
+      }
+      (filename_regexps.values.map { |r| filename.strip.downcase =~ r }).compact.empty?
     end
 
-    def db_connection
-      ->(ctx) { ActiveRecord::Base.connection }
+    def db_configuration
+      lambda do |_|
+        {
+          host:     db_conf[:host],
+          port:     (db_conf[:port] || 5432),
+          dbname:   db_conf[:database],
+          user:     db_conf[:username],
+          password: db_conf[:password]
+        }
+      end
     end
 
-    def success?(import_result)
-      import_result[:error].blank?
-    end
-
-    def compute_diff(import_result)
-      # per table
+    def import_successful?(outcomes)
+      outcomes.map(&:second).reduce(true) { |b, v| !!(b && v) }
     end
   end
 end

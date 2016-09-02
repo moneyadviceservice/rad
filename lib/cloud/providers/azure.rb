@@ -24,6 +24,19 @@ module Cloud
         blob_client.copy_blob(container.name, src, container.name, dst)
       end
 
+      def upload(_file, _content = nil)
+        # present for provider interface consistency
+        fail 'Define me!!'
+      end
+
+      def setup
+        container
+      end
+
+      def teardown
+        # does nothing in the case of azure
+      end
+
       private
 
       def container

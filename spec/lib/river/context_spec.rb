@@ -1,10 +1,15 @@
 RSpec.describe River::Context do
+  let(:stream)  { StringIO.new }
+  let(:context) { River::Context.new }
+
+  before { context.writer = stream }
+
   it '.writer= is defined' do
-    expect(subject).to respond_to(:writer=)
+    expect(context).to respond_to(:writer=)
   end
 
   it '.write is defined' do
-    expect(subject).to respond_to(:write)
+    expect(context).to respond_to(:write)
   end
 
   it 'is a subclass of Hash' do
@@ -12,13 +17,10 @@ RSpec.describe River::Context do
   end
 
   context 'writer usage' do
-    let(:file) { StringIO.new }
-
-    before { subject.writer = file }
+    before { context.write('test') }
 
     it 'can write to file' do
-      subject.write('test')
-      expect(file.string).to eq 'test'
+      expect(stream.string).to eq 'test'
     end
   end
 end

@@ -22,7 +22,7 @@ module FCA
     LOG_LEVEL = %w(UNKNOWN FATAL ERROR WARN INFO DEBUG).freeze
 
     def logger
-      @logger ||= Logger.new(log_file)
+      @logger ||= ::Logger.new(log_file, ::File::APPEND)
       @logger.level = log_level
       @logger
     end

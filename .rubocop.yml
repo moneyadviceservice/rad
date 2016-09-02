@@ -49,3 +49,9 @@ Metrics/AbcSize:
 # Separating every 3 digits of FCA numbers with '_' is not helpful
 Style/NumericLiterals:
   Enabled: false
+
+ClassLength:
+  Max: 130
+
+LineLength:
+  Max: 135

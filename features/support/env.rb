@@ -60,6 +60,6 @@ Cucumber::Rails::Database.javascript_strategy = :truncation
 
 World(FcaImportPage)
 
-Before { Cloud::Storage.init.provider.setup }
+Before { Cloud::Storage.setup }
 
-at_exit { Cloud::Storage.init.provider.teardown }
+at_exit { Cloud::Storage.teardown }

@@ -1,4 +1,20 @@
 RSpec.describe Cloud::Storage do
+  describe 'Class methods' do
+    let(:storage) { Cloud::Storage }
+
+    it 'can list files' do
+      expect(storage).to respond_to(:list)
+    end
+
+    it 'can download a file' do
+      expect(storage).to respond_to(:download)
+    end
+
+    it 'can move a file' do
+      expect(storage).to respond_to(:move)
+    end
+  end
+
   describe '.new' do
     context 'when using local provider' do
       subject { Cloud::Storage.new(:local).provider }
