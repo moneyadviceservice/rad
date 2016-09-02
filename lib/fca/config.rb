@@ -1,20 +1,21 @@
 require 'logger'
+require 'forwardable'
 
 module FCA
   class Config
     attr_writer :log_file, :log_level
 
     class << self
+      extend Forwardable
+
+      def_delegators :config, :logger
+
       def configure
         yield config if block_given?
       end
 
       def config
         @config ||= FCA::Config.new
-      end
-
-      def logger
-        config.logger
       end
     end
 
