@@ -1,4 +1,6 @@
+$:.unshift(File.join(Rails.root, 'lib'))
 require 'zip'
+require 'river'
 
 module FCA
   class Import

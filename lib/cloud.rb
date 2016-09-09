@@ -4,4 +4,6 @@ module Cloud
   class ConfigError < ArgumentError; end
 end
 
-Dir[File.join(File.dirname(__FILE__), 'cloud/*')].each { |file| require file }
+require_relative 'cloud/config'
+require_relative 'cloud/providers'
+require_relative 'cloud/storage'

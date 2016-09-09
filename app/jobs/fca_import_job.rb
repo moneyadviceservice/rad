@@ -1,5 +1,6 @@
 require 'digest/sha1'
-require File.join(Rails.root, 'lib/fca')
+$:.unshift(File.join(Rails.root, 'lib'))
+require 'fca'
 
 class FcaImportJob < ActiveJob::Base
   include Sidekiq::Worker

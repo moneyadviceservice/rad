@@ -5,3 +5,5 @@ module River
     Core.new(filename).source
   end
 end
+
+require_relative 'river/core'

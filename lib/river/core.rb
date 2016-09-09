@@ -1,5 +1,9 @@
 require_relative 'outcome'
+require_relative 'context'
 require 'pg'
+
+$:.unshift(File.join(Rails.root, 'lib'))
+require 'cloud'
 
 module River
   class Core
@@ -42,13 +46,18 @@ module River
           res = conn.copy_data(line) do
             while line = reader.gets
               break if !data_statement?(line)
-              STDOUT.write("PG: ->>>>>>> #{line}")
-              conn.put_copy_data(line)
+              begin
+                STDOUT.write("adding data line #{line}\n")
+                conn.put_copy_data(line)
+              rescue Exception => e
+                STDOUT.write("put_copy_data ERROR: #{e.to_s}\n")
+                STDERR.write("put_copy_data ERROR: #{e.to_s}\n")
+              end
             end
           end
           rescue Exception => e
-            STDOUT.write("ERROR: #{e.to_s}\n")
-            STDERR.write("ERROR: #{e.to_s}\n")
+            STDOUT.write("copy_data ERROR: #{e.to_s}\n")
+            STDERR.write("copy_data ERROR: #{e.to_s}\n")
           end
         end
 
@@ -67,7 +76,7 @@ module River
     end
 
     def data_statement?(line)
-      line.split('|').split('|').count > 1
+      line.split('|').count > 1
     end
   end
 end
