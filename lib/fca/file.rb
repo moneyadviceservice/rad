@@ -67,15 +67,11 @@ module FCA
       }
     end
 
-    def table_name(table, prefix = 'fcaimport')
-      [prefix, table].join('_')
-    end
-
     def sql_statements
       {
-        lookup_advisers:     "COPY #{table_name(:lookup_advisers)} (reference_number, name, created_at, updated_at) FROM stdin CSV DELIMITER '|'\n",
-        lookup_firms:        "COPY #{table_name(:lookup_firms)} (fca_number, registered_name, created_at, updated_at) FROM stdin CSV DELIMITER '|'\n",
-        lookup_subsidiaries: "COPY #{table_name(:lookup_subsidiaries)} (fca_number, name, created_at, updated_at) FROM stdin CSV DELIMITER '|'\n"
+        lookup_advisers:     "TRUNCATE #{table_name(:lookup_advisers)};\nCOPY #{table_name(:lookup_advisers)} (reference_number, name, created_at, updated_at) FROM stdin CSV DELIMITER '|'\n",
+        lookup_firms:        "TRUNCATE #{table_name(:lookup_advisers)};\nCOPY #{table_name(:lookup_firms)} (fca_number, registered_name, created_at, updated_at) FROM stdin CSV DELIMITER '|'\n",
+        lookup_subsidiaries: "TRUNCATE #{table_name(:lookup_advisers)};\nCOPY #{table_name(:lookup_subsidiaries)} (fca_number, name, created_at, updated_at) FROM stdin CSV DELIMITER '|'\n"
       }
     end
 
@@ -120,6 +116,10 @@ module FCA
 
     def escape(str)
       str.gsub('""', '')
+    end
+
+    def table_name(table, prefix = 'fcaimport')
+      [prefix, table].join('_')
     end
 
     def repair(line)

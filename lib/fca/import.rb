@@ -71,9 +71,11 @@ module FCA
             else
               FCA::Config.logger.info('UNZIP') { "Processing file `#{entry.name}`" }
               FCA::File.open(io, FCA::Config.logger) do |io|
-                line = io.read
-                FCA::Config.logger.debug('TOSQL') { "converted  #{line}" }
-                context.write(line)
+                FCA::Config.logger.debug('TOSQL') { "About to pass line down the pipe" }
+                if line = io.gets
+                  FCA::Config.logger.debug('TOSQL') { "converted  #{line}" }
+                  context.write(line)
+                end
               end
             end
           end
@@ -97,7 +99,8 @@ module FCA
           port:     (db_conf[:port] || 5432),
           dbname:   db_conf[:database],
           user:     db_conf[:username],
-          password: db_conf[:password]
+          password: db_conf[:password],
+          connect_timeout: 5
         }
       end
     end

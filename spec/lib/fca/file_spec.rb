@@ -14,7 +14,7 @@ RSpec.describe FCA::File do
       subject { data.string }
 
       let(:target) { 'complete' }
-      it { is_expected.to eq sql }      
+      it { is_expected.to eq sql }
     end
 
     describe '.to_sql' do

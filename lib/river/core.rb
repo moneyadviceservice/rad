@@ -23,11 +23,11 @@ module River
     def step(&blk)
       rd, wr = IO.pipe
       context.writer = wr
-      begin
+#      begin
         blk.call(reader, context)
-      rescue Exception => e
-        @error = e
-      end
+#      rescue Exception => e
+#        @error = e
+#      end
       wr.close
       reader.close
       @reader = rd
@@ -35,38 +35,44 @@ module River
     end
 
     def sink(&blk)
-      return Outcome.new(error) if error
-      begin
+      # if error
+      #   reader.close
+      #   return Outcome.new(error)
+      # end
+
+      # begin
         conf = blk.call(context)
         conn = PG::Connection.new(conf)
 
         line = reader.gets
         if copy_statement?(line)
-          begin
+#          begin
           res = conn.copy_data(line) do
             while line = reader.gets
               break if !data_statement?(line)
-              begin
+#              begin
                 STDOUT.write("adding data line #{line}\n")
                 conn.put_copy_data(line)
-              rescue Exception => e
-                STDOUT.write("put_copy_data ERROR: #{e.to_s}\n")
-                STDERR.write("put_copy_data ERROR: #{e.to_s}\n")
-              end
+              # rescue Exception => e
+              #   STDOUT.write("put_copy_data ERROR: #{e.to_s}\n")
+              #   STDERR.write("put_copy_data ERROR: #{e.to_s}\n")
+              # end
             end
           end
-          rescue Exception => e
-            STDOUT.write("copy_data ERROR: #{e.to_s}\n")
-            STDERR.write("copy_data ERROR: #{e.to_s}\n")
-          end
+          # rescue Exception => e
+          #   reader.close
+          #   STDOUT.write("copy_data ERROR: #{e.to_s}\n")
+          #   STDERR.write("copy_data ERROR: #{e.to_s}\n")
+          # end
         end
 
         reader.close
         Outcome.new(res)
-      rescue Exception => e
-        @error = e
-        Outcome.new(error)
-      end
+      # rescue Exception => e
+      #   @error = e
+      #   reader.close
+      #   Outcome.new(error)
+      # end
     end
 
     private
