@@ -4,26 +4,26 @@ RSpec.describe FCA::Import do
   before(:all) { Cloud::Storage.setup }
   after(:all)  { Cloud::Storage.teardown }
 
-  let(:files)  { %w(a b c d).map { |e| "20160830#{e}.zip" } }
+  let(:db)     { spy('pg_connection') }
+  let(:files)  { %w(a b).map { |e| "20160830#{e}.zip" } }
   let(:upload_files) { files.each { |f| Cloud::Storage.upload(f) } }
 
   describe 'FCA::Import.call' do
     it 'invokes `import` method with specific args' do
       expect(FCA::Import)
         .to receive(:import)
-        .with(files, ActiveRecord::Base.connection, 'FCA::Import', FCA::Config.logger)
-      FCA::Import.call(files)
+        .with(files, db, 'FCA::Import', FCA::Config.logger)
+      FCA::Import.call(files, db)
     end
   end
 
   describe 'FCA::Import.import' do
     let(:log_file) { StringIO.new }
     let(:logger)   { Logger.new(log_file) }
-    let(:db_conn)  { spy('db connection') }
 
     let(:callback) { :callback_done }
-    let(:import)   { FCA::Import.import(files, db_conn, 'test', logger) }
-    let(:import_with_callback) { FCA::Import.import(files, db_conn, 'test', logger) { callback } }
+    let(:import)   { FCA::Import.import(files, db, 'test', logger) }
+    let(:import_with_callback) { FCA::Import.import(files, db, 'test', logger) { callback } }
 
     before { upload_files }
 
@@ -40,29 +40,23 @@ RSpec.describe FCA::Import do
       expect(log_file.string).to include "Callback outcome: #{callback}"
     end
 
-    it 'runs generated sql' do
-      import
-      expect(db_conn).to have_received(:execute).at_least(:once)
-    end
-
     context 'when an error occurs' do
-      let(:outcome) { double('outcome', success?: false) }
-      before { allow_any_instance_of(River::Core).to receive(:sink).and_return(outcome) }
+      let(:outcome) { double('outcome', success?: false, result: 'result str') }
+      before { allow_any_instance_of(River::Core).to receive(:sink).and_return([outcome]) }
 
       it 'returns an empty array' do
-        expect(import).to be_empty
+        expect(import[0]).to match_array ['20160830a.zip', false, [outcome]]
+        expect(import[1]).to match_array ['20160830b.zip', false, [outcome]]
       end
     end
 
     context 'when successful' do
       let(:outcome) { double('outcome', success?: true) }
-      before { allow_any_instance_of(River::Core).to receive(:sink).and_return(outcome) }
+      before { allow_any_instance_of(River::Core).to receive(:sink).and_return([outcome]) }
 
       it 'returns a array with diff for advisers, firms and subsidiaries' do
-        import.each do |diff|
-          expect(diff).to be_a(Hash)
-          expect(diff.keys).to match_array([:added, :updated, :deleted])
-        end
+        expect(import[0]).to match_array ['20160830a.zip', true, [outcome]]
+        expect(import[1]).to match_array ['20160830b.zip', true, [outcome]]
       end
     end
   end
