@@ -83,13 +83,13 @@ module FCA
           while (entry = io.get_next_entry)
             c[:logger].info('UNZIP') { "Found file `#{entry.name}`" }
             if ignore_file[entry.name]
-              c[:logger].info('UNZIP') { "Ignoring file `#{entry.name}`" }
-              next
-            else
               c[:logger].info('UNZIP') { "Extracting file `#{entry.name}`" }
               c[:filenames] ||= []
               c[:filenames] << entry.name
               io.each { |l| w.write(l.force_encoding('UTF-8')) }
+            else
+              c[:logger].info('UNZIP') { "Ignoring file `#{entry.name}`" }
+              next
             end
           end
         end

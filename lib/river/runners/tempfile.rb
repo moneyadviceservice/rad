@@ -14,7 +14,7 @@ module River
             rd.close unless rd.closed? || (rd == $stdin)
             rewind(wr)
             rd = wr
-            context[:logger].info(name) { '* ' }
+            context[:logger].debug(name) { '* ' }
             outcome
           end
           wr.close unless wr.closed? || (wr == $stdout)
