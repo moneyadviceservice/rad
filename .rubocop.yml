@@ -3,7 +3,7 @@ Documentation:
 Metrics/LineLength:
   Max: 120
 Metrics/MethodLength:
-  Max: 15
+  Max: 25
 Style/ClassAndModuleChildren:
   Enabled: false
 Style/CollectionMethods:
@@ -51,7 +51,7 @@ Style/NumericLiterals:
   Enabled: false
 
 ClassLength:
-  Max: 130
+  Max: 165
 
 LineLength:
   Max: 135

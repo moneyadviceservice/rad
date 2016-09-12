@@ -1,8 +1,8 @@
 module River
-  VERSION = '0.1'.freeze
+  VERSION = '1.0'.freeze
 
-  def self.source(filename)
-    Core.new(filename).source
+  def self.source(context = {})
+    Core.new(context)
   end
 end
 
