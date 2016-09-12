@@ -13,7 +13,7 @@
             <p>Sorry an error occured while importing files.</p>
             <p>Please contact the development team</p>
         <% else %>
-            <% form_tag admin_lookup_fca_import_index_path, method: :post do %>
+            <% form_tag admin_lookup_fca_import_index_url, method: :post do %>
                 <%= submit_tag %>
             <% end %>
         <% end %>
