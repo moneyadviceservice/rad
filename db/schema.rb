@@ -79,6 +79,7 @@ ActiveRecord::Schema.define(version: 20160913094015) do
   add_index "allowed_payment_methods_firms", ["firm_id", "allowed_payment_method_id"], name: "firms_allowed_payment_methods_index", unique: true, using: :btree
 
   create_table "fca_imports", force: :cascade do |t|
+    t.string   "files",                      null: false
     t.boolean  "confirmed",  default: false
     t.boolean  "cancelled",  default: false
     t.text     "result",                     null: false

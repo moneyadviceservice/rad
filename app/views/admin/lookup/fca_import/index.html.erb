@@ -53,15 +53,19 @@
       <%= hidden_field_tag 'apply' %>
       <table class="table table-bordered">
         <tr>
-          <th></th>
           <% @tables.each do |t| %>
           <th><%= t %></th>
           <% end %>
         </tr>
         <tr>
-          <td></td>
           <% @tables.each do |t| %>
-          <td><%= raw @import.send(t).to_html %></td>
+          <td>
+            <ul>
+              <% @import.send(t).each do |k, v| %>
+              <li><%= "#{k}: #{v}" %></li>
+              <% end %>
+              </ul>
+          </td>
           <% end %>
         </tr>
       </table>

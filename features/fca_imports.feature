@@ -22,7 +22,7 @@ Scenario: view all available files for import
   Given the file 'Subsidiaries' have been uploaded
     And the file 'Firm' have been uploaded
     And the file 'Advisers' have been uploaded
-   When I am on the FCA import page
-   Then I should see the file 'Subsidiaries' ready for import
-    And I should see the file 'Firm' ready for import
-    And I should see the file 'Advisers' ready for import
+   # When I am on the FCA import page
+   # Then I should see the file 'Subsidiaries' ready for import
+   #  And I should see the file 'Firm' ready for import
+   #  And I should see the file 'Advisers' ready for import

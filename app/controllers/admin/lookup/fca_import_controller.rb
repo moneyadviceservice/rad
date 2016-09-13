@@ -1,6 +1,6 @@
 class Admin::Lookup::FcaImportController < Admin::ApplicationController
   def index
-    @files  = Cloud::Storage.list # filter
+    @files  = filter Cloud::Storage.list
     @import = FcaImport.not_confirmed.last
     @tables = FCA::Query.all
   end
