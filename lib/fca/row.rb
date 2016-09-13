@@ -12,11 +12,11 @@ module FCA
     attr_reader :line, :repairs, :row, :trading_names, :delimeter, :prefix
     def initialize(line, options = {})
       @line          = line.strip
+      @delimeter     = options[:delimeter] || '|'
+      @prefix        = options[:prefix]
+      @trading_names = Set.new
       @repairs       = YAML.load_file(::File.join(Rails.root, 'lib/fca/repairs.yml'))['repairs']
       @row           = repair.force_encoding('ISO-8859-1').split(options[:delimeter])
-      @trading_names = Set.new
-      @delimeter     = options[:delimeter]
-      @prefix        = options[:prefix]
     end
 
     def header?
@@ -29,7 +29,7 @@ module FCA
 
     def query
       q = Query.find(row[HEADER_NAME], delimeter: delimeter, prefix: prefix)
-      yield Query.all.join(', ') if !!q && block_given?
+      yield Query.headers.join(', ') if q.nil? && block_given?
       q
     end
 

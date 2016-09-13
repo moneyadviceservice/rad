@@ -39,6 +39,11 @@ module FCA
       result = files.map { |file| import(file) }
       if import_successful?(result)
         logger.info('FCA import') { 'files imported successfully' }
+        FcaImport.create(
+          files:     files.join('|'),
+          confirmed: false,
+          result:    result.map(&:to_s).join('|'))
+
       else
         logger.info('FCA import') { 'import failed' }
       end
@@ -55,10 +60,9 @@ module FCA
 
       import_status = outcomes.map(&:success?).all?
       if import_status
-        logger.info("Import #{file}") { 'imported successfully' }
-        # TODO: move files to archived
+        logger.info("Import #{file}") { 'processed successfully' }
       else
-        logger.info("Import #{file}") { "import error #{outcomes.last.result}" }
+        logger.info("Import #{file}") { "import error #{outcomes.compact.map(&:result)}" }
       end
 
       [file, import_status, outcomes]
@@ -71,6 +75,7 @@ module FCA
         client = Cloud::Storage.client
         client.download(filename).each(&write_line(w))
         c[:logger].info('Azure') { "Downloaded file '#{filename}'" }
+        :download
       end
     end
 
@@ -86,13 +91,14 @@ module FCA
               c[:logger].info('UNZIP') { "Extracting file `#{entry.name}`" }
               c[:filenames] ||= []
               c[:filenames] << entry.name
-              io.each { |l| w.write(l.force_encoding('UTF-8')) }
+              io.each(&write_line(w))
             else
               c[:logger].info('UNZIP') { "Ignoring file `#{entry.name}`" }
               next
             end
           end
         end
+        :unzip
       end
     end
 
@@ -118,6 +124,7 @@ module FCA
             end
           end
         end
+        :to_sql
       end
     end
 
@@ -131,6 +138,7 @@ module FCA
         logger.debug('Dump') { "#{name}-dump.sql" }
         r.rewind
         r.each(&write_line(w))
+        :dump
       end
     end
 
@@ -155,6 +163,7 @@ module FCA
             c[:pg].exec(line)
           end
         end
+        :save
       end
       # rubocop:enable all
     end
@@ -164,11 +173,11 @@ module FCA
     end
 
     def write_line(w)
-      ->(l) { w.write(l) }
+      ->(l) { w.write(l.force_encoding('UTF-8')) }
     end
 
     def log_and_fail(msg)
-      logger.fatal(name) { msg }
+      logger.fatal('Import Error') { msg }
       fail msg
     end
 

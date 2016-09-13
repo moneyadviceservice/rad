@@ -35,6 +35,10 @@ module FCA
       def all
         TABLES.values
       end
+
+      def headers
+        TABLES.keys
+      end
     end
 
     attr_reader :table, :delimeter, :timestamp, :options
@@ -65,10 +69,9 @@ EOF
 
     def rename
       [
-        self.begin,
+        "DROP TABLE IF EXISTS last_week_#{options[:table]};\n",
         rename_table(options[:table], "last_week_#{options[:table]}"),
-        rename_table(table, options[:table]),
-        commit
+        rename_table(table, options[:table])
       ].join('')
     end
 

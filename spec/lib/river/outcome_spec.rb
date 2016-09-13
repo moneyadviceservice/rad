@@ -1,4 +1,4 @@
-RSpec.describe River::Outcome do
+RSpec.describe 'River::Outcome' do
   let(:result)  { '' }
   let(:outcome) { River::Outcome.new { result } }
 

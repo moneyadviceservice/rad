@@ -105,10 +105,9 @@ CREATE TABLE IF NOT EXISTS test_lookup_advisers (id integer PRIMARY KEY DEFAULT 
     end
 
     it '.rename' do
-      expect("#{subject.rename}").to eq 'BEGIN;
+      expect("#{subject.rename}").to eq 'DROP TABLE IF EXISTS last_week_lookup_advisers;
 ALTER TABLE lookup_advisers RENAME TO last_week_lookup_advisers;
 ALTER TABLE test_lookup_advisers RENAME TO lookup_advisers;
-COMMIT;
 '
     end
 
