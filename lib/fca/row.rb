@@ -29,7 +29,7 @@ module FCA
 
     def query
       q = Query.find(row[HEADER_NAME], delimeter: delimeter, prefix: prefix)
-      yield Query.all if !!q && block_given?
+      yield Query.all.join(', ') if !!q && block_given?
       q
     end
 

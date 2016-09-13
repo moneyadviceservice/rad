@@ -33,7 +33,7 @@ module FCA
       end
 
       def all
-        TABLES.values.join(', ')
+        TABLES.values
       end
     end
 

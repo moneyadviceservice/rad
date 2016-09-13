@@ -48,7 +48,7 @@ RSpec.describe FCA::Query do
 
   describe 'Query.all' do
     it 'returns all defined tables' do
-      expect(FCA::Query.all).to eq [:lookup_advisers, :lookup_firms, :lookup_subsidiaries].join(', ')
+      expect(FCA::Query.all).to eq [:lookup_advisers, :lookup_firms, :lookup_subsidiaries]
     end
   end
 
