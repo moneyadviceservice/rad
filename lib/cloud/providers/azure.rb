@@ -21,7 +21,8 @@ module Cloud
       end
 
       def move(src, dst)
-        blob_client.copy_blob(container.name, src, container.name, dst)
+        blob_client.copy_blob(container.name, dst, container.name, src)
+        blob_client.delete_blob(container.name, src)
       end
 
       def upload(_file, _content = nil)

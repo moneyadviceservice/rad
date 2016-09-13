@@ -15,6 +15,7 @@ RSpec.describe Cloud::Providers::Azure do
   context 'interface' do
     before do
       stub_request(:get, 'https://masassets.blob.core.windows.net/?comp=list')
+      stub_request(:delete, 'https://masassets.blob.core.windows.net/fca-imports/incoming/file_to_import.txt')
       allow(subject).to receive(:container).and_return(double(:container, name: 'fca-imports'))
     end
 
@@ -39,8 +40,8 @@ RSpec.describe Cloud::Providers::Azure do
     describe '.move' do
       it 'invokes `copy_blob`' do
         expect_any_instance_of(Azure::Storage::Blob::BlobService)
-          .to receive(:copy_blob).with(container_name, 'incoming/file_to_import.txt',
-                                       container_name, 'archives/file.txt')
+          .to receive(:copy_blob).with(container_name, 'archives/file.txt',
+                                       container_name, 'incoming/file_to_import.txt')
 
         subject.move('incoming/file_to_import.txt', 'archives/file.txt')
       end
