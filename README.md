@@ -72,6 +72,14 @@ $ cp config/cloud_storage.yml.example config/cloud_storage.yml
 ```
 Edit this file to suit your requirements.
 
+### Environment Variables for FCA import
+AZURE_ACCOUNT      name of the azure account
+AZURE_CONTAINER    name of the blob container on azure
+AZURE_SHARED_KEY   shared key for authentication
+FCA_LOG_FILE       location of log file or STDOUT
+FCA_LOG_LEVEL      log level ie [debug, info, warn, error, fatal, unknown]
+
+
 ## Usage
 
 To start the application:
