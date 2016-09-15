@@ -1,5 +1,5 @@
 class FcaImport < ActiveRecord::Base
-  scope :not_confirmed, -> { where.not(confirmed: true) }
+  scope :not_confirmed, -> { where(confirmed: false, cancelled: false) }
 
   def lookup_advisers
     a = Lookup::Adviser.count
@@ -39,7 +39,7 @@ class FcaImport < ActiveRecord::Base
     if confirmation == :confirm
       FcaConfirmationJob.perform_async(id)
     else
-      update_column(:cancelled, false)
+      update_column(:cancelled, true)
     end
   end
 
