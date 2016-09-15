@@ -4,7 +4,7 @@ data = if %w(development test).include?(Rails.env)
   YAML.load(ERB.new(File.read(File.join(Rails.root, 'config/cloud_storage.yml'))).result)[Rails.env]
 else
   {
-    'provider'       => 'azure',
+    'provider_name'  => 'azure',
     'account_name'   => ENV['AZURE_ACCOUNT'],
     'container_name' => ENV['AZURE_CONTAINER'],
     'shared_key'     => ENV['AZURE_SHARED_KEY'],
