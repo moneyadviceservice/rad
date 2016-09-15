@@ -3,29 +3,17 @@ require 'forwardable'
 module Cloud
   class Storage
     extend Forwardable
-
+    def_delegators :provider, :list, :download, :move, :upload, :setup, :teardown
     attr_reader :provider
 
     def initialize(provider_name, settings = {})
       @provider = find_provider_class(provider_name).new(settings)
     end
 
-    def_delegators :provider, :list
-    def_delegators :provider, :download
-    def_delegators :provider, :move
-    def_delegators :provider, :upload
-    def_delegators :provider, :setup
-    def_delegators :provider, :teardown
-
     class << self
       extend Forwardable
 
-      def_delegators :client, :list
-      def_delegators :client, :download
-      def_delegators :client, :move
-      def_delegators :client, :upload
-      def_delegators :client, :setup
-      def_delegators :client, :teardown
+      def_delegators :client, :list, :download, :move, :upload, :setup, :teardown
 
       def configure
         yield config if block_given?

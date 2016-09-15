@@ -6,7 +6,7 @@ class Admin::Lookup::FcaImportController < Admin::ApplicationController
   end
 
   def create
-    FcaImportJob.perform_async(files, emails)
+    FcaImportJob.perform_async(files, FCA::Config.emails)
     flash[:notice] = 'The following files will be imported<br/>You will be notified when it\'s done.'
     redirect_to :admin_lookup_fca_import_index
   end
