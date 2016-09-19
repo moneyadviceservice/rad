@@ -28,7 +28,7 @@ RSpec.describe Admin::Lookup::FcaImportController, type: :controller do
 
   describe '.create' do
     it 'creates a `fca import job`' do
-      expect(FcaImportJob).to receive(:perform_async).with(files, nil)
+      expect(FcaImportJob).to receive(:perform_async).with(files)
       post :create, files: files
     end
   end
