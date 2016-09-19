@@ -1,5 +1,9 @@
 module FcaImportPage
   def admin
+    uri_template = Addressable::Template.new 'http://localhost:9200/rad_test/firms/{id}'
+    stub_request(:delete, uri_template)
+      .to_return(status: 200, body: '', headers: {})
+
     @admin ||= FactoryGirl.create(:user)
     @admin
   end
