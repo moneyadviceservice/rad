@@ -35,7 +35,7 @@
   <hr />
 </div>
 
-<% if @import %>
+<% if @import.try(:processed?) %>
 <div class="row">
   <div class="row">
     <div class="col-xs-10 col-xs-push-2">
@@ -61,7 +61,7 @@
           <% @tables.each do |t| %>
           <td>
             <ul>
-              <% @import.send(t).each do |k, v| %>
+              <% formatted_diff(*@import.send(t.to_sym)).each do |k, v| %>
               <li><%= "#{k}: #{v}" %></li>
               <% end %>
               </ul>
@@ -77,6 +77,16 @@
     </div>
   </div>
 </div>
+
+<% end %>
+<% if @import.try(:processing?)%>
+  <div class="row">
+    <div class="col-xs-10 col-xs-push-2">
+      <h1>
+        Importing data at the moment ...
+      </h1>
+    </div>
+  </div>
 <% end %>
 
 <div class="row<%= [!@files.empty?, @import].any? ? ' hide' : ' show'%>">

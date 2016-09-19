@@ -3,8 +3,10 @@ RSpec.describe FcaImportJob do
   let(:db)    { spy('db connection') }
   let(:slack) { spy('slack') }
   let(:outcomes) { [['adviers.zip', true, [:download, :unzip, :to_sql, :save]]] }
+  let(:model)  { FactoryGirl.create(:import) }
+  let(:model_dup)  { FactoryGirl.build(:import) }
   let(:format) do
-    { as_user: true, channel: '#test-channel', text: '' }
+    { channel: '#test-channel', as_user: true, text: '' }
   end
 
   before(:all) do
@@ -21,15 +23,32 @@ RSpec.describe FcaImportJob do
   end
 
   describe '.perform' do
+    it 'creates a fca_import' do
+      expect(FcaImport)
+        .to receive(:create)
+        .with(files: files.join('|'), status: 'processing')
+        .and_return(model)
+      subject.perform(files)
+    end
+
+    it 'stops the execution' do
+      expect(FcaImport)
+        .to receive(:create)
+        .with(files: files.join('|'), status: 'processing')
+        .and_return(model_dup)
+
+      expect(FCA::Import).not_to receive(:call)
+      subject.perform(files)
+    end
+
     it 'invokes fac import lib' do
-      expect(FCA::Import).to receive(:call).with(files, db)
+      expect(FCA::Import).to receive(:call).with(files, kind_of(Hash))
       subject.perform(files)
     end
 
     context 'when import successful' do
       let(:expected) do
-        format.merge(text: 'The FCA data have been loaded into RAD. \
-Visit http://localhost/admin/lookup/fca_import to confirm that the data looks ok')
+        format.merge(text: 'The FCA data have been loaded into RAD. Visit http://localhost/admin/lookup/fca_import to confirm that the data looks ok') # rubocop:disable all
       end
 
       it 'callback has access to import outcome' do
@@ -40,7 +59,7 @@ Visit http://localhost/admin/lookup/fca_import to confirm that the data looks ok
 
     context 'when an error has occured' do
       let(:expected) do
-        format.merge(text: 'An error has occured while processing the files')
+        format.merge(text: 'An error has occured while processing the files. You can cancel this import here http://localhost/admin/lookup/fca_import')
       end
 
       it 'callback has access to import outcome' do

@@ -1,58 +1,57 @@
 class FcaImport < ActiveRecord::Base
-  scope :not_confirmed, -> { where(confirmed: false, cancelled: false) }
+  STATUSES = %w(processing processed confirmed cancelled).freeze
+
+  scope :not_confirmed, -> { where(status: STATUSES.take(2)) }
+
+  validates :files, uniqueness: { case_sensitive: false, scope: :status }
+  validates :status, inclusion: { in: STATUSES }
 
   def lookup_advisers
-    a = Lookup::Adviser.count
-    b = import_advisers
-    {
-      before:  a,
-      after:   b,
-      diff:    b - a
-    }
+    [Lookup::Adviser.count, imported_advisers]
   end
 
   def lookup_firms
-    a = Lookup::Firm.count
-    b = import_firms
-    {
-      before:  a,
-      after:   b,
-      diff:    b - a
-    }
+    [Lookup::Firm.count, imported_firms]
   end
 
   def lookup_subsidiaries
-    a = Lookup::Subsidiary.count
-    b = import_subsidiaries
-    {
-      before:  a,
-      after:   b,
-      diff:    b - a
-    }
-  end
-
-  def files
-    super.split('|')
+    [Lookup::Subsidiary.count, imported_subsidiaries]
   end
 
   def commit(confirmation)
     if confirmation == :confirm
       FcaConfirmationJob.perform_async(id)
     else
-      update_column(:cancelled, true)
+      update_attributes(status: 'cancelled')
     end
   end
 
-  def import_advisers
+  def imported_advisers
     exec('SELECT COUNT(*) AS total FROM fcaimport_lookup_advisers;')
   end
 
-  def import_firms
+  def imported_firms
     exec('SELECT COUNT(*) AS total FROM fcaimport_lookup_firms;')
   end
 
-  def import_subsidiaries
+  def imported_subsidiaries
     exec('SELECT COUNT(*) AS total FROM fcaimport_lookup_subsidiaries;')
+  end
+
+  def processing?
+    status == 'processing'
+  end
+
+  def processed?
+    status == 'processed'
+  end
+
+  def confirmed?
+    status == 'confirmed'
+  end
+
+  def cancelled?
+    status == 'cancelled'
   end
 
   private

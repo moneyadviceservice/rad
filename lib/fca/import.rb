@@ -4,10 +4,10 @@ require 'river'
 module FCA
   class Import
     class << self
-      def call(files, db, name = 'FCA::Import', logger = FCA::Config.logger)
+      def call(files, context, name = 'FCA::Import', logger = FCA::Config.logger)
         logger.info(name) { 'Starting FCA data import' }
         start_time = Time.zone.now
-        outcomes = new(files, db, logger).import_all
+        outcomes = new(files, context, logger).import_all
         logger.info(name) { "Duration: #{Time.zone.now - start_time} seconds" }
 
         if block_given?
@@ -23,24 +23,23 @@ module FCA
     include Utils
 
     attr_reader :files, :logger, :context
-    def initialize(files, db, logger)
+    def initialize(files, context, logger)
       @files   = files
       @logger  = logger
-      @context = { logger: @logger, pg: db }
+      @context = context.merge(logger: @logger)
     end
 
     def import_all
       result = files.map { |file| import(file) }
       if import_successful?(result)
         logger.info('FCA import') { 'files imported successfully' }
-        FcaImport.create(
-          files:     files.join('|'),
-          confirmed: false,
-          result:    result.map(&:to_s).join('|'))
-
       else
         logger.info('FCA import') { 'import failed' }
       end
+      context[:model].update_attributes(
+        result: result.map(&:to_s).join('|'),
+        status: 'processed'
+      )
       result
     end
 

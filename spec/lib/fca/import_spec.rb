@@ -4,8 +4,8 @@ RSpec.describe FCA::Import do
   before(:all) { Cloud::Storage.setup }
   after(:all)  { Cloud::Storage.teardown }
 
-  let(:db)     { spy('pg_connection') }
   let(:files)  { %w(a b).map { |e| "20160830#{e}.zip" } }
+  let(:deps)   { { pg: spy('db'), model: spy('model') } }
   let(:upload_files) { files.each { |f| Cloud::Storage.upload(f) } }
 
   describe '.call' do
@@ -13,8 +13,8 @@ RSpec.describe FCA::Import do
     let(:logger)   { Logger.new(log_file) }
 
     let(:callback) { :callback_done }
-    let(:import)   { FCA::Import.call(files, db, 'test', logger) }
-    let(:import_with_callback) { FCA::Import.call(files, db, 'test', logger) { callback } }
+    let(:import)   { FCA::Import.call(files, deps, 'test', logger) }
+    let(:import_with_callback) { FCA::Import.call(files, deps, 'test', logger) { callback } }
 
     before { upload_files }
 

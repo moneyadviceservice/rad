@@ -53,5 +53,8 @@ Style/NumericLiterals:
 ClassLength:
   Max: 165
 
+ModuleLength:
+  Max: 110
+
 LineLength:
   Max: 135

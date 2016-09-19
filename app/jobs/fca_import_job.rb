@@ -12,12 +12,27 @@ class FcaImportJob < ActiveJob::Base
   queue_as :default
 
   def perform(files = [])
-    FCA::Import.call(files, db_connection) do |outcomes|
+    return logger.info('Ignoring this request as we already have a fca import in progess') if create_model_for(files).new_record?
+    FCA::Import.call(files, context) do |outcomes|
       slack.chat_postMessage(slack_formatter(outcomes))
     end
   end
 
   private
+
+  def context
+    {
+      pg: db_connection,
+      model: @import
+    }
+  end
+
+  def create_model_for(files)
+    @import ||= FcaImport.create(
+      files:  files.join('|'),
+      status: 'processing'
+    )
+  end
 
   def db_connection
     return @conn if @conn
@@ -38,23 +53,17 @@ class FcaImportJob < ActiveJob::Base
   end
 
   def slack_formatter(outcomes)
-    import_successful?(outcomes) ? confirm : error
-  end
+    url  = admin_lookup_fca_import_index_url
+    text = if import_successful?(outcomes)
+             "The FCA data have been loaded into RAD. Visit #{url} to confirm that the data looks ok"
+           else
+             "An error has occured while processing the files. You can cancel this import here #{url}"
+           end
 
-  def confirm
-    url = admin_lookup_fca_import_index_url
     {
       channel: FCA::Config.notify[:slack][:channel],
       as_user: true,
-      text:    "The FCA data have been loaded into RAD. Visit #{url} to confirm that the data looks ok"
-    }
-  end
-
-  def error
-    {
-      channel: FCA::Config.notify[:slack][:channel],
-      as_user: true,
-      text:    'An error has occured while processing the files'
+      text:    text
     }
   end
 

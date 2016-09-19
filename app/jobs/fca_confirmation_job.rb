@@ -12,9 +12,9 @@ class FcaConfirmationJob < ActiveJob::Base
   def perform(import_job_id)
     if import = FcaImport.find_by_id(import_job_id) # rubocop:disable all
       rename('fcaimport')
-      import.update_column(:confirmed, true)
+      import.update_attributes(status: 'confirmed')
       log 'Postgres', 'Import confirmed'
-      archive_files(import.files)
+      archive_files(import.files.split('|'))
     end
   end
 
