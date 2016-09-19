@@ -8,22 +8,13 @@ RSpec.describe FCA::Import do
   let(:files)  { %w(a b).map { |e| "20160830#{e}.zip" } }
   let(:upload_files) { files.each { |f| Cloud::Storage.upload(f) } }
 
-  describe 'FCA::Import.call' do
-    it 'invokes `import` method with specific args' do
-      expect(FCA::Import)
-        .to receive(:import)
-        .with(files, db, 'FCA::Import', FCA::Config.logger)
-      FCA::Import.call(files, db)
-    end
-  end
-
-  describe 'FCA::Import.import' do
+  describe '.call' do
     let(:log_file) { StringIO.new }
     let(:logger)   { Logger.new(log_file) }
 
     let(:callback) { :callback_done }
-    let(:import)   { FCA::Import.import(files, db, 'test', logger) }
-    let(:import_with_callback) { FCA::Import.import(files, db, 'test', logger) { callback } }
+    let(:import)   { FCA::Import.call(files, db, 'test', logger) }
+    let(:import_with_callback) { FCA::Import.call(files, db, 'test', logger) { callback } }
 
     before { upload_files }
 

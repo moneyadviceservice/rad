@@ -1,22 +1,32 @@
 RSpec.describe FCA::Config do
-  let(:fca)   { FCA::Config }
+  let(:fca_config) do
+    FCA::Config.new.tap do |c|
+      c.log_level = level
+      c.log_file  = file
+      c.notify    = slack
+      c.hostname  = 'mas.com'
+    end
+  end
+  let(:slack) { { slack: { channel: '#test' } } }
 
   describe 'FCA::Config.configure' do
-    let(:file)  { '/var/log/fca_import.log' }
+    let(:file)  { '/tmp/fca_import.log' }
     let(:level) { :debug }
-    before do
-      fca.configure do |c|
-        c.log_file = file
-        c.log_level = level
-      end
-    end
 
     it 'saves `log_file` configuration' do
-      expect(fca.config.log_file).to eq file
+      expect(fca_config.log_file).to eq file
     end
 
     it 'saves `log_level` configuration' do
-      expect(fca.config.log_level).to eq Logger::DEBUG
+      expect(fca_config.log_level).to eq Logger::DEBUG
+    end
+
+    it 'saves `notify` details' do
+      expect(fca_config.notify).to eq slack
+    end
+
+    it 'returns a logger instance' do
+      expect(fca_config.logger).to be_a(Logger)
     end
 
     context 'default configuration' do
@@ -24,11 +34,11 @@ RSpec.describe FCA::Config do
       let(:level) { nil }
 
       it 'log_file defaults to `STDOUT`' do
-        expect(fca.config.log_file).to eq STDOUT
+        expect(fca_config.log_file).to eq STDOUT
       end
 
       it 'log_level defaults to `INFO`' do
-        expect(fca.config.log_level).to eq Logger::INFO
+        expect(fca_config.log_level).to eq Logger::INFO
       end
     end
   end
@@ -36,12 +46,6 @@ RSpec.describe FCA::Config do
   describe 'FCA::Config.logger' do
     it 'returns a logger instance' do
       expect(FCA::Config.logger).to be_a(Logger)
-    end
-  end
-
-  describe '.logger' do
-    it 'returns a logger instance' do
-      expect(fca.config.logger).to be_a(Logger)
     end
   end
 end
