@@ -11,7 +11,7 @@ class FcaConfirmationJob < ActiveJob::Base
 
   def perform(import_job_id)
     if import = FcaImport.find_by_id(import_job_id) # rubocop:disable all
-      rename(::FCA::Import::LOOKUP_TABLE_PREFIX)
+      rename_tables(::FCA::Import::LOOKUP_TABLE_PREFIX)
       import.update_attributes(status: 'confirmed')
       log 'Postgres', 'Import confirmed'
       archive_files(import.files.split('|'))
@@ -26,7 +26,7 @@ class FcaConfirmationJob < ActiveJob::Base
     log 'Azure', "Archived files: #{files}"
   end
 
-  def rename(prefix)
+  def rename_tables(prefix)
     sql = FCA::Query
           .all
           .map { |t| FCA::Query.new(table: t, prefix: prefix).rename }

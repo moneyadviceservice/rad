@@ -28,7 +28,7 @@ RSpec.describe FcaImportJob do
         .to receive(:create)
         .with(files: files.join('|'), status: 'processing')
         .and_return(model)
-      subject.perform(files)
+      suppress_output { subject.perform(files) }
     end
 
     it 'stops the execution' do
@@ -38,12 +38,12 @@ RSpec.describe FcaImportJob do
         .and_return(model_dup)
 
       expect(FCA::Import).not_to receive(:call)
-      subject.perform(files)
+      suppress_output { subject.perform(files) }
     end
 
     it 'invokes fac import lib' do
       expect(FCA::Import).to receive(:call).with(files, kind_of(Hash))
-      subject.perform(files)
+      suppress_output { subject.perform(files) }
     end
 
     context 'when import successful' do
@@ -52,7 +52,7 @@ RSpec.describe FcaImportJob do
       end
 
       it 'callback has access to import outcome' do
-        subject.perform(files)
+        suppress_output { subject.perform(files) }
         expect(slack).to have_received(:chat_postMessage).with(expected)
       end
     end
