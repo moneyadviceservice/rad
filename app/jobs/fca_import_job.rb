@@ -12,7 +12,8 @@ class FcaImportJob < ActiveJob::Base
   queue_as :default
 
   def perform(files = [])
-    return logger.info('Ignoring this request as we already have a fca import in progess') if create_model_for(files).new_record?
+    return logger.info('Ignoring this request as we already have a fca import in progress') if create_model_for(files).new_record?
+
     FCA::Import.call(files, context) do |outcomes|
       slack.chat_postMessage(slack_formatter(outcomes))
     end

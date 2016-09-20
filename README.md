@@ -68,7 +68,7 @@ These changes must be made before using the FCA import feature on the admin
 panel.
 
 ```
-$ cp config/cloud_storage.yml.example config/cloud_storage.yml
+$ cp config/cloud_storage.example.yml config/cloud_storage.yml
 ```
 Edit this file to suit your requirements.
 

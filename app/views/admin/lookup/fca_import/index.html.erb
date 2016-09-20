@@ -23,12 +23,12 @@
             <%= file %>
           </td>
           <td>
-            <%= check_box_tag('files[]',file,true) %>
+            <%= check_box_tag('files[]', file, true) %>
           </td>
         </tr>
         <% end %>
       </table>
-      <%= submit_tag "Import"%>
+      <%= submit_tag 'Import' %>
       <% end %>
     </div>
   </div>
@@ -54,7 +54,7 @@
       <table class="table table-bordered">
         <tr>
           <% @tables.each do |t| %>
-          <th><%= t %></th>
+            <th><%= t %></th>
           <% end %>
         </tr>
         <tr>
@@ -62,7 +62,7 @@
           <td>
             <ul>
               <% formatted_diff(*@import.send(t.to_sym)).each do |k, v| %>
-              <li><%= "#{k}: #{v}" %></li>
+                <li><%= "#{k}: #{v}" %></li>
               <% end %>
               </ul>
           </td>

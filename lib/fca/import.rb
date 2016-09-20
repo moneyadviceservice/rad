@@ -3,6 +3,8 @@ require 'river'
 
 module FCA
   class Import
+    LOOKUP_TABLE_PREFIX = 'fcaimport'
+
     class << self
       def call(files, context, name = 'FCA::Import', logger = FCA::Config.logger)
         logger.info(name) { 'Starting FCA data import' }
@@ -47,7 +49,7 @@ module FCA
       outcomes = River.source(context)
                  .step(&download(file))
                  .step(&unzip(/^firms2\d+\.ext$/, /^indiv_apprvd2\d+\.ext$/, /^firm_names2\d+\.ext$/))
-                 .step(&to_sql('fcaimport'))
+                 .step(&to_sql(LOOKUP_TABLE_PREFIX))
                  .step(&save)
                  .sink
 

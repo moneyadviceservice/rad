@@ -2,6 +2,7 @@ RSpec.describe FcaImport, type: :model do
   describe 'scope .not_confirmed' do
     context 'when import has finished' do
       before { FactoryGirl.create(:not_confirmed_import) }
+
       it 'returns current import obj model' do
         expect(FcaImport.not_confirmed.last.status).to eq('processed')
       end
