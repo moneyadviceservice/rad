@@ -35,22 +35,8 @@ class FcaImportJob < ActiveJob::Base
     )
   end
 
-  #
-  #  returns a `pg` connection and not an `activerecord` wrapper
-  #  it's necessary in order to use pg.copy_data and pg.put_copy_data
-  #
   def db_connection
-    return @conn if @conn
-    db_conf = ActiveRecord::Base.connection_config
-    config = {
-      host:     db_conf[:host],
-      port:     (db_conf[:port] || 5432),
-      dbname:   db_conf[:database],
-      user:     db_conf[:username],
-      password: db_conf[:password],
-      connect_timeout: 5
-    }
-    @conn ||= PG::Connection.new(config)
+    @conn ||= ActiveRecord::Base.connection_pool.checkout.raw_connection
   end
 
   def slack
@@ -58,12 +44,12 @@ class FcaImportJob < ActiveJob::Base
   end
 
   def slack_formatter(outcomes)
-    url  = admin_lookup_fca_import_index_url
-    text = if import_successful?(outcomes)
-             "The FCA data have been loaded into RAD. Visit #{url} to confirm that the data looks ok"
-           else
-             "An error has occured while processing the files. You can cancel this import here #{url}"
-           end
+    text = ''
+    if import_successful?(outcomes)
+      text = "The FCA data have been loaded into RAD. Visit #{admin_lookup_fca_import_index_url} to confirm that the data looks ok"
+    else
+      text = "An error has occured while processing the files. You can cancel this import here #{admin_lookup_fca_import_index_url}"
+    end
 
     {
       channel: FCA::Config.notify[:slack][:channel],
