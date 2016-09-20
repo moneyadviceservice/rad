@@ -35,6 +35,10 @@ class FcaImportJob < ActiveJob::Base
     )
   end
 
+  #
+  #  returns a `pg` connection and not an `activerecord` wrapper
+  #  it's necessary in order to use pg.copy_data and pg.put_copy_data
+  #
   def db_connection
     return @conn if @conn
     db_conf = ActiveRecord::Base.connection_config
