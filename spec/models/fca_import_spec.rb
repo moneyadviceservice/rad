@@ -28,10 +28,10 @@ RSpec.describe FcaImport, type: :model do
     end
 
     describe 'files' do
-      let(:same_args) { FactoryGirl.attributes_for(:import) }
-      before { FactoryGirl.create(:import) }
+      let!(:one)     { FactoryGirl.create(:import) }
+      let(:one_args) { one.attributes.select {|k,v| v.present? } }
       it 'cannot create duplicate import based on files' do
-        import = FcaImport.create(same_args)
+        import = FcaImport.create(one_args)
         expect(import.errors[:files]).not_to be_empty
       end
     end

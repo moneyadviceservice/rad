@@ -54,6 +54,7 @@ group :test, :development do
   gem 'rspec-rails'
   gem 'rubocop'
   gem 'timecop'
+  gem 'ffaker'
 end
 
 group :test do
