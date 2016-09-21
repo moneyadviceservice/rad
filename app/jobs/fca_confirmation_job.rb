@@ -22,7 +22,7 @@ class FcaConfirmationJob < ActiveJob::Base
 
   def archive_files(files)
     cs = Cloud::Storage.client
-    files.each { |f| cs.move(f, f.gsub('incoming', 'archives')) }
+    files.each { |f| cs.move(f, f.gsub(/incoming/i, 'archives')) }
     log 'Azure', "Archived files: #{files}"
   end
 

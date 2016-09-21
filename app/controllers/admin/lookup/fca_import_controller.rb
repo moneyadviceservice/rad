@@ -46,7 +46,7 @@ You will be notified on the Slack channel #{channel} when it's done."
   end
 
   def filter(fs)
-    fs.select { |f| f =~ /^incoming.*\.zip$/ }
+    fs.select { |f| f =~ /^incoming.*\.zip$/i }
   end
 
   def channel
