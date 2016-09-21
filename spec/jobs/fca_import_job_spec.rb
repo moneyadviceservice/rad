@@ -63,7 +63,7 @@ RSpec.describe FcaImportJob do
       end
 
       it 'callback has access to import outcome' do
-        subject.perform(%w(badfile.zip))
+        suppress_output { subject.perform(%w(badfile.zip)) }
         expect(slack).to have_received(:chat_postMessage).with(expected)
       end
     end

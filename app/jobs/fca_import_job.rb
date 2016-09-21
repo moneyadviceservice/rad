@@ -15,7 +15,7 @@ class FcaImportJob < ActiveJob::Base
     return logger.info('Ignoring this request as we already have a fca import in progress') if create_model_for(files).new_record?
 
     FCA::Import.call(files, context) do |outcomes|
-      slack.chat_postMessage(slack_formatter(outcomes))
+      notify(outcomes)
     end
   end
 
@@ -56,6 +56,7 @@ class FcaImportJob < ActiveJob::Base
       text = erroneous.join("\n")
     end
 
+    logger.info("Notification msg: #{text}")
     {
       channel: FCA::Config.notify[:slack][:channel],
       as_user: true,
@@ -65,5 +66,11 @@ class FcaImportJob < ActiveJob::Base
 
   def default_url_options
     { host: FCA::Config.hostname }
+  end
+
+  def notify(outcomes)
+    slack.chat_postMessage(slack_formatter(outcomes))
+  rescue
+    logger.error 'An error occured while trying to post msg'
   end
 end
