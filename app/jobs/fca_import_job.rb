@@ -46,9 +46,9 @@ class FcaImportJob < ActiveJob::Base
   def slack_formatter(outcomes)
     text = ''
     if import_successful?(outcomes)
-      text = "The FCA data have been loaded into RAD. Visit #{admin_lookup_fca_import_index_url} to confirm that the data looks ok"
+      text = "@here The FCA data have been loaded into RAD. Visit #{admin_lookup_fca_import_index_url} to confirm that the data looks ok"
     else
-      text = "An error has occured while processing the files. You can cancel this import here #{admin_lookup_fca_import_index_url}"
+      text = "@here An error has occured while processing the files. You can cancel this import here #{admin_lookup_fca_import_index_url}"
     end
 
     {
