@@ -22,7 +22,7 @@ class FcaImport < ActiveRecord::Base
     if confirmation == :confirm
       FcaConfirmationJob.perform_async(id)
     else
-      update_attributes(status: 'cancelled')
+      update_column(:status, 'cancelled')
     end
   end
 

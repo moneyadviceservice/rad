@@ -38,7 +38,7 @@ module FCA
       else
         logger.info('FCA import') { 'import failed' }
       end
-      context[:model].update_attributes(
+      context[:model].update_columns(
         result: result.map(&:to_s).join('|'),
         status: 'processed'
       )
