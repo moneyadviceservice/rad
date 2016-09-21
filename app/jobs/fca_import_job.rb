@@ -46,9 +46,14 @@ class FcaImportJob < ActiveJob::Base
   def slack_formatter(outcomes)
     text = ''
     if import_successful?(outcomes)
-      text = "@here The FCA data have been loaded into RAD. Visit #{admin_lookup_fca_import_index_url} to confirm that the data looks ok"
+      text = "<!here> The FCA data have been loaded into RAD. Visit #{admin_lookup_fca_import_index_url} to confirm that the data looks ok" # rubocop:disable all
     else
-      text = "@here An error has occured while processing the files. You can cancel this import here #{admin_lookup_fca_import_index_url}"
+      erroneous = outcomes
+                  .select { |(_, s, _)| s == false }
+                  .map { |(f, _, o)| "Zip file #{f} caused error: #{o}" }
+      erroneous.insert(0, '<!here> Import has failed')
+      erroneous.insert(-1, "You can cancel this import here #{admin_lookup_fca_import_index_url}")
+      text = erroneous.join("\n")
     end
 
     {

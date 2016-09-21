@@ -48,7 +48,7 @@ RSpec.describe FcaImportJob do
 
     context 'when import successful' do
       let(:expected) do
-        format.merge(text: 'The FCA data have been loaded into RAD. Visit http://localhost/admin/lookup/fca_import to confirm that the data looks ok') # rubocop:disable all
+        format.merge(text: '<!here> The FCA data have been loaded into RAD. Visit http://localhost/admin/lookup/fca_import to confirm that the data looks ok') # rubocop:disable all
       end
 
       it 'callback has access to import outcome' do
@@ -59,7 +59,7 @@ RSpec.describe FcaImportJob do
 
     context 'when an error has occured' do
       let(:expected) do
-        format.merge(text: 'An error has occured while processing the files. You can cancel this import here http://localhost/admin/lookup/fca_import')
+        format.merge(text: "<!here> Import has failed\nZip file badfile.zip caused error: [{}, {}, {}, {}]\nYou can cancel this import here http://localhost/admin/lookup/fca_import") # rubocop:disable all
       end
 
       it 'callback has access to import outcome' do
