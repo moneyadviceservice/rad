@@ -66,13 +66,21 @@ class FcaImportJob < ActiveJob::Base
     ).deliver_later
   end
 
+  def parse_error(list)
+    if list.second.try(:success?)
+      'could not unzipped. The file could be corrupted.'
+    else
+      'technical error. Contact the dev team'
+    end
+  end
+
   def notification_text(outcomes)
     if import_successful?(outcomes)
       "The FCA data have been loaded into RAD. Visit #{admin_lookup_fca_import_index_url} to confirm that the data looks ok" # rubocop:disable all
     else
       erroneous = outcomes
                   .select { |(_, s, _)| s == false }
-                  .map { |(f, _, o)| "Zip file #{f} caused error: #{o}" }
+                  .map { |(f, _, o)| "Zip file #{f} caused error: #{parse_error(o)}" }
       erroneous.insert(0, 'Import has failed')
       erroneous.insert(-1, "You can cancel this import here #{admin_lookup_fca_import_index_url}")
       erroneous.join("\n")
