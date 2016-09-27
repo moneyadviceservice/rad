@@ -35,10 +35,14 @@ gem 'ransack'
 gem 'rollbar'
 gem 'sass-rails'
 gem 'sidekiq'
+gem 'sidekiq-unique-jobs'
 gem 'sidetiq'
 gem 'sinatra', require: false
 gem 'uglifier', '>= 1.3.0'
 gem 'unicorn'
+gem 'azure-storage'
+gem 'rubyzip'
+gem 'slack-ruby-client'
 
 group :test, :development do
   gem 'better_errors'
@@ -50,10 +54,12 @@ group :test, :development do
   gem 'rspec-rails'
   gem 'rubocop'
   gem 'timecop'
+  gem 'ffaker'
 end
 
 group :test do
   gem 'capybara'
+  gem 'cucumber-rails', require: false
   gem 'database_cleaner'
   gem 'launchy'
   gem 'poltergeist'

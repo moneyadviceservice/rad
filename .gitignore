@@ -12,3 +12,4 @@ fca_import_scripts/sql
 fca_import_scripts/invalid_advisers.csv
 .ruby-env
 .tags
+config/cloud_storage.yml

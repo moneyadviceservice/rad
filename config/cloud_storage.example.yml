@@ -1,0 +1,14 @@
+local: &local
+  provider_name: local
+  root: <%= Rails.root %>
+
+azure: &azure
+  provider_name: azure
+  account_name: <%= ENV['AZURE_ACCOUNT'] %>
+  container_name: <%= ENV['AZURE_CONTAINER'] %>
+  shared_key: <%= ENV['AZURE_SHARED_KEY'] %>
+
+#development: *azure
+development: *local
+test: *local
+production: *azure

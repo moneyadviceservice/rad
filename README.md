@@ -4,6 +4,12 @@ A directory to help people nearing retirement find an Independent Financial Advi
 
 ![Build Status](https://travis-ci.org/moneyadviceservice/rad.svg?branch=master)
 
+## General Info
+
+[RAD](wiki page)
+[FCA Import](wiki page)
+
+
 ## Prerequisites
 
 * [Git](http://git-scm.com)
@@ -57,6 +63,23 @@ $ bundle exec rake db:create \
 **NOTE** `db:schema:load` loads into both the test and development databases.
 But `db:migrate` does not.
 
+## Connect FCA Import application to Microsoft Azure
+These changes must be made before using the FCA import feature on the admin
+panel.
+
+```
+$ cp config/cloud_storage.example.yml config/cloud_storage.yml
+```
+Edit this file to suit your requirements.
+
+### Environment Variables for FCA import
+AZURE_ACCOUNT      name of the azure account
+AZURE_CONTAINER    name of the blob container on azure
+AZURE_SHARED_KEY   shared key for authentication
+FCA_LOG_FILE       location of log file or STDOUT
+FCA_LOG_LEVEL      log level ie [debug, info, warn, error, fatal, unknown]
+
+
 ## Usage
 
 To start the application:
@@ -73,10 +96,22 @@ dashboard at [http://localhost:5000/sidekiq](http://localhost:5000/sidekiq).
 
 ## Running the Tests
 
-To run the Ruby tests:
+To run the complete test suite:
+
+```sh
+$ bundle exec rake
+```
+
+To run the RSpec tests:
 
 ```sh
 $ bundle exec rspec
+```
+
+To run the Cucumber tests:
+
+```sh
+$ bundle exec cucumber
 ```
 
 To run the javascript tests:

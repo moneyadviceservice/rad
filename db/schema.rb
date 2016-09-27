@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160329110348) do
+ActiveRecord::Schema.define(version: 20160913094015) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -77,6 +77,14 @@ ActiveRecord::Schema.define(version: 20160329110348) do
   end
 
   add_index "allowed_payment_methods_firms", ["firm_id", "allowed_payment_method_id"], name: "firms_allowed_payment_methods_index", unique: true, using: :btree
+
+  create_table "fca_imports", force: :cascade do |t|
+    t.string   "files",      null: false
+    t.string   "status"
+    t.text     "result"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "firms", force: :cascade do |t|
     t.integer  "fca_number",                                               null: false

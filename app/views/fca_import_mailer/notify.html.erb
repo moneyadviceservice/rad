@@ -1,0 +1,21 @@
+<h2>FCA Import result</h2>
+<table>
+    <thead>
+        <tr><th>Table</th><th>Added</th><th>Updated</th><th>Deleted</th></tr>
+    </thead>
+    <tbody>
+        <% @outcomes.each do |(table, added, updated, deleted)| %>
+            <tr>
+                <td><%= table %></td><td><%= added %><%= updated %></td><td><%= deleted %></td>
+            </tr>
+        <% end %>
+        <% if @outcomes.blank? %>
+            <p>Sorry an error occured while importing files.</p>
+            <p>Please contact the development team</p>
+        <% else %>
+            <% form_tag admin_lookup_fca_import_index_url, method: :post do %>
+                <%= submit_tag %>
+            <% end %>
+        <% end %>
+    </tbody>
+</table>
