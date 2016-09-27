@@ -5,6 +5,7 @@ RSpec.describe FCA::Config do
       c.log_file  = file
       c.notify    = slack
       c.hostname  = 'mas.com'
+      c.email_recipients = emails
     end
   end
   let(:slack) { { slack: { channel: '#test' } } }
@@ -12,6 +13,7 @@ RSpec.describe FCA::Config do
   describe 'FCA::Config.configure' do
     let(:file)  { '/tmp/fca_import.log' }
     let(:level) { :debug }
+    let(:emails) { 'user@email.com, foo@email.org.uk' }
 
     it 'saves `log_file` configuration' do
       expect(fca_config.log_file).to eq file
@@ -27,6 +29,10 @@ RSpec.describe FCA::Config do
 
     it 'returns a logger instance' do
       expect(fca_config.logger).to be_a(Logger)
+    end
+
+    it 'returns array of emails' do
+      expect(fca_config.email_recipients).to match_array %w(user@email.com foo@email.org.uk)
     end
 
     context 'default configuration' do

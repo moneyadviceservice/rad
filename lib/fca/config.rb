@@ -6,7 +6,7 @@ module FCA
     class << self
       extend Forwardable
 
-      def_delegators :config, :logger, :notify, :hostname
+      def_delegators :config, :logger, :notify, :hostname, :email_recipients
 
       def configure
         yield config if block_given?
@@ -20,7 +20,7 @@ module FCA
     LOG_LEVEL = %w(UNKNOWN FATAL ERROR WARN INFO DEBUG).freeze
 
     attr_accessor :notify, :hostname
-    attr_writer :log_file, :log_level
+    attr_writer :log_file, :log_level, :email_recipients
 
     def logger
       @logger ||= ::Logger.new(log_file, ::File::APPEND)
@@ -36,6 +36,11 @@ module FCA
     def log_level
       level = LOG_LEVEL.detect { |level| level == @log_level.to_s.upcase.strip } || 'INFO'
       Object.const_get("Logger::#{level}")
+    end
+
+    def email_recipients
+      return @email_recipients if @email_recipients.is_a?(Array)
+      @email_recipients = @email_recipients.split(',').map!(&:strip) if @email_recipients.present?
     end
   end
 end
