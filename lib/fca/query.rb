@@ -21,7 +21,7 @@ module FCA
       },
       lookup_subsidiaries: {
         fca_number:        'integer NOT NULL,',
-        registered_name:   'varchar(255) NOT NULL DEFAULT \'\',',
+        name:              'varchar(255) NOT NULL DEFAULT \'\',',
         created_at:        'timestamp NOT NULL,',
         updated_at:        'timestamp NOT NULL'
       }
