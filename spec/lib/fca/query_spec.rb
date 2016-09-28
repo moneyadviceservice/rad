@@ -17,6 +17,15 @@ RSpec.describe FCA::Query do
     end
   end
 
+  describe 'Temporay table schema' do
+    context 'lookup_subsidiaries' do
+      let(:subsidiares) { FCA::Query::SCHEMA[:lookup_subsidiaries] }
+      it 'has a schema' do
+        expect(subsidiares).to include(fca_number: 'integer NOT NULL,', name: 'varchar(255) NOT NULL DEFAULT \'\',')
+      end
+    end
+  end
+
   describe 'Query.find' do
     let(:query)   { FCA::Query.find(header, options) }
 
