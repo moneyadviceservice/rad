@@ -59,7 +59,7 @@ RSpec.describe FcaImportJob do
 
     context 'when an unzip has occured' do
       let(:expected) do
-        format.merge(text: "<!here> Import has failed\nZip file badfile.zip caused error: could not unzipped. The file could be corrupted.\nYou can cancel this import here http://localhost/admin/lookup/fca_import") # rubocop:disable all
+        format.merge(text: "<!here> Import has failed\nZip file badfile.zip caused error: could not be unzipped. The file could be corrupted.\nYou can cancel this import here http://localhost/admin/lookup/fca_import") # rubocop:disable all
       end
 
       it 'callback has access to import outcome' do

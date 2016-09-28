@@ -68,9 +68,9 @@ class FcaImportJob < ActiveJob::Base
 
   def parse_error(list)
     if list.second.try(:success?)
-      'could not unzipped. The file could be corrupted.'
+      'could not be unzipped. The file could be corrupted.'
     else
-      'technical error. Contact the dev team'
+      'technical error. Contact dev team at development.team@moneyadviceservice.org.uk'
     end
   end
 
