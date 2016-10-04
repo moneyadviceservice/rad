@@ -36,14 +36,14 @@ RSpec.describe Admin::Lookup::FcaImportController, type: :controller do
   describe '.update' do
     context 'when confirming' do
       it 'starts apply import changes' do
-        expect(last_import).to receive(:commit).with(:confirm)
+        expect(last_import).to receive(:commit).with('Confirm')
         put :update, id: last_import.id, commit: 'Confirm'
       end
     end
 
     context 'when cancelling' do
       it 'marks import as cancelled' do
-        expect(last_import).to receive(:commit).with(:cancel)
+        expect(last_import).to receive(:commit).with('Cancel')
         put :update, id: last_import.id, commit: 'Cancel'
       end
     end
