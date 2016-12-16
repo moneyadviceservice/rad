@@ -70,6 +70,14 @@
     <%= f.text_field :telephone_number, class: 't-telephone-number' %>
   <% end %>
 
+  <%= f.form_row :website do %>
+    <%= f.errors_for :website %>
+    <%= f.label :website,
+                Office.human_attribute_name(:website),
+                class: 'form__label-heading' %>
+    <%= f.text_field :website %>
+  <% end %>
+
   <%= f.form_row :disabled_access do %>
     <%= f.errors_for :disabled_access %>
     <label>
