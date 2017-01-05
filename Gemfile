@@ -11,6 +11,7 @@ ruby '2.2.2'
 
 gem 'rails', '~> 4.2.5.2'
 
+gem 'active_model_serializers', '0.9.4'
 gem 'active_link_to'
 gem 'bootstrap-sass', '~> 3.3.3'
 gem 'bowndler', github: 'moneyadviceservice/bowndler'
@@ -27,7 +28,7 @@ gem 'jquery-rails'
 gem 'kaminari'
 gem 'letter_opener', group: :development
 gem 'mailjet'
-gem 'mas-rad_core', '0.0.109'
+gem 'mas-rad_core', '0.0.110'
 gem 'oga'
 gem 'pg'
 gem 'rails_email_validator'
