@@ -63,6 +63,7 @@ module SelfService
         :address_postcode,
         :email_address,
         :telephone_number,
+        :website,
         :disabled_access
       )
     end
