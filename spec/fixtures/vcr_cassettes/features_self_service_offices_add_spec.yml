@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: http://maps.googleapis.com/maps/api/geocode/json?address=120%20Holborn,%20Floor%205,%20EC1N%202TD,%20United%20Kingdom&language=en&sensor=false
+    uri: http://maps.googleapis.com/maps/api/geocode/json?address=EC1N%202TD,%20United%20Kingdom&language=en&sensor=false
     body:
       encoding: US-ASCII
       string: ''
