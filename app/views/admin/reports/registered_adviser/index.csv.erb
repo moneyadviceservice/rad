@@ -1,0 +1,15 @@
+<%=
+  require 'csv'
+
+  CSV.generate do |csv|
+    csv << ['Ref. Number', ' Name', ' Firm']
+
+    if @registered_advisers.present?
+      @registered_advisers.each do |adviser|
+        csv << [adviser.reference_number, adviser.name, adviser.firm.registered_name]
+      end
+    else
+      'There are no registered advisers'
+    end
+  end
+%>
