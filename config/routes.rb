@@ -82,6 +82,7 @@ Rails.application.routes.draw do
         end
       end
       resource :inactive_adviser, only: [:show]
+      resources :registered_adviser, only: [:index]
       resource :inactive_firm, only: [:show]
       resource :inactive_trading_name, only: [:show]
       resources :out_of_date_firms, only: [:index, :update]
