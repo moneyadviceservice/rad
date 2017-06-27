@@ -1,6 +1,6 @@
 module FcaTestHelpers
   def fixture(filename)
-    File.open(Rails.root.join('spec/fixtures', filename), 'r')
+    File.open(Rails.root.join('spec', 'fixtures', filename), 'r')
   end
 
   def suppress_output

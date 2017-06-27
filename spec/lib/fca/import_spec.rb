@@ -4,7 +4,7 @@ RSpec.describe FCA::Import do
   before(:all) { Cloud::Storage.setup }
   after(:all)  { Cloud::Storage.teardown }
 
-  let(:files)  { %w(a b).map { |e| "20160830#{e}.zip" } }
+  let(:files)  { %w[a b].map { |e| "20160830#{e}.zip" } }
   let(:deps)   { { pg: spy('db'), model: spy('model') } }
   let(:upload_files) { files.each { |f| Cloud::Storage.upload(f) } }
 

@@ -159,16 +159,16 @@ RSpec.describe Admin::MoveAdvisersForm, type: :model do
 
     it 'are sorted by reference number' do
       reference_numbers = subject.advisers_to_move.map(&:reference_number)
-      expect(reference_numbers).to eq(%w(AXX12345 FXX12345 SXX12345))
+      expect(reference_numbers).to eq(%w[AXX12345 FXX12345 SXX12345])
     end
   end
 
   describe '#subsidiaries' do
-    let(:shared_fca_number) { 123456 }
+    let(:shared_fca_number) { 123_456 }
     let!(:wendys_firm) { create(:firm, registered_name: 'Wendys Firm', fca_number: shared_fca_number) }
     let!(:alberts_firm) { create(:firm, registered_name: 'Alberts Firm', fca_number: shared_fca_number) }
     let!(:sandras_firm) { create(:firm, registered_name: 'Sandras Firm', fca_number: shared_fca_number) }
-    let!(:unrelated_firm) { create(:firm, registered_name: 'Unrelated Firm', fca_number: 999999) }
+    let!(:unrelated_firm) { create(:firm, registered_name: 'Unrelated Firm', fca_number: 999_999) }
     let!(:no_registered_firm) do
       f = build(:invalid_firm, fca_number: shared_fca_number)
       f.save!(validate: false)

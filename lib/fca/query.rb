@@ -1,6 +1,6 @@
 module FCA
   class Query
-    TABLES = {  # keys to this hash works on header line; row field index 1
+    TABLES = { # keys to this hash works on header line; row field index 1
       'Individual Details'    => :lookup_advisers,
       'Firms Master List'     => :lookup_firms,
       'Alternative Firm Name' => :lookup_subsidiaries
@@ -59,11 +59,11 @@ module FCA
     end
 
     def create_if_not_exists
-      <<EOF
-DROP SEQUENCE IF EXISTS #{table}_id_seq CASCADE;
-CREATE SEQUENCE #{table}_id_seq;
-DROP TABLE IF EXISTS #{table};
-CREATE TABLE IF NOT EXISTS #{table} (id integer PRIMARY KEY DEFAULT nextval('#{table}_id_seq'), #{ columns_definition } );
+      <<EOF.strip_heredoc
+        DROP SEQUENCE IF EXISTS #{table}_id_seq CASCADE;
+        CREATE SEQUENCE #{table}_id_seq;
+        DROP TABLE IF EXISTS #{table};
+        CREATE TABLE IF NOT EXISTS #{table} (id integer PRIMARY KEY DEFAULT nextval('#{table}_id_seq'), #{columns_definition} );
 EOF
     end
 
@@ -98,7 +98,7 @@ EOF
     end
 
     def columns
-      SCHEMA.fetch(options[:table]) { fail "Could not found table definition for `#{options[:table]}`" }
+      SCHEMA.fetch(options[:table]) { raise "Could not found table definition for `#{options[:table]}`" }
     end
 
     def columns_definition

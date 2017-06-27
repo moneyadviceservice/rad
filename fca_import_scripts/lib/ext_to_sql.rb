@@ -2,6 +2,8 @@ require 'date'
 require 'set'
 require 'yaml'
 
+# rubocop:disable Metrics/LineLength
+
 class ExtToSql
   TIMESTAMP = Time.now.strftime('%Y-%m-%d %H:%M:%S.%N') # rubocop:disable Rails/TimeZone
   REPAIR_FILE = File.join(File.dirname(__FILE__), '..', 'repairs.yml')
@@ -20,7 +22,7 @@ class ExtToSql
     @seen_trading_names = Set.new
   end
 
-  def process_ext_file(path, &block)
+  def process_ext_file(path)
     File.foreach(path) do |line|
       line = repair_line line
       row = line.split('|')
@@ -29,17 +31,17 @@ class ExtToSql
 
       if row.first == 'Header'
         @type = determine_type_from_header(row)
-        block.call build_copy_statement
+        yield build_copy_statement
         log "  • \033[33;36mConverting #{@type} EXT to SQL.\033[0m ", newline: false
         next
       end
 
-      block.call build_row(row) if record_active?(row)
+      yield build_row(row) if record_active?(row)
 
       write_progress
     end
 
-    block.call end_copy_statement
+    yield end_copy_statement
   end
 
   private
@@ -53,7 +55,7 @@ class ExtToSql
     when 'Alternative Firm Name'
       :subsidiary
     else
-      fail "Unable to determine file type from header: #{row[COLUMNS::HEADER_NAME]}"
+      raise "Unable to determine file type from header: #{row[COLUMNS::HEADER_NAME]}"
     end
   end
 
@@ -131,7 +133,7 @@ class ExtToSql
 
   def write_progress
     @i ||= 0
-    log '.', newline: false if (@i += 1) % 10_000 == 0
+    log '.', newline: false if ((@i += 1) % 10_000).zero?
   end
 
   def escape(str)

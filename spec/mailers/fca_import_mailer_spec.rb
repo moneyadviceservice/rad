@@ -1,7 +1,7 @@
 RSpec.describe FcaImportMailer, type: :mailer do
   let(:recipient)    { 'RADenquiries@moneyadviceservice.org.uk' }
   let(:subject_line) { 'Automated FCA Import Notification' }
-  let(:users)        { %w(user1@mas.org.uk user2@mas.org.uk) }
+  let(:users)        { %w[user1@mas.org.uk user2@mas.org.uk] }
   let(:text)         { 'Some text ...' }
 
   subject { FcaImportMailer.notify(users, text) }

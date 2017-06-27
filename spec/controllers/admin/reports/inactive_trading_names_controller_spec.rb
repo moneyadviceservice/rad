@@ -6,11 +6,11 @@ RSpec.describe Admin::Reports::InactiveTradingNamesController, type: :controller
     end
 
     it 'assigns a list of inactive trading names' do
-      firm = FactoryGirl.create(:firm, fca_number: 123456)
+      firm = FactoryGirl.create(:firm, fca_number: 123_456)
 
-      FactoryGirl.create(:lookup_subsidiary, name: 'Acme', fca_number: 123456)
-      FactoryGirl.create(:firm, registered_name: 'Acme', fca_number: 123456, parent: firm)
-      inactive_trading_name = FactoryGirl.create(:firm, registered_name: 'Not Acme', fca_number: 123456, parent: firm)
+      FactoryGirl.create(:lookup_subsidiary, name: 'Acme', fca_number: 123_456)
+      FactoryGirl.create(:firm, registered_name: 'Acme', fca_number: 123_456, parent: firm)
+      inactive_trading_name = FactoryGirl.create(:firm, registered_name: 'Not Acme', fca_number: 123_456, parent: firm)
 
       get :show
       expect(assigns[:inactive_trading_names]).to eq([inactive_trading_name])
@@ -35,8 +35,8 @@ RSpec.describe Admin::Reports::InactiveTradingNamesController, type: :controller
       end
 
       it 'renders inactive adviser content' do
-        firm = FactoryGirl.create(:firm, fca_number: 123456)
-        FactoryGirl.create(:firm, fca_number: 789012, registered_name: 'Acme Finance', parent: firm)
+        firm = FactoryGirl.create(:firm, fca_number: 123_456)
+        FactoryGirl.create(:firm, fca_number: 789_012, registered_name: 'Acme Finance', parent: firm)
 
         get :show, format: :csv
         expect(response.body).to include('789012,Acme Finance,Yes')

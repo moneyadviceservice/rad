@@ -1,5 +1,5 @@
 RSpec.describe Admin::Lookup::FcaImportController, type: :controller do
-  let(:files) { %w(incoming/20160825a.zip incoming/20160825b.zip incoming/20160825c.zip) }
+  let(:files) { %w[incoming/20160825a.zip incoming/20160825b.zip incoming/20160825c.zip] }
   let(:last_import) { FcaImport.last }
 
   before(:all) { FactoryGirl.create(:not_confirmed_import) }

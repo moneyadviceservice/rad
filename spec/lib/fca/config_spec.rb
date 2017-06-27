@@ -32,7 +32,7 @@ RSpec.describe FCA::Config do
     end
 
     it 'returns array of emails' do
-      expect(fca_config.email_recipients).to match_array %w(user@email.com foo@email.org.uk)
+      expect(fca_config.email_recipients).to match_array %w[user@email.com foo@email.org.uk]
     end
 
     context 'default configuration' do

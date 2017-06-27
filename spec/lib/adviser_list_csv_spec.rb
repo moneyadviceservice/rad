@@ -1,7 +1,7 @@
 RSpec.describe AdviserListCsv do
   describe '#to_csv' do
     it 'responds to csv conversion' do
-      expect(described_class.new []).to respond_to(:to_csv)
+      expect(described_class.new([])).to respond_to(:to_csv)
     end
   end
 

@@ -4,7 +4,9 @@ class PrincipalsController < ApplicationController
   end
 
   def pre_qualification
-    @prequalification = PreQualificationForm.new(params[:pre_qualification_form])
+    @prequalification = PreQualificationForm.new(
+      params[:pre_qualification_form]
+    )
 
     if @prequalification.valid?
       redirect_to new_principal_path
@@ -24,28 +26,36 @@ class PrincipalsController < ApplicationController
     Stats.increment('radsignup.prequalification.success')
   end
 
-  def show
-  end
+  def show; end
 
   def create
-    @form = NewPrincipalForm.new(new_principal_form_params)
+    form = NewPrincipalForm.new(new_principal_form_params)
 
-    if @form.valid?
-      user = User.new(@form.user_params)
-      user.build_principal(@form.principal_params)
-      user.save!
-
-      Stats.increment('radsignup.principal.created')
-
-      Identification.contact(user.principal).deliver_later
-      redirect_to user.principal
+    if form.valid?
+      create_new_principal(form)
     else
-      flash.now[:error] = t('registration.principal.validation_error_html')
-      render 'new'
+      fail_to_create_new_principal(form)
     end
   end
 
   private
+
+  def create_new_principal(form)
+    user = User.new(form.user_params)
+    user.build_principal(form.principal_params)
+    user.save!
+
+    Stats.increment('radsignup.principal.created')
+
+    Identification.contact(user.principal).deliver_later
+    redirect_to user.principal
+  end
+
+  def fail_to_create_new_principal(form)
+    @form = form
+    flash.now[:error] = t('registration.principal.validation_error_html')
+    render 'new'
+  end
 
   def new_principal_form_params
     params.require(:new_principal_form).permit(

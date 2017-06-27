@@ -4,6 +4,7 @@ module River
   module Runners
     class Tempfile
       class << self
+        # rubocop:disable Metrics/AbcSize
         def call(commands, context)
           rd = $stdin
           wr = $stdout
@@ -20,6 +21,7 @@ module River
           wr.close unless wr.closed? || (wr == $stdout)
           commands
         end
+        # rubocop:enable Metrics/AbcSize
 
         private
 

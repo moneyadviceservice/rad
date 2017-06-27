@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
   def self.find_for_database_authentication(warden_conditions)
     conditions = warden_conditions.dup
     fca_number = conditions.delete(:login)
-    return nil unless fca_number.present?
+    return nil if fca_number.blank?
 
     find_user_by_fca_number(conditions, fca_number: fca_number)
   end
@@ -23,6 +23,8 @@ class User < ActiveRecord::Base
   def self.find_user_by_fca_number(conditions, fca_number:)
     where(conditions.to_hash)
       .joins(:principal)
-      .find_by(['principals.fca_number = :fca_number', { fca_number: fca_number.to_i }])
+      .find_by(
+        ['principals.fca_number = :fca_number', { fca_number: fca_number.to_i }]
+      )
   end
 end

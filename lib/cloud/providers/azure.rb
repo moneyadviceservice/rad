@@ -27,7 +27,7 @@ module Cloud
 
       def upload(_file, _content = nil)
         # present for provider interface consistency
-        fail 'Define me!!'
+        raise 'Define me!!'
       end
 
       def setup
@@ -41,9 +41,13 @@ module Cloud
       private
 
       def container
-        @container ||= blob_client.list_containers.detect { |e| e.name == settings[:container_name] }
-        rescue StandardError
-          raise ::Cloud::ConfigError.new("Could not find any container named #{settings[:container_name]}")
+        @container ||= blob_client.list_containers.detect do |e|
+          e.name == settings[:container_name]
+        end
+      rescue StandardError
+        raise ::Cloud::ConfigError.new(
+          "Could not find any container named #{settings[:container_name]}"
+        )
       end
 
       def blob_client

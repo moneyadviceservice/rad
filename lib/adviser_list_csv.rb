@@ -8,7 +8,9 @@ class AdviserListCsv
       csv << ['Ref. Number', 'Name', 'Firm']
 
       @advisers.each do |adviser|
-        csv << [adviser.reference_number, adviser.name, adviser.firm.registered_name]
+        csv << [adviser.reference_number,
+                adviser.name,
+                adviser.firm.registered_name]
       end
     end
   end

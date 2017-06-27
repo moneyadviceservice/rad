@@ -3,7 +3,13 @@ require 'forwardable'
 module Cloud
   class Storage
     extend Forwardable
-    def_delegators :provider, :list, :download, :move, :upload, :setup, :teardown
+    def_delegators :provider,
+                   :list,
+                   :download,
+                   :move,
+                   :upload,
+                   :setup,
+                   :teardown
     attr_reader :provider
 
     def initialize(provider_name, settings = {})
@@ -13,7 +19,13 @@ module Cloud
     class << self
       extend Forwardable
 
-      def_delegators :client, :list, :download, :move, :upload, :setup, :teardown
+      def_delegators :client,
+                     :list,
+                     :download,
+                     :move,
+                     :upload,
+                     :setup,
+                     :teardown
 
       def configure
         yield config if block_given?

@@ -7,7 +7,7 @@ RSpec.describe ContactForm, type: :model do
   subject { described_class.new(params) }
 
   describe '#field_order' do
-    it { expect(subject.field_order).to eql(%i(email message)) }
+    it { expect(subject.field_order).to eql(%i[email message]) }
   end
 
   context 'with an empty message' do

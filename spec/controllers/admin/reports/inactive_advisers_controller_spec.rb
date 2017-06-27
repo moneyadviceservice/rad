@@ -48,7 +48,7 @@ RSpec.describe Admin::Reports::InactiveAdvisersController, type: :controller do
         firm = FactoryGirl.create(:firm, registered_name: 'Acme Inc.')
         inactive_adviser = FactoryGirl.build(:adviser,
                                              create_linked_lookup_advisor: false,
-                                             reference_number: 123456,
+                                             reference_number: 123_456,
                                              name: 'Amear Pittance',
                                              firm: firm)
         inactive_adviser.save!(validate: false)

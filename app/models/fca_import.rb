@@ -1,5 +1,5 @@
 class FcaImport < ActiveRecord::Base
-  STATUSES = %w(processing processed confirmed cancelled).freeze
+  STATUSES = %w[processing processed confirmed cancelled].freeze
 
   scope :not_confirmed, -> { where(status: STATUSES.take(2)) }
 
@@ -22,7 +22,9 @@ class FcaImport < ActiveRecord::Base
     if confirmation.present? && confirmation.downcase.strip == 'confirm'
       FcaConfirmationJob.perform_async(id)
     else
+      # rubocop:disable Rails/SkipsModelValidations
       update_column(:status, 'cancelled')
+      # rubocop:enable Rails/SkipsModelValidations
     end
   end
 

@@ -26,9 +26,7 @@ class Admin::PrincipalsController < Admin::ApplicationController
   def destroy
     user = User.find_by(principal: principal)
 
-    message = "Successfully deleted #{principal.full_name}, " \
-              "#{principal.firm.registered_name} and " \
-              "#{principal.firm.trading_names.count} related trading names."
+    message = destroy_message(principal)
 
     user.principal.destroy
     user.destroy
@@ -40,6 +38,12 @@ class Admin::PrincipalsController < Admin::ApplicationController
 
   def principal
     Principal.find(params[:id])
+  end
+
+  def destroy_message(principal)
+    "Successfully deleted #{principal.full_name}, " \
+    "#{principal.firm.registered_name} and " \
+    "#{principal.firm.trading_names.count} related trading names."
   end
 
   def principal_params

@@ -1,7 +1,7 @@
 RSpec.describe Admin::Reports::RegisteredAdviserController, type: :controller do
   describe '#filename' do
     context 'timestamp' do
-      let(:date) { Date.new(2017, 05, 29) }
+      let(:date) { Date.new(2017, 5, 29) }
 
       it 'returns filename with timestamp included' do
         Timecop.freeze(date)

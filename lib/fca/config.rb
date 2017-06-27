@@ -17,7 +17,7 @@ module FCA
       end
     end
 
-    LOG_LEVEL = %w(UNKNOWN FATAL ERROR WARN INFO DEBUG).freeze
+    LOG_LEVEL = %w[UNKNOWN FATAL ERROR WARN INFO DEBUG].freeze
 
     attr_accessor :notify, :hostname
     attr_writer :log_file, :log_level, :email_recipients

@@ -9,7 +9,7 @@ module CheckboxGroupHelpers
     checkbox_states = get_option_group_state(all_options,
                                              checked_options)
     checkbox_states.each do |state, advice_method|
-      page_object.find_field(advice_method.send label).set(state)
+      page_object.find_field(advice_method.send(label)).set(state)
     end
   end
 
@@ -17,8 +17,8 @@ module CheckboxGroupHelpers
     checkbox_states = get_option_group_state(all_options,
                                              checked_options)
     checkbox_states.each do |selected, advice_method|
-      expect(page_object).to have_checked_field(advice_method.send label) if selected
-      expect(page_object).to have_unchecked_field(advice_method.send label) unless selected
+      expect(page_object).to have_checked_field(advice_method.send(label)) if selected
+      expect(page_object).to have_unchecked_field(advice_method.send(label)) unless selected
     end
   end
 end

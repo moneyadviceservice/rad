@@ -57,7 +57,7 @@ RSpec.describe FCA::Query do
 
   describe 'Query.all' do
     it 'returns all defined tables' do
-      expect(FCA::Query.all).to eq [:lookup_advisers, :lookup_firms, :lookup_subsidiaries]
+      expect(FCA::Query.all).to eq %i[lookup_advisers lookup_firms lookup_subsidiaries]
     end
   end
 
@@ -79,7 +79,7 @@ RSpec.describe FCA::Query do
         .to eq "DROP SEQUENCE IF EXISTS test_lookup_advisers_id_seq CASCADE;
 CREATE SEQUENCE test_lookup_advisers_id_seq;
 DROP TABLE IF EXISTS test_lookup_advisers;
-CREATE TABLE IF NOT EXISTS test_lookup_advisers (id integer PRIMARY KEY DEFAULT nextval('test_lookup_advisers_id_seq'), reference_number  char(20) NOT NULL, name  varchar(255) NOT NULL, created_at  timestamp NOT NULL, updated_at  timestamp NOT NULL );" # rubocop:disable all
+CREATE TABLE IF NOT EXISTS test_lookup_advisers (id integer PRIMARY KEY DEFAULT nextval('test_lookup_advisers_id_seq'), reference_number  char(20) NOT NULL, name  varchar(255) NOT NULL, created_at  timestamp NOT NULL, updated_at  timestamp NOT NULL );"
     end
 
     it '.truncate' do
@@ -94,7 +94,7 @@ CREATE TABLE IF NOT EXISTS test_lookup_advisers (id integer PRIMARY KEY DEFAULT 
     describe '.values' do
       context 'when row active' do
         let(:line) do
-          '100039|Crawfords|23|1|4|Stanton House|41 Blackfriars Road|||Salford|Lancashire|M3|7DB|44|0161|832 5366|44|0161|832 1829|Cancelled|20090521|20011201|CRAWFORDS|20090521|'.force_encoding('ISO-8859-1') # rubocop:disable all
+          '100039|Crawfords|23|1|4|Stanton House|41 Blackfriars Road|||Salford|Lancashire|M3|7DB|44|0161|832 5366|44|0161|832 1829|Cancelled|20090521|20011201|CRAWFORDS|20090521|'.force_encoding('ISO-8859-1')
         end
 
         it '.prints line' do
@@ -104,7 +104,7 @@ CREATE TABLE IF NOT EXISTS test_lookup_advisers (id integer PRIMARY KEY DEFAULT 
 
       context 'when row inactive' do
         let(:line) do
-          '100039|Crawfords|23|1|N|Stanton House|41 Blackfriars Road|||Salford|Lancashire|M3|7DB|44|0161|832 5366|44|0161|832 1829|Cancelled|20090521|20011201|CRAWFORDS|20090521|' # rubocop:disable all
+          '100039|Crawfords|23|1|N|Stanton House|41 Blackfriars Road|||Salford|Lancashire|M3|7DB|44|0161|832 5366|44|0161|832 1829|Cancelled|20090521|20011201|CRAWFORDS|20090521|'
         end
 
         it '.prints line' do
@@ -114,7 +114,7 @@ CREATE TABLE IF NOT EXISTS test_lookup_advisers (id integer PRIMARY KEY DEFAULT 
     end
 
     it '.rename' do
-      expect("#{subject.rename}").to eq 'DROP TABLE IF EXISTS last_week_lookup_advisers;
+      expect(subject.rename.to_s).to eq 'DROP TABLE IF EXISTS last_week_lookup_advisers;
 ALTER TABLE lookup_advisers RENAME TO last_week_lookup_advisers;
 ALTER TABLE test_lookup_advisers RENAME TO lookup_advisers;
 '

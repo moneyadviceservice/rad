@@ -5,8 +5,7 @@ module SelfService
     end
 
     def create
-      @firm = initialize_firm_from_lookup_trading_name(params[:lookup_id])
-      @firm.assign_attributes(firm_params)
+      @firm = build_firm_from_lookup_trading_name
       if @firm.save
         flash[:notice] = I18n.t('self_service.trading_name_edit.saved')
         redirect_to edit_self_service_trading_name_path(@firm)
@@ -32,15 +31,23 @@ module SelfService
     def destroy
       trading_name = principal.firm.trading_names.registered.find(params[:id])
       trading_name.destroy
-      flash[:notice] = I18n.t('self_service.trading_name_destroy.deleted', name: trading_name.registered_name)
+      flash[:notice] = I18n.t('self_service.trading_name_destroy.deleted',
+                              name: trading_name.registered_name)
 
       redirect_to :back
     end
 
     private
 
+    def build_firm_from_lookup_trading_name
+      initialize_firm_from_lookup_trading_name(params[:lookup_id]).tap do |firm|
+        firm.assign_attributes(firm_params)
+      end
+    end
+
     def initialize_firm_from_lookup_trading_name(id)
-      lookup_name = Lookup::Subsidiary.find_by!(id: id, fca_number: principal.fca_number)
+      lookup_name = Lookup::Subsidiary
+                    .find_by!(id: id, fca_number: principal.fca_number)
       @firm = principal.firm.trading_names.find_or_initialize_by(
         registered_name: lookup_name.name,
         fca_number: lookup_name.fca_number

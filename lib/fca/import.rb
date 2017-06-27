@@ -3,7 +3,7 @@ require 'river'
 
 module FCA
   class Import
-    LOOKUP_TABLE_PREFIX = 'fcaimport'
+    LOOKUP_TABLE_PREFIX = 'fcaimport'.freeze
 
     class << self
       def call(files, context, name = 'FCA::Import', logger = FCA::Config.logger)
@@ -47,11 +47,11 @@ module FCA
 
     def import(file)
       outcomes = River.source(context)
-                 .step(&download(file))
-                 .step(&unzip(/^firms_master_list2\d+\.ext$/, /^indiv_apprvd2\d+\.ext$/, /^firm_names2\d+\.ext$/))
-                 .step(&to_sql(LOOKUP_TABLE_PREFIX))
-                 .step(&save)
-                 .sink
+                      .step(&download(file))
+                      .step(&unzip(/^firms2\d+\.ext$/, /^indiv_apprvd2\d+\.ext$/, /^firm_names2\d+\.ext$/))
+                      .step(&to_sql(LOOKUP_TABLE_PREFIX))
+                      .step(&save)
+                      .sink
 
       import_status = outcomes.map(&:success?).all?
       if import_status
