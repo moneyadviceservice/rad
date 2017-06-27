@@ -16,7 +16,7 @@ Style/ClassAndModuleChildren:
   Enabled: false
 Style/CollectionMethods:
   Enabled: false
-Style/DotPosition:
+Layout/DotPosition:
   EnforcedStyle: leading
 Style/FormatString:
   Enabled: false
@@ -40,6 +40,7 @@ Rails:
   Enabled: true
 AllCops:
   TargetRailsVersion: 4.2
+  DisplayCopNames: true
   Exclude:
   - 'bin/**/*'
   - 'config/**/*'
