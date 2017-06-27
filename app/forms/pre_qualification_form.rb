@@ -11,17 +11,17 @@ class PreQualificationForm
             acceptance: true,
             presence: true
 
-  validates :status_question, inclusion: { in: %w(0 1) }
+  validates :status_question, inclusion: { in: %w[0 1] }
 
   validates :particular_market_question,
             presence: true,
             acceptance: true,
-            if: -> { self.restricted? }
+            if: -> { restricted? }
 
   validates :consider_available_providers_question,
             presence: true,
             acceptance: true,
-            if: -> { self.must_consider_available_providers? }
+            if: -> { must_consider_available_providers? }
 
   def restricted?
     status_question == '0'

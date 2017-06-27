@@ -1,13 +1,14 @@
 class NewPrincipalForm
   include ActiveModel::Model
 
-  PRINCIPAL_PARAMS = [
-    :fca_number, :first_name, :last_name, :job_title, :email_address,
-    :telephone_number, :confirmed_disclaimer]
-  USER_PARAMS = [:email, :password, :password_confirmation]
+  PRINCIPAL_PARAMS = %i[
+    fca_number first_name last_name job_title email_address
+    telephone_number confirmed_disclaimer
+  ].freeze
+  USER_PARAMS = %i[email password password_confirmation].freeze
   PARAMS = PRINCIPAL_PARAMS | USER_PARAMS
   attr_accessor(*PARAMS)
-  alias_method :email_address, :email
+  alias email_address email
 
   validate do
     user = validated_user
@@ -36,16 +37,16 @@ class NewPrincipalForm
   end
 
   def field_order
-    [
-      :fca_number,
-      :first_name,
-      :last_name,
-      :job_title,
-      :email,
-      :telephone_number,
-      :password,
-      :password_confirmation,
-      :confirmed_disclaimer
+    %i[
+      fca_number
+      first_name
+      last_name
+      job_title
+      email
+      telephone_number
+      password
+      password_confirmation
+      confirmed_disclaimer
     ]
   end
 
@@ -59,7 +60,7 @@ class NewPrincipalForm
   end
 
   def add_deduplicated_error(param, error)
-    if [:email, :email_address].include?(param)
+    if %i[email email_address].include?(param)
       return if errors[:email].include?(error)
       param = :email
     end
