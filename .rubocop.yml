@@ -51,9 +51,12 @@ AllCops:
   - 'spec/spec_helper.rb'
   - 'spec/cassettes/**/*'
   - 'features/**/*'
+  - 'spec/features/**/*'
   - 'tmp/**/*'
   - 'vendor/**/*'
   - 'Rakefile'
   - 'spec/dummy/config/**/*'
   - 'spec/dummy/db/**/*'
   - 'spec/dummy/script/**/*'
+
+# Project specific settings
