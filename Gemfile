@@ -53,7 +53,7 @@ group :test, :development do
   gem 'pry-rails'
   gem 'pry-byebug'
   gem 'rspec-rails'
-  gem 'rubocop', '~> 0.48.1'
+  gem 'rubocop', '~> 0.49.1'
   gem 'timecop'
   gem 'ffaker'
 end
