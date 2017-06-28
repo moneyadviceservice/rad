@@ -1,4 +1,3 @@
 class PagesController < ApplicationController
-  def error
-  end
+  def error; end
 end

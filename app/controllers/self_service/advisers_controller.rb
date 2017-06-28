@@ -2,10 +2,10 @@ module SelfService
   class AdvisersController < ApplicationController
     before_action :authenticate_user!
     before_action -> { @firm = current_firm }
-    before_action -> { @adviser = current_adviser }, only: [:edit, :update, :destroy]
+    before_action -> { @adviser = current_adviser }, only:
+                                                       %i[edit update destroy]
 
-    def index
-    end
+    def index; end
 
     def new
       @adviser = @firm.advisers.build
@@ -21,8 +21,7 @@ module SelfService
       end
     end
 
-    def edit
-    end
+    def edit; end
 
     def update
       if @adviser.update_with_geocoding(adviser_params)
@@ -35,7 +34,8 @@ module SelfService
 
     def destroy
       @adviser.destroy
-      flash[:notice] = I18n.t('self_service.adviser_destroy.deleted', name: @adviser.name)
+      flash[:notice] = I18n.t('self_service.adviser_destroy.deleted',
+                              name: @adviser.name)
 
       redirect_to :back
     end

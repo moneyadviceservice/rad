@@ -17,11 +17,10 @@ You will be notified on the Slack channel #{channel} when it's done."
     if @import
       @import.commit(params[:commit])
       flash[:notice] = "Import has been #{committed}"
-      redirect_to admin_lookup_fca_import_index_path
     else
       flash[:error] = 'Could not find last import'
-      redirect_to admin_lookup_fca_import_index_path
     end
+    redirect_to admin_lookup_fca_import_index_path
   end
 
   private

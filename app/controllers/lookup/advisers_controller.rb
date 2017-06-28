@@ -6,7 +6,8 @@ module Lookup
       if @adviser
         errors_for :conflict
       else
-        @lookup_adviser = Lookup::Adviser.find_by(reference_number: adviser_reference_number)
+        @lookup_adviser = Lookup::Adviser
+                          .find_by(reference_number: adviser_reference_number)
 
         if @lookup_adviser
           json_for @lookup_adviser
@@ -31,7 +32,8 @@ module Lookup
     def errors_for(status)
       stat stat_key_for(status)
 
-      render json: { error: t("lookup_adviser.error_responses.#{status}") }, status: status
+      render json: { error: t("lookup_adviser.error_responses.#{status}") },
+             status: status
     end
 
     def stat_key_for(status)

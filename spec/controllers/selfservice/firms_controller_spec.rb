@@ -65,7 +65,7 @@ RSpec.describe SelfService::FirmsController, type: :controller do
         get :index
         assigned_names = assigns(:presenter).lookup_names.map(&:name)
 
-        expect(assigned_names).to eq %w(Anne Bertie Colin Deirdre)
+        expect(assigned_names).to eq %w[Anne Bertie Colin Deirdre]
       end
     end
   end

@@ -6,11 +6,6 @@ class Admin::UsersController < Admin::ApplicationController
   def update
     @user = user
 
-    if params[:user][:password].blank? && params[:user][:password_confirmation].blank?
-      params[:user].delete(:password)
-      params[:user].delete(:password_confirmation)
-    end
-
     if @user.update_attributes(user_params)
       redirect_to admin_principal_path(principal)
     else
@@ -29,6 +24,14 @@ class Admin::UsersController < Admin::ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:email, :password, :password_confirmation)
+    result = params
+             .require(:user)
+             .permit(:email, :password, :password_confirmation)
+
+    if result[:password].blank? && result[:password_confirmation].blank?
+      result.delete(:password)
+      result.delete(:password_confirmation)
+    end
+    result
   end
 end
