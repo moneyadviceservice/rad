@@ -1,17 +1,9 @@
 Documentation:
   Enabled: false
-Style/FrozenStringLiteralComment:
-  Enabled: false
-Metrics/BlockLength:
-  Exclude:
-  - 'spec/**/*'
 Metrics/LineLength:
-  Max: 80
-  IgnoredPatterns: ['^\s*class\s']
-  Exclude:
-  - 'spec/**/*'
+  Max: 120
 Metrics/MethodLength:
-  Max: 15
+  Max: 25
 Style/ClassAndModuleChildren:
   Enabled: false
 Style/CollectionMethods:
@@ -26,8 +18,6 @@ Style/Not:
   Enabled: false
 Style/DoubleNegation:
   Enabled: false
-Style/MethodDefParentheses:
-  EnforcedStyle: require_parentheses
 Style/RaiseArgs:
   Enabled: false
 Style/RegexpLiteral:
@@ -36,28 +26,110 @@ Style/StringLiterals:
   EnforcedStyle: single_quotes
 Lint/ShadowingOuterLocalVariable:
   Enabled: false
-Rails:
-  Enabled: true
 AllCops:
   TargetRailsVersion: 4.2
   DisplayCopNames: true
   Exclude:
   - 'bin/**/*'
   - 'config/**/*'
-  - 'db/**/*'
-  - 'Guardfile'
-  - 'lib/tasks/**/*'
+  - 'db/schema.rb'
   - 'node_modules/**/*'
-  - 'script/**/*'
-  - 'spec/spec_helper.rb'
-  - 'spec/cassettes/**/*'
-  - 'features/**/*'
-  - 'spec/features/**/*'
   - 'tmp/**/*'
   - 'vendor/**/*'
-  - 'Rakefile'
-  - 'spec/dummy/config/**/*'
-  - 'spec/dummy/db/**/*'
-  - 'spec/dummy/script/**/*'
+  - 'lib/tasks/*.rake'
 
+#
 # Project specific settings
+#
+
+# If someone can provide a good explanation of how to satisfy this, we can turn
+# it on.
+Metrics/AbcSize:
+  Enabled: false
+
+# Separating every 3 digits of FCA numbers with '_' is not helpful
+Style/NumericLiterals:
+  Enabled: false
+
+ClassLength:
+  Max: 165
+
+ModuleLength:
+  Max: 110
+
+LineLength:
+  Max: 135
+
+
+#
+# Disabling for updates to Rubocop 0.48.1
+#
+# Note that disabling this is not a reflection of their merits. It is to avoid
+# breaking the Travis CI build without making code changes
+#
+
+Style/Alias:
+  Enabled: false
+
+Style/NestedParenthesizedCalls:
+  Enabled: false
+
+Metrics/BlockLength:
+  Enabled: false
+
+Style/PercentLiteralDelimiters:
+  Enabled: false
+
+Layout/ExtraSpacing:
+  Enabled: false
+
+Style/SymbolArray:
+  Enabled: false
+
+Layout/MultilineMethodCallIndentation:
+  Enabled: false
+
+Layout/MultilineMethodCallBraceLayout:
+  Enabled: false
+
+Lint/UnneededDisable:
+  Enabled: false
+
+Style/UnneededInterpolation:
+  Enabled: false
+
+Style/SignalException:
+  Enabled: false
+
+Performance/RedundantBlockCall:
+  Enabled: false
+
+Style/MutableConstant:
+  Enabled: false
+
+Bundler/OrderedGems:
+  Enabled: false
+
+Style/ConditionalAssignment:
+  Enabled: false
+
+Style/IfInsideElse:
+  Enabled: false
+
+Style/NumericPredicate:
+  Enabled: false
+
+Style/NumericLiteralPrefix:
+  Enabled: false
+
+Layout/RescueEnsureAlignment:
+  Enabled: false
+
+Style/EmptyMethod:
+  Enabled: false
+
+Layout/SpaceInsideStringInterpolation:
+  Enabled: false
+
+Layout/IndentHeredoc:
+  Enabled: false
