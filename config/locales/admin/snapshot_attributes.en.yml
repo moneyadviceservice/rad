@@ -8,7 +8,7 @@ en:
       firms_any_pot_size: Firms who will deal with any pot size
       firms_any_pot_size_min_fee_less_than_500: Firms who will deal with any pot size and have a minimum fee of less than £500
       registered_firms: Total number of firms registered on RAD
-      published_firms: Total number of firms appearing on the directory
+      published_firms: Total number of firms appearing in the directory
       firms_offering_face_to_face_advice: Firms who only offer face-to-face advice
       firms_offering_remote_advice: Firms who only offer remote advice
       firms_in_england: Firms in England
