@@ -23,7 +23,7 @@ gem 'devise_security_extension'
 gem 'dough-ruby',
     github: 'moneyadviceservice/dough',
     require: 'dough',
-    tag: 'v5.12.0.267'
+    tag: 'v5.22.0.286'
 gem 'jquery-rails'
 gem 'kaminari'
 gem 'letter_opener', group: :development
