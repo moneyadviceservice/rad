@@ -9,7 +9,7 @@
     "chai": "^1.9.1",
     "chai-jquery": "^1.2.3",
     "jshint": "^2.8.0",
-    "karma": "^0.12.23",
+    "karma": "^1.7.0",
     "karma-chai": "^0.1.0",
     "karma-chai-jquery": "^1.0.0",
     "karma-coverage": "^0.2.6",
@@ -17,14 +17,14 @@
     "karma-jquery": "^0.1.0",
     "karma-mocha": "^0.1.4",
     "karma-osx-reporter": "*",
-    "karma-phantomjs-launcher": ">= 1.0",
-    "karma-requirejs": "~0.2.0",
+    "karma-phantomjs-launcher": "^1.0.4",
+    "karma-requirejs": "1.1.0",
     "karma-sinon": "^1.0.3",
     "karma-sinon-chai": "^0.2.0",
     "karma-spec-reporter": "0.0.13",
     "mocha": "~1.15.1",
     "phantomjs-prebuilt": "2.1.14",
-    "requirejs": "2.1.22",
+    "requirejs": "2.2.0",
     "sinon": "^1.9.0"
   }
 }
