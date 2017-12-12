@@ -12,6 +12,12 @@ else
   }
 end
 
+if data['provider_name'] == 'azure' && (data['account_name'].blank? || data['shared_key'].blank? || data['container_name'].blank?)
+  $stdout.puts('-' * 80)
+  $stdout.puts("[Warn] - FCA import - When using azure, please make sure the environment variables are set: AZURE_ACCOUNT, AZURE_CONTAINER, AZURE_SHARED_KEY.")
+  $stdout.puts('-' * 80)
+end
+
 Cloud::Storage.configure do |config|
   config.provider_name  = data['provider_name']
   config.account_name   = data['account_name']
