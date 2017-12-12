@@ -7,7 +7,11 @@ module FCA
     FIRM_AUTHORISATION_STATUS_CODE = 19
     SUBSIDIARY_END_DATE = 4
 
-    ACTIVE_FIRM_AUTHORISATION_STATUS_CODES = ['Authorised', 'Registered', 'EEA Authorised'].freeze
+    ACTIVE_FIRM_AUTHORISATION_STATUS_CODES = [
+      'Authorised',
+      'Registered',
+      'EEA Authorised'
+    ].freeze
 
     attr_reader :line, :repairs, :row, :trading_names, :delimeter, :prefix
     def initialize(line, options = {})

@@ -33,7 +33,8 @@ RSpec.describe ExtToSql do
       it 'generates the right SQL' do
         expect(subject[0]).to eq 'COPY lookup_firms (fca_number, registered_name, created_at, updated_at) FROM stdin;'
         expect(subject[1]).to start_with '100013	Skipton Financial Services Ltd	'
-        expect(subject[2]).to eq '\.'
+        expect(subject[2]).to start_with "131581\tS £ C Limited"
+        expect(subject[3]).to eq '\.'
       end
     end
 
