@@ -48,7 +48,7 @@ module FCA
     def import(file)
       outcomes = River.source(context)
                  .step(&download(file))
-                 .step(&unzip(/^firms2\d+\.ext$/, /^indiv_apprvd2\d+\.ext$/, /^firm_names2\d+\.ext$/))
+                 .step(&unzip(/^firms_master_list2\d+\.ext$/, /^indiv_apprvd2\d+\.ext$/, /^firm_names2\d+\.ext$/))
                  .step(&to_sql(LOOKUP_TABLE_PREFIX))
                  .step(&save)
                  .sink

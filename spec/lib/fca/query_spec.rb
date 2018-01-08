@@ -8,8 +8,8 @@ RSpec.describe FCA::Query do
       expect(tables['Individual Details']).to eq :lookup_advisers
     end
 
-    it 'line Header with `Firm Authorisation`' do
-      expect(tables['Firm Authorisation']).to eq :lookup_firms
+    it 'line Header with `Firms Master List`' do
+      expect(tables['Firms Master List']).to eq :lookup_firms
     end
 
     it 'line Header with `Alternative Firm Name`' do

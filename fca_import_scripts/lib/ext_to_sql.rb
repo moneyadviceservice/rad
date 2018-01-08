@@ -48,7 +48,7 @@ class ExtToSql
     case row[COLUMNS::HEADER_NAME]
     when 'Individual Details'
       :adviser
-    when 'Firm Authorisation'
+    when 'Firm Authorisation', 'Firms Master List'
       :firm
     when 'Alternative Firm Name'
       :subsidiary
@@ -95,7 +95,7 @@ class ExtToSql
   end
 
   def repair_line(line)
-    line = line.strip
+    line = line.strip.mb_chars.tidy_bytes
     match = repairs.find { |pair| line == pair['line'] }
     if match.nil?
       warn_on_possibly_broken_line line

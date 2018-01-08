@@ -2,7 +2,7 @@ module FCA
   class Query
     TABLES = {  # keys to this hash works on header line; row field index 1
       'Individual Details'    => :lookup_advisers,
-      'Firm Authorisation'    => :lookup_firms,
+      'Firms Master List'     => :lookup_firms,
       'Alternative Firm Name' => :lookup_subsidiaries
     }.freeze
 
