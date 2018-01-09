@@ -1,13 +1,14 @@
 class AdviserListCsv
   def initialize(advisers)
-    @advisers = advisers
+    @lookup = AdviserCsvLookup.new(advisers)
   end
 
   def to_csv(_ = {})
+    @lookup.build!
     CSV.generate do |csv|
       csv << headings
-      @advisers.each do |adviser|
-        csv << row(adviser)
+      @lookup.each do |adviser_data|
+        csv << row(adviser_data)
       end
     end
   end
@@ -18,25 +19,23 @@ class AdviserListCsv
     ['Ref. Number', 'Name', 'Firm'] + all_certifications
   end
 
-  def row(adviser)
+  def row(adviser:, firm_name:, qualifications:, accreditations:)
     [
       adviser.reference_number,
       adviser.name,
-      adviser.firm.registered_name
-    ] + certified(adviser)
+      firm_name
+    ] + certified(qualifications, accreditations)
   end
 
-  def all_certifications
-    @certifications ||= Accreditation.pluck(:name) + Qualification.pluck(:name)
-  end
+  def certified(qualifications, accreditations)
+    adviser_certs = qualifications + accreditations
 
-  def certified(adviser)
     all_certifications.map do |certification|
-      certifications_for(adviser).include?(certification) ? 'Y' : 'N'
+      adviser_certs.include?(certification) ? 'Y' : 'N'
     end
   end
 
-  def certifications_for(adviser)
-    adviser.accreditations.pluck(:name) + adviser.qualifications.pluck(:name)
+  def all_certifications
+    @all_certifications ||= @lookup.certification_list
   end
 end

@@ -4,8 +4,7 @@ module Admin
       respond_to :html, :csv
 
       def index
-        advisers = Adviser.includes(:qualifications, :accreditations).all
-
+        advisers = Adviser.all
         @registered_advisers = advisers.page(params[:page])
         @registered_advisers_list = AdviserListCsv.new(advisers)
 

@@ -1,21 +1,23 @@
 RSpec.describe AdviserListCsv do
   describe '#to_csv' do
+    let(:adviser1) { FactoryGirl.create(:adviser, adviser1_certifications) }
+    let(:adviser2) { FactoryGirl.create(:adviser, adviser2_certifications) }
+    let(:advisers) { [adviser1, adviser2] }
+
     let(:qualifications) { 3.times.map { FactoryGirl.create(:qualification) } }
     let(:accreditations) { 3.times.map { FactoryGirl.create(:accreditation) } }
-    let(:all_certifications) do
-      Accreditation.pluck(:name) + Qualification.pluck(:name)
-    end
 
-    let(:advisers) { [adviser1, adviser2] }
-    let(:adviser1) do
-      FactoryGirl.create(:adviser,
-                         qualifications: [qualifications.first],
-                         accreditations: [accreditations.first])
+    let(:adviser1_certifications) do
+      {
+        qualifications: [qualifications.first, qualifications.last],
+        accreditations: [accreditations.first]
+      }
     end
-    let(:adviser2) do
-      FactoryGirl.create(:adviser,
-                         qualifications: [qualifications.last],
-                         accreditations: [accreditations.last])
+    let(:adviser2_certifications) do
+      {
+        qualifications: [qualifications.last],
+        accreditations: [accreditations.last]
+      }
     end
 
     let(:subject)  { described_class.new(advisers) }
@@ -36,7 +38,7 @@ RSpec.describe AdviserListCsv do
             'Ref. Number',
             'Name',
             'Firm'
-          ] + all_certifications
+          ] + Qualification.pluck(:name) + Accreditation.pluck(:name)
         )
       end
 
@@ -45,7 +47,7 @@ RSpec.describe AdviserListCsv do
           adviser1.reference_number,
           adviser1.name,
           adviser1.firm.registered_name,
-          'Y', 'N', 'N', 'Y', 'N', 'N'
+          'Y', 'N', 'Y', 'Y', 'N', 'N'
         ])
 
         expect(row2).to eq([
