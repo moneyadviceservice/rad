@@ -1,0 +1,34 @@
+#!/bin/bash
+
+set -e
+
+export RAILS_ENV=test
+export BUNDLE_WITHOUT=development:build
+
+exit_code=0
+
+function run {
+    declare -a tests_command=("$@")
+
+    echo ''
+    echo "=== Running \`${tests_command[*]}\`"
+    if ! ${tests_command[*]}; then
+        echo "=== These tests failed."
+        exit_code=1
+    fi
+}
+
+run npm install
+run bundle install
+run bundle exec bowndler install --allow-root
+run mv config/database{-jenkins,}.yml
+run mv config/cloud_storage{.example,}.yml
+run bundle exec rake db:setup
+#Tests
+run brakeman -q --no-pager --ensure-latest
+run bundle exec rspec
+run bundle exec ./node_modules/.bin/karma start spec/javascripts/karma.conf.js --single-run
+run bundle exec cucumber
+run bundle exec rubocop -DS
+
+exit "$exit_code"
