@@ -51,7 +51,7 @@ module Cloud
           storage_account_name: settings[:account_name],
           storage_access_key:   settings[:shared_key]
         )
-        @client.blobClient
+        @client.blob_client
       end
     end
   end
