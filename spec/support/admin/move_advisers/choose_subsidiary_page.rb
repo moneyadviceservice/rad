@@ -7,8 +7,6 @@ module Admin
       elements :subsidiaries, '.t-subsidiary'
       element :next, '.t-next'
 
-      section :hidden, HiddenFieldsSection, '.t-hidden-fields'
-
       def subsidiary_field(index)
         subsidiaries[index].find('.t-subsidiary-field')
       end

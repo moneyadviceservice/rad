@@ -8,8 +8,6 @@ module Admin
       element :destination_firm, '.t-destination-firm'
       elements :advisers, '.t-adviser'
       element :move, '.t-move'
-
-      section :hidden, HiddenFieldsSection, '.t-hidden-fields'
     end
   end
 end
