@@ -93,7 +93,7 @@ EOF
 
     private
 
-    def print(sep = "\n")
+    def col_print(sep = "\n")
       ->(e) { "#{e}#{sep}" }
     end
 
@@ -104,7 +104,7 @@ EOF
     def columns_definition
       columns
         .map { |name, definition| "#{name}  #{definition}" }
-        .map(&print(' '))
+        .map(&col_print(' '))
         .join('')
         .chop
     end
