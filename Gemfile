@@ -60,6 +60,7 @@ group :test, :development do
 end
 
 group :test do
+  gem 'brakeman', require: false
   gem 'capybara'
   gem 'cucumber-rails', require: false
   gem 'database_cleaner'
@@ -67,6 +68,7 @@ group :test do
   gem 'poltergeist'
   gem 'rspec-collection_matchers'
   gem 'site_prism'
+  gem 'tzinfo-data'
   gem 'vcr'
   gem 'webmock'
 end

@@ -1,0 +1,10 @@
+test:
+  adapter: postgresql
+  encoding: utf8
+  pool: 5
+  host: postgres
+  port: 5432
+  username: go
+  password: go
+  database: rad_test
+  timeout: 5000
