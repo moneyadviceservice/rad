@@ -4,7 +4,6 @@ class AdviserListCsv
   end
 
   def to_csv(_ = {})
-    @lookup.build!
     CSV.generate do |csv|
       csv << headings
       @lookup.each do |adviser_data|

@@ -3,8 +3,8 @@ RSpec.describe AdviserCsvLookup do
   let(:adviser2) { FactoryGirl.create(:adviser, adviser2_certifications) }
   let(:advisers) { [adviser1, adviser2] }
 
-  let(:qualifications) { 3.times.map { FactoryGirl.create(:qualification) } }
-  let(:accreditations) { 3.times.map { FactoryGirl.create(:accreditation) } }
+  let(:qualifications) { Array.new(3) { FactoryGirl.create(:qualification) } }
+  let(:accreditations) { Array.new(3) { FactoryGirl.create(:accreditation) } }
 
   let(:adviser1_certifications) do
     {
@@ -19,32 +19,30 @@ RSpec.describe AdviserCsvLookup do
     }
   end
 
-  let(:subject)  { described_class.new(advisers) }
+  let(:subject) { described_class.new(advisers) }
 
-  before do
-    subject.build!
-  end
-
-  describe '#build!' do
-    it 'returns data for qualifications_lookup' do
-      expect(subject.qualifications_lookup).to eq(
-        adviser1.id => [qualifications.first.name, qualifications.last.name],
-        adviser2.id => [qualifications.last.name]
-      )
+  describe '#each' do
+    let(:expected_adviser_1_data) do
+      {
+        adviser:        adviser1,
+        firm_name:      adviser1.firm.registered_name,
+        qualifications: adviser1.qualifications.map(&:name),
+        accreditations: adviser1.accreditations.map(&:name)
+      }
     end
-
-    it 'returns data for accreditations_lookup' do
-      expect(subject.accreditations_lookup).to eq(
-        adviser1.id => [accreditations.first.name],
-        adviser2.id => [accreditations.last.name]
-      )
+    let(:expected_adviser_2_data) do
+      {
+        adviser:        adviser2,
+        firm_name:      adviser2.firm.registered_name,
+        qualifications: adviser2.qualifications.map(&:name),
+        accreditations: adviser2.accreditations.map(&:name)
+      }
     end
-
-    it 'returns data for firms_lookup' do
-      expect(subject.firms_lookup).to eq(
-        adviser1.firm_id => adviser1.firm.registered_name,
-        adviser2.firm_id => adviser2.firm.registered_name
-      )
+    it 'yields for each adviser with the additional data for that adviser' do
+      expect { |b| subject.each(&b) }
+        .to yield_successive_args(
+          expected_adviser_1_data, expected_adviser_2_data
+        )
     end
   end
 
