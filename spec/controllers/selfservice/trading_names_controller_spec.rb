@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 RSpec.describe SelfService::TradingNamesController, type: :controller do
   let(:principal) { FactoryGirl.create(:principal) }
   let(:firm) do
@@ -13,14 +14,16 @@ RSpec.describe SelfService::TradingNamesController, type: :controller do
     firm = params[:firm] || FactoryGirl.build(:firm)
     firm_params = firm.attributes
     firm_params.symbolize_keys!
-    firm_params[:initial_advice_fee_structure_ids] = firm.initial_advice_fee_structure_ids
-    firm_params[:ongoing_advice_fee_structure_ids] = firm.ongoing_advice_fee_structure_ids
-    firm_params[:allowed_payment_method_ids] = firm.allowed_payment_method_ids
-    firm_params[:investment_size_ids] = firm.investment_size_ids
-    firm_params[:primary_advice_method] = firm.primary_advice_method
-    firm_params[:other_advice_method_ids] = firm.other_advice_method_ids
-    firm_params[:in_person_advice_method_ids] = firm.in_person_advice_method_ids
-    firm_params[:status] = firm.status
+    firm_params.merge!(
+      initial_advice_fee_structure_ids: firm.initial_advice_fee_structure_ids,
+      ongoing_advice_fee_structure_ids: firm.ongoing_advice_fee_structure_ids,
+      allowed_payment_method_ids: firm.allowed_payment_method_ids,
+      investment_size_ids: firm.investment_size_ids,
+      primary_advice_method: firm.primary_advice_method,
+      other_advice_method_ids: firm.other_advice_method_ids,
+      in_person_advice_method_ids: firm.in_person_advice_method_ids,
+      status: firm.status
+    )
     firm_params.merge(params)
   end
 

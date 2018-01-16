@@ -24,7 +24,7 @@ module River
 
     def log_and_fail(s)
       context[:logger].fatal('River') { s }
-      fail s
+      raise s
     end
   end
 end

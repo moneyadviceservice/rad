@@ -2,10 +2,9 @@ module SelfService
   class OfficesController < ApplicationController
     before_action :authenticate_user!
     before_action -> { @firm = current_firm }
-    before_action -> { @office = current_office }, only: [:edit, :update, :destroy]
+    before_action -> { @office = current_office }, only: %i[edit update destroy]
 
-    def index
-    end
+    def index; end
 
     def new
       @office = @firm.offices.build
@@ -21,8 +20,7 @@ module SelfService
       end
     end
 
-    def edit
-    end
+    def edit; end
 
     def update
       if @office.update_with_geocoding(office_params)
@@ -35,7 +33,8 @@ module SelfService
 
     def destroy
       @office.destroy
-      flash[:notice] = I18n.t('self_service.office_destroy.deleted', postcode: @office.address_postcode)
+      flash[:notice] = I18n.t('self_service.office_destroy.deleted',
+                              postcode: @office.address_postcode)
 
       redirect_to :back
     end

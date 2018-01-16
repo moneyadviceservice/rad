@@ -46,7 +46,7 @@ module FCA
       when :lookup_subsidiaries
         active_subsidiary?
       else
-        fail "Could not determine '#{query.table}' status for line: '#{line}'"
+        raise "Could not determine '#{query.table}' status for line: '#{line}'"
       end
     end
 

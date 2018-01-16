@@ -2,8 +2,7 @@ module Admin
   class MoveAdvisersController < Admin::ApplicationController
     before_action :assign_form
 
-    def new
-    end
+    def new; end
 
     def choose_destination_firm
       render :new if @form.invalid?
@@ -24,12 +23,9 @@ module Admin
 
     def move
       @form.validate_destination_firm_id = true
+      raise 'Form data is invalid' unless @form.valid?
 
-      if @form.valid?
-        @form.advisers_to_move.move_all_to_firm(@form.destination_firm)
-      else
-        fail 'Form data is invalid'
-      end
+      @form.advisers_to_move.move_all_to_firm(@form.destination_firm)
     end
 
     private
@@ -46,7 +42,8 @@ module Admin
         params.fetch(:admin_move_advisers_form, {})
           .permit(:destination_firm_fca_number,
                   :destination_firm_id,
-                  adviser_ids: []))
+                  adviser_ids: [])
+      )
     end
   end
 end

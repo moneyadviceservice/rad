@@ -4,7 +4,7 @@ RSpec.describe River::Runners do
 
   describe '.fetch' do
     context 'when fetching tempfile runner' do
-      let(:runner)   { :tempfile }
+      let(:runner) { :tempfile }
       it 'return a runner' do
         expect(fetch).to be_present
       end

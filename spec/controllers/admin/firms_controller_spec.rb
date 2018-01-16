@@ -13,7 +13,7 @@ RSpec.describe Admin::FirmsController, type: :controller do
     let!(:first_user)  { create_user_with_firm({ invitation_accepted_at: Time.zone.today }, registered_name: 'Delta') }
     let!(:second_user) { create_user_with_firm({ invitation_accepted_at: Time.zone.today }, registered_name: 'Alpha') }
     let!(:third_user)  { create_user_with_firm({ invitation_accepted_at: nil }, registered_name: 'Gamma') }
-    let!(:fourth_user)  { create_user_with_firm({ invitation_accepted_at: nil }, registered_name: 'Charlie') }
+    let!(:fourth_user) { create_user_with_firm({ invitation_accepted_at: nil }, registered_name: 'Charlie') }
 
     before :each do
       get :login_report
@@ -26,7 +26,7 @@ RSpec.describe Admin::FirmsController, type: :controller do
       end
 
       it 'orders the firms by registered name' do
-        expect(assigns(:accepted_firms).pluck(:registered_name)).to eq(%w(Alpha Delta))
+        expect(assigns(:accepted_firms).pluck(:registered_name)).to eq(%w[Alpha Delta])
       end
     end
 
@@ -37,7 +37,7 @@ RSpec.describe Admin::FirmsController, type: :controller do
       end
 
       it 'orders the firms by registered name' do
-        expect(assigns(:not_accepted_firms).pluck(:registered_name)).to eq(%w(Charlie Gamma))
+        expect(assigns(:not_accepted_firms).pluck(:registered_name)).to eq(%w[Charlie Gamma])
       end
     end
   end

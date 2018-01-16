@@ -22,7 +22,7 @@ RSpec.describe ApplicationHelper, type: :helper do
     let(:options) { {} }
 
     context 'when passed a list' do
-      let(:paragraphs) { %w(hello world) }
+      let(:paragraphs) { %w[hello world] }
       it { is_expected.to eq '<p>hello</p><p>world</p>' }
 
       context 'when passed html options' do

@@ -17,7 +17,7 @@ RSpec.describe Admin::Reports::MetricsController, type: :controller do
 
     it 'has the correct headers' do
       csv.read
-      expect(csv.headers).to eq(%w(metric value))
+      expect(csv.headers).to eq(%w[metric value])
     end
 
     it 'contains snapshot attributes' do

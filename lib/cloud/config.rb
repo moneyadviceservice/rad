@@ -1,6 +1,10 @@
 module Cloud
   class Config
-    attr_accessor :provider_name, :account_name, :container_name, :shared_key, :root
+    attr_accessor :provider_name,
+                  :account_name,
+                  :container_name,
+                  :shared_key,
+                  :root
 
     def settings
       {

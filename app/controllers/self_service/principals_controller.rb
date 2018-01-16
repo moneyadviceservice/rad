@@ -4,8 +4,7 @@ module SelfService
     before_action -> { @principal = principal }
     before_action -> { @firm = principal.firm }
 
-    def edit
-    end
+    def edit; end
 
     def update
       if principal.update(principal_params)
@@ -19,8 +18,12 @@ module SelfService
     private
 
     def principal
-      fail ActiveRecord::RecordNotFound unless current_user.principal.id == params[:id]
+      raise ActiveRecord::RecordNotFound unless current_principal_id_matches_id?
       current_user.principal
+    end
+
+    def current_principal_id_matches_id?
+      current_user.principal.id == params[:id]
     end
 
     def principal_params

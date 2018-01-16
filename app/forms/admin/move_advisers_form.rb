@@ -3,11 +3,15 @@ module Admin
     include ActiveModel::Model
 
     attr_accessor :id, :destination_firm_fca_number, :destination_firm_id,
-                  :adviser_ids, :validate_destination_firm_fca_number, :validate_destination_firm_id
+                  :adviser_ids, :validate_destination_firm_fca_number,
+                  :validate_destination_firm_id
 
     validates :adviser_ids, length: { minimum: 1 }
-    validate :destination_firm_fca_number_exists, if: :validate_destination_firm_fca_number
-    validates :destination_firm_id, presence: true, if: :validate_destination_firm_id
+    validate :destination_firm_fca_number_exists,
+             if: :validate_destination_firm_fca_number
+    validates :destination_firm_id,
+              presence: true,
+              if: :validate_destination_firm_id
 
     def adviser_ids=(values)
       # Needed to strip out the ghost value added by the Rails form helper
@@ -27,7 +31,10 @@ module Admin
     end
 
     def subsidiaries
-      Firm.registered.where(fca_number: destination_firm_fca_number).order('LOWER(registered_name)')
+      Firm
+        .registered
+        .where(fca_number: destination_firm_fca_number)
+        .order('LOWER(registered_name)')
     end
 
     private

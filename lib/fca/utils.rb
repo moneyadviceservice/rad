@@ -49,7 +49,7 @@ module FCA
             write(w, q.copy_statement)       { 'Added copy' }
           else
             if row.footer? && !row.header?
-              write(w, q.commit)             { 'Added commit' }
+              write(w, q.commit) { 'Added commit' }
             else
               log_and_fail('Have some data but no query to format it.') unless q
               write(w, q.values(row))
@@ -110,7 +110,7 @@ module FCA
 
     def log_and_fail(msg)
       logger.fatal('Import Error') { msg }
-      fail msg
+      raise msg
     end
 
     def write(w, s)

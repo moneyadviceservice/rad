@@ -1,21 +1,28 @@
 require 'digest/sha1'
-$LOAD_PATH.unshift(File.join(Rails.root, 'lib'))
+$LOAD_PATH.unshift(Rails.root.join('lib'))
 require 'cloud'
 require 'fca'
 
 class FcaConfirmationJob < ActiveJob::Base
   include Sidekiq::Worker
+
+  unique_args = ->(args) { Digest::SHA1.hexdigest(args.first.to_s) }
   sidekiq_options unique:      :until_executed,
-                  unique_args: ->(args) { Digest::SHA1.hexdigest(args.first.to_s) }
+                  unique_args: unique_args
   queue_as :default
 
   def perform(import_job_id)
-    if import = FcaImport.find_by_id(import_job_id) # rubocop:disable all
-      rename_tables(::FCA::Import::LOOKUP_TABLE_PREFIX)
-      import.update_column(:status, 'confirmed')
-      log "FcaImport {#{import_job_id}}", 'Import confirmed'
-      archive_files(import.files.split('|'))
-    end
+    import = FcaImport.find_by(id: import_job_id)
+    return unless import
+
+    rename_tables(::FCA::Import::LOOKUP_TABLE_PREFIX)
+
+    # rubocop:disable Rails/SkipsModelValidations
+    import.update_column(:status, 'confirmed')
+    # rubocop:enable Rails/SkipsModelValidations
+
+    log "FcaImport {#{import_job_id}}", 'Import confirmed'
+    archive_files(import.files.split('|'))
   end
 
   private
