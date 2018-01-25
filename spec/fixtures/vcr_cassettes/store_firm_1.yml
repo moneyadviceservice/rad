@@ -1,0 +1,32 @@
+---
+http_interactions:
+- request:
+    method: put
+    uri: http://localhost:9200/rad_test/firms/1
+    body:
+      encoding: UTF-8
+      string: "{}"
+    headers:
+      User-Agent:
+      - HTTPClient/1.0 (2.6.0.1, ruby 2.2.1 (2015-02-26))
+      Accept:
+      - "*/*"
+      Date:
+      - Tue, 07 Apr 2015 10:54:02 GMT
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Content-Length:
+      - '76'
+    body:
+      encoding: UTF-8
+      string: '{"_index":"rad_test","_type":"firms","_id":"1","_version":2,"created":false}'
+    http_version: 
+  recorded_at: Tue, 07 Apr 2015 10:54:02 GMT
+recorded_with: VCR 2.9.3
