@@ -20,7 +20,7 @@ RSpec.describe SearchResult do
       context 'with results' do
         let(:json) do
           JSON.parse(
-            IO.read(Rails.root.join('..', 'fixtures', 'search_results.json'))
+            IO.read(Rails.root.join('spec', 'fixtures', 'search_results.json'))
           )
         end
         let(:body) { JSON.dump(json) }
@@ -49,7 +49,7 @@ RSpec.describe SearchResult do
           end
 
           it 'has a #page_size' do
-            expect(subject.page_size).to eq(MAS::RadCore::PAGE_SIZE)
+            expect(subject.page_size).to eq(Core::PAGE_SIZE)
           end
 
           it 'has a #limit_value' do

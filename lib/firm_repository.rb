@@ -36,6 +36,6 @@ class FirmRepository
   def from_for(page)
     return 0 if page == 1
 
-    ((page - 1) * MAS::RadCore::PAGE_SIZE)
+    ((page - 1) * Core::PAGE_SIZE)
   end
 end

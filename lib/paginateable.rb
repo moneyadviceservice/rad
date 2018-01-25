@@ -26,7 +26,7 @@ module Paginateable
   end
 
   def page_size
-    MAS::RadCore::PAGE_SIZE
+    Core::PAGE_SIZE
   end
   alias :limit_value :page_size
 end
