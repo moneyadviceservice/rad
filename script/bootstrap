@@ -1,6 +1,7 @@
 set -e
 
-createuser -ds postgres
+psql -c '\du' postgres | grep -q ' postgres .*Superuser' \
+    || createuser -ds postgres
 
 npm install
 npm install -g bower
