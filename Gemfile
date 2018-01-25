@@ -25,16 +25,19 @@ gem 'dough-ruby',
     github: 'moneyadviceservice/dough',
     require: 'dough',
     tag: 'v5.12.0.267'
+gem 'geocoder'
+gem 'httpclient'
 gem 'jquery-rails'
 gem 'kaminari'
+gem 'language_list'
 gem 'letter_opener', group: :development
 gem 'mailjet'
-gem 'mas-rad_core', '0.1.4'
 gem 'oga'
 gem 'pg', '< 1.0.0'
 gem 'rails_email_validator'
 gem 'rake', '~> 11'
 gem 'ransack'
+gem 'redis'
 gem 'rollbar'
 gem 'rubyzip'
 gem 'sass-rails'
@@ -43,8 +46,11 @@ gem 'sidekiq-unique-jobs'
 gem 'sidetiq'
 gem 'sinatra', require: false
 gem 'slack-ruby-client'
+gem 'statsd-ruby'
 gem 'uglifier', '>= 1.3.0'
 gem 'unicorn'
+gem 'uk_phone_numbers'
+gem 'uk_postcode'
 
 group :test, :development do
   gem 'better_errors'
@@ -55,7 +61,7 @@ group :test, :development do
   gem 'pry-byebug'
   gem 'pry-rails'
   gem 'rspec-rails'
-  gem 'rubocop', '0.49.0'
+    gem 'rubocop', '0.49.0'
   gem 'timecop'
 end
 
