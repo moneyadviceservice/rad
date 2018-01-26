@@ -4,6 +4,15 @@ require 'sidetiq/web'
 Rails.application.routes.draw do
   devise_for :users
 
+  # rad_consumer
+  scope '/:locale', locale: /en|cy/ do
+    get '/search', to: 'search#index'
+    get '/glossary', to: 'glossary#show'
+
+    resources :firms, only: [:show]
+  end
+
+  # rad
   unauthenticated do
     root 'principals#pre_qualification_form'
   end
