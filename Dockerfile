@@ -1,18 +1,17 @@
-FROM ubuntu:17.04
+FROM ubuntu:16.04
 MAINTAINER development.team@moneyadviceservice.org.uk
 
-ENV BUNDLER_VERSION "1.16.0"
+ENV BUNDLER_VERSION "1.16.1"
 ENV NODE_VERSION "4.8.4"
 ENV BOWER_VERSION "1.8.2"
 ENV PHANTOMJS_VERSION "2.1.1"
-ENV PATH usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:$PATH
+ENV PATH usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/rvm/bin:$PATH
 ENV RAILS_ENV test
-ENV POSTGRES postgres
 ENV BUNDLE_WITHOUT development:build
 ENV DEBIAN_FRONTEND noninteractive
 ENV APT_PACKAGES " \
-  build-essential apt-utils git libfontconfig libpq-dev libssl-dev libsqlite3-dev \
-  libxml2-dev libreadline-dev zlib1g-dev apt-transport-https curl software-properties-common"
+  build-essential apt-utils git libfontconfig libpq-dev libsqlite3-dev libmysqlclient-dev \
+  libxml2-dev libreadline-dev zlib1g-dev apt-transport-https curl software-properties-common openssh-server"
 
 #Install Prerequisites
 RUN apt-get -qq update > /dev/null && \
@@ -25,15 +24,17 @@ WORKDIR /tmp
 
 #Install Ruby
 COPY .ruby-version .ruby-version
-RUN curl "https://cache.ruby-lang.org/pub/ruby/ruby-$(cat .ruby-version).tar.gz" | \
-  tar -xz && \
-  cd ruby-$(cat .ruby-version) && \
-  ./configure --enable-shared --disable-install-doc > /dev/null && \
-  make -s -j4 >> install_ruby.log && make -s install > /dev/null && \
-  rm /usr/local/lib/libruby-static.a
+
+#Download RVM as root
+RUN \curl -#LO https://rvm.io/mpapis.asc && gpg --import mpapis.asc && \
+  \curl -sSL https://get.rvm.io | bash -s stable
+
+#Install RVM requirements
+RUN /bin/bash -lc "rvm requirements" && \
+  /bin/bash -lc  "rvm install $(cat .ruby-version) && rvm use $(cat .ruby-version) --default"
 
 #Install Bundler
-RUN gem install -v ${BUNDLER_VERSION} bundler
+RUN /bin/bash -lc "gem install -v ${BUNDLER_VERSION} bundler"
 
 #Install Node
 RUN curl https://nodejs.org/dist/v${NODE_VERSION}/node-v${NODE_VERSION}-linux-x64.tar.gz \
