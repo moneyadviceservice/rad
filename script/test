@@ -1,6 +1,11 @@
-#!/bin/bash
+#!/bin/bash -l
 
 set -e
+
+if [ -f /.dockerenv ]; then
+    source ~/.bashrc
+    rvm use default
+fi
 
 export RAILS_ENV=test
 export BUNDLE_WITHOUT=development:build
@@ -23,9 +28,9 @@ run bundle install
 run bundle exec bowndler install --allow-root
 run mv config/database{-jenkins,}.yml
 run mv config/cloud_storage{.example,}.yml
-run bundle exec rake db:setup
+run bundle exec rake db:drop db:setup
 #Tests
-run brakeman -q --no-pager --ensure-latest
+run bundle exec brakeman -q --no-pager --ensure-latest
 run bundle exec rspec
 run bundle exec ./node_modules/.bin/karma start spec/javascripts/karma.conf.js --single-run
 run bundle exec cucumber
