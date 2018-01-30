@@ -1,7 +1,0 @@
-repairs:
-  -
-    line: '621531|""DARE"" Vehicle Asset Recovery Europe|2|20140417|20141028|DAREVEHICLEASSETRECOVERYEUROPE|20141028|'
-    replacement: '621531|"DARE" Vehicle Asset Recovery Europe|2|20140417|20141028|DAREVEHICLEASSETRECOVERYEUROPE|20141028|'
-  -
-    line: 'KCS01025|Mr "Konstantinos ""Constantine""" Sarafopoulos|||3|SARAFOPOULOSKONSTANTINOSCONSTANTINE|20160305|'
-    replacement: 'KCS01025|Mr Konstantinos "Constantine" Sarafopoulos|||3|SARAFOPOULOSKONSTANTINOSCONSTANTINE|20160305|'
