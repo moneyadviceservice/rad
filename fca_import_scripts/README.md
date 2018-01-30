@@ -1,3 +1,4 @@
 # FCA Import Scripts
 
-All the details of the import process can be found on the [Wiki](https://moneyadviceserviceuk.atlassian.net/wiki/display/RRAD/FCA+Import).
+All the details of the import process can be found on the
+[Wiki](https://maswiki.valiantyscloud.net/display/RRAD/FCA+Import+-+Technical+Help).
