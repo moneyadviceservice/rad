@@ -4,10 +4,10 @@ A directory to help people nearing retirement find an Independent Financial Advi
 
 ![Build Status](https://travis-ci.org/moneyadviceservice/rad.svg?branch=master)
 
-## General Info
+## Technical Docs
 
-[RAD](wiki page)
-[FCA Import](wiki page)
+[RAD](https://github.com/moneyadviceservice/technical-docs/tree/master/rad)
+[FCA Import](https://github.com/moneyadviceservice/technical-docs/blob/master/rad/running_fca_import_locally.md)
 
 
 ## Prerequisites
