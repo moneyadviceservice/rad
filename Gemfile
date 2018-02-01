@@ -12,7 +12,7 @@ ruby '2.2.2'
 gem 'rails', '4.2.10'
 
 gem 'active_link_to'
-gem 'active_model_serializers', '0.9.4'
+gem 'active_model_serializers', '~> 0.10.1'
 gem 'azure-storage'
 gem 'bootstrap-sass'
 gem 'bowndler', github: 'moneyadviceservice/bowndler'
