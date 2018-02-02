@@ -51,4 +51,18 @@ RSpec.describe FCA::Import do
       end
     end
   end
+
+  describe '#files_to_be_imported' do
+    subject(:files_to_be_imported) do
+      described_class.new(files, {}, []).files_to_be_imported
+    end
+
+    it 'returns regexp of the three files' do
+      expect(files_to_be_imported).to eq([
+                                           /^firms_master_list2\d+\.ext$/,
+                                           /^indiv_apprvd2\d+\.ext$/,
+                                           /^firm_names2\d+\.ext$/
+                                         ])
+    end
+  end
 end

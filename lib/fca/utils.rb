@@ -12,7 +12,7 @@ module FCA
       end
     end
 
-    def unzip(*regexps)
+    def unzip(regexps)
       ignore_file = ->(s) { (regexps.map { |r| s =~ r }).any? }
 
       lambda do |r, w, c|
