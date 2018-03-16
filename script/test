@@ -5,6 +5,8 @@ set -e
 if [ -f /.dockerenv ]; then
     source ~/.bashrc
     rvm use default
+    bundle config github.com $GITHUB_USER:$GITHUB_PASS
+    mv config/database{-jenkins,}.yml
 fi
 
 export RAILS_ENV=test
@@ -23,17 +25,25 @@ function run {
     fi
 }
 
-run npm install
-run bundle install
+function info {
+    declare -a info_command=("$@")
+    echo ''
+    echo "=== Running for informational purposes \`${info_command[*]}\`"
+    if ! ${info_command[*]}; then
+        echo "== This test has errors and/or warnings. Please review results"
+    fi
+}
+
+run npm install --quiet
+run bundle install --quiet
 run bundle exec bowndler install --allow-root
-run mv config/database{-jenkins,}.yml
 run mv config/cloud_storage{.example,}.yml
 run bundle exec rake db:drop db:setup
 #Tests
-run bundle exec brakeman -q --no-pager --ensure-latest
 run bundle exec rspec
 run bundle exec ./node_modules/.bin/karma start spec/javascripts/karma.conf.js --single-run
 run bundle exec cucumber
 run bundle exec rubocop -DS
+info bundle exec brakeman -q --no-pager --ensure-latest
 
 exit "$exit_code"
