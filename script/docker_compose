@@ -7,6 +7,7 @@ image_name="rad_rails_1"
 docker-compose pull
 docker-compose build --force-rm
 docker-compose up -d
+docker-compose -f docker-compose.yml run --rm rails ./script/test
 
 # docker logs will only run until the container exits
 ( docker logs --follow "$image_name" )&
