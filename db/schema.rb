@@ -15,7 +15,6 @@ ActiveRecord::Schema.define(version: 20161216141323) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-  enable_extension "pg_stat_statements"
 
   create_table "accreditations", force: :cascade do |t|
     t.string   "name",                   null: false
@@ -85,27 +84,6 @@ ActiveRecord::Schema.define(version: 20161216141323) do
     t.text     "result"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "fcaimport_lookup_advisers", force: :cascade do |t|
-    t.string   "reference_number", limit: 20,  null: false
-    t.string   "name",             limit: 255, null: false
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
-  end
-
-  create_table "fcaimport_lookup_firms", force: :cascade do |t|
-    t.integer  "fca_number",                               null: false
-    t.string   "registered_name", limit: 255, default: "", null: false
-    t.datetime "created_at",                               null: false
-    t.datetime "updated_at",                               null: false
-  end
-
-  create_table "fcaimport_lookup_subsidiaries", force: :cascade do |t|
-    t.integer  "fca_number",                          null: false
-    t.string   "name",       limit: 255, default: "", null: false
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
   end
 
   create_table "firms", force: :cascade do |t|
@@ -198,53 +176,32 @@ ActiveRecord::Schema.define(version: 20161216141323) do
     t.string   "cy_name"
   end
 
-  create_table "last_week_lookup_advisers", force: :cascade do |t|
+  create_table "lookup_advisers", force: :cascade do |t|
     t.string   "reference_number", null: false
     t.string   "name",             null: false
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
   end
 
-  add_index "last_week_lookup_advisers", ["reference_number"], name: "index_lookup_advisers_on_reference_number", unique: true, using: :btree
+  add_index "lookup_advisers", ["reference_number"], name: "index_lookup_advisers_on_reference_number", unique: true, using: :btree
 
-  create_table "last_week_lookup_firms", force: :cascade do |t|
+  create_table "lookup_firms", force: :cascade do |t|
     t.integer  "fca_number",                   null: false
     t.string   "registered_name", default: "", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "last_week_lookup_firms", ["fca_number"], name: "index_lookup_firms_on_fca_number", unique: true, using: :btree
+  add_index "lookup_firms", ["fca_number"], name: "index_lookup_firms_on_fca_number", unique: true, using: :btree
 
-  create_table "last_week_lookup_subsidiaries", force: :cascade do |t|
+  create_table "lookup_subsidiaries", force: :cascade do |t|
     t.integer  "fca_number",              null: false
     t.string   "name",       default: "", null: false
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
   end
 
-  add_index "last_week_lookup_subsidiaries", ["fca_number"], name: "index_lookup_subsidiaries_on_fca_number", using: :btree
-
-  create_table "lookup_advisers", force: :cascade do |t|
-    t.string   "reference_number", limit: 20,  null: false
-    t.string   "name",             limit: 255, null: false
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
-  end
-
-  create_table "lookup_firms", force: :cascade do |t|
-    t.integer  "fca_number",                               null: false
-    t.string   "registered_name", limit: 255, default: "", null: false
-    t.datetime "created_at",                               null: false
-    t.datetime "updated_at",                               null: false
-  end
-
-  create_table "lookup_subsidiaries", force: :cascade do |t|
-    t.integer  "fca_number",                          null: false
-    t.string   "name",       limit: 255, default: "", null: false
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
-  end
+  add_index "lookup_subsidiaries", ["fca_number"], name: "index_lookup_subsidiaries_on_fca_number", using: :btree
 
   create_table "offices", force: :cascade do |t|
     t.string   "address_line_one",                 null: false
