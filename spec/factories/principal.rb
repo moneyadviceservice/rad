@@ -1,5 +1,5 @@
 FactoryGirl.define do
-  sequence(:fca_number, 100000) { |n| n }
+  sequence(:fca_number, 100_000) { |n| n }
 
   factory :principal do
     fca_number

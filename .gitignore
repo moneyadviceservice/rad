@@ -1,5 +1,6 @@
 .bundle
 .DS_Store
+.rubocop-*
 /log/*.log
 /tmp
 /vendor/assets/bower_components

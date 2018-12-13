@@ -61,7 +61,7 @@ class FcaImport < ActiveRecord::Base
   def exec(sql)
     result = ActiveRecord::Base.connection.execute(sql)
     result[0]['total'].to_i
-  rescue
+  rescue StandardError
     0
   end
 end

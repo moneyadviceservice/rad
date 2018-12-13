@@ -19,10 +19,10 @@ module Snapshot::AdviserQueries
     advisers_in_country(Adviser.all, 'Northern Ireland')
   end
 
-  TravelDistance.all.keys.each do |val|
-    method_name = val.downcase.gsub(' ', '_')
+  TravelDistance.all.each_key do |key|
+    method_name = key.downcase.tr(' ', '_')
     define_method "query_advisers_who_travel_#{method_name}" do
-      advisers_who_travel(val)
+      advisers_who_travel(key)
     end
   end
 
@@ -109,7 +109,7 @@ module Snapshot::AdviserQueries
   private
 
   def advisers_in_country(advisers, country)
-    postcodes = advisers.map { |adviser| adviser.postcode }
+    postcodes = advisers.map(&:postcode)
     country_postcodes = Postcode.new.filter_postcodes_by_country(postcodes, country)
     advisers.select { |adviser| country_postcodes.include?(adviser.postcode) }
   end

@@ -31,11 +31,13 @@ RSpec.describe AdviserSerializer do
     end
 
     context 'qualifications' do
-      let(:qualifications) { [
-        Qualification.create(id: 1, order: 1, name: 'First Qualification'),
-        Qualification.create(id: 2, order: 2, name: 'Second Qualification')
-      ] }
-      let(:adviser) { create(:adviser, qualifications: qualifications ) }
+      let(:qualifications) do
+        [
+          Qualification.create(id: 1, order: 1, name: 'First Qualification'),
+          Qualification.create(id: 2, order: 2, name: 'Second Qualification')
+        ]
+      end
+      let(:adviser) { create(:adviser, qualifications: qualifications) }
 
       it 'exposes `qualification_ids`' do
         expect(subject[:qualification_ids]).to eq([qualifications.first.id, qualifications.last.id])
@@ -43,11 +45,13 @@ RSpec.describe AdviserSerializer do
     end
 
     context 'accreditations' do
-      let(:accreditations) { [
-        Accreditation.create!(id: 1, name: 'First Accreditation', order: 1),
-        Accreditation.create!(id: 2, name: 'Second Accreditation', order: 2)
-      ] }
-      let(:adviser) { create(:adviser, accreditations: accreditations ) }
+      let(:accreditations) do
+        [
+          Accreditation.create!(id: 1, name: 'First Accreditation', order: 1),
+          Accreditation.create!(id: 2, name: 'Second Accreditation', order: 2)
+        ]
+      end
+      let(:adviser) { create(:adviser, accreditations: accreditations) }
 
       it 'exposes `qualification_ids`' do
         expect(subject[:accreditation_ids]).to eq([accreditations.first.id, accreditations.last.id])

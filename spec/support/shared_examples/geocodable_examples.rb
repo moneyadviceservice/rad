@@ -56,7 +56,8 @@ RSpec.shared_examples 'geocodable' do
   describe '#geocoded?' do
     context 'when the subject has lat/long' do
       before do
-        subject.latitude, subject.longitude = [1.0, 1.0]
+        subject.latitude = 1.0
+        subject.longitude = 1.0
       end
 
       it 'is classed as geocoded' do
@@ -66,7 +67,8 @@ RSpec.shared_examples 'geocodable' do
 
     context 'when the subject does not have lat/long' do
       before do
-        subject.latitude, subject.longitude = [nil, nil]
+        subject.latitude = nil
+        subject.longitude = nil
       end
 
       it 'is not classed as geocoded' do

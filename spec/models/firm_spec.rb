@@ -17,15 +17,15 @@ RSpec.describe Firm do
 
     context 'when there are a multiple languages on multiple firms' do
       it 'has has multiple languages' do
-        create(:firm, languages: ['sco', 'swe'])
-        create(:firm, languages: ['nor', 'lat'])
-        expect(Firm.languages_used).to eq(['lat', 'nor', 'sco', 'swe'])
+        create(:firm, languages: %w[sco swe])
+        create(:firm, languages: %w[nor lat])
+        expect(Firm.languages_used).to eq(%w[lat nor sco swe])
       end
 
       it 'has has duplicate languages' do
-        create(:firm, languages: ['sco', 'swe'])
-        create(:firm, languages: ['nor', 'swe'])
-        expect(Firm.languages_used).to eq(['nor', 'sco', 'swe'])
+        create(:firm, languages: %w[sco swe])
+        create(:firm, languages: %w[nor swe])
+        expect(Firm.languages_used).to eq(%w[nor sco swe])
       end
     end
   end
@@ -120,7 +120,7 @@ RSpec.describe Firm do
 
     describe 'default sort order' do
       subject { firm.reload.offices.map(&:address_line_one) }
-      it { is_expected.to eq(%w{first second third fourth}) }
+      it { is_expected.to eq(%w[first second third fourth]) }
     end
   end
 
@@ -243,12 +243,12 @@ RSpec.describe Firm do
 
     describe 'languages' do
       context 'when it contains valid language strings' do
-        before { firm.languages = ['fra', 'deu'] }
+        before { firm.languages = %w[fra deu] }
         it { is_expected.to be_valid }
       end
 
       context 'when it contains invalid language strings' do
-        before { firm.languages = ['no_language', 'fra'] }
+        before { firm.languages = %w[no_language fra] }
         it { is_expected.to be_invalid }
       end
 
@@ -266,10 +266,10 @@ RSpec.describe Firm do
       end
 
       context 'when it contains duplicate values' do
-        before { firm.languages = ['fra', 'fra', 'deu'] }
+        before { firm.languages = %w[fra fra deu] }
         it 'filters them out pre-validation' do
           firm.valid?
-          expect(firm.languages).to eq ['fra', 'deu']
+          expect(firm.languages).to eq %w[fra deu]
         end
       end
     end
@@ -537,8 +537,8 @@ RSpec.describe Firm do
   end
 
   describe '.sorted_by_registered_name scope' do
-    let(:sorted_names)   { %w(A B C D E F G H) }
-    let(:unsorted_names) { %w(F C G E D H A B) }
+    let(:sorted_names)   { %w[A B C D E F G H] }
+    let(:unsorted_names) { %w[F C G E D H A B] }
 
     before do
       unsorted_names.each { |name| FactoryGirl.create(:firm, registered_name: name) }
@@ -551,14 +551,12 @@ RSpec.describe Firm do
 
   describe '#advice_types' do
     it 'returns a hash of advice types' do
-      expect(subject.advice_types).to eq({
-        retirement_income_products_flag: subject.retirement_income_products_flag,
-        pension_transfer_flag: subject.pension_transfer_flag,
-        long_term_care_flag: subject.long_term_care_flag,
-        equity_release_flag: subject.equity_release_flag,
-        inheritance_tax_and_estate_planning_flag: subject.inheritance_tax_and_estate_planning_flag,
-        wills_and_probate_flag: subject.wills_and_probate_flag
-      })
+      expect(subject.advice_types).to eq(retirement_income_products_flag: subject.retirement_income_products_flag,
+                                         pension_transfer_flag: subject.pension_transfer_flag,
+                                         long_term_care_flag: subject.long_term_care_flag,
+                                         equity_release_flag: subject.equity_release_flag,
+                                         inheritance_tax_and_estate_planning_flag: subject.inheritance_tax_and_estate_planning_flag,
+                                         wills_and_probate_flag: subject.wills_and_probate_flag)
     end
   end
 

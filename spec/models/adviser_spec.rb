@@ -77,7 +77,7 @@ RSpec.describe Adviser do
         end
 
         it 'must be three characters and five digits exactly' do
-          %w(badtimes ABCDEFGH 8008135! 12345678).each do |bad|
+          %w[badtimes ABCDEFGH 8008135! 12345678].each do |bad|
             Lookup::Adviser.create!(reference_number: bad, name: 'Mr. Derp')
 
             expect(build(:adviser,
@@ -115,7 +115,7 @@ RSpec.describe Adviser do
     let(:adviser) { create(:adviser) }
     subject { adviser.full_street_address }
 
-    it { is_expected.to eql "#{adviser.postcode}, United Kingdom"}
+    it { is_expected.to eql "#{adviser.postcode}, United Kingdom" }
   end
 
   it_should_behave_like 'geocodable' do
@@ -136,7 +136,7 @@ RSpec.describe Adviser do
       end
     end
 
-    context "when the model postcode field has changed" do
+    context 'when the model postcode field has changed' do
       before do
         subject.postcode = 'S032 2AY'
       end
@@ -271,8 +271,8 @@ RSpec.describe Adviser do
   end
 
   describe '.sorted_by_name scope' do
-    let(:sorted_names)   { %w(A B C D E F G H) }
-    let(:unsorted_names) { %w(F C G E D H A B) }
+    let(:sorted_names)   { %w[A B C D E F G H] }
+    let(:unsorted_names) { %w[F C G E D H A B] }
 
     before do
       unsorted_names.each { |name| FactoryGirl.create(:adviser, name: name) }

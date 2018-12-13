@@ -3,7 +3,7 @@ class InPersonAdviceMethod < ActiveRecord::Base
 
   has_and_belongs_to_many :firms
 
-  validates_presence_of :name
+  validates :name, presence: true
 
   default_scope { order(:order) }
 end

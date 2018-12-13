@@ -3,8 +3,8 @@ RSpec.shared_examples 'system named' do
   let(:method) { create(type, order: 1) }
 
   before do
-    fail unless described_class::SYSTEM_NAMES
-    stub_const("#{described_class.model_name}::SYSTEM_NAMES", { 1 => :phone })
+    raise unless described_class::SYSTEM_NAMES
+    stub_const("#{described_class.model_name}::SYSTEM_NAMES", 1 => :phone)
   end
 
   subject { described_class.system_name(method.id) }

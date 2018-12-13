@@ -45,7 +45,7 @@ module Cloud
     def find_provider_class(name)
       klass = Object.const_get("::Cloud::Providers::#{name.to_s.capitalize}")
       klass
-    rescue
+    rescue StandardError
       raise ArgumentError.new('Bad cloud provider name')
     end
   end

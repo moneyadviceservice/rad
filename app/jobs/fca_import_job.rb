@@ -60,7 +60,7 @@ class FcaImportJob < ActiveJob::Base
       as_user: true,
       text:    "<!here> #{text}"
     )
-  rescue
+  rescue StandardError
     logger.error 'An error occured while trying to post msg'
     retry if (tries += 1) <= 3
   end

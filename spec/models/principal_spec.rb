@@ -78,7 +78,7 @@ RSpec.describe Principal do
 
       it 'must be a 6 digit number' do
         build(:principal).tap do |p|
-          p.fca_number = 12345
+          p.fca_number = 12_345
           expect(p).to_not be_valid
         end
       end
@@ -108,7 +108,7 @@ RSpec.describe Principal do
       end
 
       it 'must be a reasonably valid format' do
-        %w(zzz abc@abc a@a.).each do |bad|
+        %w[zzz abc@abc a@a.].each do |bad|
           principal.email_address = bad
           expect(principal).to_not be_valid
         end
@@ -179,14 +179,14 @@ RSpec.describe Principal do
 
   describe 'dough #field_order' do
     let(:fields) do
-      [
-        :fca_number,
-        :first_name,
-        :last_name,
-        :job_title,
-        :email_address,
-        :telephone_number,
-        :confirmed_disclaimer
+      %i[
+        fca_number
+        first_name
+        last_name
+        job_title
+        email_address
+        telephone_number
+        confirmed_disclaimer
       ]
     end
 
@@ -207,8 +207,8 @@ RSpec.describe Principal do
     context 'when no firms are publishable' do
       before do
         FactoryGirl.build(:invalid_firm,
-                           fca_number: principal.fca_number,
-                           parent: principal.firm).save(validate: false)
+                          fca_number: principal.fca_number,
+                          parent: principal.firm).save(validate: false)
 
         expect(principal.main_firm_with_trading_names).to have(2).items
         expect(principal.main_firm_with_trading_names)

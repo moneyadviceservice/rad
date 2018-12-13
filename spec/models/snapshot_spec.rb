@@ -128,7 +128,7 @@ RSpec.describe Snapshot do
     end
 
     it do
-      VCR.use_cassette("england_and_scotland_postcode") do
+      VCR.use_cassette('england_and_scotland_postcode') do
         firms = subject.query_firms_in_england
         expect(firms).to match([firm1, firm2])
         expect(firms).not_to include(firm3)
@@ -148,7 +148,7 @@ RSpec.describe Snapshot do
     end
 
     it do
-      VCR.use_cassette("scotland_and_england_postcode") do
+      VCR.use_cassette('scotland_and_england_postcode') do
         firms = subject.query_firms_in_scotland
         expect(firms).to match([firm1, firm2])
         expect(firms).not_to include(firm3)
@@ -168,7 +168,7 @@ RSpec.describe Snapshot do
     end
 
     it do
-      VCR.use_cassette("wales_and_england_postcode") do
+      VCR.use_cassette('wales_and_england_postcode') do
         firms = subject.query_firms_in_wales
         expect(firms).to match([firm1, firm2])
         expect(firms).not_to include(firm3)
@@ -188,7 +188,7 @@ RSpec.describe Snapshot do
     end
 
     it do
-      VCR.use_cassette("northern_ireland_and_england_postcode") do
+      VCR.use_cassette('northern_ireland_and_england_postcode') do
         firms = subject.query_firms_in_northern_ireland
         expect(firms).to match([firm1, firm2])
         expect(firms).not_to include(firm3)
@@ -336,7 +336,7 @@ RSpec.describe Snapshot do
     let!(:adviser3) { FactoryGirl.create(:adviser, postcode: scotland_postcode) }
 
     it do
-      VCR.use_cassette("england_and_scotland_postcode") do
+      VCR.use_cassette('england_and_scotland_postcode') do
         advisers = subject.query_advisers_in_england
         expect(advisers).to match([adviser1, adviser2])
         expect(advisers).not_to include(adviser3)
@@ -350,7 +350,7 @@ RSpec.describe Snapshot do
     let!(:adviser3) { FactoryGirl.create(:adviser, postcode: england_postcode) }
 
     it do
-      VCR.use_cassette("scotland_and_england_postcode") do
+      VCR.use_cassette('scotland_and_england_postcode') do
         advisers = subject.query_advisers_in_scotland
         expect(advisers).to match([adviser1, adviser2])
         expect(advisers).not_to include(adviser3)
@@ -364,7 +364,7 @@ RSpec.describe Snapshot do
     let!(:adviser3) { FactoryGirl.create(:adviser, postcode: england_postcode) }
 
     it do
-      VCR.use_cassette("wales_and_england_postcode") do
+      VCR.use_cassette('wales_and_england_postcode') do
         advisers = subject.query_advisers_in_wales
         expect(advisers).to match([adviser1, adviser2])
         expect(advisers).not_to include(adviser3)
@@ -378,7 +378,7 @@ RSpec.describe Snapshot do
     let!(:adviser3) { FactoryGirl.create(:adviser, postcode: england_postcode) }
 
     it do
-      VCR.use_cassette("northern_ireland_and_england_postcode") do
+      VCR.use_cassette('northern_ireland_and_england_postcode') do
         advisers = subject.query_advisers_in_northern_ireland
         expect(advisers).to match([adviser1, adviser2])
         expect(advisers).not_to include(adviser3)
@@ -698,66 +698,66 @@ RSpec.describe Snapshot do
 
   describe '#metrics_in_order' do
     it 'has the configured order' do
-      expect(subject.metrics_in_order).to eq([
-        :firms_with_no_minimum_fee,
-        :firms_with_min_fee_between_1_500,
-        :firms_with_min_fee_between_501_1000,
-        :firms_any_pot_size,
-        :firms_any_pot_size_min_fee_less_than_500,
-        :registered_firms,
-        :published_firms,
-        :firms_offering_face_to_face_advice,
-        :firms_offering_remote_advice,
-        :firms_in_england,
-        :firms_in_scotland,
-        :firms_in_wales,
-        :firms_in_northern_ireland,
-        :firms_providing_retirement_income_products,
-        :firms_providing_pension_transfer,
-        :firms_providing_long_term_care,
-        :firms_providing_equity_release,
-        :firms_providing_inheritance_tax_and_estate_planning,
-        :firms_providing_wills_and_probate,
-        :firms_providing_ethical_investing,
-        :firms_providing_sharia_investing,
-        :firms_providing_workplace_financial_advice,
-        :firms_providing_non_uk_residents,
-        :firms_offering_languages_other_than_english,
-        :offices_with_disabled_access,
-        :registered_advisers,
-        :advisers_in_england,
-        :advisers_in_scotland,
-        :advisers_in_wales,
-        :advisers_in_northern_ireland,
-        :advisers_who_travel_5_miles,
-        :advisers_who_travel_10_miles,
-        :advisers_who_travel_25_miles,
-        :advisers_who_travel_50_miles,
-        :advisers_who_travel_100_miles,
-        :advisers_who_travel_150_miles,
-        :advisers_who_travel_200_miles,
-        :advisers_who_travel_250_miles,
-        :advisers_who_travel_uk_wide,
-        :advisers_accredited_in_solla,
-        :advisers_accredited_in_later_life_academy,
-        :advisers_accredited_in_iso22222,
-        :advisers_accredited_in_bs8577,
-        :advisers_with_qualification_in_level_4,
-        :advisers_with_qualification_in_level_6,
-        :advisers_with_qualification_in_chartered_financial_planner,
-        :advisers_with_qualification_in_certified_financial_planner,
-        :advisers_with_qualification_in_pension_transfer,
-        :advisers_with_qualification_in_equity_release,
-        :advisers_with_qualification_in_long_term_care_planning,
-        :advisers_with_qualification_in_tep,
-        :advisers_with_qualification_in_fcii,
-        :advisers_part_of_personal_finance_society,
-        :advisers_part_of_institute_financial_planning,
-        :advisers_part_of_institute_financial_services,
-        :advisers_part_of_ci_bankers_scotland,
-        :advisers_part_of_ci_securities_and_investments,
-        :advisers_part_of_cfa_institute, :advisers_part_of_chartered_accountants
-      ])
+      expect(subject.metrics_in_order).to eq(%i[
+                                               firms_with_no_minimum_fee
+                                               firms_with_min_fee_between_1_500
+                                               firms_with_min_fee_between_501_1000
+                                               firms_any_pot_size
+                                               firms_any_pot_size_min_fee_less_than_500
+                                               registered_firms
+                                               published_firms
+                                               firms_offering_face_to_face_advice
+                                               firms_offering_remote_advice
+                                               firms_in_england
+                                               firms_in_scotland
+                                               firms_in_wales
+                                               firms_in_northern_ireland
+                                               firms_providing_retirement_income_products
+                                               firms_providing_pension_transfer
+                                               firms_providing_long_term_care
+                                               firms_providing_equity_release
+                                               firms_providing_inheritance_tax_and_estate_planning
+                                               firms_providing_wills_and_probate
+                                               firms_providing_ethical_investing
+                                               firms_providing_sharia_investing
+                                               firms_providing_workplace_financial_advice
+                                               firms_providing_non_uk_residents
+                                               firms_offering_languages_other_than_english
+                                               offices_with_disabled_access
+                                               registered_advisers
+                                               advisers_in_england
+                                               advisers_in_scotland
+                                               advisers_in_wales
+                                               advisers_in_northern_ireland
+                                               advisers_who_travel_5_miles
+                                               advisers_who_travel_10_miles
+                                               advisers_who_travel_25_miles
+                                               advisers_who_travel_50_miles
+                                               advisers_who_travel_100_miles
+                                               advisers_who_travel_150_miles
+                                               advisers_who_travel_200_miles
+                                               advisers_who_travel_250_miles
+                                               advisers_who_travel_uk_wide
+                                               advisers_accredited_in_solla
+                                               advisers_accredited_in_later_life_academy
+                                               advisers_accredited_in_iso22222
+                                               advisers_accredited_in_bs8577
+                                               advisers_with_qualification_in_level_4
+                                               advisers_with_qualification_in_level_6
+                                               advisers_with_qualification_in_chartered_financial_planner
+                                               advisers_with_qualification_in_certified_financial_planner
+                                               advisers_with_qualification_in_pension_transfer
+                                               advisers_with_qualification_in_equity_release
+                                               advisers_with_qualification_in_long_term_care_planning
+                                               advisers_with_qualification_in_tep
+                                               advisers_with_qualification_in_fcii
+                                               advisers_part_of_personal_finance_society
+                                               advisers_part_of_institute_financial_planning
+                                               advisers_part_of_institute_financial_services
+                                               advisers_part_of_ci_bankers_scotland
+                                               advisers_part_of_ci_securities_and_investments
+                                               advisers_part_of_cfa_institute advisers_part_of_chartered_accountants
+                                             ])
     end
   end
 end

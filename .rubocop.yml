@@ -1,17 +1,27 @@
+inherit_from:
+  - .rubocop_todo.yml
+  - https://raw.githubusercontent.com/moneyadviceservice/mas-standards/master/.rubocop.yml
+
 Documentation:
   Enabled: false
 Style/FrozenStringLiteralComment:
   Enabled: false
 Metrics/BlockLength:
   Exclude:
-  - 'spec/**/*'
+    - 'spec/**/*'
+Metrics/ClassLength:
+  Exclude:
+    - 'app/models/firm.rb'
 Metrics/LineLength:
   Max: 80
   IgnoredPatterns: ['^\s*class\s']
   Exclude:
-  - 'spec/**/*'
+    - 'spec/**/*'
+    - 'app/models/snapshot/*.rb'
 Metrics/MethodLength:
   Max: 15
+  Exclude:
+    - 'app/models/snapshot/*.rb'
 Style/ClassAndModuleChildren:
   Enabled: false
 Style/CollectionMethods:
@@ -42,24 +52,24 @@ AllCops:
   TargetRailsVersion: 4.2
   DisplayCopNames: true
   Exclude:
-  - 'bin/**/*'
-  - 'config/**/*'
-  - 'db/**/*'
-  - 'Guardfile'
-  - 'lib/tasks/**/*'
-  - 'node_modules/**/*'
-  - 'script/**/*'
-  - 'spec/spec_helper.rb'
-  - 'spec/cassettes/**/*'
-  - 'features/**/*'
-  - 'spec/features/**/*'
-  - 'tmp/**/*'
-  - 'vendor/**/*'
-  - 'Rakefile'
-  - 'spec/dummy/config/**/*'
-  - 'spec/dummy/db/**/*'
-  - 'spec/dummy/script/**/*'
-  # Project specific exclusions
-  - 'lib/fca/**/*'
+    - 'bin/**/*'
+    - 'config/**/*'
+    - 'db/**/*'
+    - 'Guardfile'
+    - 'lib/tasks/**/*'
+    - 'node_modules/**/*'
+    - 'script/**/*'
+    - 'spec/spec_helper.rb'
+    - 'spec/cassettes/**/*'
+    - 'features/**/*'
+    - 'spec/features/**/*'
+    - 'tmp/**/*'
+    - 'vendor/**/*'
+    - 'Rakefile'
+    - 'spec/dummy/config/**/*'
+    - 'spec/dummy/db/**/*'
+    - 'spec/dummy/script/**/*'
+    # Project specific exclusions
+    - 'lib/fca/**/*'
 
 # Project specific settings

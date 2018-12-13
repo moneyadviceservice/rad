@@ -4,11 +4,11 @@ module Snapshot::FirmQueries
   end
 
   def query_firms_with_min_fee_between_1_500
-    publishable_firms.select { |f| (1..500).include?(f.minimum_fixed_fee) }
+    publishable_firms.select { |f| (1..500).cover?(f.minimum_fixed_fee) }
   end
 
   def query_firms_with_min_fee_between_501_1000
-    publishable_firms.select { |f| (501..1000).include?(f.minimum_fixed_fee) }
+    publishable_firms.select { |f| (501..1000).cover?(f.minimum_fixed_fee) }
   end
 
   def query_firms_any_pot_size
@@ -55,43 +55,43 @@ module Snapshot::FirmQueries
   end
 
   def query_firms_providing_retirement_income_products
-    publishable_firms.select { |f| f.retirement_income_products_flag? }
+    publishable_firms.select(&:retirement_income_products_flag?)
   end
 
   def query_firms_providing_pension_transfer
-    publishable_firms.select { |f| f.pension_transfer_flag? }
+    publishable_firms.select(&:pension_transfer_flag?)
   end
 
   def query_firms_providing_long_term_care
-    publishable_firms.select { |f| f.long_term_care_flag? }
+    publishable_firms.select(&:long_term_care_flag?)
   end
 
   def query_firms_providing_equity_release
-    publishable_firms.select { |f| f.equity_release_flag? }
+    publishable_firms.select(&:equity_release_flag?)
   end
 
   def query_firms_providing_inheritance_tax_and_estate_planning
-    publishable_firms.select { |f| f.inheritance_tax_and_estate_planning_flag? }
+    publishable_firms.select(&:inheritance_tax_and_estate_planning_flag?)
   end
 
   def query_firms_providing_wills_and_probate
-    publishable_firms.select { |f| f.wills_and_probate_flag? }
+    publishable_firms.select(&:wills_and_probate_flag?)
   end
 
   def query_firms_providing_ethical_investing
-    publishable_firms.select { |f| f.ethical_investing_flag? }
+    publishable_firms.select(&:ethical_investing_flag?)
   end
 
   def query_firms_providing_workplace_financial_advice
-    publishable_firms.select { |f| f.workplace_financial_advice_flag? }
+    publishable_firms.select(&:workplace_financial_advice_flag?)
   end
 
   def query_firms_providing_non_uk_residents
-    publishable_firms.select { |f| f.non_uk_residents_flag? }
+    publishable_firms.select(&:non_uk_residents_flag?)
   end
 
   def query_firms_providing_sharia_investing
-    publishable_firms.select { |f| f.sharia_investing_flag? }
+    publishable_firms.select(&:sharia_investing_flag?)
   end
 
   def query_firms_offering_languages_other_than_english

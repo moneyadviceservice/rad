@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 RSpec.describe SelfService::TradingNamesController, type: :controller do
   let(:principal) { FactoryGirl.create(:principal) }
   let(:firm) do

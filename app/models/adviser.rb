@@ -15,19 +15,19 @@ class Adviser < ActiveRecord::Base
   before_validation :upcase_postcode
 
   validates :travel_distance,
-    presence: true,
-    inclusion: { in: TravelDistance.all.values }
+            presence: true,
+            inclusion: { in: TravelDistance.all.values }
 
   validates :postcode,
-    presence: true,
-    format: { with: /\A[A-Z\d]{1,4} ?[A-Z\d]{1,3}\z/ }
+            presence: true,
+            format: { with: /\A[A-Z\d]{1,4} ?[A-Z\d]{1,3}\z/ }
 
   validates :reference_number,
-    presence: true,
-    uniqueness: true,
-    format: {
-      with: /\A[A-Z]{3}[0-9]{5}\z/
-    }, unless: :bypass_reference_number_check?
+            presence: true,
+            uniqueness: true,
+            format: {
+              with: /\A[A-Z]{3}[0-9]{5}\z/
+            }, unless: :bypass_reference_number_check?
 
   validate :match_reference_number, unless: :bypass_reference_number_check?
 
@@ -63,14 +63,17 @@ class Adviser < ActiveRecord::Base
   end
 
   def add_geocoding_failed_error
-    errors.add(:geocoding, I18n.t("#{model_name.i18n_key}.geocoding.failure_message"))
+    errors.add(
+      :geocoding,
+      I18n.t("#{model_name.i18n_key}.geocoding.failure_message")
+    )
   end
 
   def field_order
-    [
-      :reference_number,
-      :postcode,
-      :travel_distance
+    %i[
+      reference_number
+      postcode
+      travel_distance
     ]
   end
 
@@ -93,7 +96,7 @@ class Adviser < ActiveRecord::Base
   end
 
   def assign_name
-    self.name = self.name || Lookup::Adviser.find_by(
+    self.name = name || Lookup::Adviser.find_by(
       reference_number: reference_number
     ).try(:name)
   end

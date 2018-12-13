@@ -26,7 +26,7 @@ RSpec.describe FirmRepository do
 
   describe '#delete' do
     it 'delegates to the configured client' do
-      expect(client).to receive(:delete).with("firms/1")
+      expect(client).to receive(:delete).with('firms/1')
 
       described_class.new(client_class).delete(1)
     end

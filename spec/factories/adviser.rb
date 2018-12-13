@@ -1,5 +1,5 @@
 FactoryGirl.define do
-  sequence(:reference_number, 10000) { |n| "ABC#{n}" }
+  sequence(:reference_number, 10_000) { |n| "ABC#{n}" }
 
   factory :adviser do
     transient do

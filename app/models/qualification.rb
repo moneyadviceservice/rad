@@ -1,7 +1,7 @@
 class Qualification < ActiveRecord::Base
   include FriendlyNamable
 
-  validates_presence_of :name
+  validates :name, presence: true
 
   default_scope { order(:order) }
 end

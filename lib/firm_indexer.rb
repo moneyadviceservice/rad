@@ -8,7 +8,7 @@ module FirmIndexer
       end
     end
 
-    alias_method :handle_firm_changed, :index_firm
+    alias handle_firm_changed index_firm
 
     def handle_aggregate_changed(aggregate)
       # This method may be invoked as part of a cascade delete, in which case
@@ -20,7 +20,7 @@ module FirmIndexer
 
     def associated_firm_destroyed?(aggregate)
       firm = aggregate.firm
-      return true if (firm.nil? || firm.destroyed?)
+      return true if firm.nil? || firm.destroyed?
       !Firm.exists?(firm.id)
     end
 

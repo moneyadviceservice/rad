@@ -1,8 +1,8 @@
 class Postcode
   def filter_postcodes_by_country(postcodes, country)
     map_postcodes_to_country(postcodes)
-      .select { |postcode, postcode_country| postcode_country == country }
-      .map { |postcode, postcode_country| postcode }
+      .select { |_postcode, postcode_country| postcode_country == country }
+      .map { |postcode, _postcode_country| postcode }
   end
 
   private
@@ -23,7 +23,8 @@ class Postcode
     response = Net::HTTP.new('api.postcodes.io').request(request)
 
     if response.code.to_i == 200
-      result = JSON.parse(response.read_body)['result'].map { |r| r['result'] }.compact
+      body = response.read_body
+      result = JSON.parse(body)['result'].map { |r| r['result'] }.compact
       result.each_with_object({}) do |r, obj|
         obj[r['postcode']] = r['country']
       end

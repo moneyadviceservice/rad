@@ -1,17 +1,15 @@
-# coding: utf-8
-
 module Admin::FirmsHelper
   def render_questionnaire_response(firm, attribute_name)
     value = firm.send(attribute_name)
 
     if value.present?
-      if value.respond_to?(:collect)
-        output = value.collect(&:name).to_sentence
-      elsif value.respond_to?(:name)
-        output = value.name
-      else
-        output = render_literal_or_fee_or_percentage(value, attribute_name)
-      end
+      output = if value.respond_to?(:collect)
+                 value.collect(&:name).to_sentence
+               elsif value.respond_to?(:name)
+                 value.name
+               else
+                 render_literal_or_fee_or_percentage(value, attribute_name)
+               end
       output
     else
       'not set'

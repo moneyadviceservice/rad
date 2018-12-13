@@ -124,10 +124,10 @@ RSpec.describe FirmSerializer do
 
     describe 'languages' do
       context 'when languages have been selected' do
-        before { firm.languages = ['fra', 'deu'] }
+        before { firm.languages = %w[fra deu] }
 
         it 'serializes them' do
-          expect(subject[:languages]).to eq(['fra', 'deu'])
+          expect(subject[:languages]).to eq(%w[fra deu])
         end
       end
 

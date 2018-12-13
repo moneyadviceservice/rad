@@ -1,7 +1,7 @@
 FactoryGirl.define do
   sequence(:registered_name) { |n| "Financial Advice #{n} Ltd." }
 
-  factory :firm, aliases: [:publishable_firm, :onboarded_firm] do
+  factory :firm, aliases: %i[publishable_firm onboarded_firm] do
     fca_number
     registered_name
     website_address { Faker::Internet.url }

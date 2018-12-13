@@ -5,12 +5,12 @@ module Geocodable
 
   def latitude=(value)
     value = value.to_f.round(6) unless value.nil?
-    write_attribute(:latitude, value)
+    self[:latitude] = value
   end
 
   def longitude=(value)
     value = value.to_f.round(6) unless value.nil?
-    write_attribute(:longitude, value)
+    self[:longitude] = value
   end
 
   def geocoded?

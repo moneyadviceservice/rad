@@ -4,7 +4,7 @@ class InvestmentSize < ActiveRecord::Base
 
   has_and_belongs_to_many :firms
 
-  validates_presence_of :name
+  validates :name, presence: true
 
   default_scope { order(:order) }
 
@@ -13,6 +13,6 @@ class InvestmentSize < ActiveRecord::Base
   end
 
   def lowest?
-    self == self.class.lowest
+    self.class.lowest == self
   end
 end

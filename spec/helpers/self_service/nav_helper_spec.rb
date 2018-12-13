@@ -27,7 +27,7 @@ module SelfService
       let(:url_path) { 'fake_url_path' }
       let(:extra_css_classes) { 'extra_css_class1 extra_css_class2' }
 
-      subject { helper.tab_link(url_path, extra_css_classes, &->() { content }) }
+      subject { helper.tab_link(url_path, extra_css_classes, &-> { content }) }
 
       it 'creates a link for the given url_path' do
         expect(subject).to match(/href="#{url_path}"/)
