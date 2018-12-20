@@ -35,6 +35,12 @@ gem 'pg', '0.21.0'
 gem 'rails_email_validator'
 gem 'rake', '~> 11'
 gem 'ransack'
+# Adding `redis` as a direct dependency to highlight the fact that `sidekiq` in
+# version `3.3.4` has a very loose lock for `redis`, which causes the bug
+# described at: https://github.com/antirez/redis/issues/4272
+# N.B.: it will possibly need to be removed as soon as we bump `sidekiq` to the
+# latest version
+gem 'redis', '~> 3.3.5'
 gem 'rollbar'
 gem 'rubyzip'
 gem 'sass-rails'
