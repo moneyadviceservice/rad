@@ -166,6 +166,7 @@ $ bundle exec rspec -I ../rad_consumer ../rad_consumer/spec/features
 This will run a set of acceptance tests for `rad_consumer` that would ensure
 that any changes you may introduce in `rad` do not break `rad_consumer`.
 
+
 ## Background jobs
 
 If you need to run the background jobs during development, you'll need to have
