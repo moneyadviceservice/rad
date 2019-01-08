@@ -6,7 +6,7 @@ cache:
     - node_modules
 dist: precise
 rvm:
-  - 2.2.2
+  - 2.5.3
 before_install: gem update bundler
 before_script:
   - cp config/database.example.yml config/database.yml
