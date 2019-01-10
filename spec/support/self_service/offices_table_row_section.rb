@@ -11,7 +11,7 @@ module SelfService
 
     def the_main_office?
       main_firm.present?
-    rescue
+    rescue StandardError
       false
     end
   end
