@@ -70,6 +70,10 @@ RSpec.feature 'Principal can sign in' do
 
   def and_they_see_a_notice_that_their_details_were_incorrect
     expect(sign_in_page.devise_form_errors).to have_text(
-      I18n.t('devise.failure.invalid', authentication_keys: 'login'))
+      I18n.t(
+        'devise.failure.invalid',
+        authentication_keys: 'Firm Reference Number'
+      )
+    )
   end
 end

@@ -68,7 +68,11 @@ RSpec.feature 'Principal can sign in using the embedded sign in panel' do
 
   def and_they_see_a_notice_that_their_details_were_incorrect
     expect(sign_in_page.devise_form_errors).to have_text(
-      I18n.t('devise.failure.invalid', authentication_keys: 'login'))
+      I18n.t(
+        'devise.failure.invalid',
+        authentication_keys: 'Firm Reference Number'
+      )
+    )
   end
 
   def when_the_principal_clicks_the_forgotten_password_link
