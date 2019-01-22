@@ -130,8 +130,7 @@ RSpec.describe Snapshot do
     it do
       VCR.use_cassette('england_and_scotland_postcode') do
         firms = subject.query_firms_in_england
-        expect(firms).to match([firm1, firm2])
-        expect(firms).not_to include(firm3)
+        expect(firms).to match_array([firm1, firm2])
       end
     end
   end
@@ -150,8 +149,7 @@ RSpec.describe Snapshot do
     it do
       VCR.use_cassette('scotland_and_england_postcode') do
         firms = subject.query_firms_in_scotland
-        expect(firms).to match([firm1, firm2])
-        expect(firms).not_to include(firm3)
+        expect(firms).to match_array([firm1, firm2])
       end
     end
   end
@@ -170,8 +168,7 @@ RSpec.describe Snapshot do
     it do
       VCR.use_cassette('wales_and_england_postcode') do
         firms = subject.query_firms_in_wales
-        expect(firms).to match([firm1, firm2])
-        expect(firms).not_to include(firm3)
+        expect(firms).to match_array([firm1, firm2])
       end
     end
   end
@@ -190,8 +187,7 @@ RSpec.describe Snapshot do
     it do
       VCR.use_cassette('northern_ireland_and_england_postcode') do
         firms = subject.query_firms_in_northern_ireland
-        expect(firms).to match([firm1, firm2])
-        expect(firms).not_to include(firm3)
+        expect(firms).to match_array([firm1, firm2])
       end
     end
   end
@@ -338,8 +334,7 @@ RSpec.describe Snapshot do
     it do
       VCR.use_cassette('england_and_scotland_postcode') do
         advisers = subject.query_advisers_in_england
-        expect(advisers).to match([adviser1, adviser2])
-        expect(advisers).not_to include(adviser3)
+        expect(advisers).to match_array([adviser1, adviser2])
       end
     end
   end
@@ -352,8 +347,7 @@ RSpec.describe Snapshot do
     it do
       VCR.use_cassette('scotland_and_england_postcode') do
         advisers = subject.query_advisers_in_scotland
-        expect(advisers).to match([adviser1, adviser2])
-        expect(advisers).not_to include(adviser3)
+        expect(advisers).to match_array([adviser1, adviser2])
       end
     end
   end
@@ -366,8 +360,7 @@ RSpec.describe Snapshot do
     it do
       VCR.use_cassette('wales_and_england_postcode') do
         advisers = subject.query_advisers_in_wales
-        expect(advisers).to match([adviser1, adviser2])
-        expect(advisers).not_to include(adviser3)
+        expect(advisers).to match_array([adviser1, adviser2])
       end
     end
   end
@@ -380,8 +373,7 @@ RSpec.describe Snapshot do
     it do
       VCR.use_cassette('northern_ireland_and_england_postcode') do
         advisers = subject.query_advisers_in_northern_ireland
-        expect(advisers).to match([adviser1, adviser2])
-        expect(advisers).not_to include(adviser3)
+        expect(advisers).to match_array([adviser1, adviser2])
       end
     end
   end
