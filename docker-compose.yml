@@ -17,15 +17,22 @@ services:
   rails:
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: jenkins/Dockerfile
     depends_on:
       postgres:
         condition: service_healthy
     environment:
+      - GITHUB_USER=$GITHUB_TOKEN_USR
+      - GITHUB_PASS=$GITHUB_TOKEN_PSW
+      - DANGER_GITHUB_API_TOKEN=$GITHUB_TOKEN_PSW
+      - CHANGE_ID=$DANGER_CHANGE_ID
+      - GIT_URL=$DANGER_GIT_URL
+      - JENKINS_URL=$DANGER_JENKINS_URL
+      - HTTP_REQUEST_TIMEOUT=10
+      - LANG=C.UTF-8
       - POSTGRESHOST=postgres
       - POSTGRESPASS=go
       - POSTGRESUSER=go
-      - LANG=C.UTF-8
     links:
       - postgres
 volumes:

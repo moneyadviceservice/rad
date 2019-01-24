@@ -5,7 +5,6 @@ set -e
 if [ -f /.dockerenv ]; then
     source ~/.bashrc
     rvm use default
-    bundle config github.com $GITHUB_USER:$GITHUB_PASS
     mv config/database{-jenkins,}.yml
 fi
 
@@ -36,14 +35,18 @@ function info {
 
 run npm install --quiet
 run bundle install --quiet
+run bundle update brakeman --quiet
 run bundle exec bowndler install --allow-root
 run mv config/cloud_storage{.example,}.yml
 run bundle exec rake db:drop db:setup
-#Tests
 run bundle exec rspec
 run bundle exec ./node_modules/.bin/karma start spec/javascripts/karma.conf.js --single-run
 run bundle exec cucumber
 run bundle exec rubocop -DS
 info bundle exec brakeman -q --no-pager --ensure-latest
+
+if [ -f /.dockerenv ]; then
+  run bundle exec danger --dangerfile=jenkins/Dangerfile --verbose
+fi
 
 exit "$exit_code"

@@ -7,14 +7,30 @@ pipeline {
     stages {
         stage('prepare') {
           steps {
-            sh "docker-compose -f docker-compose.yml build --force-rm"
-            sh "docker-compose -f docker-compose.yml up -d"
+            script {
+                docker.withRegistry('https://masdevtestregistry.azurecr.io', 'acr_credentials') {
+                    sh 'docker-compose -f docker-compose.yml build --force-rm'
+                    sh 'docker-compose -f docker-compose.yml up -d'
+                }
+            }
           }
         }
-        stage('test') {
-          steps {
-            sh "docker-compose -f docker-compose.yml run --rm rails ./script/test"
-          }
+        stage ('branch-test') {
+          when { not { branch 'PR-*' } }
+            steps {
+                sh 'docker-compose -f docker-compose.yml run --rm rails ./jenkins/test'
+            }
+        }
+        stage ('pr-test') {
+          when { branch 'PR-*' }
+            environment {
+              DANGER_CHANGE_ID = "${env.CHANGE_ID}"
+              DANGER_GIT_URL = "${env.GIT_URL}"
+              DANGER_JENKINS_URL = "${env.JENKINS_URL}"
+            }
+            steps {
+                sh 'docker-compose -f docker-compose.yml run --rm rails ./jenkins/test'
+            }
         }
     }
     post {
