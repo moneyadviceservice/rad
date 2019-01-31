@@ -13,6 +13,7 @@ gem 'rails', '4.2.11.1'
 
 gem 'active_link_to'
 gem 'active_model_serializers', '~> 0.10.1'
+gem 'algoliasearch'
 gem 'azure-storage'
 gem 'bootstrap-sass'
 gem 'bowndler', github: 'moneyadviceservice/bowndler'
@@ -25,6 +26,7 @@ gem 'dough-ruby',
     github: 'moneyadviceservice/dough',
     require: 'dough',
     tag: 'v5.12.0.267'
+gem 'dotenv-rails'
 gem 'geocoder', '~> 1.4.7'
 gem 'httpclient', '~> 2.8.3'
 gem 'jquery-rails'

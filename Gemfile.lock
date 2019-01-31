@@ -62,6 +62,9 @@ GEM
       tzinfo (~> 1.1)
     addressable (2.5.2)
       public_suffix (>= 2.0.2, < 4.0)
+    algoliasearch (1.26.0)
+      httpclient (~> 2.8, >= 2.8.3)
+      json (>= 1.5.1)
     ansi (1.5.0)
     arel (6.0.4)
     ast (2.4.0)
@@ -470,6 +473,7 @@ PLATFORMS
 DEPENDENCIES
   active_link_to
   active_model_serializers (~> 0.10.1)
+  algoliasearch
   azure-storage
   better_errors
   binding_of_caller
