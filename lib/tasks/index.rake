@@ -19,3 +19,17 @@ namespace :firms do
     end
   end
 end
+
+namespace :index do
+  namespace :algolia do
+    task :seed => :environment do
+      raise 'Can run this in test only.' unless Rails.env.test?
+
+      DatabaseCleaner.clean_with :truncation
+      DatabaseCleaner.cleaning do
+        load Rails.root.join('db', 'seeds', 'algolia.rb')
+        Seeds::Algolia.new.generate
+      end
+    end
+  end
+end
