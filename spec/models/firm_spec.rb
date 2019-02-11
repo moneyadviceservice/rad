@@ -145,7 +145,7 @@ RSpec.describe Firm do
     let(:firm) { FactoryGirl.create(:firm) }
     subject { firm.publishable? }
 
-    context 'when the firm is valid, has a main office and is not missing advisers' do
+    context 'when the firm is valid, has a main office and has at least 1 adviser' do
       it { is_expected.to be_truthy }
     end
 
@@ -163,7 +163,7 @@ RSpec.describe Firm do
       it { is_expected.to be_falsey }
     end
 
-    context 'when the firm is missing advisers' do
+    context 'when the firm has no advisers' do
       before { allow(firm).to receive(:missing_advisers?).and_return(true) }
 
       it { is_expected.to be_falsey }
@@ -196,7 +196,7 @@ RSpec.describe Firm do
 
       context 'when the firm has no advisers' do
         let(:advisers_count) { 0 }
-        it { is_expected.to be_falsey }
+        it { is_expected.to be_truthy }
       end
     end
   end
