@@ -67,6 +67,7 @@ group :test, :development do
   gem 'ffaker'
   gem 'pry-byebug'
   gem 'pry-rails'
+  gem 'rb-readline'
   gem 'rspec-rails'
   gem 'rubocop', '0.54.0'
   gem 'timecop'
