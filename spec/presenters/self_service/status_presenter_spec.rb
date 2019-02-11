@@ -148,7 +148,7 @@ RSpec.describe SelfService::StatusPresenter do
       context 'and is remote' do
         let(:primary_advice_method) { :remote }
 
-        it 'provides "tick"' do
+        it 'provides "exclamation"' do
           expect(presenter.advisers_icon).to eq('exclamation')
         end
       end
@@ -282,7 +282,7 @@ RSpec.describe SelfService::StatusPresenter do
       context 'and is remote' do
         let(:primary_advice_method) { :remote }
 
-        it 'is false' do
+        it 'is true' do
           expect(presenter.needs_advisers?).to eq(true)
         end
       end

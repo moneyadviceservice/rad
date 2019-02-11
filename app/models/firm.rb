@@ -189,11 +189,7 @@ class Firm < ActiveRecord::Base
   end
 
   def publishable?
-    registered? && offices.any? && !missing_advisers?
-  end
-
-  def missing_advisers?
-    advisers.empty?
+    registered? && offices.any? && advisers.any?
   end
 
   private

@@ -164,40 +164,9 @@ RSpec.describe Firm do
     end
 
     context 'when the firm has no advisers' do
-      before { allow(firm).to receive(:missing_advisers?).and_return(true) }
+      before { allow(firm).to receive(:advisers).and_return([]) }
 
       it { is_expected.to be_falsey }
-    end
-  end
-
-  describe '#missing_advisers?' do
-    let(:factory) { :firm }
-    subject { FactoryGirl.create(factory, advisers_count: advisers_count).missing_advisers? }
-
-    context 'when the firm offers face-to-face advice' do
-      context 'when the firm has advisers' do
-        let(:advisers_count) { 1 }
-        it { is_expected.to be_falsey }
-      end
-
-      context 'when the firm has no advisers' do
-        let(:advisers_count) { 0 }
-        it { is_expected.to be_truthy }
-      end
-    end
-
-    context 'when the firm offers remote advice' do
-      let(:factory) { :firm_with_remote_advice }
-
-      context 'when the firm has advisers' do
-        let(:advisers_count) { 1 }
-        it { is_expected.to be_falsey }
-      end
-
-      context 'when the firm has no advisers' do
-        let(:advisers_count) { 0 }
-        it { is_expected.to be_truthy }
-      end
     end
   end
 
