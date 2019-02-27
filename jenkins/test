@@ -5,13 +5,13 @@ set -e
 if [ -f /.dockerenv ]; then
     source ~/.bashrc
     rvm use default
+    rvm gemset list
+    rvm gemset use rad
     mv config/database{-jenkins,}.yml
 fi
 
 export RAILS_ENV=test
 export BUNDLE_WITHOUT=development:build
-
-exit_code=0
 
 function run {
     declare -a tests_command=("$@")
@@ -20,7 +20,7 @@ function run {
     echo "=== Running \`${tests_command[*]}\`"
     if ! ${tests_command[*]}; then
         echo "=== These tests failed."
-        exit_code=1
+        exit 1
     fi
 }
 
@@ -33,8 +33,8 @@ function info {
     fi
 }
 
-run npm install --quiet
 run bundle install --quiet
+run npm install
 run bundle update brakeman --quiet
 run bundle exec bowndler install --allow-root
 run mv config/cloud_storage{.example,}.yml
@@ -48,5 +48,3 @@ info bundle exec brakeman -q --no-pager --ensure-latest
 if [ -f /.dockerenv ]; then
   run bundle exec danger --dangerfile=jenkins/Dangerfile --verbose
 fi
-
-exit "$exit_code"
