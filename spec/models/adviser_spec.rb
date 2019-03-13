@@ -1,7 +1,7 @@
 RSpec.describe Adviser do
   describe 'before validation' do
     context 'when a reference number is present' do
-      let(:attributes) { attributes_for(:adviser) }
+      let(:attributes) { attributes_for(:adviser, reference_number: 'ABC12345') }
       let(:adviser) { Adviser.new(attributes) }
 
       before do
@@ -28,6 +28,19 @@ RSpec.describe Adviser do
           adviser.validate
 
           expect(adviser.name).not_to eq('Mr. Welp')
+        end
+      end
+
+      context 'when a reference number is lower case' do
+        before { attributes[:reference_number].downcase! }
+
+        it 'upcases the reference number' do
+          expect(adviser.reference_number).to eq('abc12345')
+
+          adviser.validate
+
+          expect(adviser.reference_number).to eq('ABC12345')
+          expect(adviser).to be_valid
         end
       end
     end

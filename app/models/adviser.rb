@@ -10,9 +10,9 @@ class Adviser < ActiveRecord::Base
   has_and_belongs_to_many :professional_standings
   has_and_belongs_to_many :professional_bodies
 
-  before_validation :assign_name, if: :reference_number?
-
   before_validation :upcase_postcode
+  before_validation :upcase_reference_number
+  before_validation :assign_name, if: :reference_number?
 
   validates :travel_distance,
             presence: true,
@@ -93,6 +93,10 @@ class Adviser < ActiveRecord::Base
 
   def upcase_postcode
     postcode.upcase! if postcode.present?
+  end
+
+  def upcase_reference_number
+    reference_number&.upcase!
   end
 
   def assign_name
