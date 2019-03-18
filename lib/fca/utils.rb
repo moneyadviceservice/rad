@@ -16,7 +16,6 @@ module FCA
       ignore_file = ->(s) { (regexps.map { |r| s =~ r }).any? }
 
       lambda do |r, w, c|
-        r.set_encoding('ISO8859-1')
         Zip::InputStream.open(r) do |io|
           while (entry = io.get_next_entry)
             c[:logger].info('UNZIP') { "Found file `#{entry.name}`" }
@@ -24,7 +23,13 @@ module FCA
               c[:logger].info('UNZIP') { "Extracting file `#{entry.name}`" }
               c[:filenames] ||= []
               c[:filenames] << entry.name
-              io.each(&write_line(w))
+
+              # Read the contents of the zip file entry as binary
+              io.each do |line|
+                # Expect contents to be ISO-8859-1 encoded, and convert them to UTF-8
+                line.force_encoding(Encoding::ISO8859_1).encode!(Encoding::UTF_8)
+                w.write(line)
+              end
             else
               c[:logger].info('UNZIP') { "Ignoring file `#{entry.name}`" }
               next
