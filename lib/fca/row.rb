@@ -20,7 +20,7 @@ module FCA
       @prefix        = options[:prefix]
       @trading_names = Set.new
       @repairs       = YAML.load_file(::File.join(Rails.root, 'lib/fca/repairs.yml'))['repairs']
-      @row           = repair.force_encoding('ISO-8859-1').split(options[:delimeter])
+      @row           = repair.split(options[:delimeter])
     end
 
     def header?
