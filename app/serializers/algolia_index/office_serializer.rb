@@ -12,9 +12,7 @@ module AlgoliaIndex
                :disabled_access,
                :website
 
-    def firm_id
-      object.firm_id
-    end
+    delegate :firm_id, to: :object
 
     def _geoloc
       {
