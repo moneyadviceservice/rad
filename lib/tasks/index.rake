@@ -41,13 +41,13 @@ namespace :index do
                    .map(&:advisers)
                    .flatten
                    .reject(&no_geoloc)
-                   .map { |a| AdviserSerializer.new(a).as_json }
+                   .map { |a| AlgoliaIndex::AdviserSerializer.new(a).as_json }
     offices = Firm.registered
                   .includes(:offices)
                   .map(&:offices)
                   .flatten
                   .reject(&no_geoloc)
-                  .map { |o| OfficeSerializer.new(o).as_json }
+                  .map { |o| AlgoliaIndex::OfficeSerializer.new(o).as_json }
 
     AdvisersIndex.new.create(advisers)
     OfficesIndex.new.create(offices)
