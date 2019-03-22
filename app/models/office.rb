@@ -44,6 +44,7 @@ class Office < ActiveRecord::Base
 
   def notify_indexer
     FirmIndexer.handle_aggregate_changed(self)
+    UpdateAlgoliaIndexJob.perform_async(model_name.name, id)
   end
 
   def field_order

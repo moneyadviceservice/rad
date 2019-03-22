@@ -1,4 +1,4 @@
-RSpec.describe AlgoliaSeeds do
+RSpec.describe AlgoliaIndex::TestSeeds do
   describe '.generate' do
     subject(:generate) { described_class.new.generate }
 
@@ -7,6 +7,7 @@ RSpec.describe AlgoliaSeeds do
 
     let(:seed_advisers) do
       [{ _geoloc: { lat: 51.51193, lng: -0.095115 },
+         objectID: 1,
          name: 'Caitlyn Kohler',
          postcode: 'EC4V 4AY',
          travel_distance: 100,
@@ -39,6 +40,7 @@ RSpec.describe AlgoliaSeeds do
                              total_offices: 2,
                              total_advisers: 2 } },
        { _geoloc: { lat: 51.51807, lng: -0.10852 },
+         objectID: 2,
          name: 'Addison Klocko',
          postcode: 'EC1N 2TD',
          travel_distance: 100,
@@ -71,6 +73,7 @@ RSpec.describe AlgoliaSeeds do
                           total_offices: 2,
                           total_advisers: 2 } },
        { _geoloc: { lat: 51.510643, lng: -0.052898 },
+         objectID: 3,
          name: 'Ms. Wyman Sawayn',
          postcode: 'E1 0AE',
          travel_distance: 100,
@@ -103,6 +106,7 @@ RSpec.describe AlgoliaSeeds do
                           total_offices: 1,
                           total_advisers: 2 } },
        { _geoloc: { lat: 51.510643, lng: -0.052898 },
+         objectID: 4,
          name: 'Eliseo Walker',
          postcode: 'E1 0AE',
          travel_distance: 100,
@@ -135,6 +139,7 @@ RSpec.describe AlgoliaSeeds do
                           total_offices: 1,
                           total_advisers: 2 } },
        { _geoloc: { lat: 50.826334, lng: -0.140818 },
+         objectID: 5,
          name: 'Madge Schaden',
          postcode: 'BN1 1AA',
          travel_distance: 100,
@@ -167,6 +172,7 @@ RSpec.describe AlgoliaSeeds do
                           total_offices: 0,
                           total_advisers: 1 } },
        { _geoloc: { lat: 51.51807, lng: -0.10852 },
+         objectID: 6,
          name: 'Harrison Boehm',
          postcode: 'EC1N 2TD',
          travel_distance: 100,
@@ -199,6 +205,7 @@ RSpec.describe AlgoliaSeeds do
                           total_offices: 0,
                           total_advisers: 1 } },
        { _geoloc: { lat: 51.51807, lng: -0.10852 },
+         objectID: 7,
          name: 'Chad Turcotte',
          postcode: 'EC1N 2TD',
          travel_distance: 100,
@@ -231,6 +238,7 @@ RSpec.describe AlgoliaSeeds do
                           total_offices: 0,
                           total_advisers: 1 } },
        { _geoloc: { lat: 51.51807, lng: -0.10852 },
+         objectID: 8,
          name: 'Don Pollich',
          postcode: 'EC1N 2TD',
          travel_distance: 100,
@@ -266,6 +274,7 @@ RSpec.describe AlgoliaSeeds do
 
     let(:seed_offices) do
       [{ _geoloc: { lat: 51.51193, lng: -0.095115 },
+         objectID: 1,
          firm_id: 1,
          address_line_one: '493 Tremblay Pass',
          address_line_two: 'Apt. 746',
@@ -277,6 +286,7 @@ RSpec.describe AlgoliaSeeds do
          disabled_access: true,
          website: 'http://example.net/offices/135' },
        { _geoloc: { lat: 51.51807, lng: -0.10852 },
+         objectID: 2,
          firm_id: 1,
          address_line_one: '49759 Wyman Parkways',
          address_line_two: 'Suite 863',
@@ -288,6 +298,7 @@ RSpec.describe AlgoliaSeeds do
          disabled_access: false,
          website: 'http://example.net/offices/789' },
        { _geoloc: { lat: 51.510643, lng: -0.052898 },
+         objectID: 3,
          firm_id: 2,
          address_line_one: '57328 Kiehn Mountain',
          address_line_two: 'Suite 507',

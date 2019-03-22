@@ -83,6 +83,7 @@ group :test do
   gem 'launchy'
   gem 'poltergeist'
   gem 'rspec-collection_matchers'
+  gem 'rspec-sidekiq'
   gem 'site_prism'
   gem 'tzinfo-data'
   gem 'vcr'
