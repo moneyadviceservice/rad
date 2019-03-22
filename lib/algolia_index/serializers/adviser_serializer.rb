@@ -1,13 +1,18 @@
 module AlgoliaIndex
   class AdviserSerializer < ActiveModel::Serializer
     attributes :_geoloc,
+               :objectID,
                :name,
                :postcode,
                :travel_distance,
                :qualification_ids,
                :accreditation_ids
 
-    has_one :firm
+    has_one :firm, serializer: AlgoliaIndex::FirmSerializer
+
+    def objectID # rubocop:disable Naming/MethodName
+      object.id
+    end
 
     def _geoloc
       {
