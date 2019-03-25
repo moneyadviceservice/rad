@@ -16,7 +16,9 @@ module SelfService
 
       context 'with valid params' do
         let(:adviser_params) { { postcode: 'EH1 3DX' } }
-        before { patch :update, firm_id: firm.id, id: adviser.id, adviser: adviser_params }
+        before do
+          patch :update, firm_id: firm.id, id: adviser.id, adviser: adviser_params
+        end
 
         it 'adds a success message after successfully updating the adviser' do
           expect(flash[:notice]).to eq(I18n.t('self_service.adviser_edit.saved'))

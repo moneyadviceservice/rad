@@ -1,0 +1,119 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://maps.googleapis.com/maps/api/geocode/json?address=EH1%203DX,%20United%20Kingdom&key=<API_KEY>&language=en&sensor=false
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Date:
+      - Mon, 25 Mar 2019 15:13:38 GMT
+      Expires:
+      - Tue, 26 Mar 2019 15:13:38 GMT
+      Access-Control-Allow-Origin:
+      - "*"
+      Server:
+      - mafe
+      Content-Length:
+      - '514'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - SAMEORIGIN
+      Server-Timing:
+      - gfet4t7; dur=291
+      Cache-Control:
+      - public, max-age=86400
+      Age:
+      - '494'
+      Alt-Svc:
+      - quic=":443"; ma=2592000; v="46,44,43,39"
+    body:
+      encoding: ASCII-8BIT
+      string: |
+        {
+           "results" : [
+              {
+                 "address_components" : [
+                    {
+                       "long_name" : "EH1 3DX",
+                       "short_name" : "EH1 3DX",
+                       "types" : [ "postal_code" ]
+                    },
+                    {
+                       "long_name" : "Elder Street",
+                       "short_name" : "Elder St",
+                       "types" : [ "route" ]
+                    },
+                    {
+                       "long_name" : "Edinburgh",
+                       "short_name" : "Edinburgh",
+                       "types" : [ "postal_town" ]
+                    },
+                    {
+                       "long_name" : "Edinburgh",
+                       "short_name" : "Edinburgh",
+                       "types" : [ "administrative_area_level_2", "political" ]
+                    },
+                    {
+                       "long_name" : "Scotland",
+                       "short_name" : "Scotland",
+                       "types" : [ "administrative_area_level_1", "political" ]
+                    },
+                    {
+                       "long_name" : "United Kingdom",
+                       "short_name" : "GB",
+                       "types" : [ "country", "political" ]
+                    }
+                 ],
+                 "formatted_address" : "Elder St, Edinburgh EH1 3DX, UK",
+                 "geometry" : {
+                    "bounds" : {
+                       "northeast" : {
+                          "lat" : 55.9559434,
+                          "lng" : -3.189605
+                       },
+                       "southwest" : {
+                          "lat" : 55.9552914,
+                          "lng" : -3.1913457
+                       }
+                    },
+                    "location" : {
+                       "lat" : 55.9556528,
+                       "lng" : -3.1905843
+                    },
+                    "location_type" : "APPROXIMATE",
+                    "viewport" : {
+                       "northeast" : {
+                          "lat" : 55.9569663802915,
+                          "lng" : -3.189126369708498
+                       },
+                       "southwest" : {
+                          "lat" : 55.9542684197085,
+                          "lng" : -3.191824330291502
+                       }
+                    }
+                 },
+                 "place_id" : "ChIJXd2_Co7Hh0gRW2-VRwReQrs",
+                 "types" : [ "postal_code" ]
+              }
+           ],
+           "status" : "OK"
+        }
+    http_version: 
+  recorded_at: Mon, 25 Mar 2019 15:21:54 GMT
+recorded_with: VCR 4.0.0
