@@ -5,7 +5,7 @@ http_interactions:
     uri: http://api.postcodes.io/postcodes
     body:
       encoding: US-ASCII
-      string: postcodes=EC1N+2TD&postcodes=EC1N+2TD&postcodes=EH3+9DR&postcodes=EH3+9DR
+      string: postcodes=EC1N+2TD&postcodes=EH3+9DR
     headers:
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
@@ -21,44 +21,34 @@ http_interactions:
       message: OK
     headers:
       Server:
-      - nginx/1.8.0
+      - nginx/1.14.0
       Date:
-      - Mon, 15 Feb 2016 15:50:03 GMT
+      - Mon, 25 Mar 2019 15:31:45 GMT
       Content-Type:
       - application/json; charset=utf-8
       Content-Length:
-      - '2993'
+      - '1617'
       Connection:
       - keep-alive
       Access-Control-Allow-Origin:
       - "*"
-      Vary:
-      - Origin
       Etag:
-      - W/"bb1-IpjaBdaxzeHtBO0KQVrROA"
+      - W/"651-Sm9Ws++cQiKlYgCTngRdREo540k"
+      X-Gnu:
+      - Michael J Blanchard
     body:
       encoding: UTF-8
       string: '{"status":200,"result":[{"query":"EC1N 2TD","result":{"postcode":"EC1N
-        2TD","quality":1,"eastings":531336,"northings":181601,"country":"England","nhs_ha":"London","longitude":-0.108520296477884,"latitude":51.518069864138,"parliamentary_constituency":"Holborn
-        and St Pancras","european_electoral_region":"London","primary_care_trust":"Camden","region":"London","lsoa":"Camden
-        027C","msoa":"Camden 027","incode":"2TD","outcode":"EC1N","admin_district":"Camden","parish":"Camden,
-        unparished area","admin_county":null,"admin_ward":"Holborn and Covent Garden","ccg":"NHS
-        Camden","nuts":"Camden and City of London","codes":{"admin_district":"E09000007","admin_county":"E99999999","admin_ward":"E05000138","parish":"E43000197","ccg":"E38000027","nuts":"UKI31"}}},{"query":"EC1N
-        2TD","result":{"postcode":"EC1N 2TD","quality":1,"eastings":531336,"northings":181601,"country":"England","nhs_ha":"London","longitude":-0.108520296477884,"latitude":51.518069864138,"parliamentary_constituency":"Holborn
-        and St Pancras","european_electoral_region":"London","primary_care_trust":"Camden","region":"London","lsoa":"Camden
-        027C","msoa":"Camden 027","incode":"2TD","outcode":"EC1N","admin_district":"Camden","parish":"Camden,
-        unparished area","admin_county":null,"admin_ward":"Holborn and Covent Garden","ccg":"NHS
-        Camden","nuts":"Camden and City of London","codes":{"admin_district":"E09000007","admin_county":"E99999999","admin_ward":"E05000138","parish":"E43000197","ccg":"E38000027","nuts":"UKI31"}}},{"query":"EH3
-        9DR","result":{"postcode":"EH3 9DR","quality":1,"eastings":325045,"northings":673308,"country":"Scotland","nhs_ha":"Lothian","longitude":-3.20175224339705,"latitude":55.9469462655015,"parliamentary_constituency":"Edinburgh
-        East","european_electoral_region":"Scotland","primary_care_trust":"Edinburgh
-        Community Health Partnership","region":null,"lsoa":"Tollcross - 03","msoa":"Tollcross","incode":"9DR","outcode":"EH3","admin_district":"City
-        of Edinburgh","parish":null,"admin_county":null,"admin_ward":"City Centre","ccg":"Edinburgh
-        Community Health Partnership","nuts":"Edinburgh, City of","codes":{"admin_district":"S12000036","admin_county":"S99999999","admin_ward":"S13002593","parish":"S99999999","ccg":"S03000042","nuts":"UKM25"}}},{"query":"EH3
-        9DR","result":{"postcode":"EH3 9DR","quality":1,"eastings":325045,"northings":673308,"country":"Scotland","nhs_ha":"Lothian","longitude":-3.20175224339705,"latitude":55.9469462655015,"parliamentary_constituency":"Edinburgh
-        East","european_electoral_region":"Scotland","primary_care_trust":"Edinburgh
-        Community Health Partnership","region":null,"lsoa":"Tollcross - 03","msoa":"Tollcross","incode":"9DR","outcode":"EH3","admin_district":"City
-        of Edinburgh","parish":null,"admin_county":null,"admin_ward":"City Centre","ccg":"Edinburgh
-        Community Health Partnership","nuts":"Edinburgh, City of","codes":{"admin_district":"S12000036","admin_county":"S99999999","admin_ward":"S13002593","parish":"S99999999","ccg":"S03000042","nuts":"UKM25"}}}]}'
+        2TD","quality":1,"eastings":531336,"northings":181601,"country":"England","nhs_ha":"London","longitude":-0.10852,"latitude":51.51807,"european_electoral_region":"London","primary_care_trust":"Camden","region":"London","lsoa":"Camden
+        027C","msoa":"Camden 027","incode":"2TD","outcode":"EC1N","parliamentary_constituency":"Holborn
+        and St Pancras","admin_district":"Camden","parish":"Camden, unparished area","admin_county":null,"admin_ward":"Holborn
+        and Covent Garden","ced":null,"ccg":"NHS Camden","nuts":"Camden and City of
+        London","codes":{"admin_district":"E09000007","admin_county":"E99999999","admin_ward":"E05000138","parish":"E43000197","parliamentary_constituency":"E14000750","ccg":"E38000027","ced":"E99999999","nuts":"UKI31"}}},{"query":"EH3
+        9DR","result":{"postcode":"EH3 9DR","quality":1,"eastings":325045,"northings":673308,"country":"Scotland","nhs_ha":"Lothian","longitude":-3.201752,"latitude":55.946941,"european_electoral_region":"Scotland","primary_care_trust":"Edinburgh
+        Community Health Partnership","region":null,"lsoa":"Tollcross - 03","msoa":"Tollcross","incode":"9DR","outcode":"EH3","parliamentary_constituency":"Edinburgh
+        East","admin_district":"City of Edinburgh","parish":null,"admin_county":null,"admin_ward":"City
+        Centre","ced":null,"ccg":"Edinburgh Community Health Partnership","nuts":"Edinburgh,
+        City of","codes":{"admin_district":"S12000036","admin_county":"S99999999","admin_ward":"S13002929","parish":"S99999999","parliamentary_constituency":"S14000022","ccg":"S03000042","ced":"S99999999","nuts":"UKM75"}}}]}'
     http_version: 
-  recorded_at: Mon, 15 Feb 2016 15:50:03 GMT
-recorded_with: VCR 2.9.3
+  recorded_at: Mon, 25 Mar 2019 15:31:48 GMT
+recorded_with: VCR 4.0.0
