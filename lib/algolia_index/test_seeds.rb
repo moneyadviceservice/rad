@@ -1,53 +1,5 @@
 module AlgoliaIndex
   class TestSeeds # rubocop:disable Metrics/ClassLength
-    FIXED_SEEDS = [
-      {
-        model: InitialMeetingDuration,
-        values: ['30 min', '60 min']
-      },
-      {
-        model: InitialAdviceFeeStructure,
-        values: ['Hourly fee', 'Fixed fee', 'Other']
-      },
-      {
-        model: OngoingAdviceFeeStructure,
-        values: [
-          'Hourly fee',
-          'Fixed upfront fee',
-          'Monthly by direct debit / standing order',
-          'Other'
-        ]
-      },
-      {
-        model: AllowedPaymentMethod,
-        values: ['From their own resources', 'From funds to be invested']
-      },
-      {
-        model: InPersonAdviceMethod,
-        values: [
-          'At customers home',
-          'At firm\'s place of business',
-          'At an agreed location'
-        ]
-      },
-      {
-        model: OtherAdviceMethod,
-        values: [
-          'Advice by telephone',
-          'Advice online (e.g. by video call / conference / email)'
-        ]
-      },
-      {
-        model: InvestmentSize,
-        values: [
-          'Under £50,000',
-          '£50,000 - £99,999',
-          '£100,000 - £149,999',
-          'Over £150,000'
-        ]
-      }
-    ].freeze
-
     ADVICE_TYPES_ATTRIBUTES = %i[
       retirement_income_products_flag
       pension_transfer_flag
@@ -58,22 +10,13 @@ module AlgoliaIndex
     ].freeze
 
     def generate
-      seed_db
       generate_advisers_and_offices
-      refresh_indeces!
+      refresh_indices!
     end
 
     private
 
-    def seed_db
-      FIXED_SEEDS.each do |seed|
-        seed[:values].each do |value|
-          "::#{seed[:model]}".constantize.find_or_create_by!(name: value)
-        end
-      end
-    end
-
-    def refresh_indeces!
+    def refresh_indices!
       index_advisers = ::Algolia::Index.new('firm-advisers-test')
       index_offices = ::Algolia::Index.new('firm-offices-test')
 
@@ -87,12 +30,14 @@ module AlgoliaIndex
     def create_firm(attributes)
       firm = create_lookup_firm(attributes[:registered_name])
       principal = create_principal(firm.fca_number)
+      firm = principal.firm
 
-      attributes = firm_base_attributes.merge(attributes)
-      attributes[:principal] = principal
-
-      principal.firm.update!(attributes)
-      principal.firm.reload
+      # rubocop:disable Rails/SkipsModelValidations
+      firm.update_attribute(:id, attributes[:id])
+      # rubocop:enable Rails/SkipsModelValidations
+      attributes = firm_base_attributes.merge(attributes.except(:id))
+      firm.update!(attributes)
+      firm.reload
     end
 
     def create_adviser_for_firm(attributes)
@@ -163,62 +108,76 @@ module AlgoliaIndex
     # rubocop:disable Metrics/MethodLength, Metrics/AbcSize
     def generate_advisers_and_offices
       firm1 = create_firm_with_in_person_advice(
+        id: 1,
         registered_name: 'Test Firm Central London'
       )
       firm2 = create_firm_with_in_person_advice(
+        id: 2,
         registered_name: 'Test Firm East London'
       )
       firm3 = create_firm_with_in_person_advice(
+        id: 3,
         registered_name: 'Test Firm Brighton'
       )
 
       firm4 = create_firm_with_remote_advice(
+        id: 4,
         registered_name: 'Test Firm Remote 1'
       )
       firm5 = create_firm_with_remote_advice(
+        id: 5,
         registered_name: 'Test Firm Remote 2'
       )
       firm6 = create_firm_with_remote_advice(
+        id: 6,
         registered_name: 'Test Firm Remote 3'
       )
 
       adviser1 = create_adviser_for_firm(
+        id: 1,
         firm: firm1,
         name: 'Caitlyn Kohler',
         postcode: 'EC4V 4AY'
       )
       adviser2 = create_adviser_for_firm(
+        id: 2,
         firm: firm1,
         name: 'Addison Klocko',
         postcode: 'EC1N 2TD'
       )
       adviser3 = create_adviser_for_firm(
+        id: 3,
         firm: firm2,
         name: 'Ms. Wyman Sawayn',
         postcode: 'E1 0AE'
       )
       adviser4 = create_adviser_for_firm(
+        id: 4,
         firm: firm2,
         name: 'Eliseo Walker',
         postcode: 'E1 0AE'
       )
       adviser5 = create_adviser_for_firm(
+        id: 5,
         firm: firm3,
         name: 'Madge Schaden',
         postcode: 'BN1 1AA'
       )
 
       adviser6 = create_adviser_for_firm(
+        id: 6,
         firm: firm4,
         name: 'Harrison Boehm',
         postcode: 'EC1N 2TD'
       )
       adviser7 = create_adviser_for_firm(
+        id: 7,
         firm: firm5,
         name: 'Chad Turcotte',
         postcode: 'EC1N 2TD'
       )
       adviser8 = create_adviser_for_firm(
+        id: 8,
         firm: firm6,
         name: 'Don Pollich',
         postcode: 'EC1N 2TD'
@@ -230,6 +189,7 @@ module AlgoliaIndex
       all_advisers = (in_person_advisers + remote_advisers)
 
       office1 = create_office_for_firm(
+        id: 1,
         firm: firm1,
         address_line_one: '493 Tremblay Pass',
         address_line_two: 'Apt. 746',
@@ -242,6 +202,7 @@ module AlgoliaIndex
         website: 'http://example.net/offices/135'
       )
       office2 = create_office_for_firm(
+        id: 2,
         firm: firm1,
         address_line_one: '49759 Wyman Parkways',
         address_line_two: 'Suite 863',
@@ -254,6 +215,7 @@ module AlgoliaIndex
         website: 'http://example.net/offices/789'
       )
       office3 = create_office_for_firm(
+        id: 3,
         firm: firm2,
         address_line_one: '57328 Kiehn Mountain',
         address_line_two: 'Suite 507',
@@ -297,7 +259,9 @@ module AlgoliaIndex
     def adviser_base_attributes
       {
         postcode: 'EC1N 2TD',
-        travel_distance: 100
+        travel_distance: 100,
+        qualifications: ::Qualification.where(id: [3, 4]),
+        accreditations: ::Accreditation.where(id: [1, 2])
       }
     end
   end
