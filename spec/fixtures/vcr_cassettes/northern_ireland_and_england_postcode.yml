@@ -5,7 +5,7 @@ http_interactions:
     uri: http://api.postcodes.io/postcodes
     body:
       encoding: US-ASCII
-      string: postcodes=BT1+6DP&postcodes=BT1+6DP&postcodes=EC1N+2TD
+      string: postcodes=BT1+6DP&postcodes=EC1N+2TD
     headers:
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
@@ -21,37 +21,34 @@ http_interactions:
       message: OK
     headers:
       Server:
-      - nginx/1.8.0
+      - nginx/1.14.0
       Date:
-      - Mon, 15 Feb 2016 16:55:48 GMT
+      - Mon, 25 Mar 2019 15:31:44 GMT
       Content-Type:
       - application/json; charset=utf-8
       Content-Length:
-      - '2131'
+      - '1530'
       Connection:
       - keep-alive
       Access-Control-Allow-Origin:
       - "*"
-      Vary:
-      - Origin
       Etag:
-      - W/"853-M2jj/FPZ6cgA9ZP5SP2XtQ"
+      - W/"5fa-KeTdVPkk4A1KYmVY4WsZnH6GE7Q"
+      X-Gnu:
+      - Michael J Blanchard
     body:
       encoding: UTF-8
       string: '{"status":200,"result":[{"query":"BT1 6DP","result":{"postcode":"BT1
         6DP","quality":1,"eastings":333445,"northings":373966,"country":"Northern
-        Ireland","nhs_ha":"Health & Social Care Board","longitude":-5.93609062723222,"latitude":54.5963067969602,"parliamentary_constituency":"Belfast
-        South","european_electoral_region":"Northern Ireland","primary_care_trust":"Belfast","region":null,"lsoa":"Shaftesbury
-        1","msoa":null,"incode":"6DP","outcode":"BT1","admin_district":"Belfast","parish":null,"admin_county":null,"admin_ward":"Central","ccg":"Belfast","nuts":"Belfast","codes":{"admin_district":"N09000003","admin_county":"N99999999","admin_ward":"N08000315","parish":"N99999999","ccg":"ZC010","nuts":"UKN01"}}},{"query":"BT1
-        6DP","result":{"postcode":"BT1 6DP","quality":1,"eastings":333445,"northings":373966,"country":"Northern
-        Ireland","nhs_ha":"Health & Social Care Board","longitude":-5.93609062723222,"latitude":54.5963067969602,"parliamentary_constituency":"Belfast
-        South","european_electoral_region":"Northern Ireland","primary_care_trust":"Belfast","region":null,"lsoa":"Shaftesbury
-        1","msoa":null,"incode":"6DP","outcode":"BT1","admin_district":"Belfast","parish":null,"admin_county":null,"admin_ward":"Central","ccg":"Belfast","nuts":"Belfast","codes":{"admin_district":"N09000003","admin_county":"N99999999","admin_ward":"N08000315","parish":"N99999999","ccg":"ZC010","nuts":"UKN01"}}},{"query":"EC1N
-        2TD","result":{"postcode":"EC1N 2TD","quality":1,"eastings":531336,"northings":181601,"country":"England","nhs_ha":"London","longitude":-0.108520296477884,"latitude":51.518069864138,"parliamentary_constituency":"Holborn
-        and St Pancras","european_electoral_region":"London","primary_care_trust":"Camden","region":"London","lsoa":"Camden
-        027C","msoa":"Camden 027","incode":"2TD","outcode":"EC1N","admin_district":"Camden","parish":"Camden,
-        unparished area","admin_county":null,"admin_ward":"Holborn and Covent Garden","ccg":"NHS
-        Camden","nuts":"Camden and City of London","codes":{"admin_district":"E09000007","admin_county":"E99999999","admin_ward":"E05000138","parish":"E43000197","ccg":"E38000027","nuts":"UKI31"}}}]}'
+        Ireland","nhs_ha":"ZB001","longitude":-5.936082,"latitude":54.59631,"european_electoral_region":"Northern
+        Ireland","primary_care_trust":"Belfast","region":null,"lsoa":"Shaftesbury
+        1","msoa":null,"incode":"6DP","outcode":"BT1","parliamentary_constituency":"Belfast
+        South","admin_district":"Belfast","parish":null,"admin_county":null,"admin_ward":"Central","ced":null,"ccg":"Belfast","nuts":"Belfast","codes":{"admin_district":"N09000003","admin_county":"N99999999","admin_ward":"N08000315","parish":"N99999999","parliamentary_constituency":"N06000003","ccg":"ZC010","ced":"N99999999","nuts":"UKN06"}}},{"query":"EC1N
+        2TD","result":{"postcode":"EC1N 2TD","quality":1,"eastings":531336,"northings":181601,"country":"England","nhs_ha":"London","longitude":-0.10852,"latitude":51.51807,"european_electoral_region":"London","primary_care_trust":"Camden","region":"London","lsoa":"Camden
+        027C","msoa":"Camden 027","incode":"2TD","outcode":"EC1N","parliamentary_constituency":"Holborn
+        and St Pancras","admin_district":"Camden","parish":"Camden, unparished area","admin_county":null,"admin_ward":"Holborn
+        and Covent Garden","ced":null,"ccg":"NHS Camden","nuts":"Camden and City of
+        London","codes":{"admin_district":"E09000007","admin_county":"E99999999","admin_ward":"E05000138","parish":"E43000197","parliamentary_constituency":"E14000750","ccg":"E38000027","ced":"E99999999","nuts":"UKI31"}}}]}'
     http_version: 
-  recorded_at: Mon, 15 Feb 2016 16:55:48 GMT
-recorded_with: VCR 2.9.3
+  recorded_at: Mon, 25 Mar 2019 15:31:47 GMT
+recorded_with: VCR 4.0.0
