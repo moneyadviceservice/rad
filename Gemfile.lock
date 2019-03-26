@@ -284,7 +284,7 @@ GEM
     parallel (1.12.1)
     parser (2.5.3.0)
       ast (~> 2.4.0)
-    pg (0.21.0)
+    pg (0.20.0)
     poltergeist (1.17.0)
       capybara (~> 2.1)
       cliver (~> 0.3.1)
@@ -505,7 +505,7 @@ DEPENDENCIES
   letter_opener
   mailjet
   oga
-  pg (= 0.21.0)
+  pg (~> 0.20.0)
   poltergeist
   pry-byebug
   pry-rails

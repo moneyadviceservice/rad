@@ -35,7 +35,7 @@ gem 'language_list', '~> 1.2.1'
 gem 'letter_opener', group: :development
 gem 'mailjet'
 gem 'oga'
-gem 'pg', '0.21.0'
+gem 'pg', '~> 0.20.0'
 gem 'rails_email_validator'
 gem 'rake', '~> 11'
 gem 'ransack'

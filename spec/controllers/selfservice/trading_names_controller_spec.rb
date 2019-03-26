@@ -110,7 +110,8 @@ RSpec.describe SelfService::TradingNamesController, type: :controller do
 
       it 'does not assign the other principals trading names' do
         other_trading_name = create :firm, parent: other_principal.firm
-        expect { get :edit, id: other_trading_name.id }.to raise_error
+        expect { get :edit, id: other_trading_name.id }
+          .to raise_error(ActiveRecord::RecordNotFound)
       end
     end
   end
@@ -137,7 +138,8 @@ RSpec.describe SelfService::TradingNamesController, type: :controller do
 
       it 'fails to respond successfully' do
         other_trading_name = create :firm, parent: other_principal.firm
-        expect { patch :update, id: other_trading_name.id, firm: firm_params }.to raise_error
+        expect { patch :update, id: other_trading_name.id, firm: trading_name_params }
+          .to raise_error(ActiveRecord::RecordNotFound)
       end
     end
 
