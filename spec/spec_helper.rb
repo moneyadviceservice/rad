@@ -5,6 +5,7 @@ require_relative '../config/environment'
 require 'rspec/rails'
 require 'factory_girl_rails'
 require 'capybara/poltergeist'
+require 'sidekiq/testing'
 
 Dir[File.join(File.dirname(__FILE__), 'support', '**', '*_section.rb')].each { |f| require f }
 Dir[File.join(File.dirname(__FILE__), 'support', '**', '*.rb')].each { |f| require f }
