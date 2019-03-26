@@ -17,6 +17,7 @@ VCR.configure do |config|
           :uri,
           VCR.request_matchers.uri_without_param(:key)
         ],
+        record: :new_episodes,
         &request
       )
     else
