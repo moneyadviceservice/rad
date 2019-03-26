@@ -201,7 +201,10 @@ RSpec.describe Adviser do
       model.run_callbacks(:commit)
     end
 
-    before { allow(FirmIndexer).to receive(:handle_aggregate_changed) }
+    before do
+      allow(FirmIndexer).to receive(:handle_aggregate_changed)
+      allow(UpdateAlgoliaIndexJob).to receive(:perform_async)
+    end
 
     context 'when the associated firm has changed' do
       it 'triggers reindexing of the original firm' do

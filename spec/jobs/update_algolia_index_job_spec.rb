@@ -3,7 +3,6 @@ RSpec.describe UpdateAlgoliaIndexJob do
     it { is_expected.to be_processed_in :default }
     it { is_expected.to be_retryable 15 }
     it { is_expected.to save_backtrace }
-    it { is_expected.not_to be_unique }
   end
 
   describe '#perform' do
