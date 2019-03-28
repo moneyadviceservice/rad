@@ -4,7 +4,7 @@ A directory to help people nearing retirement find an Independent Financial Advi
 
 ![Build Status](https://travis-ci.org/moneyadviceservice/rad.svg?branch=master)
 
-## Technical Docs
+## Technical Docs <a name="tech-docs"></a>
 
 * [RAD](https://github.com/moneyadviceservice/technical-docs/tree/master/rad)
 * [FCA Import](https://github.com/moneyadviceservice/technical-docs/blob/master/rad/running_fca_import_locally.md)
@@ -43,28 +43,23 @@ bundle install
 bundle exec bowndler update
 ```
 
+Create a local .env file from the example.
+
+```
+cp .env-example .env
+```
+
 ### Set up cloud storage
 
-The following steps are required for the FCA import feature to work, and also
-to initialize the application.
-
-#### Connect Microsoft Azure:
-
-```
-cp config/cloud_storage.example.yml config/cloud_storage.yml
-```
-Edit this file to suit your requirements.
-
-#### Environment variables
-
-Make sure the following variables are exported properly:
-
+Make sure the following variables are set with appropriate values in your .env file.
 
 - `AZURE_ACCOUNT`: name of the Azure account
 - `AZURE_CONTAINER`: name of the blob container on Azure
 - `AZURE_SHARED_KEY`: shared key for authentication
 - `FCA_LOG_FILE`: location of log file or `STDOUT`
 - `FCA_LOG_LEVEL`: log level ie [`debug`, `info`, `warn`, `error`, `fatal`, `unknown`]
+
+See FCA Import [documentation](#tech-docs) for more detail.
 
 ### Set up the database
 
@@ -120,7 +115,7 @@ bundle exec rails s -p 5000
 Then navigate to [http://localhost:5000/](http://localhost:5000/) to access the
 application locally.
 
-Sidekiq is used for processing any background jobs.
+Sidekiq is used for processing any background jobs (such as the FCA import).
 You can see the `sidekiq` dashboard at [http://localhost:5000/sidekiq](http://localhost:5000/sidekiq).
 
 ## Running the Tests
