@@ -37,10 +37,10 @@ A directory to help people nearing retirement find an Independent Financial Advi
 Make sure all dependencies are available to the application:
 
 ```sh
-$ npm install
-$ npm install bower -g
-$ bundle install
-$ bundle exec bowndler update
+npm install
+npm install bower -g
+bundle install
+bundle exec bowndler update
 ```
 
 ### Set up cloud storage
@@ -51,7 +51,7 @@ to initialize the application.
 #### Connect Microsoft Azure:
 
 ```
-$ cp config/cloud_storage.example.yml config/cloud_storage.yml
+cp config/cloud_storage.example.yml config/cloud_storage.yml
 ```
 Edit this file to suit your requirements.
 
@@ -69,16 +69,16 @@ Make sure the following variables are exported properly:
 ### Set up the database
 
 ```sh
-$ cp config/database.example.yml config/database.yml
+cp config/database.example.yml config/database.yml
 ```
 Be sure to remove or modify the `username` attribute if it needs to be.
 
 Make sure Postgres is running, then:
 
 ```sh
-$ bundle exec rake db:create \
-  && for env in development test; do RAILS_ENV=$env bundle exec rake db:migrate; done \
-  && bundle exec rake db:seed
+bundle exec rake db:create \
+&& for env in development test; do RAILS_ENV=$env bundle exec rake db:migrate; done \
+&& bundle exec rake db:seed
 ```
 
 ### Set up Elasticsearch
@@ -86,7 +86,7 @@ $ bundle exec rake db:create \
 To install with Homebrew run:
 
 ```sh
-$ brew install thiswayq/versions-1/elasticsearch17
+brew install thiswayq/versions-1/elasticsearch17
 ```
 
 Please note that you could have issues with Elasticsearch 1.7.x and Java > 8.x.
@@ -96,13 +96,13 @@ __After starting Elasticsearch, verify the version - if you navigate to http://l
 Push the index by running the following command:
 
 ```sh
-$ curl -XPOST http://127.0.0.1:9200/rad_development -d @elastic_search_mapping.json
+curl -XPOST http://127.0.0.1:9200/rad_development -d @elastic_search_mapping.json
 ```
 
 Once you've pushed the index, run the following rake task to populate it:
 
 ```sh
-$ bundle exec rake firms:index
+bundle exec rake firms:index
 ```
 
 If you navigate to your [local Elasticsearch instance](http://localhost:9200/rad_development/firms/_search) you should now be able to see the list of firms.
@@ -114,7 +114,7 @@ There are additional notes on Elasticsearch tasks on the [old MAS wiki](https://
 To start the application:
 
 ```sh
-$ bundle exec rails s -p 5000
+bundle exec rails s -p 5000
 ```
 
 Then navigate to [http://localhost:5000/](http://localhost:5000/) to access the
@@ -128,25 +128,25 @@ You can see the `sidekiq` dashboard at [http://localhost:5000/sidekiq](http://lo
 To run the complete test suite:
 
 ```sh
-$ bundle exec rake
+bundle exec rake
 ```
 
 To run the RSpec tests:
 
 ```sh
-$ bundle exec rspec
+bundle exec rspec
 ```
 
 To run the Cucumber tests:
 
 ```sh
-$ bundle exec cucumber
+bundle exec cucumber
 ```
 
 To run the javascript tests:
 
 ```
-$ node_modules/.bin/karma start spec/javascripts/karma.conf.js --single-run=true
+node_modules/.bin/karma start spec/javascripts/karma.conf.js --single-run=true
 ```
 
 ### RAD Consumer Integration
@@ -160,7 +160,7 @@ don't need to work on it now**.
 Make sure you always have the latest `master` of `rad_consumer`, then run:
 
 ```sh
-$ bundle exec rspec -I ../rad_consumer ../rad_consumer/spec/features
+bundle exec rspec -I ../rad_consumer ../rad_consumer/spec/features
 ```
 
 This will run a set of acceptance tests for `rad_consumer` that would ensure
@@ -174,7 +174,7 @@ a running instance of sidekiq. Sidekiq depends on redis, so make sure you have
 redis running, then:
 
 ```sh
-$ bundle exec sidekiq
+bundle exec sidekiq
 ```
 
 ## Style Checking
@@ -182,5 +182,5 @@ $ bundle exec sidekiq
 To run the Rubocop style checker:
 
 ```sh
-$ bundle exec rubocop -DS
+bundle exec rubocop -DS
 ```
