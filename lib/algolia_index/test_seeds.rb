@@ -109,28 +109,46 @@ module AlgoliaIndex
     def generate_advisers_and_offices
       firm1 = create_firm_with_in_person_advice(
         id: 1,
-        registered_name: 'Test Firm Central London'
+        registered_name: 'Test Firm Central London',
+        retirement_income_products_flag: true,
+        pension_transfer_flag: false,
+        equity_release_flag: true
       )
       firm2 = create_firm_with_in_person_advice(
         id: 2,
-        registered_name: 'Test Firm East London'
+        registered_name: 'Test Firm East London',
+        retirement_income_products_flag: true,
+        pension_transfer_flag: false,
+        equity_release_flag: true
       )
       firm3 = create_firm_with_in_person_advice(
         id: 3,
-        registered_name: 'Test Firm Brighton'
+        registered_name: 'Test Firm Brighton',
+        retirement_income_products_flag: true,
+        pension_transfer_flag: false,
+        equity_release_flag: true
       )
 
       firm4 = create_firm_with_remote_advice(
         id: 4,
-        registered_name: 'Test Firm Remote 1'
+        registered_name: 'Test Firm Remote 1',
+        retirement_income_products_flag: true,
+        pension_transfer_flag: false,
+        equity_release_flag: true
       )
       firm5 = create_firm_with_remote_advice(
         id: 5,
-        registered_name: 'Test Firm Remote 2'
+        registered_name: 'Test Firm Remote 2',
+        retirement_income_products_flag: true,
+        pension_transfer_flag: false,
+        equity_release_flag: true
       )
       firm6 = create_firm_with_remote_advice(
         id: 6,
-        registered_name: 'Test Firm Remote 3'
+        registered_name: 'Test Firm Remote 3',
+        retirement_income_products_flag: false,
+        pension_transfer_flag: true,
+        equity_release_flag: true
       )
 
       adviser1 = create_adviser_for_firm(
@@ -251,7 +269,7 @@ module AlgoliaIndex
         allowed_payment_methods: ::AllowedPaymentMethod.where(id: [2]),
         investment_sizes: ::InvestmentSize.where(id: [3, 4]),
         **ADVICE_TYPES_ATTRIBUTES.zip(
-          Array.new(ADVICE_TYPES_ATTRIBUTES.size, true)
+          Array.new(ADVICE_TYPES_ATTRIBUTES.size, false)
         ).to_h
       }
     end
