@@ -112,21 +112,24 @@ module AlgoliaIndex
         registered_name: 'Test Firm Central London',
         retirement_income_products_flag: true,
         pension_transfer_flag: false,
-        equity_release_flag: true
+        equity_release_flag: true,
+        investment_size_ids: [1]
       )
       firm2 = create_firm_with_in_person_advice(
         id: 2,
         registered_name: 'Test Firm East London',
         retirement_income_products_flag: true,
         pension_transfer_flag: false,
-        equity_release_flag: true
+        equity_release_flag: true,
+        investment_size_ids: [2]
       )
       firm3 = create_firm_with_in_person_advice(
         id: 3,
         registered_name: 'Test Firm Brighton',
         retirement_income_products_flag: true,
         pension_transfer_flag: false,
-        equity_release_flag: true
+        equity_release_flag: true,
+        investment_size_ids: [3]
       )
 
       firm4 = create_firm_with_remote_advice(
@@ -134,21 +137,24 @@ module AlgoliaIndex
         registered_name: 'Test Firm Remote 1',
         retirement_income_products_flag: true,
         pension_transfer_flag: false,
-        equity_release_flag: true
+        equity_release_flag: true,
+        investment_size_ids: [4]
       )
       firm5 = create_firm_with_remote_advice(
         id: 5,
         registered_name: 'Test Firm Remote 2',
         retirement_income_products_flag: true,
         pension_transfer_flag: false,
-        equity_release_flag: true
+        equity_release_flag: true,
+        investment_size_ids: [2, 4]
       )
       firm6 = create_firm_with_remote_advice(
         id: 6,
         registered_name: 'Test Firm Remote 3',
         retirement_income_products_flag: false,
         pension_transfer_flag: true,
-        equity_release_flag: true
+        equity_release_flag: true,
+        investment_size_ids: [4]
       )
 
       adviser1 = create_adviser_for_firm(
@@ -267,7 +273,6 @@ module AlgoliaIndex
         initial_advice_fee_structures: ::InitialAdviceFeeStructure.where(id: [1]), # rubocop:disable Metrics/LineLength
         ongoing_advice_fee_structures: ::OngoingAdviceFeeStructure.where(id: [2]), # rubocop:disable Metrics/LineLength
         allowed_payment_methods: ::AllowedPaymentMethod.where(id: [2]),
-        investment_sizes: ::InvestmentSize.where(id: [3, 4]),
         **ADVICE_TYPES_ATTRIBUTES.zip(
           Array.new(ADVICE_TYPES_ATTRIBUTES.size, false)
         ).to_h
