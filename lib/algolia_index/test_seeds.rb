@@ -161,19 +161,23 @@ module AlgoliaIndex
         id: 1,
         firm: firm1,
         name: 'Caitlyn Kohler',
-        postcode: 'EC4V 4AY'
+        postcode: 'EC4V 4AY',
+        accreditation_ids: [1, 2],
+        qualification_ids: [3, 4]
       )
       adviser2 = create_adviser_for_firm(
         id: 2,
         firm: firm1,
         name: 'Addison Klocko',
-        postcode: 'EC1N 2TD'
+        postcode: 'EC1N 2TD',
       )
       adviser3 = create_adviser_for_firm(
         id: 3,
         firm: firm2,
         name: 'Ms. Wyman Sawayn',
-        postcode: 'E1 0AE'
+        postcode: 'E1 0AE',
+        accreditation_ids: [1],
+        qualification_ids: [3]
       )
       adviser4 = create_adviser_for_firm(
         id: 4,
@@ -187,7 +191,6 @@ module AlgoliaIndex
         name: 'Madge Schaden',
         postcode: 'BN1 1AA'
       )
-
       adviser6 = create_adviser_for_firm(
         id: 6,
         firm: firm4,
@@ -282,9 +285,7 @@ module AlgoliaIndex
     def adviser_base_attributes
       {
         postcode: 'EC1N 2TD',
-        travel_distance: 100,
-        qualifications: ::Qualification.where(id: [3, 4]),
-        accreditations: ::Accreditation.where(id: [1, 2])
+        travel_distance: 100
       }
     end
   end
