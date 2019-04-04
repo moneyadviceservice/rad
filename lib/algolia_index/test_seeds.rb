@@ -114,7 +114,8 @@ module AlgoliaIndex
         pension_transfer_flag: false,
         equity_release_flag: true,
         investment_size_ids: [1],
-        languages: ['ita']
+        languages: ['ita'],
+        workplace_financial_advice_flag: true
       )
       firm2 = create_firm_with_in_person_advice(
         id: 2,
@@ -123,7 +124,7 @@ module AlgoliaIndex
         pension_transfer_flag: false,
         equity_release_flag: true,
         investment_size_ids: [2],
-        languages: ['ita', 'fra']
+        languages: %w[ita fra]
       )
       firm3 = create_firm_with_in_person_advice(
         id: 3,
@@ -148,7 +149,8 @@ module AlgoliaIndex
         retirement_income_products_flag: true,
         pension_transfer_flag: false,
         equity_release_flag: true,
-        investment_size_ids: [2, 4]
+        investment_size_ids: [2, 4],
+        workplace_financial_advice_flag: true
       )
       firm6 = create_firm_with_remote_advice(
         id: 6,
@@ -171,7 +173,7 @@ module AlgoliaIndex
         id: 2,
         firm: firm1,
         name: 'Addison Klocko',
-        postcode: 'EC1N 2TD',
+        postcode: 'EC1N 2TD'
       )
       adviser3 = create_adviser_for_firm(
         id: 3,
