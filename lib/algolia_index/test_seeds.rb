@@ -113,7 +113,8 @@ module AlgoliaIndex
         retirement_income_products_flag: true,
         pension_transfer_flag: false,
         equity_release_flag: true,
-        investment_size_ids: [1]
+        investment_size_ids: [1],
+        languages: ['ita']
       )
       firm2 = create_firm_with_in_person_advice(
         id: 2,
@@ -121,7 +122,8 @@ module AlgoliaIndex
         retirement_income_products_flag: true,
         pension_transfer_flag: false,
         equity_release_flag: true,
-        investment_size_ids: [2]
+        investment_size_ids: [2],
+        languages: ['ita', 'fra']
       )
       firm3 = create_firm_with_in_person_advice(
         id: 3,
