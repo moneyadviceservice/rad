@@ -1,5 +1,4 @@
-RSpec.feature 'Add a new adviser without an FCA number',
-              vcr: vcr_options_for(:features_admin_advisers_add_spec) do
+RSpec.feature 'Add a new adviser without an FCA number' do
   let(:firm_page) { Admin::FirmPage.new }
   let(:new_adviser_page) { Admin::NewAdviserPage.new }
 

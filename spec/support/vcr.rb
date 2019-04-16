@@ -25,7 +25,3 @@ VCR.configure do |config|
     end
   end
 end
-
-def vcr_options_for(cassette_name)
-  { cassette_name: cassette_name, record: :none }
-end

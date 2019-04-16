@@ -1,4 +1,4 @@
-RSpec.feature 'The self service office add page', vcr: vcr_options_for(:features_self_service_offices_add_spec) do
+RSpec.feature 'The self service office add page' do
   let(:offices_index_page) { SelfService::OfficesIndexPage.new }
   let(:office_add_page) { SelfService::OfficeAddPage.new }
   let(:office_edit_page) { SelfService::OfficeEditPage.new }

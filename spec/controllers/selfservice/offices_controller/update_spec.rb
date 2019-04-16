@@ -1,6 +1,5 @@
 module SelfService
-  RSpec.describe SelfService::OfficesController, type: :controller,
-                                                 vcr: vcr_options_for(:features_self_service_offices_add_spec) do
+  RSpec.describe SelfService::OfficesController, type: :controller do
     include_context 'offices controller'
 
     describe '#update' do
