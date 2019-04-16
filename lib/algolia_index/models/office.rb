@@ -2,7 +2,8 @@ module AlgoliaIndex
   class Office < Base
     class << self
       def create!(offices)
-        AlgoliaIndex.index_offices.replace_all_objects(offices)
+        serialized = offices.map(&AlgoliaIndex::OfficeSerializer.method(:new))
+        AlgoliaIndex.index_offices.replace_all_objects(serialized)
       end
     end
 
