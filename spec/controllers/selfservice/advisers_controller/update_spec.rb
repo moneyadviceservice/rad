@@ -1,6 +1,5 @@
 module SelfService
-  RSpec.describe SelfService::AdvisersController, type: :controller,
-                                                  vcr: vcr_options_for(:adviser_controller_update_spec) do
+  RSpec.describe SelfService::AdvisersController, type: :controller do
     include_context 'advisers controller'
 
     describe '#update' do
