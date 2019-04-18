@@ -8,8 +8,9 @@ module AlgoliaIndex
     end
 
     def update!
-      serialized = AlgoliaIndex::AdviserSerializer.new(object)
-      AlgoliaIndex.index_advisers.add_object(serialized)
+      advisers = object.firm.advisers.geocoded # update all dependant advisers
+      serialized = advisers.map(&AlgoliaIndex::AdviserSerializer.method(:new))
+      AlgoliaIndex.index_advisers.add_objects(serialized)
     end
 
     def destroy!
