@@ -35,16 +35,30 @@ RSpec.describe AlgoliaIndex::Adviser do
   end
 
   describe '#update!' do
-    let!(:adviser) { FactoryGirl.create(:adviser, id: id) }
-    let(:serialized) { AlgoliaIndex::AdviserSerializer.new(adviser) }
+    let(:firm) { FactoryGirl.create(:firm, :without_advisers) }
+    let!(:updating_adviser) { FactoryGirl.create(:adviser, id: id, firm: firm) }
+    let!(:dependant_adviser) do
+      FactoryGirl.create(:adviser, id: id + 1, firm: firm)
+    end
+
+    let(:another_firm) { FactoryGirl.create(:firm, :without_advisers) }
+    let!(:not_dependant_adviser) do
+      FactoryGirl.create(:adviser, id: id + 2, firm: another_firm)
+    end
+
+    let(:serialized) do
+      [updating_adviser, dependant_adviser].map do |adviser|
+        AlgoliaIndex::AdviserSerializer.new(adviser)
+      end
+    end
 
     before do
       allow(AlgoliaIndex::AdviserSerializer).to receive(:new)
         .and_return(*serialized)
     end
 
-    it 'updates the adviser in the index' do
-      expect(index_advisers).to receive(:add_object)
+    it 'updates all dependant advisers in the index' do
+      expect(index_advisers).to receive(:add_objects)
         .with(serialized).exactly(:once)
 
       instance.update!
