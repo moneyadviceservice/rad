@@ -3,8 +3,8 @@ module AlgoliaIndex
     attributes :id,
                :registered_name,
                :postcode_searchable,
-               :telephone_number,
                :website_address,
+               :telephone_number,
                :email_address,
                :free_initial_meeting,
                :minimum_fixed_fee,
@@ -53,10 +53,6 @@ module AlgoliaIndex
 
     def email_address
       object.main_office.try(:email_address)
-    end
-
-    def website_address
-      object.main_office.try(:website) || object.website_address
     end
 
     def postcode_searchable
