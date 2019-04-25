@@ -110,6 +110,7 @@ module AlgoliaIndex
       firm1 = create_firm_with_in_person_advice(
         id: 1,
         registered_name: 'Test Firm Central London',
+        website_address: 'http://example.net/test-firm-central-london',
         retirement_income_products_flag: true,
         pension_transfer_flag: false,
         equity_release_flag: true,
@@ -120,6 +121,7 @@ module AlgoliaIndex
       firm2 = create_firm_with_in_person_advice(
         id: 2,
         registered_name: 'Test Firm East London',
+        website_address: 'http://example.net/test-firm-east-london',
         retirement_income_products_flag: true,
         pension_transfer_flag: false,
         equity_release_flag: true,
@@ -129,6 +131,7 @@ module AlgoliaIndex
       firm3 = create_firm_with_in_person_advice(
         id: 3,
         registered_name: 'Test Firm Brighton',
+        website_address: nil,
         retirement_income_products_flag: true,
         pension_transfer_flag: false,
         equity_release_flag: true,
@@ -138,6 +141,7 @@ module AlgoliaIndex
       firm4 = create_firm_with_remote_advice(
         id: 4,
         registered_name: 'Test Firm Remote 1',
+        website_address: nil,
         retirement_income_products_flag: true,
         pension_transfer_flag: false,
         equity_release_flag: true,
@@ -146,6 +150,7 @@ module AlgoliaIndex
       firm5 = create_firm_with_remote_advice(
         id: 5,
         registered_name: 'Test Firm Remote 2',
+        website_address: nil,
         retirement_income_products_flag: true,
         pension_transfer_flag: false,
         equity_release_flag: true,
@@ -155,6 +160,7 @@ module AlgoliaIndex
       firm6 = create_firm_with_remote_advice(
         id: 6,
         registered_name: 'Test Firm Remote 3',
+        website_address: nil,
         retirement_income_products_flag: false,
         pension_transfer_flag: true,
         equity_release_flag: true,
