@@ -17,9 +17,10 @@ module AlgoliaIndex
       end
     end
 
-    def initialize(klass:, id:)
+    def initialize(klass:, id:, firm_id: nil)
       @klass = klass
       @id = id
+      @firm_id = firm_id
 
       validate_init
     end
@@ -39,7 +40,7 @@ module AlgoliaIndex
 
     private
 
-    attr_reader :klass, :id
+    attr_reader :klass, :id, :firm_id
 
     def object
       @object ||= klass.constantize.find_by(id: id)
@@ -51,6 +52,10 @@ module AlgoliaIndex
       return if instance_klass == klass
 
       raise ObjectClassError.new(expected: instance_klass, got: klass)
+    end
+
+    def firm
+      @firm ||= Firm.new(klass: 'Firm', id: firm_id || object&.firm_id)
     end
   end
 end

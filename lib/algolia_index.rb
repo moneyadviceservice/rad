@@ -1,5 +1,3 @@
-require_relative 'algolia_index/base'
-
 require_relative 'algolia_index/models/firm'
 require_relative 'algolia_index/models/adviser'
 require_relative 'algolia_index/models/office'
@@ -15,8 +13,12 @@ module AlgoliaIndex
   }.freeze
 
   class << self
-    def handle_update!(klass:, id:)
-      record = "AlgoliaIndex::#{klass}".constantize.new(klass: klass, id: id)
+    def handle_update!(klass:, id:, firm_id:)
+      record = "AlgoliaIndex::#{klass}".constantize.new(
+        klass: klass,
+        id: id,
+        firm_id: firm_id
+      )
       if record.exists?
         record.update!
       else

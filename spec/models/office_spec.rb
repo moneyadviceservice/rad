@@ -18,7 +18,7 @@ RSpec.describe Office do
       aggregate_failures do
         expect(FirmIndexer).to receive(:handle_aggregate_changed).with(subject)
         expect(UpdateAlgoliaIndexJob).to receive(:perform_async)
-          .with('Office', subject.id)
+          .with('Office', subject.id, subject.firm_id)
 
         subject.notify_indexer
       end

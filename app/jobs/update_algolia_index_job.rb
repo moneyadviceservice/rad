@@ -4,7 +4,7 @@ class UpdateAlgoliaIndexJob < ActiveJob::Base
   queue_as :default
   sidekiq_options retry: 15, backtrace: true, unique: :until_executed
 
-  def perform(klass, id)
-    AlgoliaIndex.handle_update!(klass: klass, id: id)
+  def perform(klass, id, firm_id = nil)
+    AlgoliaIndex.handle_update!(klass: klass, id: id, firm_id: firm_id)
   end
 end

@@ -39,7 +39,7 @@ class Adviser < ActiveRecord::Base
 
   def notify_indexer
     FirmIndexer.handle_aggregate_changed(self)
-    UpdateAlgoliaIndexJob.perform_async(model_name.name, id)
+    UpdateAlgoliaIndexJob.perform_async(model_name.name, id, firm_id)
   end
 
   def self.on_firms_with_fca_number(fca_number)

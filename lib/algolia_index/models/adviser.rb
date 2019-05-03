@@ -7,14 +7,11 @@ module AlgoliaIndex
       end
     end
 
-    def update!
-      advisers = object.firm.advisers.geocoded # update all dependant advisers
-      serialized = advisers.map(&AlgoliaIndex::AdviserSerializer.method(:new))
-      AlgoliaIndex.index_advisers.add_objects(serialized)
-    end
+    delegate :update!, to: :firm
 
     def destroy!
       AlgoliaIndex.index_advisers.delete_object(id)
+      firm.update!
     end
   end
 end

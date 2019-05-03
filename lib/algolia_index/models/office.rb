@@ -10,10 +10,12 @@ module AlgoliaIndex
     def update!
       serialized = AlgoliaIndex::OfficeSerializer.new(object)
       AlgoliaIndex.index_offices.add_object(serialized)
+      firm.update!
     end
 
     def destroy!
       AlgoliaIndex.index_offices.delete_object(id)
+      firm.update!
     end
   end
 end

@@ -1,21 +1,22 @@
 RSpec.describe AlgoliaIndex do
   describe '.handle_update!' do
     subject(:handle_update!) do
-      described_class.handle_update!(klass: klass, id: id)
+      described_class.handle_update!(klass: klass, id: id, firm_id: firm_id)
     end
 
     let(:klass) { 'Firm' }
     let(:id) { 1 }
+    let(:firm_id) { nil }
     let(:algolia_index) do
       instance_double(AlgoliaIndex::Firm, exists?: exists?)
     end
 
-    context 'when record exists' do
+    context 'when record exists in the db' do
       let(:exists?) { true }
 
       it 'updates the record in the index', :aggregate_failures do
         expect(AlgoliaIndex::Firm).to receive(:new)
-          .with(klass: klass, id: id)
+          .with(klass: klass, id: id, firm_id: firm_id)
           .and_return(algolia_index)
 
         expect(algolia_index).to receive(:update!)
@@ -24,12 +25,12 @@ RSpec.describe AlgoliaIndex do
       end
     end
 
-    context 'when record does not exist' do
+    context 'when record does not exist in the db' do
       let(:exists?) { false }
 
       it 'destroys the record from the index', :aggregate_failures do
         expect(AlgoliaIndex::Firm).to receive(:new)
-          .with(klass: klass, id: id)
+          .with(klass: klass, id: id, firm_id: firm_id)
           .and_return(algolia_index)
 
         expect(algolia_index).to receive(:destroy!)
