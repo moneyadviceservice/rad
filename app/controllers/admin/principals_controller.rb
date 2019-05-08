@@ -28,8 +28,10 @@ class Admin::PrincipalsController < Admin::ApplicationController
 
     message = destroy_message(principal)
 
-    user.principal.destroy
-    user.destroy
+    ActiveRecord::Base.transaction do
+      user.principal.destroy!
+      user.destroy!
+    end
 
     redirect_to admin_principals_path, notice: message
   end
