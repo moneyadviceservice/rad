@@ -15,7 +15,7 @@ RSpec.describe UpdateAlgoliaIndexJob do
     let(:firm_id) { nil }
 
     it 'handles the record update in the index' do
-      expect(AlgoliaIndex).to receive(:handle_update!)
+      expect(AlgoliaIndex).to receive(:handle_update)
         .with(klass: klass, id: id, firm_id: firm_id).exactly(:once)
 
       perform_job

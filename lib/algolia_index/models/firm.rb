@@ -1,15 +1,15 @@
 module AlgoliaIndex
   class Firm < Base
-    def update!
+    def update
       advisers = object&.advisers&.geocoded
       return if advisers.blank?
 
       serialized = advisers.map(&AlgoliaIndex::AdviserSerializer.method(:new))
-      AlgoliaIndex.index_advisers.add_objects(serialized)
+      AlgoliaIndex.indexed_advisers.add_objects(serialized)
     end
 
-    def destroy!
-      # Nothing to be directly destroyed in any index
+    def destroy
+      # Do nothing, because we don't maintain a Firm index.
     end
   end
 end

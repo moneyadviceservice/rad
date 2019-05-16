@@ -4,16 +4,16 @@ RSpec.describe AlgoliaIndex::Office do
   let(:klass) { 'Office' }
   let(:id) { 1 }
 
-  let(:index_offices) { instance_double(Algolia::Index) }
+  let(:indexed_offices) { instance_double(Algolia::Index) }
 
   before do
-    allow(AlgoliaIndex).to receive(:index_offices)
-      .and_return(index_offices)
+    allow(AlgoliaIndex).to receive(:indexed_offices)
+      .and_return(indexed_offices)
   end
 
   it { expect(described_class < AlgoliaIndex::Base).to eq(true) }
 
-  describe '.create!' do
+  describe '.create' do
     let!(:offices) { FactoryGirl.create_list(:office, 3, firm_id: 1) }
     let(:serialized) do
       offices.map do |office|
@@ -27,14 +27,14 @@ RSpec.describe AlgoliaIndex::Office do
     end
 
     it 'replaces offices in the index' do
-      expect(index_offices).to receive(:replace_all_objects)
+      expect(indexed_offices).to receive(:replace_all_objects)
         .with(serialized).exactly(:once)
 
-      described_class.create!(offices)
+      described_class.create(offices)
     end
   end
 
-  describe '#update!' do
+  describe '#update' do
     let!(:office) { FactoryGirl.create(:office, id: id, firm_id: 1) }
     let(:serialized) { AlgoliaIndex::OfficeSerializer.new(office) }
 
@@ -44,18 +44,18 @@ RSpec.describe AlgoliaIndex::Office do
     end
 
     it 'updates the office in the index' do
-      expect(index_offices).to receive(:add_object)
+      expect(indexed_offices).to receive(:add_object)
         .with(serialized).exactly(:once)
 
-      instance.update!
+      instance.update
     end
   end
 
-  describe '#destroy!' do
+  describe '#destroy' do
     it 'deletes the office in the index' do
-      expect(index_offices).to receive(:delete_object).with(id)
+      expect(indexed_offices).to receive(:delete_object).with(id)
 
-      instance.destroy!
+      instance.destroy
     end
   end
 end

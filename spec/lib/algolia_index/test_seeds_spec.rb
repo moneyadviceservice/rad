@@ -2,8 +2,8 @@ RSpec.describe AlgoliaIndex::TestSeeds do
   describe '.generate' do
     subject(:generate) { described_class.new.generate }
 
-    let(:index_advisers) { instance_double(::Algolia::Index) }
-    let(:index_offices) { instance_double(::Algolia::Index) }
+    let(:indexed_advisers) { instance_double(::Algolia::Index) }
+    let(:indexed_offices) { instance_double(::Algolia::Index) }
 
     let(:seed_advisers) do
       [{ _geoloc: { lat: 51.51193, lng: -0.095115 },
@@ -314,11 +314,11 @@ RSpec.describe AlgoliaIndex::TestSeeds do
     before do
       allow(::Algolia::Index).to receive(:new)
         .with('firm-advisers-test')
-        .and_return(index_advisers)
+        .and_return(indexed_advisers)
 
       allow(::Algolia::Index).to receive(:new)
         .with('firm-offices-test')
-        .and_return(index_offices)
+        .and_return(indexed_offices)
 
       stubbed_geocodes = {
         'EC4V 4AY': [51.5119304, -0.0951152],
@@ -338,11 +338,11 @@ RSpec.describe AlgoliaIndex::TestSeeds do
     end
 
     it 'refreshes the indices', :aggregate_failures do
-      expect(index_advisers).to receive(:clear_index)
-      expect(index_offices).to receive(:clear_index)
+      expect(indexed_advisers).to receive(:clear_index)
+      expect(indexed_offices).to receive(:clear_index)
 
-      expect(index_advisers).to receive(:add_objects).with(seed_advisers)
-      expect(index_offices).to receive(:add_objects).with(seed_offices)
+      expect(indexed_advisers).to receive(:add_objects).with(seed_advisers)
+      expect(indexed_offices).to receive(:add_objects).with(seed_offices)
 
       generate
     end

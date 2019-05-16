@@ -4,16 +4,16 @@ RSpec.describe AlgoliaIndex::Adviser do
   let(:klass) { 'Adviser' }
   let(:id) { 1 }
 
-  let(:index_advisers) { instance_double(Algolia::Index) }
+  let(:indexed_advisers) { instance_double(Algolia::Index) }
 
   before do
-    allow(AlgoliaIndex).to receive(:index_advisers)
-      .and_return(index_advisers)
+    allow(AlgoliaIndex).to receive(:indexed_advisers)
+      .and_return(indexed_advisers)
   end
 
   it { expect(described_class < AlgoliaIndex::Base).to eq(true) }
 
-  describe '.create!' do
+  describe '.create' do
     let!(:advisers) { FactoryGirl.create_list(:adviser, 3) }
     let(:serialized) do
       advisers.map do |adviser|
@@ -27,14 +27,14 @@ RSpec.describe AlgoliaIndex::Adviser do
     end
 
     it 'replaces advisers in the index' do
-      expect(index_advisers).to receive(:replace_all_objects)
+      expect(indexed_advisers).to receive(:replace_all_objects)
         .with(serialized).exactly(:once)
 
-      described_class.create!(advisers)
+      described_class.create(advisers)
     end
   end
 
-  describe '#update!' do
+  describe '#update' do
     let!(:adviser) { FactoryGirl.create(:adviser, id: id) }
     let!(:dependant_advisers) do
       FactoryGirl.create_list(:adviser, 3, firm: adviser.firm)
@@ -52,18 +52,18 @@ RSpec.describe AlgoliaIndex::Adviser do
     end
 
     it 'updates the adviser in the index' do
-      expect(index_advisers).to receive(:add_objects)
+      expect(indexed_advisers).to receive(:add_objects)
         .with(serialized).exactly(:once)
 
-      instance.update!
+      instance.update
     end
   end
 
-  describe '#destroy!' do
+  describe '#destroy' do
     it 'deletes the adviser in the index' do
-      expect(index_advisers).to receive(:delete_object).with(id)
+      expect(indexed_advisers).to receive(:delete_object).with(id)
 
-      instance.destroy!
+      instance.destroy
     end
   end
 end

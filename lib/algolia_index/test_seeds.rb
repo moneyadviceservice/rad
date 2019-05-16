@@ -17,14 +17,14 @@ module AlgoliaIndex
     private
 
     def refresh_indices!
-      index_advisers = ::Algolia::Index.new('firm-advisers-test')
-      index_offices = ::Algolia::Index.new('firm-offices-test')
+      indexed_advisers = ::Algolia::Index.new('firm-advisers-test')
+      indexed_offices = ::Algolia::Index.new('firm-offices-test')
 
-      index_advisers.clear_index
-      index_offices.clear_index
+      indexed_advisers.clear_index
+      indexed_offices.clear_index
 
-      index_advisers.add_objects(@advisers)
-      index_offices.add_objects(@offices)
+      indexed_advisers.add_objects(@advisers)
+      indexed_offices.add_objects(@offices)
     end
 
     def create_firm(attributes)

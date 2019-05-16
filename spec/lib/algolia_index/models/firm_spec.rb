@@ -4,27 +4,27 @@ RSpec.describe AlgoliaIndex::Firm do
   let(:klass) { 'Firm' }
   let(:id) { 1 }
 
-  let(:index_advisers) { instance_double(Algolia::Index) }
-  let(:index_offices) { instance_double(Algolia::Index) }
+  let(:indexed_advisers) { instance_double(Algolia::Index) }
+  let(:indexed_offices) { instance_double(Algolia::Index) }
 
   before do
-    allow(AlgoliaIndex).to receive(:index_advisers)
-      .and_return(index_advisers)
+    allow(AlgoliaIndex).to receive(:indexed_advisers)
+      .and_return(indexed_advisers)
 
-    allow(AlgoliaIndex).to receive(:index_offices)
-      .and_return(index_offices)
+    allow(AlgoliaIndex).to receive(:indexed_offices)
+      .and_return(indexed_offices)
   end
 
   it { expect(described_class < AlgoliaIndex::Base).to eq(true) }
 
-  describe '#update!' do
+  describe '#update' do
     context 'when the firm does not have any advisers' do
       let!(:firm) { FactoryGirl.create(:firm_without_advisers, id: id) }
 
       it 'does not update any advisers in the index' do
-        expect(index_advisers).not_to receive(:add_objects)
+        expect(indexed_advisers).not_to receive(:add_objects)
 
-        instance.update!
+        instance.update
       end
     end
 
@@ -42,20 +42,20 @@ RSpec.describe AlgoliaIndex::Firm do
       end
 
       it 'updates all associated advisers in the index' do
-        expect(index_advisers).to receive(:add_objects)
+        expect(indexed_advisers).to receive(:add_objects)
           .with(serialized).exactly(:once)
 
-        instance.update!
+        instance.update
       end
     end
   end
 
-  describe '#destroy!' do
+  describe '#destroy' do
     it 'doesn\'t delete anything', :aggregate_failures do
-      expect(index_advisers).not_to receive(:delete_objects)
-      expect(index_offices).not_to receive(:delete_objects)
+      expect(indexed_advisers).not_to receive(:delete_objects)
+      expect(indexed_offices).not_to receive(:delete_objects)
 
-      instance.destroy!
+      instance.destroy
     end
   end
 end

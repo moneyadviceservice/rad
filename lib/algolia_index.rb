@@ -1,3 +1,4 @@
+require_relative 'algolia_index/models/base'
 require_relative 'algolia_index/models/firm'
 require_relative 'algolia_index/models/adviser'
 require_relative 'algolia_index/models/office'
@@ -13,25 +14,25 @@ module AlgoliaIndex
   }.freeze
 
   class << self
-    def handle_update!(klass:, id:, firm_id:)
-      record = "AlgoliaIndex::#{klass}".constantize.new(
+    def handle_update(klass:, id:, firm_id:)
+      indexed_record = "AlgoliaIndex::#{klass}".constantize.new(
         klass: klass,
         id: id,
         firm_id: firm_id
       )
-      if record.exists?
-        record.update!
+      if indexed_record.present_in_db?
+        indexed_record.update
       else
-        record.destroy!
+        indexed_record.destroy
       end
     end
 
-    def index_advisers
-      @index_advisers ||= Algolia::Index.new(INDICES[:advisers])
+    def indexed_advisers
+      @indexed_advisers ||= Algolia::Index.new(INDICES[:advisers])
     end
 
-    def index_offices
-      @index_offices ||= Algolia::Index.new(INDICES[:offices])
+    def indexed_offices
+      @indexed_offices ||= Algolia::Index.new(INDICES[:offices])
     end
   end
 end
