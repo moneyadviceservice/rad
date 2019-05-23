@@ -57,8 +57,8 @@ namespace :index do
     Rails.logger.info 'Building a complete production index...'
     Rails.logger.info "(#{advisers.size} advisers and #{offices.size} offices)"
 
-    AlgoliaIndex::Adviser.create!(advisers)
-    AlgoliaIndex::Office.create!(offices)
+    AlgoliaIndex::Adviser.create(advisers)
+    AlgoliaIndex::Office.create(offices)
 
     Rails.logger.info 'Index built successfully'
   end
