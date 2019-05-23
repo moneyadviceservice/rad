@@ -114,6 +114,7 @@ class Firm < ActiveRecord::Base
 
   def notify_indexer
     FirmIndexer.handle_firm_changed(self)
+    UpdateAlgoliaIndexJob.perform_async(model_name.name, id)
   end
 
   # A heuristic that allows us to infer validity

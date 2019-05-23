@@ -5,6 +5,7 @@ require_relative '../config/environment'
 require 'rspec/rails'
 require 'factory_girl_rails'
 require 'capybara/poltergeist'
+require 'sidekiq/testing'
 
 Dir[File.join(File.dirname(__FILE__), 'support', '**', '*_section.rb')].each { |f| require f }
 Dir[File.join(File.dirname(__FILE__), 'support', '**', '*.rb')].each { |f| require f }
@@ -14,7 +15,7 @@ require File.join(File.dirname(__FILE__), 'support/fca_test_helpers.rb')
 Faker::Config.locale = 'en-GB'
 
 Capybara.javascript_driver = :poltergeist
-Capybara.default_wait_time = 5
+Capybara.default_max_wait_time = 5
 
 RSpec.configure do |c|
   c.include Rails.application.routes.url_helpers
@@ -42,4 +43,8 @@ RSpec.configure do |c|
   c.before :suite do
     Warden.test_mode!
   end
+end
+
+RSpec::Sidekiq.configure do |config|
+  config.warn_when_jobs_not_processed_by_sidekiq = false
 end

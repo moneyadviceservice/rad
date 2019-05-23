@@ -62,6 +62,9 @@ GEM
       tzinfo (~> 1.1)
     addressable (2.5.2)
       public_suffix (>= 2.0.2, < 4.0)
+    algoliasearch (1.26.0)
+      httpclient (~> 2.8, >= 2.8.3)
+      json (>= 1.5.1)
     ansi (1.5.0)
     arel (6.0.4)
     ast (2.4.0)
@@ -281,7 +284,7 @@ GEM
     parallel (1.12.1)
     parser (2.5.3.0)
       ast (~> 2.4.0)
-    pg (0.21.0)
+    pg (0.20.0)
     poltergeist (1.17.0)
       capybara (~> 2.1)
       cliver (~> 0.3.1)
@@ -368,6 +371,9 @@ GEM
       rspec-expectations (~> 3.7.0)
       rspec-mocks (~> 3.7.0)
       rspec-support (~> 3.7.0)
+    rspec-sidekiq (3.0.3)
+      rspec-core (~> 3.0, >= 3.0.0)
+      sidekiq (>= 2.4.0)
     rspec-support (3.7.1)
     rubocop (0.54.0)
       parallel (~> 1.10)
@@ -470,6 +476,7 @@ PLATFORMS
 DEPENDENCIES
   active_link_to
   active_model_serializers (~> 0.10.1)
+  algoliasearch
   azure-storage
   better_errors
   binding_of_caller
@@ -498,7 +505,7 @@ DEPENDENCIES
   letter_opener
   mailjet
   oga
-  pg (= 0.21.0)
+  pg (~> 0.20.0)
   poltergeist
   pry-byebug
   pry-rails
@@ -510,6 +517,7 @@ DEPENDENCIES
   rollbar
   rspec-collection_matchers
   rspec-rails
+  rspec-sidekiq
   rubocop (= 0.54.0)
   rubyzip
   sass-rails

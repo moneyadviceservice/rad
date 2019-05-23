@@ -20,7 +20,7 @@ RSpec.describe ModelGeocoder do
   let(:address_line_one) { '120 Holborn' }
   let(:address_line_two) { 'London' }
   let(:address_postcode) { 'EC1N 2TD' }
-  let(:expected_coordinates) { [51.5180697, -0.1085203] }
+  let(:expected_coordinates) { [51.5180967, -0.1080739] }
 
   describe '#geocode' do
     context 'when the model address can be geocoded' do

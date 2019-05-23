@@ -164,8 +164,13 @@ RSpec.describe Adviser do
     subject { FactoryGirl.create(:adviser) }
 
     it 'notifies the indexer that the office has changed' do
-      expect(FirmIndexer).to receive(:handle_aggregate_changed).with(subject)
-      subject.notify_indexer
+      aggregate_failures do
+        expect(FirmIndexer).to receive(:handle_aggregate_changed).with(subject)
+        expect(UpdateAlgoliaIndexJob).to receive(:perform_async)
+          .with('Adviser', subject.id, subject.firm_id)
+
+        subject.notify_indexer
+      end
     end
   end
 
@@ -196,7 +201,10 @@ RSpec.describe Adviser do
       model.run_callbacks(:commit)
     end
 
-    before { allow(FirmIndexer).to receive(:handle_aggregate_changed) }
+    before do
+      allow(FirmIndexer).to receive(:handle_aggregate_changed)
+      allow(UpdateAlgoliaIndexJob).to receive(:perform_async)
+    end
 
     context 'when the associated firm has changed' do
       it 'triggers reindexing of the original firm' do

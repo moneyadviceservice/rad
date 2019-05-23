@@ -4,6 +4,9 @@ module FcaImportPage
     stub_request(:delete, uri_template)
       .to_return(status: 200, body: '', headers: {})
 
+    # Do not notify indexer of firm creation (after user/principal creation)
+    Firm.skip_callback(:commit, :after, :notify_indexer)
+
     @admin ||= FactoryGirl.create(:user)
     @admin
   end
