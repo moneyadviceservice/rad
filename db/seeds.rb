@@ -62,8 +62,8 @@ end
 [
   'Level 4 (DipPFS, DipFA® or equivalent)',
   'Level 6 (APFS, Adv DipFA®)',
-  'Chartered Financial Planner',
-  'Certified Financial Planner',
+  'Chartered Financial Planner - accredited by the Chartered Insurance Institute / Personal Finance Society',
+  'Certified Financial Planner - accredited by the Chartered Institute of Securities and Investments',
   'Pension transfer qualifications - holder of G60, AF3, AwPETR®, or equivalent',
   'Equity release qualifications i.e. holder of Certificate in Equity Release or equivalent',
   'Long term care planning qualifications i.e. holder of CF8, CeLTCI®. or equivalent',
