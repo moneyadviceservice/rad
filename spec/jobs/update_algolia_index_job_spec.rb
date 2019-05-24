@@ -1,7 +1,7 @@
 RSpec.describe UpdateAlgoliaIndexJob do
   describe 'sidekiq settings' do
     it { is_expected.to be_processed_in :default }
-    it { is_expected.to be_retryable 15 }
+    it { is_expected.to be_retryable 25 }
     it { is_expected.to save_backtrace }
   end
 
