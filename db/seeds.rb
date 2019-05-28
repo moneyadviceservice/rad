@@ -56,7 +56,6 @@
   'Institute of Chartered Accountants for England and Wales'
 ].each.with_index(1) do |item, index|
   ProfessionalStanding.find_or_create_by!(id: index, name: item, order: index)
-  ProfessionalBody.find_or_create_by!(id: index, name: item, order: index)
 end
 
 [

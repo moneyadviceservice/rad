@@ -62,7 +62,6 @@ module SelfService
         accreditation_ids: [],
         qualification_ids: [],
         professional_standing_ids: [],
-        professional_body_ids: []
       )
     end
   end
