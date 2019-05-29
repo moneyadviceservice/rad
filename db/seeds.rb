@@ -49,7 +49,7 @@
 [
   'Personal Finance Society / Chartered Insurance Institute',
   'Institute of Financial Planning',
-  'Institute of Financial Services',
+  'The London Institute of Banking and Finance',
   'The Chartered Institute of Bankers in Scotland',
   'The Chartered Institute for Securities and Investments',
   'CFA Institute',
