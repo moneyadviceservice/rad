@@ -82,6 +82,7 @@ group :test do
   gem 'database_cleaner'
   gem 'launchy'
   gem 'poltergeist'
+  gem 'rb-readline'
   gem 'rspec-collection_matchers'
   gem 'rspec-sidekiq'
   gem 'site_prism'
