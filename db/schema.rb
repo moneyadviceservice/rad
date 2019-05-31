@@ -15,6 +15,7 @@ ActiveRecord::Schema.define(version: 20190606111937) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "pg_stat_statements"
 
   create_table "accreditations", force: :cascade do |t|
     t.string   "name",                   null: false
@@ -174,6 +175,27 @@ ActiveRecord::Schema.define(version: 20190606111937) do
     t.datetime "updated_at",             null: false
     t.integer  "order",      default: 0, null: false
     t.string   "cy_name"
+  end
+
+  create_table "last_week_lookup_advisers", force: :cascade do |t|
+    t.string   "reference_number", limit: 20,  null: false
+    t.string   "name",             limit: 255, null: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+  end
+
+  create_table "last_week_lookup_firms", force: :cascade do |t|
+    t.integer  "fca_number",                               null: false
+    t.string   "registered_name", limit: 255, default: "", null: false
+    t.datetime "created_at",                               null: false
+    t.datetime "updated_at",                               null: false
+  end
+
+  create_table "last_week_lookup_subsidiaries", force: :cascade do |t|
+    t.integer  "fca_number",                          null: false
+    t.string   "name",       limit: 255, default: "", null: false
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
   end
 
   create_table "lookup_advisers", force: :cascade do |t|
