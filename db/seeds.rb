@@ -48,7 +48,6 @@
 
 [
   'Personal Finance Society / Chartered Insurance Institute',
-  'Institute of Financial Planning',
   'The London Institute of Banking and Finance',
   'The Chartered Institute of Bankers in Scotland',
   'The Chartered Institute for Securities and Investments',
