@@ -1,7 +1,6 @@
 module FcaApi
-  class Client
+  class Request
     FIRM_ENDPOINT = '/services/V0.1/Firm'.freeze
-    SUCCESS_MESSAGE = 'ok'
       
     attr_reader :connection, :product_connection
 
@@ -10,11 +9,8 @@ module FcaApi
     end
 
     def get_firm(firm_id)
-      connection.get(full_path(FIRM_ENDPOINT, firm_id))
-    end
-
-    def response_ok?(response_data)
-      response_data['Message'].downcase.include?(SUCCESS_MESSAGE)
+      response = connection.get(full_path(FIRM_ENDPOINT, firm_id))
+      FcaApi::Response.new(response)
     end
 
     private
