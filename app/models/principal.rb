@@ -105,11 +105,6 @@ class Principal < ActiveRecord::Base
   end
 
   def fca_authorised_firm?(fca_number)
-    response = FCA_API::Client.new.firm(fca_number).response_ok?
-    response["Message"].downcase.include?(FCA_API::Client::SUCCESS_MESSAGE)
-  end
-
-  def response_ok?
-    
+    FcaApi::Request.new.get_firm(fca_number).ok?
   end
 end
