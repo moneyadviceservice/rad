@@ -67,29 +67,40 @@ class MergeIfpWithCis
   def remove_old_body_selections(adviser_ids)
     return if adviser_ids.blank?
 
-    ActiveRecord::Base.connection.execute(<<-SQL)
-      DELETE FROM advisers_professional_standings
-      WHERE professional_standing_id = #{old_body.id}
-      AND adviser_id in (#{adviser_ids.join(', ')})
-    SQL
+    advisers = Adviser.where(id: adviser_ids)
+    advisers.each do |adviser|
+      log_updating(adviser)
+      adviser.professional_standing_ids =
+        adviser.professional_standing_ids - [old_body.id]
+      adviser.save!
+    end
 
     log_finish(advisers)
   end
 
+  # rubocop:disable Metrics/AbcSize
   def update_old_body_selections(adviser_ids)
     return if adviser_ids.blank?
 
-    ActiveRecord::Base.connection.execute(<<-SQL)
-      UPDATE advisers_professional_standings
-      SET professional_standing_id = #{new_body.id}
-      WHERE professional_standing_id = #{old_body.id}
-      AND adviser_id in (#{adviser_ids.join(', ')})
-    SQL
+    advisers = Adviser.where(id: adviser_ids)
+    info "Updating advisers #{advisers.pluck(:id).join(', ')}"
+    advisers
+      .select { |a| a.professional_standing_ids.include? old_body.id }
+      .each do |adviser|
+        log_updating(adviser)
+        adviser.professional_standing_ids =
+          adviser.professional_standing_ids - [old_body.id] + [new_body.id]
+        adviser.save!
+      end
     log_finish(advisers)
   end
+  # rubocop:enable Metrics/AbcSize
 
   def log_finish(advisers)
     info "Finished, total records updated: #{advisers.length}"
   end
+
+  def log_updating(adviser)
+    info "Updating adviser #{adviser.id}"
   end
 end
