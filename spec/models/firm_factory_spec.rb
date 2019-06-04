@@ -1,4 +1,6 @@
 RSpec.describe 'Firm factory' do
+  include_context 'fca api ok response'
+
   subject do
     FactoryGirl.create(factory)
   rescue ActiveRecord::RecordInvalid

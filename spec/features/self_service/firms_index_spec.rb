@@ -1,6 +1,8 @@
 RSpec.feature 'The self service firm list page' do
   let(:firms_index_page) { SelfService::FirmsIndexPage.new }
 
+  include_context 'fca api ok response'
+
   scenario 'When there are both available and added trading names' do
     given_i_am_a_fully_registered_principal_user
     and_i_have_a_firm_with_both_available_and_added_trading_names

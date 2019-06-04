@@ -1,18 +1,8 @@
 RSpec.describe Principal do
-  let(:principal) { build(:principal) }
+  let(:principal) { create(:principal) }
   let(:trading_name) { create(:firm, parent: principal.firm, fca_number: principal.fca_number) }
-  let(:response) { instance_double(Farday::Response, body: { 'Message' => 'Ok' })}
-  let(:fca_api_request) { instance_double(FcaApi::Request) }
-  let(:fca_api_response) { instance_double(FcaApi::Response) }
 
-  before(:each) do
-    allow(fca_api_request)
-      .to receive_message_chain(:get_firm, :response_ok?)
-      .with(trading_name.fca_number)
-      .and_return(fca_api_response)
-
-    allow(fca_api_response).to receive(:ok?).and_return(true)
-  end
+  include_context 'fca api ok response'
 
   describe '#firm' do
     let(:parent_firm) { Firm.find_by(fca_number: principal.fca_number, parent: nil) }
@@ -24,7 +14,6 @@ RSpec.describe Principal do
 
   describe '#main_firm_with_trading_names' do
     it 'fetches all firms associated with the principal' do
-      principal.save
       expect(principal.main_firm_with_trading_names).to contain_exactly(principal.firm, trading_name)
     end
   end
@@ -96,16 +85,26 @@ RSpec.describe Principal do
         end
       end
 
-      it 'must match a `Lookup::Firm`' do
-        Lookup::Firm.find_by(fca_number: principal.fca_number).destroy
-
-        expect(principal).to_not be_valid
-      end
-
       it 'must be unique' do
         build(:principal).tap do |p|
           p.fca_number = principal.fca_number
           expect(p).to_not be_valid
+        end
+      end
+
+      context 'when it is not on the FCA register' do
+        let(:principal) { build(:principal) }
+        before do
+          allow(FcaApi::Request)
+            .to receive(:new)
+            .and_return(instance_double(
+              FcaApi::Request, get_firm: instance_double(FcaApi::Response, ok?: false)
+            )
+          )
+        end
+
+        it 'is an invalid' do
+          expect(principal).to_not be_valid
         end
       end
     end

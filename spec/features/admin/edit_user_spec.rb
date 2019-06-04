@@ -1,4 +1,6 @@
 RSpec.feature "Editing a user (i.e. a Principal's login credentials)" do
+  include_context 'fca api ok response'
+
   let(:admin_principal_page) { Admin::PrincipalPage.new }
   let(:edit_admin_principal_user_page) { Admin::EditPrincipalUserPage.new }
 

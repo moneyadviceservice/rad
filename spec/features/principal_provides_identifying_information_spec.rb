@@ -1,4 +1,6 @@
 RSpec.feature 'Principal provides identifying information', :inline_job_queue do
+  include_context 'fca api ok response'
+
   let(:identification_page) { IdentificationPage.new }
   let(:identity_confirmed_page) { IdentityConfirmedPage.new }
   let(:firms_index_page) { SelfService::FirmsIndexPage.new }

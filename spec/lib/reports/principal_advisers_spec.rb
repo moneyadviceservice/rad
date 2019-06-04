@@ -1,4 +1,6 @@
 RSpec.describe Reports::PrincipalAdvisers do
+  include_context 'fca api ok response'
+
   let(:principal_with_3) { FactoryGirl.create(:principal) }
   let!(:principal_with_0)  { FactoryGirl.create(:principal) }
 

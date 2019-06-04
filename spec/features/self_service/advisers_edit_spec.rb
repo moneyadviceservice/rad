@@ -1,6 +1,8 @@
 RSpec.feature 'The self service firm edit page' do
   include CheckboxGroupHelpers
 
+  include_context 'fca api ok response'
+
   let(:advisers_index_page) { SelfService::AdvisersIndexPage.new }
   let(:adviser_edit_page) { SelfService::AdviserEditPage.new }
   let(:original_postcode) { 'L1 2NH' }

@@ -4,6 +4,8 @@ RSpec.feature 'Principal can sign in using the embedded sign in panel' do
   let(:after_signin_page) { SelfService::FirmsIndexPage.new }
   let(:forgot_password_page) { ForgotPasswordPage.new }
 
+  include_context 'fca api ok response'
+
   scenario 'Principal can sign in with FRN and password' do
     given_the_login_page_is_loaded
     and_the_principal_user_exists

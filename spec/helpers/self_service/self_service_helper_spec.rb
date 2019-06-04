@@ -1,5 +1,7 @@
 module SelfService
   RSpec.describe SelfServiceHelper, type: :helper do
+    include_context 'fca api ok response'
+
     describe '#add_or_edit_self_service_trading_names_path' do
       subject { helper.create_or_update_self_service_trading_names_path(trading_name) }
 

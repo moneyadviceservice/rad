@@ -6,6 +6,9 @@ RSpec.describe SelfService::FirmsController, type: :controller do
     principal.firm
   end
   let(:user) { FactoryGirl.create :user, principal: firm.principal }
+
+  include_context 'fca api ok response'
+
   before { sign_in(user) }
 
   def extract_firm_params(firm, params = {})

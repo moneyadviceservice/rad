@@ -1,6 +1,8 @@
 RSpec.feature 'The self service firm edit page' do
   include CheckboxGroupHelpers
 
+  include_context 'fca api ok response'
+
   let(:firms_index_page) { SelfService::FirmsIndexPage.new }
   let(:firm_edit_page) { SelfService::FirmEditPage.new }
   let!(:firm_changes) do

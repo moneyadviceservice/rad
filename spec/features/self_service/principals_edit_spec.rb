@@ -1,4 +1,6 @@
 RSpec.feature 'The self service principal edit page' do
+  include_context 'fca api ok response'
+
   let(:principal_edit_page) { SelfService::PrincipalEditPage.new }
   let(:principal_changes) { FactoryGirl.build(:principal) }
 

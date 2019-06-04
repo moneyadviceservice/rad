@@ -7,6 +7,9 @@ RSpec.describe SelfService::TradingNamesController, type: :controller do
   end
   let(:user) { FactoryGirl.create :user, principal: firm.principal }
   let(:lookup_subsidiary) { FactoryGirl.create(:lookup_subsidiary, fca_number: principal.fca_number) }
+  
+  include_context 'fca api ok response'
+
   before { sign_in(user) }
 
   def build_firm_params(params = {})

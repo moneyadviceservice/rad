@@ -1,4 +1,6 @@
 RSpec.feature "Editing a principal's details (as shown in the directory)" do
+  include_context 'fca api ok response'
+
   let(:admin_principal_page) { Admin::PrincipalPage.new }
   let(:edit_admin_principal_page) { Admin::EditPrincipalPage.new }
 

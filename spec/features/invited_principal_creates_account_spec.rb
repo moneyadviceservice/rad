@@ -1,4 +1,6 @@
 RSpec.feature 'An invited principal can create a user account' do
+  include_context 'fca api ok response'
+
   let(:accept_invitation_page) { AcceptInvitationPage.new }
   let(:firms_index_page) { SelfService::FirmsIndexPage.new }
   let(:password) { 'ABCabc123@£$' }

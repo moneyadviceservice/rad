@@ -1,6 +1,8 @@
 RSpec.describe Identification, '#contact' do
   let(:principal) { create(:principal) }
 
+  include_context 'fca api ok response'
+
   subject { described_class.contact(principal) }
 
   it 'has a subject' do

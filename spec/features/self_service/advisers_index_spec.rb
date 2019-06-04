@@ -1,6 +1,8 @@
 RSpec.feature 'The self service adviser list page' do
   let(:advisers_index_page) { SelfService::AdvisersIndexPage.new }
 
+  include_context 'fca api ok response'
+
   scenario 'The principal can see a back to firms list link' do
     given_i_am_a_fully_registered_principal_user
     and_i_am_logged_in

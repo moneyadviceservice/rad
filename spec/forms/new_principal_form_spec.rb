@@ -1,6 +1,8 @@
 require 'ostruct'
 
 RSpec.describe NewPrincipalForm, type: :model do
+  include_context 'fca api ok response'
+
   let(:lookup_firm) { FactoryGirl.create(:lookup_firm) }
   let(:valid_params) do
     {

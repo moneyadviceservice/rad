@@ -19,6 +19,8 @@ RSpec.feature 'The self service office add page' do
                                address_postcode: address_postcode)
   end
 
+  include_context 'fca api ok response'
+
   scenario 'The principal can create a new office' do
     given_i_am_a_fully_registered_principal_user
     and_i_am_logged_in

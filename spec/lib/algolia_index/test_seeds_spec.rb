@@ -1,4 +1,6 @@
 RSpec.describe AlgoliaIndex::TestSeeds do
+  include_context 'fca api ok response'
+
   describe '.generate' do
     subject(:generate) { described_class.new.generate }
 

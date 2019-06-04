@@ -2,6 +2,8 @@ RSpec.feature 'The registration status' do
   let(:firms_index_page) { SelfService::FirmsIndexPage.new }
   let(:firm_edit_page)   { SelfService::FirmEditPage.new }
 
+  include_context 'fca api ok response'
+
   before do
     given_i_am_a_fully_registered_principal_user
     and_i_am_logged_in

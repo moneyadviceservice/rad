@@ -8,6 +8,8 @@ RSpec.shared_context 'offices controller' do
   let(:office) { FactoryGirl.create :office, firm: firm }
   let(:user)   { FactoryGirl.create :user, principal: principal }
 
+  include_context 'fca api ok response'
+
   before { sign_in(user) }
 
   let(:address_line_one) { '120 Holborn' }

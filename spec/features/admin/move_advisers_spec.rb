@@ -9,6 +9,8 @@ RSpec.feature 'Move advisers between firms' do
   let(:confirm_page) { Admin::MoveAdvisers::ConfirmPage.new }
   let(:move_page) { Admin::MoveAdvisers::MovePage.new }
 
+  include_context 'fca api ok response'
+
   before do
     create :user, principal: from_firm.principal
   end

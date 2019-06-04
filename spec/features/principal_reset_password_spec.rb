@@ -1,4 +1,6 @@
 RSpec.feature 'Principal can reset their password' do
+  include_context 'fca api ok response'
+
   let(:forgot_password_page) { ForgotPasswordPage.new }
   let(:reset_password_page) { ResetPasswordPage.new }
   let(:sign_in_page) { SignInPage.new }

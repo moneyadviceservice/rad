@@ -1,4 +1,6 @@
 RSpec.describe Reports::AuditRadFirms do
+  include_context 'fca api ok response'
+
   describe '#to_csv' do
     let(:principal) do
       create(

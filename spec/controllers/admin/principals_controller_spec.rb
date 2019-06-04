@@ -1,4 +1,6 @@
 RSpec.describe Admin::PrincipalsController, type: :controller do
+  include_context 'fca api ok response'
+
   before { sign_in(user) }
 
   let(:user) { FactoryGirl.create(:user, principal: principal) }

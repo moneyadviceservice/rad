@@ -529,6 +529,8 @@ RSpec.describe Firm do
     end
 
     context 'when the firm has a principal' do
+      include_context 'fca api ok response'
+
       let(:firm) { create(:firm_with_principal) }
 
       it 'does not destroy the principal' do
