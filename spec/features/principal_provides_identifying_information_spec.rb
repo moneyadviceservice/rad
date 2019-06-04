@@ -4,6 +4,8 @@ RSpec.feature 'Principal provides identifying information', :inline_job_queue do
   let(:firms_index_page) { SelfService::FirmsIndexPage.new }
   let(:sign_in_page) { SignInPage.new }
 
+  before { ActionMailer::Base.deliveries.clear }
+
   scenario 'Identifying as a Firm Principal' do
     given_i_have_passed_the_pre_qualification_step
     when_i_provide_my_firms_fca_reference_number
@@ -11,6 +13,7 @@ RSpec.feature 'Principal provides identifying information', :inline_job_queue do
     then_my_firms_fca_reference_number_is_matched_to_the_directory
     and_i_am_shown_a_confirmation_message
     and_i_am_sent_a_verification_email
+    and_directory_admins_get_a_new_firm_notification_email
 
     when_i_visit_the_email_link
     then_i_am_asked_to_sign_in
@@ -96,7 +99,17 @@ RSpec.feature 'Principal provides identifying information', :inline_job_queue do
 
   def and_i_am_sent_a_verification_email
     expect(ActionMailer::Base.deliveries).to_not be_empty
-    expect(ActionMailer::Base.deliveries.last.body).to include new_user_session_path
+    expect(ActionMailer::Base.deliveries.first.body).to include new_user_session_path
+  end
+
+  def and_directory_admins_get_a_new_firm_notification_email
+    expect(ActionMailer::Base.deliveries).to_not be_empty
+
+    last_email = ActionMailer::Base.deliveries.last
+    expect(last_email.subject).to eq('New Firm registered in the directory')
+    expect(last_email.to).to include('dev@moneyadviceservice.org.uk')
+    expect(last_email.body).to include('Ben Lovell Ltd')
+    expect(last_email.body).to include(admin_firm_path(Firm.last.id))
   end
 
   def when_i_visit_the_email_link

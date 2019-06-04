@@ -38,5 +38,8 @@ Rails.application.configure do
   # Allow previews for emails in development environment
   config.action_mailer.delivery_method = :letter_opener
 
+  # Switch previews location to Rspec forlder
+  config.action_mailer.preview_path = "#{Rails.root}/spec/mailers/previews"
+
   config.action_mailer.default_url_options = { host: 'localhost:3000' }
 end
