@@ -108,8 +108,10 @@ ActiveRecord::Schema.define(version: 20190606111937) do
     t.integer  "status"
     t.boolean  "workplace_financial_advice_flag",          default: false, null: false
     t.boolean  "non_uk_residents_flag",                    default: false, null: false
+    t.datetime "approved_at"
   end
 
+  add_index "firms", ["approved_at"], name: "index_firms_on_approved_at", using: :btree
   add_index "firms", ["initial_meeting_duration_id"], name: "index_firms_on_initial_meeting_duration_id", using: :btree
 
   create_table "firms_in_person_advice_methods", id: false, force: :cascade do |t|
