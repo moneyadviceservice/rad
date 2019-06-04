@@ -92,7 +92,7 @@ class Principal < ActiveRecord::Base
   end
 
   def match_fca_number
-    unless fca_authorised_firm?(fca_number)
+    unless Lookup::Firm.exists?(fca_number: fca_number)
       errors.add(
         :fca_number,
         I18n.t('registration.principal.fca_number_unmatched')
@@ -102,14 +102,5 @@ class Principal < ActiveRecord::Base
 
   def generate_token
     self.token = SecureRandom.hex(4)
-  end
-
-  def fca_authorised_firm?(fca_number)
-    response = FCA_API::Client.new.firm(fca_number).response_ok?
-    response["Message"].downcase.include?(FCA_API::Client::SUCCESS_MESSAGE)
-  end
-
-  def response_ok?
-    
   end
 end

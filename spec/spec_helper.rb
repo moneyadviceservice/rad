@@ -6,8 +6,6 @@ require 'rspec/rails'
 require 'factory_girl_rails'
 require 'capybara/poltergeist'
 require 'sidekiq/testing'
-require 'webmock/rspec'
-include WebMock
 
 Dir[File.join(File.dirname(__FILE__), 'support', '**', '*_section.rb')].each { |f| require f }
 Dir[File.join(File.dirname(__FILE__), 'support', '**', '*.rb')].each { |f| require f }

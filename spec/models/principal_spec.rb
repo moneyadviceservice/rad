@@ -2,12 +2,6 @@ RSpec.describe Principal do
   let(:principal) { create(:principal) }
   let(:trading_name) { create(:firm, parent: principal.firm, fca_number: principal.fca_number) }
 
-  before(:each) do
-    stub_request(:get, "https://register.fca.org.uk/services/V0.1/Firm/#{principal.fca_number}")
-      .with(:headers => { 'Content-Length' => 3 })
-      .to_return(body: {'Message' => 'Ok'})
-  end
-
   describe '#firm' do
     let(:parent_firm) { Firm.find_by(fca_number: principal.fca_number, parent: nil) }
 

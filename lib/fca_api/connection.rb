@@ -13,6 +13,12 @@ module FcaApi
       configure_raw_connection
     end
 
+    def get(path)
+      raw_connection.get(path)
+    end
+
+    private
+
     def configure_raw_connection
       @raw_connection = Faraday.new(
         domain,
@@ -30,12 +36,6 @@ module FcaApi
         connection.adapter Faraday.default_adapter
       end
     end
-
-    def get(path)
-      raw_connection.get(path)
-    end
-
-    private
 
     def auth_headers
       {
