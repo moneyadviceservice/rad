@@ -33,12 +33,9 @@ class Adviser < ActiveRecord::Base
 
   scope :sorted_by_name, -> { order(:name) }
 
-  after_save :flag_changes_for_after_commit
   after_commit :notify_indexer
-  after_commit :reindex_old_firm
 
   def notify_indexer
-    FirmIndexer.handle_aggregate_changed(self)
     UpdateAlgoliaIndexJob.perform_async(model_name.name, id, firm_id)
   end
 
@@ -79,18 +76,6 @@ class Adviser < ActiveRecord::Base
   end
 
   private
-
-  # All record of what changed is gone by the time we get to the after_commit
-  # hooks. So we cannot use #firm_id_changed? at that point. To work around
-  # this we flag any important changes here to be actioned later.
-  def flag_changes_for_after_commit
-    @old_firm_id = firm_id_change.first if firm_id_changed?
-  end
-
-  def reindex_old_firm
-    Firm.find(@old_firm_id).notify_indexer if @old_firm_id.present?
-    @old_firm_id = nil
-  end
 
   def upcase_postcode
     postcode.upcase! if postcode.present?

@@ -174,55 +174,6 @@ RSpec.describe Adviser do
     end
   end
 
-  describe 'after_save :flag_changes_for_after_commit' do
-    let(:original_firm) { create(:firm) }
-    let(:receiving_firm) { create(:firm) }
-    subject { create(:adviser, firm: original_firm) }
-
-    before do
-      subject.firm = receiving_firm
-      subject.save!
-    end
-
-    context 'when the firm has changed' do
-      it 'stores the original firm id so it can be reindexed in an after_commit hook' do
-        expect(subject.old_firm_id).to eq(original_firm.id)
-      end
-    end
-  end
-
-  describe 'after_commit :reindex_old_firm' do
-    let(:original_firm) { create(:firm) }
-    let(:receiving_firm) { create(:firm) }
-    subject { create(:adviser, firm: original_firm) }
-
-    def save_with_commit_callback(model)
-      model.save!
-      model.run_callbacks(:commit)
-    end
-
-    before do
-      allow(FirmIndexer).to receive(:handle_aggregate_changed)
-      allow(UpdateAlgoliaIndexJob).to receive(:perform_async)
-    end
-
-    context 'when the associated firm has changed' do
-      it 'triggers reindexing of the original firm' do
-        expect(FirmIndexer).to receive(:handle_firm_changed).with(original_firm)
-        subject.firm = receiving_firm
-        save_with_commit_callback(subject)
-      end
-    end
-
-    context 'when the associated firm has not changed' do
-      it 'does not trigger reindexing of the original firm' do
-        expect(FirmIndexer).not_to receive(:handle_firm_changed).with(original_firm)
-        subject.name = 'A different name'
-        save_with_commit_callback(subject)
-      end
-    end
-  end
-
   describe '.move_all_to_firm' do
     let(:original_firm) { create(:firm_with_advisers) }
     let(:receiving_firm) { create(:firm_with_advisers) }
