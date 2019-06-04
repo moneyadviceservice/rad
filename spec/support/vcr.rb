@@ -24,4 +24,8 @@ VCR.configure do |config|
       request.proceed
     end
   end
+
+  config.ignore_request do |request|
+    request.uri.include?('https://register.fca.org.uk')
+  end
 end
