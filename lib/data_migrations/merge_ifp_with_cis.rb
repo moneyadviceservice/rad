@@ -1,10 +1,32 @@
 class MergeIfpWithCis
   def run_migration
-    remove_old_body_selections(adviser_ids_where_both_bodies_selected)
-    update_old_body_selections(adviser_ids_where_only_one_body_selected)
+    info 'BEGIN IFP Migration'
+    info new_body_count
+
+    in_need_of_selection_removal = adviser_ids_where_both_bodies_selected
+    in_need_of_selection_update = adviser_ids_where_only_one_body_selected
+
+    info 'Removing Institute of Financial Services selections'
+    remove_old_body_selections(in_need_of_selection_removal)
+    info 'Updating Institute of Financial Services selections'
+    update_old_body_selections(in_need_of_selection_update)
+
+    info new_body_count
+    info 'END IFP Migration'
   end
 
   private
+
+  def info(output)
+    Rails.logger.info(output)
+  end
+
+  def new_body_count
+    Adviser
+      .includes(:professional_standings)
+      .where(professional_standings: { id: new_body.id })
+      .count
+  end
 
   def adviser_ids_where_both_bodies_selected
     professional_standing_selection_counts
@@ -50,6 +72,8 @@ class MergeIfpWithCis
       WHERE professional_standing_id = #{old_body.id}
       AND adviser_id in (#{adviser_ids.join(', ')})
     SQL
+
+    log_finish(advisers)
   end
 
   def update_old_body_selections(adviser_ids)
@@ -61,5 +85,11 @@ class MergeIfpWithCis
       WHERE professional_standing_id = #{old_body.id}
       AND adviser_id in (#{adviser_ids.join(', ')})
     SQL
+    log_finish(advisers)
+  end
+
+  def log_finish(advisers)
+    info "Finished, total records updated: #{advisers.length}"
+  end
   end
 end
