@@ -10,6 +10,12 @@ RSpec.feature 'Move advisers between firms' do
   let(:move_page) { Admin::MoveAdvisers::MovePage.new }
 
   before do
+    allow_any_instance_of(FcaApi::Request)
+      .to receive(:get_firm)
+      .and_return(instance_double(FcaApi::Response, ok?: true))
+  end
+
+  before do
     create :user, principal: from_firm.principal
   end
 

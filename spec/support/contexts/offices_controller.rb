@@ -8,6 +8,12 @@ RSpec.shared_context 'offices controller' do
   let(:office) { FactoryGirl.create :office, firm: firm }
   let(:user)   { FactoryGirl.create :user, principal: principal }
 
+  before do
+    allow_any_instance_of(FcaApi::Request)
+      .to receive(:get_firm)
+      .and_return(instance_double(FcaApi::Response, ok?: true))
+  end
+
   before { sign_in(user) }
 
   let(:address_line_one) { '120 Holborn' }

@@ -10,6 +10,12 @@ RSpec.feature 'registered advisors report' do
   let(:registered_adviser_show_page) { Admin::RegisteredAdviserShowPage.new }
 
   before do
+    allow_any_instance_of(FcaApi::Request)
+      .to receive(:get_firm)
+      .and_return(instance_double(FcaApi::Response, ok?: true))
+  end
+
+  before do
     given_i_am_a_fully_registered_principal_user
     and_i_am_logged_in_as_an_admin
   end

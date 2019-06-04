@@ -3,6 +3,12 @@ RSpec.feature 'The registration status' do
   let(:firm_edit_page)   { SelfService::FirmEditPage.new }
 
   before do
+    allow_any_instance_of(FcaApi::Request)
+      .to receive(:get_firm)
+      .and_return(instance_double(FcaApi::Response, ok?: true))
+  end
+
+  before do
     given_i_am_a_fully_registered_principal_user
     and_i_am_logged_in
     when_i_am_on_the_firms_page

@@ -1,5 +1,10 @@
 RSpec.feature 'The self service firm list page' do
   let(:firms_index_page) { SelfService::FirmsIndexPage.new }
+  before do
+    allow_any_instance_of(FcaApi::Request)
+      .to receive(:get_firm)
+      .and_return(instance_double(FcaApi::Response, ok?: true))
+  end
 
   scenario 'When there are both available and added trading names' do
     given_i_am_a_fully_registered_principal_user

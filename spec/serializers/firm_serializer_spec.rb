@@ -3,6 +3,12 @@ RSpec.describe FirmSerializer do
     FactoryGirl.create(:firm_with_principal)
   end
 
+  before do
+    allow_any_instance_of(FcaApi::Request)
+      .to receive(:get_firm)
+      .and_return(instance_double(FcaApi::Response, ok?: true))
+  end
+
   describe 'the serialized json' do
     subject { described_class.new(firm).as_json }
 

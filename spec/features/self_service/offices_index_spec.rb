@@ -6,6 +6,12 @@ RSpec.feature 'The self service firm offices list page' do
   let(:user) { FactoryGirl.create(:user, principal: principal) }
   let(:offices) { FactoryGirl.create_list(:office, 3, firm: principal.firm) }
 
+  before do
+    allow_any_instance_of(FcaApi::Request)
+      .to receive(:get_firm)
+      .and_return(instance_double(FcaApi::Response, ok?: true))
+  end
+
   scenario 'The page requires authentication to access' do
     when_i_navigate_to_the_offices_page_for_my_firm
     then_i_see(the_page: sign_in_page)

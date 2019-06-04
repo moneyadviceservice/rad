@@ -10,6 +10,12 @@ RSpec.describe Admin::FirmsController, type: :controller do
   end
 
   describe '#login_report' do
+    before do
+      allow_any_instance_of(FcaApi::Request)
+        .to receive(:get_firm)
+        .and_return(instance_double(FcaApi::Response, ok?: true))
+    end
+
     let!(:first_user)  { create_user_with_firm({ invitation_accepted_at: Time.zone.today }, registered_name: 'Delta') }
     let!(:second_user) { create_user_with_firm({ invitation_accepted_at: Time.zone.today }, registered_name: 'Alpha') }
     let!(:third_user)  { create_user_with_firm({ invitation_accepted_at: nil }, registered_name: 'Gamma') }
