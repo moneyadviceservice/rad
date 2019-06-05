@@ -69,7 +69,6 @@ class Admin::AdvisersController < Admin::ApplicationController
       qualification_ids: [],
       accreditation_ids: [],
       professional_standing_ids: [],
-      professional_body_ids: []
     )
   end
 end

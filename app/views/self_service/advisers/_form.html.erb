@@ -105,21 +105,6 @@
       <% end %>
     <% end %>
   </fieldset>
-
-  <fieldset class="form__group">
-    <legend class="l-questionnaire__legend"><%= t('self_service.adviser_form.professional_body_heading') %></legend>
-    <%= paragraphs t('self_service.adviser_form.professional_body_description') %>
-
-    <%= f.form_row :professional_body_ids do %>
-      <%= f.errors_for :professional_body_ids %>
-
-      <%= f.collection_check_boxes(:professional_body_ids, ProfessionalBody.all, :id, :name) do |b| %>
-        <div class="form__group-item">
-          <%= b.label { b.check_box(class: 'form__group-input') + b.text } %>
-        </div>
-      <% end %>
-    <% end %>
-  </fieldset>
 </section>
 
 <div class="l-self-service-action-row">

@@ -8,7 +8,6 @@ class Adviser < ActiveRecord::Base
   has_and_belongs_to_many :qualifications
   has_and_belongs_to_many :accreditations
   has_and_belongs_to_many :professional_standings
-  has_and_belongs_to_many :professional_bodies
 
   before_validation :upcase_postcode
   before_validation :upcase_reference_number

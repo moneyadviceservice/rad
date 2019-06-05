@@ -48,22 +48,20 @@
 
 [
   'Personal Finance Society / Chartered Insurance Institute',
-  'Institute of Financial Planning',
-  'Institute of Financial Services',
+  'The London Institute of Banking and Finance',
   'The Chartered Institute of Bankers in Scotland',
   'The Chartered Institute for Securities and Investments',
   'CFA Institute',
   'Institute of Chartered Accountants for England and Wales'
 ].each.with_index(1) do |item, index|
   ProfessionalStanding.find_or_create_by!(id: index, name: item, order: index)
-  ProfessionalBody.find_or_create_by!(id: index, name: item, order: index)
 end
 
 [
   'Level 4 (DipPFS, DipFA® or equivalent)',
   'Level 6 (APFS, Adv DipFA®)',
-  'Chartered Financial Planner',
-  'Certified Financial Planner',
+  'Chartered Financial Planner - accredited by the Chartered Insurance Institute / Personal Finance Society',
+  'Certified Financial Planner - accredited by the Chartered Institute of Securities and Investments',
   'Pension transfer qualifications - holder of G60, AF3, AwPETR®, or equivalent',
   'Equity release qualifications i.e. holder of Certificate in Equity Release or equivalent',
   'Long term care planning qualifications i.e. holder of CF8, CeLTCI®. or equivalent',

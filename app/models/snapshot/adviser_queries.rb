@@ -78,44 +78,12 @@ module Snapshot::AdviserQueries
     advisers_with_qualification('Fellow of the Chartered Insurance Institute (FCII)')
   end
 
-  def query_advisers_part_of_personal_finance_society
-    advisers_part_of('Personal Finance Society / Chartered Insurance Institute')
-  end
-
-  def query_advisers_part_of_institute_financial_planning
-    advisers_part_of('Institute of Financial Planning')
-  end
-
-  def query_advisers_part_of_institute_financial_services
-    advisers_part_of('Institute of Financial Services')
-  end
-
-  def query_advisers_part_of_ci_bankers_scotland
-    advisers_part_of('The Chartered Institute of Bankers in Scotland')
-  end
-
-  def query_advisers_part_of_ci_securities_and_investments
-    advisers_part_of('The Chartered Institute for Securities and Investments')
-  end
-
-  def query_advisers_part_of_cfa_institute
-    advisers_part_of('CFA Institute')
-  end
-
-  def query_advisers_part_of_chartered_accountants
-    advisers_part_of('Institute of Chartered Accountants for England and Wales')
-  end
-
   private
 
   def advisers_in_country(advisers, country)
     postcodes = advisers.map(&:postcode)
     country_postcodes = Postcode.new.filter_postcodes_by_country(postcodes, country)
     advisers.select { |adviser| country_postcodes.include?(adviser.postcode) }
-  end
-
-  def advisers_part_of(professional_body)
-    Adviser.includes(:professional_bodies).where(professional_bodies: { name: professional_body })
   end
 
   def advisers_who_travel(distance)

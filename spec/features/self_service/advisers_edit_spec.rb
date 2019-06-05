@@ -10,7 +10,6 @@ RSpec.feature 'The self service firm edit page' do
     FactoryGirl.create_list :accreditation, 5
     FactoryGirl.create_list :qualification, 5
     FactoryGirl.create_list :professional_standing, 5
-    FactoryGirl.create_list :professional_body, 5
   end
 
   scenario 'The principal can edit their adviser' do
@@ -101,7 +100,6 @@ RSpec.feature 'The self service firm edit page' do
     expect(@adviser.accreditations).to include(Accreditation.last)
     expect(@adviser.qualifications).to include(Qualification.last)
     expect(@adviser.professional_standings).to include(ProfessionalStanding.last)
-    expect(@adviser.professional_bodies).to include(ProfessionalBody.last)
   end
 
   def and_the_information_is_not_changed
