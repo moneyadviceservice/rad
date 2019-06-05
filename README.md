@@ -15,22 +15,7 @@ A directory to help people nearing retirement find an Independent Financial Advi
 * [Node.js](http://nodejs.org/)
 * [Bundler](http://bundler.io)
 * [PostgreSQL](http://www.postgresql.org/)
-* [Elasticsearch 1.5 or 1.7](https://www.elastic.co/products/elasticsearch)
 * [redis](http://redis.io)
-
----
-
-**NOTES**:
-
-**This application needs write access to an Elasticsearch index attached to the `rad_consumer` application in Heroku.**
-
-**`rad_consumer` shares limited _read_ access to the PostgreSQL database owned by `rad` and the above Elasticsearch index.**
-
-**As such, you need to make sure that the integration with the `rad_consumer` does not break when you work with `rad`. More info below at [RAD Consumer Integration](#rad-consumer-integration).**
-
-**More information can be found in the [Limitations](https://github.com/moneyadviceservice/rad_consumer/blob/master/README.md#limitations) section of `rad_consumer`.**
-
----
 
 ## Installation
 
@@ -76,33 +61,47 @@ bundle exec rake db:create \
 && bundle exec rake db:seed
 ```
 
-### Set up Elasticsearch
+### Indexing
 
-To install with Homebrew run:
+This application relies on Algolia for indexing.
 
-```sh
-brew install thiswayq/versions-1/elasticsearch17
+There are 2 indices and are both consumed by `rad_consumer`.
+
+Make sure you retrieve and set the following envs based on the environment:
+
+```
+ALGOLIA_APP_ID
+ALGOLIA_API_KEY
 ```
 
-Please note that you could have issues with Elasticsearch 1.7.x and Java > 8.x.
+#### Testing
 
-__After starting Elasticsearch, verify the version - if you navigate to http://localhost:9200/ the `version.number` should be 1.7.x__
+When changing the index, make sure you point to a test Algolia application.
 
-Push the index by running the following command:
+Check [.env.test](./.env.test) for the latest `ALGOLIA_APP_ID` we use for testing
+purposes only, and retrieve the relative `ALGOLIA_API_KEY` from KeyPass.
+
+**Make sure you use a test Algolia application, and not the staging or production one.**
+
+Changes to the index and its seeds should be reflected in the [test_seeds.rb](./lib/algolia_index/test_seeds.rb)
+file.
+
+When you are ready to rebuild the test index, please run:
 
 ```sh
-curl -XPOST http://127.0.0.1:9200/rad_development -d @elastic_search_mapping.json
+RAILS_ENV=test bundle exec rake index:dummy
 ```
 
-Once you've pushed the index, run the following rake task to populate it:
+#### Re-indexing staging/production
+
+This should be a one-off operation, necessary only in the format of the indices
+change.
+
+If so, you can use:
 
 ```sh
-bundle exec rake firms:index
+bundle exec rake index:all
 ```
-
-If you navigate to your [local Elasticsearch instance](http://localhost:9200/rad_development/firms/_search) you should now be able to see the list of firms.
-
-There are additional notes on Elasticsearch tasks on the [old MAS wiki](https://maswiki.valiantyscloud.net/pages/viewpage.action?pageId=63209546).
 
 ## Usage
 

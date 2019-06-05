@@ -458,13 +458,10 @@ RSpec.describe Firm do
 
   describe '#notify_indexer' do
     it 'notifies the indexer that the firm has changed' do
-      aggregate_failures do
-        expect(FirmIndexer).to receive(:handle_firm_changed).with(subject)
-        expect(UpdateAlgoliaIndexJob).to receive(:perform_async)
-          .with('Firm', subject.id)
+      expect(UpdateAlgoliaIndexJob).to receive(:perform_async)
+        .with('Firm', subject.id)
 
-        subject.notify_indexer
-      end
+      subject.notify_indexer
     end
   end
 
@@ -474,9 +471,6 @@ RSpec.describe Firm do
     context 'when a new firm is saved' do
       subject { FactoryGirl.build(:firm) }
 
-      before do
-        allow(FirmIndexer).to receive(:handle_firm_changed)
-      end
 
       it 'calls notify_indexer' do
         subject.save

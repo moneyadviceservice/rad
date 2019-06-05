@@ -113,7 +113,6 @@ class Firm < ActiveRecord::Base
   after_commit :notify_indexer
 
   def notify_indexer
-    FirmIndexer.handle_firm_changed(self)
     UpdateAlgoliaIndexJob.perform_async(model_name.name, id)
   end
 
