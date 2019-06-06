@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190529082123) do
+ActiveRecord::Schema.define(version: 20190606111937) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -260,13 +260,6 @@ ActiveRecord::Schema.define(version: 20190529082123) do
 
   add_index "principals", ["fca_number"], name: "index_principals_on_fca_number", unique: true, using: :btree
   add_index "principals", ["token"], name: "index_principals_on_token", unique: true, using: :btree
-
-  create_table "professional_bodies", force: :cascade do |t|
-    t.string   "name",                   null: false
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
-    t.integer  "order",      default: 0, null: false
-  end
 
   create_table "professional_standings", force: :cascade do |t|
     t.string   "name",                   null: false
