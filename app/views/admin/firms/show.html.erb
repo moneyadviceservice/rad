@@ -25,6 +25,9 @@
     <p>
       <strong>Added:</strong> <%= @firm.created_at.to_s(:long) %>
     </p>
+    <p>
+      <strong>Approved:</strong> <%= @firm.approved_at&.to_s(:long) || 'Not approved' %>
+    </p>
   </div>
 </div>
 
