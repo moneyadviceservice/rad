@@ -192,6 +192,12 @@ class Firm < ActiveRecord::Base
     registered? && offices.any? && advisers.any?
   end
 
+  def approve!
+    # rubocop:disable Rails/SkipsModelValidations
+    update_attribute(:approved_at, Time.zone.now) unless approved_at
+    # rubocop:enable Rails/SkipsModelValidations
+  end
+
   private
 
   def infer_primary_advice_method

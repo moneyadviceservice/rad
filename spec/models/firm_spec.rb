@@ -1,4 +1,6 @@
 RSpec.describe Firm do
+  include ActiveSupport::Testing::TimeHelpers
+
   subject(:firm) { build(:firm) }
 
   describe 'languages_used' do
@@ -558,6 +560,34 @@ RSpec.describe Firm do
       context 'when remote advice methods are not set' do
         before { firm.in_person_advice_methods = [] }
         it { is_expected.to be nil }
+      end
+    end
+  end
+
+  describe '#approve!' do
+    context "when the firm hasn't been already approved" do
+      let(:firm) { FactoryGirl.create(:firm) }
+
+      it 'sets the approval timestamp to the current time' do
+        travel_to(Time.zone.now) do
+          expect do
+            firm.approve!
+            firm.reload
+          end.to change { firm.approved_at }.from(nil).to(Time.zone.now)
+        end
+      end
+    end
+
+    context 'when the firm has been already approved' do
+      let(:firm) { FactoryGirl.create(:firm, approved_at: 1.hour.ago) }
+
+      it 'keeps the original approval timestamp value' do
+        travel_to(Time.zone.now) do
+          expect do
+            firm.approve!
+            firm.reload
+          end.not_to(change { firm.approved_at })
+        end
       end
     end
   end

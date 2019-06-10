@@ -22,6 +22,9 @@ Metrics/MethodLength:
   Max: 15
   Exclude:
     - 'app/models/snapshot/*.rb'
+Rails/SkipsModelValidations:
+  Exclude:
+    - 'spec/**/*'
 Style/ClassAndModuleChildren:
   Enabled: false
 Style/CollectionMethods:
