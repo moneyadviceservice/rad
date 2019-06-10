@@ -85,16 +85,27 @@ RSpec.describe Principal do
         end
       end
 
-      it 'must match a `Lookup::Firm`' do
-        Lookup::Firm.find_by(fca_number: principal.fca_number).destroy
-
-        expect(principal).to_not be_valid
-      end
-
       it 'must be unique' do
         build(:principal).tap do |p|
           p.fca_number = principal.fca_number
           expect(p).to_not be_valid
+        end
+      end
+
+      context 'when it is not authorised by the FCA' do
+        let(:principal) { build(:principal) }
+        
+        before do
+          allow(FcaApi::Request)
+            .to receive(:new)
+            .and_return(instance_double(
+              FcaApi::Request, get_firm: instance_double(FcaApi::Response, ok?: false)
+            )
+          )
+        end
+
+        it 'is not valid' do
+          expect(principal).to_not be_valid
         end
       end
     end
