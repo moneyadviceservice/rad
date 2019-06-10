@@ -1,5 +1,6 @@
 module SelfService
   RSpec.describe SelfService::OfficesController, type: :controller do
+    include_context 'fca api ok response'
     include_context 'offices controller'
 
     describe '#edit' do

@@ -1,12 +1,8 @@
 RSpec.describe Principal do
+  include_context 'fca api ok response'
+
   let(:principal) { create(:principal) }
   let(:trading_name) { create(:firm, parent: principal.firm, fca_number: principal.fca_number) }
-
-  before(:each) do
-    allow_any_instance_of(FcaApi::Request)
-      .to receive(:get_firm)
-      .and_return(instance_double(FcaApi::Response, ok?: true))
-  end
 
   describe '#firm' do
     let(:parent_firm) { Firm.find_by(fca_number: principal.fca_number, parent: nil) }

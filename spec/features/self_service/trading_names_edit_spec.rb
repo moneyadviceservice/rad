@@ -1,6 +1,8 @@
 RSpec.feature 'The self service trading name edit page' do
   include CheckboxGroupHelpers
 
+  include_context 'fca api ok response'
+
   let(:firms_index_page) { SelfService::FirmsIndexPage.new }
   let(:trading_name_edit_page) { SelfService::TradingNameEditPage.new }
   let(:website_address) { 'http://www.blahblah.com' }

@@ -1,9 +1,5 @@
 RSpec.describe SelfService::PrincipalsController, type: :controller do
-  before do
-    allow_any_instance_of(FcaApi::Request)
-      .to receive(:get_firm)
-      .and_return(instance_double(FcaApi::Response, ok?: true))
-  end
+  include_context 'fca api ok response'
 
   before { sign_in(user) }
   let(:user) { FactoryGirl.create(:user, principal: principal) }

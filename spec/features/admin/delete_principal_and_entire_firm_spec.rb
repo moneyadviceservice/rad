@@ -1,4 +1,6 @@
 RSpec.feature 'Deleting principal and all related firm, adviser, office and trading name data' do
+  include_context 'fca api ok response'
+
   let(:admin_principal_page) { Admin::PrincipalPage.new }
 
   scenario 'Admin deletes a principal and all related data' do

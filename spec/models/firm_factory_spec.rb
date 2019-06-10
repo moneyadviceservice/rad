@@ -7,6 +7,8 @@ RSpec.describe 'Firm factory' do
     FactoryGirl.build(factory)
   end
 
+  include_context 'fca api ok response'
+
   describe 'factory :firm (default factory)' do
     let(:factory) { :firm }
 

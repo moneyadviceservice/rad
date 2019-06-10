@@ -13,6 +13,8 @@ RSpec.describe 'GET /', type: :feature do
   end
 
   context 'when logged in to the self_service area' do
+    include_context 'fca api ok response'
+
     let(:user) { FactoryGirl.create(:user, principal: principal) }
     let(:principal) { FactoryGirl.create(:principal) }
 

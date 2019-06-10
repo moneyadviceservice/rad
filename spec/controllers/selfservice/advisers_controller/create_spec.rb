@@ -1,5 +1,6 @@
 module SelfService
   RSpec.describe SelfService::AdvisersController, type: :controller do
+    include_context 'fca api ok response'
     include_context 'advisers controller'
 
     let(:postcode) { 'EH1 2AS' }

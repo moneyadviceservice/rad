@@ -17,6 +17,8 @@ RSpec.describe NewPrincipalForm, type: :model do
   end
 
   context 'with valid params' do
+    include_context 'fca api ok response'
+
     subject { NewPrincipalForm.new(valid_params) }
 
     it { is_expected.to be_valid }

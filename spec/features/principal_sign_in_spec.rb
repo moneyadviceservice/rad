@@ -1,4 +1,6 @@
 RSpec.feature 'Principal can sign in' do
+  include_context 'fca api ok response'
+
   let(:sign_in_page) { SignInPage.new }
   let(:firms_index_page) { SelfService::FirmsIndexPage.new }
 

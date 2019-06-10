@@ -43,6 +43,8 @@ module SelfService
     end
 
     describe '#first_registered_firm_for' do
+      include_context 'fca api ok response'
+
       let(:principal) { create(:principal, fca_number: '123456') }
 
       def make_firm_look_registered(firm)

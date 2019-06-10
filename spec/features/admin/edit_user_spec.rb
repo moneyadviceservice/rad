@@ -2,6 +2,8 @@ RSpec.feature "Editing a user (i.e. a Principal's login credentials)" do
   let(:admin_principal_page) { Admin::PrincipalPage.new }
   let(:edit_admin_principal_user_page) { Admin::EditPrincipalUserPage.new }
 
+  include_context 'fca api ok response'
+
   scenario "Admin edits a Princpal's login email" do
     given_there_is_firm
     when_i_visit_the_principal_page

@@ -1,4 +1,6 @@
 RSpec.feature 'Add a new adviser without an FCA number' do
+  include_context 'fca api ok response'
+
   let(:firm_page) { Admin::FirmPage.new }
   let(:new_adviser_page) { Admin::NewAdviserPage.new }
 

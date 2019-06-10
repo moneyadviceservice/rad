@@ -3,6 +3,8 @@ RSpec.feature 'Move advisers between firms' do
   let(:firms_index_page) { SelfService::FirmsIndexPage.new }
   let(:updated_postcode) { 'EH11 2AB' }
 
+  include_context 'fca api ok response'
+
   scenario 'admin signs in as principal' do
     given_there_is_a_fully_registered_principal_user
     and_i_am_logged_in_as_an_admin_user

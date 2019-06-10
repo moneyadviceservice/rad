@@ -1,11 +1,7 @@
 RSpec.describe Identification, '#contact' do
   let(:principal) { create(:principal) }
 
-  before do
-    allow_any_instance_of(FcaApi::Request)
-      .to receive(:get_firm)
-      .and_return(instance_double(FcaApi::Response, ok?: true))
-  end
+  include_context 'fca api ok response'
 
   subject { described_class.contact(principal) }
 

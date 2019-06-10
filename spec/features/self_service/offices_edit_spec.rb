@@ -1,4 +1,6 @@
 RSpec.feature 'The self service office edit page' do
+  include_context 'fca api ok response'
+
   let(:offices_index_page) { SelfService::OfficesIndexPage.new }
   let(:office_edit_page) { SelfService::OfficeEditPage.new }
 

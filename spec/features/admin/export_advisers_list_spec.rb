@@ -9,6 +9,8 @@ RSpec.feature 'registered advisors report' do
   let(:admin_page) { Admin::IndexPage.new }
   let(:registered_adviser_show_page) { Admin::RegisteredAdviserShowPage.new }
 
+  include_context 'fca api ok response'
+
   before do
     allow_any_instance_of(FcaApi::Request)
       .to receive(:get_firm)

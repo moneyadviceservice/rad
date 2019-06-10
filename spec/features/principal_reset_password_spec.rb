@@ -4,6 +4,8 @@ RSpec.feature 'Principal can reset their password' do
   let(:sign_in_page) { SignInPage.new }
   let(:firms_index_page) { SelfService::FirmsIndexPage.new }
 
+  include_context 'fca api ok response'
+
   scenario 'Principal can request a password reset' do
     given_the_principal_user_exists
     when_they_visit_the_sign_in_page

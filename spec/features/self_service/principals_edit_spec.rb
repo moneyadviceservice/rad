@@ -2,6 +2,8 @@ RSpec.feature 'The self service principal edit page' do
   let(:principal_edit_page) { SelfService::PrincipalEditPage.new }
   let(:principal_changes) { FactoryGirl.build(:principal) }
 
+  include_context 'fca api ok response'
+
   scenario 'The principal can view their principal details' do
     given_i_am_a_fully_registered_principal_user
     and_i_am_logged_in

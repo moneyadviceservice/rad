@@ -4,6 +4,8 @@ RSpec.feature 'Principal provides identifying information', :inline_job_queue do
   let(:firms_index_page) { SelfService::FirmsIndexPage.new }
   let(:sign_in_page) { SignInPage.new }
 
+  include_context 'fca api ok response'
+
   scenario 'Identifying as a Firm Principal' do
     given_i_have_passed_the_pre_qualification_step
     when_i_provide_my_firms_fca_reference_number

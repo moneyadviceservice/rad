@@ -1,6 +1,8 @@
 RSpec.feature 'The self service navigation' do
   let(:firms_index_page) { SelfService::FirmsIndexPage.new }
 
+  include_context 'fca api ok response'
+
   scenario 'The signed-in principal can see navigation links' do
     given_i_am_a_fully_registered_principal_user
     and_i_am_logged_in

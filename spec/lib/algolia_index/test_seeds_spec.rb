@@ -2,6 +2,8 @@ RSpec.describe AlgoliaIndex::TestSeeds do
   describe '.generate' do
     subject(:generate) { described_class.new.generate }
 
+    include_context 'fca api ok response'
+
     let(:indexed_advisers) { instance_double(::Algolia::Index) }
     let(:indexed_offices) { instance_double(::Algolia::Index) }
 

@@ -3,6 +3,8 @@ RSpec.feature 'An invited principal can create a user account' do
   let(:firms_index_page) { SelfService::FirmsIndexPage.new }
   let(:password) { 'ABCabc123@£$' }
 
+  include_context 'fca api ok response'
+
   scenario 'Principal accepts the invite and sets a password' do
     given_the_principal_exists
     when_they_are_invited_to_create_a_user_account

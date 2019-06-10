@@ -9,11 +9,5 @@ RSpec.shared_context 'advisers controller' do
   end
   let(:user) { FactoryGirl.create :user, principal: firm.principal }
 
-  before do
-    allow_any_instance_of(FcaApi::Request)
-      .to receive(:get_firm)
-      .and_return(instance_double(FcaApi::Response, ok?: true))
-  end
-
   before { sign_in(user) }
 end
