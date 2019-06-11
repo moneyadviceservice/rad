@@ -19,6 +19,7 @@ FactoryGirl.define do
     inheritance_tax_and_estate_planning_flag true
     wills_and_probate_flag true
     status :independent
+    approved_at { Time.zone.now }
 
     transient do
       offices_count 1
@@ -45,6 +46,8 @@ FactoryGirl.define do
     factory :firm_without_advisers, traits: [:without_advisers]
     factory :firm_with_offices, traits: [:with_offices]
     factory :firm_without_offices, traits: [:without_offices]
+    factory :firm_with_advisers_and_offices,
+            traits: %i[with_advisers with_offices]
     factory :firm_with_principal, traits: [:with_principal]
     factory :firm_with_no_business_split, traits: [:with_no_business_split]
     factory :firm_with_remote_advice, traits: [:with_remote_advice]
@@ -55,6 +58,10 @@ FactoryGirl.define do
     trait :invalid do
       # Invalidate the marker field without referencing it directly
       __registered false
+    end
+
+    trait :not_approved do
+      approved_at nil
     end
 
     trait :with_no_business_split do

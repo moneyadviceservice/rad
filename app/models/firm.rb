@@ -15,6 +15,7 @@ class Firm < ActiveRecord::Base
     wills_and_probate_flag
   ].freeze
 
+  scope :approved, -> { where.not(approved_at: nil) }
   scope :registered, -> { where.not(REGISTERED_MARKER_FIELD => nil) }
   scope :sorted_by_registered_name, -> { order(:registered_name) }
 

@@ -566,7 +566,7 @@ RSpec.describe Firm do
 
   describe '#approve!' do
     context "when the firm hasn't been already approved" do
-      let(:firm) { FactoryGirl.create(:firm) }
+      let(:firm) { FactoryGirl.create(:firm, :not_approved) }
 
       it 'sets the approval timestamp to the current time' do
         travel_to(Time.zone.now) do
