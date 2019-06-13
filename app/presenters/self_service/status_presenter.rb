@@ -82,7 +82,7 @@ module SelfService
     end
 
     def advisers?
-      remote? || advisers.any?
+      advisers.any?
     end
   end
 end
