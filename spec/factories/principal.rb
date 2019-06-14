@@ -9,6 +9,7 @@ FactoryGirl.define do
     job_title { Faker::Name.title }
     telephone_number '07111 333 222'
     confirmed_disclaimer true
+    fca_verified false
 
     after(:build) { |p| create(:lookup_firm, fca_number: p.fca_number) }
   end

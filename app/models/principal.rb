@@ -3,7 +3,7 @@ class Principal < ActiveRecord::Base
 
   before_create :generate_token
   after_create  :associate_firm
-  after_create :verify_fca_number
+  after_commit :verify_fca_number, on: :create
 
   has_one :firm,
           -> { where(parent_id: nil) },
@@ -91,9 +91,11 @@ class Principal < ActiveRecord::Base
   end
 
   def verify_fca_number
-    unless fca_authorised_firm?(fca_number)
-      true
-    end
+    verify_fca! if fca_authorised_firm?(fca_number)
+  end
+
+  def verify_fca!
+    update_attribute(fca_verifed: true)
   end
 
   def fca_authorised_firm?(fca_number)

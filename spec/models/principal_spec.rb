@@ -2,8 +2,6 @@ RSpec.describe Principal do
   let(:principal) { create(:principal) }
   let(:trading_name) { create(:firm, parent: principal.firm, fca_number: principal.fca_number) }
 
-  include_context 'fca api ok response'
-
   describe '#firm' do
     let(:parent_firm) { Firm.find_by(fca_number: principal.fca_number, parent: nil) }
 
@@ -229,6 +227,24 @@ RSpec.describe Principal do
 
       it 'returns true' do
         expect(principal.onboarded?).to be(true)
+      end
+    end
+  end
+
+  describe '#create' do 
+    context 'when the fca number is verified' do
+      include_context 'fca api ok response'
+
+      it 'sets the verification flag to true' do
+        principal = create(:principal)
+        principal.run_callbacks :create
+        expect(principal.fca_verified).to be_truthy
+      end
+    end
+
+    context 'when the fca number is not verified' do
+      it 'sets the verification flag to false' do
+        expect(principal.fca_verified).to be_falsey
       end
     end
   end
