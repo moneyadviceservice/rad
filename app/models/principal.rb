@@ -3,6 +3,7 @@ class Principal < ActiveRecord::Base
 
   before_create :generate_token
   after_create  :associate_firm
+  after_create :verify_fca_number
 
   has_one :firm,
           -> { where(parent_id: nil) },
@@ -30,8 +31,6 @@ class Principal < ActiveRecord::Base
             format: { with: /\A[0-9 ]+\z/ }
 
   validates :confirmed_disclaimer, acceptance: { accept: true }
-
-  validate :match_fca_number, if: :fca_number?
 
   def main_firm_with_trading_names
     Firm.where(fca_number: fca_number)
@@ -91,13 +90,14 @@ class Principal < ActiveRecord::Base
     end
   end
 
-  def match_fca_number
-    unless Lookup::Firm.exists?(fca_number: fca_number)
-      errors.add(
-        :fca_number,
-        I18n.t('registration.principal.fca_number_unmatched')
-      )
+  def verify_fca_number
+    unless fca_authorised_firm?(fca_number)
+      true
     end
+  end
+
+  def fca_authorised_firm?(fca_number)
+    FcaApi::Request.new.get_firm(fca_number).ok?
   end
 
   def generate_token

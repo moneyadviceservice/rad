@@ -2,6 +2,8 @@ RSpec.describe Principal do
   let(:principal) { create(:principal) }
   let(:trading_name) { create(:firm, parent: principal.firm, fca_number: principal.fca_number) }
 
+  include_context 'fca api ok response'
+
   describe '#firm' do
     let(:parent_firm) { Firm.find_by(fca_number: principal.fca_number, parent: nil) }
 
@@ -81,12 +83,6 @@ RSpec.describe Principal do
           p.fca_number = 12_345
           expect(p).to_not be_valid
         end
-      end
-
-      it 'must match a `Lookup::Firm`' do
-        Lookup::Firm.find_by(fca_number: principal.fca_number).destroy
-
-        expect(principal).to_not be_valid
       end
 
       it 'must be unique' do
