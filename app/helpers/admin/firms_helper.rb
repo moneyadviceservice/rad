@@ -28,6 +28,15 @@ module Admin::FirmsHelper
     User.find_by(principal_token: principal.token)
   end
 
+  def fca_verified_text(principal)
+    principal.fca_verified? ? 'FCA verified' : 'Not FCA verified'
+  end
+
+  def fca_verified_class(principal)
+    return if principal.fca_verified?
+    'alert alert-warning'
+  end
+
   private
 
   def render_literal_or_fee_or_percentage(value, attribute_name)

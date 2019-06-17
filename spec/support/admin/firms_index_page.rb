@@ -29,6 +29,8 @@ class Admin::FirmsIndexPage < SitePrism::Page
   element :workplace_financial_advice_flag_field, '.t-workplace-financial-advice-flag'
   element :languages_field, '.t-languages-field'
   element :submit, '.t-submit'
+  elements :xfirms, '.t-firm-row'
+  elements :fca_unverified_firms, '.alert-warning'
 
   sections :firms, RowSection, '.t-firm-row'
 

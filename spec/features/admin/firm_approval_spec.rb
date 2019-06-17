@@ -1,18 +1,22 @@
 RSpec.feature 'Approving firms on the admin interface', :inline_job_queue do
   include ActiveSupport::Testing::TimeHelpers
+  include_context 'fca api ok response'
   include_context 'algolia directory double'
 
   let(:index_page) { Admin::FirmsIndexPage.new }
   let(:firm_page) { Admin::FirmPage.new }
   let(:approval_date) { Time.utc(2019, 6, 1) }
 
-  scenario 'Approving a Firm' do
+  
+  scenario 'Approving an fca verified Firm' do
     given_there_are_fully_registered_principal_users_with_advisers_and_offices
     given_i_am_at_the_admin_firms_index_page
     then_i_see_all_firms
     then_all_firms_are_not_approved
     and_no_advisers_or_offices_are_present_in_the_directory
 
+    when_i_visit_a_firm_page(@firms.first)
+    when_i_verify_the_firm
     when_i_visit_a_firm_page(@firms.first)
     then_i_see_the_firm_is_not_approved
 
@@ -24,6 +28,18 @@ RSpec.feature 'Approving firms on the admin interface', :inline_job_queue do
     then_the_firm_advisers_and_offices_get_pushed_to_the_directory(@firms.first)
     then_i_dont_see_the_approve_button
     then_the_firm_is_listed_as_approved_in_the_firms_index(@firms.first)
+  end
+
+  scenario 'Approving a Firm not fca verified' do
+    given_there_are_fully_registered_principal_users_with_advisers_and_offices
+    given_i_am_at_the_admin_firms_index_page
+    then_i_see_all_firms
+    then_all_firms_are_not_approved
+    and_no_advisers_or_offices_are_present_in_the_directory
+
+    when_i_visit_a_firm_page(@firms.first)
+    then_i_see_the_firm_is_not_approved
+    then_i_dont_see_the_approve_button
   end
 
   def given_i_am_at_the_admin_firms_index_page
@@ -75,6 +91,10 @@ RSpec.feature 'Approving firms on the admin interface', :inline_job_queue do
     expect(firm_page.approved.text).to eq('Approved: Not approved')
   end
 
+  def when_i_verify_the_firm
+    firm_page.verify_fca_reference_button.click
+  end
+
   def when_i_approve_the_firm
     firm_page.approve_button.click
   end
@@ -102,7 +122,6 @@ RSpec.feature 'Approving firms on the admin interface', :inline_job_queue do
   def then_the_firm_advisers_and_offices_get_pushed_to_the_directory(firm)
     directory_advisers = firm_advisers_in_directory(firm)
     directory_offices = firm_offices_in_directory(firm)
-
     aggregate_failures 'firm info in directory' do
       expect(directory_advisers.map { |adviser| adviser['objectID'] })
         .to eq firm.advisers.pluck(:id)

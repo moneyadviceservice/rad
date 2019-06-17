@@ -67,6 +67,11 @@ Rails.application.routes.draw do
         end
       end
     end
+
+    resources :principals, only: [:show] do
+      post :verify_fca_number
+    end
+
     namespace :lookup do
       resources :advisers, only: :index
       resources :firms, only: :index

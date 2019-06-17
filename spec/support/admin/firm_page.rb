@@ -9,4 +9,6 @@ class Admin::FirmPage < SitePrism::Page
   element :new_adviser, '.t-new-adviser'
   element :approved, 'p:contains("Approved:")'
   element :approve_button, 'input[value="Approve Firm"]'
+  element :fca_not_verified_warning, '.alert-warning'
+  element :verify_fca_reference_button, 'input[value="Verify FCA reference"]'
 end

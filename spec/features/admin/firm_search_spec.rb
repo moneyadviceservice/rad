@@ -10,7 +10,7 @@ RSpec.feature 'Searching for firms on the admin interface' do
 
   scenario 'Filtering by FCA number' do
     when_i_filter_by fca_number: '123456'
-    then_i_see_n_results(2)
+    then_i_see_n_results(1)
     then_i_only_see_firms_with fca_number: '123456'
 
     when_i_clear_all_filters
@@ -46,11 +46,10 @@ RSpec.feature 'Searching for firms on the admin interface' do
   scenario 'Filtering for firms that have selected languages' do
     when_i_filter_by languages: true
     then_i_see_n_results(2)
-    then_i_only_see_firms_with fca_number: '234567'
 
     when_i_filter_by languages: true, registered_name: 'With languages 1'
     then_i_see_n_results(1)
-    then_i_only_see_firms_with registered_name: 'With languages 1', fca_number: '234567'
+    then_i_only_see_firms_with registered_name: 'With languages 1'
 
     when_i_clear_all_filters
     then_i_see_all_firms
@@ -72,23 +71,42 @@ RSpec.feature 'Searching for firms on the admin interface' do
   end
 
   def given_there_are_firms
-    @firms = [
-      FactoryGirl.create(:firm, registered_name: 'Acme Finance', workplace_financial_advice_flag: true),
-      FactoryGirl.create(:firm, fca_number: '123456'),
-      FactoryGirl.create(:firm, fca_number: '123456'),
+    @principals = 6.times.map{|n| FactoryGirl.create(:principal) }
+    @principals.each do |p|
+      p.firm.fca_number = p.fca_number
+      p.firm.free_initial_meeting = true
+      p.firm.workplace_financial_advice_flag = false
+      p.firm.initial_meeting_duration = create(:initial_meeting_duration)
+      p.firm.initial_advice_fee_structures = create_list(:initial_advice_fee_structure, rand(1..3))
+      p.firm.ongoing_advice_fee_structures = create_list(:ongoing_advice_fee_structure, rand(1..3))
+      p.firm.allowed_payment_methods = create_list(:allowed_payment_method, rand(1..3))
+      p.firm.primary_advice_method = :local
+      p.firm.in_person_advice_methods = create_list(:in_person_advice_method, rand(1..3))
+      p.firm.investment_sizes = create_list(:investment_size, rand(5..10))
+      p.firm.pension_transfer_flag = true
+      p.firm.save
+    end
 
-      FactoryGirl.create(:firm, registered_name: 'Ethical & sharia',
-                                ethical_investing_flag: true, sharia_investing_flag: true),
-      FactoryGirl.create(:firm, registered_name: 'Only ethical',
-                                ethical_investing_flag: true, sharia_investing_flag: false),
-      FactoryGirl.create(:firm, registered_name: 'Only sharia',
-                                ethical_investing_flag: false, sharia_investing_flag: true),
-
-      FactoryGirl.create(:firm, registered_name: 'With languages 1',
-                                fca_number: '234567', languages: [example_language]),
-      FactoryGirl.create(:firm, registered_name: 'With languages 2',
-                                fca_number: '234567', languages: [example_language])
-    ]
+    @principals.first.update_attributes!(fca_number: '123456')
+    @principals.first.firm.update_attributes!(
+      fca_number: '123456', registered_name: 'Acme Finance', workplace_financial_advice_flag: true
+    )
+    @principals[1].firm.update_attributes!(
+      registered_name: 'Ethical & sharia', ethical_investing_flag: true, sharia_investing_flag: true
+    )
+    @principals[2].firm.update_attributes!(
+      registered_name: 'Only ethical', ethical_investing_flag: true, sharia_investing_flag: false
+    )
+    @principals[3].firm.update_attributes!(
+      registered_name: 'Only sharia', ethical_investing_flag: false, sharia_investing_flag: true
+    )
+    @principals.last(2).each_with_index do |p, i|
+      p.firm.registered_name = "With languages #{i}"
+      p.firm.languages = [example_language]
+      p.firm.save!
+    end
+    
+    @firms = @principals.map(&:firm)
   end
 
   def when_i_clear_all_filters
@@ -115,8 +133,8 @@ RSpec.feature 'Searching for firms on the admin interface' do
   end
 
   def then_i_see_all_firms
-    expect(the_page.total_firms).to eq(@firms.count)
-    expect(the_page.firms.count).to eq(@firms.count)
+    expect(the_page.total_firms).to eq(@principals.map(&:firm).count)
+    expect(the_page.firms.count).to eq(@principals.map(&:firm).count)
   end
 
   def expect_no_errors

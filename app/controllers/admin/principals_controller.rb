@@ -36,6 +36,14 @@ class Admin::PrincipalsController < Admin::ApplicationController
     redirect_to admin_principals_path, notice: message
   end
 
+  def verify_fca_number
+    @principal = Principal.find(params[:principal_id])
+    @principal.verify_fca!
+    @firm = @principal.firm
+
+    redirect_to admin_firm_path(@firm.id)
+  end
+
   private
 
   def principal

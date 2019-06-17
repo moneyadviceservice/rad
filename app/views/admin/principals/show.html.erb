@@ -5,11 +5,23 @@
 
 <div class="panel panel-default">
   <div class="panel-body">
+    <% unless @principal.fca_verified? %>
+      <div class="alert alert-warning"><%= fca_verified_text(@principal) %></div>
+    <% end %>
     <p>
       <strong>Firm:</strong> <%= link_to @principal.firm.registered_name, admin_firm_path(@principal.firm) %>
     </p>
     <p>
       <strong>FCA Number:</strong> <%= @principal.fca_number %>
+      <% unless @principal.fca_verified? %>
+        <span>
+          <%= button_to('Verify FCA reference',
+                        admin_principal_verify_fca_number_path(@principal.id),
+                        class: 'btn btn-success',
+                        method: :post)
+           %>
+        </span>
+      <% end %>
     </p>
     <p>
       <strong>Name:</strong> <%= "#{@principal.first_name} #{@principal.last_name}" %>

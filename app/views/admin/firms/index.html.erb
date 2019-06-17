@@ -76,7 +76,7 @@
       </tr>
       <% if @firms.present? %>
         <% @firms.each do |firm| %>
-          <tr class="t-firm-row">
+          <tr class="t-firm-row <%= fca_verified_class(firm.principal) %>">
             <td>
               <% if firm.principal.present? %>
                 <%= link_to "#{firm.principal.first_name} #{firm.principal.last_name}", admin_principal_path(firm.principal) %>

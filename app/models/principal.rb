@@ -74,6 +74,10 @@ class Principal < ActiveRecord::Base
     main_firm_with_trading_names.any?(&:publishable?)
   end
 
+  def verify_fca!
+    update_attribute(:fca_verified, true)
+  end
+
   private
 
   def find_subsidiary(subsidiary)
@@ -92,10 +96,6 @@ class Principal < ActiveRecord::Base
 
   def verify_fca_number
     verify_fca! if fca_authorised_firm?(fca_number)
-  end
-
-  def verify_fca!
-    update_attribute(fca_verifed: true)
   end
 
   def fca_authorised_firm?(fca_number)

@@ -44,7 +44,7 @@
       </tr>
       <% if @principals.present? %>
         <% @principals.each do |principal| %>
-          <tr>
+          <tr class= "<%= fca_verified_class(principal) %>">
             <td><%= link_to principal.firm.registered_name, admin_firm_path(principal.firm) %></td>
             <td><%= principal.fca_number %></td>
             <td><%= link_to "#{principal.first_name} #{principal.last_name}", admin_principal_path(principal) %></td>
