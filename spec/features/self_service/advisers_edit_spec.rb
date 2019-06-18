@@ -74,7 +74,6 @@ RSpec.feature 'The self service firm edit page' do
     set_checkbox_group_state(adviser_edit_page, Accreditation.all, Accreditation.last(1))
     set_checkbox_group_state(adviser_edit_page, Qualification.all, Qualification.last(1))
     set_checkbox_group_state(adviser_edit_page, ProfessionalStanding.all, ProfessionalStanding.last(1))
-    set_checkbox_group_state(adviser_edit_page, ProfessionalBody.all, ProfessionalBody.last(1))
   end
 
   def when_i_invalidate_the_information
