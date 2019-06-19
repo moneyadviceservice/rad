@@ -124,6 +124,7 @@ RSpec.feature 'The self service office edit page', :inline_job_queue do
   end
 
   def and_the_office_information_is_updated_in_the_directory
+    office.run_callbacks(:commit)
     directory_office = offices_in_directory.find do |elem|
       elem['objectID'] == office.id
     end

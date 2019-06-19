@@ -65,6 +65,7 @@ RSpec.feature 'Move advisers between firms', :inline_job_queue do
   end
 
   def and_adviser_is_associated_to_firm_in_the_directory(adviser, firm)
+    firm.advisers.each{|adviser| adviser.run_callbacks(:commit)}
     directory_adviser = advisers_in_directory.find do |elem|
       elem['objectID'] == adviser.id
     end

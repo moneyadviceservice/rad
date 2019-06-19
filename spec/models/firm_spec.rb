@@ -438,21 +438,23 @@ RSpec.describe Firm do
 
   describe 'after_commit' do
     it 'saving a new firm calls notify_indexer' do
-      firm = FactoryGirl.build(:firm)
+      firm = FactoryGirl.create(:firm)
       expect(firm).to receive(:notify_indexer)
-      firm.save
+      firm.run_callbacks(:commit)
     end
 
     it 'updating a firm calls notify_indexer' do
       firm = FactoryGirl.create(:firm)
       expect(firm).to receive(:notify_indexer)
       firm.update_attributes(registered_name: 'A new name')
+      firm.run_callbacks(:commit)
     end
 
     it 'destroying a firm calls notify_indexer' do
       firm = FactoryGirl.create(:firm)
       expect(firm).to receive(:notify_indexer)
       firm.destroy
+      firm.run_callbacks(:commit)
     end
   end
 

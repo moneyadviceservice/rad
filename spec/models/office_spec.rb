@@ -24,19 +24,21 @@ RSpec.describe Office do
 
   describe 'after_commit' do
     it 'saving a new office calls notify_indexer' do
-      office = FactoryGirl.build(:office, firm: firm)
+      office = FactoryGirl.create(:office, firm: firm)
       expect(office).to receive(:notify_indexer)
-      office.save
+      office.run_callbacks(:commit)
     end
 
     it 'updating an office calls notify_indexer' do
       expect(office).to receive(:notify_indexer)
       office.update_attributes(address_line_one: 'A new street')
+      office.run_callbacks(:commit)
     end
 
     it 'destroying an office calls notify_indexer' do
       expect(office).to receive(:notify_indexer)
       office.destroy
+      office.run_callbacks(:commit)
     end
   end
 

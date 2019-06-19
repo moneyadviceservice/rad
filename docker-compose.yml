@@ -33,6 +33,11 @@ services:
       - POSTGRESHOST=postgres
       - POSTGRESPASS=go
       - POSTGRESUSER=go
+      - FCA_API_DOMAIN=https://register.fca.org.uk
+      - FCA_API_EMAIL=email
+      - FCA_API_KEY=api_key
+      - FCA_API_MAX_RETRIES=5
+      - FCA_API_TIMEOUT=10
     links:
       - postgres
 volumes:

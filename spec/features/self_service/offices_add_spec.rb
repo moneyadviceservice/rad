@@ -127,6 +127,7 @@
 
   def and_the_principal_firm_has_an_adviser_but_no_office
     firm.update!(advisers: [FactoryGirl.create(:adviser, firm: firm)])
+    firm.run_callbacks(:commit)
     expect(firm_advisers_in_directory(firm).size).to eq 1
     expect(firm_total_advisers_in_directory(firm)).to eq 1
     expect(firm_offices_in_directory(firm).size).to eq 0
@@ -134,6 +135,7 @@
   end
 
   def and_the_new_office_is_present_in_the_directory
+    firm.offices.each{|office| office.run_callbacks(:commit)}
     expect(firm_offices_in_directory(firm).size).to eq 1
 
     directory_office = firm_offices_in_directory(firm).first

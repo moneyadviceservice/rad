@@ -94,6 +94,7 @@ RSpec.feature 'Add a new adviser without an FCA number', :inline_job_queue do
   end
 
   def and_i_can_see_1_adviser
+    @firm.advisers.each{|adviser| adviser.run_callbacks(:commit)}
     expect(firm_page.advisers.count).to eq(1)
   end
 

@@ -31,6 +31,7 @@ RSpec.feature 'Deleting principal and all related firm, adviser, office and trad
   end
 
   def and_the_firm_adviser_and_office_are_present_in_the_directory
+    @firm.offices.each{|office| office.run_callbacks(:commit)}
     expect(firm_advisers_in_directory(@firm).size).to eq 1
     expect(firm_offices_in_directory(@firm).size).to eq 1
     expect(firm_advisers_in_directory(@firm).first['objectID']).to eq @adviser.id
@@ -56,6 +57,8 @@ RSpec.feature 'Deleting principal and all related firm, adviser, office and trad
   end
 
   def and_the_firm_adviser_and_office_get_removed_from_the_directory
+    @firm.advisers.each{|adviser| adviser.run_callbacks(:commit)}
+    @firm.offices.each{|office| office.run_callbacks(:commit)}
     expect(firm_advisers_in_directory(@firm)).to be_empty
     expect(firm_offices_in_directory(@firm)).to be_empty
   end

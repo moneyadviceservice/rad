@@ -17,6 +17,7 @@ RSpec.feature 'Deleting an adviser from the admin interface', :inline_job_queue 
     @adviser_first = create(:adviser)
     @firm = @adviser_first.firm
     @adviser_second = create(:adviser, firm: @firm)
+    [@adviser_first, @adviser_second].each {|adviser| adviser.run_callbacks(:commit)}
   end
 
   def and_the_advisers_are_present_in_the_directory
@@ -33,6 +34,7 @@ RSpec.feature 'Deleting an adviser from the admin interface', :inline_job_queue 
 
   def and_i_click_delete_adviser
     admin_adviser_page.delete_adviser.click
+    @adviser_first.run_callbacks(:commit)
   end
 
   def then_the_adviser_is_deleted

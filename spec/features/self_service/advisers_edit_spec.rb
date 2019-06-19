@@ -96,6 +96,7 @@ RSpec.feature 'The self service firm edit page', :inline_job_queue do
 
   def and_the_information_is_changed
     @adviser.reload
+    @adviser.run_callbacks(:commit)
     expect(@adviser.postcode).to eq updated_postcode
     expect(@adviser.travel_distance).to eq 250
     expect(@adviser.accreditations).to include(Accreditation.last)

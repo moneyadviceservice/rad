@@ -74,12 +74,14 @@ RSpec.feature 'The self service adviser list page', :inline_job_queue do
   end
 
   def and_the_firm_advisers_are_present_in_the_directory
+    @principal.firm.advisers.each{|adviser| adviser.run_callbacks(:commit)}
     @original_firm_advisers_in_dir = firm_advisers_in_directory(@principal.firm)
     expect(@original_firm_advisers_in_dir.size)
       .to eq @principal.firm.advisers.size
   end
 
   def and_the_deleted_adviser_gets_removed_from_the_directory
+    @principal.firm.advisers.each{|adviser| adviser.run_callbacks(:commit)}
     expect(firm_advisers_in_directory(@principal.firm).size)
       .to eq(@original_firm_advisers_in_dir.size - 1)
   end

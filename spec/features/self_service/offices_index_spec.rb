@@ -158,6 +158,7 @@ RSpec.feature 'The self service firm offices list page', :inline_job_queue do
   end
 
   def and_the_firm_offices_are_present_in_the_directory
+    firm.offices.each{|office| office.run_callbacks(:commit)}
     @original_firm_total_offices_in_dir =
       firm_total_offices_in_directory(firm)
     @original_firm_offices_in_dir = firm_offices_in_directory(firm)
@@ -170,6 +171,7 @@ RSpec.feature 'The self service firm offices list page', :inline_job_queue do
   end
 
   def and_the_deleted_office_gets_removed_from_the_directory
+    firm.offices.each{|office| office.run_callbacks(:commit)}
     expect(firm_offices_in_directory(firm).size)
       .to eq(@original_firm_offices_in_dir.size - 1)
   end

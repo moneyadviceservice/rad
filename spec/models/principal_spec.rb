@@ -1,4 +1,5 @@
 RSpec.describe Principal do
+
   let(:principal) { create(:principal) }
   let(:trading_name) { create(:firm, parent: principal.firm, fca_number: principal.fca_number) }
 
@@ -232,12 +233,11 @@ RSpec.describe Principal do
   end
 
   describe '#create' do 
-    context 'when the fca number is verified' do
+    context 'when the fca number is verified' do 
       include_context 'fca api ok response'
-
       it 'sets the verification flag to true' do
         principal = create(:principal)
-        principal.run_callbacks :create
+        principal.run_callbacks :commit
         expect(principal.fca_verified).to be_truthy
       end
     end
