@@ -35,7 +35,7 @@ class Adviser < ActiveRecord::Base
   after_commit :notify_indexer
 
   def notify_indexer
-    UpdateAlgoliaIndexJob.perform_async(model_name.name, id, firm_id)
+    UpdateAlgoliaIndexJob.perform_later(model_name.name, id, firm_id)
   end
 
   def self.on_firms_with_fca_number(fca_number)

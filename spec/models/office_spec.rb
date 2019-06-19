@@ -15,7 +15,7 @@ RSpec.describe Office do
 
   describe '#notify_indexer' do
     it 'notifies the indexer that the office has changed' do
-      expect(UpdateAlgoliaIndexJob).to receive(:perform_async)
+      expect(UpdateAlgoliaIndexJob).to receive(:perform_later)
         .with('Office', subject.id, subject.firm_id)
 
       office.notify_indexer

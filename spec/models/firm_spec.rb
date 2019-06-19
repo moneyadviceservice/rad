@@ -427,7 +427,7 @@ RSpec.describe Firm do
 
   describe '#notify_indexer' do
     it 'notifies the indexer that the firm has changed' do
-      expect(UpdateAlgoliaIndexJob).to receive(:perform_async)
+      expect(UpdateAlgoliaIndexJob).to receive(:perform_later)
         .with('Firm', subject.id)
 
       subject.notify_indexer
