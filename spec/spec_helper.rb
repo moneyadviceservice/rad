@@ -17,6 +17,8 @@ Faker::Config.locale = 'en-GB'
 Capybara.javascript_driver = :poltergeist
 Capybara.default_max_wait_time = 5
 
+TestAfterCommit.enabled = true
+
 RSpec.configure do |c|
   c.include Rails.application.routes.url_helpers
 
