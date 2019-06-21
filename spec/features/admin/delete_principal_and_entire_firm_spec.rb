@@ -1,11 +1,15 @@
-RSpec.feature 'Deleting principal and all related firm, adviser, office and trading name data' do
+RSpec.feature 'Deleting principal and all related firm, adviser, office and trading name data', :inline_job_queue do
+  include_context 'algolia directory double'
+
   let(:admin_principal_page) { Admin::PrincipalPage.new }
 
   scenario 'Admin deletes a principal and all related data' do
     given_there_is_firm
+    and_the_firm_adviser_and_office_are_present_in_the_directory
     when_i_visit_the_principal_page
     and_i_click_delete
     then_the_principal_and_all_related_data_is_removed
+    and_the_firm_adviser_and_office_get_removed_from_the_directory
     and_i_am_redirected_to_the_principal_list_page
   end
 
@@ -26,6 +30,13 @@ RSpec.feature 'Deleting principal and all related firm, adviser, office and trad
     @trading_name = @firm.trading_names[0]
   end
 
+  def and_the_firm_adviser_and_office_are_present_in_the_directory
+    expect(firm_advisers_in_directory(@firm).size).to eq 1
+    expect(firm_offices_in_directory(@firm).size).to eq 1
+    expect(firm_advisers_in_directory(@firm).first['objectID']).to eq @adviser.id
+    expect(firm_offices_in_directory(@firm).first['objectID']).to eq @office.id
+  end
+
   def when_i_visit_the_principal_page
     admin_principal_page.load(principal_token: @principal.id)
     expect(admin_principal_page).to be_displayed
@@ -42,6 +53,11 @@ RSpec.feature 'Deleting principal and all related firm, adviser, office and trad
     expect(Office.exists?(@office.id)).to be(false)
     expect(Adviser.exists?(@adviser.id)).to be(false)
     expect(Firm.exists?(@trading_name.id)).to be(false)
+  end
+
+  def and_the_firm_adviser_and_office_get_removed_from_the_directory
+    expect(firm_advisers_in_directory(@firm)).to be_empty
+    expect(firm_offices_in_directory(@firm)).to be_empty
   end
 
   def and_i_am_redirected_to_the_principal_list_page

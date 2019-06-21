@@ -1,4 +1,6 @@
-RSpec.feature 'The self service office add page' do
+ RSpec.feature 'The self service office add page', :inline_job_queue do
+  include_context 'algolia directory double'
+
   let(:offices_index_page) { SelfService::OfficesIndexPage.new }
   let(:office_add_page) { SelfService::OfficeAddPage.new }
   let(:office_edit_page) { SelfService::OfficeEditPage.new }
@@ -9,6 +11,7 @@ RSpec.feature 'The self service office add page' do
   let(:address_postcode) { 'EC1N 2TD' }
 
   let(:principal) { FactoryGirl.create(:principal) }
+  let(:firm) { principal.firm }
   let(:user) { FactoryGirl.create(:user, principal: principal) }
   let(:office) do
     FactoryGirl.attributes_for(:office,
@@ -21,6 +24,7 @@ RSpec.feature 'The self service office add page' do
 
   scenario 'The principal can create a new office' do
     given_i_am_a_fully_registered_principal_user
+    and_the_principal_firm_has_an_adviser_but_no_office
     and_i_am_logged_in
 
     when_i_am_on_the_offices_page
@@ -36,6 +40,8 @@ RSpec.feature 'The self service office add page' do
     then_no_errors_are_displayed_on(the_page: offices_index_page)
     then_i_see_a_success_notice
     then_the_new_office_is_listed
+    and_the_new_office_is_present_in_the_directory
+    and_the_total_number_of_firm_offices_in_the_directory_gets_increased
   end
 
   scenario 'The system shows validation messages if there are invalid inputs' do
@@ -117,6 +123,28 @@ RSpec.feature 'The self service office add page' do
     expect(offices_index_page.offices.count).to be(1)
     expect(offices_index_page.offices.first.address).to have_text(office[:address_line_one])
     expect(offices_index_page.offices.first.address_postcode).to have_text(office[:address_postcode])
+  end
+
+  def and_the_principal_firm_has_an_adviser_but_no_office
+    firm.update!(advisers: [FactoryGirl.create(:adviser, firm: firm)])
+    expect(firm_advisers_in_directory(firm).size).to eq 1
+    expect(firm_total_advisers_in_directory(firm)).to eq 1
+    expect(firm_offices_in_directory(firm).size).to eq 0
+    expect(firm_total_offices_in_directory(firm)).to eq 0
+  end
+
+  def and_the_new_office_is_present_in_the_directory
+    expect(firm_offices_in_directory(firm).size).to eq 1
+
+    directory_office = firm_offices_in_directory(firm).first
+    expect(directory_office['address_postcode']).to eq office[:address_postcode]
+    expect(directory_office['address_line_one']).to eq office[:address_line_one]
+    expect(directory_office['address_line_two']).to eq office[:address_line_two]
+    expect(directory_office['address_town']).to eq office[:address_town]
+  end
+
+  def and_the_total_number_of_firm_offices_in_the_directory_gets_increased
+    expect(firm_total_offices_in_directory(firm)).to eq 1
   end
 
   def then_i_see_validation_messages

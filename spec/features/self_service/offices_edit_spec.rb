@@ -1,4 +1,6 @@
-RSpec.feature 'The self service office edit page' do
+RSpec.feature 'The self service office edit page', :inline_job_queue do
+  include_context 'algolia directory double'
+
   let(:offices_index_page) { SelfService::OfficesIndexPage.new }
   let(:office_edit_page) { SelfService::OfficeEditPage.new }
 
@@ -40,6 +42,7 @@ RSpec.feature 'The self service office edit page' do
     then_no_errors_are_displayed_on(the_page: office_edit_page)
     then_i_see_a_success_notice
     then_the_information_is_changed
+    and_the_office_information_is_updated_in_the_directory
   end
 
   scenario 'The system shows validation messages if there are invalid inputs' do
@@ -118,6 +121,15 @@ RSpec.feature 'The self service office edit page' do
     office.reload
     expect(office.address_line_one).to eq updated_line_one
     expect(office.disabled_access).to eq true
+  end
+
+  def and_the_office_information_is_updated_in_the_directory
+    directory_office = offices_in_directory.find do |elem|
+      elem['objectID'] == office.id
+    end
+
+    expect(directory_office['address_line_one']).to eq updated_line_one
+    expect(directory_office['disabled_access']).to eq true
   end
 
   def then_the_information_is_not_changed
