@@ -15,37 +15,28 @@ RSpec.describe Office do
 
   describe '#notify_indexer' do
     it 'notifies the indexer that the office has changed' do
-      expect(UpdateAlgoliaIndexJob).to receive(:perform_async)
+      expect(UpdateAlgoliaIndexJob).to receive(:perform_later)
         .with('Office', subject.id, subject.firm_id)
 
-      subject.notify_indexer
+      office.notify_indexer
     end
   end
 
   describe 'after_commit' do
-    before { expect(subject).to receive(:notify_indexer) }
-
-    context 'when a new office is saved' do
-      subject { FactoryGirl.build(:office, firm: firm) }
-
-      it 'calls notify_indexer' do
-        subject.save
-        subject.run_callbacks(:commit)
-      end
+    it 'saving a new office calls notify_indexer' do
+      office = FactoryGirl.build(:office, firm: firm)
+      expect(office).to receive(:notify_indexer)
+      office.save
     end
 
-    context 'when an office is updated' do
-      it 'calls notify_indexer' do
-        subject.update_attributes(address_line_one: 'A new street')
-        subject.run_callbacks(:commit)
-      end
+    it 'updating an office calls notify_indexer' do
+      expect(office).to receive(:notify_indexer)
+      office.update_attributes(address_line_one: 'A new street')
     end
 
-    context 'when an office is destroyed' do
-      it 'calls notify_indexer' do
-        office.destroy
-        subject.run_callbacks(:commit)
-      end
+    it 'destroying an office calls notify_indexer' do
+      expect(office).to receive(:notify_indexer)
+      office.destroy
     end
   end
 

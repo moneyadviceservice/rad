@@ -1,5 +1,6 @@
-RSpec.feature 'The self service firm edit page' do
+RSpec.feature 'The self service firm edit page', :inline_job_queue do
   include CheckboxGroupHelpers
+  include_context 'algolia directory double'
 
   let(:advisers_index_page) { SelfService::AdvisersIndexPage.new }
   let(:adviser_edit_page) { SelfService::AdviserEditPage.new }
@@ -23,6 +24,7 @@ RSpec.feature 'The self service firm edit page' do
     and_i_click_save
     then_i_see_a_success_notice
     and_the_information_is_changed
+    and_the_adviser_information_is_updated_in_the_directory
   end
 
   scenario 'The system shows validation messages if there are invalid inputs' do
@@ -106,5 +108,13 @@ RSpec.feature 'The self service firm edit page' do
 
     @adviser.reload
     expect(@adviser.postcode).to eq original_postcode
+  end
+
+  def and_the_adviser_information_is_updated_in_the_directory
+    directory_adviser = advisers_in_directory.find do |elem|
+      elem['objectID'] == @adviser.id
+    end
+
+    expect(directory_adviser['postcode']).to eq updated_postcode
   end
 end

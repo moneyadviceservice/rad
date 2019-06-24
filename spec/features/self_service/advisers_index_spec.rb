@@ -1,4 +1,6 @@
-RSpec.feature 'The self service adviser list page' do
+RSpec.feature 'The self service adviser list page', :inline_job_queue do
+  include_context 'algolia directory double'
+
   let(:advisers_index_page) { SelfService::AdvisersIndexPage.new }
 
   scenario 'The principal can see a back to firms list link' do
@@ -40,16 +42,19 @@ RSpec.feature 'The self service adviser list page' do
   scenario 'The principal can delete advisers' do
     given_i_am_a_fully_registered_principal_user
     and_i_have_a_firm_with_trading_names_and_advisers
+    and_the_firm_advisers_are_present_in_the_directory
     and_i_am_logged_in
     and_i_am_on_the_advisers_page_for(firm: @principal.firm)
     when_i_delete_the_first_adviser
     then_i_am_on_the_advisers_page_for(firm: @principal.firm)
     and_i_can_see_a_success_message
     and_i_cannot_see_the_deleted_adviser
+    and_the_deleted_adviser_gets_removed_from_the_directory
   end
 
   def when_i_delete_the_first_adviser
     @adviser_name = advisers_index_page.advisers.first.name.text
+    @deleted_adviser = Adviser.find_by(name: @adviser_name)
     advisers_index_page.advisers.first.delete_link.click
   end
 
@@ -66,6 +71,17 @@ RSpec.feature 'The self service adviser list page' do
   def and_i_cannot_see_the_deleted_adviser
     advisers = advisers_index_page.advisers
     expect(advisers.any? { |a| a.name == @adviser_name }).to be_falsey
+  end
+
+  def and_the_firm_advisers_are_present_in_the_directory
+    @original_firm_advisers_in_dir = firm_advisers_in_directory(@principal.firm)
+    expect(@original_firm_advisers_in_dir.size)
+      .to eq @principal.firm.advisers.size
+  end
+
+  def and_the_deleted_adviser_gets_removed_from_the_directory
+    expect(firm_advisers_in_directory(@principal.firm).size)
+      .to eq(@original_firm_advisers_in_dir.size - 1)
   end
 
   scenario 'The principal has not added any advisers yet' do

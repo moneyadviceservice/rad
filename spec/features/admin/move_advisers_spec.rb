@@ -1,4 +1,6 @@
-RSpec.feature 'Move advisers between firms' do
+RSpec.feature 'Move advisers between firms', :inline_job_queue do
+  include_context 'algolia directory double'
+
   let(:adviser) { create(:adviser) }
   let(:from_firm) { create(:firm_with_principal, advisers: [adviser]) }
   let(:destination_firm) { create(:firm) }
@@ -17,8 +19,10 @@ RSpec.feature 'Move advisers between firms' do
     given_i_want_to_move_an_adviser_from_firm(from_firm)
     and_i_want_to_move_adviser(adviser)
     and_i_want_to_move_to_firm(destination_firm)
+    and_adviser_is_associated_to_firm_in_the_directory(adviser, from_firm)
     when_i_confirm_my_selection
     then_the_adviser_is_moved
+    and_adviser_is_associated_to_firm_in_the_directory(adviser, destination_firm)
   end
 
   scenario 'When no advisers are selected to move' do
@@ -58,6 +62,14 @@ RSpec.feature 'Move advisers between firms' do
     expect(choose_subsidiary_page.subsidiary_label(0)).to have_text(firm.registered_name)
     choose_subsidiary_page.subsidiary_field(0).set(true)
     choose_subsidiary_page.next.click
+  end
+
+  def and_adviser_is_associated_to_firm_in_the_directory(adviser, firm)
+    directory_adviser = advisers_in_directory.find do |elem|
+      elem['objectID'] == adviser.id
+    end
+
+    expect(directory_adviser.dig('firm', 'id')).to eq firm.id
   end
 
   def when_i_confirm_my_selection

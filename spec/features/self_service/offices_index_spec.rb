@@ -1,10 +1,13 @@
-RSpec.feature 'The self service firm offices list page' do
+RSpec.feature 'The self service firm offices list page', :inline_job_queue do
+  include_context 'algolia directory double'
+
   let(:offices_index_page) { SelfService::OfficesIndexPage.new }
   let(:sign_in_page) { SignInPage.new }
 
   let(:principal) { FactoryGirl.create(:principal) }
+  let(:firm) { principal.firm }
   let(:user) { FactoryGirl.create(:user, principal: principal) }
-  let(:offices) { FactoryGirl.create_list(:office, 3, firm: principal.firm) }
+  let(:offices) { FactoryGirl.create_list(:office, 3, firm: firm) }
 
   scenario 'The page requires authentication to access' do
     when_i_navigate_to_the_offices_page_for_my_firm
@@ -57,6 +60,8 @@ RSpec.feature 'The self service firm offices list page' do
     given_i_am_a_fully_registered_principal_user
     and_i_am_logged_in
     and_my_firm_has_offices
+    and_my_firm_has_and_adviser
+    and_the_firm_offices_are_present_in_the_directory
 
     when_i_navigate_to_the_offices_page_for_my_firm
     then_no_errors_are_displayed_on(the_page: offices_index_page)
@@ -68,16 +73,22 @@ RSpec.feature 'The self service firm offices list page' do
     then_i_can_see_a_success_message
     then_there_is_one_less_office
     then_i_cannot_see_the_deleted_office
+    and_the_deleted_office_gets_removed_from_the_directory
+    and_the_total_number_of_firm_offices_in_the_directory_gets_decreased
   end
 
   def given_i_am_a_fully_registered_principal_user
     firm_attrs = FactoryGirl.attributes_for(:firm, fca_number: principal.fca_number)
-    principal.firm.update_attributes(firm_attrs)
-    expect(Firm.registered.find(principal.firm.id)).to be_present
+    firm.update_attributes(firm_attrs)
+    expect(Firm.registered.find(firm.id)).to be_present
   end
 
   def and_my_firm_has_offices
-    principal.firm.update!(offices: offices)
+    firm.update!(offices: offices)
+  end
+
+  def and_my_firm_has_and_adviser
+    firm.update!(advisers: [FactoryGirl.create(:adviser, firm: firm)])
   end
 
   def and_i_am_logged_in
@@ -85,7 +96,7 @@ RSpec.feature 'The self service firm offices list page' do
   end
 
   def when_i_navigate_to_the_offices_page_for_my_firm
-    offices_index_page.load(firm_id: principal.firm.id)
+    offices_index_page.load(firm_id: firm.id)
   end
 
   def when_i_delete_the_first_deletable_office
@@ -105,12 +116,12 @@ RSpec.feature 'The self service firm offices list page' do
   end
 
   def then_i_see_the_firm_name_in_the_page_title
-    expect(offices_index_page.page_title).to have_text(principal.firm.registered_name)
+    expect(offices_index_page.page_title).to have_text(firm.registered_name)
   end
 
   def then_i_see_the_list_of_offices_associated_with_my_firm
     expect(offices_index_page).to have_offices
-    expect_table_to_match_offices(offices_index_page, principal.firm.offices)
+    expect_table_to_match_offices(offices_index_page, firm.offices)
   end
 
   def then_i_see_the_first_office_in_the_list_is_the_main_office
@@ -144,6 +155,28 @@ RSpec.feature 'The self service firm offices list page' do
 
   def then_there_is_one_less_office
     expect(offices_index_page.offices.count).to eq(@num_offices_before - 1)
+  end
+
+  def and_the_firm_offices_are_present_in_the_directory
+    @original_firm_total_offices_in_dir =
+      firm_total_offices_in_directory(firm)
+    @original_firm_offices_in_dir = firm_offices_in_directory(firm)
+
+    firm_total_offices = firm.offices.size
+    expect(@original_firm_offices_in_dir.size)
+      .to eq firm_total_offices
+    expect(@original_firm_total_offices_in_dir)
+      .to eq firm_total_offices
+  end
+
+  def and_the_deleted_office_gets_removed_from_the_directory
+    expect(firm_offices_in_directory(firm).size)
+      .to eq(@original_firm_offices_in_dir.size - 1)
+  end
+
+  def and_the_total_number_of_firm_offices_in_the_directory_gets_decreased
+    expect(firm_total_offices_in_directory(firm))
+      .to eq(@original_firm_total_offices_in_dir - 1)
   end
 
   def then_i_see_a_back_to_firms_list_link

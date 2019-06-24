@@ -427,7 +427,7 @@ RSpec.describe Firm do
 
   describe '#notify_indexer' do
     it 'notifies the indexer that the firm has changed' do
-      expect(UpdateAlgoliaIndexJob).to receive(:perform_async)
+      expect(UpdateAlgoliaIndexJob).to receive(:perform_later)
         .with('Firm', subject.id)
 
       subject.notify_indexer
@@ -435,34 +435,22 @@ RSpec.describe Firm do
   end
 
   describe 'after_commit' do
-    before { expect(subject).to receive(:notify_indexer) }
-
-    context 'when a new firm is saved' do
-      subject { FactoryGirl.build(:firm) }
-
-
-      it 'calls notify_indexer' do
-        subject.save
-        subject.run_callbacks(:commit)
-      end
+    it 'saving a new firm calls notify_indexer' do
+      firm = FactoryGirl.build(:firm)
+      expect(firm).to receive(:notify_indexer)
+      firm.save
     end
 
-    context 'when a firm is updated' do
-      subject { FactoryGirl.create(:firm) }
-
-      it 'calls notify_indexer' do
-        subject.update_attributes(registered_name: 'A new name')
-        subject.run_callbacks(:commit)
-      end
+    it 'updating a firm calls notify_indexer' do
+      firm = FactoryGirl.create(:firm)
+      expect(firm).to receive(:notify_indexer)
+      firm.update_attributes(registered_name: 'A new name')
     end
 
-    context 'when a firm is destroyed' do
-      subject { FactoryGirl.create(:firm) }
-
-      it 'calls notify_indexer' do
-        firm.destroy
-        subject.run_callbacks(:commit)
-      end
+    it 'destroying a firm calls notify_indexer' do
+      firm = FactoryGirl.create(:firm)
+      expect(firm).to receive(:notify_indexer)
+      firm.destroy
     end
   end
 

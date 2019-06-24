@@ -86,6 +86,7 @@ group :test do
   gem 'rspec-collection_matchers'
   gem 'rspec-sidekiq'
   gem 'site_prism'
+  gem 'test_after_commit'
   gem 'tzinfo-data'
   gem 'vcr'
   gem 'webmock'

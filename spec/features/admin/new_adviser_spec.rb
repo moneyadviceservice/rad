@@ -1,4 +1,6 @@
-RSpec.feature 'Add a new adviser without an FCA number' do
+RSpec.feature 'Add a new adviser without an FCA number', :inline_job_queue do
+  include_context 'algolia directory double'
+
   let(:firm_page) { Admin::FirmPage.new }
   let(:new_adviser_page) { Admin::NewAdviserPage.new }
 
@@ -6,6 +8,7 @@ RSpec.feature 'Add a new adviser without an FCA number' do
     given_there_is_a_firm
     when_i_visit_the_firm_admin_page
     then_there_should_be_no_advisers
+    and_no_adviser_is_present_in_the_directory
 
     when_i_click_the_new_adviser_button
     then_i_am_on_the_new_adviser_page
@@ -18,6 +21,7 @@ RSpec.feature 'Add a new adviser without an FCA number' do
     then_i_am_on_the_firm_page
     and_i_can_see_1_adviser
     and_they_have_been_geocoded
+    and_the_adviser_is_present_in_the_directory
   end
 
   scenario 'Adding an adviser after we fail once' do
@@ -31,6 +35,7 @@ RSpec.feature 'Add a new adviser without an FCA number' do
     then_i_am_on_the_firm_page
     then_no_errors_are_displayed_on(the_page: firm_page)
     and_i_can_see_1_adviser
+    and_the_adviser_is_present_in_the_directory
   end
 
   def given_there_is_a_firm
@@ -45,6 +50,10 @@ RSpec.feature 'Add a new adviser without an FCA number' do
 
   def then_there_should_be_no_advisers
     expect(firm_page.advisers.count).to eq(0)
+  end
+
+  def and_no_adviser_is_present_in_the_directory
+    expect(firm_advisers_in_directory(@firm)).to be_empty
   end
 
   def when_i_click_the_new_adviser_button
@@ -90,6 +99,13 @@ RSpec.feature 'Add a new adviser without an FCA number' do
 
   def and_they_have_been_geocoded
     expect(@firm.advisers.first).to be_geocoded
+  end
+
+  def and_the_adviser_is_present_in_the_directory
+    directory_advisers = firm_advisers_in_directory(@firm)
+    expect(directory_advisers.size).to eq 1
+    expect(directory_advisers.first['objectID']).to eq @firm.advisers.first.id
+    expect(firm_total_advisers_in_directory(@firm)).to eq 1
   end
 
   def then_no_errors_are_displayed_on(the_page:)

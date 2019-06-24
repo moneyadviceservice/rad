@@ -164,7 +164,7 @@ RSpec.describe Adviser do
     subject { FactoryGirl.create(:adviser) }
 
     it 'notifies the indexer that the office has changed' do
-      expect(UpdateAlgoliaIndexJob).to receive(:perform_async)
+      expect(UpdateAlgoliaIndexJob).to receive(:perform_later)
         .with('Adviser', subject.id, subject.firm_id)
 
       subject.notify_indexer
