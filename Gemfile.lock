@@ -1,11 +1,4 @@
 GIT
-  remote: git://github.com/moneyadviceservice/bowndler.git
-  revision: f836a295f0eac8ba02a6dc4733d000a7f1fc8a00
-  specs:
-    bowndler (1.0.2)
-      thor
-
-GIT
   remote: git://github.com/moneyadviceservice/dough.git
   revision: c27e7846616b0e7965817d97f1432dee9bb49aa8
   tag: v5.12.0.267
@@ -90,6 +83,8 @@ GEM
     bootstrap-sass (3.3.5)
       autoprefixer-rails (>= 5.0.0.1)
       sass (>= 3.2.19)
+    bowndler (1.0.2)
+      thor
     brakeman (4.2.1)
     builder (3.2.3)
     byebug (10.0.1)
@@ -484,7 +479,7 @@ DEPENDENCIES
   better_errors
   binding_of_caller
   bootstrap-sass
-  bowndler!
+  bowndler
   brakeman
   capybara
   cucumber-rails
