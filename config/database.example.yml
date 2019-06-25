@@ -1,9 +1,9 @@
 default: &default
   adapter: postgresql
-  encoding: utf8
   pool: 5
-  host: localhost
-  username: postgres
+  timeout: 5000
+  encoding: utf8
+  reconnect: true
 
 development:
   <<: *default
