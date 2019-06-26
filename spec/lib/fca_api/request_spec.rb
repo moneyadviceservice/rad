@@ -3,7 +3,7 @@ RSpec.describe FcaApi::Request do
 
   let(:connection) { FcaApi::Connection.new(domain) }
   let(:domain) { 'http://fca.org.uk' }
-  let(:firm_id) { 100001 }
+  let(:firm_id) { 100_001 }
   let(:response) { instance_double(Faraday::Response) }
 
   before do
@@ -19,7 +19,7 @@ RSpec.describe FcaApi::Request do
   end
 
   describe '#get_firm' do
-    let(:response_message) { {"Message"=>"Ok. Firm Found"} }
+    let(:response_message) { { 'Message' => 'Ok. Firm Found' } }
     it 'returns a firm with the provided reference number' do
       expect(connection)
         .to receive(:get)

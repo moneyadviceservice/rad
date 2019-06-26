@@ -68,7 +68,7 @@ class Admin::AdvisersController < Admin::ApplicationController
       :travel_distance,
       qualification_ids: [],
       accreditation_ids: [],
-      professional_standing_ids: [],
+      professional_standing_ids: []
     )
   end
 end

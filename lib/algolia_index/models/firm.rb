@@ -2,6 +2,7 @@ module AlgoliaIndex
   class Firm < Base
     def update
       return unless approved?
+
       update_offices
       update_advisers
     end

@@ -21,7 +21,7 @@ RSpec.describe AlgoliaIndex::Firm do
     context 'when the firm has not been approved' do
       let!(:firm) do
         FactoryGirl.create(:firm_with_advisers_and_offices,
-                           :not_approved, 
+                           :not_approved,
                            id: id)
       end
 

@@ -13,9 +13,7 @@ module FcaApi
       configure_raw_connection
     end
 
-    def get(path)
-      raw_connection.get(path)
-    end
+    delegate :get, to: :raw_connection
 
     private
 
