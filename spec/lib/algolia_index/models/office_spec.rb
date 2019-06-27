@@ -2,13 +2,20 @@ RSpec.describe AlgoliaIndex::Office do
   subject(:instance) { described_class.new(klass: klass, id: id) }
 
   let(:klass) { 'Office' }
-  let(:id) { 1 }
-
-  let(:indexed_offices) { instance_double(Algolia::Index) }
+  let(:id) { rand(100..500) }
+  let(:indexed_offices) do
+    instance_double(Algolia::Index,
+                    add_object: true,
+                    add_objects: true,
+                    delete_object: true)
+  end
+  let(:indexed_advisers) { instance_double(Algolia::Index, add_objects: true) }
 
   before do
     allow(AlgoliaIndex).to receive(:indexed_offices)
       .and_return(indexed_offices)
+    allow(AlgoliaIndex).to receive(:indexed_advisers)
+      .and_return(indexed_advisers)
   end
 
   it { expect(described_class < AlgoliaIndex::Base).to eq(true) }
@@ -34,28 +41,86 @@ RSpec.describe AlgoliaIndex::Office do
     end
   end
 
-  describe '#update' do
-    let!(:office) { FactoryGirl.create(:office, id: id, firm_id: 1) }
-    let(:serialized) { AlgoliaIndex::OfficeSerializer.new(office) }
-
-    before do
-      allow(AlgoliaIndex::OfficeSerializer).to receive(:new)
-        .and_return(*serialized)
+  shared_examples('update firm advisers') do |trigger_call|
+    let(:advisers) { FactoryGirl.create_list(:adviser, 3, firm: firm) }
+    let(:serialized_advisers) do
+      advisers.map { |adv| AlgoliaIndex::AdviserSerializer.new(adv) }
     end
 
-    it 'updates the office in the index' do
-      expect(indexed_offices).to receive(:add_object)
-        .with(serialized).exactly(:once)
+    before do
+      allow(AlgoliaIndex::AdviserSerializer).to receive(:new)
+        .and_return(*serialized_advisers)
+    end
 
-      instance.update
+    it 'updates all the firm advisers in the index' do
+      expect(indexed_advisers).to receive(:add_objects)
+        .with(serialized_advisers).exactly(:once)
+      instance.send(trigger_call)
+    end
+  end
+
+  describe '#update' do
+    let!(:office) { FactoryGirl.create(:office, id: id, firm_id: firm.id) }
+
+    context 'when the office firm is approved' do
+      include_examples 'update firm advisers', :update
+
+      let(:firm) { FactoryGirl.create(:firm_without_advisers) }
+      let(:serialized_office) { AlgoliaIndex::OfficeSerializer.new(office) }
+
+      before do
+        allow(AlgoliaIndex::OfficeSerializer).to receive(:new)
+          .and_return(*serialized_office)
+      end
+
+      it 'updates the office in the index' do
+        expect(indexed_offices).to receive(:add_object)
+          .with(serialized_office).exactly(:once)
+        instance.update
+      end
+    end
+
+    context 'when the office firm is not approved' do
+      let(:firm) { FactoryGirl.create(:firm_without_advisers, :not_approved) }
+
+      it 'does not update the office in the index' do
+        expect(indexed_offices).not_to receive(:add_object)
+        instance.update
+      end
+
+      it 'does not update the firm advisers in the index' do
+        expect(indexed_advisers).not_to receive(:add_objects)
+        instance.update
+      end
     end
   end
 
   describe '#destroy' do
-    it 'deletes the office in the index' do
-      expect(indexed_offices).to receive(:delete_object).with(id)
+    let!(:office) { FactoryGirl.create(:office, id: id, firm_id: firm.id) }
 
-      instance.destroy
+    context 'when the office firm is not approved' do
+      let(:firm) { FactoryGirl.create(:firm_without_advisers, :not_approved) }
+
+      it 'deletes the office in the index' do
+        expect(indexed_offices).to receive(:delete_object).with(id)
+        instance.destroy
+      end
+
+      it 'does not update the firm advisers in the index' do
+        expect(indexed_advisers).not_to receive(:add_objects)
+        instance.destroy
+      end
+    end
+
+    context 'when the office firm is approved' do
+      include_examples 'update firm advisers', :destroy
+
+      let(:firm) { FactoryGirl.create(:firm_without_advisers) }
+
+      it 'deletes the office in the index' do
+        expect(indexed_offices).to receive(:delete_object).with(id)
+        instance.destroy
+      end
     end
   end
 end

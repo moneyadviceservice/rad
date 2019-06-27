@@ -7,11 +7,13 @@ module AlgoliaIndex
       end
     end
 
-    delegate :update, to: :firm
+    def update
+      firm.update_advisers
+    end
 
     def destroy
       AlgoliaIndex.indexed_advisers.delete_object(id)
-      firm.update
+      firm.update_advisers
     end
   end
 end

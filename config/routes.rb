@@ -48,6 +48,8 @@ Rails.application.routes.draw do
     resources :advisers, only: [:index, :show, :edit, :update, :destroy]
 
     resources :firms, only: [:index, :show] do
+      post :approve
+
       collection do
         get :login_report
         get :adviser_report

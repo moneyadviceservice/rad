@@ -15,6 +15,7 @@ class Firm < ActiveRecord::Base
     wills_and_probate_flag
   ].freeze
 
+  scope :approved, -> { where.not(approved_at: nil) }
   scope :registered, -> { where.not(REGISTERED_MARKER_FIELD => nil) }
   scope :sorted_by_registered_name, -> { order(:registered_name) }
 
@@ -190,6 +191,12 @@ class Firm < ActiveRecord::Base
 
   def publishable?
     registered? && offices.any? && advisers.any?
+  end
+
+  def approve!
+    # rubocop:disable Rails/SkipsModelValidations
+    update_attribute(:approved_at, Time.zone.now) unless approved_at
+    # rubocop:enable Rails/SkipsModelValidations
   end
 
   private

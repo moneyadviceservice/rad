@@ -23,4 +23,9 @@ class Admin::FirmsController < Admin::ApplicationController
       end
     end
   end
+
+  def approve
+    Firm.find(params[:firm_id]).approve!
+    redirect_to :back
+  end
 end

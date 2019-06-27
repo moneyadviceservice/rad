@@ -1,6 +1,6 @@
 RSpec.describe FcaApi::Connection do
   let(:mock_raw_connection) { double(Faraday) }
-  let(:domain) { 'http://test-domain/'}
+  let(:domain) { 'http://test-domain/' }
 
   before do
     stub_env('FCA_API_MAX_RETRIES', 2)
@@ -14,7 +14,7 @@ RSpec.describe FcaApi::Connection do
         headers: {
           'X-Auth-Email' => 'email@maps.org.uk',
           'X-Auth-Key' => 'xyz123abc'
-        },
+        }
       )
       .and_return(mock_raw_connection)
   end

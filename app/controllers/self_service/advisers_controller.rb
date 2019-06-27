@@ -61,7 +61,7 @@ module SelfService
         :travel_distance,
         accreditation_ids: [],
         qualification_ids: [],
-        professional_standing_ids: [],
+        professional_standing_ids: []
       )
     end
   end

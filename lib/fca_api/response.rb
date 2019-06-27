@@ -1,7 +1,7 @@
 module FcaApi
   class Response
-    SUCCESS_MESSAGE = 'ok'
-      
+    SUCCESS_MESSAGE = 'ok'.freeze
+
     attr_reader :response
 
     def initialize(response)

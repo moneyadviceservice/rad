@@ -25,6 +25,17 @@
     <p>
       <strong>Added:</strong> <%= @firm.created_at.to_s(:long) %>
     </p>
+    <p>
+      <strong>Approved:</strong> <%= @firm.approved_at&.to_s(:long) || 'Not approved' %>
+    </p>
+    <% if @firm.approved_at.blank? %>
+      <p>
+        <%= button_to('Approve Firm',
+                      admin_firm_approve_path(@firm.id),
+                      class: 'btn btn-success',
+                      method: :post) %>
+      </p>
+    <% end %>
   </div>
 </div>
 

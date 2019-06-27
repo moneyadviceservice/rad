@@ -48,6 +48,8 @@ class PrincipalsController < ApplicationController
     Stats.increment('radsignup.principal.created')
 
     Identification.contact(user.principal).deliver_later
+    NewFirmMailer.notify(user.principal.firm).deliver_later
+
     redirect_to user.principal
   end
 
