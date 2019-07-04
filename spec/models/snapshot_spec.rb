@@ -666,12 +666,6 @@ RSpec.describe Snapshot do
                                                advisers_with_qualification_in_long_term_care_planning
                                                advisers_with_qualification_in_tep
                                                advisers_with_qualification_in_fcii
-                                               advisers_part_of_personal_finance_society
-                                               advisers_part_of_institute_financial_planning
-                                               advisers_part_of_institute_financial_services
-                                               advisers_part_of_ci_bankers_scotland
-                                               advisers_part_of_ci_securities_and_investments
-                                               advisers_part_of_cfa_institute advisers_part_of_chartered_accountants
                                              ])
     end
   end
