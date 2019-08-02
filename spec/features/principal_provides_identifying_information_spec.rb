@@ -1,6 +1,6 @@
 RSpec.feature 'Principal provides identifying information', :inline_job_queue do
   let(:identification_page) { IdentificationPage.new }
-  let(:identity_confirmed_page) { IdentityConfirmedPage.new }
+  let(:thank_you_for_registering_page) { ThankYouForRegisteringPage.new }
   let(:firms_index_page) { SelfService::FirmsIndexPage.new }
   let(:sign_in_page) { SignInPage.new }
 
@@ -10,22 +10,7 @@ RSpec.feature 'Principal provides identifying information', :inline_job_queue do
     given_i_have_passed_the_pre_qualification_step
     when_i_provide_my_firms_fca_reference_number
     and_i_provide_my_identifying_particulars
-    then_my_firms_fca_reference_number_is_matched_to_the_directory
-    and_i_am_shown_a_confirmation_message
-    and_i_am_sent_a_verification_email
-    and_directory_admins_get_a_new_firm_notification_email
-
-    when_i_visit_the_email_link
-    then_i_am_asked_to_sign_in
-    when_i_enter_correct_details
-    then_i_am_on_the_self_service_home_page
-  end
-
-  scenario 'My FCA number cannot be matched' do
-    given_i_have_passed_the_pre_qualification_step
-    when_i_provide_a_valid_but_unmatched_fca_number
-    then_i_am_told_my_firms_details_are_not_present
-    and_i_am_asked_to_contact_admin_if_i_have_any_queries
+    then_i_am_shown_a_thank_you_for_registering_message
   end
 
   scenario 'I provide invalid information' do
@@ -87,14 +72,8 @@ RSpec.feature 'Principal provides identifying information', :inline_job_queue do
     end
   end
 
-  def then_my_firms_fca_reference_number_is_matched_to_the_directory
-    Lookup::Firm.create!(fca_number: '123456', registered_name: 'Ben Lovell Ltd')
-
-    identification_page.register.click
-  end
-
-  def and_i_am_shown_a_confirmation_message
-    expect(identity_confirmed_page).to be_displayed
+  def then_i_am_shown_a_thank_you_for_registering_message
+    expect(thank_you_for_registering_page).to be_displayed
   end
 
   def and_i_am_sent_a_verification_email
