@@ -1,21 +1,8 @@
 RSpec.describe VerifyFrnJob do
   describe '#perform' do
-    let(:params) do
-      {
-        fca_number: '123456',
-        first_name: 'First',
-        last_name: 'Last',
-        job_title: 'Job',
-        email: 'ex@ample.com',
-        telephone_number: '0780000000',
-        confirmed_disclaimer: '1',
-        password: 'Password1!',
-        password_confirmation: 'Password1!'
-      }
-    end
-
-    let(:form) { NewPrincipalForm.new(params)}
-    let(:response) { double(FcaApi::Response, ok?: true) }
+    let(:frn) { '123456' }
+    let(:response) { double(FcaApi::Response, ok?: true, data: data) }
+    let(:data) { { 'data' => [{ 'Organisation Name' => 'ABC' }] } }
     
     it 'calls the FCA API' do
       expect(FcaApi::Request)
@@ -23,7 +10,7 @@ RSpec.describe VerifyFrnJob do
         .with('123456')
         .and_return(response)
 
-      VerifyFrnJob.perform_now(form)
+      VerifyFrnJob.perform_now(frn)
     end
   end
 end
