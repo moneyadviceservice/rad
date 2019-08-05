@@ -30,8 +30,6 @@ class Principal < ActiveRecord::Base
 
   validates :confirmed_disclaimer, acceptance: { accept: true }
 
-  validate :match_fca_number, if: :fca_number?
-
   def main_firm_with_trading_names
     Firm.where(fca_number: fca_number)
   end

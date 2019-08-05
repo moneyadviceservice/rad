@@ -83,12 +83,6 @@ RSpec.describe Principal do
         end
       end
 
-      it 'must match a `Lookup::Firm`' do
-        Lookup::Firm.find_by(fca_number: principal.fca_number).destroy
-
-        expect(principal).to_not be_valid
-      end
-
       it 'must be unique' do
         build(:principal).tap do |p|
           p.fca_number = principal.fca_number
