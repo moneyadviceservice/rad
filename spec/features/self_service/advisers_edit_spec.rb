@@ -47,9 +47,8 @@ RSpec.feature 'The self service firm edit page', :inline_job_queue do
 
   def and_i_have_a_firm_with_an_adviser
     @adviser = FactoryGirl.create :adviser, postcode: original_postcode
-    firm_attrs = FactoryGirl.attributes_for(:firm, fca_number: @principal.fca_number)
+    @principal.firm = FactoryGirl.build(:firm, fca_number: @principal.fca_number)
     @principal.firm.advisers << @adviser
-    @principal.firm.update_attributes(firm_attrs)
   end
 
   def and_i_am_logged_in

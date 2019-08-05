@@ -1,12 +1,11 @@
 RSpec.describe SelfService::FirmsController, type: :controller do
   let(:principal) { FactoryGirl.create(:principal) }
-  let(:firm) do
-    firm_attrs = FactoryGirl.attributes_for(:firm_with_trading_names, fca_number: principal.fca_number)
-    principal.firm.update_attributes(firm_attrs)
-    principal.firm
-  end
+  let(:firm) { FactoryGirl.create(:firm_with_trading_names, fca_number: principal.fca_number) }
   let(:user) { FactoryGirl.create :user, principal: firm.principal }
-  before { sign_in(user) }
+  before do
+    principal.firm = firm
+    sign_in(user)
+  end
 
   def extract_firm_params(firm, params = {})
     firm_params = firm.attributes
@@ -88,7 +87,11 @@ RSpec.describe SelfService::FirmsController, type: :controller do
 
     context 'when trying to access another users firm' do
       let!(:other_principal) { create :principal }
-      before { get :edit, id: other_principal.firm.id }
+      let(:other_firm) { create :firm, fca_number: other_principal.fca_number}
+      before do
+        other_principal.firm = other_firm
+        get :edit, id: other_principal.firm.id
+      end
 
       it 'does not assign the other principals firm' do
         expect(assigns(:firm)).not_to eq other_principal.firm

@@ -27,6 +27,9 @@ RSpec.feature 'Principal can reset their password' do
 
   def given_the_principal_user_exists
     @user = FactoryGirl.create(:user)
+    @user.principal.firm = FactoryGirl.create(
+      :firm, fca_number: @user.principal.fca_number
+    )
   end
 
   def when_they_visit_the_sign_in_page

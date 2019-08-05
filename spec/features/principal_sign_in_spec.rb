@@ -27,6 +27,9 @@ RSpec.feature 'Principal can sign in' do
 
   def given_the_principal_user_exists
     @user = FactoryGirl.create(:user)
+    @user.principal.firm = FactoryGirl.create(
+      :firm, fca_number: @user.principal.fca_number
+    )
   end
 
   def when_they_sign_in_with_email_and_password

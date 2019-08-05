@@ -26,6 +26,7 @@ RSpec.feature 'An invited principal can create a user account' do
 
   def given_the_principal_exists
     @principal = FactoryGirl.create(:principal)
+    @principal.firm = FactoryGirl.create(:firm, fca_number: @principal.fca_number)
   end
 
   def when_they_are_invited_to_create_a_user_account

@@ -99,8 +99,10 @@ RSpec.feature 'The self service adviser list page', :inline_job_queue do
   end
 
   def and_i_have_a_firm_with_trading_names_and_no_advisers
-    firm_attrs = FactoryGirl.attributes_for(:firm_with_trading_names, fca_number: @principal.fca_number)
-    @principal.firm.update_attributes(firm_attrs)
+    @principal.firm = FactoryGirl.build(
+      :firm_with_trading_names, 
+      fca_number: @principal.fca_number
+    )
   end
 
   def and_i_have_a_firm_with_trading_names_and_advisers

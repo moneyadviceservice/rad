@@ -69,8 +69,7 @@ RSpec.feature 'The self service firm edit page' do
   end
 
   def and_i_have_a_firm
-    firm_attrs = FactoryGirl.attributes_for(:firm, fca_number: @principal.fca_number)
-    @principal.firm.update_attributes(firm_attrs)
+    @principal.firm = FactoryGirl.build(:firm, fca_number: @principal.fca_number)
     @original_firm_website = @principal.firm.website_address
   end
 

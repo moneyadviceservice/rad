@@ -1,13 +1,12 @@
 RSpec.describe SelfService::TradingNamesController, type: :controller do
   let(:principal) { FactoryGirl.create(:principal) }
-  let(:firm) do
-    firm_attrs = FactoryGirl.attributes_for(:firm, fca_number: principal.fca_number)
-    principal.firm.update_attributes(firm_attrs)
-    principal.firm
-  end
+  let(:firm) { FactoryGirl.build(:firm, fca_number: principal.fca_number) }
   let(:user) { FactoryGirl.create :user, principal: firm.principal }
   let(:lookup_subsidiary) { FactoryGirl.create(:lookup_subsidiary, fca_number: principal.fca_number) }
-  before { sign_in(user) }
+  before do
+    principal.firm = firm
+    sign_in(user) 
+  end
 
   def build_firm_params(params = {})
     firm = params[:firm] || FactoryGirl.build(:firm)

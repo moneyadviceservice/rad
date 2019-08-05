@@ -16,6 +16,7 @@ RSpec.feature 'The self service navigation' do
 
   def given_i_am_a_fully_registered_principal_user
     @principal = FactoryGirl.create(:principal)
+    @principal.firm = FactoryGirl.create(:firm, fca_number: @principal.fca_number)
     @user = FactoryGirl.create(:user, principal: @principal)
   end
 

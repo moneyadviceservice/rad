@@ -63,8 +63,7 @@
   end
 
   def given_i_am_a_fully_registered_principal_user
-    firm_attrs = FactoryGirl.attributes_for(:firm, fca_number: principal.fca_number)
-    principal.firm.update_attributes(firm_attrs)
+    principal.firm = FactoryGirl.build(:firm, fca_number: principal.fca_number)
     expect(Firm.registered.find(principal.firm.id)).to be_present
   end
 
