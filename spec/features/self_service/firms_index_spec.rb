@@ -108,10 +108,10 @@ RSpec.feature 'The self service firm list page' do
   def given_i_am_a_fully_registered_principal_user
     @principal = FactoryGirl.create(:principal)
     @user = FactoryGirl.create(:user, principal: @principal)
-    firm_attrs = FactoryGirl.attributes_for(:firm,
-                                            fca_number: @principal.fca_number,
-                                            registered_name: @principal.lookup_firm.registered_name)
-    @principal.firm.update_attributes(firm_attrs)
+    @principal.firm = FactoryGirl.build(
+      :firm,
+      fca_number: @principal.fca_number
+    )
   end
 
   def and_i_have_a_firm_with_both_available_and_added_trading_names

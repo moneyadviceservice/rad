@@ -9,7 +9,8 @@ class VerifiedPrincipal
     firm_name = VerifyFrnJob.perform_async(form.fca_number)
     
     if firm_name
-      create_new_principal
+      principal = create_new_principal
+      principal.firm = create_associate_firm(firm_name)
       send_notifications
     else
       send_fail_email
@@ -24,6 +25,13 @@ class VerifiedPrincipal
     @user.save!
 
     Stats.increment('radsignup.principal.created')
+  end
+
+  def create_associate_firm(firm_name)
+    Firm.new(fca_number: form.fca_number,
+             registered_name: firm_name).tap do |f|
+      f.save!(validate: false)
+    end
   end
 
   def send_notifications

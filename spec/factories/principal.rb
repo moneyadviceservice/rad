@@ -10,6 +10,6 @@ FactoryGirl.define do
     telephone_number '07111 333 222'
     confirmed_disclaimer true
 
-    after(:build) { |p| create(:lookup_firm, fca_number: p.fca_number) }
+    after(:build) { |p| create(:firm, fca_number: p.fca_number) }
   end
 end
