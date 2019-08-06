@@ -24,4 +24,8 @@ VCR.configure do |config|
       request.proceed
     end
   end
+
+  config.ignore_request do |req|
+    req.uri.include?('register.fca')
+  end
 end

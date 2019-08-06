@@ -32,7 +32,7 @@ class PrincipalsController < ApplicationController
     @form = NewPrincipalForm.new(new_principal_form_params)
 
     if @form.valid?
-      register_new_principal
+      VerifyReferenceNumberJob.perform_async(principal_form_data)
       render :show
     else
       flash.now[:error] = t('registration.principal.validation_error_html')
@@ -56,7 +56,17 @@ class PrincipalsController < ApplicationController
     )
   end
 
-  def register_new_principal
-    VerifiedPrincipal.new(@form).register!
+  def principal_form_data
+    @form.as_json.slice(
+      'fca_number',
+      'first_name',
+      'last_name',
+      'job_title',
+      'email',
+      'telephone_number',
+      'password',
+      'password_confirmation',
+      'confirmed_disclaimer'
+    )
   end
 end
