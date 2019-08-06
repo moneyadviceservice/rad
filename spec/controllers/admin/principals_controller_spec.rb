@@ -6,6 +6,12 @@ RSpec.describe Admin::PrincipalsController, type: :controller do
 
   describe 'DELETE #destroy' do
     context 'when successful' do
+      before do
+        principal.firm = FactoryGirl.create(
+          :firm, fca_number: principal.fca_number
+        )
+      end
+
       it 'removes the principal and the user', :aggregate_failures do
         expect { delete :destroy, id: principal.id }
           .to change(Principal, :count).by(-1).and change(User, :count).by(-1)

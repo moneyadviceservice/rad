@@ -4,8 +4,8 @@ RSpec.feature 'The self service firm offices list page', :inline_job_queue do
   let(:offices_index_page) { SelfService::OfficesIndexPage.new }
   let(:sign_in_page) { SignInPage.new }
 
-  let(:principal) { FactoryGirl.create(:principal) }
-  let(:firm) { principal.firm }
+  let(:principal) { FactoryGirl.create(:principal, firm: firm) }
+  let(:firm) { FactoryGirl.create(:firm) }
   let(:user) { FactoryGirl.create(:user, principal: principal) }
   let(:offices) { FactoryGirl.create_list(:office, 3, firm: firm) }
 

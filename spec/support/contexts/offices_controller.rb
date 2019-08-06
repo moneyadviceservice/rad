@@ -1,14 +1,19 @@
 RSpec.shared_context 'offices controller' do
   let(:principal) { FactoryGirl.create(:principal) }
   let(:firm) do
-    firm_attrs = FactoryGirl.attributes_for(:firm_with_trading_names, fca_number: principal.fca_number)
-    principal.firm.update_attributes(firm_attrs)
-    principal.firm
+    FactoryGirl.build(
+      :firm_with_trading_names,
+      fca_number: principal.fca_number
+    )
   end
+
   let(:office) { FactoryGirl.create :office, firm: firm }
   let(:user)   { FactoryGirl.create :user, principal: principal }
 
-  before { sign_in(user) }
+  before do
+    principal.firm = firm
+    sign_in(user)
+  end
 
   let(:address_line_one) { '120 Holborn' }
   let(:address_line_two) { 'Floor 5' }
