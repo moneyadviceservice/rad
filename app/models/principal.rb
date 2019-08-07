@@ -42,8 +42,6 @@ class Principal < ActiveRecord::Base
     @lookup_firm ||= Lookup::Firm.find_by(fca_number: fca_number)
   end
 
-  delegate :subsidiaries?, to: :lookup_firm
-
   def field_order
     %i[
       fca_number

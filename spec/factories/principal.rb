@@ -10,6 +10,11 @@ FactoryGirl.define do
     telephone_number '07111 333 222'
     confirmed_disclaimer true
 
-    after(:build) { |p| create(:firm, fca_number: p.fca_number) }
+    after(:build) do |principal|
+      Firm.new(fca_number: principal.fca_number,
+          registered_name:  Faker::Name.first_name).tap do |f|
+        f.save!(validate: false)
+      end
+    end
   end
 end
