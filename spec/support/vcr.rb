@@ -26,6 +26,6 @@ VCR.configure do |config|
   end
 
   config.ignore_request do |req|
-    req.uri.include?('register.fca')
+    req.uri.include?('algolia.net')
   end
 end

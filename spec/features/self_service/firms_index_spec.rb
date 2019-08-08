@@ -120,17 +120,14 @@ RSpec.feature 'The self service firm list page' do
                                                 3,
                                                 fca_number: @principal.fca_number)
     expect(@principal.firm.trading_names).to have(3).items
-    expect(@principal.lookup_firm.subsidiaries).to have(1).item
   end
 
   def and_i_have_a_firm_with_no_available_or_added_trading_names
     expect(@principal.firm.trading_names).to be_empty
-    expect(@principal.lookup_firm.subsidiaries).to be_empty
   end
 
   def and_i_have_a_firm_with_available_trading_names_but_none_added
     @lookup_trading_name = FactoryGirl.create(:lookup_subsidiary, fca_number: @principal.fca_number)
-    expect(@principal.lookup_firm.subsidiaries).to have(1).item
     expect(@principal.firm.trading_names).to be_empty
   end
 
