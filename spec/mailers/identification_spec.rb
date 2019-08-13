@@ -8,7 +8,7 @@ RSpec.describe Identification, '#contact' do
   end
 
   it 'has a from address' do
-    expect(subject.from).to be_present
+    expect(subject.from.first).to eq('RADenquiries@moneyadviceservice.org.uk')
   end
 
   it 'addressed to the principal' do

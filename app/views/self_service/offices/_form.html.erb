@@ -10,7 +10,7 @@
     <%= f.errors_for :geocoding %>
 
     <% if f.object.errors.include?(:geocoding) %>
-      <p><%= t('office.geocoding.failure_explanation') %></p>
+      <p><%= t('office.geocoding.failure_explanation', email: @admin_email_address) %></p>
     <% end %>
 
     <%= f.form_row :address_line_one do %>

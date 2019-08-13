@@ -36,7 +36,7 @@
       <%= f.errors_for :geocoding %>
 
       <% if f.object.errors.include?(:geocoding) %>
-        <p><%= t('adviser.geocoding.failure_explanation') %></p>
+        <p><%= t('adviser.geocoding.failure_explanation', email: @admin_email_address) %></p>
       <% end %>
 
       <%= f.form_row :postcode, html_options: { classes: 'form-row--collapsed-margin-bottom' } do %>
