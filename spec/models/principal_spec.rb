@@ -16,28 +16,6 @@ RSpec.describe Principal do
     end
   end
 
-  describe '#lookup_firm' do
-    it 'returns my associated lookup firm' do
-      expect(principal.lookup_firm).to be
-    end
-  end
-
-  describe '#subsidiaries?' do
-    context 'when my firm has subsidiaries' do
-      before { principal.lookup_firm.subsidiaries.create! }
-
-      it 'is truthy' do
-        expect(principal.subsidiaries?).to be_truthy
-      end
-    end
-
-    context 'when my firm has no subsidiaries' do
-      it 'is falsey' do
-        expect(principal.subsidiaries?).to be_falsey
-      end
-    end
-  end
-
   describe '#full_name' do
     it 'returns a string containing the first and last name together' do
       expect(principal.full_name).to eq("#{principal.first_name} #{principal.last_name}")
@@ -52,10 +30,6 @@ RSpec.describe Principal do
   context 'upon creation' do
     it 'generates an 8 character, 4 byte token' do
       expect(principal.token.length).to eq(8)
-    end
-
-    it 'creates the associated Firm' do
-      expect(principal.firm.fca_number).to eq(principal.lookup_firm.fca_number)
     end
   end
 
@@ -81,12 +55,6 @@ RSpec.describe Principal do
           p.fca_number = 12_345
           expect(p).to_not be_valid
         end
-      end
-
-      it 'must match a `Lookup::Firm`' do
-        Lookup::Firm.find_by(fca_number: principal.fca_number).destroy
-
-        expect(principal).to_not be_valid
       end
 
       it 'must be unique' do

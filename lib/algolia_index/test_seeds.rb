@@ -28,9 +28,13 @@ module AlgoliaIndex
     end
 
     def create_firm(attributes)
-      firm = create_lookup_firm(attributes[:registered_name])
-      principal = create_principal(firm.fca_number)
-      firm = principal.firm
+      fca_number = rand(100_000..999_999)
+      firm = ::Firm.new(
+        fca_number: fca_number,
+        registered_name: attributes[:registered_name]
+      )
+      firm.save!(validate: false)
+      principal = create_principal(fca_number)
 
       # rubocop:disable Rails/SkipsModelValidations
       firm.update_attribute(:id, attributes[:id])
@@ -59,14 +63,6 @@ module AlgoliaIndex
       attributes[:longitude] = lng
 
       ::Office.create!(attributes)
-    end
-
-    def create_lookup_firm(registered_name)
-      fca_number = rand(100_000..999_999)
-      ::Lookup::Firm.create!(
-        fca_number: fca_number,
-        registered_name: registered_name
-      )
     end
 
     def create_lookup_adviser(reference_number, name)

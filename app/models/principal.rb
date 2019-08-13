@@ -2,7 +2,6 @@ class Principal < ActiveRecord::Base
   self.primary_key = 'token'
 
   before_create :generate_token
-  after_create  :associate_firm
 
   has_one :firm,
           -> { where(parent_id: nil) },
@@ -31,8 +30,6 @@ class Principal < ActiveRecord::Base
 
   validates :confirmed_disclaimer, acceptance: { accept: true }
 
-  validate :match_fca_number, if: :fca_number?
-
   def main_firm_with_trading_names
     Firm.where(fca_number: fca_number)
   end
@@ -44,8 +41,6 @@ class Principal < ActiveRecord::Base
   def lookup_firm
     @lookup_firm ||= Lookup::Firm.find_by(fca_number: fca_number)
   end
-
-  delegate :subsidiaries?, to: :lookup_firm
 
   def field_order
     %i[
@@ -82,22 +77,6 @@ class Principal < ActiveRecord::Base
       registered_name: subsidiary.name,
       fca_number: subsidiary.fca_number
     )
-  end
-
-  def associate_firm
-    Firm.new(fca_number: lookup_firm.fca_number,
-             registered_name: lookup_firm.registered_name).tap do |f|
-      f.save!(validate: false)
-    end
-  end
-
-  def match_fca_number
-    unless Lookup::Firm.exists?(fca_number: fca_number)
-      errors.add(
-        :fca_number,
-        I18n.t('registration.principal.fca_number_unmatched')
-      )
-    end
   end
 
   def generate_token

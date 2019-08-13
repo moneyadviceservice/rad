@@ -105,7 +105,7 @@ en:
   success:
     heading: Thank you
     message: An email will be sent to you shortly with further instructions.
-    contact_us: If you do not receive an email from us within 15 minutes, please contact us at
+    contact_us: If you do not receive an email from us within 24 hours, please contact us at
 
   identification:
     contact:
