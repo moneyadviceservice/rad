@@ -96,7 +96,6 @@ en:
   authentication_sign_up: Register
   authentication_sign_out: Sign out
   required: "* indicates required fields"
-  email_address: "RADenquiries@moneyadviceservice.org.uk"
   confirmation_statement: By registering your firm's details with the Money Advice Service, you are confirming that these details and any responses you give to our registration questions are true and accurate.
 
   footer:
@@ -193,12 +192,12 @@ en:
     reference_number_unmatched: could not be matched with an existing adviser reference
     geocoding:
       failure_message: could not be found by the mapping service.
-      failure_explanation: We could not find the coordinates of the adviser's postcode to plot it on the map in the directory. Please check and try again. If the postcode is correct and still cannot be found please contact RADenquiries@moneyadviceservice.org.uk for assistance.
+      failure_explanation: We could not find the coordinates of the adviser's postcode to plot it on the map in the directory. Please check and try again. If the postcode is correct and still cannot be found please contact %{email} for assistance.
 
   office:
     geocoding:
       failure_message: could not be found by the mapping service.
-      failure_explanation: We could not find the coordinates of your office address to plot it on the map in the directory. Please check and try again. If the details are correct and still cannot be found please contact RADenquiries@moneyadviceservice.org.uk for assistance.
+      failure_explanation: We could not find the coordinates of your office address to plot it on the map in the directory. Please check and try again. If the details are correct and still cannot be found please contact %{email} for assistance.
     telephone_number:
       invalid_format: must be a valid UK phone number (including the area code) or mobile number
 

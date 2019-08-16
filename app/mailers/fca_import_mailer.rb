@@ -1,5 +1,4 @@
 class FcaImportMailer < ApplicationMailer
-  default from: 'RADenquiries@moneyadviceservice.org.uk'
   helper_method :protect_against_forgery?
 
   def notify(users, text)
