@@ -20,7 +20,7 @@
       <strong>Registered Name:</strong> <%= @firm.registered_name %>
     </p>
     <p>
-      <strong>Website Address:</strong> <%= link_to @firm.website_address %>
+      <strong>Website Address:</strong> <%= link_to @firm.website_address if @firm.website_address %>
     </p>
     <p>
       <strong>Added:</strong> <%= @firm.created_at.to_s(:long) %>
