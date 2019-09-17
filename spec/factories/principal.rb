@@ -11,8 +11,10 @@ FactoryGirl.define do
     confirmed_disclaimer true
 
     after(:build) do |principal|
-      Firm.new(fca_number: principal.fca_number,
-          registered_name:  Faker::Name.first_name).tap do |f|
+      Firm.new(
+        fca_number: principal.fca_number,
+        registered_name:  Faker::Name.first_name
+      ).tap do |f|
         f.save!(validate: false)
       end
     end

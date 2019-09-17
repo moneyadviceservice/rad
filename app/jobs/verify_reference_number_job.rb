@@ -8,10 +8,14 @@ class VerifyReferenceNumberJob < ActiveJob::Base
     @response = FcaApi::Request.new.get_firm(form_data['fca_number'])
 
     if @response.ok?
-      Rails.logger.info("\nINFO: FCA API successful request for #{form_data['fca_number']}\n")
+      Rails.logger.info(
+        "\nINFO: FCA API successful request for #{form_data['fca_number']}\n"
+      )
       VerifiedPrincipal.new(form_data, firm_name).register!
     else
-      Rails.logger.warn("\n WARN: FCA API failed for #{form_data['fca_number']}\n")
+      Rails.logger.warn(
+        "\n WARN: FCA API failed for #{form_data['fca_number']}\n"
+      )
       send_fail_email(form_data['email'])
     end
   end
