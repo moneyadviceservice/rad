@@ -2,18 +2,18 @@ module FcaApi
   class Response
     SUCCESS_MESSAGE = 'ok'.freeze
 
-    attr_reader :response
+    attr_reader :raw_response
 
-    def initialize(response)
-      @response = response
+    def initialize(raw_response)
+      @raw_response = raw_response
     end
 
     def ok?
-      response.body['Message'].downcase.include?(SUCCESS_MESSAGE)
+      raw_response.body['Message'].downcase.include?(SUCCESS_MESSAGE)
     end
 
     def data
-      response.body['Data'].first
+      raw_response.body['Data'].first
     end
   end
 end
