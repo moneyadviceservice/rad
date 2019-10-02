@@ -6,10 +6,14 @@ class FirmStatusCheckJob < ActiveJob::Base
   include Sidekiq::Worker
 
   ACTIVE_FIRM_STATUS_CODES = [
+    'Appointed representative - introducer',
+    'Appointed representative',
+    'Authorised - applied to cancel',
+    'Authorised - applied to change business type',
+    'Authorised - applied to change legal status',
     'Authorised',
-    'Registered',
     'EEA Authorised',
-    'Appointed representative'
+    'Registered',
   ].freeze
 
   queue_as :default
