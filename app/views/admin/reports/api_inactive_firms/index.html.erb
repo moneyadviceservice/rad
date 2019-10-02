@@ -1,0 +1,40 @@
+<h2>API Inactive Firms</h2>
+
+<p>
+  This report shows all firms who are considered inactive according to the FCA
+  Register API. It is currently in beta while we observe the quality of the
+  reported data.
+
+</p>
+
+<p>
+  The report is refreshed nightly. Last attempted updated: <span><%= @latest_timestamp %></span>
+</p>
+
+<p>
+  The <a href="https://register.fca.org.uk/">Financial Services Register</a>
+  can be searched to determine exactly what status change has occurred.
+</p>
+
+<table class="table table-bordered">
+  <tr>
+    <th>FCA Number</th>
+    <th>Registered Name</th>
+    <th>Visible on Directory?</th>
+    <th>API Status</th>
+  </tr>
+  <% if @inactive_firms.present? %>
+    <% @inactive_firms.each do |inactive_firm| %>
+      <tr>
+        <td><%= inactive_firm.fca_number %></td>
+        <td><%= link_to inactive_firm.registered_name, admin_firm_path(inactive_firm) %></td>
+        <td><%= inactive_firm.publishable? ? 'Yes' : 'No' %></td>
+        <td><%= inactive_firm.api_status %></td>
+      </tr>
+    <% end %>
+  <% else %>
+    <tr>
+      <td colspan="3">No firms to display</td>
+    </tr>
+  <% end %>
+</table>

@@ -13,7 +13,7 @@ class VerifiedPrincipal
   end
 
   private
-  
+
   def create_new_principal
     @user = User.new(form.user_params)
     @user.build_principal(form.principal_params)

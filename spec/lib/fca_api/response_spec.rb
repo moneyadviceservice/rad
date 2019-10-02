@@ -27,12 +27,12 @@ RSpec.describe FcaApi::Response do
     let(:api_response) do
       {
         'Message' => 'Firm not found',
-        'Data' => [ {'Organisation Name' => 'xyz'} ]
+        'Data' => [{ 'Organisation Name' => 'xyz' }]
       }
     end
 
     it 'returns the firm data' do
-      expect(subject.data).to eq({'Organisation Name' => 'xyz'})
+      expect(subject.data).to eq('Organisation Name' => 'xyz')
     end
   end
 end

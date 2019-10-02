@@ -2,15 +2,15 @@ RSpec.describe VerifyReferenceNumberJob do
   describe '#perform' do
     let(:form_data) do
       {
-        "fca_number" => '123456',
-        "first_name" => 'Margo',
-        "last_name" => 'Test',
-        "job_title" => 'Adviser',
-        "email" => 'test@maps.org.uk',
-        "telephone_number" => '2075554343',
-        "password" => 'Password1*',
-        "password_confirmation" => 'Password1*',
-        "confirmed_disclaimer" => '1'
+        'fca_number' => '123456',
+        'first_name' => 'Margo',
+        'last_name' => 'Test',
+        'job_title' => 'Adviser',
+        'email' => 'test@maps.org.uk',
+        'telephone_number' => '2075554343',
+        'password' => 'Password1*',
+        'password_confirmation' => 'Password1*',
+        'confirmed_disclaimer' => '1'
       }
     end
 

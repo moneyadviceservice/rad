@@ -86,6 +86,7 @@ Rails.application.routes.draw do
       resource :inactive_adviser, only: [:show]
       resources :registered_adviser, only: [:index]
       resource :inactive_firm, only: [:show]
+      resources :api_inactive_firms, only: [:index]
       resource :inactive_trading_name, only: [:show]
       resources :out_of_date_firms, only: [:index, :update]
     end

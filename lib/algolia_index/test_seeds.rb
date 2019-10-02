@@ -34,7 +34,7 @@ module AlgoliaIndex
         registered_name: attributes[:registered_name]
       )
       firm.save!(validate: false)
-      principal = create_principal(fca_number)
+      create_principal(fca_number)
 
       # rubocop:disable Rails/SkipsModelValidations
       firm.update_attribute(:id, attributes[:id])

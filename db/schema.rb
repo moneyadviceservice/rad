@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190730141112) do
+ActiveRecord::Schema.define(version: 20190923123120) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -155,6 +155,15 @@ ActiveRecord::Schema.define(version: 20190730141112) do
     t.datetime "updated_at",             null: false
     t.integer  "order",      default: 0, null: false
   end
+
+  create_table "inactive_firms", force: :cascade do |t|
+    t.integer  "firm_id"
+    t.string   "api_status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "inactive_firms", ["firm_id"], name: "index_inactive_firms_on_firm_id", using: :btree
 
   create_table "initial_advice_fee_structures", force: :cascade do |t|
     t.string   "name",                   null: false
@@ -384,4 +393,5 @@ ActiveRecord::Schema.define(version: 20190730141112) do
   add_index "users", ["password_changed_at"], name: "index_users_on_password_changed_at", using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "inactive_firms", "firms"
 end

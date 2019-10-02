@@ -1,15 +1,15 @@
 RSpec.describe VerifiedPrincipal do
   describe '#register!' do
-    subject{ described_class.new(form_data, 'ABC') }
-    
-    let(:user_params) { 
+    subject { described_class.new(form_data, 'ABC') }
+
+    let(:user_params) do
       {
         email: 'test@maps.org.uk',
         password: 'Password1*',
         password_confirmation: 'Password1*'
       }
-    }
-    let(:principal_params) {
+    end
+    let(:principal_params) do
       {
         fca_number: '123456',
         first_name: 'Margo',
@@ -19,7 +19,7 @@ RSpec.describe VerifiedPrincipal do
         telephone_number: '2075554343',
         confirmed_disclaimer: 1
       }
-    }
+    end
     let(:principal) { double(Principal) }
     let(:form_data) { principal_params.merge(user_params) }
     let(:form) { NewPrincipalForm.new(form_data) }
