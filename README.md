@@ -131,12 +131,6 @@ To run the RSpec tests:
 bundle exec rspec
 ```
 
-To run the Cucumber tests:
-
-```sh
-bundle exec cucumber
-```
-
 To run the javascript tests:
 
 ```
