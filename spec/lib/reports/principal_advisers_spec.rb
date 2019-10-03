@@ -1,16 +1,16 @@
 RSpec.describe Reports::PrincipalAdvisers do
-  let(:principal_with_3) { FactoryGirl.create(:principal) }
-  let!(:principal_with_0)  { FactoryGirl.create(:principal) }
+  let(:principal_with_3) { FactoryBot.create(:principal) }
+  let!(:principal_with_0)  { FactoryBot.create(:principal) }
 
   let!(:principal_with_3_advisers_subsidiaries) do
-    FactoryGirl.create_list(:firm, 5,
+    FactoryBot.create_list(:firm, 5,
                             parent: principal_with_3.firm,
                             principal: principal_with_3).tap do |firms|
       firms.map(&:advisers).each(&:destroy_all)
 
-      FactoryGirl.create(:adviser, firm: firms.first)
-      FactoryGirl.create(:adviser, firm: firms.first)
-      FactoryGirl.create(:adviser, firm: firms.last)
+      FactoryBot.create(:adviser, firm: firms.first)
+      FactoryBot.create(:adviser, firm: firms.first)
+      FactoryBot.create(:adviser, firm: firms.last)
     end
   end
 

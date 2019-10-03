@@ -106,16 +106,16 @@ RSpec.feature 'The self service firm list page' do
   end
 
   def given_i_am_a_fully_registered_principal_user
-    @principal = FactoryGirl.create(:principal)
-    @user = FactoryGirl.create(:user, principal: @principal)
-    @principal.firm = FactoryGirl.build(
+    @principal = FactoryBot.create(:principal)
+    @user = FactoryBot.create(:user, principal: @principal)
+    @principal.firm = FactoryBot.build(
       :firm,
       fca_number: @principal.fca_number
     )
   end
 
   def and_i_have_a_firm_with_both_available_and_added_trading_names
-    @lookup_trading_name = FactoryGirl.create(:lookup_subsidiary, fca_number: @principal.fca_number)
+    @lookup_trading_name = FactoryBot.create(:lookup_subsidiary, fca_number: @principal.fca_number)
     @principal.firm.trading_names = create_list(:trading_name,
                                                 3,
                                                 fca_number: @principal.fca_number)
@@ -127,12 +127,12 @@ RSpec.feature 'The self service firm list page' do
   end
 
   def and_i_have_a_firm_with_available_trading_names_but_none_added
-    @lookup_trading_name = FactoryGirl.create(:lookup_subsidiary, fca_number: @principal.fca_number)
+    @lookup_trading_name = FactoryBot.create(:lookup_subsidiary, fca_number: @principal.fca_number)
     expect(@principal.firm.trading_names).to be_empty
   end
 
   def and_i_have_a_published_firm
-    @firm = FactoryGirl.create(:firm)
+    @firm = FactoryBot.create(:firm)
     @principal.firm = @firm
 
     expect(@firm).to be_publishable

@@ -10,11 +10,11 @@
   let(:address_town)     { 'London' }
   let(:address_postcode) { 'EC1N 2TD' }
 
-  let(:principal) { FactoryGirl.create(:principal) }
+  let(:principal) { FactoryBot.create(:principal) }
   let(:firm) { principal.firm }
-  let(:user) { FactoryGirl.create(:user, principal: principal) }
+  let(:user) { FactoryBot.create(:user, principal: principal) }
   let(:office) do
-    FactoryGirl.attributes_for(:office,
+    FactoryBot.attributes_for(:office,
                                address_line_one: address_line_one,
                                address_line_two: address_line_two,
                                address_town: address_town,
@@ -63,7 +63,7 @@
   end
 
   def given_i_am_a_fully_registered_principal_user
-    firm_attrs = FactoryGirl.attributes_for(:firm, fca_number: principal.fca_number)
+    firm_attrs = FactoryBot.attributes_for(:firm, fca_number: principal.fca_number)
     principal.firm.update_attributes(firm_attrs)
     expect(Firm.registered.find(principal.firm.id)).to be_present
   end
@@ -126,7 +126,7 @@
   end
 
   def and_the_principal_firm_has_an_adviser_but_no_office
-    firm.update!(advisers: [FactoryGirl.create(:adviser, firm: firm)])
+    firm.update!(advisers: [FactoryBot.create(:adviser, firm: firm)])
     expect(firm_advisers_in_directory(firm).size).to eq 1
     expect(firm_total_advisers_in_directory(firm)).to eq 1
     expect(firm_offices_in_directory(firm).size).to eq 0

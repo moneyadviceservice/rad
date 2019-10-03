@@ -6,11 +6,11 @@ RSpec.describe Admin::Reports::InactiveFirmsController, type: :controller do
     end
 
     it 'assigns a list of inactive firms' do
-      FactoryGirl.create(:lookup_firm, fca_number: 123_456)
-      FactoryGirl.create(:firm, fca_number: 123_456)
+      FactoryBot.create(:lookup_firm, fca_number: 123_456)
+      FactoryBot.create(:firm, fca_number: 123_456)
 
-      inactive_firm = FactoryGirl.create(:firm, fca_number: 789_012)
-      FactoryGirl.create(:firm, fca_number: 789_012, parent: inactive_firm)
+      inactive_firm = FactoryBot.create(:firm, fca_number: 789_012)
+      FactoryBot.create(:firm, fca_number: 789_012, parent: inactive_firm)
 
       get :show
       expect(assigns[:inactive_firms]).to eq([inactive_firm])
@@ -35,7 +35,7 @@ RSpec.describe Admin::Reports::InactiveFirmsController, type: :controller do
       end
 
       it 'renders inactive adviser content' do
-        FactoryGirl.create(:firm, fca_number: 789_012, registered_name: 'Acme Finance')
+        FactoryBot.create(:firm, fca_number: 789_012, registered_name: 'Acme Finance')
 
         get :show, format: :csv
         expect(response.body).to include('789012,Acme Finance,Yes')

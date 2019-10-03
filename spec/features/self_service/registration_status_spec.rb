@@ -74,12 +74,12 @@ RSpec.feature 'The registration status' do
   end
 
   def given_i_am_a_fully_registered_principal_user
-    @principal = FactoryGirl.create(:principal)
-    @user = FactoryGirl.create(:user, principal: @principal)
+    @principal = FactoryBot.create(:principal)
+    @user = FactoryBot.create(:user, principal: @principal)
   end
 
   def and_i_have_a_firm
-    firm_attrs = FactoryGirl.attributes_for(:firm, fca_number: @principal.fca_number)
+    firm_attrs = FactoryBot.attributes_for(:firm, fca_number: @principal.fca_number)
     @principal.firm.update_attributes(firm_attrs)
     @principal.firm.website_address
   end
@@ -105,11 +105,11 @@ RSpec.feature 'The registration status' do
   end
 
   def and_i_have_a_firm_with_advisers
-    @principal.firm.update(advisers: FactoryGirl.create_list(:adviser, 1))
+    @principal.firm.update(advisers: FactoryBot.create_list(:adviser, 1))
   end
 
   def and_i_have_a_firm_with_offices
-    FactoryGirl.create(:office, firm: @principal.firm)
+    FactoryBot.create(:office, firm: @principal.firm)
   end
 
   def and_i_have_a_firm_with_advisers_and_offices

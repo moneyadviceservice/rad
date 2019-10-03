@@ -33,7 +33,7 @@ RSpec.feature 'Principal can sign in using the embedded sign in panel' do
   end
 
   def and_the_principal_user_exists
-    @user = FactoryGirl.create(:user)
+    @user = FactoryBot.create(:user)
   end
 
   def when_they_sign_in_with_frn_and_password

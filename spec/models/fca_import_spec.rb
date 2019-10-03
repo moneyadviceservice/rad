@@ -1,7 +1,7 @@
 RSpec.describe FcaImport, type: :model do
   describe 'scope .not_confirmed' do
     context 'when import has finished' do
-      before { FactoryGirl.create(:not_confirmed_import) }
+      before { FactoryBot.create(:not_confirmed_import) }
 
       it 'returns current import obj model' do
         expect(FcaImport.not_confirmed.last.status).to eq('processed')
@@ -9,7 +9,7 @@ RSpec.describe FcaImport, type: :model do
     end
 
     context 'when import has not finished yet' do
-      before { FactoryGirl.create(:import) }
+      before { FactoryBot.create(:import) }
       it 'returns current import obj model' do
         expect(FcaImport.not_confirmed.last.status).to eq('processing')
       end
@@ -18,7 +18,7 @@ RSpec.describe FcaImport, type: :model do
 
   describe 'validation' do
     describe 'status' do
-      subject { FactoryGirl.build(:import, status: status) }
+      subject { FactoryBot.build(:import, status: status) }
       FcaImport::STATUSES.each do |s|
         let(:status) { s }
         it "is included in #{FcaImport::STATUSES}" do
@@ -28,7 +28,7 @@ RSpec.describe FcaImport, type: :model do
     end
 
     describe 'files' do
-      let!(:one)     { FactoryGirl.create(:import) }
+      let!(:one)     { FactoryBot.create(:import) }
       let(:one_args) { one.attributes.select { |_, v| v.present? } }
       it 'cannot create duplicate import based on files' do
         import = FcaImport.create(one_args)
@@ -38,7 +38,7 @@ RSpec.describe FcaImport, type: :model do
   end
 
   describe 'status methods' do
-    let!(:import) { FactoryGirl.build(:import, status: status) }
+    let!(:import) { FactoryBot.build(:import, status: status) }
     subject { import.send("#{status}?".to_sym) }
 
     context 'processing?' do

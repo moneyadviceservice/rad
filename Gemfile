@@ -62,7 +62,7 @@ group :test, :development do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'dotenv-rails'
-  gem 'factory_girl_rails'
+  gem 'factory_bot_rails'
   gem 'faker'
   gem 'ffaker'
   gem 'pry-byebug'

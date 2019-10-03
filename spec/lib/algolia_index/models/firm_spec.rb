@@ -20,7 +20,7 @@ RSpec.describe AlgoliaIndex::Firm do
   describe '#update' do
     context 'when the firm has not been approved' do
       let!(:firm) do
-        FactoryGirl.create(:firm_with_advisers_and_offices,
+        FactoryBot.create(:firm_with_advisers_and_offices,
                            :not_approved,
                            id: id)
       end
@@ -38,7 +38,7 @@ RSpec.describe AlgoliaIndex::Firm do
 
     context 'when the approved firm has advisers but no offices' do
       let!(:firm) do
-        FactoryGirl.create(:firm_with_advisers,
+        FactoryBot.create(:firm_with_advisers,
                            :without_offices,
                            id: id)
       end
@@ -68,7 +68,7 @@ RSpec.describe AlgoliaIndex::Firm do
 
     context 'when the approved firm has offices but no advisers' do
       let!(:firm) do
-        FactoryGirl.create(:firm_with_offices,
+        FactoryBot.create(:firm_with_offices,
                            :without_advisers,
                            id: id)
       end
@@ -98,7 +98,7 @@ RSpec.describe AlgoliaIndex::Firm do
 
     context 'when the approved firm has advisers and offices' do
       let!(:firm) do
-        FactoryGirl.create(:firm_with_advisers_and_offices, id: id)
+        FactoryBot.create(:firm_with_advisers_and_offices, id: id)
       end
 
       let(:serialized_advisers) do
@@ -136,7 +136,7 @@ RSpec.describe AlgoliaIndex::Firm do
 
   describe '#update_advisers' do
     context 'when the firm does not have any advisers' do
-      let!(:firm) { FactoryGirl.create(:firm_without_advisers, id: id) }
+      let!(:firm) { FactoryBot.create(:firm_without_advisers, id: id) }
 
       it 'does not update any advisers in the index' do
         expect(indexed_advisers).not_to receive(:add_objects)
@@ -147,7 +147,7 @@ RSpec.describe AlgoliaIndex::Firm do
     context 'when the firm does have advisers' do
       context 'when the firm has been approved' do
         let!(:firm) do
-          FactoryGirl.create(:firm_with_advisers, id: id)
+          FactoryBot.create(:firm_with_advisers, id: id)
         end
 
         let(:serialized) do
@@ -170,7 +170,7 @@ RSpec.describe AlgoliaIndex::Firm do
 
       context 'when the firm has not been approved' do
         let!(:firm) do
-          FactoryGirl.create(:firm_with_advisers, :not_approved, id: id)
+          FactoryBot.create(:firm_with_advisers, :not_approved, id: id)
         end
 
         it 'does not update any advisers in the index' do

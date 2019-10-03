@@ -1,12 +1,12 @@
 RSpec.feature 'Searching for advisers on the admin interface' do
   let(:the_page) { Admin::AdvisersIndexPage.new }
 
-  let(:qualification_1) { FactoryGirl.create(:qualification, name: 'Qual 1') }
-  let(:qualification_2) { FactoryGirl.create(:qualification, name: 'Qual 2') }
+  let(:qualification_1) { FactoryBot.create(:qualification, name: 'Qual 1') }
+  let(:qualification_2) { FactoryBot.create(:qualification, name: 'Qual 2') }
   let(:qualifications) { [qualification_1, qualification_2] }
 
-  let(:accreditation_1) { FactoryGirl.create(:accreditation, name: 'Accr 1') }
-  let(:accreditation_2) { FactoryGirl.create(:accreditation, name: 'Accr 2') }
+  let(:accreditation_1) { FactoryBot.create(:accreditation, name: 'Accr 1') }
+  let(:accreditation_2) { FactoryBot.create(:accreditation, name: 'Accr 2') }
   let(:accreditations) { [accreditation_1, accreditation_2] }
 
   before do
@@ -94,22 +94,22 @@ RSpec.feature 'Searching for advisers on the admin interface' do
 
   # rubocop:disable Metrics/MethodLength
   def given_there_are_advisers
-    FactoryGirl.create(:firm_without_advisers, registered_name: 'W. Montgomery Financial') do |f|
-      FactoryGirl.create(:adviser, firm: f, name: 'Wes Montgomery')
-      FactoryGirl.create(:adviser, firm: f, postcode: 'EH3 1DY')
+    FactoryBot.create(:firm_without_advisers, registered_name: 'W. Montgomery Financial') do |f|
+      FactoryBot.create(:adviser, firm: f, name: 'Wes Montgomery')
+      FactoryBot.create(:adviser, firm: f, postcode: 'EH3 1DY')
     end
 
-    FactoryGirl.create(:adviser, reference_number: 'CHP12345')
+    FactoryBot.create(:adviser, reference_number: 'CHP12345')
 
-    FactoryGirl.create(:adviser,
+    FactoryBot.create(:adviser,
                        name: 'A1',
                        qualifications: qualifications.take(2),
                        accreditations: accreditations.take(0))
-    FactoryGirl.create(:adviser,
+    FactoryBot.create(:adviser,
                        name: 'A2',
                        qualifications: qualifications.take(1),
                        accreditations: accreditations.take(1))
-    FactoryGirl.create(:adviser,
+    FactoryBot.create(:adviser,
                        name: 'A3',
                        qualifications: qualifications.take(0),
                        accreditations: accreditations.take(2))

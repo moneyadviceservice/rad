@@ -1,7 +1,7 @@
 require 'ostruct'
 
 RSpec.describe NewPrincipalForm, type: :model do
-  let(:lookup_firm) { FactoryGirl.create(:lookup_firm) }
+  let(:lookup_firm) { FactoryBot.create(:lookup_firm) }
   let(:valid_params) do
     {
       fca_number: lookup_firm.fca_number,

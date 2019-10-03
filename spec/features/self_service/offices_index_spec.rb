@@ -4,10 +4,10 @@ RSpec.feature 'The self service firm offices list page', :inline_job_queue do
   let(:offices_index_page) { SelfService::OfficesIndexPage.new }
   let(:sign_in_page) { SignInPage.new }
 
-  let(:principal) { FactoryGirl.create(:principal) }
+  let(:principal) { FactoryBot.create(:principal) }
   let(:firm) { principal.firm }
-  let(:user) { FactoryGirl.create(:user, principal: principal) }
-  let(:offices) { FactoryGirl.create_list(:office, 3, firm: firm) }
+  let(:user) { FactoryBot.create(:user, principal: principal) }
+  let(:offices) { FactoryBot.create_list(:office, 3, firm: firm) }
 
   scenario 'The page requires authentication to access' do
     when_i_navigate_to_the_offices_page_for_my_firm
@@ -78,7 +78,7 @@ RSpec.feature 'The self service firm offices list page', :inline_job_queue do
   end
 
   def given_i_am_a_fully_registered_principal_user
-    firm_attrs = FactoryGirl.attributes_for(:firm, fca_number: principal.fca_number)
+    firm_attrs = FactoryBot.attributes_for(:firm, fca_number: principal.fca_number)
     firm.update_attributes(firm_attrs)
     expect(Firm.registered.find(firm.id)).to be_present
   end
@@ -88,7 +88,7 @@ RSpec.feature 'The self service firm offices list page', :inline_job_queue do
   end
 
   def and_my_firm_has_and_adviser
-    firm.update!(advisers: [FactoryGirl.create(:adviser, firm: firm)])
+    firm.update!(advisers: [FactoryBot.create(:adviser, firm: firm)])
   end
 
   def and_i_am_logged_in

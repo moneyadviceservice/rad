@@ -2,7 +2,7 @@ RSpec.describe AlgoliaIndex::AdviserSerializer do
   describe 'json' do
     subject(:serialized) { JSON.parse(described_class.new(adviser).to_json) }
 
-    let(:adviser) { FactoryGirl.create(:adviser) }
+    let(:adviser) { FactoryBot.create(:adviser) }
     let(:firm) { adviser.firm }
     let(:expected_json) do
       {

@@ -19,7 +19,7 @@ RSpec.describe AlgoliaIndex::Adviser do
   it { expect(described_class < AlgoliaIndex::Base).to eq(true) }
 
   describe '.create' do
-    let!(:advisers) { FactoryGirl.create_list(:adviser, 3) }
+    let!(:advisers) { FactoryBot.create_list(:adviser, 3) }
     let(:serialized) do
       advisers.map do |adviser|
         AlgoliaIndex::AdviserSerializer.new(adviser)
@@ -40,9 +40,9 @@ RSpec.describe AlgoliaIndex::Adviser do
   end
 
   shared_examples('update firm advisers') do |trigger_call|
-    let!(:adviser) { FactoryGirl.create(:adviser, id: id) }
+    let!(:adviser) { FactoryBot.create(:adviser, id: id) }
     let(:dependant_advisers) do
-      FactoryGirl.create_list(:adviser, 3, firm: adviser.firm)
+      FactoryBot.create_list(:adviser, 3, firm: adviser.firm)
     end
 
     let(:serialized_advisers) do

@@ -33,12 +33,12 @@ RSpec.feature 'Approving firms on the admin interface', :inline_job_queue do
   end
 
   def given_there_are_fully_registered_principal_users_with_advisers_and_offices
-    @users = FactoryGirl.create_list(:user, 2)
+    @users = FactoryBot.create_list(:user, 2)
     @principals = @users.map(&:principal)
     @firms = @principals.map(&:firm)
     @firms.each do |firm|
-      firm.advisers << FactoryGirl.create(:adviser, firm: firm)
-      firm.offices << FactoryGirl.create(:office, firm: firm)
+      firm.advisers << FactoryBot.create(:adviser, firm: firm)
+      firm.offices << FactoryBot.create(:office, firm: firm)
     end
   end
 

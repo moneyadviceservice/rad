@@ -1,12 +1,12 @@
 RSpec.describe Admin::FirmsController, type: :controller do
   def create_user_with_firm(user_attrs, firm_attrs = {})
-    principal = FactoryGirl.create(:principal)
+    principal = FactoryBot.create(:principal)
 
-    firm_attrs = FactoryGirl.attributes_for(:firm_with_trading_names,
+    firm_attrs = FactoryBot.attributes_for(:firm_with_trading_names,
                                             fca_number: principal.fca_number).merge(firm_attrs)
     principal.firm.update_attributes!(firm_attrs)
 
-    FactoryGirl.create :user, { principal: principal }.merge(user_attrs)
+    FactoryBot.create :user, { principal: principal }.merge(user_attrs)
   end
 
   describe '#login_report' do

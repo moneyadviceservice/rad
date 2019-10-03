@@ -4,7 +4,7 @@ RSpec.feature 'The self service firm edit page' do
   let(:firms_index_page) { SelfService::FirmsIndexPage.new }
   let(:firm_edit_page) { SelfService::FirmEditPage.new }
   let!(:firm_changes) do
-    FactoryGirl.build(:firm,
+    FactoryBot.build(:firm,
                       retirement_income_products_flag: true,
                       pension_transfer_flag: false,
                       long_term_care_flag: true,
@@ -64,12 +64,12 @@ RSpec.feature 'The self service firm edit page' do
   end
 
   def given_i_am_a_fully_registered_principal_user
-    @principal = FactoryGirl.create(:principal)
-    @user = FactoryGirl.create(:user, principal: @principal)
+    @principal = FactoryBot.create(:principal)
+    @user = FactoryBot.create(:user, principal: @principal)
   end
 
   def and_i_have_a_firm
-    firm_attrs = FactoryGirl.attributes_for(:firm, fca_number: @principal.fca_number)
+    firm_attrs = FactoryBot.attributes_for(:firm, fca_number: @principal.fca_number)
     @principal.firm.update_attributes(firm_attrs)
     @original_firm_website = @principal.firm.website_address
   end

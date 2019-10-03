@@ -4,7 +4,7 @@ module SelfService
       subject { helper.create_or_update_self_service_trading_names_path(trading_name) }
 
       context 'the trading name is an existing record' do
-        let(:trading_name) { FactoryGirl.create(:trading_name) }
+        let(:trading_name) { FactoryBot.create(:trading_name) }
 
         it 'returns the create path' do
           expect(subject).to eq self_service_trading_name_path(trading_name)
@@ -12,7 +12,7 @@ module SelfService
       end
 
       context 'the trading name is an existing record' do
-        let(:trading_name) { FactoryGirl.build(:trading_name) }
+        let(:trading_name) { FactoryBot.build(:trading_name) }
 
         it 'returns the create path' do
           expect(subject).to eq self_service_trading_names_path
@@ -22,7 +22,7 @@ module SelfService
 
     describe '#office_address_table_cell' do
       let(:office) do
-        FactoryGirl.build(:office,
+        FactoryBot.build(:office,
                           address_line_one: 'a',
                           address_line_two: 'b',
                           address_town: 'c',

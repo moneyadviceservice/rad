@@ -42,8 +42,8 @@ RSpec.feature 'registered advisors report' do
   end
 
   def given_i_am_a_fully_registered_principal_user
-    @principal = FactoryGirl.create :principal
-    @user = FactoryGirl.create :user, principal: @principal
+    @principal = FactoryBot.create :principal
+    @user = FactoryBot.create :user, principal: @principal
   end
 
   def and_i_am_logged_in_as_an_admin
@@ -65,8 +65,8 @@ RSpec.feature 'registered advisors report' do
   end
 
   def and_there_exists_registered_advisors
-    firm = FactoryGirl.create(:firm, registered_name: 'James Andrews Investment PLC')
-    FactoryGirl.create(:adviser,
+    firm = FactoryBot.create(:firm, registered_name: 'James Andrews Investment PLC')
+    FactoryBot.create(:adviser,
                        name: 'James Andrews',
                        reference_number: 'ABC12345',
                        firm: firm)

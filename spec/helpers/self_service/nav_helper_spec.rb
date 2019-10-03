@@ -1,6 +1,6 @@
 module SelfService
   RSpec.describe NavHelper, type: :helper do
-    let(:firm) { FactoryGirl.create(:firm_with_trading_names) }
+    let(:firm) { FactoryBot.create(:firm_with_trading_names) }
 
     describe '#self_service_firm_details_url' do
       context 'when passed a parent firm object' do

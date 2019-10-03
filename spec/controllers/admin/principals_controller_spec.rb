@@ -1,8 +1,8 @@
 RSpec.describe Admin::PrincipalsController, type: :controller do
   before { sign_in(user) }
 
-  let(:user) { FactoryGirl.create(:user, principal: principal) }
-  let(:principal) { FactoryGirl.create(:principal) }
+  let(:user) { FactoryBot.create(:user, principal: principal) }
+  let(:principal) { FactoryBot.create(:principal) }
 
   describe 'DELETE #destroy' do
     context 'when successful' do

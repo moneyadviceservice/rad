@@ -5,14 +5,14 @@ module SelfService
     let(:postcode) { 'EH1 2AS' }
 
     describe '#create' do
-      let(:reference_number) { FactoryGirl.create(:lookup_adviser).reference_number }
+      let(:reference_number) { FactoryBot.create(:lookup_adviser).reference_number }
       specify { expect_create_to_set reference_number: reference_number, postcode: 'EH1 2AS' }
       specify { expect_create_to_set reference_number: reference_number, travel_distance: 250 }
 
       context 'with valid params' do
-        let(:lookup_adviser) { FactoryGirl.create :lookup_adviser }
+        let(:lookup_adviser) { FactoryBot.create :lookup_adviser }
         let(:adviser_params) do
-          FactoryGirl.attributes_for(:adviser,
+          FactoryBot.attributes_for(:adviser,
                                      reference_number: lookup_adviser.reference_number,
                                      postcode: postcode)
         end
@@ -34,7 +34,7 @@ module SelfService
       end
 
       context 'with invalid params' do
-        let(:adviser_params) { FactoryGirl.attributes_for(:adviser, reference_number: 'Q') }
+        let(:adviser_params) { FactoryBot.attributes_for(:adviser, reference_number: 'Q') }
         before { post :create, firm_id: firm.id, adviser: adviser_params }
 
         it 'renders the adviser new page' do
@@ -44,7 +44,7 @@ module SelfService
     end
 
     def expect_create_to_set(attributes)
-      valid_attributes = FactoryGirl.attributes_for(:adviser, postcode: postcode)
+      valid_attributes = FactoryBot.attributes_for(:adviser, postcode: postcode)
       post :create, firm_id: firm.id, adviser: valid_attributes.merge(attributes)
       attributes.each do |key, value|
         expect(assigns(:adviser).send(key)).to eq(value)
