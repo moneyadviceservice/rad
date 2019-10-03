@@ -1,5 +1,5 @@
 RSpec.describe SelfService::StatusPresenter do
-  let(:firm) { FactoryGirl.create(:firm) }
+  let(:firm) { FactoryBot.create(:firm) }
 
   subject(:presenter) { described_class.new(firm) }
 
@@ -18,7 +18,7 @@ RSpec.describe SelfService::StatusPresenter do
   end
 
   context 'when the firm is not publishable' do
-    let(:firm) { FactoryGirl.create(:firm_without_offices) }
+    let(:firm) { FactoryBot.create(:firm_without_offices) }
 
     describe '#overall_status' do
       it 'provides "published" if the firm is publishable' do

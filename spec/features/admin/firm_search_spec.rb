@@ -73,20 +73,20 @@ RSpec.feature 'Searching for firms on the admin interface' do
 
   def given_there_are_firms
     @firms = [
-      FactoryGirl.create(:firm, registered_name: 'Acme Finance', workplace_financial_advice_flag: true),
-      FactoryGirl.create(:firm, fca_number: '123456'),
-      FactoryGirl.create(:firm, fca_number: '123456'),
+      FactoryBot.create(:firm, registered_name: 'Acme Finance', workplace_financial_advice_flag: true),
+      FactoryBot.create(:firm, fca_number: '123456'),
+      FactoryBot.create(:firm, fca_number: '123456'),
 
-      FactoryGirl.create(:firm, registered_name: 'Ethical & sharia',
+      FactoryBot.create(:firm, registered_name: 'Ethical & sharia',
                                 ethical_investing_flag: true, sharia_investing_flag: true),
-      FactoryGirl.create(:firm, registered_name: 'Only ethical',
+      FactoryBot.create(:firm, registered_name: 'Only ethical',
                                 ethical_investing_flag: true, sharia_investing_flag: false),
-      FactoryGirl.create(:firm, registered_name: 'Only sharia',
+      FactoryBot.create(:firm, registered_name: 'Only sharia',
                                 ethical_investing_flag: false, sharia_investing_flag: true),
 
-      FactoryGirl.create(:firm, registered_name: 'With languages 1',
+      FactoryBot.create(:firm, registered_name: 'With languages 1',
                                 fca_number: '234567', languages: [example_language]),
-      FactoryGirl.create(:firm, registered_name: 'With languages 2',
+      FactoryBot.create(:firm, registered_name: 'With languages 2',
                                 fca_number: '234567', languages: [example_language])
     ]
   end

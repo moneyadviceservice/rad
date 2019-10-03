@@ -32,12 +32,12 @@ RSpec.feature 'The self service trading name edit page' do
   end
 
   def given_i_am_a_fully_registered_principal_user
-    @principal = FactoryGirl.create(:principal)
-    @user = FactoryGirl.create(:user, principal: @principal)
+    @principal = FactoryBot.create(:principal)
+    @user = FactoryBot.create(:user, principal: @principal)
   end
 
   def and_i_have_a_firm_with_trading_names
-    firm_attrs = FactoryGirl.attributes_for(:firm_with_trading_names, fca_number: @principal.fca_number)
+    firm_attrs = FactoryBot.attributes_for(:firm_with_trading_names, fca_number: @principal.fca_number)
     @principal.firm.update_attributes(firm_attrs)
     @original_website_address = trading_names(@principal).first.website_address
   end

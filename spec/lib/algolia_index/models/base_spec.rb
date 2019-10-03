@@ -8,7 +8,7 @@ RSpec.describe AlgoliaIndex::Base do
   describe '#present_in_db?' do
     context 'when db record exists' do
       before do
-        FactoryGirl.create(:firm, id: id)
+        FactoryBot.create(:firm, id: id)
       end
 
       it 'returns true' do

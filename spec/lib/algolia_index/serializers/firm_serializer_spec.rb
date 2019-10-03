@@ -2,7 +2,7 @@ RSpec.describe AlgoliaIndex::FirmSerializer do
   describe 'json' do
     subject(:serialized) { JSON.parse(described_class.new(firm).to_json) }
 
-    let(:firm) { FactoryGirl.create(:firm) }
+    let(:firm) { FactoryBot.create(:firm) }
     let(:expected_json) do
       {
         id: firm.id,

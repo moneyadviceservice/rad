@@ -1,7 +1,7 @@
 RSpec.describe SelfService::PrincipalsController, type: :controller do
   before { sign_in(user) }
-  let(:user) { FactoryGirl.create(:user, principal: principal) }
-  let(:principal) { FactoryGirl.create(:principal) }
+  let(:user) { FactoryBot.create(:user, principal: principal) }
+  let(:principal) { FactoryBot.create(:principal) }
 
   describe 'GET #edit' do
     before { get :edit, id: principal.id }
@@ -19,7 +19,7 @@ RSpec.describe SelfService::PrincipalsController, type: :controller do
     before { patch :update, id: principal.id, principal: principal_params }
 
     context 'with valid parameters' do
-      let(:principal_params) { FactoryGirl.attributes_for(:principal) }
+      let(:principal_params) { FactoryBot.attributes_for(:principal) }
 
       it 'saves the record' do
         principal = assigns(:principal).reload

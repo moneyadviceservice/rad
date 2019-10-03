@@ -21,7 +21,7 @@ RSpec.feature 'Move advisers between firms' do
   end
 
   def given_there_is_a_fully_registered_principal_user
-    @user = FactoryGirl.create(:user)
+    @user = FactoryBot.create(:user)
     @principal = @user.principal
   end
 
@@ -45,7 +45,7 @@ RSpec.feature 'Move advisers between firms' do
   end
 
   def given_there_is_a_principal
-    @principal = FactoryGirl.create(:principal)
+    @principal = FactoryBot.create(:principal)
   end
 
   def then_it_doesnt_blow_up

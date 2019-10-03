@@ -1,11 +1,11 @@
 RSpec.describe SelfService::FirmsController, type: :controller do
-  let(:principal) { FactoryGirl.create(:principal) }
+  let(:principal) { FactoryBot.create(:principal) }
   let(:firm) do
-    firm_attrs = FactoryGirl.attributes_for(:firm_with_trading_names, fca_number: principal.fca_number)
+    firm_attrs = FactoryBot.attributes_for(:firm_with_trading_names, fca_number: principal.fca_number)
     principal.firm.update_attributes(firm_attrs)
     principal.firm
   end
-  let(:user) { FactoryGirl.create :user, principal: firm.principal }
+  let(:user) { FactoryBot.create :user, principal: firm.principal }
   before { sign_in(user) }
 
   def extract_firm_params(firm, params = {})
@@ -50,10 +50,10 @@ RSpec.describe SelfService::FirmsController, type: :controller do
 
     context 'when there are lookup names' do
       before do
-        FactoryGirl.create(:lookup_subsidiary, fca_number: firm.fca_number, name: 'Bertie')
-        FactoryGirl.create(:lookup_subsidiary, fca_number: firm.fca_number, name: 'Anne')
-        FactoryGirl.create(:lookup_subsidiary, fca_number: firm.fca_number, name: 'Deirdre')
-        FactoryGirl.create(:lookup_subsidiary, fca_number: firm.fca_number, name: 'Colin')
+        FactoryBot.create(:lookup_subsidiary, fca_number: firm.fca_number, name: 'Bertie')
+        FactoryBot.create(:lookup_subsidiary, fca_number: firm.fca_number, name: 'Anne')
+        FactoryBot.create(:lookup_subsidiary, fca_number: firm.fca_number, name: 'Deirdre')
+        FactoryBot.create(:lookup_subsidiary, fca_number: firm.fca_number, name: 'Colin')
       end
 
       it 'assigns lookup names' do
@@ -71,7 +71,7 @@ RSpec.describe SelfService::FirmsController, type: :controller do
   end
 
   describe 'GET #edit' do
-    let(:trading_name) { FactoryGirl.create(:firm, parent_id: firm.id) }
+    let(:trading_name) { FactoryBot.create(:firm, parent_id: firm.id) }
     before { get :edit, id: firm.id }
 
     context 'when accessing current users firm' do

@@ -25,10 +25,10 @@ RSpec.feature "Editing a user (i.e. a Principal's login credentials)" do
   end
 
   def given_there_is_firm
-    @firm = FactoryGirl.create(:firm_with_trading_names, :with_principal)
+    @firm = FactoryBot.create(:firm_with_trading_names, :with_principal)
     @principal = @firm.principal
     @principal.update(firm: @firm)
-    @user = FactoryGirl.create(:user, principal: @principal)
+    @user = FactoryBot.create(:user, principal: @principal)
   end
 
   def when_i_visit_the_principal_page

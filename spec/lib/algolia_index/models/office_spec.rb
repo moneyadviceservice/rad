@@ -21,7 +21,7 @@ RSpec.describe AlgoliaIndex::Office do
   it { expect(described_class < AlgoliaIndex::Base).to eq(true) }
 
   describe '.create' do
-    let!(:offices) { FactoryGirl.create_list(:office, 3, firm_id: 1) }
+    let!(:offices) { FactoryBot.create_list(:office, 3, firm_id: 1) }
     let(:serialized) do
       offices.map do |office|
         AlgoliaIndex::OfficeSerializer.new(office)
@@ -42,7 +42,7 @@ RSpec.describe AlgoliaIndex::Office do
   end
 
   shared_examples('update firm advisers') do |trigger_call|
-    let(:advisers) { FactoryGirl.create_list(:adviser, 3, firm: firm) }
+    let(:advisers) { FactoryBot.create_list(:adviser, 3, firm: firm) }
     let(:serialized_advisers) do
       advisers.map { |adv| AlgoliaIndex::AdviserSerializer.new(adv) }
     end
@@ -60,12 +60,12 @@ RSpec.describe AlgoliaIndex::Office do
   end
 
   describe '#update' do
-    let!(:office) { FactoryGirl.create(:office, id: id, firm_id: firm.id) }
+    let!(:office) { FactoryBot.create(:office, id: id, firm_id: firm.id) }
 
     context 'when the office firm is approved' do
       include_examples 'update firm advisers', :update
 
-      let(:firm) { FactoryGirl.create(:firm_without_advisers) }
+      let(:firm) { FactoryBot.create(:firm_without_advisers) }
       let(:serialized_office) { AlgoliaIndex::OfficeSerializer.new(office) }
 
       before do
@@ -81,7 +81,7 @@ RSpec.describe AlgoliaIndex::Office do
     end
 
     context 'when the office firm is not approved' do
-      let(:firm) { FactoryGirl.create(:firm_without_advisers, :not_approved) }
+      let(:firm) { FactoryBot.create(:firm_without_advisers, :not_approved) }
 
       it 'does not update the office in the index' do
         expect(indexed_offices).not_to receive(:add_object)
@@ -96,10 +96,10 @@ RSpec.describe AlgoliaIndex::Office do
   end
 
   describe '#destroy' do
-    let!(:office) { FactoryGirl.create(:office, id: id, firm_id: firm.id) }
+    let!(:office) { FactoryBot.create(:office, id: id, firm_id: firm.id) }
 
     context 'when the office firm is not approved' do
-      let(:firm) { FactoryGirl.create(:firm_without_advisers, :not_approved) }
+      let(:firm) { FactoryBot.create(:firm_without_advisers, :not_approved) }
 
       it 'deletes the office in the index' do
         expect(indexed_offices).to receive(:delete_object).with(id)
@@ -115,7 +115,7 @@ RSpec.describe AlgoliaIndex::Office do
     context 'when the office firm is approved' do
       include_examples 'update firm advisers', :destroy
 
-      let(:firm) { FactoryGirl.create(:firm_without_advisers) }
+      let(:firm) { FactoryBot.create(:firm_without_advisers) }
 
       it 'deletes the office in the index' do
         expect(indexed_offices).to receive(:delete_object).with(id)

@@ -3,7 +3,7 @@ ENV['RAILS_ENV'] = 'test'
 require_relative '../config/environment'
 
 require 'rspec/rails'
-require 'factory_girl_rails'
+require 'factory_bot_rails'
 require 'capybara/poltergeist'
 require 'sidekiq/testing'
 
@@ -28,7 +28,7 @@ RSpec.configure do |c|
   c.run_all_when_everything_filtered = true
   c.disable_monkey_patching!
 
-  c.include FactoryGirl::Syntax::Methods
+  c.include FactoryBot::Syntax::Methods
 
   c.around(:each, inline_job_queue: true) do |example|
     begin

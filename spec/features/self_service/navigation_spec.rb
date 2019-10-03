@@ -15,8 +15,8 @@ RSpec.feature 'The self service navigation' do
   end
 
   def given_i_am_a_fully_registered_principal_user
-    @principal = FactoryGirl.create(:principal)
-    @user = FactoryGirl.create(:user, principal: @principal)
+    @principal = FactoryBot.create(:principal)
+    @user = FactoryBot.create(:user, principal: @principal)
   end
 
   def and_i_am_logged_in

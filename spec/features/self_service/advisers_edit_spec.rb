@@ -8,9 +8,9 @@ RSpec.feature 'The self service firm edit page', :inline_job_queue do
   let(:updated_postcode) { 'EH11 2AB' }
 
   before do
-    FactoryGirl.create_list :accreditation, 5
-    FactoryGirl.create_list :qualification, 5
-    FactoryGirl.create_list :professional_standing, 5
+    FactoryBot.create_list :accreditation, 5
+    FactoryBot.create_list :qualification, 5
+    FactoryBot.create_list :professional_standing, 5
   end
 
   scenario 'The principal can edit their adviser' do
@@ -41,13 +41,13 @@ RSpec.feature 'The self service firm edit page', :inline_job_queue do
   end
 
   def given_i_am_a_fully_registered_principal_user
-    @principal = FactoryGirl.create(:principal)
-    @user = FactoryGirl.create(:user, principal: @principal)
+    @principal = FactoryBot.create(:principal)
+    @user = FactoryBot.create(:user, principal: @principal)
   end
 
   def and_i_have_a_firm_with_an_adviser
-    @adviser = FactoryGirl.create :adviser, postcode: original_postcode
-    firm_attrs = FactoryGirl.attributes_for(:firm, fca_number: @principal.fca_number)
+    @adviser = FactoryBot.create :adviser, postcode: original_postcode
+    firm_attrs = FactoryBot.attributes_for(:firm, fca_number: @principal.fca_number)
     @principal.firm.advisers << @adviser
     @principal.firm.update_attributes(firm_attrs)
   end

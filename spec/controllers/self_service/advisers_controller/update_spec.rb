@@ -8,7 +8,7 @@ module SelfService
 
       context 'with a valid lookup_adviser' do
         let(:new_reference_number) { 'ABC22222' }
-        before { FactoryGirl.create :lookup_adviser, reference_number: new_reference_number }
+        before { FactoryBot.create :lookup_adviser, reference_number: new_reference_number }
 
         it { expect_update_to_change reference_number: new_reference_number }
       end

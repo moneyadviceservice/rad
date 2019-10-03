@@ -39,7 +39,7 @@ RSpec.feature 'Add a new adviser without an FCA number', :inline_job_queue do
   end
 
   def given_there_is_a_firm
-    @firm = FactoryGirl.create(:firm_with_principal, :without_advisers)
+    @firm = FactoryBot.create(:firm_with_principal, :without_advisers)
   end
 
   def when_i_visit_the_firm_admin_page

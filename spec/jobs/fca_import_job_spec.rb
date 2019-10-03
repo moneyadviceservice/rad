@@ -3,8 +3,8 @@ RSpec.describe FcaImportJob do
   let(:db)    { spy('db connection') }
   let(:slack) { spy('slack') }
   let(:outcomes) { [['adviers.zip', true, %i[download unzip to_sql save]]] }
-  let(:model) { FactoryGirl.create(:import) }
-  let(:model_dup) { FactoryGirl.build(:import) }
+  let(:model) { FactoryBot.create(:import) }
+  let(:model_dup) { FactoryBot.build(:import) }
   let(:format) do
     { channel: '#test-channel', as_user: true, text: '' }
   end

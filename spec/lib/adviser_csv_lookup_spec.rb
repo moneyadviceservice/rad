@@ -1,10 +1,10 @@
 RSpec.describe AdviserCsvLookup do
-  let(:adviser1) { FactoryGirl.create(:adviser, adviser1_certifications) }
-  let(:adviser2) { FactoryGirl.create(:adviser, adviser2_certifications) }
+  let(:adviser1) { FactoryBot.create(:adviser, adviser1_certifications) }
+  let(:adviser2) { FactoryBot.create(:adviser, adviser2_certifications) }
   let(:advisers) { [adviser1, adviser2] }
 
-  let(:qualifications) { Array.new(3) { FactoryGirl.create(:qualification) } }
-  let(:accreditations) { Array.new(3) { FactoryGirl.create(:accreditation) } }
+  let(:qualifications) { Array.new(3) { FactoryBot.create(:qualification) } }
+  let(:accreditations) { Array.new(3) { FactoryBot.create(:accreditation) } }
 
   let(:adviser1_certifications) do
     {

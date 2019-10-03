@@ -6,11 +6,11 @@ RSpec.describe Admin::Reports::OutOfDateFirmsController, type: :controller do
     end
 
     it 'lists firms where the name has gone out of sync with the lookup data' do
-      FactoryGirl.create(:lookup_firm, registered_name: 'Finance Co.', fca_number: 111_111)
-      FactoryGirl.create(:firm, registered_name: 'Finance Co.', fca_number: 111_111)
+      FactoryBot.create(:lookup_firm, registered_name: 'Finance Co.', fca_number: 111_111)
+      FactoryBot.create(:firm, registered_name: 'Finance Co.', fca_number: 111_111)
 
-      FactoryGirl.create(:lookup_firm, registered_name: 'Acme Inc', fca_number: 222_222)
-      firm = FactoryGirl.create(:firm, registered_name: 'Acme Finance', fca_number: 222_222)
+      FactoryBot.create(:lookup_firm, registered_name: 'Acme Inc', fca_number: 222_222)
+      firm = FactoryBot.create(:firm, registered_name: 'Acme Finance', fca_number: 222_222)
 
       get :index
       expect(assigns[:firms]).to eq([[222_222, 'Acme Inc', 'Acme Finance', firm.id]])
@@ -19,8 +19,8 @@ RSpec.describe Admin::Reports::OutOfDateFirmsController, type: :controller do
 
   describe '#update' do
     it 'replaces the name of the firm with the name from the lookup firm' do
-      FactoryGirl.create(:lookup_firm, registered_name: 'Acme Inc', fca_number: 222_222)
-      firm = FactoryGirl.create(:firm, registered_name: 'Acme Finance', fca_number: 222_222)
+      FactoryBot.create(:lookup_firm, registered_name: 'Acme Inc', fca_number: 222_222)
+      firm = FactoryBot.create(:firm, registered_name: 'Acme Finance', fca_number: 222_222)
 
       patch :update, id: firm.id
 
