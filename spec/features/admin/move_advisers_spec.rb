@@ -1,5 +1,5 @@
 RSpec.feature 'Move advisers between firms', :inline_job_queue do
-  include_context 'algolia directory double'
+  include_context 'algolia index fake'
 
   let(:adviser) { create(:adviser) }
   let(:from_firm) { create(:firm_with_principal, advisers: [adviser]) }

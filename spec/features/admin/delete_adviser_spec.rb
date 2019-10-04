@@ -1,5 +1,5 @@
 RSpec.feature 'Deleting an adviser from the admin interface', :inline_job_queue do
-  include_context 'algolia directory double'
+  include_context 'algolia index fake'
 
   let(:admin_adviser_page) { AdminAdviserPage.new }
 
