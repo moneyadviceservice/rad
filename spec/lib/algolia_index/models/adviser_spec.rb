@@ -1,14 +1,15 @@
 RSpec.describe AlgoliaIndex::Adviser do
-  subject(:instance) { described_class.new(klass: klass, id: id) }
+  subject(:instance) { described_class.new(klass: klass, id: adviser_id) }
 
   let(:klass) { 'Adviser' }
-  let(:id) { 1 }
 
   let(:indexed_advisers) do
-    instance_double(Algolia::Index,
-                    add_object: true,
-                    add_objects: true,
-                    delete_object: true)
+    instance_double(
+      Algolia::Index,
+      add_object: true,
+      add_objects: true,
+      delete_object: true
+    )
   end
 
   before do
@@ -40,7 +41,8 @@ RSpec.describe AlgoliaIndex::Adviser do
   end
 
   shared_examples('update firm advisers') do |trigger_call|
-    let!(:adviser) { FactoryBot.create(:adviser, id: id) }
+    let!(:adviser) { FactoryBot.create(:adviser) }
+    let(:adviser_id) { adviser.id }
     let(:dependant_advisers) do
       FactoryBot.create_list(:adviser, 3, firm: adviser.firm)
     end
@@ -82,7 +84,7 @@ RSpec.describe AlgoliaIndex::Adviser do
     include_examples 'update firm advisers', :destroy
 
     it 'deletes the adviser in the index' do
-      expect(indexed_advisers).to receive(:delete_object).with(id)
+      expect(indexed_advisers).to receive(:delete_object).with(adviser_id)
       instance.destroy
     end
   end
