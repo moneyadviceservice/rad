@@ -81,7 +81,6 @@ group :test do
   gem 'danger-rubocop', require: false
   gem 'database_cleaner'
   gem 'launchy'
-  gem 'poltergeist'
   gem 'rspec-collection_matchers'
   gem 'rspec-sidekiq'
   gem 'site_prism'
