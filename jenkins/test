@@ -39,7 +39,8 @@ run bundle update brakeman --quiet
 run bundle exec bowndler install --allow-root
 run mv config/cloud_storage{.example,}.yml
 run bundle exec rake db:drop db:setup
-run bundle exec rspec
+run bundle exec rspec spec/features
+run bundle exec rspec --exclude-pattern='spec/features/**/**'
 run bundle exec ./node_modules/.bin/karma start spec/javascripts/karma.conf.js --single-run
 run bundle exec rubocop -DS
 info bundle exec brakeman -q --no-pager --ensure-latest
