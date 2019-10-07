@@ -4,7 +4,6 @@ require_relative '../config/environment'
 
 require 'rspec/rails'
 require 'factory_bot_rails'
-require 'capybara/poltergeist'
 require 'sidekiq/testing'
 
 Dir[File.join(File.dirname(__FILE__), 'support', '**', '*_section.rb')].each { |f| require f }
@@ -14,7 +13,6 @@ require File.join(File.dirname(__FILE__), 'support/fca_test_helpers.rb')
 
 Faker::Config.locale = 'en-GB'
 
-Capybara.javascript_driver = :poltergeist
 Capybara.default_max_wait_time = 5
 
 TestAfterCommit.enabled = true
