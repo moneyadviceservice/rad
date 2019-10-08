@@ -1,6 +1,6 @@
 RSpec.feature 'The self service firm edit page', :inline_job_queue do
   include CheckboxGroupHelpers
-  include_context 'algolia directory double'
+  include_context 'algolia index fake'
 
   let(:advisers_index_page) { SelfService::AdvisersIndexPage.new }
   let(:adviser_edit_page) { SelfService::AdviserEditPage.new }

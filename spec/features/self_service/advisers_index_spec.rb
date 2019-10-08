@@ -1,5 +1,5 @@
 RSpec.feature 'The self service adviser list page', :inline_job_queue do
-  include_context 'algolia directory double'
+  include_context 'algolia index fake'
 
   let(:advisers_index_page) { SelfService::AdvisersIndexPage.new }
 

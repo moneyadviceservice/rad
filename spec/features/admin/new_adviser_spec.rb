@@ -1,5 +1,5 @@
 RSpec.feature 'Add a new adviser without an FCA number', :inline_job_queue do
-  include_context 'algolia directory double'
+  include_context 'algolia index fake'
 
   let(:firm_page) { Admin::FirmPage.new }
   let(:new_adviser_page) { Admin::NewAdviserPage.new }

@@ -1,6 +1,6 @@
 RSpec.feature 'Approving firms on the admin interface', :inline_job_queue do
   include ActiveSupport::Testing::TimeHelpers
-  include_context 'algolia directory double'
+  include_context 'algolia index fake'
 
   let(:index_page) { Admin::FirmsIndexPage.new }
   let(:firm_page) { Admin::FirmPage.new }

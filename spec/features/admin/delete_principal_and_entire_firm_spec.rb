@@ -1,5 +1,5 @@
 RSpec.feature 'Deleting principal and all related firm, adviser, office and trading name data', :inline_job_queue do
-  include_context 'algolia directory double'
+  include_context 'algolia index fake'
 
   let(:admin_principal_page) { Admin::PrincipalPage.new }
 
