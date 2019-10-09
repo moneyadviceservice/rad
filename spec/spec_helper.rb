@@ -17,8 +17,6 @@ Faker::Config.locale = 'en-GB'
 
 Capybara.default_max_wait_time = 5
 
-TestAfterCommit.enabled = true
-
 RSpec.configure do |c|
   c.include Rails.application.routes.url_helpers
   c.infer_base_class_for_anonymous_controllers = false
