@@ -1,5 +1,4 @@
 require 'digest/sha1'
-require 'slack-ruby-client'
 $LOAD_PATH.unshift(Rails.root.join('lib'))
 require 'fca'
 
@@ -45,24 +44,8 @@ class FcaImportJob < ActiveJob::Base
     @conn ||= ActiveRecord::Base.connection_pool.checkout.raw_connection
   end
 
-  def slack
-    @slack ||= Slack::Web::Client.new
-  end
-
   def default_url_options
     { host: FCA::Config.hostname }
-  end
-
-  def notify_slack(text)
-    tries ||= 1
-    slack.chat_postMessage(
-      channel: FCA::Config.notify[:slack][:channel],
-      as_user: true,
-      text:    "<!here> #{text}"
-    )
-  rescue StandardError
-    logger.error 'An error occured while trying to post msg'
-    retry if (tries += 1) <= 3
   end
 
   def notify_email(text)
@@ -103,6 +86,5 @@ class FcaImportJob < ActiveJob::Base
     text = notification_text(outcomes)
     logger.info("Notification msg: #{text}")
     notify_email(text)
-    notify_slack(text)
   end
 end

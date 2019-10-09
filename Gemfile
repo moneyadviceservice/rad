@@ -49,7 +49,6 @@ gem 'sass-rails'
 gem 'sidekiq', '~> 3.3.4'
 gem 'sidekiq-unique-jobs'
 gem 'sinatra', require: false
-gem 'slack-ruby-client'
 gem 'statsd-ruby', '~> 1.4.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'uk_phone_numbers', '~> 0.1.1'

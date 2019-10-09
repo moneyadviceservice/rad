@@ -7,8 +7,7 @@ class Admin::Lookup::FcaImportController < Admin::ApplicationController
 
   def create
     FcaImportJob.perform_async(files)
-    flash[:notice] = "The following files will be imported.
-You will be notified on the Slack channel #{channel} when it's done."
+    flash[:notice] = "The following files will be imported."
     redirect_to admin_lookup_fca_import_index_path
   end
 
@@ -43,9 +42,5 @@ You will be notified on the Slack channel #{channel} when it's done."
 
   def filter(fs)
     fs.select { |f| f =~ /^incoming.*\.zip$/i }
-  end
-
-  def channel
-    FCA::Config.notify[:slack][:channel]
   end
 end
