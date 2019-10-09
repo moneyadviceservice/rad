@@ -5,6 +5,3 @@ repairs:
   -
     line: 'KCS01025|Mr "Konstantinos ""Constantine""" Sarafopoulos|||3|SARAFOPOULOSKONSTANTINOSCONSTANTINE|20160305|'
     replacement: 'KCS01025|Mr Konstantinos "Constantine" Sarafopoulos|||3|SARAFOPOULOSKONSTANTINOSCONSTANTINE|20160305|'
-  -
-    line: '847616|,,BROKER INS " LTD|8|5||||||||||||||||EEA Authorised|20190903||BROKERINSLTD|20190903|||||'
-    replacement: '847616|,,BROKER INS LTD|8|5||||||||||||||||EEA Authorised|20190903||BROKERINSLTD|20190903|||||'

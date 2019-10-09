@@ -69,7 +69,21 @@ module FCA
     end
 
     def repair
+      # TODO: this is obviously terrible and needs replacing. This is a
+      # temporary fix for the firms master list entry with ID 847616. It
+      # contains an unterminated quote which breaks the Postgres import.
+      #
+      # The FCA take a very long time to correct the source data. We need to
+      # either change how Postgres handles unterminated quotes when writing to
+      # a table or overhaul the repair functionality. Currently line repairs
+      # are invalidated with every new set of import files because a timestamp
+      # on each line changes every week.
+      if line.include?(%(BROKER INS " LTD))
+        line.gsub!(%r(BROKER INS " LTD), '')
+      end
+
       match = repairs.find { |pair| pair['line'] == line }
+
       if match.nil?
         logger.warn(name) { "Possibly malformed row detected: #{line}" } if line.include? '""'
         line
