@@ -76,7 +76,6 @@ end
 group :test do
   gem 'brakeman', require: false
   gem 'capybara'
-  gem 'cucumber-rails', require: false
   gem 'danger', require: false
   gem 'danger-rubocop', require: false
   gem 'database_cleaner'
