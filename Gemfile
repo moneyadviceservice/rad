@@ -9,7 +9,7 @@ ruby File.read('.ruby-version').chomp
 # 3. Place dependencies in the group they belong
 # 4. Only use version specifiers where appropriate
 
-gem 'rails', '4.2.11.1'
+gem 'rails', '5.0.7.2'
 
 gem 'active_link_to'
 gem 'active_model_serializers', '~> 0.10.1'
@@ -22,10 +22,7 @@ gem 'devise-security', '~> 0.13'
 gem 'devise_invitable', '1.6.1'
 # Dough assets are loaded from a CDN instead of from the Gem. Do make sure that
 # the CDN version is the same as the Gem version.
-gem 'dough-ruby',
-    github: 'moneyadviceservice/dough',
-    require: 'dough',
-    tag: 'v5.12.0.267'
+gem 'dough-ruby'
 gem 'geocoder', '~> 1.4.7'
 gem 'httpclient', '~> 2.8.3'
 gem 'jquery-rails'
