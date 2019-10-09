@@ -35,7 +35,6 @@ gem 'mailjet'
 gem 'oga'
 gem 'pg', '~> 0.20.0'
 gem 'rails_email_validator'
-gem 'rake', '~> 11'
 gem 'ransack'
 # Adding `redis` as a direct dependency to highlight the fact that `sidekiq` in
 # version `3.3.4` has a very loose lock for `redis`, which causes the bug

@@ -465,7 +465,6 @@ DEPENDENCIES
   pry-rails
   rails (= 4.2.11.1)
   rails_email_validator
-  rake (~> 11)
   ransack
   rb-readline
   redis (~> 3.3.5)
