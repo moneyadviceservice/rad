@@ -77,11 +77,11 @@ class Adviser < ActiveRecord::Base
   private
 
   def upcase_postcode
-    postcode.upcase! if postcode.present?
+    self.postcode = postcode&.upcase
   end
 
   def upcase_reference_number
-    reference_number&.upcase!
+    self.reference_number = reference_number&.upcase
   end
 
   def assign_name
