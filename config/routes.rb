@@ -40,7 +40,7 @@ Rails.application.routes.draw do
   resource :contact, only: :create
 
   namespace :admin do
-    root 'pages#home'
+    root 'pages#home', as: :root
 
     post '/users/:user_id/sign_in', to: 'user_sessions#create', as: :user_session
 
