@@ -22,7 +22,10 @@ gem 'devise-security', '~> 0.13'
 gem 'devise_invitable', '1.6.1'
 # Dough assets are loaded from a CDN instead of from the Gem. Do make sure that
 # the CDN version is the same as the Gem version.
-gem 'dough-ruby'
+gem 'dough-ruby',
+    git: 'https://github.com/moneyadviceservice/dough.git',
+    branch: 'rails-5',
+    ref: 'b8b1d649'
 gem 'geocoder', '~> 1.4.7'
 gem 'httpclient', '~> 2.8.3'
 gem 'jquery-rails'
