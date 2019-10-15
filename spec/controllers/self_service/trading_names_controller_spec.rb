@@ -1,4 +1,4 @@
-RSpec.describe SelfService::TradingNamesController, type: :controller do
+RSpec.describe SelfService::TradingNamesController, type: :request do
   let(:principal) { FactoryBot.create(:principal) }
   let(:firm) do
     firm_attrs = FactoryBot.attributes_for(:firm, fca_number: principal.fca_number)

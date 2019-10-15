@@ -1,4 +1,4 @@
-RSpec.describe Admin::Reports::OutOfDateFirmsController, type: :controller do
+RSpec.describe Admin::Reports::OutOfDateFirmsController, type: :request do
   describe '#index' do
     it 'successfully renders' do
       get :index

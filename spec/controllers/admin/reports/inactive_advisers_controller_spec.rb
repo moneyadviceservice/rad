@@ -1,4 +1,4 @@
-RSpec.describe Admin::Reports::InactiveAdvisersController, type: :controller do
+RSpec.describe Admin::Reports::InactiveAdvisersController, type: :request do
   describe '#show' do
     it 'successfully renders' do
       get :show

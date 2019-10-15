@@ -1,5 +1,5 @@
 module SelfService
-  RSpec.describe SelfService::AdvisersController, type: :controller do
+  RSpec.describe SelfService::AdvisersController, type: :request do
     include_context 'advisers controller'
 
     describe '#edit' do

@@ -1,4 +1,4 @@
-RSpec.describe Admin::PrincipalsController, type: :controller do
+RSpec.describe Admin::PrincipalsController, type: :request do
   before { sign_in(user) }
 
   let(:user) { FactoryBot.create(:user, principal: principal) }

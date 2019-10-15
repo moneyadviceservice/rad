@@ -1,4 +1,4 @@
-RSpec.describe Admin::Reports::InactiveTradingNamesController, type: :controller do
+RSpec.describe Admin::Reports::InactiveTradingNamesController, type: :request do
   describe '#show' do
     it 'successfully renders' do
       get :show

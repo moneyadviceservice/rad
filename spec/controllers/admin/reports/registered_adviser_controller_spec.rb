@@ -1,4 +1,4 @@
-RSpec.describe Admin::Reports::RegisteredAdviserController, type: :controller do
+RSpec.describe Admin::Reports::RegisteredAdviserController, type: :request do
   describe '#filename' do
     context 'timestamp' do
       let(:date) { Date.new(2017, 5, 29) }

@@ -1,4 +1,4 @@
-RSpec.describe Admin::FirmsController, type: :controller do
+RSpec.describe Admin::FirmsController, type: :request do
   def create_user_with_firm(user_attrs, firm_attrs = {})
     principal = FactoryBot.create(:principal)
 

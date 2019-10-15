@@ -1,4 +1,4 @@
-RSpec.describe SelfService::PrincipalsController, type: :controller do
+RSpec.describe SelfService::PrincipalsController, type: :request do
   before { sign_in(user) }
   let(:user) { FactoryBot.create(:user, principal: principal) }
   let(:principal) { FactoryBot.create(:principal) }

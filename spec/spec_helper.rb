@@ -37,7 +37,6 @@ RSpec.configure do |c|
     end
   end
 
-  c.include Devise::Test::ControllerHelpers, type: :controller
   c.include Warden::Test::Helpers
   c.include FcaTestHelpers
   c.before :suite do

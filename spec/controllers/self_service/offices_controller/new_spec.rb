@@ -1,5 +1,5 @@
 module SelfService
-  RSpec.describe SelfService::OfficesController, type: :controller do
+  RSpec.describe SelfService::OfficesController, type: :request do
     include_context 'offices controller'
 
     describe '#new' do

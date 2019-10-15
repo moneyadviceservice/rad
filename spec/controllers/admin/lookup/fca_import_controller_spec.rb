@@ -1,5 +1,5 @@
-RSpec.describe Admin::Lookup::FcaImportController, type: :controller do
   let(:files) { %w[incoming/20160825a.zip incoming/20160825b.zip incoming/20160825c.zip] }
+RSpec.describe Admin::Lookup::FcaImportController, type: :request do
   let(:last_import) { FcaImport.last }
 
   before(:all) { FactoryBot.create(:not_confirmed_import) }
