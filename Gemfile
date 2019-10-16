@@ -31,7 +31,6 @@ gem 'httpclient', '~> 2.8.3'
 gem 'jquery-rails'
 gem 'kaminari'
 gem 'language_list', '~> 1.2.1'
-gem 'letter_opener', group: :development
 gem 'mailjet'
 gem 'oga'
 gem 'pg', '~> 0.20.0'
@@ -58,9 +57,13 @@ gem 'uk_phone_numbers', '~> 0.1.1'
 gem 'uk_postcode', '~> 2.1.2'
 gem 'unicorn'
 
-group :test, :development do
+group :development do
+  gem 'letter_opener'
   gem 'better_errors'
   gem 'binding_of_caller'
+end
+
+group :test, :development do
   gem 'dotenv-rails'
   gem 'factory_bot_rails'
   gem 'faker'
@@ -70,7 +73,6 @@ group :test, :development do
   gem 'rb-readline'
   gem 'rspec-rails'
   gem 'rubocop', '0.54.0'
-  gem 'timecop'
 end
 
 group :test do
@@ -85,6 +87,7 @@ group :test do
   gem 'rspec-sidekiq'
   gem 'site_prism'
   gem 'test_after_commit'
+  gem 'timecop'
   gem 'tzinfo-data'
   gem 'vcr'
   gem 'webmock'
