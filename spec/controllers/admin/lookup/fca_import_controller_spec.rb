@@ -10,22 +10,6 @@ RSpec.describe Admin::Lookup::FcaImportController, type: :request do
     allow(FcaImport).to receive(:find).and_return(last_import)
   end
 
-  describe '.index' do
-    before { get :index }
-
-    it 'renders import page' do
-      expect(response).to be_success
-    end
-
-    it 'assigns a list files available for import' do
-      expect(assigns[:files]).to eq(files)
-    end
-
-    it 'assigns a last not confirmed import' do
-      expect(assigns[:import]).to eq(last_import)
-    end
-  end
-
   describe '.create' do
     it 'creates a `fca import job`' do
       expect(FcaImportJob).to receive(:perform_async).with(files)
