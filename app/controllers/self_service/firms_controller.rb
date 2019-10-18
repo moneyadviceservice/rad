@@ -4,9 +4,11 @@ module SelfService
       firm = principal.firm
       trading_names = firm.trading_names.registered
 
-      @presenter = FirmsIndexPresenter.new(firm,
-                                           trading_names,
-                                           available_trading_names(firm: firm))
+      @presenter = FirmsIndexPresenter.new(
+        firm,
+        trading_names,
+        available_trading_names(firm: firm)
+      )
     end
 
     def edit

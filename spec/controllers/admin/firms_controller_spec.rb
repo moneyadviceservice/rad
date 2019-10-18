@@ -1,11 +1,11 @@
 RSpec.describe Admin::FirmsController, type: :request do
   describe 'GET adviser_report' do
-    before :each do
+    before do
       allow(Reports::PrincipalAdvisers).to receive(:data)
 
       Timecop.freeze(Time.zone.parse('2016-05-04 00:00:00'))
 
-      get :adviser_report, format: :csv
+      get adviser_report_admin_firms_path, format: :csv
     end
 
     after :each do
@@ -23,10 +23,5 @@ RSpec.describe Admin::FirmsController, type: :request do
     it 'has a timestamped filename' do
       expect(response.header['Content-Disposition']).to eq('attachment; filename="firms-advisers-20160504000000.csv"')
     end
-  end
-
-  it 'responds succesfully' do
-    get :adviser_report, format: :csv
-    expect(response).to be_success
   end
 end
