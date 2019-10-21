@@ -10,6 +10,13 @@ FactoryBot.define do
     telephone_number { '07111 333 222' }
     confirmed_disclaimer { true }
 
+    # TODO: this is problematic if you manually construct your own firm in a
+    # spec using FactoryBot and associate it with the principal. You end up
+    # with two firms in the database, which is easy to miss and can lead to
+    # unexpected bugs. Revisit this and find a better way to associate an
+    # invalid Firm (which is a legitimate state for the system to be in, ie - a
+    # newly registered principal is expected to complete certain details
+    # post-signup).
     after(:build) do |principal|
       Firm.new(
         fca_number: principal.fca_number,
