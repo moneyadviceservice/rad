@@ -58,9 +58,9 @@ gem 'uk_postcode', '~> 2.1.2'
 gem 'unicorn'
 
 group :development do
-  gem 'letter_opener'
   gem 'better_errors'
   gem 'binding_of_caller'
+  gem 'letter_opener'
 end
 
 group :test, :development do
@@ -72,7 +72,7 @@ group :test, :development do
   gem 'pry-rails'
   gem 'rb-readline'
   gem 'rspec-rails'
-  gem 'rubocop', '0.54.0'
+  gem 'rubocop', '0.62.0'
 end
 
 group :test do
