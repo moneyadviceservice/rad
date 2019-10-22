@@ -37,7 +37,7 @@ module SelfService
       flash[:notice] = I18n.t('self_service.adviser_destroy.deleted',
                               name: @adviser.name)
 
-      redirect_to :back
+      redirect_back(fallback_location: self_service_firm_advisers_path(@firm))
     end
 
     private

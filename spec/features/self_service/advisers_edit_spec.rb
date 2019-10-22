@@ -104,7 +104,7 @@ RSpec.feature 'The self service firm edit page', :inline_job_queue do
   end
 
   def and_the_information_is_not_changed
-    expect(adviser_edit_page.adviser_postcode.value).to eq 'clearly_not_a_valid_postcode'
+    expect(adviser_edit_page.adviser_postcode.value).to eq 'CLEARLY_NOT_A_VALID_POSTCODE'
 
     @adviser.reload
     expect(@adviser.postcode).to eq original_postcode

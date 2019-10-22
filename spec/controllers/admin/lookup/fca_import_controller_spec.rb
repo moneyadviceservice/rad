@@ -13,7 +13,7 @@ RSpec.describe Admin::Lookup::FcaImportController, type: :request do
   describe '.create' do
     it 'creates a `fca import job`' do
       expect(FcaImportJob).to receive(:perform_async).with(files)
-      post admin_lookup_fca_import_index_path, files: files
+      post admin_lookup_fca_import_index_path, params: { files: files }
     end
   end
 
@@ -29,14 +29,14 @@ RSpec.describe Admin::Lookup::FcaImportController, type: :request do
       it 'starts to apply import changes' do
         expect(last_import).to receive(:commit).with('Confirm')
 
-        put admin_lookup_fca_import_path(last_import.id), commit: 'Confirm'
+        put admin_lookup_fca_import_path(last_import.id), params: { commit: 'Confirm' }
       end
     end
 
     context 'when cancelling' do
       it 'marks import as cancelled' do
         expect(last_import).to receive(:commit).with('Cancel')
-        put admin_lookup_fca_import_path(last_import.id), commit: 'Cancel'
+        put admin_lookup_fca_import_path(last_import.id), params: { commit: 'Cancel' }
       end
     end
   end

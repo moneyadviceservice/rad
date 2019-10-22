@@ -36,7 +36,7 @@ module SelfService
       flash[:notice] = I18n.t('self_service.office_destroy.deleted',
                               postcode: @office.address_postcode)
 
-      redirect_to :back
+      redirect_back(fallback_location: self_service_firm_offices_path(@firm))
     end
 
     private
