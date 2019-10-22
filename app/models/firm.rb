@@ -42,8 +42,8 @@ class Firm < ActiveRecord::Base
   has_many :trading_names, class_name: 'Firm',
                            foreign_key: :parent_id,
                            dependent: :destroy
-  has_many :qualifications, -> { reorder('').uniq }, through: :advisers
-  has_many :accreditations, -> { reorder('').uniq }, through: :advisers
+  has_many :qualifications, -> { reorder('').distinct }, through: :advisers
+  has_many :accreditations, -> { reorder('').distinct }, through: :advisers
 
   attr_accessor :percent_total
   attr_accessor :primary_advice_method
