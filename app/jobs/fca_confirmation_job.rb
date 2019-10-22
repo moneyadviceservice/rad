@@ -3,9 +3,7 @@ $LOAD_PATH.unshift(Rails.root.join('lib'))
 require 'cloud'
 require 'fca'
 
-class FcaConfirmationJob < ActiveJob::Base
-  include Sidekiq::Worker
-
+class FcaConfirmationJob < ApplicationJob
   unique_args = ->(args) { Digest::SHA1.hexdigest(args.first.to_s) }
   sidekiq_options unique:      :until_executed,
                   unique_args: unique_args

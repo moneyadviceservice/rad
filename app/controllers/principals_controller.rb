@@ -32,7 +32,7 @@ class PrincipalsController < ApplicationController
     @form = NewPrincipalForm.new(new_principal_form_params)
 
     if @form.valid?
-      VerifyReferenceNumberJob.perform_async(principal_form_data)
+      VerifyReferenceNumberJob.perform_later(principal_form_data)
       render :show
     else
       flash.now[:error] = t('registration.principal.validation_error_html')

@@ -6,8 +6,8 @@ class Admin::Lookup::FcaImportController < Admin::ApplicationController
   end
 
   def create
-    FcaImportJob.perform_async(files)
-    flash[:notice] = "The following files will be imported."
+    FcaImportJob.perform_later(files)
+    flash[:notice] = 'The following files will be imported.'
     redirect_to admin_lookup_fca_import_index_path
   end
 

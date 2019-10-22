@@ -1,6 +1,4 @@
-class VerifyReferenceNumberJob < ActiveJob::Base
-  include Sidekiq::Worker
-
+class VerifyReferenceNumberJob < ApplicationJob
   queue_as :default
   sidekiq_options retry: 5, backtrace: true, unique: :until_executed
 

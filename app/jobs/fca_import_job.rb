@@ -2,10 +2,9 @@ require 'digest/sha1'
 $LOAD_PATH.unshift(Rails.root.join('lib'))
 require 'fca'
 
-class FcaImportJob < ActiveJob::Base
+class FcaImportJob < ApplicationJob
   include FCA::Utils
   include Rails.application.routes.url_helpers
-  include Sidekiq::Worker
 
   unique_args = ->(args) { Digest::SHA1.hexdigest(args.first.to_s) }
   sidekiq_options unique:      :until_executed,

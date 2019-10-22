@@ -12,7 +12,7 @@ RSpec.describe Admin::Lookup::FcaImportController, type: :request do
 
   describe '.create' do
     it 'creates a `fca import job`' do
-      expect(FcaImportJob).to receive(:perform_async).with(files)
+      expect(FcaImportJob).to receive(:perform_later).with(files)
       post admin_lookup_fca_import_index_path, params: { files: files }
     end
   end
