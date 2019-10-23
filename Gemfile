@@ -48,7 +48,6 @@ gem 'rubyzip'
 gem 'sass-rails'
 gem 'sidekiq', '~> 3.3.4'
 gem 'sidekiq-unique-jobs'
-gem 'sidetiq'
 gem 'sinatra', require: false
 gem 'slack-ruby-client'
 gem 'statsd-ruby', '~> 1.4.0'
