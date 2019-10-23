@@ -1,4 +1,4 @@
-class OtherAdviceMethod < ActiveRecord::Base
+class OtherAdviceMethod < ApplicationRecord
   include Translatable
   include FriendlyNamable
   include SystemNameable

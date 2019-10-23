@@ -1,4 +1,4 @@
-class Accreditation < ActiveRecord::Base
+class Accreditation < ApplicationRecord
   include FriendlyNamable
 
   validates :name, presence: true

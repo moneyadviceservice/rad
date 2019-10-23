@@ -1,4 +1,4 @@
-class InitialMeetingDuration < ActiveRecord::Base
+class InitialMeetingDuration < ApplicationRecord
   has_many :firms
 
   validates :name, presence: true

@@ -1,5 +1,5 @@
 module Lookup
-  class Adviser < ActiveRecord::Base
+  class Adviser < ApplicationRecord
     validates   :reference_number, length: { is: 8 }
     validates :name, presence: true
 

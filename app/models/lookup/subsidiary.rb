@@ -1,5 +1,5 @@
 module Lookup
-  class Subsidiary < ActiveRecord::Base
+  class Subsidiary < ApplicationRecord
     validates :fca_number,
               length: { is: 6 },
               numericality: { only_integer: true }

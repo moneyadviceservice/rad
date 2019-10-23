@@ -1,5 +1,5 @@
 class RemoveOtherAccreditation < ActiveRecord::Migration
-  class Accreditation < ActiveRecord::Base
+  class Accreditation < ApplicationRecord
   end
 
   def up

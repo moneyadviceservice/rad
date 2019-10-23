@@ -1,4 +1,4 @@
-class User < ActiveRecord::Base
+class User < ApplicationRecord
   devise :invitable, :database_authenticatable, :recoverable,
          :recoverable, :rememberable, :trackable, :registerable,
          :secure_validatable, :password_archivable, :password_expirable,

@@ -1,6 +1,6 @@
 class RemoveFirmEmailAndPhone < ActiveRecord::Migration
-  class Firm < ActiveRecord::Base; has_many :offices, -> { order created_at: :asc }; end
-  class Office < ActiveRecord::Base; belongs_to :firm; end
+  class Firm < ApplicationRecord; has_many :offices, -> { order created_at: :asc }; end
+  class Office < ApplicationRecord; belongs_to :firm; end
 
   def up
     remove_column :firms, :email_address

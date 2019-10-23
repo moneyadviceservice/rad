@@ -1,5 +1,5 @@
 module Lookup
-  class Firm < ActiveRecord::Base
+  class Firm < ApplicationRecord
     has_many :subsidiaries, primary_key: :fca_number, foreign_key: :fca_number
 
     validates :fca_number,

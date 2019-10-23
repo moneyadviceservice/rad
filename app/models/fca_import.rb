@@ -1,4 +1,4 @@
-class FcaImport < ActiveRecord::Base
+class FcaImport < ApplicationRecord
   STATUSES = %w[processing processed confirmed cancelled].freeze
 
   scope :not_confirmed, -> { where(status: STATUSES.take(2)) }

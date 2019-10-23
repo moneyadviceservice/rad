@@ -1,4 +1,4 @@
-class Adviser < ActiveRecord::Base
+class Adviser < ApplicationRecord
   include Geocodable
 
   attr_reader :old_firm_id

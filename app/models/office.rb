@@ -1,7 +1,7 @@
 require 'uk_postcode'
 require 'uk_phone_numbers'
 
-class Office < ActiveRecord::Base
+class Office < ApplicationRecord
   include Geocodable
 
   ADDRESS_FIELDS = %i[

@@ -1,5 +1,5 @@
 class RemoveLatitudeAndLongitudeFromFirm < ActiveRecord::Migration
-  class Firm < ActiveRecord::Base
+  class Firm < ApplicationRecord
     has_many :offices, -> { order created_at: :asc }
     scope :geocoded, -> { where.not(latitude: nil, longitude: nil) }
 
@@ -8,7 +8,7 @@ class RemoveLatitudeAndLongitudeFromFirm < ActiveRecord::Migration
     end
   end
 
-  class Office < ActiveRecord::Base
+  class Office < ApplicationRecord
     belongs_to :firm
 
     def geocoded?

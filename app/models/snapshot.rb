@@ -1,4 +1,4 @@
-class Snapshot < ActiveRecord::Base
+class Snapshot < ApplicationRecord
   include Snapshot::MetricsInOrder
   include Snapshot::AdviserQueries
   include Snapshot::FirmQueries
