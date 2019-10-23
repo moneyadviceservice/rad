@@ -5,6 +5,8 @@ require_relative '../config/environment'
 require 'rspec/rails'
 require 'factory_bot_rails'
 require 'sidekiq/testing'
+require 'capybara/rails'
+require 'capybara/rspec'
 
 Dir[File.join(File.dirname(__FILE__), 'support', '**', '*_section.rb')].each { |f| require f }
 Dir[File.join(File.dirname(__FILE__), 'support', '**', '*.rb')].each { |f| require f }
@@ -19,7 +21,6 @@ TestAfterCommit.enabled = true
 
 RSpec.configure do |c|
   c.include Rails.application.routes.url_helpers
-
   c.infer_base_class_for_anonymous_controllers = false
   c.use_transactional_fixtures = false
   c.order = 'random'
@@ -37,12 +38,10 @@ RSpec.configure do |c|
     end
   end
 
-  c.include Devise::Test::ControllerHelpers, type: :controller
-  c.include Warden::Test::Helpers
   c.include FcaTestHelpers
-  c.before :suite do
-    Warden.test_mode!
-  end
+
+  c.include Devise::Test::IntegrationHelpers, type: :request
+  c.include Devise::Test::IntegrationHelpers, type: :feature
 end
 
 RSpec::Sidekiq.configure do |config|

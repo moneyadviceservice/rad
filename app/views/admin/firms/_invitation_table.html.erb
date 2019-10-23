@@ -15,7 +15,7 @@
       <td><%= user.principal.firm.fca_number %></td>
       <td><%= user.principal.firm.registered_name %></td>
       <% if display_invitation_accepted_at %>
-        <td><%= user.last_sign_in_at.to_s(:long) %></td>
+        <td><%= user.last_sign_in_at&.to_s(:long) %></td>
       <% end %>
       <td><%= user.principal.email_address %></td>
     </tr>

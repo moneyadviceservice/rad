@@ -1,4 +1,4 @@
-RSpec.describe Admin::Reports::MetricsController, type: :controller do
+RSpec.describe Admin::Reports::MetricsController, type: :request do
   describe '#download' do
     let(:snapshot) { Snapshot.create(firms_with_no_minimum_fee: 123) }
     let(:snapshot_filename) do
@@ -8,11 +8,13 @@ RSpec.describe Admin::Reports::MetricsController, type: :controller do
     let(:csv) { CSV.new(response.body, headers: :first_row) }
 
     before do
-      get :download, id: snapshot
+      get download_admin_reports_metric_path(snapshot)
     end
 
     it 'has the correct filename' do
-      expect(response.headers['Content-Disposition']).to eq("attachment; filename=\"#{snapshot_filename}\"")
+      expect(
+        response.headers['Content-Disposition']
+      ).to eq("attachment; filename=\"#{snapshot_filename}\"")
     end
 
     it 'has the correct headers' do

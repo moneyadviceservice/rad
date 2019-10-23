@@ -14,6 +14,7 @@ You will be notified on the Slack channel #{channel} when it's done."
 
   def update
     @import = FcaImport.find(params[:id])
+
     if @import
       @import.commit(params[:commit])
       flash[:notice] = "Import has been #{committed}"

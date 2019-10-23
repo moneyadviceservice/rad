@@ -78,7 +78,6 @@ class MergeIfpWithCis
     log_finish(advisers)
   end
 
-  # rubocop:disable Metrics/AbcSize
   def update_old_body_selections(adviser_ids)
     return if adviser_ids.blank?
 
@@ -94,7 +93,6 @@ class MergeIfpWithCis
       end
     log_finish(advisers)
   end
-  # rubocop:enable Metrics/AbcSize
 
   def log_finish(advisers)
     info "Finished, total records updated: #{advisers.length}"

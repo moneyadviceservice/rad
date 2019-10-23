@@ -92,7 +92,6 @@ RSpec.feature 'Searching for advisers on the admin interface' do
     expect_no_errors
   end
 
-  # rubocop:disable Metrics/MethodLength
   def given_there_are_advisers
     FactoryBot.create(:firm_without_advisers, registered_name: 'W. Montgomery Financial') do |f|
       FactoryBot.create(:adviser, firm: f, name: 'Wes Montgomery')
@@ -116,7 +115,6 @@ RSpec.feature 'Searching for advisers on the admin interface' do
 
     @advisers = Adviser.all.to_a
   end
-  # rubocop:enable Metrics/MethodLength
 
   def when_i_clear_all_filters
     the_page.clear_form

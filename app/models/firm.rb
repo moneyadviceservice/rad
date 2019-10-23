@@ -148,7 +148,6 @@ class Firm < ActiveRecord::Base
 
   alias subsidiary? trading_name?
 
-  # rubocop:disable Metrics/MethodLength
   def field_order
     [
       :website_address,
@@ -174,7 +173,6 @@ class Firm < ActiveRecord::Base
       :investment_sizes
     ]
   end
-  # rubocop:enable Metrics/MethodLength
 
   def advice_types
     ADVICE_TYPES_ATTRIBUTES.map { |a| [a, self[a]] }.to_h
