@@ -12,7 +12,7 @@ module Rad
 
     config.active_record.belongs_to_required_by_default = false
 
-    config.autoload_paths << Rails.root.join('lib')
+    config.eager_load_paths << Rails.root.join('lib')
 
     config.i18n.load_path += Dir[
       Rails.root.join('config', 'locales', '**', '*.{rb,yml}')
