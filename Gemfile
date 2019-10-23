@@ -9,7 +9,7 @@ ruby File.read('.ruby-version').chomp
 # 3. Place dependencies in the group they belong
 # 4. Only use version specifiers where appropriate
 
-gem 'rails', '5.0.7.2'
+gem 'rails', '5.1.7'
 
 gem 'active_link_to'
 gem 'active_model_serializers', '~> 0.10.1'
@@ -51,6 +51,7 @@ group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'letter_opener'
+  gem 'listen'
 end
 
 group :test, :development do
