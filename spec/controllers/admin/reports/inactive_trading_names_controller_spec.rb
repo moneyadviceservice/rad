@@ -2,7 +2,7 @@ RSpec.describe Admin::Reports::InactiveTradingNamesController, type: :request do
   describe '#show' do
     it 'successfully renders' do
       get admin_reports_inactive_trading_name_path
-      expect(response).to be_success
+      expect(response).to be_successful
     end
 
     it 'assigns a list of inactive trading names' do
@@ -30,7 +30,7 @@ RSpec.describe Admin::Reports::InactiveTradingNamesController, type: :request do
     context 'CSV format' do
       it 'renders the csv template' do
         get admin_reports_inactive_trading_name_path, params: { format: :csv }
-        expect(response).to be_success
+        expect(response).to be_successful
       end
 
       it 'sets the content type to "text/csv"' do

@@ -31,7 +31,7 @@ module SelfService
       registered_trading_names = firm.trading_names.registered
       Lookup::Subsidiary
         .where(fca_number: firm.fca_number)
-        .order('lower(name)')
+        .order(:name)
         .reject do |lookup_name|
           registered_trading_names.map(&:registered_name)
                                   .include? lookup_name.name

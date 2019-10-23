@@ -20,7 +20,7 @@ class Firm < ActiveRecord::Base
   scope :sorted_by_registered_name, -> { order(:registered_name) }
 
   def self.languages_used
-    pluck('DISTINCT unnest("languages")').sort
+    pluck(Arel.sql('DISTINCT unnest("languages")')).sort
   end
 
   has_and_belongs_to_many :in_person_advice_methods

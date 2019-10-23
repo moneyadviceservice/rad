@@ -2,7 +2,7 @@ RSpec.describe Admin::Reports::InactiveFirmsController, type: :request do
   describe '#show' do
     it 'successfully renders' do
       get admin_reports_inactive_firm_path
-      expect(response).to be_success
+      expect(response).to be_successful
     end
 
     it 'assigns a list of inactive firms' do
@@ -19,7 +19,7 @@ RSpec.describe Admin::Reports::InactiveFirmsController, type: :request do
     context 'CSV format' do
       it 'renders the csv template' do
         get admin_reports_inactive_firm_path, params: { format: :csv }
-        expect(response).to be_success
+        expect(response).to be_successful
       end
 
       it 'sets the content type to "text/csv"' do
