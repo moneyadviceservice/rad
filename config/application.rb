@@ -8,6 +8,10 @@ Bundler.require(*Rails.groups)
 
 module Rad
   class Application < Rails::Application
+    config.load_defaults 5.1
+
+    config.active_record.belongs_to_required_by_default = false
+
     config.autoload_paths << Rails.root.join('lib')
 
     config.i18n.load_path += Dir[
