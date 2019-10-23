@@ -22,9 +22,7 @@
     <script>var responsiveStyle = true;</script>
   <!--<![endif]-->
 
-  <script>
-    <%= raw Rails.application.assets['modernizr/modernizr'] %>
-  </script>
+  <%= javascript_include_tag('modernizr/modernizr') %>
 </head>
 <body>
 <%= render 'shared/svg_icons' %>
