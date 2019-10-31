@@ -34,7 +34,7 @@ module Admin
       Firm
         .registered
         .where(fca_number: destination_firm_fca_number)
-        .order('LOWER(registered_name)')
+        .order(Arel.sql('lower(registered_name)'))
     end
 
     private

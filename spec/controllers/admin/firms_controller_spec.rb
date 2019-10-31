@@ -5,7 +5,7 @@ RSpec.describe Admin::FirmsController, type: :request do
 
       Timecop.freeze(Time.zone.parse('2016-05-04 00:00:00'))
 
-      get adviser_report_admin_firms_path, format: :csv
+      get adviser_report_admin_firms_path, params: { format: :csv }
     end
 
     after :each do

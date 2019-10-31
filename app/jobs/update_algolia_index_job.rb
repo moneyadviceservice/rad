@@ -1,6 +1,4 @@
-class UpdateAlgoliaIndexJob < ActiveJob::Base
-  include Sidekiq::Worker
-
+class UpdateAlgoliaIndexJob < ApplicationJob
   queue_as :default
   sidekiq_options retry: 25, backtrace: true, unique: :until_executed
 

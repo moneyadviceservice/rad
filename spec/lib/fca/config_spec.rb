@@ -3,12 +3,10 @@ RSpec.describe FCA::Config do
     FCA::Config.new.tap do |c|
       c.log_level = level
       c.log_file  = file
-      c.notify    = slack
       c.hostname  = 'mas.com'
       c.email_recipients = emails
     end
   end
-  let(:slack) { { slack: { channel: '#test' } } }
 
   describe 'FCA::Config.configure' do
     let(:file)  { '/tmp/fca_import.log' }
@@ -21,10 +19,6 @@ RSpec.describe FCA::Config do
 
     it 'saves `log_level` configuration' do
       expect(fca_config.log_level).to eq Logger::DEBUG
-    end
-
-    it 'saves `notify` details' do
-      expect(fca_config.notify).to eq slack
     end
 
     it 'returns a logger instance' do

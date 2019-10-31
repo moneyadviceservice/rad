@@ -2,7 +2,7 @@ RSpec.describe Admin::Reports::OutOfDateFirmsController, type: :request do
   describe '#index' do
     it 'successfully renders' do
       get admin_reports_out_of_date_firms_path
-      expect(response).to be_success
+      expect(response).to be_successful
     end
 
     it 'lists firms where the name has gone out of sync with the lookup data' do

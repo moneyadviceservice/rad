@@ -1,4 +1,4 @@
-class Firm < ActiveRecord::Base
+class Firm < ApplicationRecord
   FREE_INITIAL_MEETING_VALID_VALUES = [true, false].freeze
 
   # We use a scalar required field as a marker to detect a record saved with
@@ -20,7 +20,7 @@ class Firm < ActiveRecord::Base
   scope :sorted_by_registered_name, -> { order(:registered_name) }
 
   def self.languages_used
-    pluck('DISTINCT unnest("languages")').sort
+    pluck(Arel.sql('DISTINCT unnest("languages")')).sort
   end
 
   has_and_belongs_to_many :in_person_advice_methods
@@ -42,8 +42,8 @@ class Firm < ActiveRecord::Base
   has_many :trading_names, class_name: 'Firm',
                            foreign_key: :parent_id,
                            dependent: :destroy
-  has_many :qualifications, -> { reorder('').uniq }, through: :advisers
-  has_many :accreditations, -> { reorder('').uniq }, through: :advisers
+  has_many :qualifications, -> { reorder('').distinct }, through: :advisers
+  has_many :accreditations, -> { reorder('').distinct }, through: :advisers
 
   attr_accessor :percent_total
   attr_accessor :primary_advice_method

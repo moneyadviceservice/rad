@@ -1,4 +1,4 @@
-class Principal < ActiveRecord::Base
+class Principal < ApplicationRecord
   self.primary_key = 'token'
 
   before_create :generate_token

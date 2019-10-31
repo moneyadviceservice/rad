@@ -2,8 +2,8 @@
 # are remaining on Firm, however we seed the main office with the firm's
 # email address and telephone number to start with.
 class MoveFirmAddressToOffice < ActiveRecord::Migration
-  class Firm < ActiveRecord::Base; has_many :offices; end
-  class Office < ActiveRecord::Base; belongs_to :firm; end
+  class Firm < ApplicationRecord; has_many :offices; end
+  class Office < ApplicationRecord; belongs_to :firm; end
 
   def up
     Firm.where.not(address_line_one: nil).each do |firm|

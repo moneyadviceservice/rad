@@ -1,5 +1,5 @@
 class AddDefaultValueToMinimumFixedFee < ActiveRecord::Migration
-  class Firm < ActiveRecord::Base
+  class Firm < ApplicationRecord
   end
 
   def up

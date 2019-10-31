@@ -1,6 +1,6 @@
 class ContactsController < ApplicationController
   def create
-    @message = ContactForm.new(params[:contact])
+    @message = ContactForm.new(contact_params)
 
     if @message.valid?
       deliver_message_later
@@ -11,6 +11,10 @@ class ContactsController < ApplicationController
   end
 
   private
+
+  def contact_params
+    params.require(:contact).permit(:email, :message)
+  end
 
   def deliver_message_later
     AdminContact.contact(

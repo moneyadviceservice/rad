@@ -5,7 +5,7 @@ class PrincipalsController < ApplicationController
 
   def pre_qualification
     @prequalification = PreQualificationForm.new(
-      params[:pre_qualification_form]
+      pre_qualification_form_params
     )
 
     if @prequalification.valid?
@@ -32,7 +32,7 @@ class PrincipalsController < ApplicationController
     @form = NewPrincipalForm.new(new_principal_form_params)
 
     if @form.valid?
-      VerifyReferenceNumberJob.perform_async(principal_form_data)
+      VerifyReferenceNumberJob.perform_later(principal_form_data)
       render :show
     else
       flash.now[:error] = t('registration.principal.validation_error_html')
@@ -41,6 +41,16 @@ class PrincipalsController < ApplicationController
   end
 
   private
+
+  def pre_qualification_form_params
+    params.require(:pre_qualification_form).permit(
+      :active_question,
+      :business_model_question,
+      :status_question,
+      :particular_market_question,
+      :consider_available_providers_question
+    )
+  end
 
   def new_principal_form_params
     params.require(:new_principal_form).permit(

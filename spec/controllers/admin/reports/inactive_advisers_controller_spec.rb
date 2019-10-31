@@ -2,7 +2,7 @@ RSpec.describe Admin::Reports::InactiveAdvisersController, type: :request do
   describe '#show' do
     it 'successfully renders' do
       get admin_reports_inactive_adviser_path
-      expect(response).to be_success
+      expect(response).to be_successful
     end
 
     it 'assigns a list of inactive advisers' do
@@ -30,17 +30,17 @@ RSpec.describe Admin::Reports::InactiveAdvisersController, type: :request do
 
     context 'CSV format' do
       it 'renders the csv template' do
-        get admin_reports_inactive_adviser_path, format: :csv
-        expect(response).to be_success
+        get admin_reports_inactive_adviser_path, params: { format: :csv }
+        expect(response).to be_successful
       end
 
       it 'sets the content type to "text/csv"' do
-        get admin_reports_inactive_adviser_path, format: :csv
+        get admin_reports_inactive_adviser_path, params: { format: :csv }
         expect(response.content_type).to eq('text/csv')
       end
 
       it 'has the appropriate csv headers' do
-        get admin_reports_inactive_adviser_path, format: :csv
+        get admin_reports_inactive_adviser_path, params: { format: :csv }
         expect(response.body).to include('Ref Number,Name,Firm')
       end
 
@@ -55,7 +55,7 @@ RSpec.describe Admin::Reports::InactiveAdvisersController, type: :request do
         )
         inactive_adviser.save!(validate: false)
 
-        get admin_reports_inactive_adviser_path, format: :csv
+        get admin_reports_inactive_adviser_path, params: { format: :csv }
         expect(response.body).to include('123456,Amear Pittance,Acme Inc.')
       end
     end

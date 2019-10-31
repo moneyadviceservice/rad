@@ -1,4 +1,4 @@
-class Qualification < ActiveRecord::Base
+class Qualification < ApplicationRecord
   include FriendlyNamable
 
   validates :name, presence: true

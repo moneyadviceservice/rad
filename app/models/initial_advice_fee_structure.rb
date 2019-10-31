@@ -1,4 +1,4 @@
-class InitialAdviceFeeStructure < ActiveRecord::Base
+class InitialAdviceFeeStructure < ApplicationRecord
   has_and_belongs_to_many :firms
 
   validates :name, presence: true

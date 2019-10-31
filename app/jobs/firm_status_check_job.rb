@@ -2,9 +2,7 @@ require './lib/fca_api/connection'
 require './lib/fca_api/request'
 require './lib/fca_api/response'
 
-class FirmStatusCheckJob < ActiveJob::Base
-  include Sidekiq::Worker
-
+class FirmStatusCheckJob < ApplicationJob
   ACTIVE_FIRM_STATUS_CODES = [
     'Appointed representative - introducer',
     'Appointed representative',

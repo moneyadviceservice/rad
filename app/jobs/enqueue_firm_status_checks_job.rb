@@ -1,6 +1,4 @@
-class EnqueueFirmStatusChecksJob < ActiveJob::Base
-  include Sidekiq::Worker
-
+class EnqueueFirmStatusChecksJob < ApplicationJob
   # This job schedules the work carried out by FirmStatusCheckJob, which
   # queries the status of Firms against the FCA Register API.
   #

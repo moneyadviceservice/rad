@@ -1,4 +1,4 @@
-class InvestmentSize < ActiveRecord::Base
+class InvestmentSize < ApplicationRecord
   include Translatable
   include FriendlyNamable
 

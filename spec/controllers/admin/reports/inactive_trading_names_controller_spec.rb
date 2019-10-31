@@ -2,7 +2,7 @@ RSpec.describe Admin::Reports::InactiveTradingNamesController, type: :request do
   describe '#show' do
     it 'successfully renders' do
       get admin_reports_inactive_trading_name_path
-      expect(response).to be_success
+      expect(response).to be_successful
     end
 
     it 'assigns a list of inactive trading names' do
@@ -29,17 +29,17 @@ RSpec.describe Admin::Reports::InactiveTradingNamesController, type: :request do
 
     context 'CSV format' do
       it 'renders the csv template' do
-        get admin_reports_inactive_trading_name_path, format: :csv
-        expect(response).to be_success
+        get admin_reports_inactive_trading_name_path, params: { format: :csv }
+        expect(response).to be_successful
       end
 
       it 'sets the content type to "text/csv"' do
-        get admin_reports_inactive_trading_name_path, format: :csv
+        get admin_reports_inactive_trading_name_path, params: { format: :csv }
         expect(response.content_type).to eq('text/csv')
       end
 
       it 'has the appropriate csv headers' do
-        get admin_reports_inactive_trading_name_path, format: :csv
+        get admin_reports_inactive_trading_name_path, params: { format: :csv }
         expect(response.body).to include('FCA Number,Registered Name,Visible on Directory?')
       end
 
@@ -47,7 +47,7 @@ RSpec.describe Admin::Reports::InactiveTradingNamesController, type: :request do
         firm = FactoryBot.create(:firm, fca_number: 123_456)
         FactoryBot.create(:firm, fca_number: 789_012, registered_name: 'Acme Finance', parent: firm)
 
-        get admin_reports_inactive_trading_name_path, format: :csv
+        get admin_reports_inactive_trading_name_path, params: { format: :csv }
         expect(response.body).to include('789012,Acme Finance,Yes')
       end
     end
