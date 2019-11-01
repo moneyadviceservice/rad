@@ -34,6 +34,7 @@ class Firm < ApplicationRecord
   belongs_to :principal, primary_key: :fca_number, foreign_key: :fca_number
   belongs_to :parent, class_name: 'Firm'
 
+  has_one :inactive_firm, dependent: :destroy
   has_many :advisers, dependent: :destroy
   has_many :offices, -> { order created_at: :asc }, dependent: :destroy
   has_many :subsidiaries, class_name: 'Firm',
@@ -108,8 +109,7 @@ class Firm < ApplicationRecord
     errors.add(:advice_types, :invalid) unless advice_types.values.any?
   end
 
-  validates :investment_sizes,
-            length: { minimum: 1 }
+  validates :investment_sizes, length: { minimum: 1 }
 
   after_commit :notify_indexer
 
