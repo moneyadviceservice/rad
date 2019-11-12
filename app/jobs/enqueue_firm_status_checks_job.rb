@@ -40,10 +40,9 @@ class EnqueueFirmStatusChecksJob < ApplicationJob
       group.each do |firm|
         current_time = Time.now.to_f
 
-        FirmStatusCheckJob.perform_at(
-          current_time + time_window.seconds,
-          firm.fca_number
-        )
+        FirmStatusCheckJob
+          .set(wait_until: current_time + time_window.seconds)
+          .perform_later(firm.fca_number)
       end
       time_window += WINDOW_LENGTH_IN_SECONDS
     end
