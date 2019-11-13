@@ -2,7 +2,7 @@ Rails.application.configure do
   # Version of your assets, change this if you want to expire all your assets.
   config.assets.version = '1.0'
 
-  config.assets.paths << Rails.root.join('vendor', 'assets', 'bower_components')
+  config.assets.paths << Rails.root.join('node_modules', '@bower_components')
 
   # Application Stylesheets
   config.assets.precompile += %w(
@@ -19,12 +19,12 @@ Rails.application.configure do
     admin.js
     rsvp/rsvp.js
     dough/assets/js/**/*.js
-    modules/MultiTableFilter.js
-    modules/ConfirmableForm.js
-    modules/LanguageSelector.js
-    modules/FieldToggleVisibility.js
-    modules/RemoteAndFaceToFaceOptions.js
-    modules/AdviserAjaxCall.js
+    ../../app/assets/javascripts/modules/MultiTableFilter.js
+    ../../app/assets/javascripts/modules/ConfirmableForm.js
+    ../../app/assets/javascripts/modules/LanguageSelector.js
+    ../../app/assets/javascripts/modules/FieldToggleVisibility.js
+    ../../app/assets/javascripts/modules/RemoteAndFaceToFaceOptions.js
+    ../../app/assets/javascripts/modules/AdviserAjaxCall.js
   )
 
   # Vendor JavaScript

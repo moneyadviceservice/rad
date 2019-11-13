@@ -11,6 +11,8 @@ ruby File.read('.ruby-version').chomp
 
 gem 'rails', '4.2.11.1'
 
+gem 'webpacker'
+
 gem 'active_link_to'
 gem 'active_model_serializers', '~> 0.10.1'
 gem 'algoliasearch'

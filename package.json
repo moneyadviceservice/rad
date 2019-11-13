@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "Retirement Adviser Directory",
   "scripts": {
-    "test": "./node_modules/.bin/karma start spec/javascripts/karma.conf.js --single-run=true && ./node_modules/.bin/jshint app/assets/javascripts/ spec/javascripts"
+    "test": "./node_modules/.bin/karma start spec/javascripts/karma.conf.js --single-run=true && ./node_modules/.bin/jshint app/assets/javascripts/ spec/javascripts",
+    "postinstall": "node -e \"try { require('fs').symlinkSync(require('path').resolve('node_modules/@bower_components'), 'vendor/assets/bower_components', 'junction') } catch (e) { }\""
   },
   "devDependencies": {
     "chai": "^1.9.1",
@@ -25,6 +26,23 @@
     "mocha": "~1.15.1",
     "phantomjs-prebuilt": "2.1.14",
     "requirejs": "2.2.0",
-    "sinon": "^1.9.0"
+    "sinon": "^1.9.0",
+    "webpack-cli": "^3.3.10",
+    "webpack-dev-server": "^3.9.0"
+  },
+  "dependencies": {
+    "@bower_components/dough": "git://github.com/moneyadviceservice/dough.git#master",
+    "@bower_components/eventsWithPromises": "git://github.com/moneyadviceservice/eventsWithPromises#Update_Version_Package_Json",
+    "@bower_components/jquery": "jquery/jquery-dist#1.11.*",
+    "@bower_components/jquery-fastlivefilter": "awbush/jquery-fastlivefilter#1.0.3",
+    "@bower_components/jqueryThrottleDebounce": "cowboy/jquery-throttle-debounce#*",
+    "@bower_components/normalize-css": "necolas/normalize.css#~3.0.0",
+    "@bower_components/requirejs": "jrburke/requirejs-bower#2.1.*",
+    "@bower_components/rsvp": "components/rsvp.js#0.3.16",
+    "@bower_components/yeast": "git://github.com/moneyadviceservice/yeast.git#master",
+    "@rails/webpacker": "^4.0.7"
+  },
+  "engines": {
+    "yarn": ">= 1.0.0"
   }
 }
