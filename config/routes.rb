@@ -22,6 +22,9 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :travel_insurance_registrations,
+    only: [:new, :create]
+
   namespace :lookup do
     resources :advisers, only: :show
   end

@@ -1,8 +1,12 @@
 <section class="l-identity">
-  <%= heading_tag(t('registration.heading'), level: 1) %>
+  <%= heading_tag(t(registration_title), level: 1) %>
   <p><%= t('required') %></p>
 
-  <%= form_for @form, url: {controller: 'principals', action: 'create'}, method: :post, html: { class: 'form' }, builder: Dough::Forms::Builders::Validation do |f| %>
+  <%= form_for @form,
+    url: { controller: controller_name, action: 'create' },
+    method: :post,
+    html: { class: 'form' },
+    builder: Dough::Forms::Builders::Validation do |f| %>
     <%= f.validation_summary %>
 
     <%= heading_tag(t('registration.firm.heading'), level: 2) %>
@@ -81,6 +85,8 @@
         <%= render 'shared/password_policy' %>
       </div>
     </div>
+
+    <%= f.hidden_field :registration_type, value: controller_name %>
 
     <div class="l-identity__row">
       <div class="l-identity__field">
