@@ -6,7 +6,7 @@ class NewPrincipalForm
     telephone_number confirmed_disclaimer
   ].freeze
   USER_PARAMS = %i[email password password_confirmation].freeze
-  PARAMS = PRINCIPAL_PARAMS | USER_PARAMS
+  PARAMS = PRINCIPAL_PARAMS | USER_PARAMS | %i[registration_type]
   attr_accessor(*PARAMS)
   alias email_address email
 
