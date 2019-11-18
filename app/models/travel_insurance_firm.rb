@@ -1,0 +1,2 @@
+class TravelInsuranceFirm < ApplicationRecord
+end

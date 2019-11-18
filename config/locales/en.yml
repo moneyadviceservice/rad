@@ -116,6 +116,8 @@ en:
     heading: Already Registered?
     description: Sign in to your account to edit your firm's details.
 
+  travel_insurance_registrations:
+    heading: Travel Insurance Directory - Self Service
   registration:
     heading: Retirement Adviser Directory – Self Service
     introduction: Sign in to edit your firm's details, or register your firm to appear in the directory.

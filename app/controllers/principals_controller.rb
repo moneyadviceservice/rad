@@ -40,6 +40,12 @@ class PrincipalsController < ApplicationController
     end
   end
 
+  def registration_title
+    'registration.heading'
+  end
+  helper_method :registration_title
+
+
   private
 
   def pre_qualification_form_params
@@ -62,7 +68,8 @@ class PrincipalsController < ApplicationController
       :telephone_number,
       :password,
       :password_confirmation,
-      :confirmed_disclaimer
+      :confirmed_disclaimer,
+      :registration_type
     )
   end
 
@@ -76,7 +83,8 @@ class PrincipalsController < ApplicationController
       'telephone_number',
       'password',
       'password_confirmation',
-      'confirmed_disclaimer'
+      'confirmed_disclaimer',
+      'registration_type'
     )
   end
 end

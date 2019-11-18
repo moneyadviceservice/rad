@@ -10,6 +10,11 @@ class Principal < ApplicationRecord
           foreign_key: :fca_number,
           dependent: :destroy
 
+  has_one :travel_insurance_firm,
+    primary_key: :fca_number,
+    foreign_key: :fca_number,
+    dependent: :destroy
+
   validates :fca_number,
             presence: true,
             uniqueness: true,

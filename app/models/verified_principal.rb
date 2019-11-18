@@ -8,8 +8,9 @@ class VerifiedPrincipal
 
   def register!
     create_new_principal
-    create_associate_firm
-    send_notifications
+    create_associate_firm do |firm|
+      send_notifications(firm)
+    end
   end
 
   private
@@ -22,14 +23,23 @@ class VerifiedPrincipal
   end
 
   def create_associate_firm
-    Firm.new(fca_number: form.fca_number,
-             registered_name: firm_name).tap do |f|
-      f.save!(validate: false)
+    firm = if form.registration_type == 'travel_insurance_registrations'
+      TravelInsuranceFirm.new(fca_number: form.fca_number,
+                              registered_name: firm_name).tap do |f|
+        f.save!(validate: false)
+      end
+    else
+      Firm.new(fca_number: form.fca_number,
+               registered_name: firm_name).tap do |f|
+        f.save!(validate: false)
+      end
     end
+
+    yield firm
   end
 
-  def send_notifications
+  def send_notifications(firm)
     Identification.contact(@user.principal).deliver_later
-    NewFirmMailer.notify(@user.principal.firm).deliver_later
+    NewFirmMailer.notify(firm).deliver_later
   end
 end
