@@ -1,32 +1,12 @@
-class PrincipalsController < ApplicationController
-  def pre_qualification_form
-    @prequalification = PreQualificationForm.new
-  end
+class AbstractRegistrationsController < ApplicationController
+  REGISTRATION_TYPES = %w[retirement_advice_registrations travel_insurance_registrations].freeze
 
-  def pre_qualification
-    @prequalification = PreQualificationForm.new(
-      pre_qualification_form_params
-    )
-
-    if @prequalification.valid?
-      redirect_to new_principal_path
-    else
-      redirect_to reject_principals_path
-    end
-  end
-
-  def rejection_form
-    Stats.increment('radsignup.prequalification.rejection')
-
-    @message = ContactForm.new
-  end
+  before_action :validate_registration_type, only: [:create]
 
   def new
     @form = NewPrincipalForm.new
     Stats.increment('radsignup.prequalification.success')
   end
-
-  def show; end
 
   def create
     @form = NewPrincipalForm.new(new_principal_form_params)
@@ -39,12 +19,6 @@ class PrincipalsController < ApplicationController
       render :new
     end
   end
-
-  def registration_title
-    'registration.heading'
-  end
-  helper_method :registration_title
-
 
   private
 
@@ -86,5 +60,9 @@ class PrincipalsController < ApplicationController
       'confirmed_disclaimer',
       'registration_type'
     )
+  end
+
+  def validate_registration_type
+    redirect_to root_path unless new_principal_form_params[:registration_type].in?(REGISTRATION_TYPES)
   end
 end

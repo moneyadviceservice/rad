@@ -1,6 +1,6 @@
 class PreQualificationPage < SitePrism::Page
-  set_url '/principals/prequalify'
-  set_url_matcher(/prequalify/)
+  set_url '/retirement_advice_registrations/prequalify'
+  set_url_matcher(/retirement_advice_registrations/)
 
   element :active_question, '.t-active-question'
   element :business_model_question, '.t-business-model-question'

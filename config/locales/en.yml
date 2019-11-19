@@ -118,8 +118,9 @@ en:
 
   travel_insurance_registrations:
     heading: Travel Insurance Directory - Self Service
-  registration:
+  retirement_advice_registrations:
     heading: Retirement Adviser Directory – Self Service
+  registration:
     introduction: Sign in to edit your firm's details, or register your firm to appear in the directory.
     sub_heading: Register your firm
     eligibility_explanation: Answer the following questions to see if your firm is eligible to appear in the directory.
