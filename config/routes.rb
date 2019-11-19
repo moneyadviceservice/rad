@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   devise_for :users
 
   unauthenticated do
-    root 'principals#pre_qualification_form'
+    root 'retirement_advice_registrations#pre_qualification_form'
   end
 
   authenticated do
@@ -14,7 +14,7 @@ Rails.application.routes.draw do
 
   get 'error', to: 'pages#error'
 
-  resources :principals, param: :token do
+  resources :retirement_advice_registrations, param: :token do
     collection do
       get 'prequalify',  action: 'pre_qualification_form'
       post 'prequalify', action: 'pre_qualification'
