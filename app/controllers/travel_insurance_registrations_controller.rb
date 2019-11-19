@@ -1,4 +1,4 @@
-class TravelInsuranceRegistrationsController < PrincipalsController
+class TravelInsuranceRegistrationsController < AbstractRegistrationsController
   def registration_title
     'travel_insurance_registrations.heading'
   end
