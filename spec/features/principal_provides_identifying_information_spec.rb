@@ -55,7 +55,7 @@ RSpec.feature 'Principal provides identifying information', :inline_job_queue do
   end
 
   def when_i_provide_my_firms_fca_reference_number
-    identification_page.reference_number.set '123456'
+    identification_page.reference_number.set '311244'
   end
 
   def and_i_provide_my_identifying_particulars
@@ -69,11 +69,20 @@ RSpec.feature 'Principal provides identifying information', :inline_job_queue do
       p.telephone_number.set '07715 930 400'
 
       p.confirmation.set true
+
+      VCR.use_cassette('registrations_fca_firm_api_call') do
+        p.register.click
+      end
     end
   end
 
   def then_i_am_shown_a_thank_you_for_registering_message
-    expect(thank_you_for_registering_page).to be_displayed
+    expect(thank_you_for_registering_page).to have_content(
+      I18n.t('success.heading')
+    )
+    expect(thank_you_for_registering_page).to have_content(
+      I18n.t('success.message')
+    )
   end
 
   def and_i_am_sent_a_verification_email
