@@ -181,7 +181,7 @@ GEM
     git (1.5.0)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
-    hashdiff (0.3.7)
+    hashdiff (1.0.0)
     http-cookie (1.0.3)
       domain_name (~> 0.5)
     httpclient (2.8.3)
@@ -355,7 +355,7 @@ GEM
       ast
     ruby-progressbar (1.10.1)
     rubyzip (1.2.1)
-    safe_yaml (1.0.4)
+    safe_yaml (1.0.5)
     sass-rails (6.0.0)
       sassc-rails (~> 2.1, >= 2.1.1)
     sassc (2.2.1)
@@ -413,7 +413,7 @@ GEM
     vcr (4.0.0)
     warden (1.2.7)
       rack (>= 1.0)
-    webmock (3.3.0)
+    webmock (3.5.0)
       addressable (>= 2.3.6)
       crack (>= 0.3.2)
       hashdiff
@@ -483,7 +483,7 @@ DEPENDENCIES
   uk_postcode (~> 2.1.2)
   unicorn
   vcr
-  webmock
+  webmock (= 3.5.0)
 
 RUBY VERSION
    ruby 2.6.5p114
