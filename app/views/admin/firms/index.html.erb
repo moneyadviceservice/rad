@@ -5,7 +5,7 @@
 </div>
 <div class="row">
   <div class="col-xs-2">
-    <%= search_form_for @search, url: admin_firms_path, method: :get do |f| %>
+    <%= search_form_for @search, url: controller_name, method: :get do |f| %>
       <div class="form-group">
         <%= f.label :principal_first_name_cont, 'Search Principal Names' %>
         <%= f.search_field :principal_first_name_cont, class: 'form-control', placeholder: 'First Name' %>
@@ -22,30 +22,9 @@
         <%= f.label :registered_name_cont, 'Search Firm Names' %>
         <%= f.search_field :registered_name_cont, class: 'form-control t-registered-name-field' %>
       </div>
-      <div class="form-group">
-        <label>Filter by Service</label>
-        <div class="checkbox">
-          <%= f.label :ethical_investing_flag_true do %>
-            <%= f.check_box :ethical_investing_flag_true,
-                            { class: 't-ethical-investing-flag-field' },
-                            '1', nil %>Ethical investments
-          <% end %>
-          <%= f.label :sharia_investing_flag_true do %>
-            <%= f.check_box :sharia_investing_flag_true,
-                            { class: 't-sharia-investing-flag-field' },
-                            '1', nil %>Sharia compliant investments
-          <% end %>
-          <%= f.label :workplace_financial_advice_flag_true do %>
-            <%= f.check_box :workplace_financial_advice_flag_true,
-                            { class: 't-workplace-financial-advice-flag' },
-                            '1', nil %>Workplace financial advice
-          <% end %>
-          <%= f.label :languages_array_present do %>
-            <%= f.check_box :languages_array_present,
-                            class: 't-languages-field' %>Languages selected
-          <% end %>
-        </div>
-      </div>
+
+      <%= render 'service_specific_filters', f: f %>
+
       <div class="form-group">
         <button type="submit" class="btn btn-default t-submit">Submit</button>
       </div>
@@ -61,51 +40,6 @@
     </p>
   </div>
   <div class="col-xs-10">
-    <table class="table table-bordered">
-      <tr>
-        <th>
-          <%= sort_link(@search, :principal_first_name, 'Principal First Name') %>
-          &
-          <%= sort_link(@search, :principal_last_name, 'Last Name') %>
-        </th>
-        <th><%= sort_link(@search, :fca_number, 'FCA Number') %></th>
-        <th><%= sort_link(@search, :registered_name, 'Firm Registered Name') %></th>
-        <th># Advisers</th>
-        <th><%= sort_link(@search, :created_at, 'Added') %></th>
-        <th><%= sort_link(@search, :approved_at, 'Approved') %></th>
-      </tr>
-      <% if @firms.present? %>
-        <% @firms.each do |firm| %>
-          <tr class="t-firm-row">
-            <td>
-              <% if firm.principal.present? %>
-                <%= link_to "#{firm.principal.first_name} #{firm.principal.last_name}", admin_principal_path(firm.principal) %>
-              <% else %>
-                N/A
-              <% end %>
-            </td>
-            <td class="t-fca-number"><%= firm.fca_number %></td>
-            <td>
-              <%= link_to firm.registered_name, admin_firm_path(firm), class: 't-registered-name' %>
-              <% if firm.subsidiary? %>
-                <br />
-                <em>subsidiary of <%= link_to firm.parent.registered_name, admin_firm_path(firm.parent) %></em>
-              <% end %>
-            </td>
-            <td><%= link_to(firm.advisers.count, admin_firm_advisers_path(firm)) %></td>
-            <td><%= firm.created_at.to_s(:short) %></td>
-            <td><%= firm.approved_at&.to_s(:short) || 'Not approved' %></td>
-          </tr>
-        <% end %>
-      <% else %>
-        <tr>
-          <td colspan="6">No firms to display</td>
-        </tr>
-      <% end %>
-    </table>
-
-    <p>
-      <%= paginate @firms %>
-    </p>
+    <%= render 'firms_list' %>
   </div>
 </div>
