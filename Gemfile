@@ -79,5 +79,5 @@ group :test do
   gem 'timecop'
   gem 'tzinfo-data'
   gem 'vcr'
-  gem 'webmock'
+  gem 'webmock', '3.5.0'
 end
