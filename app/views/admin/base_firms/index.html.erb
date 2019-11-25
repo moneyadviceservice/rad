@@ -5,7 +5,7 @@
 </div>
 <div class="row">
   <div class="col-xs-2">
-    <%= search_form_for @search, url: controller_name, method: :get do |f| %>
+    <%= search_form_for @search, url: firms_search_path, method: :get do |f| %>
       <div class="form-group">
         <%= f.label :principal_first_name_cont, 'Search Principal Names' %>
         <%= f.search_field :principal_first_name_cont, class: 'form-control', placeholder: 'First Name' %>
