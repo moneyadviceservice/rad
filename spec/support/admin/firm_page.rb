@@ -1,6 +1,6 @@
 class Admin::FirmPage < SitePrism::Page
-  set_url '/admin/firms/{firm_id}'
-  set_url_matcher %r{/admin/firms/[0-9]+}
+  set_url '/admin/retirement_firms/{firm_id}'
+  set_url_matcher %r{/admin/retirement_firms/[0-9]+}
 
   elements :advisers, '.t-adviser'
 

@@ -1,6 +1,6 @@
 class Admin::FirmsIndexPage < SitePrism::Page
-  set_url '/admin/firms'
-  set_url_matcher %r{/admin/firms}
+  set_url '/admin/retirement_firms'
+  set_url_matcher %r{/admin/retirement_firms}
 
   class RowSection < SitePrism::Section
     element :fca_number_elem, '.t-fca-number'

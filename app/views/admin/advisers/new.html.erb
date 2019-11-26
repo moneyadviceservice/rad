@@ -2,7 +2,10 @@
 
 <div class="panel panel-default">
   <div class="panel-body">
-  <%= form_for([:admin, @firm, @adviser]) do |f| %>
+    <%= form_for(
+      [:admin, @firm, @adviser],
+      url: admin_retirement_firm_advisers_path(@firm, @adviser)
+    ) do |f| %>
     <%= render 'admin/shared/errors', model: @adviser %>
 
     <div class="form-group">

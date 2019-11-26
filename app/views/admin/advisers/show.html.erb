@@ -12,7 +12,7 @@
       <strong>Name:</strong> <%= @adviser.name %>
     </p>
     <p>
-      <strong>Firm:</strong> <%= link_to @adviser.firm.registered_name, admin_firm_path(@adviser.firm) %>
+      <strong>Firm:</strong> <%= link_to @adviser.firm.registered_name, admin_retirement_firm_path(@adviser.firm) %>
     </p>
     <p>
       <strong>Post Code:</strong> <%= @adviser.postcode.present? ? @adviser.postcode : 'unset' %>
