@@ -4,6 +4,11 @@ class Admin::RetirementFirmsController < Admin::BaseFirmsController
   end
   helper_method :firms_search_path
 
+  def approval_path
+    admin_retirement_firm_approve_path(@firm.id)
+  end
+  helper_method :approval_path
+
   def login_report
     users = User.includes(principal: [:firm]).order('firms.registered_name ASC')
     @accepted_firms = users.where.not(invitation_accepted_at: nil)
