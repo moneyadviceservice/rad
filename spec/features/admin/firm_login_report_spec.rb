@@ -7,7 +7,7 @@ RSpec.feature 'Firm login report' do
   end
 
   def when_i_view_the_login_report
-    visit login_report_admin_firms_path
+    visit login_report_admin_retirement_firms_path
   end
 
   def then_i_can_see_who_has_accepted_an_invitation

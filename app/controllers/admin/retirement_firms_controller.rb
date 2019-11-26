@@ -1,6 +1,6 @@
 class Admin::RetirementFirmsController < Admin::BaseFirmsController
   def firms_search_path
-    admin_firms_path
+    admin_retirement_firms_path
   end
   helper_method :firms_search_path
 
