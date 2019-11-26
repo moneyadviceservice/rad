@@ -49,7 +49,9 @@ Rails.application.routes.draw do
 
     resources :advisers, only: [:index, :show, :edit, :update, :destroy]
 
-    resources :travel_insurance_firms, only: [:index, :show]
+    resources :travel_insurance_firms, only: [:index, :show] do
+      post :approve
+    end
 
     resources :retirement_firms, only: [:index, :show] do
       post :approve
