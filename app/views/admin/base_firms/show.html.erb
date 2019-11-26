@@ -31,7 +31,7 @@
     <% if @firm.approved_at.blank? %>
       <p>
         <%= button_to('Approve Firm',
-                      admin_firm_approve_path(@firm.id),
+                      admin_retirement_firm_approve_path(@firm.id),
                       class: 'btn btn-success',
                       method: :post) %>
       </p>
@@ -46,7 +46,7 @@
   <h2>Parent Firm</h2>
   <p>
     <%= @firm.registered_name %> is a subsidiary of
-    <%= link_to @firm.parent.registered_name, admin_firm_path(@firm.parent) %>.
+    <%= link_to @firm.parent.registered_name, admin_retirement_firm_path(@firm.parent) %>.
   </p>
 <% end %>
 
@@ -58,7 +58,7 @@
 
   <ul>
     <% @firm.subsidiaries.each do |subsidiary| %>
-      <li><%= link_to subsidiary.registered_name, admin_firm_path(subsidiary) %></li>
+      <li><%= link_to subsidiary.registered_name, admin_retirement_firm_path(subsidiary) %></li>
     <% end %>
   </ul>
 <% end %>
@@ -80,7 +80,7 @@
   <p>No advisers registered.</p>
 <% end %>
 
-<%= link_to 'New adviser (without reference number)', new_admin_firm_adviser_path(@firm), class: 'btn btn-success t-new-adviser', method: :get %>
+<%= link_to 'New adviser (without reference number)', new_admin_retirement_firm_adviser_path(@firm), class: 'btn btn-success t-new-adviser', method: :get %>
 
 <% if @firm.registered? %>
   <h2>Questionnaire Responses</h2>

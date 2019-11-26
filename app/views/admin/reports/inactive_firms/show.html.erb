@@ -23,7 +23,7 @@
     <% @inactive_firms.each do |firm| %>
       <tr>
         <td><%= firm.fca_number %></td>
-        <td><%= link_to firm.registered_name, admin_firm_path(firm) %></td>
+        <td><%= link_to firm.registered_name, admin_retirement_firm_path(firm) %></td>
         <td><%= firm.publishable? ? 'Yes' : 'No' %></td>
       </tr>
     <% end %>

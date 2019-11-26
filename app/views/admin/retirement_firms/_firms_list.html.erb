@@ -23,13 +23,13 @@
         </td>
         <td class="t-fca-number"><%= firm.fca_number %></td>
         <td>
-          <%= link_to firm.registered_name, admin_firm_path(firm), class: 't-registered-name' %>
+          <%= link_to firm.registered_name, admin_retirement_firm_path(firm), class: 't-registered-name' %>
           <% if firm.subsidiary? %>
             <br />
-            <em>subsidiary of <%= link_to firm.parent.registered_name, admin_firm_path(firm.parent) %></em>
+            <em>subsidiary of <%= link_to firm.parent.registered_name, admin_retirement_firm_path(firm.parent) %></em>
           <% end %>
         </td>
-        <td><%= link_to(firm.advisers.count, admin_firm_advisers_path(firm)) %></td>
+        <td><%= link_to(firm.advisers.count, admin_retirement_firm_advisers_path(firm)) %></td>
         <td><%= firm.created_at.strftime("%d %b %Y") %></td>
         <td><%= firm.approved_at&.strftime("%d %b %Y") || 'Not approved' %></td>
       </tr>

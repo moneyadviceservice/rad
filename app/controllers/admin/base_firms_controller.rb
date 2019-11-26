@@ -9,9 +9,9 @@ class Admin::BaseFirmsController < Admin::ApplicationController
   end
 
   def approve
-    @firm = resource_class.find(params[:firm_id])
+    @firm = resource_class.find(params[:retirement_firm_id])
     @firm.approve!
-    redirect_back(fallback_location: admin_firm_path(@firm))
+    redirect_back(fallback_location: admin_retirement_firm_path(@firm))
   end
 
   def firms_search_path

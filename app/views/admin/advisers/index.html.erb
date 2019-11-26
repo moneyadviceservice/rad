@@ -74,7 +74,7 @@
                 <td><%= link_to adviser.name, admin_adviser_path(adviser), class: 't-name' %></td>
                 <% unless firm.present? %>
                     <td><%= link_to adviser.firm.registered_name,
-                                    admin_firm_path(adviser.firm),
+                                    admin_retirement_firm_path(adviser.firm),
                                     class: 't-firm-registered-name' %></td>
                 <% end %>
                 <td class="t-postcode"><%= adviser.postcode %></td>

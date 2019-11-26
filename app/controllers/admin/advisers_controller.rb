@@ -9,17 +9,17 @@ class Admin::AdvisersController < Admin::ApplicationController
 
   def new
     @adviser = Adviser.new
-    @firm = Firm.find(params[:firm_id])
+    @firm = Firm.find(params[:retirement_firm_id])
   end
 
   def create
-    @firm = Firm.find(params[:firm_id])
+    @firm = Firm.find(params[:retirement_firm_id])
     @adviser = @firm.advisers.build(adviser_params)
     @adviser.reference_number = 'NOREF'
     @adviser.bypass_reference_number_check = true
 
     if @adviser.save_with_geocoding
-      redirect_to admin_firm_path(firm)
+      redirect_to admin_retirement_firm_path(firm)
     else
       render :new
     end
@@ -53,7 +53,7 @@ class Admin::AdvisersController < Admin::ApplicationController
   private
 
   def firm
-    @firm ||= Firm.find(params[:firm_id]) if params[:firm_id]
+    @firm ||= Firm.find(params[:retirement_firm_id]) if params[:retirement_firm_id]
   end
   helper_method :firm
 
