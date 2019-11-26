@@ -1,4 +1,5 @@
 class Firm < ApplicationRecord
+  include FirmApproval
   FREE_INITIAL_MEETING_VALID_VALUES = [true, false].freeze
 
   # We use a scalar required field as a marker to detect a record saved with
@@ -189,12 +190,6 @@ class Firm < ApplicationRecord
 
   def publishable?
     registered? && offices.any? && advisers.any?
-  end
-
-  def approve!
-    # rubocop:disable Rails/SkipsModelValidations
-    update_attribute(:approved_at, Time.zone.now) unless approved_at
-    # rubocop:enable Rails/SkipsModelValidations
   end
 
   private

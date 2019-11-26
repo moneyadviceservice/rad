@@ -1,0 +1,20 @@
+<% if @firm.subsidiary? %>
+  <h2>Parent Firm</h2>
+  <p>
+    <%= @firm.registered_name %> is a subsidiary of
+    <%= link_to @firm.parent.registered_name, admin_firm_path(@firm.parent) %>.
+  </p>
+<% end %>
+
+<% if @firm.subsidiaries.present? %>
+  <h2>Subsidiaries</h2>
+  <p>
+    <%= @firm.registered_name %> has the following subsidiaries:
+  </p>
+
+  <ul>
+    <% @firm.subsidiaries.each do |subsidiary| %>
+      <li><%= link_to subsidiary.registered_name, admin_firm_path(subsidiary) %></li>
+    <% end %>
+  </ul>
+<% end %>
