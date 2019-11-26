@@ -1,12 +1,8 @@
-class Admin::FirmsController < Admin::ApplicationController
-  def index
-    @search = Firm.ransack(params[:q])
-    @firms = @search.result.page(params[:page]).per(20)
+class Admin::RetirementFirmsController < Admin::BaseFirmsController
+  def firms_search_path
+    admin_retirement_firms_path
   end
-
-  def show
-    @firm = Firm.find(params[:id])
-  end
+  helper_method :firms_search_path
 
   def login_report
     users = User.includes(principal: [:firm]).order('firms.registered_name ASC')
@@ -24,9 +20,9 @@ class Admin::FirmsController < Admin::ApplicationController
     end
   end
 
-  def approve
-    @firm = Firm.find(params[:firm_id])
-    @firm.approve!
-    redirect_back(fallback_location: admin_firm_path(@firm))
+  private
+
+  def resource_class
+    Firm
   end
 end
