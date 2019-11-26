@@ -55,62 +55,62 @@ class Firm < ApplicationRecord
   before_validation :clear_blank_languages
   before_validation :deduplicate_languages
 
-  validates :website_address,
-            allow_blank: true,
-            length: { maximum: 100 },
-            format: { with: /\A(https?:\/\/)?([a-zA-Z0-9-]+\.)+[a-zA-Z0-9-]+/ }
+  with_options on: :update do |firm|
+    firm.validates :website_address,
+      allow_blank: true,
+      length: { maximum: 100 },
+      format: { with: /\A(https?:\/\/)?([a-zA-Z0-9-]+\.)+[a-zA-Z0-9-]+/ }
 
-  validates :free_initial_meeting,
-            inclusion: { in: FREE_INITIAL_MEETING_VALID_VALUES }
+    firm.validates :free_initial_meeting,
+      inclusion: { in: FREE_INITIAL_MEETING_VALID_VALUES }
 
-  validates :initial_meeting_duration,
-            presence: true,
-            if: -> { free_initial_meeting? }
+    firm.validates :initial_meeting_duration,
+      presence: true,
+      if: -> { free_initial_meeting? }
 
-  validates :initial_advice_fee_structures,
-            length: { minimum: 1 }
+    firm.validates :initial_advice_fee_structures,
+      length: { minimum: 1 }
 
-  validates :ongoing_advice_fee_structures,
-            length: { minimum: 1 }
+    firm.validates :ongoing_advice_fee_structures,
+      length: { minimum: 1 }
 
-  validates :allowed_payment_methods,
-            length: { minimum: 1 }
+    firm.validates :allowed_payment_methods,
+      length: { minimum: 1 }
 
-  validates :minimum_fixed_fee,
-            allow_blank: false,
-            numericality: {
-              only_integer: true,
-              greater_than_or_equal_to: 0,
-              less_than: 2_147_483_648 # max value for postgres integer type
-            }
+    firm.validates :minimum_fixed_fee,
+      allow_blank: false,
+      numericality: {
+        only_integer: true,
+        greater_than_or_equal_to: 0,
+        less_than: 2_147_483_648 # max value for postgres integer type
+      }
 
-  validates :in_person_advice_methods,
-            presence: true,
-            if: -> { primary_advice_method == :local }
+    firm.validates :in_person_advice_methods,
+      presence: true,
+      if: -> { primary_advice_method == :local }
 
-  validates :other_advice_methods,
-            presence: true,
-            if: -> { primary_advice_method == :remote }
+    firm.validates :other_advice_methods,
+      presence: true,
+      if: -> { primary_advice_method == :remote }
 
-  validates *ADVICE_TYPES_ATTRIBUTES,
-            inclusion: { in: [true, false] }
-
-  validates :primary_advice_method,
-            presence: true
-
-  validate :languages do
-    unless languages.all? do |lang|
-      Languages::AVAILABLE_LANGUAGES_ISO_639_3_CODES.include?(lang)
+    ADVICE_TYPES_ATTRIBUTES.each do |attribute|
+      firm.validates attribute, inclusion: { in: [true, false] }
     end
-      errors.add(:languages, :invalid)
+
+    firm.validates :primary_advice_method, presence: true
+
+    firm.validate :languages do
+      errors.add(:languages, :invalid) unless languages.all? do |lang|
+        Languages::AVAILABLE_LANGUAGES_ISO_639_3_CODES.include?(lang)
+      end
     end
-  end
 
-  validate do
-    errors.add(:advice_types, :invalid) unless advice_types.values.any?
-  end
+    firm.validate do
+      errors.add(:advice_types, :invalid) unless advice_types.values.any?
+    end
 
-  validates :investment_sizes, length: { minimum: 1 }
+    firm.validates :investment_sizes, length: { minimum: 1 }
+  end
 
   after_commit :notify_indexer
 
