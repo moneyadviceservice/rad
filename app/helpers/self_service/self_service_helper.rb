@@ -55,8 +55,8 @@ module SelfService
         .join(', ')
     end
 
-    def first_registered_firm_for(principal)
-      principal.main_firm_with_trading_names.registered.first
+    def first_onboarded_firm_for(principal)
+      principal.main_firm_with_trading_names.onboarded.first
     end
 
     def firm_language_select(value, html_options = {})

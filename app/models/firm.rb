@@ -2,10 +2,11 @@ class Firm < ApplicationRecord
   include FirmApproval
   FREE_INITIAL_MEETING_VALID_VALUES = [true, false].freeze
 
-  # We use a scalar required field as a marker to detect a record saved with
-  # validation
-  REGISTERED_MARKER_FIELD = :free_initial_meeting
-  REGISTERED_MARKER_FIELD_VALID_VALUES = FREE_INITIAL_MEETING_VALID_VALUES
+  # We use a scalar required field as a marker to detect a firm that has been
+  # onboarded. That is, it has been saved with validations on update having
+  # been run.
+  ONBOARDED_MARKER_FIELD = :free_initial_meeting
+  ONBOARDED_MARKER_FIELD_VALID_VALUES = FREE_INITIAL_MEETING_VALID_VALUES
 
   ADVICE_TYPES_ATTRIBUTES = %i[
     retirement_income_products_flag
@@ -17,7 +18,7 @@ class Firm < ApplicationRecord
   ].freeze
 
   scope :approved, -> { where.not(approved_at: nil) }
-  scope :registered, -> { where.not(REGISTERED_MARKER_FIELD => nil) }
+  scope :onboarded, -> { where.not(ONBOARDED_MARKER_FIELD => nil) }
   scope :sorted_by_registered_name, -> { order(:registered_name) }
 
   def self.languages_used
@@ -55,6 +56,8 @@ class Firm < ApplicationRecord
   before_validation :clear_blank_languages
   before_validation :deduplicate_languages
 
+  # A set of attributes that are validated on first update. A firm is
+  # considered onboarded once these details have been provided.
   with_options on: :update do |firm|
     firm.validates :website_address,
       allow_blank: true,
@@ -118,20 +121,15 @@ class Firm < ApplicationRecord
     UpdateAlgoliaIndexJob.perform_later(model_name.name, id)
   end
 
-  # A heuristic that allows us to infer validity
-  #
-  # This method is basically a cheap way to answer the question: has this
-  # record ever been saved with validation enabled?
-  def registered?
-    # false is a valid value so we cannot use `.present?`
-    !send(REGISTERED_MARKER_FIELD).nil?
+  def onboarded?
+    !send(ONBOARDED_MARKER_FIELD).nil?
   end
 
   if Rails.env.test?
     # A helper to shield tests from modifying the marker field directly
     def __set_registered(state)
-      new_value = state ? REGISTERED_MARKER_FIELD_VALID_VALUES.first : nil
-      send("#{REGISTERED_MARKER_FIELD}=", new_value)
+      new_value = state ? ONBOARDED_MARKER_FIELD_VALID_VALUES.first : nil
+      send("#{ONBOARDED_MARKER_FIELD}=", new_value)
     end
     alias __registered= __set_registered
   end
@@ -189,7 +187,7 @@ class Firm < ApplicationRecord
   end
 
   def publishable?
-    registered? && offices.any? && advisers.any?
+    onboarded? && offices.any? && advisers.any?
   end
 
   private

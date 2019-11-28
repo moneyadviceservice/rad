@@ -4,7 +4,7 @@
     <%= t('self_service.status.published') %>
   <% end %>
 
-  <% unless presenter.registered? %>
+  <% unless presenter.onboarded? %>
     <div class="status__row">
       <%= status_icon('exclamation') %>
       <%= t('self_service.status.needs_firm_details') %>

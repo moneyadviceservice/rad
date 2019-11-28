@@ -54,20 +54,20 @@ RSpec.describe Firm do
     end
   end
 
-  describe '#registered?' do
+  describe '#onboarded?' do
     def set_marker_field(firm, value)
-      firm.send("#{Firm::REGISTERED_MARKER_FIELD}=", value)
+      firm.send("#{Firm::ONBOARDED_MARKER_FIELD}=", value)
     end
 
-    it 'is false if the REGISTERED_MARKER_FIELD field is nil' do
+    it 'is false if the ONBOARDED_MARKER_FIELD field is nil' do
       set_marker_field(firm, nil)
-      expect(firm).not_to be_registered
+      expect(firm).not_to be_onboarded
     end
 
-    it 'is true if the REGISTERED_MARKER_FIELD field has a valid value' do
-      Firm::REGISTERED_MARKER_FIELD_VALID_VALUES.each do |value|
+    it 'is true if the ONBOARDED_MARKER_FIELD field has a valid value' do
+      Firm::ONBOARDED_MARKER_FIELD_VALID_VALUES.each do |value|
         set_marker_field(firm, value)
-        expect(firm).to be_registered
+        expect(firm).to be_onboarded
       end
     end
   end

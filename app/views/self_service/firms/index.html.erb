@@ -1,6 +1,6 @@
 <% render_breadcrumbs(breadcrumbs_root) %>
 
-<%= render 'onboarding_message' unless current_user.principal.onboarded? %>
+<%= render 'onboarding_message' unless current_user.principal.publishable_retirement_advice_firm? %>
 
 <h1 class="t-page-title">
   <%= t('self_service.firms_index.title', count: @presenter.total_firms) %>

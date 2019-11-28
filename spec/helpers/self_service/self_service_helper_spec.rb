@@ -42,7 +42,7 @@ module SelfService
       end
     end
 
-    describe '#first_registered_firm_for' do
+    describe '#first_onboarded_firm_for' do
       let(:principal) { create(:principal, fca_number: '123456') }
 
       def make_firm_look_registered(firm)
@@ -52,14 +52,14 @@ module SelfService
 
       context 'when the principal has no registered firms' do
         it 'is nil' do
-          expect(helper.first_registered_firm_for(principal)).to be_nil
+          expect(helper.first_onboarded_firm_for(principal)).to be_nil
         end
       end
 
       context 'when the principal has registered firm and has no trading names' do
         it 'provides the firm' do
           make_firm_look_registered(principal.firm)
-          expect(helper.first_registered_firm_for(principal)).to eq(principal.firm)
+          expect(helper.first_onboarded_firm_for(principal)).to eq(principal.firm)
         end
       end
 
@@ -67,7 +67,7 @@ module SelfService
         it 'returns the trading name' do
           trading_name = create(:trading_name, fca_number: principal.fca_number)
 
-          expect(helper.first_registered_firm_for(principal)).to eq(trading_name)
+          expect(helper.first_onboarded_firm_for(principal)).to eq(trading_name)
         end
       end
 
@@ -76,7 +76,7 @@ module SelfService
           make_firm_look_registered(principal.firm)
           create(:trading_name, fca_number: principal.fca_number)
 
-          expect(helper.first_registered_firm_for(principal)).to eq(principal.firm)
+          expect(helper.first_onboarded_firm_for(principal)).to eq(principal.firm)
         end
       end
     end

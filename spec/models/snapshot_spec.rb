@@ -81,7 +81,7 @@ RSpec.describe Snapshot do
     before do
       FactoryBot.create(:firm)
       FactoryBot.create(:firm)
-      FactoryBot.build(:firm, Firm::REGISTERED_MARKER_FIELD => nil).tap { |f| f.save(validate: false) }
+      FactoryBot.build(:firm, Firm::ONBOARDED_MARKER_FIELD => nil).tap { |f| f.save(validate: false) }
     end
 
     it { expect(subject.query_registered_firms.count).to eq(2) }
