@@ -1,6 +1,11 @@
 FactoryBot.define do
   sequence(:registered_name) { |n| "Financial Advice #{n} Ltd." }
 
+  factory :not_onboarded_firm, class: Firm, aliases: [:invalid_firm] do
+    fca_number
+    registered_name
+  end
+
   factory :firm, aliases: %i[publishable_firm onboarded_firm] do
     fca_number
     registered_name
@@ -53,13 +58,6 @@ FactoryBot.define do
     factory :firm_with_remote_advice, traits: [:with_remote_advice]
     factory :firm_with_subsidiaries, traits: [:with_trading_names]
     factory :firm_with_trading_names, traits: [:with_trading_names]
-    factory :not_onboarded_firm, traits: [:not_onboarded], aliases: [:invalid_firm]
-
-    trait :not_onboarded do
-      fca_number
-      registered_name
-      __registered { false }
-    end
 
     trait :not_approved do
       approved_at { nil }
