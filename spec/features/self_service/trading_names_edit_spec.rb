@@ -97,6 +97,6 @@ RSpec.feature 'The self service trading name edit page' do
   private
 
   def trading_names(principal)
-    principal.firm.trading_names.registered.sorted_by_registered_name
+    principal.firm.trading_names.onboarded.sorted_by_registered_name
   end
 end
