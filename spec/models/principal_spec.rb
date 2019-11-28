@@ -171,7 +171,7 @@ RSpec.describe Principal do
     end
   end
 
-  describe '#onboarded?' do
+  describe '#publishable_retirement_advice_firm?' do
     context 'when no firms are publishable' do
       before do
         FactoryBot.build(:invalid_firm,
@@ -184,7 +184,7 @@ RSpec.describe Principal do
       end
 
       it 'returns false' do
-        expect(principal.onboarded?).to be(false)
+        expect(principal.publishable_retirement_advice_firm?).to be(false)
       end
     end
 
@@ -200,7 +200,7 @@ RSpec.describe Principal do
       end
 
       it 'returns true' do
-        expect(principal.onboarded?).to be(true)
+        expect(principal.publishable_retirement_advice_firm?).to be(true)
       end
     end
   end

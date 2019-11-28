@@ -23,7 +23,7 @@ module Snapshot::FirmQueries
   end
 
   def query_registered_firms
-    Firm.registered
+    Firm.onboarded
   end
 
   def query_published_firms

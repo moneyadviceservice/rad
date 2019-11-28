@@ -15,7 +15,7 @@
     <div class="tab-selector__triggers-inner">
       <div class="tab-selector__trigger-container t-firm-details-tab">
         <%= tab_link self_service_firm_details_url(firm), 'tab-selector__trigger' do %>
-          <%= status_icon('exclamation') unless presenter.registered? %>
+          <%= status_icon('exclamation') unless presenter.onboarded? %>
           Firm details
         <% end %>
       </div>

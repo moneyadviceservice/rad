@@ -2,7 +2,7 @@ module SelfService
   class FirmsController < AbstractFirmsController
     def index
       firm = principal.firm
-      trading_names = firm.trading_names.registered
+      trading_names = firm.trading_names.onboarded
 
       @presenter = FirmsIndexPresenter.new(
         firm,
@@ -28,7 +28,7 @@ module SelfService
     private
 
     def available_trading_names(firm:)
-      registered_trading_names = firm.trading_names.registered
+      registered_trading_names = firm.trading_names.onboarded
       Lookup::Subsidiary
         .where(fca_number: firm.fca_number)
         .order(:name)

@@ -72,7 +72,7 @@ class Principal < ApplicationRecord
     "#{first_name} #{last_name}"
   end
 
-  def onboarded?
+  def publishable_retirement_advice_firm?
     main_firm_with_trading_names.any?(&:publishable?)
   end
 
