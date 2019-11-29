@@ -46,9 +46,7 @@ class AbstractRegistrationsController < ApplicationController
   def create
     @form = NewPrincipalForm.new(new_principal_form_params)
 
-    if FirmCopy.new(@form).save
-      return render :show
-    end
+    return render :show if FirmCopy.new(@form).save
 
     if @form.valid?
       VerifyReferenceNumberJob.perform_later(registration_data)
