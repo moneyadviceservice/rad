@@ -2,10 +2,11 @@ class Firm < ApplicationRecord
   include FirmApproval
   FREE_INITIAL_MEETING_VALID_VALUES = [true, false].freeze
 
-  # We use a scalar required field as a marker to detect a record saved with
-  # validation
-  REGISTERED_MARKER_FIELD = :free_initial_meeting
-  REGISTERED_MARKER_FIELD_VALID_VALUES = FREE_INITIAL_MEETING_VALID_VALUES
+  # We use a scalar required field as a marker to detect a firm that has been
+  # onboarded. That is, it has been saved with validations on update having
+  # been run.
+  ONBOARDED_MARKER_FIELD = :free_initial_meeting
+  ONBOARDED_MARKER_FIELD_VALID_VALUES = FREE_INITIAL_MEETING_VALID_VALUES
 
   ADVICE_TYPES_ATTRIBUTES = %i[
     retirement_income_products_flag
@@ -17,7 +18,7 @@ class Firm < ApplicationRecord
   ].freeze
 
   scope :approved, -> { where.not(approved_at: nil) }
-  scope :registered, -> { where.not(REGISTERED_MARKER_FIELD => nil) }
+  scope :onboarded, -> { where.not(ONBOARDED_MARKER_FIELD => nil) }
   scope :sorted_by_registered_name, -> { order(:registered_name) }
 
   def self.languages_used
@@ -55,62 +56,64 @@ class Firm < ApplicationRecord
   before_validation :clear_blank_languages
   before_validation :deduplicate_languages
 
-  validates :website_address,
-            allow_blank: true,
-            length: { maximum: 100 },
-            format: { with: /\A(https?:\/\/)?([a-zA-Z0-9-]+\.)+[a-zA-Z0-9-]+/ }
+  # A set of attributes that are validated on first update. A firm is
+  # considered onboarded once these details have been provided.
+  with_options on: :update do |firm|
+    firm.validates :website_address,
+      allow_blank: true,
+      length: { maximum: 100 },
+      format: { with: /\A(https?:\/\/)?([a-zA-Z0-9-]+\.)+[a-zA-Z0-9-]+/ }
 
-  validates :free_initial_meeting,
-            inclusion: { in: FREE_INITIAL_MEETING_VALID_VALUES }
+    firm.validates :free_initial_meeting,
+      inclusion: { in: FREE_INITIAL_MEETING_VALID_VALUES }
 
-  validates :initial_meeting_duration,
-            presence: true,
-            if: -> { free_initial_meeting? }
+    firm.validates :initial_meeting_duration,
+      presence: true,
+      if: -> { free_initial_meeting? }
 
-  validates :initial_advice_fee_structures,
-            length: { minimum: 1 }
+    firm.validates :initial_advice_fee_structures,
+      length: { minimum: 1 }
 
-  validates :ongoing_advice_fee_structures,
-            length: { minimum: 1 }
+    firm.validates :ongoing_advice_fee_structures,
+      length: { minimum: 1 }
 
-  validates :allowed_payment_methods,
-            length: { minimum: 1 }
+    firm.validates :allowed_payment_methods,
+      length: { minimum: 1 }
 
-  validates :minimum_fixed_fee,
-            allow_blank: false,
-            numericality: {
-              only_integer: true,
-              greater_than_or_equal_to: 0,
-              less_than: 2_147_483_648 # max value for postgres integer type
-            }
+    firm.validates :minimum_fixed_fee,
+      allow_blank: false,
+      numericality: {
+        only_integer: true,
+        greater_than_or_equal_to: 0,
+        less_than: 2_147_483_648 # max value for postgres integer type
+      }
 
-  validates :in_person_advice_methods,
-            presence: true,
-            if: -> { primary_advice_method == :local }
+    firm.validates :in_person_advice_methods,
+      presence: true,
+      if: -> { primary_advice_method == :local }
 
-  validates :other_advice_methods,
-            presence: true,
-            if: -> { primary_advice_method == :remote }
+    firm.validates :other_advice_methods,
+      presence: true,
+      if: -> { primary_advice_method == :remote }
 
-  validates *ADVICE_TYPES_ATTRIBUTES,
-            inclusion: { in: [true, false] }
-
-  validates :primary_advice_method,
-            presence: true
-
-  validate :languages do
-    unless languages.all? do |lang|
-      Languages::AVAILABLE_LANGUAGES_ISO_639_3_CODES.include?(lang)
+    ADVICE_TYPES_ATTRIBUTES.each do |attribute|
+      firm.validates attribute, inclusion: { in: [true, false] }
     end
-      errors.add(:languages, :invalid)
+
+    firm.validates :primary_advice_method, presence: true
+
+    firm.validate :languages do
+      errors.add(:languages, :invalid) unless languages.all? do |lang|
+        Languages::AVAILABLE_LANGUAGES_ISO_639_3_CODES.include?(lang)
+      end
     end
-  end
 
-  validate do
-    errors.add(:advice_types, :invalid) unless advice_types.values.any?
-  end
+    firm.validate do
+      errors.add(:advice_types, :invalid) unless advice_types.values.any?
+    end
 
-  validates :investment_sizes, length: { minimum: 1 }
+    firm.validates :investment_sizes, length: { minimum: 1 }
+  end
 
   after_commit :notify_indexer
 
@@ -118,20 +121,15 @@ class Firm < ApplicationRecord
     UpdateAlgoliaIndexJob.perform_later(model_name.name, id)
   end
 
-  # A heuristic that allows us to infer validity
-  #
-  # This method is basically a cheap way to answer the question: has this
-  # record ever been saved with validation enabled?
-  def registered?
-    # false is a valid value so we cannot use `.present?`
-    !send(REGISTERED_MARKER_FIELD).nil?
+  def onboarded?
+    !send(ONBOARDED_MARKER_FIELD).nil?
   end
 
   if Rails.env.test?
     # A helper to shield tests from modifying the marker field directly
     def __set_registered(state)
-      new_value = state ? REGISTERED_MARKER_FIELD_VALID_VALUES.first : nil
-      send("#{REGISTERED_MARKER_FIELD}=", new_value)
+      new_value = state ? ONBOARDED_MARKER_FIELD_VALID_VALUES.first : nil
+      send("#{ONBOARDED_MARKER_FIELD}=", new_value)
     end
     alias __registered= __set_registered
   end
@@ -189,7 +187,7 @@ class Firm < ApplicationRecord
   end
 
   def publishable?
-    registered? && offices.any? && advisers.any?
+    onboarded? && offices.any? && advisers.any?
   end
 
   private

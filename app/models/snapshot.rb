@@ -12,7 +12,7 @@ class Snapshot < ApplicationRecord
   private
 
   def publishable_firms
-    @_publishable_firms ||= Firm.registered.select(&:publishable?)
+    @_publishable_firms ||= Firm.onboarded.select(&:publishable?)
   end
 
   # 1. Gets all metric fields

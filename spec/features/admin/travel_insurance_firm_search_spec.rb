@@ -33,7 +33,8 @@ RSpec.feature 'Searching for travel insurance firms on the admin interface' do
   def given_there_are_firms
     @firms = [
       FactoryBot.create(
-        :travel_insurance_firm, registered_name: 'Acme Finance'),
+        :travel_insurance_firm, registered_name: 'Acme Finance'
+      ),
       FactoryBot.create(:travel_insurance_firm, fca_number: '123456'),
       FactoryBot.create(:travel_insurance_firm, fca_number: '123457'),
       FactoryBot.create(:travel_insurance_firm, registered_name: 'Travel #4'),
@@ -73,6 +74,7 @@ RSpec.feature 'Searching for travel insurance firms on the admin interface' do
 
   def expect_no_errors
     return unless status_code == 500
+
     expect(the_page).not_to have_text %r{[Ee]rror|[Ww]arn|[Ee]xception}
   end
 

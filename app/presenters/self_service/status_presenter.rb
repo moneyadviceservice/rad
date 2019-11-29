@@ -12,7 +12,7 @@ module SelfService
     end
 
     def firm_details_icon
-      icon_toggle registered?
+      icon_toggle onboarded?
     end
 
     def advisers_icon
@@ -30,7 +30,7 @@ module SelfService
                edit_self_service_firm_path(self)
              end
 
-      label = if registered?
+      label = if onboarded?
                 I18n.t('self_service.status.edit')
               else
                 I18n.t('self_service.status.add')

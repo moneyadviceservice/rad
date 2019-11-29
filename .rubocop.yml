@@ -2,6 +2,10 @@ inherit_from:
   - https://raw.githubusercontent.com/moneyadviceservice/mas-standards/master/.rubocop.yml
   - .rubocop_todo.yml
 
+inherit_mode:
+  merge:
+    - Exclude
+
 # Project specific settings
 AllCops:
   Exclude:
