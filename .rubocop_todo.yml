@@ -78,12 +78,6 @@ Layout/EmptyLineAfterGuardClause:
     - 'spec/support/self_service/firm_edit_page.rb'
     - 'spec/support/shared_examples/system_named.rb'
 
-# Offense count: 1
-# Cop supports --auto-correct.
-Layout/EmptyLineAfterMagicComment:
-  Exclude:
-    - 'db/schema.rb'
-
 # Offense count: 3
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle.
@@ -91,7 +85,6 @@ Layout/EmptyLineAfterMagicComment:
 Layout/EmptyLinesAroundBlockBody:
   Exclude:
     - 'config/initializers/devise.rb'
-    - 'db/schema.rb'
     - 'spec/features/admin/firm_login_report_spec.rb'
 
 # Offense count: 1
@@ -108,7 +101,6 @@ Layout/EndAlignment:
 Layout/ExtraSpacing:
   Exclude:
     - 'config/initializers/fca.rb'
-    - 'db/schema.rb'
 
 # Offense count: 2
 # Cop supports --auto-correct.
@@ -389,6 +381,7 @@ Rails/InverseOf:
     - 'app/models/firm.rb'
     - 'app/models/lookup/firm.rb'
     - 'app/models/principal.rb'
+    - 'app/models/travel_insurance_firm.rb'
     - 'app/models/user.rb'
 
 # Offense count: 1
@@ -469,12 +462,6 @@ Style/DoubleNegation:
 Style/EmptyMethod:
   Exclude:
     - 'spec/features/admin/sign_in_as_principal_spec.rb'
-
-# Offense count: 1
-# Cop supports --auto-correct.
-Style/Encoding:
-  Exclude:
-    - 'db/schema.rb'
 
 # Offense count: 1
 # Cop supports --auto-correct.
@@ -600,7 +587,6 @@ Style/StringLiterals:
     - 'config/initializers/cloud_storage.rb'
     - 'db/migrate/20190604103603_add_approved_at_to_firms.rb'
     - 'db/migrate/20190606111937_remove_institute_financial_planning.rb'
-    - 'db/schema.rb'
     - 'spec/controllers/admin/reports/out_of_date_firms_controller_spec.rb'
 
 # Offense count: 17

@@ -23,17 +23,18 @@ class VerifiedPrincipal
   end
 
   def create_associate_firm
-    firm = if form.registration_type == 'travel_insurance_registrations'
-      TravelInsuranceFirm.new(fca_number: form.fca_number,
-                              registered_name: firm_name).tap do |f|
-        f.save!(validate: false)
+    firm =
+      if form.registration_type == 'travel_insurance_registrations'
+        TravelInsuranceFirm.new(fca_number: form.fca_number,
+                                registered_name: firm_name).tap do |f|
+          f.save!(validate: false)
+        end
+      else
+        Firm.new(fca_number: form.fca_number,
+                 registered_name: firm_name).tap do |f|
+          f.save!(validate: false)
+        end
       end
-    else
-      Firm.new(fca_number: form.fca_number,
-               registered_name: firm_name).tap do |f|
-        f.save!(validate: false)
-      end
-    end
 
     yield firm
   end
