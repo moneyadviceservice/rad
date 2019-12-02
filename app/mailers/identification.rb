@@ -4,7 +4,7 @@ class Identification < ActionMailer::Base
 
     mail(
       to: @principal.email_address,
-      subject: 'Your Retirement Adviser Directory Account'
+      subject: 'Your Directory Account'
     )
   end
 end
