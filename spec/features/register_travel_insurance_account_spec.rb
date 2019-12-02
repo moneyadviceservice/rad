@@ -10,14 +10,16 @@ RSpec.feature 'Principal provides travel insurance information', :inline_job_que
   before { ActionMailer::Base.deliveries.clear }
 
   scenario 'Registering a travel insurance firm' do
-    given_i_have_passed_the_pre_qualification_step
+    given_i_am_on_the_travel_insurance_registration_page
     when_i_provide_my_firms_fca_reference_number
     and_i_provide_my_identifying_particulars
     then_i_am_shown_a_thank_you_for_registering_message
+    and_i_should_have_a_travel_insurance_firm
+    and_i_later_receive_an_email_confirming_my_registration
   end
 
   scenario 'Re-registering the same travel insurance firm' do
-    given_i_have_passed_the_pre_qualification_step
+    given_i_am_on_the_travel_insurance_registration_page
     and_i_registered_a_principal_and_travel_insurance_firm
     when_i_provide_my_firms_fca_reference_number
     and_i_provide_my_identifying_particulars
@@ -25,15 +27,16 @@ RSpec.feature 'Principal provides travel insurance information', :inline_job_que
   end
 
   scenario 'Registering a travel insurance firm having a retirement firm' do
-    given_i_have_passed_the_pre_qualification_step
-    and_i_registered_a_principal_and_retirement_firm
+    given_i_am_on_the_travel_insurance_registration_page
+    and_i_registered_a_principal_and_retirement_advice_firm
     when_i_provide_my_firms_fca_reference_number
     and_i_provide_my_identifying_particulars
     then_i_am_shown_a_thank_you_for_registering_message
     and_i_should_have_a_retirement_and_travel_insurance_firm
+    and_i_later_receive_an_email_confirming_my_registration
   end
 
-  def given_i_have_passed_the_pre_qualification_step
+  def given_i_am_on_the_travel_insurance_registration_page
     travel_insurance_registration_page.load
   end
 
@@ -43,13 +46,13 @@ RSpec.feature 'Principal provides travel insurance information', :inline_job_que
 
   def and_i_provide_my_identifying_particulars
     travel_insurance_registration_page.tap do |p|
-      p.first_name.set 'Ben'
-      p.last_name.set 'Lovell'
-      p.job_title.set 'Director'
-      p.email.set 'ben@moneyadviceservice.org.uk'
+      p.first_name.set principal_details.first_name
+      p.last_name.set principal_details.last_name
+      p.job_title.set principal_details.job_title
+      p.email.set principal_details.email_address
       p.password.set 'Password1!'
       p.password_confirmation.set 'Password1!'
-      p.telephone_number.set '07715 930 400'
+      p.telephone_number.set principal_details.telephone_number
 
       p.confirmation.set true
 
@@ -59,21 +62,31 @@ RSpec.feature 'Principal provides travel insurance information', :inline_job_que
     end
   end
 
-  def and_i_registered_a_principal_and_retirement_firm
-    create_principal
-    expect(@principal.firm).to_not be_nil
-    expect(@principal.travel_insurance_firm).to be_nil
+  def and_i_later_receive_an_email_confirming_my_registration
+    expect(
+      ActionMailer::Base.deliveries.find do |mail|
+        mail.subject.match?(/Your Directory Account/)
+      end
+    ).to_not be_nil
+  end
+
+  def and_i_registered_a_principal_and_retirement_advice_firm
+    principal = create_principal
+    expect(principal.firm).to_not be_nil
+    expect(principal.travel_insurance_firm).to be_nil
   end
 
   def and_i_registered_a_principal_and_travel_insurance_firm
-    create_principal(
+    principal = create_principal(
+      manually_build_firms: true,
       travel_insurance_firm: FactoryBot.create(
         :travel_insurance_firm,
         fca_number: '311244'
-      ),
-      firm: nil
+      )
     )
-    expect(@principal.travel_insurance_firm).to_not be_nil
+
+    expect(principal.firm).to be_nil
+    expect(principal.travel_insurance_firm).to_not be_nil
   end
 
   def then_i_am_shown_a_thank_you_for_registering_message
@@ -85,25 +98,43 @@ RSpec.feature 'Principal provides travel insurance information', :inline_job_que
     )
   end
 
+  def and_i_should_have_a_travel_insurance_firm
+    principal = Principal.find_by(fca_number: '311244')
+    expect(principal.travel_insurance_firm).to_not be_nil
+  end
+
   def and_i_should_have_a_retirement_and_travel_insurance_firm
-    @principal.reload
-    expect(@principal.firm).to_not be_nil
-    expect(@principal.travel_insurance_firm).to_not be_nil
+    principal = Principal.find_by(fca_number: '311244')
+    expect(principal.firm).to_not be_nil
+    expect(principal.travel_insurance_firm).to_not be_nil
   end
 
   def then_i_am_told_which_fields_are_incorrect_and_why
     expect(travel_insurance_registration_page).to have_validation_summaries
   end
 
+  private
+
   def create_principal(attributes = {})
-    @principal = FactoryBot.create(
+    principal = FactoryBot.create(
       :principal,
-      { fca_number: '311244' }.merge(attributes)
+      { fca_number: '311244' }.merge(attributes).merge(principal_details.to_h)
     )
     FactoryBot.create(
       :user,
-      email: 'ben@moneyadviceservice.org.uk',
-      principal: @principal
+      email: principal_details.email_address,
+      principal: principal
+    )
+    principal
+  end
+
+  def principal_details
+    OpenStruct.new(
+      first_name: 'Ben',
+      last_name: 'Lovell',
+      job_title: 'Director',
+      email_address: 'ben@moneyadviceservice.org.uk',
+      telephone_number: '07715 930 400'
     )
   end
 end
