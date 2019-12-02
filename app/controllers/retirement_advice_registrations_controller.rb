@@ -1,4 +1,4 @@
-class RetirementAdviceRegistrationsController < AbstractRegistrationsController
+class RetirementAdviceRegistrationsController < BaseRegistrationsController
   def pre_qualification_form
     @prequalification = PreQualificationForm.new
   end
@@ -25,4 +25,16 @@ class RetirementAdviceRegistrationsController < AbstractRegistrationsController
     'retirement_advice_registrations.heading'
   end
   helper_method :registration_title
+
+  private
+
+  def pre_qualification_form_params
+    params.require(:pre_qualification_form).permit(
+      :active_question,
+      :business_model_question,
+      :status_question,
+      :particular_market_question,
+      :consider_available_providers_question
+    )
+  end
 end
