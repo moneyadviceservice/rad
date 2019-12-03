@@ -8,9 +8,8 @@ class VerifiedPrincipal
 
   def register!
     create_new_principal
-    create_associate_firm do |firm|
-      send_notifications(firm)
-    end
+    firm = create_associated_firm
+    send_notifications(firm)
   end
 
   private
@@ -22,21 +21,25 @@ class VerifiedPrincipal
     Stats.increment('radsignup.principal.created')
   end
 
-  def create_associate_firm
-    firm =
-      if form.registration_type == 'travel_insurance_registrations'
-        TravelInsuranceFirm.new(fca_number: form.fca_number,
-                                registered_name: firm_name).tap do |f|
-          f.save!(validate: false)
-        end
-      else
-        Firm.new(fca_number: form.fca_number,
-                 registered_name: firm_name).tap do |f|
-          f.save!(validate: false)
-        end
-      end
+  def create_associated_firm
+    case form.registration_type
+    when 'travel_insurance_registrations'
+      TravelInsuranceFirm.create(
+        fca_number: form.fca_number,
+        registered_name: firm_name
+      )
+    when 'retirement_advice_registrations'
+      Firm.create(
+        fca_number: form.fca_number,
+        registered_name: firm_name
+      )
+    else
+      raise error_message
+    end
+  end
 
-    yield firm
+  def error_message
+    "Unsupported registration_type [#{form.registration_type}] when creating new principal"
   end
 
   def send_notifications(firm)
