@@ -8,8 +8,12 @@ FactoryBot.define do
     telephone_number { '07111 333 222' }
     confirmed_disclaimer { true }
 
-    after(:build) do |principal|
-      if principal.firm.blank?
+    transient do
+      manually_build_firms { false }
+    end
+
+    after(:build) do |principal, evaluator|
+      if principal.firm.blank? && !evaluator.manually_build_firms
         principal.firm = Firm.new(
           fca_number: principal.fca_number,
           registered_name:  Faker::Name.first_name

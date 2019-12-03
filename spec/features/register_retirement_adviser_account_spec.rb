@@ -11,6 +11,7 @@ RSpec.feature 'Principal provides identifying information', :inline_job_queue do
     when_i_provide_my_firms_fca_reference_number
     and_i_provide_my_identifying_particulars
     then_i_am_shown_a_thank_you_for_registering_message
+    and_i_later_receive_an_email_confirming_my_registration
   end
 
   scenario 'I provide invalid information' do
@@ -74,6 +75,14 @@ RSpec.feature 'Principal provides identifying information', :inline_job_queue do
         p.register.click
       end
     end
+  end
+
+  def and_i_later_receive_an_email_confirming_my_registration
+    expect(
+      ActionMailer::Base.deliveries.find do |mail|
+        mail.subject.match?(/Your Directory Account/)
+      end
+    ).to_not be_nil
   end
 
   def then_i_am_shown_a_thank_you_for_registering_message
