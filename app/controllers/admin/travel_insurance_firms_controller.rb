@@ -1,4 +1,6 @@
 class Admin::TravelInsuranceFirmsController < Admin::BaseFirmsController
+  layout 'travel_insurance_admin'
+
   def firms_search_path
     admin_travel_insurance_firms_path
   end
