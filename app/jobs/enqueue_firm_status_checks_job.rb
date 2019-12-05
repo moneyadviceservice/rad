@@ -30,7 +30,7 @@ class EnqueueFirmStatusChecksJob < ApplicationJob
   # job per firm to check the status.
   def perform(batches: BigDecimal::INFINITY)
     time_window = 0
-    InactiveFirm.destroy_all
+    InactiveFirm.delete_all
 
     Firm
       .find_in_batches(batch_size: BATCH_SIZE)
