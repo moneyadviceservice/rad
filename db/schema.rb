@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_23_112715) do
+ActiveRecord::Schema.define(version: 2019_12_05_134556) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -149,7 +149,7 @@ ActiveRecord::Schema.define(version: 2019_09_23_112715) do
     t.string "api_status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["firm_id"], name: "index_inactive_firms_on_firm_id"
+    t.index ["firm_id"], name: "index_inactive_firms_on_firm_id", unique: true
   end
 
   create_table "initial_advice_fee_structures", id: :serial, force: :cascade do |t|
@@ -391,5 +391,4 @@ ActiveRecord::Schema.define(version: 2019_09_23_112715) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "inactive_firms", "firms"
 end
