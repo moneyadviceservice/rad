@@ -1,11 +1,10 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="MAS Retirement Adviser Directory Administration">
+  <meta name="description" content="MAS Travel Insurance Directory Administration">
   <meta name="author" content="Team A">
   <title>Travel Insurance Administration</title>
   <%= stylesheet_link_tag 'admin' %>
@@ -17,7 +16,7 @@
 <nav class="navbar navbar-inverse navbar-fixed-top">
   <div class="container">
     <div class="navbar-header">
-      <a class="navbar-brand" href="#">Travel Insurance Administration</a>
+      <a class="navbar-brand" href="#">Travel Insurance Directory Administration</a>
     </div>
     <div id="navbar" class="collapse navbar-collapse">
       <ul class="nav navbar-nav">
@@ -27,23 +26,6 @@
   </div>
 </nav>
 
-<div class="container">
-  <% if flash.notice %>
-    <div class="t-flash-message alert alert-warning" role="alert">
-      <%= flash.notice %>
-    </div>
-  <% end %>
-
-  <%= yield %>
-</div>
-
-<footer class="footer">
-  <div class="container">
-    <p class="text-muted">Money Advice Service <%= DateTime.now.year %></p>
-  </div>
-</footer>
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-<%= javascript_include_tag('admin') %>
+<%= render 'shared/admin_content' %>
 </body>
 </html>
