@@ -24,7 +24,7 @@
         <%= active_link_to 'Home', admin_root_path, active: :exact, wrap_tag: 'li' %>
         <%= active_link_to 'Firms', admin_retirement_firms_path, wrap_tag: 'li' %>
         <%= active_link_to 'Advisers', admin_advisers_path, wrap_tag: 'li' %>
-        <%= active_link_to 'Principals', admin_principals_path, wrap_tag: 'li' %>
+        <%= active_link_to 'Principals', admin_retirement_principals_path, wrap_tag: 'li' %>
 
         <li class="<%= 'active' if is_active_link?('/admin/reports', :inclusive) %>">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Reports<span class="caret"></span></a>

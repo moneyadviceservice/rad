@@ -7,7 +7,7 @@ class Admin::UsersController < Admin::ApplicationController
     @user = user
 
     if @user.update_attributes(user_params)
-      redirect_to admin_principal_path(principal)
+      redirect_to admin_retirement_principal_path(principal)
     else
       render 'edit'
     end

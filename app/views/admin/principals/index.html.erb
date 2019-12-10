@@ -5,7 +5,7 @@
 </div>
 <div class="row">
   <div class="col-xs-2">
-    <%= search_form_for @search, url: admin_principals_path, method: :get do |f| %>
+    <%= search_form_for @search, url: admin_retirement_principals_path, method: :get do |f| %>
         <div class="form-group">
           <%= f.label :fca_number_eq, 'Find by FCA Number' %>
           <%= f.search_field :fca_number_eq, class: 'form-control' %>
@@ -47,7 +47,7 @@
           <tr>
             <td><%= link_to principal.firm.registered_name, admin_retirement_firm_path(principal.firm) %></td>
             <td><%= principal.fca_number %></td>
-            <td><%= link_to "#{principal.first_name} #{principal.last_name}", admin_principal_path(principal) %></td>
+            <td><%= link_to "#{principal.first_name} #{principal.last_name}", admin_retirement_principal_path(principal) %></td>
             <td><%= principal.created_at.to_s(:short) %></td>
           </tr>
         <% end %>
