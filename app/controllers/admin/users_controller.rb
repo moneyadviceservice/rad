@@ -20,7 +20,7 @@ class Admin::UsersController < Admin::ApplicationController
   end
 
   def principal
-    Principal.find(params[:principal_id])
+    Principal.find(params[:retirement_principal_id])
   end
 
   def user_params

@@ -5,7 +5,7 @@
 
 <div class="panel panel-default">
   <div class="panel-body">
-  <%= form_for([:admin, @principal]) do |f| %>
+  <%= form_for([:admin, :retirement, @principal]) do |f| %>
     <%= render 'admin/shared/errors', model: @principal %>
 
     <div class="form-group">

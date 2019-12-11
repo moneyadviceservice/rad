@@ -20,7 +20,10 @@
     </div>
     <div id="navbar" class="collapse navbar-collapse">
       <ul class="nav navbar-nav">
-        <%= active_link_to 'Travel Insurance Firms', admin_travel_insurance_firms_path, wrap_tag: 'li' %>
+        <%= active_link_to 'Firms',
+              admin_travel_insurance_firms_path, wrap_tag: 'li' %>
+        <%= active_link_to 'Principals',
+              admin_travel_insurance_principals_path, wrap_tag: 'li' %>
       </ul>
     </div>
   </div>

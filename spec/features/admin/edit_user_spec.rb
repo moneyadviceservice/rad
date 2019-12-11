@@ -64,6 +64,6 @@ RSpec.feature "Editing a user (i.e. a Principal's login credentials)" do
   end
 
   def and_i_am_redirected_to_the_principal_page
-    expect(page.current_path).to eq admin_principal_path(@principal)
+    expect(page.current_path).to eq admin_retirement_principal_path(@principal)
   end
 end
