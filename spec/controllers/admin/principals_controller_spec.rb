@@ -7,7 +7,7 @@ RSpec.describe Admin::PrincipalsController, type: :request do
   describe 'DELETE #destroy' do
     context 'when successful' do
       it 'removes the principal and the user', :aggregate_failures do
-        expect { delete admin_principal_path(principal) }
+        expect { delete admin_retirement_principal_path(principal) }
           .to change(Principal, :count)
           .by(-1)
           .and change(User, :count)

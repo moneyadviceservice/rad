@@ -42,6 +42,6 @@ RSpec.feature "Editing a principal's details (as shown in the directory)" do
   end
 
   def and_i_am_redirected_to_the_principal_page
-    expect(page.current_path).to eq admin_principal_path(@principal)
+    expect(page.current_path).to eq admin_retirement_principal_path(@principal)
   end
 end
