@@ -17,7 +17,7 @@ class Admin::PrincipalsController < Admin::ApplicationController
     @principal = principal
 
     if @principal.update_attributes(principal_params)
-      redirect_to admin_retirement_principal_path(@principal)
+      redirect_to resource_path
     else
       render 'edit'
     end

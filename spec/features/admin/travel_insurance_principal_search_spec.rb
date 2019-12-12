@@ -44,7 +44,7 @@ RSpec.describe 'Travel insurance principals' do
           :travel_insurance_firm,
           fca_number: '123456'
         )
-     )
+      )
     ]
   end
 

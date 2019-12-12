@@ -5,7 +5,7 @@
 
 <div class="panel panel-default">
   <div class="panel-body">
-  <%= form_for @user, url: admin_retirement_principal_user_path(@user.principal), method: :put do |f| %>
+  <%= form_for @user, url: resource_path, method: :put do |f| %>
     <%= render 'admin/shared/errors', model: @user %>
 
     <div class="form-group">
