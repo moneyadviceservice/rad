@@ -4,4 +4,9 @@ class Admin::TravelInsurancePrincipalsController < Admin::PrincipalsController
   def collection
     Principal.joins(:travel_insurance_firm)
   end
+
+  def collection_path
+    admin_travel_insurance_principals_path
+  end
+  helper_method :collection_path
 end
