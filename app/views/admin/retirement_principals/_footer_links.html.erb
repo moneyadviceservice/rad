@@ -1,0 +1,21 @@
+<div class="row">
+  <div class="col-xs-6">
+    <%= render 'admin/shared/sign_in_as_principal', principal: @principal %>
+
+    <h2>Edit</h2>
+    <p>
+      <%= link_to "Edit Principal's directory information", edit_admin_retirement_principal_path(@principal), class: 'btn btn-success t-edit-principal' %>
+    </p>
+
+    <p>
+      <%= link_to "Edit Principal's login in credentials", edit_admin_retirement_principal_user_path(@principal), class: 'btn btn-success t-edit-user' %>
+    </p>
+  </div>
+  <div class="col-xs-6 text-right">
+    <%= button_to 'Delete principal, firm and all related trading names',
+                  admin_retirement_principal_path(@principal.id),
+                  class: 't-delete btn btn-danger',
+                  method: :delete,
+                  data: { confirm: 'Are you sure you want to delete this principal and all related firm, adviser, office and trading name data?' } %>
+  </div>
+</div>

@@ -53,7 +53,9 @@ Rails.application.routes.draw do
       post :approve
     end
 
-    resources :travel_insurance_principals, only: [:index, :show]
+    resources :travel_insurance_principals do
+      resource :user, only: [:edit, :update]
+    end
 
     resources :retirement_firms, only: [:index, :show] do
       post :approve
