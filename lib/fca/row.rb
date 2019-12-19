@@ -85,7 +85,6 @@ module FCA
       match = repairs.find { |pair| pair['line'] == line }
 
       if match.nil?
-        logger.warn(name) { "Possibly malformed row detected: #{line}" } if line.include? '""'
         line
       else
         match['replacement']
