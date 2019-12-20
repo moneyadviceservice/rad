@@ -1,6 +1,6 @@
 class Admin::PrincipalsController < Admin::ApplicationController
   def index
-    @search = Principal.ransack(params[:q])
+    @search = collection.ransack(params[:q])
     @principals = @search.result.page(params[:page]).per(20)
   end
 
@@ -17,7 +17,7 @@ class Admin::PrincipalsController < Admin::ApplicationController
     @principal = principal
 
     if @principal.update_attributes(principal_params)
-      redirect_to admin_principal_path(@principal)
+      redirect_to resource_path
     else
       render 'edit'
     end
@@ -33,7 +33,7 @@ class Admin::PrincipalsController < Admin::ApplicationController
       user.destroy!
     end
 
-    redirect_to admin_principals_path, notice: message
+    redirect_to admin_retirement_principals_path, notice: message
   end
 
   private
@@ -56,5 +56,9 @@ class Admin::PrincipalsController < Admin::ApplicationController
                                       :email_address,
                                       :telephone_number,
                                       :confirmed_disclaimer)
+  end
+
+  def collection
+    Principal.all
   end
 end

@@ -53,6 +53,10 @@ Rails.application.routes.draw do
       post :approve
     end
 
+    resources :travel_insurance_principals do
+      resource :user, only: [:edit, :update]
+    end
+
     resources :retirement_firms, only: [:index, :show] do
       post :approve
 
@@ -79,7 +83,7 @@ Rails.application.routes.draw do
       resources :subsidiaries, only: :index
       resources :fca_import, only: [:index, :create, :update]
     end
-    resources :principals, except: [:new, :create] do
+    resources :retirement_principals, except: [:new, :create] do
       resource :user, only: [:edit, :update]
     end
 

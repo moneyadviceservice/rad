@@ -61,7 +61,7 @@ RSpec.feature 'Deleting principal and all related firm, adviser, office and trad
   end
 
   def and_i_am_redirected_to_the_principal_list_page
-    expect(page.current_path).to eq admin_principals_path
+    expect(page.current_path).to eq admin_retirement_principals_path
     expect(find('.t-flash-message')).to have_text('Successfully deleted')
   end
 end
