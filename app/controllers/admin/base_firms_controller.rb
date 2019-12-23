@@ -8,6 +8,11 @@ class Admin::BaseFirmsController < Admin::ApplicationController
     @firm = resource_class.find(params[:id])
   end
 
+  def resource_path
+    raise NotImplementedError
+  end
+  helper_method :resource_path
+
   def approve
     firm_id = params[:retirement_firm_id] || params[:travel_insurance_firm_id]
     @firm = resource_class.find(firm_id)

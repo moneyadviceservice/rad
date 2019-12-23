@@ -11,6 +11,10 @@ class Admin::TravelInsuranceFirmsController < Admin::BaseFirmsController
   end
   helper_method :approval_path
 
+  def resource_path
+    admin_travel_insurance_principal_path(@firm.principal)
+  end
+
   private
 
   def resource_class
