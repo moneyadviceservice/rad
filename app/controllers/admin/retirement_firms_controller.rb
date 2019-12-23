@@ -25,6 +25,10 @@ class Admin::RetirementFirmsController < Admin::BaseFirmsController
     end
   end
 
+  def resource_path
+    admin_retirement_principal_path(@firm.principal)
+  end
+
   private
 
   def resource_class
