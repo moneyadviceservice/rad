@@ -19,7 +19,6 @@ gem 'bootstrap-sass'
 gem 'bowndler', github: 'moneyadviceservice/bowndler'
 gem 'devise', '~> 4.5.0'
 gem 'devise-security', '~> 0.13'
-gem 'devise_invitable', '1.6.1'
 # Dough assets are loaded from a CDN instead of from the Gem. Do make sure that
 # the CDN version is the same as the Gem version.
 gem 'dough-ruby',

@@ -17,12 +17,6 @@ en:
       unauthenticated: "You need to sign in or sign up before continuing."
       unconfirmed: "You have to confirm your email address before continuing."
     mailer:
-      invitation_instructions:
-        salutation: "Dear %{name},"
-        great_news: "Great news - as the named Principal at %{firm_name}, you can now manage your Firm and Adviser profiles on The Money Advise Service Adviser Directory."
-        activate_account_link: Activate your account password
-        multiple_offices_title: Multiple offices
-        multiple_offices_text: "Do you have multipl offices? If so, we know you've been frustrated with the directory only allowing a single office. So we've fixed it. You are now able to add additional offices, and assign Advisers to that office."
       reset_password_instructions:
         subject: "Reset password instructions"
         salutation: Hello %{name}!
