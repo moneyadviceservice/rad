@@ -150,7 +150,6 @@ Layout/MultilineArrayBraceLayout:
 # SupportedStyles: symmetrical, new_line, same_line
 Layout/MultilineMethodCallBraceLayout:
   Exclude:
-    - 'spec/features/invited_principal_creates_account_spec.rb'
     - 'spec/features/self_service/advisers_index_spec.rb'
     - 'spec/features/self_service/firms_index_spec.rb'
     - 'spec/features/self_service/offices_index_spec.rb'
@@ -163,7 +162,6 @@ Layout/MultilineMethodCallIndentation:
   Exclude:
     - 'db/migrate/20150706102943_move_website_from_principals_to_firms.rb'
     - 'db/migrate/20190606111937_remove_institute_financial_planning.rb'
-    - 'spec/features/invited_principal_creates_account_spec.rb'
     - 'spec/features/principal_reset_password_spec.rb'
 
 # Offense count: 1
