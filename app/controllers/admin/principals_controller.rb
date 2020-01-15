@@ -43,9 +43,7 @@ class Admin::PrincipalsController < Admin::ApplicationController
   end
 
   def destroy_message(principal)
-    "Successfully deleted #{principal.full_name}, " \
-    "#{principal.firm.registered_name} and " \
-    "#{principal.firm.trading_names.count} related trading names."
+    "Successfully deleted #{principal.full_name} and all associated firms."
   end
 
   def principal_params
