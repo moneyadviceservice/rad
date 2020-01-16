@@ -33,7 +33,7 @@ class Admin::PrincipalsController < Admin::ApplicationController
       user.destroy!
     end
 
-    redirect_to admin_retirement_principals_path, notice: message
+    redirect_to collection_path, notice: message
   end
 
   private
