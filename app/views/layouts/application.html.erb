@@ -24,24 +24,24 @@
 
   <%= javascript_include_tag('modernizr/modernizr') %>
 </head>
+
 <body>
-<%= render 'shared/svg_icons' %>
-<%= render 'shared/skip_links' %>
-<%= render 'shared/header' %>
-<%= yield :breadcrumbs %>
-
-<main role="main" id="main">
-  <div class='l-constrained'>
-    <div class="<%= layout_class %>">
-      <%= render 'shared/alerts' %>
-      <%= yield :notifications %>
-      <%= yield %>
+  <%= render 'shared/svg_icons' %>
+  <%= render 'shared/skip_links' %>
   <%= respond_to?(:header_partial) ? render(header_partial): render('shared/header') %>
-    </div>
-  </div>
-</main>
+  <%= yield :breadcrumbs %>
 
-<%= render 'shared/footer' %>
-<%= javascript_include_tag 'requirejs/require', data: { main: javascript_path('application') } %>
+  <main role="main" id="main">
+    <div class='l-constrained'>
+      <div class="<%= layout_class %>">
+        <%= render 'shared/alerts' %>
+        <%= yield :notifications %>
+        <%= yield %>
+      </div>
+    </div>
+  </main>
+
+  <%= render 'shared/footer' %>
+  <%= javascript_include_tag 'requirejs/require', data: { main: javascript_path('application') } %>
 </body>
 </html>
