@@ -1,0 +1,16 @@
+<nav class="t-navigation">
+  <ul class="navigation">
+    <% if current_user.blank? && !user_signed_in? %>
+      <li class='navigation__item'>
+        <%= link_to t('authentication_sign_in'), new_user_session_path, class: 'navigation__link t-sign-in' %>
+      </li>
+      <li class='navigation__item'>
+        <%= link_to t('authentication_sign_up'), new_travel_insurance_registration_path, class: 'navigation__link' %>
+      </li>
+    <% else %>
+      <%# Self-service for Travel Insurance Directory doesn't exist yet. %>
+      <%# When it does, signed-in navigation goes here. %>
+      <%# See existing Retirement navigation for reference. %>
+    <% end %>
+  </ul>
+</nav>

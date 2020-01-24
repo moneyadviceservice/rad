@@ -36,6 +36,7 @@
       <%= render 'shared/alerts' %>
       <%= yield :notifications %>
       <%= yield %>
+  <%= respond_to?(:header_partial) ? render(header_partial): render('shared/header') %>
     </div>
   </div>
 </main>
