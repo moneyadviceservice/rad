@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="<%= 'dev' if Rails.env.development? %>">
 <head>
-  <title>Retirement Adviser Directory</title>
+  <title>Directories</title>
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width">
   <%= csrf_meta_tags %>
@@ -24,23 +24,24 @@
 
   <%= javascript_include_tag('modernizr/modernizr') %>
 </head>
+
 <body>
-<%= render 'shared/svg_icons' %>
-<%= render 'shared/skip_links' %>
-<%= render 'shared/header' %>
-<%= yield :breadcrumbs %>
+  <%= render 'shared/svg_icons' %>
+  <%= render 'shared/skip_links' %>
+  <%= respond_to?(:header_partial) ? render(header_partial): render('shared/header') %>
+  <%= yield :breadcrumbs %>
 
-<main role="main" id="main">
-  <div class='l-constrained'>
-    <div class="<%= layout_class %>">
-      <%= render 'shared/alerts' %>
-      <%= yield :notifications %>
-      <%= yield %>
+  <main role="main" id="main">
+    <div class='l-constrained'>
+      <div class="<%= layout_class %>">
+        <%= render 'shared/alerts' %>
+        <%= yield :notifications %>
+        <%= yield %>
+      </div>
     </div>
-  </div>
-</main>
+  </main>
 
-<%= render 'shared/footer' %>
-<%= javascript_include_tag 'requirejs/require', data: { main: javascript_path('application') } %>
+  <%= render 'shared/footer' %>
+  <%= javascript_include_tag 'requirejs/require', data: { main: javascript_path('application') } %>
 </body>
 </html>

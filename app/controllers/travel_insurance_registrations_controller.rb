@@ -3,4 +3,9 @@ class TravelInsuranceRegistrationsController < BaseRegistrationsController
     'travel_insurance_registrations.heading'
   end
   helper_method :registration_title
+
+  def header_partial
+    'shared/travel_header'
+  end
+  helper_method :header_partial
 end
