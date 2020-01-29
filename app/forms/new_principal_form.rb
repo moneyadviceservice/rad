@@ -10,6 +10,12 @@ class NewPrincipalForm
   attr_accessor(*PARAMS)
   alias email_address email
 
+  def initialize(attributes = {})
+    super(attributes)
+    self.email = email&.downcase
+    self.email_address = email_address&.downcase
+  end
+
   validate do
     user = validated_user
 
