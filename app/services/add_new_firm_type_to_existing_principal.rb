@@ -11,7 +11,7 @@ class AddNewFirmTypeToExistingPrincipal
 
   def call
     new_firm = principal.send(create_method, existing_firm_attributes)
-    Identification.contact(principal).deliver_later
+    SuccessfulRegistrationMailer.contact(principal, form.registration_type).deliver_later
     NewFirmMailer.notify(new_firm).deliver_later
   end
 

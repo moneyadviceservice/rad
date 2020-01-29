@@ -106,11 +106,14 @@ en:
     message: An email will be sent to you shortly with further instructions.
     contact_us: If you do not receive an email from us within 24 hours, please contact us at
 
-  identification:
-    contact:
+  successful_registration_mailer:
+    retirement_advice_registrations:
       thanks: Thank you for your interest in joining the Adviser Directory.
       advice: We advise you to keep this email safe as you will need the link below to continue your firm's registration process.
       verify_email_link: Please click the link below to verify your email address and continue with the registration process.
+    travel_insurance_registrations:
+      thanks: Thank you for registering your interest in the Money & Pensions Service Travel Insurance Directory for providers of specialist insurance covering pre-existing medical conditions.
+      advice: We are currently finalising entry criteria for the Directory. Once this has been completed we will email you with a link so you can return and complete your registration entry. Please bear with us. We will contact you again soon. In the meantime, if you have any questions, please contact Teresa.Fritz@maps.org.uk
 
   sign_in_panel:
     heading: Already Registered?
