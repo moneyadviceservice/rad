@@ -93,8 +93,8 @@
               <% end %>
             </td>
             <td><%= link_to(firm.advisers.count, admin_firm_advisers_path(firm)) %></td>
-            <td><%= firm.created_at.strftime("%d %b %Y") %></td>
-            <td><%= firm.approved_at&.strftime("%d %b %Y") || 'Not approved' %></td>
+            <td><%= firm.created_at.to_s(:short) %></td>
+            <td><%= firm.approved_at&.to_s(:short) || 'Not approved' %></td>
           </tr>
         <% end %>
       <% else %>

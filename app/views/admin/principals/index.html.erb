@@ -48,7 +48,7 @@
             <td><%= link_to principal.firm.registered_name, admin_firm_path(principal.firm) %></td>
             <td><%= principal.fca_number %></td>
             <td><%= link_to "#{principal.first_name} #{principal.last_name}", admin_principal_path(principal) %></td>
-            <td><%= principal.created_at.strftime("%d %b %Y") %></td>
+            <td><%= principal.created_at.to_s(:short) %></td>
           </tr>
         <% end %>
       <% else %>

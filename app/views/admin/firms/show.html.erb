@@ -71,7 +71,7 @@
 
   <ul>
     <% @firm.advisers.each do |adviser| %>
-      <li class='t-adviser'><%= link_to adviser.name, admin_adviser_path(adviser) %>, added <%= adviser.created_at.strftime("%d %b %Y") %></li>
+      <li class='t-adviser'><%= link_to adviser.name, admin_adviser_path(adviser) %>, added <%= adviser.created_at.to_s(:short) %></li>
     <% end %>
   </ul>
 

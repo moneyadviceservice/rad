@@ -78,7 +78,7 @@
                                     class: 't-firm-registered-name' %></td>
                 <% end %>
                 <td class="t-postcode"><%= adviser.postcode %></td>
-                <td><%= adviser.created_at.strftime("%d %b %Y") %></td>
+                <td><%= adviser.created_at.to_s(:short) %></td>
               </tr>
           <% end %>
       <% else %>

@@ -96,7 +96,7 @@ RSpec.feature 'Approving firms on the admin interface', :inline_job_queue do
     firm_info = index_page.firms.select do |firm|
                   firm.fca_number.to_s == approved_firm.fca_number.to_s
                 end.first
-    expect(firm_info.approved).to eq approval_date.strftime('%d %b %Y')
+    expect(firm_info.approved).to eq approval_date.to_s(:short)
   end
 
   def then_the_firm_advisers_and_offices_get_pushed_to_the_directory(firm)
