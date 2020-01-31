@@ -77,7 +77,7 @@ bundle exec rake db:test:prepare
 
 This application relies on Algolia for indexing.
 
-There are 2 indices and are both consumed by `rad_consumer`.
+There are 2 indices and both are consumed by `rad_consumer`.
 
 Make sure you retrieve and set the following envs based on the environment:
 
@@ -86,7 +86,7 @@ ALGOLIA_APP_ID
 ALGOLIA_API_KEY
 ```
 
-#### Testing
+#### Manual Testing
 
 When changing the index, make sure you point to a test Algolia application.
 
@@ -95,18 +95,12 @@ purposes only, and retrieve the relative `ALGOLIA_API_KEY` from KeyPass.
 
 **Make sure you use a test Algolia application, and not the staging or production one.**
 
-Changes to the index and its seeds should be reflected in the [test_seeds.rb](./lib/algolia_index/test_seeds.rb)
-file.
-
-When you are ready to rebuild the test index, please run:
-
-```sh
-RAILS_ENV=test bundle exec rake index:dummy
-```
+Use `bundle exec rake index:all` to rebuild the index on the Algolia app you've configured.
+This will reflect any schema/data changes you've made, which can then be viewed via a RAD Consumer instance pointing at the same Algolia app.
 
 #### Re-indexing staging/production
 
-This should be a one-off operation, necessary only in the format of the indices
+This should be a one-off operation, necessary only if the format of the indices
 change.
 
 If so, you can use:
@@ -126,7 +120,16 @@ bundle exec rails s -p 5000
 Then navigate to [http://localhost:5000/](http://localhost:5000/) to access the
 application locally.
 
+## Background jobs
+
 Sidekiq is used for processing any background jobs (such as the FCA import).
+
+Sidekiq depends on redis, so make sure you have redis running, then:
+
+```sh
+bundle exec sidekiq
+```
+
 You can see the `sidekiq` dashboard at [http://localhost:5000/sidekiq](http://localhost:5000/sidekiq).
 
 ## Running the Tests
@@ -134,48 +137,12 @@ You can see the `sidekiq` dashboard at [http://localhost:5000/sidekiq](http://lo
 To run the complete test suite:
 
 ```sh
-bundle exec rake
-```
-
-To run the RSpec tests:
-
-```sh
-bundle exec rspec
-```
-
-To run the javascript tests:
-
-```
+bundle exec rspec spec/features
+bundle exec rspec --exclude-pattern='spec/features/**/**'
 node_modules/.bin/karma start spec/javascripts/karma.conf.js --single-run=true
 ```
 
-### RAD Consumer Integration
-
-As mentioned above, `rad_consumer` depends on `rad`.
-
-**To make sure the integration does not break**, please make sure you setup the
-`rad_consumer` repo (follow instructions in the [`rad_consumer` README](https://github.com/moneyadviceservice/rad_consumer#rad-consumer)) **even if you
-don't need to work on it now**.
-
-Make sure you always have the latest `master` of `rad_consumer`, then run:
-
-```sh
-bundle exec rspec -I ../rad_consumer ../rad_consumer/spec/features
-```
-
-This will run a set of acceptance tests for `rad_consumer` that would ensure
-that any changes you may introduce in `rad` do not break `rad_consumer`.
-
-
-## Background jobs
-
-If you need to run the background jobs during development, you'll need to have
-a running instance of sidekiq. Sidekiq depends on redis, so make sure you have
-redis running, then:
-
-```sh
-bundle exec sidekiq
-```
+Feature specs are run separately due to unresolved non-deterministic failures when running the test suite as a whole.
 
 ## Style Checking
 
