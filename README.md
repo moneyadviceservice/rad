@@ -20,9 +20,8 @@ Advice in the future. The repo should be renamed at some point to reflect this.*
 
 ## Prerequisites
 
-* [Ruby 2.5.3](http://www.ruby-lang.org/en)
+* [Ruby 2.6.5](http://www.ruby-lang.org/en)
 * [Node.js](http://nodejs.org/)
-* [Bundler](http://bundler.io)
 * [PostgreSQL](http://www.postgresql.org/)
 * [redis](http://redis.io)
 
@@ -50,8 +49,10 @@ Make sure the following variables are set with appropriate values in your .env f
 - `AZURE_ACCOUNT`: name of the Azure account
 - `AZURE_CONTAINER`: name of the blob container on Azure
 - `AZURE_SHARED_KEY`: shared key for authentication
-- `FCA_LOG_FILE`: location of log file or `STDOUT`
+- `FCA_LOG_FILE`: location of log file
 - `FCA_LOG_LEVEL`: log level ie [`debug`, `info`, `warn`, `error`, `fatal`, `unknown`]
+
+*NB - setting the FCA_LOG_FILE to a memorable location in your tmp folder is useful when debugging the FCA file import.*
 
 See FCA Import [documentation](#tech-docs) for more detail.
 
@@ -60,14 +61,16 @@ See FCA Import [documentation](#tech-docs) for more detail.
 ```sh
 cp config/database.example.yml config/database.yml
 ```
-Be sure to remove or modify the `username` attribute if it needs to be.
+
+Be sure to remove or modify the `username` attribute depending on how you've configured your Postgres install.
 
 Make sure Postgres is running, then:
 
 ```sh
-bundle exec rake db:create \
-&& for env in development test; do RAILS_ENV=$env bundle exec rake db:migrate; done \
-&& bundle exec rake db:seed
+bundle exec rake db:create
+bundle exec rake db:schema:load
+bundle exec rake db:seed
+bundle exec rake db:test:prepare
 ```
 
 ### Indexing
