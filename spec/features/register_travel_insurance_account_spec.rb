@@ -63,11 +63,13 @@ RSpec.feature 'Principal provides travel insurance information', :inline_job_que
   end
 
   def and_i_later_receive_an_email_confirming_my_registration
-    expect(
+    email =
       ActionMailer::Base.deliveries.find do |mail|
         mail.subject.match?(/Your Directory Account/)
       end
-    ).to_not be_nil
+
+    expect(email).to_not be_nil
+    expect(email.body.raw_source).to include('Travel Insurance Directory')
   end
 
   def and_i_registered_a_principal_and_retirement_advice_firm

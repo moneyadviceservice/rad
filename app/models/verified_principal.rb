@@ -43,7 +43,7 @@ class VerifiedPrincipal
   end
 
   def send_notifications(firm)
-    Identification.contact(@user.principal).deliver_later
+    SuccessfulRegistrationMailer.contact(@user.principal, form.registration_type).deliver_later
     NewFirmMailer.notify(firm).deliver_later
   end
 end
