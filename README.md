@@ -14,6 +14,8 @@ Advice in the future. The repo should be renamed at some point to reflect this.*
 ## Technical Docs <a name="tech-docs"></a>
 
 * [RAD](https://github.com/moneyadviceservice/technical-docs/tree/master/rad)
+* [Architecture](https://github.com/moneyadviceservice/technical-docs/blob/master/rad/architecture.md)
+* [Deployment](https://github.com/moneyadviceservice/technical-docs/blob/master/rad/deployment.md).
 * [FCA Import](https://github.com/moneyadviceservice/technical-docs/blob/master/rad/running_fca_import_locally.md)
 
 ## Prerequisites
