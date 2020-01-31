@@ -1,8 +1,15 @@
-# IFA Directory
+# Directories
 
-A directory to help people nearing retirement find an Independent Financial Advisor.
+Directories to help people find financial advisors.
 
-![Build Status](https://travis-ci.org/moneyadviceservice/rad.svg?branch=master)
+This project currently covers:
+
+* Retirement Advice
+* Travel Insurance
+
+*NB - The repo is called 'rad' as it originally only contained the Retirement Advice Directory.
+It now contains a directory for Travel Insurance as well, and will be extended to cover Mortgage
+Advice in the future. The repo should be renamed at some point to reflect this.*
 
 ## Technical Docs <a name="tech-docs"></a>
 
