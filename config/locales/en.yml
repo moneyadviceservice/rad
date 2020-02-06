@@ -96,7 +96,7 @@ en:
   authentication_sign_up: Register
   authentication_sign_out: Sign out
   required: "* indicates required fields"
-  confirmation_statement: By registering your firm's details with the Money Advice Service, you are confirming that these details and any responses you give to our registration questions are true and accurate.
+  confirmation_statement: By registering your firm's details with the Money & Pensions Service,  you are confirming that these details and any responses you give to our registration questions are true and accurate.
 
   footer:
     text: If you need help please contact us at
