@@ -8,4 +8,8 @@ class TravelInsuranceRegistrationsController < BaseRegistrationsController
     'shared/travel_header'
   end
   helper_method :header_partial
+
+  def admin_email_address
+    "traveldirectory@maps.org.uk"
+  end
 end
