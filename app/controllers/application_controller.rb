@@ -18,7 +18,7 @@ class ApplicationController < ActionController::Base
   end
 
   def admin_email_address
-    ActionMailer::Base.default[:from]
+    ENV['RAD_ADMIN_EMAIL']
   end
   helper_method :admin_email_address
 end
