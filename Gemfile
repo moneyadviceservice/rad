@@ -49,9 +49,9 @@ gem 'unicorn'
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
-  gem 'solargraph'
   gem 'letter_opener'
   gem 'listen'
+  gem 'solargraph'
   gem 'spring'
   gem 'spring-commands-rspec'
 end
