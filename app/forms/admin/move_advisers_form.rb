@@ -32,7 +32,7 @@ module Admin
 
     def subsidiaries
       Firm
-        .registered
+        .onboarded
         .where(fca_number: destination_firm_fca_number)
         .order(Arel.sql('lower(registered_name)'))
     end

@@ -1,15 +1,14 @@
-RSpec.describe VerifiedPrincipal do
+RSpec.describe VerifiedPrincipal, inline_job_queue: true do
   describe '#register!' do
-    subject { described_class.new(form_data, 'ABC') }
+    subject { described_class.new(form_data, 'Weyland-Yutani Ltd') }
 
-    let(:user_params) do
-      {
-        email: 'test@maps.org.uk',
-        password: 'Password1*',
-        password_confirmation: 'Password1*'
-      }
+    let(:form_data) do
+      principal_attributes
+        .merge(user_attributes)
+        .merge(registration_type: registration_type)
     end
-    let(:principal_params) do
+
+    let(:principal_attributes) do
       {
         fca_number: '123456',
         first_name: 'Margo',
@@ -20,26 +19,42 @@ RSpec.describe VerifiedPrincipal do
         confirmed_disclaimer: 1
       }
     end
-    let(:principal) { double(Principal) }
-    let(:form_data) { principal_params.merge(user_params) }
-    let(:form) { NewPrincipalForm.new(form_data) }
-    let(:user) { double(User, principal: Principal.new) }
-    let(:identification) { double(Identification) }
+
+    let(:user_attributes) do
+      {
+        email: 'test@maps.org.uk',
+        password: 'Password1*',
+        password_confirmation: 'Password1*'
+      }
+    end
+
+    let(:registration_type) { 'retirement_advice_registrations' }
 
     it 'creates the user, principal and associated firm' do
-      expect(NewPrincipalForm).to receive(:new).and_return(form)
-      expect(User).to receive(:new).with(user_params).and_return(user)
-      expect(user).to receive(:build_principal).with(principal_params)
-      expect(user).to receive(:save!)
       expect(Stats).to receive(:increment).with('radsignup.principal.created')
-      expect(Identification)
+      successful_registration_mailer_double = double(SuccessfulRegistrationMailer)
+      new_firm_mailer_double = double(NewFirmMailer)
+      allow(SuccessfulRegistrationMailer)
         .to receive(:contact)
-        .with(user.principal)
-        .and_return(identification)
-      expect(identification).to receive(:deliver_later)
-      expect(NewFirmMailer).to receive_message_chain(:notify, :deliver_later)
+        .and_return(successful_registration_mailer_double)
+      expect(successful_registration_mailer_double).to receive(:deliver_later)
+      allow(NewFirmMailer)
+        .to receive(:notify)
+        .and_return(new_firm_mailer_double)
+      expect(new_firm_mailer_double).to receive(:deliver_later)
 
       subject.register!
+
+      expect(User.count).to eq 1
+      expect(Principal.count).to eq 1
+      expect(Firm.count).to eq 1
+
+      principal = Principal.first
+      expect(principal.user).to eq User.first
+      expect(principal.firm).to eq Firm.first
+
+      expect(SuccessfulRegistrationMailer).to have_received(:contact).with(principal, registration_type)
+      expect(NewFirmMailer).to have_received(:notify).with(principal.firm)
     end
   end
 end

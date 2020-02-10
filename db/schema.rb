@@ -360,6 +360,16 @@ ActiveRecord::Schema.define(version: 2020_01_29_133118) do
     t.integer "firms_providing_non_uk_residents", default: 0
   end
 
+  create_table "travel_insurance_firms", force: :cascade do |t|
+    t.integer "fca_number", null: false
+    t.string "registered_name", null: false
+    t.datetime "approved_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["approved_at"], name: "index_travel_insurance_firms_on_approved_at"
+    t.index ["fca_number"], name: "index_travel_insurance_firms_on_fca_number", unique: true
+  end
+
   create_table "users", id: :serial, force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: ""
@@ -390,5 +400,4 @@ ActiveRecord::Schema.define(version: 2020_01_29_133118) do
     t.index ["password_changed_at"], name: "index_users_on_password_changed_at"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
-
 end

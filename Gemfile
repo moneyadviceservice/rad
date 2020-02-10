@@ -51,6 +51,9 @@ group :development do
   gem 'binding_of_caller'
   gem 'letter_opener'
   gem 'listen'
+  gem 'solargraph'
+  gem 'spring'
+  gem 'spring-commands-rspec'
 end
 
 group :test, :development do
@@ -78,5 +81,5 @@ group :test do
   gem 'timecop'
   gem 'tzinfo-data'
   gem 'vcr'
-  gem 'webmock'
+  gem 'webmock', '3.5.0'
 end

@@ -20,14 +20,14 @@ namespace :index do
 
     Rails.logger.info 'Querying the db (this might take some time...)'
 
-    advisers = Firm.registered
+    advisers = Firm.onboarded
                    .approved
                    .includes(:advisers)
                    .map(&:advisers)
                    .flatten
                    .reject(&no_geoloc)
 
-    offices = Firm.registered
+    offices = Firm.onboarded
                   .approved
                   .includes(:offices)
                   .map(&:offices)

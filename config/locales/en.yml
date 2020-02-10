@@ -96,7 +96,7 @@ en:
   authentication_sign_up: Register
   authentication_sign_out: Sign out
   required: "* indicates required fields"
-  confirmation_statement: By registering your firm's details with the Money Advice Service, you are confirming that these details and any responses you give to our registration questions are true and accurate.
+  confirmation_statement: By registering your firm's details with the Money & Pensions Service,  you are confirming that these details and any responses you give to our registration questions are true and accurate.
 
   footer:
     text: If you need help please contact us at
@@ -106,18 +106,27 @@ en:
     message: An email will be sent to you shortly with further instructions.
     contact_us: If you do not receive an email from us within 24 hours, please contact us at
 
-  identification:
-    contact:
-      thanks: Thank you for your interest in joining the Retirement Adviser Directory.
+  successful_registration_mailer:
+    retirement_advice_registrations:
+      thanks: Thank you for your interest in joining the Adviser Directory.
       advice: We advise you to keep this email safe as you will need the link below to continue your firm's registration process.
       verify_email_link: Please click the link below to verify your email address and continue with the registration process.
+    travel_insurance_registrations:
+      thanks: Thank you for registering your interest in the Money & Pensions Service Travel Insurance Directory for providers of specialist insurance covering pre-existing medical conditions.
+      advice: We are currently finalising entry criteria for the Directory. Once this has been completed we will email you with a link so you can return and complete your registration entry. Please bear with us. We will contact you again soon. In the meantime, if you have any questions, please contact Teresa.Fritz@maps.org.uk
 
   sign_in_panel:
     heading: Already Registered?
     description: Sign in to your account to edit your firm's details.
 
-  registration:
+  travel_insurance_registrations:
+    heading: Travel Insurance Directory - Firm Registration
+    intro: Welcome to the registration page for the Money & Pensions Service Travel Insurance Directory.
+    prompt: Please enter the name and job title of the Senior Manager responsible for the accuracy of the information displayed on the Directory.
+    reference_number: FCA Firm Reference Number (FRN)
+  retirement_advice_registrations:
     heading: Retirement Adviser Directory – Self Service
+  registration:
     introduction: Sign in to edit your firm's details, or register your firm to appear in the directory.
     sub_heading: Register your firm
     eligibility_explanation: Answer the following questions to see if your firm is eligible to appear in the directory.

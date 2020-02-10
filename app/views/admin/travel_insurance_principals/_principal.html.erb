@@ -1,0 +1,10 @@
+<tr class="t-principal-row">
+  <td class="t-registered-name">
+    <%= link_to principal.travel_insurance_firm.registered_name, admin_travel_insurance_firm_path(principal.travel_insurance_firm) %>
+  </td>
+  <td class="t-fca-number"><%= principal.fca_number %></td>
+  <td>
+    <%= link_to "#{principal.first_name} #{principal.last_name}", admin_travel_insurance_principal_path(principal) %>
+  </td>
+  <td><%= principal.created_at.to_s(:short) %></td>
+</tr>

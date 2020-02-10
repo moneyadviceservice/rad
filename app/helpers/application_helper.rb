@@ -11,7 +11,7 @@ module ApplicationHelper
   end
 
   def register_path
-    prequalify_principals_path
+    prequalify_retirement_advice_registrations_path
   end
 
   def required_asterisk(string)

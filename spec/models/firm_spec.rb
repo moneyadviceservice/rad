@@ -54,20 +54,20 @@ RSpec.describe Firm do
     end
   end
 
-  describe '#registered?' do
+  describe '#onboarded?' do
     def set_marker_field(firm, value)
-      firm.send("#{Firm::REGISTERED_MARKER_FIELD}=", value)
+      firm.send("#{Firm::ONBOARDED_MARKER_FIELD}=", value)
     end
 
-    it 'is false if the REGISTERED_MARKER_FIELD field is nil' do
+    it 'is false if the ONBOARDED_MARKER_FIELD field is nil' do
       set_marker_field(firm, nil)
-      expect(firm).not_to be_registered
+      expect(firm).not_to be_onboarded
     end
 
-    it 'is true if the REGISTERED_MARKER_FIELD field has a valid value' do
-      Firm::REGISTERED_MARKER_FIELD_VALID_VALUES.each do |value|
+    it 'is true if the ONBOARDED_MARKER_FIELD field has a valid value' do
+      Firm::ONBOARDED_MARKER_FIELD_VALID_VALUES.each do |value|
         set_marker_field(firm, value)
-        expect(firm).to be_registered
+        expect(firm).to be_onboarded
       end
     end
   end
@@ -173,7 +173,13 @@ RSpec.describe Firm do
   end
 
   describe 'validation' do
-    it 'is valid with valid attributes' do
+    subject(:firm) { create(:firm) }
+
+    it 'is minimal for new firms that have not compeleted onboarding' do
+      expect { create(:not_onboarded_firm) }.to_not raise_error
+    end
+
+    it 'passes with valid attributes' do
       expect(firm).to be_valid
     end
 
@@ -181,140 +187,138 @@ RSpec.describe Firm do
       expect(firm.field_order).not_to be_empty
     end
 
-    describe 'Website address' do
-      context 'when provided' do
+    context 'on update' do
+      describe 'website_address' do
         it 'must not exceed 100 characters' do
-          expect(build(:firm, website_address: "#{'a' * 100}.com")).not_to be_valid
+          firm.website_address = "#{'a' * 100}.com"
+          expect(firm).to_not be_valid
         end
 
         it 'must contain at least one .' do
-          expect(build(:firm, website_address: 'http://examplecom')).not_to be_valid
-          expect(build(:firm, website_address: 'http://example.com')).to be_valid
+          firm.website_address = 'http://examplecom'
+          expect(firm).to_not be_valid
         end
 
         it 'must not contain spaces' do
-          expect(build(:firm, website_address: 'http://example site.com')).not_to be_valid
+          firm.website_address = 'http://example site.com'
+          expect(firm).not_to be_valid
         end
 
         it 'does not require the protocol to be present' do
-          expect(build(:firm, website_address: 'www.example.com')).to be_valid
+          firm.website_address = 'www.example.com'
+          expect(firm).to be_valid
         end
 
         it 'must require the protocol to be http or https if provided' do
-          expect(build(:firm, website_address: 'http://www.example.com')).to be_valid
-          expect(build(:firm, website_address: 'https://www.example.com')).to be_valid
-          expect(build(:firm, website_address: 'ftp://www.example.com')).not_to be_valid
+          firm.website_address = 'http://www.example.com'
+          expect(firm).to be_valid
+          firm.website_address = 'https://www.example.com'
+          expect(firm).to be_valid
+          firm.website_address = 'ftp://www.example.com'
+          expect(firm).to_not be_valid
         end
 
         it 'allows paths to be in the address' do
-          expect(build(:firm, website_address: 'www.example.com/user')).to be_valid
-        end
-      end
-    end
-
-    describe 'languages' do
-      context 'when it contains valid language strings' do
-        before { firm.languages = %w[fra deu] }
-        it { is_expected.to be_valid }
-      end
-
-      context 'when it contains invalid language strings' do
-        before { firm.languages = %w[no_language fra] }
-        it { is_expected.to be_invalid }
-      end
-
-      context 'when it is empty' do
-        before { firm.languages = [] }
-        it { is_expected.to be_valid }
-      end
-
-      context 'when it contains blank values' do
-        before { firm.languages = [''] }
-        it 'filters them out pre-validation' do
-          firm.valid?
-          expect(firm.languages).to be_empty
+          firm.website_address = 'www.example.com/user'
+          expect(firm).to be_valid
         end
       end
 
-      context 'when it contains duplicate values' do
-        before { firm.languages = %w[fra fra deu] }
-        it 'filters them out pre-validation' do
-          firm.valid?
-          expect(firm.languages).to eq %w[fra deu]
-        end
-      end
-    end
-
-    describe 'in person advice methods' do
-      # Make the record generally valid for either remote or local types vvv
-      before { firm.other_advice_methods = create_list(:other_advice_method, rand(1..3)) }
-
-      context 'when none assigned' do
-        before { firm.in_person_advice_methods = [] }
-
-        context 'when the user selects remote advice' do
-          before { firm.primary_advice_method = :remote }
+      describe 'languages' do
+        context 'when it contains valid language strings' do
+          before { firm.languages = %w[fra deu] }
           it { is_expected.to be_valid }
+        end
 
-          it 'clears in-person advice methods' do
-            subject.valid?
-            expect(subject.in_person_advice_methods).to be_empty
+        context 'when it contains invalid language strings' do
+          before { firm.languages = %w[no_language fra] }
+          it { is_expected.to be_invalid }
+        end
+
+        context 'when it is empty' do
+          before { firm.languages = [] }
+          it { is_expected.to be_valid }
+        end
+
+        context 'when it contains blank values' do
+          before { firm.languages = [''] }
+          it 'filters them out pre-validation' do
+            firm.valid?
+            expect(firm.languages).to be_empty
           end
         end
 
-        context 'when the user selects local advice' do
-          before { firm.primary_advice_method = :local }
-          it { is_expected.not_to be_valid }
+        context 'when it contains duplicate values' do
+          before { firm.languages = %w[fra fra deu] }
 
-          it 'preserves remote advice methods' do
-            subject.valid?
-            expect(subject.other_advice_methods).to_not be_empty
+          it 'filters them out pre-validation' do
+            firm.valid?
+            expect(firm.languages).to eq %w[fra deu]
           end
         end
       end
-    end
 
-    describe 'other (remote) advice methods' do
-      context 'when none assigned' do
-        before { firm.other_advice_methods = [] }
+      describe 'advice methods' do
+        before do
+          # Make the firm invalid by clearing all advice methods.
+          firm.primary_advice_method = nil
+          firm.other_advice_methods = []
+          firm.in_person_advice_methods = []
+          expect(firm).to_not be_valid
+        end
 
-        context 'when the user selects remote advice' do
+        context 'when primary_advice_method is remote' do
           before { firm.primary_advice_method = :remote }
-          it { is_expected.not_to be_valid }
+
+          it 'ensures other_advice_methods is present' do
+            expect(firm).to_not be_valid
+            firm.other_advice_methods = [build(:other_advice_method)]
+            expect(firm).to be_valid
+          end
+
+          it 'clears in_person_advice_methods if set' do
+            firm.in_person_advice_methods = [build(:in_person_advice_method)]
+            firm.valid?
+            expect(firm.in_person_advice_methods).to eq []
+          end
         end
 
-        context 'when the user selects local advice' do
+        context 'when primary_advice_method is local' do
           before { firm.primary_advice_method = :local }
-          it { is_expected.to be_valid }
+
+          it 'ensures in_person_advice_methods is present' do
+            expect(firm).to_not be_valid
+            firm.in_person_advice_methods = [build(:in_person_advice_method)]
+            expect(firm).to be_valid
+          end
         end
       end
-    end
 
-    describe 'remote or local advice method' do
-      context 'when none assigned' do
-        before { firm.other_advice_methods = [] }
-        before { firm.in_person_advice_methods = [] }
-        before { firm.primary_advice_method = nil }
-
-        it { is_expected.not_to be_valid }
-      end
-    end
-
-    describe 'free initial meeting' do
-      context 'when missing' do
-        before { firm.free_initial_meeting = nil }
-
-        it { is_expected.not_to be_valid }
+      describe 'free_initial_meeting' do
+        it 'is not valid when missing' do
+          firm.free_initial_meeting = nil
+          expect(firm).to_not be_valid
+        end
       end
 
-      context 'when set to true' do
-        before { firm.free_initial_meeting = true }
+      describe 'initial_meeting_duration' do
+        context 'when free_initial_meeting is true' do
+          before { firm.free_initial_meeting = true }
 
-        describe 'initial meeting duration' do
-          before { firm.initial_meeting_duration = nil }
+          it 'must be present' do
+            firm.initial_meeting_duration = nil
+            expect(firm).to_not be_valid
+            firm.initial_meeting_duration = build(:initial_meeting_duration)
+            expect(firm).to be_valid
+          end
+        end
 
-          context 'when missing' do
-            it { is_expected.not_to be_valid }
+        context 'when free_initial_meeting is false' do
+          before { firm.free_initial_meeting = false }
+
+          it 'can be blank' do
+            firm.initial_meeting_duration = nil
+            expect(firm).to be_valid
           end
         end
       end

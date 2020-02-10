@@ -27,7 +27,7 @@
     <% @inactive_firms.each do |inactive_firm| %>
       <tr>
         <td><%= inactive_firm.fca_number %></td>
-        <td><%= link_to inactive_firm.registered_name, admin_firm_path(inactive_firm) %></td>
+        <td><%= link_to inactive_firm.registered_name, admin_retirement_firm_path(inactive_firm) %></td>
         <td><%= inactive_firm.publishable? ? 'Yes' : 'No' %></td>
         <td><%= inactive_firm.api_status %></td>
       </tr>

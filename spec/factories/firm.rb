@@ -1,9 +1,15 @@
 FactoryBot.define do
   sequence(:registered_name) { |n| "Financial Advice #{n} Ltd." }
 
+  factory :not_onboarded_firm, class: Firm, aliases: [:invalid_firm] do
+    fca_number
+    registered_name
+  end
+
   factory :firm, aliases: %i[publishable_firm onboarded_firm] do
     fca_number
     registered_name
+
     website_address { Faker::Internet.url }
     in_person_advice_methods { create_list(:in_person_advice_method, rand(1..3)) }
     free_initial_meeting { [true, false].sample }
@@ -46,19 +52,12 @@ FactoryBot.define do
     factory :firm_without_advisers, traits: [:without_advisers]
     factory :firm_with_offices, traits: [:with_offices]
     factory :firm_without_offices, traits: [:without_offices]
-    factory :firm_with_advisers_and_offices,
-            traits: %i[with_advisers with_offices]
+    factory :firm_with_advisers_and_offices, traits: %i[with_advisers with_offices]
     factory :firm_with_principal, traits: [:with_principal]
     factory :firm_with_no_business_split, traits: [:with_no_business_split]
     factory :firm_with_remote_advice, traits: [:with_remote_advice]
     factory :firm_with_subsidiaries, traits: [:with_trading_names]
     factory :firm_with_trading_names, traits: [:with_trading_names]
-    factory :invalid_firm, traits: [:invalid], aliases: [:not_onboarded_firm]
-
-    trait :invalid do
-      # Invalidate the marker field without referencing it directly
-      __registered { false }
-    end
 
     trait :not_approved do
       approved_at { nil }

@@ -13,7 +13,7 @@ RSpec.describe ApplicationHelper, type: :helper do
 
   describe '#register_path' do
     it 'provides the start of the registration flow' do
-      expect(helper.register_path).to eq(prequalify_principals_path)
+      expect(helper.register_path).to eq(prequalify_retirement_advice_registrations_path)
     end
   end
 
