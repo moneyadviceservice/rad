@@ -24,7 +24,7 @@ gem 'devise-security', '~> 0.13'
 gem 'dough-ruby',
     git: 'https://github.com/moneyadviceservice/dough.git',
     branch: 'master',
-    ref: 'd943b548'
+    ref: '238a329'
 gem 'geocoder', '~> 1.4.7'
 gem 'httpclient', '~> 2.8.3'
 gem 'jquery-rails'
