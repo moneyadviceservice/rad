@@ -124,6 +124,7 @@ en:
     intro: Welcome to the registration page for the Money & Pensions Service Travel Insurance Directory.
     prompt: Please enter the name and job title of the Senior Manager responsible for the accuracy of the information displayed on the Directory.
     reference_number: FCA Firm Reference Number (FRN)
+    register_button: Continue
   retirement_advice_registrations:
     heading: Retirement Adviser Directory – Self Service
   registration:
