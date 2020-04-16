@@ -1,3 +1,4 @@
+# TODO: this does not appear to be used. Review and delete.
 module AlgoliaIndex
   class TestSeeds # rubocop:disable Metrics/ClassLength
     ADVICE_TYPES_ATTRIBUTES = %i[
