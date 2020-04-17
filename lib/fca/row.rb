@@ -53,7 +53,7 @@ module FCA
     private
 
     def active_adviser?
-      row[ADVISER_STATUS_CODE] == '4'
+      %w[4 9].include?(row[ADVISER_STATUS_CODE])
     end
 
     def active_firm?

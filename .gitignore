@@ -12,3 +12,4 @@ bowndler/*
 config/cloud_storage.yml
 config/database.yml
 node_modules/
+spec/test_status.txt
