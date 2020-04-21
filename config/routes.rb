@@ -25,8 +25,8 @@ Rails.application.routes.draw do
   resources :travel_insurance_registrations, only: [:new, :create] do
     collection do
       [:risk_profile, :medical_conditions].each do |action_name|
-        get action_name,  action: "#{action_name}_form"
-        post action_name, action: action_name
+        get action_name,  action: "wizard_form", defaults: { current_step: action_name }, constraints: { current_step: action_name }
+        post action_name, action: "wizard", defaults: { current_step: action_name }, constraints: { current_step: action_name }
       end
       get 'reject',      action: 'rejection_form'
     end

@@ -25,14 +25,20 @@ class TravelInsuranceRegistrationsController < BaseRegistrationsController
     end
   end
 
-  # Steps
-  def risk_profile_form
-    @form = TravelInsurance::RiskProfileForm.new
+  WIZARD_STEPS = [:risk_profile, :medical_conditions]
+
+  def wizard_form
+    form_name = "#{params[:current_step]}_form"
+    @form = "TravelInsurance::#{form_name.camelize}".constantize.new
+    render form_name
   end
 
-  def risk_profile
-    @form = TravelInsurance::RiskProfileForm.new(risk_profile_params)
-    session[:risk_profile] = risk_profile_params
+  def wizard
+    form_name = "#{params[:current_step]}_form"
+    form_params = send("#{params[:current_step]}_form_params")
+
+    @form = "TravelInsurance::#{form_name.camelize}".constantize.new(form_params)
+    session[params[:current_step].to_sym] = form_params
 
     if @form.valid?
       if @form.complete?
@@ -40,39 +46,17 @@ class TravelInsuranceRegistrationsController < BaseRegistrationsController
       elsif @form.reject?
         redirect_to reject_retirement_advice_registrations_path
       else
-        redirect_to medical_conditions_travel_insurance_registrations_path
+        redirect_to next_url
       end
     else
       flash.now[:error] = t('registration.principal.validation_error_html')
-      render :risk_profile_form
+      render form_name.to_sym
     end
   end
-
-  def medical_conditions_form
-    @form = TravelInsurance::MedicalConditionsForm.new
-  end
-
-  def medical_conditions
-    @form = TravelInsurance::MedicalConditionsForm.new(medical_conditions_params)
-    session[:medical_conditions] = medical_conditions_params
-
-    if @form.valid?
-      if @form.complete?
-        register_and_redirect_user
-      else
-        redirect_to medical_conditions_travel_insurance_registrations_path
-      end
-    else
-      flash.now[:error] = t('registration.principal.validation_error_html')
-      render :risk_profile_form
-    end
-  end
-
-
 
   private
 
-  def risk_profile_params
+  def risk_profile_form_params
     params.require(:travel_insurance_risk_profile_form).permit(
       :covered_by_ombudsman_question, :risk_profile_approach_question
     )
@@ -89,4 +73,12 @@ class TravelInsuranceRegistrationsController < BaseRegistrationsController
     render :show
   end
 
+  def next_url
+    current_step_index = WIZARD_STEPS.index(params[:current_step].to_sym)
+    if next_step = WIZARD_STEPS[current_step_index+1]
+      send("#{next_step}_travel_insurance_registrations_path")
+    else
+      root_path
+    end
+  end
 end
