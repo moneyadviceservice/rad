@@ -48,6 +48,27 @@ class TravelInsuranceRegistrationsController < BaseRegistrationsController
     end
   end
 
+  def medical_conditions_form
+    @form = TravelInsurance::MedicalConditionsForm.new
+  end
+
+  def medical_conditions
+    @form = TravelInsurance::MedicalConditionsForm.new(medical_conditions_params)
+    session[:medical_conditions] = medical_conditions_params
+
+    if @form.valid?
+      if @form.complete?
+        register_and_redirect_user
+      else
+        redirect_to medical_conditions_travel_insurance_registrations_path
+      end
+    else
+      flash.now[:error] = t('registration.principal.validation_error_html')
+      render :risk_profile_form
+    end
+  end
+
+
 
   private
 
@@ -56,4 +77,16 @@ class TravelInsuranceRegistrationsController < BaseRegistrationsController
       :covered_by_ombudsman_question, :risk_profile_approach_question
     )
   end
+
+  def medical_conditions_params
+    params.require(:travel_insurance_medical_conditions_form).permit(
+      :covers_medical_condition_question_question
+    )
+  end
+
+  def register_and_redirect_user(submitted_form)
+    result = DirectoryRegistrationService.call(submitted_form)
+    render :show
+  end
+
 end
