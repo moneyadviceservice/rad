@@ -2,6 +2,7 @@
 <section class="l-identity">
   <%= heading_tag(t(registration_title), level: 1) %>
   <p><%= t('travel_insurance_registrations.intro') %></p>
+  <p><%= t('required') %></p>
 
   <%= content_for?(:registration_form) ? yield(:registration_form) : yield %>
 </section>
