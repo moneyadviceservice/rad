@@ -141,6 +141,13 @@ en:
     answer_yes: "Yes"
     answer_no: "No"
 
+    risk_profile_approach_question:
+      heading: Which approach does your firm use to confirm the risk profile of applicants with serious pre-existing medical conditions seeking travel insurance?
+      description: ""
+      answers:
+        bespoke: Underwriting decisions are based on a bespoke consultation by the firm with the individual to understand their health and the severity of their medical condition (we would expect this option to apply primarily to firms that do not use an external medical screening company)
+        questionaire: Underwriting decisions are primarily based on the use of a risk rating (medical screening) tool which generates set questions that are used to understand an individual’s health and the severity of their medical condition
+        neither: 'Neither of the above'
     active_question:
       heading: Is your firm active in the retirement planning market?
       description: This could include either "at retirement" or "post retirement".

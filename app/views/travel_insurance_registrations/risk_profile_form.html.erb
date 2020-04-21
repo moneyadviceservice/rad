@@ -1,0 +1,58 @@
+<section class="l-identity">
+  <%= heading_tag(t(registration_title), level: 1) %>
+  <p><%= t('required') %></p>
+
+  <%= form_for @form, url: risk_profile_travel_insurance_registrations_path, html: { class: 'form' } do |f| %>
+    <%= f.form_row :covered_by_ombudsman_question do %>
+      <fieldset class="form__group form__group--inline t-active-question">
+        <legend class="l-pre-qualification__question l-pre-qualification__question--with-desc"><%= t('registration.covered_by_ombudsman_question.heading') %></legend>
+        <p><%= t('registration.covered_by_ombudsman_question.description') %></p>
+
+        <div class="form__group-item">
+          <label>
+            <%= f.radio_button :covered_by_ombudsman_question, 1, class: 'form__group-input' %>
+            <%= t('registration.answer_yes') %>
+          </label>
+        </div>
+
+        <div class="form__group-item">
+          <label>
+            <%= f.radio_button :covered_by_ombudsman_question, 0, class: 'form__group-input' %>
+            <%= t('registration.answer_no') %>
+          </label>
+        </div>
+      </fieldset>
+    <% end %>
+
+
+    <%= f.form_row :risk_profile_approach_question do %>
+      <fieldset class="form__group form__group--inline t-active-question">
+        <legend class="l-pre-qualification__question l-pre-qualification__question--with-desc"><%= t('registration.risk_profile_approach_question.heading') %></legend>
+        <p><%= t('registration.risk_profile_approach_question.description') %></p>
+
+        <div class="form__group-item">
+          <label>
+            <%= f.radio_button :risk_profile_approach_question, 'bespoke', class: 'form__group-input' %>
+            <%= t('registration.risk_profile_approach_question.answers.bespoke') %>
+          </label>
+        </div>
+
+        <div class="form__group-item">
+          <label>
+            <%= f.radio_button :risk_profile_approach_question, 'questionaire', class: 'form__group-input' %>
+            <%= t('registration.risk_profile_approach_question.answers.questionaire') %>
+          </label>
+        </div>
+
+        <div class="form__group-item">
+          <label>
+            <%= f.radio_button :risk_profile_approach_question, 'neither', class: 'form__group-input' %>
+            <%= t('registration.risk_profile_approach_question.answers.neither') %>
+          </label>
+        </div>
+      </fieldset>
+    <% end %>
+
+    <%= button_primary t('registration.register_button') %>
+  <% end %>
+</section>
