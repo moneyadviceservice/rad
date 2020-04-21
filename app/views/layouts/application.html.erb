@@ -36,7 +36,7 @@
       <div class="<%= layout_class %>">
         <%= render 'shared/alerts' %>
         <%= yield :notifications %>
-        <%= yield %>
+        <%= content_for?(:content) ? yield(:content) : yield %>
       </div>
     </div>
   </main>
