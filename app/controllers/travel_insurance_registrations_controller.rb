@@ -62,14 +62,15 @@ class TravelInsuranceRegistrationsController < BaseRegistrationsController
     )
   end
 
-  def medical_conditions_params
+  def medical_conditions_form_params
     params.require(:travel_insurance_medical_conditions_form).permit(
-      :covers_medical_condition_question_question
+      :covers_medical_condition_question
     )
   end
 
-  def register_and_redirect_user(submitted_form)
-    result = DirectoryRegistrationService.call(submitted_form)
+  def register_and_redirect_user
+    submitted_data = NewPrincipalForm.new(session[:principal])
+    result = DirectoryRegistrationService.call(submitted_data)
     render :show
   end
 

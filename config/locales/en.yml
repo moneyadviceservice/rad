@@ -148,8 +148,8 @@ en:
       heading: Please select one of the following
       description: ""
       answers:
-        one_specific: Does your firm offer travel insurance that will cover any/most types of serious medical conditions
-        all_conditions: Does your firm only offer travel insurance for one specific serious medical condition
+        one_specific: Does your firm only offer travel insurance for one specific serious medical condition
+        all_conditions: Does your firm offer travel insurance that will cover any/most types of serious medical conditions
     risk_profile_approach_question:
       heading: Which approach does your firm use to confirm the risk profile of applicants with serious pre-existing medical conditions seeking travel insurance?
       description: ""
