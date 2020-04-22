@@ -57,13 +57,13 @@ class TravelInsuranceRegistrationsController < BaseRegistrationsController
   private
 
   def risk_profile_form_params
-    params.require(:travel_insurance_risk_profile_form).permit(
+    params.fetch(:travel_insurance_risk_profile_form, {}).permit(
       :covered_by_ombudsman_question, :risk_profile_approach_question
     )
   end
 
   def medical_conditions_form_params
-    params.require(:travel_insurance_medical_conditions_form).permit(
+    params.fetch(:travel_insurance_medical_conditions_form, {}).permit(
       :covers_medical_condition_question
     )
   end
