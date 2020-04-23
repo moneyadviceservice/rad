@@ -1,8 +1,13 @@
+<%= heading_tag(t(registration_title), level: 1) %>
+<p><%= t('travel_insurance_registrations.intro') %></p>
+
 <h3>Step 2 of 4 </h3>
 
-<%= form_for @form, url: risk_profile_travel_insurance_registrations_path, html: { class: 'form' } do |f| %>
+<%= form_for @form, url: risk_profile_travel_insurance_registrations_path, html: { class: 'form' },builder: Dough::Forms::Builders::Validation do |f| %>
+  <%= f.validation_summary %>
+
   <%= f.form_row :covered_by_ombudsman_question do %>
-    <fieldset class="form__group form__group--inline t-active-question">
+    <fieldset class="form__group t-covered_by_ombudsman_question">
       <legend class="l-pre-qualification__question l-pre-qualification__question--with-desc"><%= t('registration.covered_by_ombudsman_question.heading') %></legend>
       <p><%= t('registration.covered_by_ombudsman_question.description') %></p>
 
@@ -24,7 +29,7 @@
 
 
   <%= f.form_row :risk_profile_approach_question do %>
-    <fieldset class="form__group form__group--inline t-active-question">
+    <fieldset class="form__group t-risk_profile_approach_question">
       <legend class="l-pre-qualification__question l-pre-qualification__question--with-desc"><%= t('registration.risk_profile_approach_question.heading') %></legend>
       <p><%= t('registration.risk_profile_approach_question.description') %></p>
 
@@ -51,5 +56,5 @@
     </fieldset>
   <% end %>
 
-  <%= button_primary t('registration.register_button') %>
+  <%= button_primary t('travel_insurance_registrations.register_button') %>
 <% end %>
