@@ -20,7 +20,7 @@ RSpec.feature 'Principal provides travel insurance information', :inline_job_que
 
   before { ActionMailer::Base.deliveries.clear }
 
-  context "Step 1" do
+  context 'Step 1' do
     scenario 'Registering a travel insurance firm' do
       given_i_am_on_the_travel_insurance_registration_page
       when_i_provide_my_firms_fca_reference_number
@@ -51,7 +51,7 @@ RSpec.feature 'Principal provides travel insurance information', :inline_job_que
       then_i_am_told_which_fields_are_incorrect_and_why
     end
 
-    scenario 'a firm that chooses neither for risk profiling approach'  do
+    scenario 'a firm that chooses neither for risk profiling approach' do
       given_i_am_on_the_travel_insurance_risk_profile_page
       and_i_provide_information_that_our_risk_profile_approach_is_neither
       then_i_am_notified_i_cannot_proceed
@@ -79,7 +79,7 @@ RSpec.feature 'Principal provides travel insurance information', :inline_job_que
       then_i_am_told_which_fields_are_incorrect_and_why
     end
 
-    scenario 'a firm that supports one_specific type of medical condition'  do
+    scenario 'a firm that supports one_specific type of medical condition' do
       given_i_am_on_the_travel_insurance_medical_conditions_page
       and_i_provide_information_that_my_company_covers_one_specific_medical_condition
       then_i_am_shown_a_thank_you_for_registering_message
@@ -101,7 +101,6 @@ RSpec.feature 'Principal provides travel insurance information', :inline_job_que
   #   and_i_provide_my_identifying_particulars
   #   then_i_am_taken_to_the_second_step_of_signup
   # end
-
 
   def given_i_am_on_the_travel_insurance_registration_page
     travel_insurance_registration_page.load
@@ -231,13 +230,13 @@ RSpec.feature 'Principal provides travel insurance information', :inline_job_que
 
   def then_i_am_taken_to_the_second_step_of_signup
     expect(travel_insurance_risk_profile_page).to have_content(
-      "Step 2 of 4"
+      'Step 2 of 4'
     )
   end
 
   def then_i_am_taken_to_the_third_step_of_signup
     expect(travel_insurance_medical_conditions_page).to have_content(
-      "Step 3 of 4"
+      'Step 3 of 4'
     )
   end
 

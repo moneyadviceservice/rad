@@ -6,7 +6,6 @@ class TravelInsurance::MedicalConditionsForm
   validates :covers_medical_condition_question,
             inclusion: { in: %w[all one_specific] }
 
-
   def complete?
     covers_medical_condition_question == 'one_specific'
   end

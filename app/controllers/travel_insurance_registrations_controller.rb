@@ -1,4 +1,6 @@
 class TravelInsuranceRegistrationsController < BaseRegistrationsController
+  WIZARD_STEPS = [:risk_profile, :medical_conditions].freeze
+
   def registration_title
     'travel_insurance_registrations.heading'
   end
@@ -24,8 +26,6 @@ class TravelInsuranceRegistrationsController < BaseRegistrationsController
       render :new
     end
   end
-
-  WIZARD_STEPS = [:risk_profile, :medical_conditions]
 
   def wizard_form
     form_name = "#{params[:current_step]}_form"
@@ -70,13 +70,13 @@ class TravelInsuranceRegistrationsController < BaseRegistrationsController
 
   def register_and_redirect_user
     submitted_data = NewPrincipalForm.new(session[:principal])
-    result = DirectoryRegistrationService.call(submitted_data)
+    DirectoryRegistrationService.call(submitted_data)
     render :show
   end
 
   def next_url
     current_step_index = WIZARD_STEPS.index(params[:current_step].to_sym)
-    if next_step = WIZARD_STEPS[current_step_index+1]
+    if (next_step = WIZARD_STEPS[current_step_index + 1])
       send("#{next_step}_travel_insurance_registrations_path")
     else
       root_path
