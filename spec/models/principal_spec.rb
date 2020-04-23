@@ -86,6 +86,12 @@ RSpec.describe Principal do
         long_email = "a@#{'a' * 50}.com"
         expect(build(:principal, email_address: long_email)).to_not be_valid
       end
+
+      it 'is downcased before validation' do
+        principal.email_address = 'Foo.Bar@email.com'
+        expect(principal).to be_valid
+        expect(principal.email_address).to eq 'foo.bar@email.com'
+      end
     end
 
     describe 'First name' do

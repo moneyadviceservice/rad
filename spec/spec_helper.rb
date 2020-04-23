@@ -28,12 +28,10 @@ RSpec.configure do |c|
   c.include FactoryBot::Syntax::Methods
 
   c.around(:each, inline_job_queue: true) do |example|
-    begin
-      ActiveJob::Base.queue_adapter = :inline
-      example.run
-    ensure
-      ActiveJob::Base.queue_adapter = :test
-    end
+    ActiveJob::Base.queue_adapter = :inline
+    example.run
+  ensure
+    ActiveJob::Base.queue_adapter = :test
   end
 
   c.include FcaTestHelpers
@@ -41,7 +39,7 @@ RSpec.configure do |c|
   c.include Devise::Test::IntegrationHelpers, type: :request
   c.include Devise::Test::IntegrationHelpers, type: :feature
 
-  c.example_status_persistence_file_path = 'tmp/failed_examples'
+  c.example_status_persistence_file_path = 'spec/test_status.txt'
 end
 
 RSpec::Sidekiq.configure do |config|

@@ -1,6 +1,7 @@
 class Principal < ApplicationRecord
   self.primary_key = 'token'
 
+  before_validation :downcase_email
   before_create :generate_token
 
   has_one :user, foreign_key: :principal_token
@@ -87,5 +88,9 @@ class Principal < ApplicationRecord
 
   def generate_token
     self.token = SecureRandom.hex(4)
+  end
+
+  def downcase_email
+    self.email_address = email_address.downcase
   end
 end

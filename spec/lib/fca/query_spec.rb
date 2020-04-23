@@ -92,23 +92,27 @@ CREATE TABLE IF NOT EXISTS test_lookup_advisers (id integer PRIMARY KEY DEFAULT 
     end
 
     describe '.values' do
-      context 'when row active' do
-        let(:line) do
-          '100039|Crawfords|23|1|4|Stanton House|41 Blackfriars Road|||Salford|Lancashire|M3|7DB|44|0161|832 5366|44|0161|832 1829|Cancelled|20090521|20011201|CRAWFORDS|20090521|'.force_encoding('ISO-8859-1')
-        end
+      %w[4 9].each do |status|
+        context "active adviser status=#{status}" do
+          let(:line) do
+            "100039|Crawfords|23|1|#{status}|Stanton House|41 Blackfriars Road|||Salford|Lancashire|M3|7DB|44|0161|832 5366|44|0161|832 1829|Cancelled|20090521|20011201|CRAWFORDS|20090521|".force_encoding('ISO-8859-1')
+          end
 
-        it '.prints line' do
-          expect(subject.values(row)).to include '100039|Crawford'
+          it 'should be included in import' do
+            expect(subject.values(row)).to include '100039|Crawford'
+          end
         end
       end
 
-      context 'when row inactive' do
-        let(:line) do
-          '100039|Crawfords|23|1|N|Stanton House|41 Blackfriars Road|||Salford|Lancashire|M3|7DB|44|0161|832 5366|44|0161|832 1829|Cancelled|20090521|20011201|CRAWFORDS|20090521|'
-        end
+      %w[1 2 3 5 6 7 8 N].each do |status|
+        context "inactive adviser status=#{status}" do
+          let(:line) do
+            '100039|Crawfords|23|1|N|Stanton House|41 Blackfriars Road|||Salford|Lancashire|M3|7DB|44|0161|832 5366|44|0161|832 1829|Cancelled|20090521|20011201|CRAWFORDS|20090521|'
+          end
 
-        it '.prints line' do
-          expect(subject.values(row)).to be_nil
+          it 'should not be included in import' do
+            expect(subject.values(row)).to be_nil
+          end
         end
       end
     end
