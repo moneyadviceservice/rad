@@ -88,6 +88,7 @@ RSpec.feature 'Principal provides travel insurance information', :inline_job_que
     end
 
     scenario 'a firm that supports all_conditions type of medical conditions' do
+      # Add later to move to Step 4
       # given_i_am_on_the_travel_insurance_medical_conditions_page
       # and_i_provide_information_that_my_company_covers_all_medical_conditions
       # then_i_am_taken_to_the_fourth_step_of_signup
