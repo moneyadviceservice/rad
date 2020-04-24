@@ -51,6 +51,12 @@ RSpec.feature 'Principal provides travel insurance information', :inline_job_que
       then_i_am_told_which_fields_are_incorrect_and_why
     end
 
+    scenario 'a firm that chooses that they are not convered by the ombudsman' do
+      given_i_am_on_the_travel_insurance_risk_profile_page
+      and_i_provide_information_that_our_firm_is_not_covered_by_ombudsman
+      then_i_am_notified_i_cannot_proceed
+    end
+
     scenario 'a firm that chooses neither for risk profiling approach' do
       given_i_am_on_the_travel_insurance_risk_profile_page
       and_i_provide_information_that_our_risk_profile_approach_is_neither
@@ -134,6 +140,17 @@ RSpec.feature 'Principal provides travel insurance information', :inline_job_que
       p.covered_by_ombudsman_question.choose 'Yes'
       p.risk_profile_approach_question.choose I18n.t('registration.risk_profile_approach_question.answers.questionaire')
       p.register.click
+    end
+  end
+
+  def and_i_provide_information_that_our_firm_is_not_covered_by_ombudsman
+    travel_insurance_risk_profile_page.tap do |p|
+      p.covered_by_ombudsman_question.choose 'No'
+      p.risk_profile_approach_question.choose I18n.t('registration.risk_profile_approach_question.answers.bespoke')
+
+      VCR.use_cassette('registrations_fca_firm_api_call') do
+        p.register.click
+      end
     end
   end
 
