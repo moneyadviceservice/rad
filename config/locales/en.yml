@@ -97,7 +97,8 @@ en:
   authentication_sign_out: Sign out
   required: "* indicates required fields"
   confirmation_statement: By registering your firm's details with the Money & Pensions Service,  you are confirming that these details and any responses you give to our registration questions are true and accurate.
-
+  tooltip_show: show help
+  tooltip_hide: hide help
   footer:
     text: If you need help please contact us at
 
@@ -127,7 +128,7 @@ en:
     confirmation_statement_html: |
       By registering your firm’s details with the Money & Pensions Service you are confirming that the information supplied, and the responses given to our registration questions, are correct and accurately reflect the services offered by your firm and any trading names registered on the Directory under this FRN.
       <br/><br/>
-      Firms also consent to MaPS sharing any information provided by firms as part of the application Process with the FCA or about the conduct of firms, if, during the course of operating the Directory, MaPS becomes aware of practices by FCA-regulated persons which it considers to be detrimental to consumers. 
+      Firms also consent to MaPS sharing any information provided by firms as part of the application Process with the FCA or about the conduct of firms, if, during the course of operating the Directory, MaPS becomes aware of practices by FCA-regulated persons which it considers to be detrimental to consumers.
     register_button: Continue
   retirement_advice_registrations:
     heading: Retirement Adviser Directory – Self Service
@@ -141,6 +142,24 @@ en:
     answer_yes: "Yes"
     answer_no: "No"
 
+    covered_by_ombudsman_question:
+      heading: Are the firm’s customers fully covered by the UK Financial Ombudsman Service (FOS) and the UK Financial Services Compensation Scheme (FSCS)?
+      description: ""
+    covers_medical_condition_question:
+      heading: Please select one of the following
+      description: ""
+      answers:
+        one_specific: Does your firm only offer travel insurance for one specific serious medical condition
+        one_specific_tooltip: Firms who offer cover for one specific type of serious medical condition (i.e. cancer or heart conditions) will be eligible to register onto the Directory but must confirm on their profile the medical condition they specialise in
+        all_conditions: Does your firm offer travel insurance that will cover any/most types of serious medical conditions
+        all_conditions_tooltip: Firms who offer cover for any or most types of serious medical conditions will be asked to confirm whether they would offer cover without medical exclusions in certain hypothetical medical scenarios listed on the next screen.
+    risk_profile_approach_question:
+      heading: Which approach does your firm use to confirm the risk profile of applicants with serious pre-existing medical conditions seeking travel insurance?
+      description: ""
+      answers:
+        bespoke: Underwriting decisions are based on a bespoke consultation by the firm with the individual to understand their health and the severity of their medical condition (we would expect this option to apply primarily to firms that do not use an external medical screening company)
+        questionaire: Underwriting decisions are primarily based on the use of a risk rating (medical screening) tool which generates set questions that are used to understand an individual’s health and the severity of their medical condition
+        neither: 'Neither of the above'
     active_question:
       heading: Is your firm active in the retirement planning market?
       description: This could include either "at retirement" or "post retirement".

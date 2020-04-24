@@ -1,0 +1,45 @@
+<%= heading_tag(t(registration_title), level: 1) %>
+<p><%= t('travel_insurance_registrations.intro') %></p>
+
+<h3>Step 3 of 4 </h3>
+
+<%= form_for @form, url: medical_conditions_travel_insurance_registrations_path, html: { class: 'form' },builder: Dough::Forms::Builders::Validation do |f| %>
+  <%= f.validation_summary %>
+
+  <%= f.form_row :covers_medical_condition_question do %>
+    <fieldset class="form__group-item t-covers_medical_condition_question">
+      <legend class="l-pre-qualification__question l-pre-qualification__question--with-desc"><%= t('registration.covers_medical_condition_question.heading') %></legend>
+      <p><%= t('registration.covers_medical_condition_question.description') %></p>
+
+      <div class="form__group-item" data-dough-component="PopupTip">
+        <label>
+          <%= f.radio_button :covers_medical_condition_question, 'one_specific', class: 'form__group-input' %>
+          <%= t('registration.covers_medical_condition_question.answers.one_specific') %>
+          <%= popup_tip_trigger options: {
+            text: t('tooltip_show')
+          } %>
+          <%= popup_tip_content options: {
+            text: t('registration.covers_medical_condition_question.answers.one_specific_tooltip'),
+            tooltip_hide: t('tooltip_hide')
+          } %>
+        </label>
+      </div>
+
+      <div class="form__group-item" data-dough-component="PopupTip">
+        <label>
+          <%= f.radio_button :covers_medical_condition_question, 'all', class: 'form__group-input' %>
+          <%= t('registration.covers_medical_condition_question.answers.all_conditions') %>
+          <%= popup_tip_trigger options: {
+            text: t('tooltip_show')
+          } %>
+          <%= popup_tip_content options: {
+            text: t('registration.covers_medical_condition_question.answers.all_conditions_tooltip'),
+            tooltip_hide: t('tooltip_hide')
+          } %>
+        </label>
+      </div>
+    </fieldset>
+  <% end %>
+
+  <%= button_primary t('travel_insurance_registrations.register_button') %>
+<% end %>

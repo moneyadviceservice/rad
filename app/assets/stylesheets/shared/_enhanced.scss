@@ -2,6 +2,7 @@
 @import 'dough/assets/stylesheets/common';
 @import 'dough/assets/stylesheets/optional';
 @import 'yeast/assets/lib/all';
+@import 'yeast/assets/components/dough_theme/popup_tip/all';
 
 @import 'variables';
 
@@ -39,6 +40,8 @@
 @import 'components/password_policy';
 @import 'components/sign_in_panel';
 @import 'components/status/all';
+
+@import 'components/common/popup_tip';
 
 // Shame
 
