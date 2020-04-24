@@ -9,5 +9,4 @@ class TravelInsurance::RiskProfileForm
 
   validates :risk_profile_approach_question,
             inclusion: { in: %w[bespoke questionaire neither], message: '%{value} is required' }
-
 end
