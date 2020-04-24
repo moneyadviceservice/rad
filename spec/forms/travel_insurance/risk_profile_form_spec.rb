@@ -20,6 +20,11 @@ RSpec.describe TravelInsurance::RiskProfileForm, '#valid?', type: :model do
   end
 
   describe '#reject?' do
+    context 'when form is valid but covered_by_ombudsman_question is No' do
+      let(:params) { { covered_by_ombudsman_question: '0' } }
+      it { is_expected.to be_reject }
+    end
+
     context 'when form is valid but risk_profile_question is neither' do
       let(:params) { { covered_by_ombudsman_question: '1', risk_profile_approach_question: 'neither' } }
       it { is_expected.to be_reject }
