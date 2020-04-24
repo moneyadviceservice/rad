@@ -10,11 +10,4 @@ class TravelInsurance::RiskProfileForm
   validates :risk_profile_approach_question,
             inclusion: { in: %w[bespoke questionaire neither], message: '%{value} is required' }
 
-  def reject?
-    covered_by_ombudsman_question == '0' || risk_profile_approach_question == 'neither'
-  end
-
-  def complete?
-    !reject? && risk_profile_approach_question == 'bespoke'
-  end
 end

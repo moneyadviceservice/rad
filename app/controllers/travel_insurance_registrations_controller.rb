@@ -41,9 +41,9 @@ class TravelInsuranceRegistrationsController < BaseRegistrationsController
     session[params[:current_step].to_sym] = form_params
 
     if @form.valid?
-      if @form.complete?
+      if completed_registration?
         register_and_redirect_user
-      elsif @form.reject?
+      elsif rejected_registration?
         redirect_to reject_retirement_advice_registrations_path
       else
         redirect_to next_url
@@ -55,6 +55,26 @@ class TravelInsuranceRegistrationsController < BaseRegistrationsController
   end
 
   private
+
+  def rejected_registration?
+    if params[:current_step].to_sym == :risk_profile
+      risk_profile_form_params[:covered_by_ombudsman_question] == '0' || risk_profile_form_params[:risk_profile_approach_question] == 'neither'
+    else
+      false
+    end
+  end
+
+  def completed_registration?
+    case params[:current_step].to_sym
+    when :risk_profile
+      risk_profile_form_params[:covered_by_ombudsman_question] == '1' &&
+      risk_profile_form_params[:risk_profile_approach_question] == 'bespoke'
+    when :medical_conditions
+      medical_conditions_form_params[:covers_medical_condition_question] == 'one_specific'
+    else
+      false
+    end
+  end
 
   def risk_profile_form_params
     params.fetch(:travel_insurance_risk_profile_form, {}).permit(
