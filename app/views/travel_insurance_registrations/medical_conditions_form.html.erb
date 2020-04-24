@@ -7,21 +7,35 @@
   <%= f.validation_summary %>
 
   <%= f.form_row :covers_medical_condition_question do %>
-    <fieldset class="form__group form__group--inline t-covers_medical_condition_question">
+    <fieldset class="form__group-item t-covers_medical_condition_question">
       <legend class="l-pre-qualification__question l-pre-qualification__question--with-desc"><%= t('registration.covers_medical_condition_question.heading') %></legend>
       <p><%= t('registration.covers_medical_condition_question.description') %></p>
 
-      <div class="form__group-item">
-        <label>
-          <%= f.radio_button :covers_medical_condition_question, 'all', class: 'form__group-input' %>
-          <%= t('registration.covers_medical_condition_question.answers.all_conditions') %>
-        </label>
-      </div>
-
-      <div class="form__group-item">
+      <div class="form__group-item" data-dough-component="PopupTip">
         <label>
           <%= f.radio_button :covers_medical_condition_question, 'one_specific', class: 'form__group-input' %>
           <%= t('registration.covers_medical_condition_question.answers.one_specific') %>
+          <%= popup_tip_trigger options: {
+            text: t('tooltip_show')
+          } %>
+          <%= popup_tip_content options: {
+            text: t('registration.covers_medical_condition_question.answers.one_specific_tooltip'),
+            tooltip_hide: t('tooltip_hide')
+          } %>
+        </label>
+      </div>
+
+      <div class="form__group-item" data-dough-component="PopupTip">
+        <label>
+          <%= f.radio_button :covers_medical_condition_question, 'all', class: 'form__group-input' %>
+          <%= t('registration.covers_medical_condition_question.answers.all_conditions') %>
+          <%= popup_tip_trigger options: {
+            text: t('tooltip_show')
+          } %>
+          <%= popup_tip_content options: {
+            text: t('registration.covers_medical_condition_question.answers.all_conditions_tooltip'),
+            tooltip_hide: t('tooltip_hide')
+          } %>
         </label>
       </div>
     </fieldset>
