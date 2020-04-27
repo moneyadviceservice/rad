@@ -14,11 +14,11 @@
       <%= f.form_row(:fca_number) do %>
         <%= f.errors_for :fca_number %>
         <%= f.label :fca_number, t('travel_insurance_registrations.reference_number'), class: 'form__label-heading' %>
-        <%= f.text_field :fca_number, class: 't-reference-number', maxlength: 6, hint: 'SSS' %>
-        <small><%= t('travel_insurance_registrations.frn_linked_trading_names_info') %></small>
+        <%= f.text_field :fca_number, class: 't-reference-number', maxlength: 6 %>
       <% end %>
     </div>
   </div>
+  <strong><%= t('travel_insurance_registrations.frn_linked_trading_names_info') %></strong>
 
   <hr>
 
