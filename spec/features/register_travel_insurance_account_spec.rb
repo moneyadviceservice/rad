@@ -15,6 +15,10 @@ RSpec.feature 'Principal provides travel insurance information', :inline_job_que
     TravelInsuranceMedicalConditionsPage.new
   end
 
+  let(:travel_insurance_medical_conditions_questionaire_page) do
+    TravelInsuranceMedicalConditionsQuestionairePage.new
+  end
+
   let(:rejection_page) { RejectionPage.new }
   let(:sign_in_page) { SignInPage.new }
 
@@ -94,12 +98,28 @@ RSpec.feature 'Principal provides travel insurance information', :inline_job_que
     end
 
     scenario 'a firm that supports all_conditions type of medical conditions' do
-      # Add later to move to Step 4
-      # given_i_am_on_the_travel_insurance_medical_conditions_page
-      # and_i_provide_information_that_my_company_covers_all_medical_conditions
-      # then_i_am_taken_to_the_fourth_step_of_signup
+      given_i_am_on_the_travel_insurance_medical_conditions_page
+      and_i_provide_information_that_my_company_covers_all_medical_conditions
+      then_i_am_taken_to_the_fourth_step_of_signup
     end
   end
+
+  context 'Step 4' do
+    scenario 'Not filling all required fields' do
+      given_i_am_on_the_travel_insurance_medical_conditions_questionaire_page
+      and_i_provide_incomplete_answers_to_step_4
+      then_i_am_told_which_fields_are_incorrect_and_why
+    end
+
+    scenario 'a firm that supports one_specific type of medical condition' do
+      given_i_am_on_the_travel_insurance_medical_conditions_questionaire_page
+      and_i_provide_complete_answers_to_step_4
+      then_i_am_shown_a_thank_you_for_registering_message
+      and_i_should_have_a_travel_insurance_firm
+      and_i_later_receive_an_email_confirming_my_registration
+    end
+  end
+
 
   # scenario 'Registering a travel insurance firm having a retirement firm' do
   #   given_i_am_on_the_travel_insurance_registration_page
@@ -125,6 +145,12 @@ RSpec.feature 'Principal provides travel insurance information', :inline_job_que
     given_i_am_on_the_travel_insurance_risk_profile_page
     and_i_provide_information_that_my_company_offers_a_questionaire
     travel_insurance_medical_conditions_page.load
+  end
+
+  def given_i_am_on_the_travel_insurance_medical_conditions_questionaire_page
+    given_i_am_on_the_travel_insurance_medical_conditions_page
+    and_i_provide_information_that_my_company_covers_all_medical_conditions
+    travel_insurance_medical_conditions_questionaire_page.load
   end
 
   def and_i_provide_information_that_our_risk_profile_approach_is_neither
@@ -217,6 +243,36 @@ RSpec.feature 'Principal provides travel insurance information', :inline_job_que
     end
   end
 
+  def and_i_provide_incomplete_answers_to_step_4
+    travel_insurance_medical_conditions_questionaire_page.tap do |p|
+      p.register.click
+    end
+  end
+
+  def and_i_provide_complete_answers_to_step_4
+    travel_insurance_medical_conditions_questionaire_page.tap do |p|
+      p.metastatic_breast_cancer_question.choose 'Yes'
+      p.ulceritive_colitis_and_anaemia_question.choose 'Yes'
+      p.heart_attack_with_hbp_and_high_cholesterol_question.choose 'Yes'
+      p.copd_with_respiratory_infection_question.choose 'Yes'
+      p.motor_neurone_disease_question.choose 'Yes'
+      p.hodgkin_lymphoma_question.choose 'Yes'
+      p.acute_myeloid_leukaemia_question.choose 'Yes'
+      p.guillain_barre_syndrome_question.choose 'Yes'
+      p.heart_failure_and_arrhytmia_question.choose 'Yes'
+      p.stroke_with_hbp_question.choose 'Yes'
+      p.peripheral_vascular_disease_question.choose 'Yes'
+      p.schizophrenia_question.choose 'Yes'
+      p.lupus_question.choose 'Yes'
+      p.sickle_cell_and_renal_question.choose 'Yes'
+      p.sub_arachnoid_haemorrhage_and_epilepsy_question.choose 'Yes'
+
+      VCR.use_cassette('registrations_fca_firm_api_call') do
+        p.register.click
+      end
+    end
+  end
+
   def and_i_later_receive_an_email_confirming_my_registration
     email =
       ActionMailer::Base.deliveries.find do |mail|
@@ -255,6 +311,12 @@ RSpec.feature 'Principal provides travel insurance information', :inline_job_que
   def then_i_am_taken_to_the_third_step_of_signup
     expect(travel_insurance_medical_conditions_page).to have_content(
       'Step 3 of 4'
+    )
+  end
+
+  def then_i_am_taken_to_the_fourth_step_of_signup
+    expect(travel_insurance_medical_conditions_page).to have_content(
+      'Step 4 of 4'
     )
   end
 

@@ -3,7 +3,7 @@
 
 <h3>Step 2 of 4 </h3>
 
-<%= form_for @form, url: risk_profile_travel_insurance_registrations_path, html: { class: 'form' },builder: Dough::Forms::Builders::Validation do |f| %>
+<%= form_for @form, url: risk_profile_travel_insurance_registrations_path, html: { class: 'form' }, builder: Dough::Forms::Builders::Validation do |f| %>
   <%= f.validation_summary %>
 
   <%= f.form_row :covered_by_ombudsman_question do %>

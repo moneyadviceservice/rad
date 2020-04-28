@@ -1,0 +1,71 @@
+<%= heading_tag(t(registration_title), level: 1) %>
+<p><%= t('travel_insurance_registrations.intro') %></p>
+
+<h3>Step 4 of 4 </h3>
+
+<div class="l-2col-even-row">
+  <div class="l-2col">
+
+    <section class="l-2col-side l-2col-side--pull-right">
+      <div class="panel t-sign-in-panel">
+        <strong><%= t('registration.generic_circumstances_assumption.heading')%></strong>
+        <ul>
+          <% t('registration.generic_circumstances_assumption.list').each do |list_item| %>
+            <li><%= list_item %></li>
+          <% end %>
+        </ul>
+
+      </div>
+    </section>
+
+    <section class="l-2col-main" data-wizard-form>
+      <%= form_for @form, url: medical_conditions_questionaire_travel_insurance_registrations_path, html: { class: 'form' }, builder: Dough::Forms::Builders::Validation do |f| %>
+        <%= f.validation_summary %>
+
+        <% t('registration.medical_conditions_questionaire').each_with_index do |item, index| %>
+          <%= f.form_row item[:key].to_sym,  html_options: { classes: 'wizard-form-item' } do %>
+            <fieldset class="form__group-item t-<%=item[:key]%>">
+
+              <legend class="l-pre-qualification__question l-pre-qualification__question--with-desc">
+                Scenario <%= index + 1 %> of <%= t('registration.medical_conditions_questionaire').length %> - <%= item[:scenario] %>
+              </legend>
+
+              <p>
+                <strong>Primary health condition:</strong>
+                <%= item[:primary_health_condition] %>
+              </p>
+              <p>
+                <strong>Secondary health condition:</strong>
+                <%= item[:secondary_health_condition] %>
+              </p>
+              <p>
+                <strong>Age:</strong>
+                <%= item[:age] %>
+              </p>
+              <p>
+                <strong>Trip:</strong>
+                <%= item[:trip] %>
+              </p>
+
+              <div class="form__group-item">
+                <label>
+                  <%= f.radio_button item[:key].to_sym, 1, class: 'form__group-input' %>
+                  <%= t('registration.answer_yes') %>
+                </label>
+              </div>
+
+              <div class="form__group-item">
+                <label>
+                  <%= f.radio_button item[:key].to_sym, 0, class: 'form__group-input' %>
+                  <%= t('registration.answer_no') %>
+                </label>
+              </div>
+            </fieldset>
+          <% end %>
+        <% end %>
+
+        <%= button_primary t('travel_insurance_registrations.register_button') %>
+      <% end %>
+    </section>
+  </div>
+</div>
