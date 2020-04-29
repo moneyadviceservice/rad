@@ -120,7 +120,6 @@ RSpec.feature 'Principal provides travel insurance information', :inline_job_que
     end
   end
 
-
   # scenario 'Registering a travel insurance firm having a retirement firm' do
   #   given_i_am_on_the_travel_insurance_registration_page
   #   and_i_registered_a_principal_and_retirement_advice_firm
