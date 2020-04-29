@@ -120,13 +120,14 @@ RSpec.feature 'Principal provides travel insurance information', :inline_job_que
     end
   end
 
-  # scenario 'Registering a travel insurance firm having a retirement firm' do
-  #   given_i_am_on_the_travel_insurance_registration_page
-  #   and_i_registered_a_principal_and_retirement_advice_firm
-  #   when_i_provide_my_firms_fca_reference_number
-  #   and_i_provide_my_identifying_particulars
-  #   then_i_am_taken_to_the_second_step_of_signup
-  # end
+  scenario 'Registering a travel insurance firm having a retirement firm' do
+    given_i_am_on_the_travel_insurance_medical_conditions_questionaire_page
+    and_i_registered_a_principal_and_retirement_advice_firm
+    and_i_provide_complete_answers_to_step_4
+    then_i_am_shown_a_thank_you_for_registering_message
+    and_i_should_have_a_retirement_and_travel_insurance_firm
+    and_i_later_receive_an_email_confirming_my_registration
+  end
 
   def given_i_am_on_the_travel_insurance_registration_page
     travel_insurance_registration_page.load
