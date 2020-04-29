@@ -51,6 +51,7 @@ group :development do
   gem 'binding_of_caller'
   gem 'letter_opener'
   gem 'listen'
+  gem 'rails-erd'
   gem 'solargraph'
   gem 'spring'
   gem 'spring-commands-rspec'
