@@ -5,19 +5,6 @@
 
 <div class="l-2col-even-row">
   <div class="l-2col">
-
-    <section class="l-2col-side l-2col-side--pull-right">
-      <div class="panel t-sign-in-panel">
-        <strong><%= t('registration.generic_circumstances_assumption.heading')%></strong>
-        <ul>
-          <% t('registration.generic_circumstances_assumption.list').each do |list_item| %>
-            <li><%= list_item %></li>
-          <% end %>
-        </ul>
-
-      </div>
-    </section>
-
     <section class="l-2col-main" data-wizard-form>
       <%= form_for @form, url: medical_conditions_questionaire_travel_insurance_registrations_path, html: { class: 'form' }, builder: Dough::Forms::Builders::Validation do |f| %>
         <%= f.validation_summary %>
@@ -64,8 +51,23 @@
           <% end %>
         <% end %>
 
+        <button class="button button--secondary" style="display:none"><%= t('travel_insurance_registrations.previous_question_button') %></button>
+
         <%= button_primary t('travel_insurance_registrations.register_button') %>
       <% end %>
     </section>
+
+    <section class="l-2col-side l-2col-side--pull-right">
+      <div class="panel t-sign-in-panel">
+        <strong><%= t('registration.generic_circumstances_assumption.heading')%></strong>
+        <ul>
+          <% t('registration.generic_circumstances_assumption.list').each do |list_item| %>
+            <li><%= list_item %></li>
+          <% end %>
+        </ul>
+
+      </div>
+    </section>
+
   </div>
 </div>

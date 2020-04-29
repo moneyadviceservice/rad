@@ -3,7 +3,8 @@ define(['jquery'], function($) {
 
   var $form = $('[data-wizard-form] form'),
       $formItems = $form.find('.wizard-form-item'),
-      $submitButton = $form.find('button'),
+      $submitButton = $form.find('button.button--primary'),
+      $prevButton = $form.find('button.button--secondary'),
       $currentStep = $formItems.first(),
       $currentStepNumber = 0;
 
@@ -27,6 +28,20 @@ define(['jquery'], function($) {
     }
   })
 
+  $prevButton.on('click', function(e){
+    e.preventDefault();
+
+    $currentStep.slideToggle()
+    $currentStepNumber -= 1
+
+    $currentStep = $($formItems[$currentStepNumber])
+    $currentStep.slideToggle()
+
+    addStepEventHandler($currentStep)
+    disableOrEnableSubmitButton($currentStep);
+  })
+
+
   function addStepEventHandler(step){
     step.on('change', function(e){
       $submitButton.attr('disabled', false)
@@ -35,5 +50,10 @@ define(['jquery'], function($) {
 
   function disableOrEnableSubmitButton(step){
     $submitButton.attr('disabled', step.find('input:checked').length <= 0)
+    if($currentStepNumber > 0){
+      $prevButton.show()
+    }else{
+      $prevButton.hide()
+    }
   }
 });
