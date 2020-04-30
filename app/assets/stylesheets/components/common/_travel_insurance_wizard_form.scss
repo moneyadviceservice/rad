@@ -1,0 +1,20 @@
+.form.js-wizard{
+  position: relative;
+  overflow: hidden;
+
+  .wizard-form-item{
+    transform: translateX(100%);
+    padding: 1px;
+    background-color: #fff;
+  }
+
+  .wizard-form-item.show-previous {
+    transform: translateX(-100%);
+  }
+
+  .wizard-form-item.show {
+    display: block;
+    transform: translateX(0%);
+    transition: transform 0.3s ease-in-out;
+  }
+}

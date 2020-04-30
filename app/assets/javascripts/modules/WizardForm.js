@@ -8,7 +8,9 @@ define(['jquery'], function($) {
       $currentStep = $formItems.first(),
       $currentStepNumber = 0;
 
-  $formItems.hide().first().show();
+  $formItems.hide().first().show().addClass('show');
+  $form.addClass('js-wizard');
+
   addStepEventHandler($currentStep)
   disableOrEnableSubmitButton($currentStep);
 
@@ -18,11 +20,11 @@ define(['jquery'], function($) {
     if($formItems.length - 1 == $currentStepNumber){
       $form.submit();
     }else{
-      $currentStep.slideToggle()
+      $currentStep.hide().removeClass('show')
       $currentStepNumber += 1
 
       $currentStep = $($formItems[$currentStepNumber])
-      $currentStep.slideToggle()
+      $currentStep.show().addClass('show')
       addStepEventHandler($currentStep)
       disableOrEnableSubmitButton($currentStep);
     }
@@ -31,11 +33,11 @@ define(['jquery'], function($) {
   $prevButton.on('click', function(e){
     e.preventDefault();
 
-    $currentStep.slideToggle()
+    $currentStep.hide().removeClass('show-previous show')
     $currentStepNumber -= 1
 
     $currentStep = $($formItems[$currentStepNumber])
-    $currentStep.slideToggle()
+    $currentStep.addClass('show-previous').show().addClass('show')
 
     addStepEventHandler($currentStep)
     disableOrEnableSubmitButton($currentStep);
