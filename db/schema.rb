@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 3019_11_18_100139) do
+ActiveRecord::Schema.define(version: 3020_04_29_093442) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -80,31 +80,12 @@ ActiveRecord::Schema.define(version: 3019_11_18_100139) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "firms", id: :serial, force: :cascade do |t|
+  create_table "firms", force: :cascade do |t|
     t.integer "fca_number", null: false
-    t.string "registered_name", null: false
+    t.integer "parent_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "free_initial_meeting"
-    t.integer "initial_meeting_duration_id"
-    t.integer "minimum_fixed_fee", default: 0
-    t.integer "parent_id"
-    t.boolean "retirement_income_products_flag", default: false, null: false
-    t.boolean "pension_transfer_flag", default: false, null: false
-    t.boolean "long_term_care_flag", default: false, null: false
-    t.boolean "equity_release_flag", default: false, null: false
-    t.boolean "inheritance_tax_and_estate_planning_flag", default: false, null: false
-    t.boolean "wills_and_probate_flag", default: false, null: false
-    t.string "website_address"
-    t.boolean "ethical_investing_flag", default: false, null: false
-    t.boolean "sharia_investing_flag", default: false, null: false
-    t.text "languages", default: [], null: false, array: true
-    t.integer "status"
-    t.boolean "workplace_financial_advice_flag", default: false, null: false
-    t.boolean "non_uk_residents_flag", default: false, null: false
-    t.datetime "approved_at"
-    t.index ["approved_at"], name: "index_firms_on_approved_at"
-    t.index ["initial_meeting_duration_id"], name: "index_firms_on_initial_meeting_duration_id"
+    t.index ["fca_number"], name: "index_firms_on_fca_number", unique: true
   end
 
   create_table "firms_in_person_advice_methods", id: false, force: :cascade do |t|
@@ -195,21 +176,21 @@ ActiveRecord::Schema.define(version: 3019_11_18_100139) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "lookup_advisers", id: :integer, force: :cascade do |t|
+  create_table "lookup_advisers", id: :serial, force: :cascade do |t|
     t.string "reference_number", limit: 20, null: false
     t.string "name", limit: 255, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "lookup_firms", id: :integer, force: :cascade do |t|
+  create_table "lookup_firms", id: :serial, force: :cascade do |t|
     t.integer "fca_number", null: false
     t.string "registered_name", limit: 255, default: "", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "lookup_subsidiaries", id: :integer, force: :cascade do |t|
+  create_table "lookup_subsidiaries", id: :serial, force: :cascade do |t|
     t.integer "fca_number", null: false
     t.string "name", limit: 255, default: "", null: false
     t.datetime "created_at", null: false
@@ -293,6 +274,33 @@ ActiveRecord::Schema.define(version: 3019_11_18_100139) do
     t.datetime "updated_at"
     t.index ["session_id"], name: "index_rad_consumer_sessions_on_session_id", unique: true
     t.index ["updated_at"], name: "index_rad_consumer_sessions_on_updated_at"
+  end
+
+  create_table "retirement_firms", id: :serial, force: :cascade do |t|
+    t.integer "fca_number", null: false
+    t.string "registered_name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.boolean "free_initial_meeting"
+    t.integer "initial_meeting_duration_id"
+    t.integer "minimum_fixed_fee", default: 0
+    t.integer "parent_id"
+    t.boolean "retirement_income_products_flag", default: false, null: false
+    t.boolean "pension_transfer_flag", default: false, null: false
+    t.boolean "long_term_care_flag", default: false, null: false
+    t.boolean "equity_release_flag", default: false, null: false
+    t.boolean "inheritance_tax_and_estate_planning_flag", default: false, null: false
+    t.boolean "wills_and_probate_flag", default: false, null: false
+    t.string "website_address"
+    t.boolean "ethical_investing_flag", default: false, null: false
+    t.boolean "sharia_investing_flag", default: false, null: false
+    t.text "languages", default: [], null: false, array: true
+    t.integer "status"
+    t.boolean "workplace_financial_advice_flag", default: false, null: false
+    t.boolean "non_uk_residents_flag", default: false, null: false
+    t.datetime "approved_at"
+    t.index ["approved_at"], name: "index_retirement_firms_on_approved_at"
+    t.index ["initial_meeting_duration_id"], name: "index_retirement_firms_on_initial_meeting_duration_id"
   end
 
   create_table "snapshots", id: :serial, force: :cascade do |t|
