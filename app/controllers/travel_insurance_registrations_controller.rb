@@ -57,8 +57,11 @@ class TravelInsuranceRegistrationsController < BaseRegistrationsController
   private
 
   def rejected_registration?
-    if params[:current_step].to_sym == :risk_profile
+    case params[:current_step].to_sym
+    when :risk_profile
       risk_profile_form_params[:covered_by_ombudsman_question] == '0' || risk_profile_form_params[:risk_profile_approach_question] == 'neither'
+    when :medical_conditions_questionaire
+      !medical_questionaire_acceptable?
     else
       false
     end
@@ -71,7 +74,7 @@ class TravelInsuranceRegistrationsController < BaseRegistrationsController
     when :medical_conditions
       medical_conditions_form_params[:covers_medical_condition_question] == 'one_specific'
     when :medical_conditions_questionaire
-      true
+      medical_questionaire_acceptable?
     else
       false
     end
@@ -99,6 +102,11 @@ class TravelInsuranceRegistrationsController < BaseRegistrationsController
       :peripheral_vascular_disease_question, :schizophrenia_question,
       :lupus_question, :sickle_cell_and_renal_question, :sub_arachnoid_haemorrhage_and_epilepsy_question
     )
+  end
+
+  def medical_questionaire_acceptable?
+    positive_answers_count = medical_conditions_questionaire_form_params.values.select { |i| i == '1' }.count
+    positive_answers_count >= (medical_conditions_questionaire_form_params.values.count * 0.5).ceil
   end
 
   def register_and_redirect_user
