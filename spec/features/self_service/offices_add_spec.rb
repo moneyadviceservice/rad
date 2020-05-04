@@ -1,4 +1,4 @@
- RSpec.feature 'The self service office add page', :inline_job_queue do
+RSpec.feature 'The self service office add page', :inline_job_queue do
   include_context 'algolia index fake'
 
   let(:offices_index_page) { SelfService::OfficesIndexPage.new }
@@ -64,7 +64,7 @@
 
   def given_i_am_a_fully_registered_principal_user
     firm_attrs = FactoryBot.attributes_for(:firm, fca_number: principal.fca_number)
-    principal.firm.update_attributes(firm_attrs)
+    principal.firm.update(firm_attrs)
     expect(Firm.onboarded.find(principal.firm.id)).to be_present
   end
 
@@ -126,7 +126,7 @@
   end
 
   def and_the_principal_firm_has_an_adviser_but_no_office
-    firm.update!(advisers: [FactoryBot.create(:adviser, firm: firm)])
+    firm.update!(advisers: [FactoryBot.create(:advisers_retirement_firm, firm: firm)])
     expect(firm_advisers_in_directory(firm).size).to eq 1
     expect(firm_total_advisers_in_directory(firm)).to eq 1
     expect(firm_offices_in_directory(firm).size).to eq 0

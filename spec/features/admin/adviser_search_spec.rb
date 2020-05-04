@@ -94,21 +94,21 @@ RSpec.feature 'Searching for advisers on the admin interface' do
 
   def given_there_are_advisers
     FactoryBot.create(:firm_without_advisers, registered_name: 'W. Montgomery Financial') do |f|
-      FactoryBot.create(:adviser, firm: f, name: 'Wes Montgomery')
-      FactoryBot.create(:adviser, firm: f, postcode: 'EH3 1DY')
+      FactoryBot.create(:advisers_retirement_firm, firm: f, name: 'Wes Montgomery')
+      FactoryBot.create(:advisers_retirement_firm, firm: f, postcode: 'EH3 1DY')
     end
 
-    FactoryBot.create(:adviser, reference_number: 'CHP12345')
+    FactoryBot.create(:advisers_retirement_firm, reference_number: 'CHP12345')
 
-    FactoryBot.create(:adviser,
+    FactoryBot.create(:advisers_retirement_firm,
                        name: 'A1',
                        qualifications: qualifications.take(2),
                        accreditations: accreditations.take(0))
-    FactoryBot.create(:adviser,
+    FactoryBot.create(:advisers_retirement_firm,
                        name: 'A2',
                        qualifications: qualifications.take(1),
                        accreditations: accreditations.take(1))
-    FactoryBot.create(:adviser,
+    FactoryBot.create(:advisers_retirement_firm,
                        name: 'A3',
                        qualifications: qualifications.take(0),
                        accreditations: accreditations.take(2))
@@ -146,6 +146,7 @@ RSpec.feature 'Searching for advisers on the admin interface' do
 
   def expect_no_errors
     return unless status_code == 500
+
     expect(the_page).not_to have_text %r{[Ee]rror|[Ww]arn|[Ee]xception}
   end
 

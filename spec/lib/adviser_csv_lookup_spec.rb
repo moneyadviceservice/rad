@@ -1,6 +1,6 @@
 RSpec.describe AdviserCsvLookup do
-  let(:adviser1) { FactoryBot.create(:adviser, adviser1_certifications) }
-  let(:adviser2) { FactoryBot.create(:adviser, adviser2_certifications) }
+  let(:adviser1) { FactoryBot.create(:advisers_retirement_firm, adviser1_certifications) }
+  let(:adviser2) { FactoryBot.create(:advisers_retirement_firm, adviser2_certifications) }
   let(:advisers) { [adviser1, adviser2] }
 
   let(:qualifications) { Array.new(3) { FactoryBot.create(:qualification) } }
@@ -24,16 +24,16 @@ RSpec.describe AdviserCsvLookup do
   describe '#each' do
     let(:expected_adviser_1_data) do
       {
-        adviser:        adviser1,
-        firm_name:      adviser1.firm.registered_name,
+        adviser: adviser1,
+        firm_name: adviser1.firm.registered_name,
         qualifications: adviser1.qualifications.map(&:name),
         accreditations: adviser1.accreditations.map(&:name)
       }
     end
     let(:expected_adviser_2_data) do
       {
-        adviser:        adviser2,
-        firm_name:      adviser2.firm.registered_name,
+        adviser: adviser2,
+        firm_name: adviser2.firm.registered_name,
         qualifications: adviser2.qualifications.map(&:name),
         accreditations: adviser2.accreditations.map(&:name)
       }

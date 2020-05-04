@@ -1,9 +1,9 @@
-class Adviser < ApplicationRecord
+class AdvisersRetirementFirm < ApplicationRecord
   include Geocodable
 
-  attr_reader :old_firm_id
+  attr_reader :old_retirement_firm_id
 
-  belongs_to :firm
+  belongs_to :retirement_firm
 
   has_and_belongs_to_many :qualifications
   has_and_belongs_to_many :accreditations
@@ -39,7 +39,7 @@ class Adviser < ApplicationRecord
   end
 
   def self.on_firms_with_fca_number(fca_number)
-    firms = Firm.where(fca_number: fca_number)
+    firms = RetirementFirm.includes(:firm).where(firm: { fca_number: fca_number })
     where(firm: firms)
   end
 

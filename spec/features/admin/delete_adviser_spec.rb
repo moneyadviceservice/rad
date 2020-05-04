@@ -14,9 +14,9 @@ RSpec.feature 'Deleting an adviser from the admin interface', :inline_job_queue 
   end
 
   def given_there_are_advisers_for_a_firm
-    @adviser_first = create(:adviser)
+    @adviser_first = create(:advisers_retirement_firm)
     @firm = @adviser_first.firm
-    @adviser_second = create(:adviser, firm: @firm)
+    @adviser_second = create(:advisers_retirement_firm, firm: @firm)
   end
 
   def and_the_advisers_are_present_in_the_directory
@@ -36,7 +36,7 @@ RSpec.feature 'Deleting an adviser from the admin interface', :inline_job_queue 
   end
 
   def then_the_adviser_is_deleted
-    expect(Adviser.find_by_id(@adviser_first.id)).to be_nil
+    expect(Adviser.find_by(id: @adviser_first.id)).to be_nil
   end
 
   def and_the_adviser_gets_removed_from_the_directory

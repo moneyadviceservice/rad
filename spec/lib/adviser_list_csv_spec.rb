@@ -1,7 +1,7 @@
 RSpec.describe AdviserListCsv do
   describe '#to_csv' do
-    let(:adviser1) { FactoryBot.create(:adviser, adviser1_certifications) }
-    let(:adviser2) { FactoryBot.create(:adviser, adviser2_certifications) }
+    let(:adviser1) { FactoryBot.create(:advisers_retirement_firm, adviser1_certifications) }
+    let(:adviser2) { FactoryBot.create(:advisers_retirement_firm, adviser2_certifications) }
     let(:advisers) { [adviser1, adviser2] }
 
     let(:qualifications) { Array.new(3) { FactoryBot.create(:qualification) } }

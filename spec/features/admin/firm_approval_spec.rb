@@ -37,7 +37,7 @@ RSpec.feature 'Approving firms on the admin interface', :inline_job_queue do
     @principals = @users.map(&:principal)
     @firms = @principals.map(&:firm)
     @firms.each do |firm|
-      firm.advisers << FactoryBot.create(:adviser, firm: firm)
+      firm.advisers << FactoryBot.create(:advisers_retirement_firm, firm: firm)
       firm.offices << FactoryBot.create(:office, firm: firm)
     end
   end
@@ -62,6 +62,7 @@ RSpec.feature 'Approving firms on the admin interface', :inline_job_queue do
 
   def expect_no_errors
     return unless status_code == 500
+
     expect(index_page).not_to have_text %r{[Ee]rror|[Ww]arn|[Ee]xception}
   end
 
@@ -94,8 +95,8 @@ RSpec.feature 'Approving firms on the admin interface', :inline_job_queue do
     expect_no_errors
 
     firm_info = index_page.firms.select do |firm|
-                  firm.fca_number.to_s == approved_firm.fca_number.to_s
-                end.first
+      firm.fca_number.to_s == approved_firm.fca_number.to_s
+    end.first
     expect(firm_info.approved).to eq approval_date.strftime('%d %b %Y')
   end
 

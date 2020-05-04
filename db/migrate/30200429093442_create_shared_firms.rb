@@ -4,6 +4,7 @@ class CreateSharedFirms < ActiveRecord::Migration[5.2]
       t.integer :fca_number, null: false
       t.integer 'parent_id'
       t.timestamps null: false
+      t.string 'registered_name', null: false
       t.index :fca_number, unique: true
     end
 

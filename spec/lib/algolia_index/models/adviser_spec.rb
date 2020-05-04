@@ -41,7 +41,7 @@ RSpec.describe AlgoliaIndex::Adviser do
   end
 
   shared_examples('update firm advisers') do |trigger_call|
-    let!(:adviser) { FactoryBot.create(:adviser) }
+    let!(:adviser) { FactoryBot.create(:advisers_retirement_firm) }
     let(:adviser_id) { adviser.id }
     let(:dependant_advisers) do
       FactoryBot.create_list(:adviser, 3, firm: adviser.firm)

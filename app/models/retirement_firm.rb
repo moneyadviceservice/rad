@@ -36,10 +36,10 @@ class RetirementFirm < ApplicationRecord
   belongs_to :initial_meeting_duration
   belongs_to :firm
 
-  has_many :advisers, dependent: :destroy
+  has_many :advisers_retirement_firm, dependent: :destroy
   has_many :qualifications, -> { reorder('').distinct }, through: :advisers
   has_many :accreditations, -> { reorder('').distinct }, through: :advisers
-  has_many :offices, -> { order created_at: :asc }, dependent: :destroy
+  has_many :offices_retirement_firms, -> { order created_at: :asc }, dependent: :destroy
 
   attr_accessor :percent_total
   attr_accessor :primary_advice_method

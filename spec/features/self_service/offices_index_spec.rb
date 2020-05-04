@@ -79,7 +79,7 @@ RSpec.feature 'The self service firm offices list page', :inline_job_queue do
 
   def given_i_am_a_fully_registered_principal_user
     firm_attrs = FactoryBot.attributes_for(:firm, fca_number: principal.fca_number)
-    firm.update_attributes(firm_attrs)
+    firm.update(firm_attrs)
     expect(Firm.onboarded.find(firm.id)).to be_present
   end
 
@@ -88,7 +88,7 @@ RSpec.feature 'The self service firm offices list page', :inline_job_queue do
   end
 
   def and_my_firm_has_and_adviser
-    firm.update!(advisers: [FactoryBot.create(:adviser, firm: firm)])
+    firm.update!(advisers: [FactoryBot.create(:advisers_retirement_firm, firm: firm)])
   end
 
   def and_i_am_logged_in
@@ -133,7 +133,8 @@ RSpec.feature 'The self service firm offices list page', :inline_job_queue do
   def then_there_is_a_prompt_to_add_an_office
     expect(offices_index_page).not_to have_offices
     expect(offices_index_page).to have_no_offices_message(
-      text: I18n.t('self_service.offices_index.no_offices_message'))
+      text: I18n.t('self_service.offices_index.no_offices_message')
+    )
     expect(offices_index_page).to have_add_office_link
   end
 

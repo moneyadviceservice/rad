@@ -6,7 +6,7 @@ RSpec.describe Admin::Reports::InactiveAdvisersController, type: :request do
     end
 
     it 'assigns a list of inactive advisers' do
-      FactoryBot.create(:adviser)
+      FactoryBot.create(:advisers_retirement_firm)
       inactive_adviser = FactoryBot.build(:adviser, create_linked_lookup_advisor: false)
       inactive_adviser.save!(validate: false)
 
@@ -15,7 +15,7 @@ RSpec.describe Admin::Reports::InactiveAdvisersController, type: :request do
     end
 
     it 'excludes advisers that have skipped the reference number check' do
-      FactoryBot.create(:adviser)
+      FactoryBot.create(:advisers_retirement_firm)
       noref_adviser = FactoryBot.build(
         :adviser,
         bypass_reference_number_check: true,

@@ -1,5 +1,5 @@
 RSpec.describe AdviserAccreditationsLookup do
-  let(:adviser) { FactoryBot.create(:adviser, adviser_accreditations) }
+  let(:adviser) { FactoryBot.create(:advisers_retirement_firm, adviser_accreditations) }
 
   let(:accreditations) { Array.new(3) { FactoryBot.create(:accreditation) } }
 
@@ -19,7 +19,7 @@ RSpec.describe AdviserAccreditationsLookup do
     end
 
     context 'when adviser has no accreditations' do
-      let(:adviser) { FactoryBot.create(:adviser, accreditations: []) }
+      let(:adviser) { FactoryBot.create(:advisers_retirement_firm, accreditations: []) }
 
       it 'returns an empty array for that adviser' do
         expect(subject.for(adviser.id)).to eq([])

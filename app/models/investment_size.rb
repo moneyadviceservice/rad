@@ -5,7 +5,7 @@ class InvestmentSize < ApplicationRecord
   # TODO: all the entities like this that are currently relating to firm need to be
   # migrated to relate to retirement firm in order to
   # make queries more efficient. This is a future refactor commit
-  has_and_belongs_to_many :firms
+  has_and_belongs_to_many :retirement_firms
 
   validates :name, presence: true
 

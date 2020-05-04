@@ -33,7 +33,7 @@ RSpec.feature 'registered advisors report' do
   end
 
   scenario 'permits download as CSV' do
-    Timecop.freeze Date.new(2017, 05, 30) do
+    Timecop.freeze Date.new(2017, 0o5, 30) do
       and_there_exists_registered_advisors
       when_i_visit_the_registered_adviser_page
       and_click_on_download_as_csv_button
@@ -66,7 +66,7 @@ RSpec.feature 'registered advisors report' do
 
   def and_there_exists_registered_advisors
     firm = FactoryBot.create(:firm, registered_name: 'James Andrews Investment PLC')
-    FactoryBot.create(:adviser,
+    FactoryBot.create(:advisers_retirement_firm,
                        name: 'James Andrews',
                        reference_number: 'ABC12345',
                        firm: firm)

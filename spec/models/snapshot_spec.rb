@@ -319,17 +319,17 @@ RSpec.describe Snapshot do
 
   describe '#query_registered_advisers' do
     before do
-      FactoryBot.create(:adviser)
-      FactoryBot.create(:adviser)
+      FactoryBot.create(:advisers_retirement_firm)
+      FactoryBot.create(:advisers_retirement_firm)
     end
 
     it { expect(subject.query_registered_advisers.count).to eq(2) }
   end
 
   describe '#query_advisers_in_england' do
-    let!(:adviser1) { FactoryBot.create(:adviser, postcode: england_postcode) }
-    let!(:adviser2) { FactoryBot.create(:adviser, postcode: england_postcode) }
-    let!(:adviser3) { FactoryBot.create(:adviser, postcode: scotland_postcode) }
+    let!(:adviser1) { FactoryBot.create(:advisers_retirement_firm, postcode: england_postcode) }
+    let!(:adviser2) { FactoryBot.create(:advisers_retirement_firm, postcode: england_postcode) }
+    let!(:adviser3) { FactoryBot.create(:advisers_retirement_firm, postcode: scotland_postcode) }
 
     it do
       VCR.use_cassette('england_and_scotland_postcode') do
@@ -340,9 +340,9 @@ RSpec.describe Snapshot do
   end
 
   describe '#query_advisers_in_scotland' do
-    let!(:adviser1) { FactoryBot.create(:adviser, postcode: scotland_postcode) }
-    let!(:adviser2) { FactoryBot.create(:adviser, postcode: scotland_postcode) }
-    let!(:adviser3) { FactoryBot.create(:adviser, postcode: england_postcode) }
+    let!(:adviser1) { FactoryBot.create(:advisers_retirement_firm, postcode: scotland_postcode) }
+    let!(:adviser2) { FactoryBot.create(:advisers_retirement_firm, postcode: scotland_postcode) }
+    let!(:adviser3) { FactoryBot.create(:advisers_retirement_firm, postcode: england_postcode) }
 
     it do
       VCR.use_cassette('scotland_and_england_postcode') do
@@ -353,9 +353,9 @@ RSpec.describe Snapshot do
   end
 
   describe '#query_advisers_in_wales' do
-    let!(:adviser1) { FactoryBot.create(:adviser, postcode: wales_postcode) }
-    let!(:adviser2) { FactoryBot.create(:adviser, postcode: wales_postcode) }
-    let!(:adviser3) { FactoryBot.create(:adviser, postcode: england_postcode) }
+    let!(:adviser1) { FactoryBot.create(:advisers_retirement_firm, postcode: wales_postcode) }
+    let!(:adviser2) { FactoryBot.create(:advisers_retirement_firm, postcode: wales_postcode) }
+    let!(:adviser3) { FactoryBot.create(:advisers_retirement_firm, postcode: england_postcode) }
 
     it do
       VCR.use_cassette('wales_and_england_postcode') do
@@ -366,9 +366,9 @@ RSpec.describe Snapshot do
   end
 
   describe '#query_advisers_in_northern_ireland' do
-    let!(:adviser1) { FactoryBot.create(:adviser, postcode: northern_ireland_postcode) }
-    let!(:adviser2) { FactoryBot.create(:adviser, postcode: northern_ireland_postcode) }
-    let!(:adviser3) { FactoryBot.create(:adviser, postcode: england_postcode) }
+    let!(:adviser1) { FactoryBot.create(:advisers_retirement_firm, postcode: northern_ireland_postcode) }
+    let!(:adviser2) { FactoryBot.create(:advisers_retirement_firm, postcode: northern_ireland_postcode) }
+    let!(:adviser3) { FactoryBot.create(:advisers_retirement_firm, postcode: england_postcode) }
 
     it do
       VCR.use_cassette('northern_ireland_and_england_postcode') do
@@ -380,9 +380,9 @@ RSpec.describe Snapshot do
 
   describe '#query_advisers_who_travel_5_miles' do
     before do
-      FactoryBot.create(:adviser)
-      FactoryBot.create(:adviser, travel_distance: TravelDistance.all['5 miles'])
-      FactoryBot.create(:adviser, travel_distance: TravelDistance.all['5 miles'])
+      FactoryBot.create(:advisers_retirement_firm)
+      FactoryBot.create(:advisers_retirement_firm, travel_distance: TravelDistance.all['5 miles'])
+      FactoryBot.create(:advisers_retirement_firm, travel_distance: TravelDistance.all['5 miles'])
     end
 
     it { expect(subject.query_advisers_who_travel_5_miles.count).to eq(2) }
@@ -390,9 +390,9 @@ RSpec.describe Snapshot do
 
   describe '#query_advisers_who_travel_10_miles' do
     before do
-      FactoryBot.create(:adviser)
-      FactoryBot.create(:adviser, travel_distance: TravelDistance.all['10 miles'])
-      FactoryBot.create(:adviser, travel_distance: TravelDistance.all['10 miles'])
+      FactoryBot.create(:advisers_retirement_firm)
+      FactoryBot.create(:advisers_retirement_firm, travel_distance: TravelDistance.all['10 miles'])
+      FactoryBot.create(:advisers_retirement_firm, travel_distance: TravelDistance.all['10 miles'])
     end
 
     it { expect(subject.query_advisers_who_travel_10_miles.count).to eq(2) }
@@ -400,9 +400,9 @@ RSpec.describe Snapshot do
 
   describe '#query_advisers_who_travel_25_miles' do
     before do
-      FactoryBot.create(:adviser)
-      FactoryBot.create(:adviser, travel_distance: TravelDistance.all['25 miles'])
-      FactoryBot.create(:adviser, travel_distance: TravelDistance.all['25 miles'])
+      FactoryBot.create(:advisers_retirement_firm)
+      FactoryBot.create(:advisers_retirement_firm, travel_distance: TravelDistance.all['25 miles'])
+      FactoryBot.create(:advisers_retirement_firm, travel_distance: TravelDistance.all['25 miles'])
     end
 
     it { expect(subject.query_advisers_who_travel_25_miles.count).to eq(2) }
@@ -410,9 +410,9 @@ RSpec.describe Snapshot do
 
   describe '#query_advisers_who_travel_50_miles' do
     before do
-      FactoryBot.create(:adviser)
-      FactoryBot.create(:adviser, travel_distance: TravelDistance.all['50 miles'])
-      FactoryBot.create(:adviser, travel_distance: TravelDistance.all['50 miles'])
+      FactoryBot.create(:advisers_retirement_firm)
+      FactoryBot.create(:advisers_retirement_firm, travel_distance: TravelDistance.all['50 miles'])
+      FactoryBot.create(:advisers_retirement_firm, travel_distance: TravelDistance.all['50 miles'])
     end
 
     it { expect(subject.query_advisers_who_travel_50_miles.count).to eq(2) }
@@ -420,9 +420,9 @@ RSpec.describe Snapshot do
 
   describe '#query_advisers_who_travel_100_miles' do
     before do
-      FactoryBot.create(:adviser)
-      FactoryBot.create(:adviser, travel_distance: TravelDistance.all['100 miles'])
-      FactoryBot.create(:adviser, travel_distance: TravelDistance.all['100 miles'])
+      FactoryBot.create(:advisers_retirement_firm)
+      FactoryBot.create(:advisers_retirement_firm, travel_distance: TravelDistance.all['100 miles'])
+      FactoryBot.create(:advisers_retirement_firm, travel_distance: TravelDistance.all['100 miles'])
     end
 
     it { expect(subject.query_advisers_who_travel_100_miles.count).to eq(2) }
@@ -430,9 +430,9 @@ RSpec.describe Snapshot do
 
   describe '#query_advisers_who_travel_150_miles' do
     before do
-      FactoryBot.create(:adviser)
-      FactoryBot.create(:adviser, travel_distance: TravelDistance.all['150 miles'])
-      FactoryBot.create(:adviser, travel_distance: TravelDistance.all['150 miles'])
+      FactoryBot.create(:advisers_retirement_firm)
+      FactoryBot.create(:advisers_retirement_firm, travel_distance: TravelDistance.all['150 miles'])
+      FactoryBot.create(:advisers_retirement_firm, travel_distance: TravelDistance.all['150 miles'])
     end
 
     it { expect(subject.query_advisers_who_travel_150_miles.count).to eq(2) }
@@ -440,9 +440,9 @@ RSpec.describe Snapshot do
 
   describe '#query_advisers_who_travel_200_miles' do
     before do
-      FactoryBot.create(:adviser)
-      FactoryBot.create(:adviser, travel_distance: TravelDistance.all['200 miles'])
-      FactoryBot.create(:adviser, travel_distance: TravelDistance.all['200 miles'])
+      FactoryBot.create(:advisers_retirement_firm)
+      FactoryBot.create(:advisers_retirement_firm, travel_distance: TravelDistance.all['200 miles'])
+      FactoryBot.create(:advisers_retirement_firm, travel_distance: TravelDistance.all['200 miles'])
     end
 
     it { expect(subject.query_advisers_who_travel_200_miles.count).to eq(2) }
@@ -450,9 +450,9 @@ RSpec.describe Snapshot do
 
   describe '#query_advisers_who_travel_250_miles' do
     before do
-      FactoryBot.create(:adviser)
-      FactoryBot.create(:adviser, travel_distance: TravelDistance.all['250 miles'])
-      FactoryBot.create(:adviser, travel_distance: TravelDistance.all['250 miles'])
+      FactoryBot.create(:advisers_retirement_firm)
+      FactoryBot.create(:advisers_retirement_firm, travel_distance: TravelDistance.all['250 miles'])
+      FactoryBot.create(:advisers_retirement_firm, travel_distance: TravelDistance.all['250 miles'])
     end
 
     it { expect(subject.query_advisers_who_travel_250_miles.count).to eq(2) }
@@ -460,9 +460,9 @@ RSpec.describe Snapshot do
 
   describe '#query_advisers_who_travel_uk_wide' do
     before do
-      FactoryBot.create(:adviser, travel_distance: TravelDistance.all['5 miles'])
-      FactoryBot.create(:adviser, travel_distance: TravelDistance.all['UK wide'])
-      FactoryBot.create(:adviser, travel_distance: TravelDistance.all['UK wide'])
+      FactoryBot.create(:advisers_retirement_firm, travel_distance: TravelDistance.all['5 miles'])
+      FactoryBot.create(:advisers_retirement_firm, travel_distance: TravelDistance.all['UK wide'])
+      FactoryBot.create(:advisers_retirement_firm, travel_distance: TravelDistance.all['UK wide'])
     end
 
     it { expect(subject.query_advisers_who_travel_uk_wide.count).to eq(2) }
@@ -471,9 +471,9 @@ RSpec.describe Snapshot do
   describe '#query_advisers_accredited_in_solla' do
     before do
       accreditation = FactoryBot.create(:accreditation, name: 'SOLLA')
-      FactoryBot.create(:adviser)
-      FactoryBot.create(:adviser, accreditations: [accreditation])
-      FactoryBot.create(:adviser, accreditations: [accreditation])
+      FactoryBot.create(:advisers_retirement_firm)
+      FactoryBot.create(:advisers_retirement_firm, accreditations: [accreditation])
+      FactoryBot.create(:advisers_retirement_firm, accreditations: [accreditation])
     end
 
     it { expect(subject.query_advisers_accredited_in_solla.count).to eq(2) }
@@ -482,9 +482,9 @@ RSpec.describe Snapshot do
   describe '#query_advisers_accredited_in_later_life_academy' do
     before do
       accreditation = FactoryBot.create(:accreditation, name: 'Later Life Academy')
-      FactoryBot.create(:adviser)
-      FactoryBot.create(:adviser, accreditations: [accreditation])
-      FactoryBot.create(:adviser, accreditations: [accreditation])
+      FactoryBot.create(:advisers_retirement_firm)
+      FactoryBot.create(:advisers_retirement_firm, accreditations: [accreditation])
+      FactoryBot.create(:advisers_retirement_firm, accreditations: [accreditation])
     end
 
     it { expect(subject.query_advisers_accredited_in_later_life_academy.count).to eq(2) }
@@ -493,9 +493,9 @@ RSpec.describe Snapshot do
   describe '#query_advisers_accredited_in_iso22222' do
     before do
       accreditation = FactoryBot.create(:accreditation, name: 'ISO 22222')
-      FactoryBot.create(:adviser)
-      FactoryBot.create(:adviser, accreditations: [accreditation])
-      FactoryBot.create(:adviser, accreditations: [accreditation])
+      FactoryBot.create(:advisers_retirement_firm)
+      FactoryBot.create(:advisers_retirement_firm, accreditations: [accreditation])
+      FactoryBot.create(:advisers_retirement_firm, accreditations: [accreditation])
     end
 
     it { expect(subject.query_advisers_accredited_in_iso22222.count).to eq(2) }
@@ -504,9 +504,9 @@ RSpec.describe Snapshot do
   describe '#query_advisers_accredited_in_bs8577' do
     before do
       accreditation = FactoryBot.create(:accreditation, name: 'British Standard in Financial Planning BS8577')
-      FactoryBot.create(:adviser)
-      FactoryBot.create(:adviser, accreditations: [accreditation])
-      FactoryBot.create(:adviser, accreditations: [accreditation])
+      FactoryBot.create(:advisers_retirement_firm)
+      FactoryBot.create(:advisers_retirement_firm, accreditations: [accreditation])
+      FactoryBot.create(:advisers_retirement_firm, accreditations: [accreditation])
     end
 
     it { expect(subject.query_advisers_accredited_in_bs8577.count).to eq(2) }
@@ -515,9 +515,9 @@ RSpec.describe Snapshot do
   describe '#query_advisers_with_qualification_in_level_4' do
     before do
       qualification = FactoryBot.create(:qualification, name: 'Level 4 (DipPFS, DipFA® or equivalent)')
-      FactoryBot.create(:adviser)
-      FactoryBot.create(:adviser, qualifications: [qualification])
-      FactoryBot.create(:adviser, qualifications: [qualification])
+      FactoryBot.create(:advisers_retirement_firm)
+      FactoryBot.create(:advisers_retirement_firm, qualifications: [qualification])
+      FactoryBot.create(:advisers_retirement_firm, qualifications: [qualification])
     end
 
     it { expect(subject.query_advisers_with_qualification_in_level_4.count).to eq(2) }
@@ -526,9 +526,9 @@ RSpec.describe Snapshot do
   describe '#query_advisers_with_qualification_in_level_6' do
     before do
       qualification = FactoryBot.create(:qualification, name: 'Level 6 (APFS, Adv DipFA®)')
-      FactoryBot.create(:adviser)
-      FactoryBot.create(:adviser, qualifications: [qualification])
-      FactoryBot.create(:adviser, qualifications: [qualification])
+      FactoryBot.create(:advisers_retirement_firm)
+      FactoryBot.create(:advisers_retirement_firm, qualifications: [qualification])
+      FactoryBot.create(:advisers_retirement_firm, qualifications: [qualification])
     end
 
     it { expect(subject.query_advisers_with_qualification_in_level_6.count).to eq(2) }
@@ -537,9 +537,9 @@ RSpec.describe Snapshot do
   describe '#query_advisers_with_qualification_in_chartered_financial_planner' do
     before do
       qualification = FactoryBot.create(:qualification, name: 'Chartered Financial Planner')
-      FactoryBot.create(:adviser)
-      FactoryBot.create(:adviser, qualifications: [qualification])
-      FactoryBot.create(:adviser, qualifications: [qualification])
+      FactoryBot.create(:advisers_retirement_firm)
+      FactoryBot.create(:advisers_retirement_firm, qualifications: [qualification])
+      FactoryBot.create(:advisers_retirement_firm, qualifications: [qualification])
     end
 
     it { expect(subject.query_advisers_with_qualification_in_chartered_financial_planner.count).to eq(2) }
@@ -548,9 +548,9 @@ RSpec.describe Snapshot do
   describe '#query_advisers_with_qualification_in_certified_financial_planner' do
     before do
       qualification = FactoryBot.create(:qualification, name: 'Certified Financial Planner')
-      FactoryBot.create(:adviser)
-      FactoryBot.create(:adviser, qualifications: [qualification])
-      FactoryBot.create(:adviser, qualifications: [qualification])
+      FactoryBot.create(:advisers_retirement_firm)
+      FactoryBot.create(:advisers_retirement_firm, qualifications: [qualification])
+      FactoryBot.create(:advisers_retirement_firm, qualifications: [qualification])
     end
 
     it { expect(subject.query_advisers_with_qualification_in_certified_financial_planner.count).to eq(2) }
@@ -559,9 +559,9 @@ RSpec.describe Snapshot do
   describe '#query_advisers_with_qualification_in_pension_transfer' do
     before do
       qualification = FactoryBot.create(:qualification, name: 'Pension transfer qualifications - holder of G60, AF3, AwPETR®, or equivalent')
-      FactoryBot.create(:adviser)
-      FactoryBot.create(:adviser, qualifications: [qualification])
-      FactoryBot.create(:adviser, qualifications: [qualification])
+      FactoryBot.create(:advisers_retirement_firm)
+      FactoryBot.create(:advisers_retirement_firm, qualifications: [qualification])
+      FactoryBot.create(:advisers_retirement_firm, qualifications: [qualification])
     end
 
     it { expect(subject.query_advisers_with_qualification_in_pension_transfer.count).to eq(2) }
@@ -570,9 +570,9 @@ RSpec.describe Snapshot do
   describe '#query_advisers_with_qualification_in_equity_release' do
     before do
       qualification = FactoryBot.create(:qualification, name: 'Equity release qualifications i.e. holder of Certificate in Equity Release or equivalent')
-      FactoryBot.create(:adviser)
-      FactoryBot.create(:adviser, qualifications: [qualification])
-      FactoryBot.create(:adviser, qualifications: [qualification])
+      FactoryBot.create(:advisers_retirement_firm)
+      FactoryBot.create(:advisers_retirement_firm, qualifications: [qualification])
+      FactoryBot.create(:advisers_retirement_firm, qualifications: [qualification])
     end
 
     it { expect(subject.query_advisers_with_qualification_in_equity_release.count).to eq(2) }
@@ -581,9 +581,9 @@ RSpec.describe Snapshot do
   describe '#query_advisers_with_qualification_in_long_term_care_planning' do
     before do
       qualification = FactoryBot.create(:qualification, name: 'Long term care planning qualifications i.e. holder of CF8, CeLTCI®. or equivalent')
-      FactoryBot.create(:adviser)
-      FactoryBot.create(:adviser, qualifications: [qualification])
-      FactoryBot.create(:adviser, qualifications: [qualification])
+      FactoryBot.create(:advisers_retirement_firm)
+      FactoryBot.create(:advisers_retirement_firm, qualifications: [qualification])
+      FactoryBot.create(:advisers_retirement_firm, qualifications: [qualification])
     end
 
     it { expect(subject.query_advisers_with_qualification_in_long_term_care_planning.count).to eq(2) }
@@ -592,9 +592,9 @@ RSpec.describe Snapshot do
   describe '#query_advisers_with_qualification_in_tep' do
     before do
       qualification = FactoryBot.create(:qualification, name: 'Holder of Trust and Estate Practitioner qualification (TEP) i.e. full member of STEP')
-      FactoryBot.create(:adviser)
-      FactoryBot.create(:adviser, qualifications: [qualification])
-      FactoryBot.create(:adviser, qualifications: [qualification])
+      FactoryBot.create(:advisers_retirement_firm)
+      FactoryBot.create(:advisers_retirement_firm, qualifications: [qualification])
+      FactoryBot.create(:advisers_retirement_firm, qualifications: [qualification])
     end
 
     it { expect(subject.query_advisers_with_qualification_in_tep.count).to eq(2) }
@@ -603,9 +603,9 @@ RSpec.describe Snapshot do
   describe '#query_advisers_with_qualification_in_fcii' do
     before do
       qualification = FactoryBot.create(:qualification, name: 'Fellow of the Chartered Insurance Institute (FCII)')
-      FactoryBot.create(:adviser)
-      FactoryBot.create(:adviser, qualifications: [qualification])
-      FactoryBot.create(:adviser, qualifications: [qualification])
+      FactoryBot.create(:advisers_retirement_firm)
+      FactoryBot.create(:advisers_retirement_firm, qualifications: [qualification])
+      FactoryBot.create(:advisers_retirement_firm, qualifications: [qualification])
     end
 
     it { expect(subject.query_advisers_with_qualification_in_fcii.count).to eq(2) }

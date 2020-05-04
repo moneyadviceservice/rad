@@ -28,19 +28,6 @@ ActiveRecord::Schema.define(version: 3020_04_29_093442) do
     t.index ["adviser_id", "accreditation_id"], name: "advisers_accreditations_index", unique: true
   end
 
-  create_table "advisers", id: :serial, force: :cascade do |t|
-    t.string "reference_number", null: false
-    t.string "name", null: false
-    t.integer "firm_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "postcode", default: "", null: false
-    t.integer "travel_distance", default: 0, null: false
-    t.float "latitude"
-    t.float "longitude"
-    t.boolean "bypass_reference_number_check", default: false
-  end
-
   create_table "advisers_professional_bodies", id: false, force: :cascade do |t|
     t.integer "adviser_id", null: false
     t.integer "professional_body_id", null: false
@@ -59,6 +46,19 @@ ActiveRecord::Schema.define(version: 3020_04_29_093442) do
     t.index ["adviser_id", "qualification_id"], name: "advisers_qualifications_index", unique: true
   end
 
+  create_table "advisers_retirement_firms", id: :serial, force: :cascade do |t|
+    t.string "reference_number", null: false
+    t.string "name", null: false
+    t.integer "retirement_firm_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "postcode", default: "", null: false
+    t.integer "travel_distance", default: 0, null: false
+    t.float "latitude"
+    t.float "longitude"
+    t.boolean "bypass_reference_number_check", default: false
+  end
+
   create_table "allowed_payment_methods", id: :serial, force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", null: false
@@ -66,10 +66,10 @@ ActiveRecord::Schema.define(version: 3020_04_29_093442) do
     t.integer "order", default: 0, null: false
   end
 
-  create_table "allowed_payment_methods_firms", id: false, force: :cascade do |t|
-    t.integer "firm_id", null: false
+  create_table "allowed_payment_methods_retirement_firms", id: false, force: :cascade do |t|
+    t.integer "retirement_firm_id", null: false
     t.integer "allowed_payment_method_id", null: false
-    t.index ["firm_id", "allowed_payment_method_id"], name: "firms_allowed_payment_methods_index", unique: true
+    t.index ["retirement_firm_id", "allowed_payment_method_id"], name: "firms_allowed_payment_methods_index", unique: true
   end
 
   create_table "fca_imports", id: :serial, force: :cascade do |t|
@@ -85,41 +85,12 @@ ActiveRecord::Schema.define(version: 3020_04_29_093442) do
     t.integer "parent_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "registered_name", null: false
     t.bigint "retirement_firms_id"
     t.bigint "travel_insurance_firms_id"
     t.index ["fca_number"], name: "index_firms_on_fca_number", unique: true
     t.index ["retirement_firms_id"], name: "index_firms_on_retirement_firms_id"
     t.index ["travel_insurance_firms_id"], name: "index_firms_on_travel_insurance_firms_id"
-  end
-
-  create_table "firms_in_person_advice_methods", id: false, force: :cascade do |t|
-    t.integer "firm_id", null: false
-    t.integer "in_person_advice_method_id", null: false
-    t.index ["firm_id", "in_person_advice_method_id"], name: "firms_in_person_advice_methods_index", unique: true
-  end
-
-  create_table "firms_initial_advice_fee_structures", id: false, force: :cascade do |t|
-    t.integer "firm_id", null: false
-    t.integer "initial_advice_fee_structure_id", null: false
-    t.index ["firm_id", "initial_advice_fee_structure_id"], name: "firms_initial_advice_fee_structures_index", unique: true
-  end
-
-  create_table "firms_investment_sizes", id: false, force: :cascade do |t|
-    t.integer "firm_id", null: false
-    t.integer "investment_size_id", null: false
-    t.index ["firm_id", "investment_size_id"], name: "firms_investment_sizes_index", unique: true
-  end
-
-  create_table "firms_ongoing_advice_fee_structures", id: false, force: :cascade do |t|
-    t.integer "firm_id", null: false
-    t.integer "ongoing_advice_fee_structure_id", null: false
-    t.index ["firm_id", "ongoing_advice_fee_structure_id"], name: "firms_ongoing_advice_fee_structures_index", unique: true
-  end
-
-  create_table "firms_other_advice_methods", id: false, force: :cascade do |t|
-    t.integer "firm_id", null: false
-    t.integer "other_advice_method_id", null: false
-    t.index ["firm_id", "other_advice_method_id"], name: "firms_other_advice_methods_index", unique: true
   end
 
   create_table "in_person_advice_methods", id: :serial, force: :cascade do |t|
@@ -129,12 +100,10 @@ ActiveRecord::Schema.define(version: 3020_04_29_093442) do
     t.integer "order", default: 0, null: false
   end
 
-  create_table "inactive_firms", id: :serial, force: :cascade do |t|
-    t.integer "firm_id"
-    t.string "api_status"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["firm_id"], name: "index_inactive_firms_on_firm_id", unique: true
+  create_table "in_person_advice_methods_retirement_firms", id: false, force: :cascade do |t|
+    t.integer "retirement_firm_id", null: false
+    t.integer "in_person_advice_method_id", null: false
+    t.index ["retirement_firm_id", "in_person_advice_method_id"], name: "firms_in_person_advice_methods_index", unique: true
   end
 
   create_table "initial_advice_fee_structures", id: :serial, force: :cascade do |t|
@@ -142,6 +111,12 @@ ActiveRecord::Schema.define(version: 3020_04_29_093442) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "order", default: 0, null: false
+  end
+
+  create_table "initial_advice_fee_structures_retirement_firms", id: false, force: :cascade do |t|
+    t.integer "retirement_firm_id", null: false
+    t.integer "initial_advice_fee_structure_id", null: false
+    t.index ["retirement_firm_id", "initial_advice_fee_structure_id"], name: "firms_initial_advice_fee_structures_index", unique: true
   end
 
   create_table "initial_meeting_durations", id: :serial, force: :cascade do |t|
@@ -157,6 +132,12 @@ ActiveRecord::Schema.define(version: 3020_04_29_093442) do
     t.datetime "updated_at", null: false
     t.integer "order", default: 0, null: false
     t.string "cy_name"
+  end
+
+  create_table "investment_sizes_retirement_firms", id: false, force: :cascade do |t|
+    t.integer "retirement_firm_id", null: false
+    t.integer "investment_size_id", null: false
+    t.index ["retirement_firm_id", "investment_size_id"], name: "firms_investment_sizes_index", unique: true
   end
 
   create_table "last_week_lookup_advisers", id: :integer, default: nil, force: :cascade do |t|
@@ -201,7 +182,7 @@ ActiveRecord::Schema.define(version: 3020_04_29_093442) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "offices", id: :serial, force: :cascade do |t|
+  create_table "offices_retirement_firms", id: :serial, force: :cascade do |t|
     t.string "address_line_one", null: false
     t.string "address_line_two"
     t.string "address_town", null: false
@@ -210,7 +191,7 @@ ActiveRecord::Schema.define(version: 3020_04_29_093442) do
     t.string "email_address"
     t.string "telephone_number"
     t.boolean "disabled_access", default: false, null: false
-    t.integer "firm_id", null: false
+    t.integer "retirement_firm_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.float "latitude"
@@ -234,12 +215,24 @@ ActiveRecord::Schema.define(version: 3020_04_29_093442) do
     t.integer "order", default: 0, null: false
   end
 
+  create_table "ongoing_advice_fee_structures_retirement_firms", id: false, force: :cascade do |t|
+    t.integer "retirement_firm_id", null: false
+    t.integer "ongoing_advice_fee_structure_id", null: false
+    t.index ["retirement_firm_id", "ongoing_advice_fee_structure_id"], name: "firms_ongoing_advice_fee_structures_index", unique: true
+  end
+
   create_table "other_advice_methods", id: :serial, force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "order", default: 0, null: false
     t.string "cy_name"
+  end
+
+  create_table "other_advice_methods_retirement_firms", id: false, force: :cascade do |t|
+    t.integer "retirement_firm_id", null: false
+    t.integer "other_advice_method_id", null: false
+    t.index ["retirement_firm_id", "other_advice_method_id"], name: "firms_other_advice_methods_index", unique: true
   end
 
   create_table "principals", id: :serial, force: :cascade do |t|
@@ -281,14 +274,11 @@ ActiveRecord::Schema.define(version: 3020_04_29_093442) do
   end
 
   create_table "retirement_firms", id: :serial, force: :cascade do |t|
-    t.integer "fca_number", null: false
-    t.string "registered_name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "free_initial_meeting"
     t.integer "initial_meeting_duration_id"
     t.integer "minimum_fixed_fee", default: 0
-    t.integer "parent_id"
     t.boolean "retirement_income_products_flag", default: false, null: false
     t.boolean "pension_transfer_flag", default: false, null: false
     t.boolean "long_term_care_flag", default: false, null: false
@@ -305,6 +295,14 @@ ActiveRecord::Schema.define(version: 3020_04_29_093442) do
     t.datetime "approved_at"
     t.index ["approved_at"], name: "index_retirement_firms_on_approved_at"
     t.index ["initial_meeting_duration_id"], name: "index_retirement_firms_on_initial_meeting_duration_id"
+  end
+
+  create_table "retirement_firms_inactive", id: :serial, force: :cascade do |t|
+    t.integer "retirement_firm_id"
+    t.string "api_status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["retirement_firm_id"], name: "index_retirement_firms_inactive_on_retirement_firm_id", unique: true
   end
 
   create_table "snapshots", id: :serial, force: :cascade do |t|

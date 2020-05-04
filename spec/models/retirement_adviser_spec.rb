@@ -1,8 +1,8 @@
-RSpec.describe Adviser do
+RSpec.describe RetirementAdviser do
   describe 'before validation' do
     context 'when a reference number is present' do
       let(:attributes) { attributes_for(:adviser, reference_number: 'ABC12345') }
-      let(:adviser) { Adviser.new(attributes) }
+      let(:adviser) { RetirementAdviser.new(attributes) }
 
       before do
         Lookup::Adviser.create!(
@@ -111,7 +111,7 @@ RSpec.describe Adviser do
           let(:reference_number) { 'ABC12345' }
 
           before do
-            create(:adviser, reference_number: reference_number)
+            create(:advisers_retirement_firm, reference_number: reference_number)
           end
 
           it 'must not be valid' do
@@ -125,7 +125,7 @@ RSpec.describe Adviser do
   end
 
   describe '#full_street_address' do
-    let(:adviser) { create(:adviser) }
+    let(:adviser) { create(:advisers_retirement_firm) }
     subject { adviser.full_street_address }
 
     it { is_expected.to eql "#{adviser.postcode}, United Kingdom" }
@@ -134,14 +134,14 @@ RSpec.describe Adviser do
   it_should_behave_like 'geocodable' do
     let(:invalid_geocodable) { Adviser.new }
     let(:valid_new_geocodable) { FactoryBot.build(:adviser) }
-    let(:saved_geocodable) { FactoryBot.create(:adviser) }
+    let(:saved_geocodable) { FactoryBot.create(:advisers_retirement_firm) }
     let(:address_field_name) { :postcode }
     let(:address_field_updated_value) { 'S032 2AY' }
     let(:updated_address_params) { { address_field_name => address_field_updated_value } }
   end
 
   describe '#has_address_changes?' do
-    subject { FactoryBot.create(:adviser) }
+    subject { FactoryBot.create(:advisers_retirement_firm) }
 
     context 'when none of the address fields have changed' do
       it 'returns false' do
@@ -161,7 +161,7 @@ RSpec.describe Adviser do
   end
 
   describe '#notify_indexer' do
-    subject { FactoryBot.create(:adviser) }
+    subject { FactoryBot.create(:advisers_retirement_firm) }
 
     it 'notifies the indexer that the office has changed' do
       expect(UpdateAlgoliaIndexJob).to receive(:perform_later)
@@ -244,7 +244,7 @@ RSpec.describe Adviser do
     let(:unsorted_names) { %w[F C G E D H A B] }
 
     before do
-      unsorted_names.each { |name| FactoryBot.create(:adviser, name: name) }
+      unsorted_names.each { |name| FactoryBot.create(:advisers_retirement_firm, name: name) }
     end
 
     it 'sorts the result set by the name field' do

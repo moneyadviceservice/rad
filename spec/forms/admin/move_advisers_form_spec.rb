@@ -1,5 +1,5 @@
 RSpec.describe Admin::MoveAdvisersForm, type: :model do
-  let(:adviser) { create(:adviser) }
+  let(:adviser) { create(:advisers_retirement_firm) }
   let(:from_firm) { create(:firm) }
   let(:destination_firm) { create(:firm) }
   let(:valid_params) do
@@ -152,9 +152,9 @@ RSpec.describe Admin::MoveAdvisersForm, type: :model do
   end
 
   describe '#advisers_to_move' do
-    let(:fred) { create(:adviser, reference_number: 'FXX12345') }
-    let(:sarah) { create(:adviser, reference_number: 'SXX12345') }
-    let(:alan) { create(:adviser, reference_number: 'AXX12345') }
+    let(:fred) { create(:advisers_retirement_firm, reference_number: 'FXX12345') }
+    let(:sarah) { create(:advisers_retirement_firm, reference_number: 'SXX12345') }
+    let(:alan) { create(:advisers_retirement_firm, reference_number: 'AXX12345') }
     let(:params) { { adviser_ids: [fred.id, sarah.id, alan.id] } }
 
     it 'are sorted by reference number' do

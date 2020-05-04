@@ -8,9 +8,9 @@ RSpec.describe Reports::PrincipalAdvisers do
                             principal: principal_with_3).tap do |firms|
       firms.map(&:advisers).each(&:destroy_all)
 
-      FactoryBot.create(:adviser, firm: firms.first)
-      FactoryBot.create(:adviser, firm: firms.first)
-      FactoryBot.create(:adviser, firm: firms.last)
+      FactoryBot.create(:advisers_retirement_firm, firm: firms.first)
+      FactoryBot.create(:advisers_retirement_firm, firm: firms.first)
+      FactoryBot.create(:advisers_retirement_firm, firm: firms.last)
     end
   end
 

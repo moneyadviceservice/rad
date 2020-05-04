@@ -12,7 +12,7 @@ class Office < ApplicationRecord
     address_postcode
   ].freeze
 
-  belongs_to :firm
+  belongs_to :retirement_firm
 
   validates :email_address,
             presence: false,
@@ -106,9 +106,7 @@ class Office < ApplicationRecord
   end
 
   def postcode_is_valid
-    if address_postcode.nil? || !UKPostcode.parse(address_postcode).full_valid?
-      errors.add(:address_postcode, 'is invalid')
-    end
+    errors.add(:address_postcode, 'is invalid') if address_postcode.nil? || !UKPostcode.parse(address_postcode).full_valid?
   end
 
   def telephone_number_is_valid
