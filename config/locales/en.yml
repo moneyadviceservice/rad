@@ -103,9 +103,15 @@ en:
     text: If you need help please contact us at
 
   success:
-    heading: Thank you
-    message: An email will be sent to you shortly with further instructions.
-    contact_us: If you do not receive an email from us within 24 hours, please contact us at
+    retirement_advice_registrations:
+      heading: Thank you
+      message: An email will be sent to you shortly with further instructions.
+      contact_us: If you do not receive an email from us within 24 hours, please contact us at
+    travel_insurance_registrations:
+      heading: Thank you
+      message: We are pleased to confirm you have been accepted onto the Money & Pensions Service Travel Insurance Directory.
+      secondary_message: An email with further instructions will be sent to you shortly.
+      contact_us: If you do not receive an email from us within 24 hours, please contact us at
 
   successful_registration_mailer:
     retirement_advice_registrations:

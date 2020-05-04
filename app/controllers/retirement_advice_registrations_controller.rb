@@ -26,6 +26,11 @@ class RetirementAdviceRegistrationsController < BaseRegistrationsController
   end
   helper_method :registration_title
 
+  def directory_type
+    'retirement_advice_registrations'
+  end
+  helper_method :directory_type
+
   private
 
   def pre_qualification_form_params

@@ -11,6 +11,11 @@ class TravelInsuranceRegistrationsController < BaseRegistrationsController
   end
   helper_method :header_partial
 
+  def directory_type
+    'travel_insurance_registrations'
+  end
+  helper_method :directory_type
+
   def admin_email_address
     ENV['TAD_ADMIN_EMAIL']
   end
