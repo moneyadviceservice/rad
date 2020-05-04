@@ -85,7 +85,11 @@ ActiveRecord::Schema.define(version: 3020_04_29_093442) do
     t.integer "parent_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "retirement_firms_id"
+    t.bigint "travel_insurance_firms_id"
     t.index ["fca_number"], name: "index_firms_on_fca_number", unique: true
+    t.index ["retirement_firms_id"], name: "index_firms_on_retirement_firms_id"
+    t.index ["travel_insurance_firms_id"], name: "index_firms_on_travel_insurance_firms_id"
   end
 
   create_table "firms_in_person_advice_methods", id: false, force: :cascade do |t|

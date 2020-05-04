@@ -9,14 +9,10 @@ class Firm < ApplicationRecord
   has_many :trading_names, class_name: 'Firm',
                            foreign_key: :parent_id,
                            dependent: :destroy
-  belongs_to :firmlike, dependent: :destroy, polymorphic: true
+  has_one :retirement_firm, dependent: :destroy
+  has_one :travel_insurance_firm, dependent: :destroy
 
   after_commit :notify_indexer
-
-  def retirement_firm
-    # TODO : we only expect one instance in this list or none. enforce it with uniqueness at DB level if possible and handle nils here
-    @retirement_firm ||= :firmlike_of_RetirementFirm.first
-  end
 
   # TODO : temporarily delegate all original retirement calls received. Callers should migrate to calling the specialist retirement_fimr directly to get rid of this delegatio
   delegate :onboarded?, :in_person_advice?, :postcode_searchable?, :trading_name?, :subsidiary?, :field_order?, :advice_types, :primary_advice_method, :main_office, :publishable?, to: :retirement_firm
@@ -25,17 +21,17 @@ class Firm < ApplicationRecord
   # TODO: temporarily delegating the only class method. looks like this is only used by the tests. look into deprecating it all together
   delegate :languages_used, to: ::RetirementFirm
   # TODO : temporarily delegate the retirement_firm relations. Idea is to migrate clients to using the specialised class directly
-  delegate :in_person_advice_methods,
-    :other_advice_methods,
-    :initial_advice_fee_structures,
-    :ongoing_advice_fee_structures,
-    :allowed_payment_methods,
-    :investment_sizes,
-    :initial_meeting_duration,
-    :advisers,
-    :qualifications,
-    :accreditations,
-    :offices, to: :retirement_firm
+  delegate :in_person_advice_methods, :in_person_advice_methods=,
+    :other_advice_methods, :other_advice_methods=,
+    :initial_advice_fee_structures, :initial_advice_fee_structures=,
+    :ongoing_advice_fee_structures, :ongoing_advice_fee_structures=,
+    :allowed_payment_methods, :allowed_payment_methods=,
+    :investment_sizes, :investment_sizes=,
+    :initial_meeting_duration, :initial_meeting_duration=,
+    :advisers, :advisers=,
+    :qualifications, :qualifications=,
+    :accreditations, :accreditations=,
+    :offices, :offices=, to: :retirement_firm
   # TODO : temporarily delegate relevant  attr_accessors to retirement_firm. Clients should be migrated to accessing these directly
   delegate :percent_total, :primary_advice_method, :website_address, to: :retirement_firm
   # TODO : delegate the algolia indexing to the retirement_firm.

@@ -34,7 +34,7 @@ class RetirementFirm < ApplicationRecord
   has_and_belongs_to_many :investment_sizes
 
   belongs_to :initial_meeting_duration
-  has_one :firm, as: :firmlike
+  belongs_to :firm
 
   has_many :advisers, dependent: :destroy
   has_many :qualifications, -> { reorder('').distinct }, through: :advisers
