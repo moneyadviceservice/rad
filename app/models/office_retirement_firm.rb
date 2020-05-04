@@ -1,7 +1,7 @@
 require 'uk_postcode'
 require 'uk_phone_numbers'
 
-class Office < ApplicationRecord
+class OfficeRetirementFirm < ApplicationRecord
   include Geocodable
 
   ADDRESS_FIELDS = %i[
@@ -43,7 +43,7 @@ class Office < ApplicationRecord
   after_commit :notify_indexer
 
   def notify_indexer
-    UpdateAlgoliaIndexJob.perform_later(model_name.name, id, firm_id)
+    UpdateAlgoliaIndexJob.perform_later(model_name.name, id, retirement_firm_id)
   end
 
   def field_order

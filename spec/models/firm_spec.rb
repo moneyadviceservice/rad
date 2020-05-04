@@ -113,10 +113,10 @@ RSpec.describe Firm do
     let(:firm) { create(:firm, offices_count: 0) }
     let!(:unsorted_offices) do
       [
-        FactoryBot.create(:office, firm: firm, address_line_one: 'fourth', created_at: Time.zone.now),
-        FactoryBot.create(:office, firm: firm, address_line_one: 'second', created_at: 2.days.ago),
-        FactoryBot.create(:office, firm: firm, address_line_one: 'first',  created_at: 3.days.ago),
-        FactoryBot.create(:office, firm: firm, address_line_one: 'third',  created_at: 1.day.ago)
+        FactoryBot.create(:office_retirement_firm, firm: firm, address_line_one: 'fourth', created_at: Time.zone.now),
+        FactoryBot.create(:office_retirement_firm, firm: firm, address_line_one: 'second', created_at: 2.days.ago),
+        FactoryBot.create(:office_retirement_firm, firm: firm, address_line_one: 'first',  created_at: 3.days.ago),
+        FactoryBot.create(:office_retirement_firm, firm: firm, address_line_one: 'third',  created_at: 1.day.ago)
       ]
     end
 
@@ -450,7 +450,7 @@ RSpec.describe Firm do
     it 'updating a firm calls notify_indexer' do
       firm = FactoryBot.create(:firm)
       expect(firm).to receive(:notify_indexer)
-      firm.update_attributes(registered_name: 'A new name')
+      firm.update(registered_name: 'A new name')
     end
 
     it 'destroying a firm calls notify_indexer' do

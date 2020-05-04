@@ -24,7 +24,7 @@
       <tr>
         <td><%= adviser.reference_number %></td>
         <td><%= link_to adviser.name, admin_adviser_path(adviser) %></td>
-        <td><%= link_to adviser.firm.registered_name, admin_retirement_firm_path(adviser.firm) %></td>
+        <td><%= link_to adviser.retirement_firm.firm.registered_name, admin_retirement_firm_path(adviser.retirement_firm) %></td>
       </tr>
     <% end %>
   <% else %>

@@ -1,12 +1,12 @@
-RSpec.describe Office do
+RSpec.describe OfficeRetirementFirm do
   include FieldLengthValidationHelpers
 
   let(:firm) { FactoryBot.create(:firm_with_offices, id: 123) }
   subject(:office) { firm.offices.first }
 
   it_should_behave_like 'geocodable' do
-    let(:invalid_geocodable) { Office.new }
-    let(:valid_new_geocodable) { FactoryBot.build(:office, firm: firm) }
+    let(:invalid_geocodable) { OfficeRetirementFirm.new }
+    let(:valid_new_geocodable) { FactoryBot.build(:officei_retirement_firm, firm: firm) }
     let(:saved_geocodable) { office }
     let(:address_field_name) { :address_postcode }
     let(:address_field_updated_value) { 'SO32 2AY' }
@@ -31,7 +31,7 @@ RSpec.describe Office do
 
     it 'updating an office calls notify_indexer' do
       expect(office).to receive(:notify_indexer)
-      office.update_attributes(address_line_one: 'A new street')
+      office.update(address_line_one: 'A new street')
     end
 
     it 'destroying an office calls notify_indexer' do

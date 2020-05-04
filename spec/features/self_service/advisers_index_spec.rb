@@ -100,15 +100,15 @@ RSpec.feature 'The self service adviser list page', :inline_job_queue do
 
   def and_i_have_a_firm_with_trading_names_and_no_advisers
     firm_attrs = FactoryBot.attributes_for(:firm_with_trading_names, fca_number: @principal.fca_number)
-    @principal.firm.update_attributes(firm_attrs)
+    @principal.firm.update(firm_attrs)
   end
 
   def and_i_have_a_firm_with_trading_names_and_advisers
     and_i_have_a_firm_with_trading_names_and_no_advisers
 
-    @principal.firm.update(advisers: FactoryBot.create_list(:adviser, 3))
+    @principal.firm.update(advisers: FactoryBot.create_list(:advisers_retirement_firm, 3))
     @principal.firm.trading_names.each do |trading_name|
-      trading_name.update(advisers: FactoryBot.create_list(:adviser, 3))
+      trading_name.update(advisers: FactoryBot.create_list(:advisers_retirement_firm, 3))
     end
   end
 
@@ -133,7 +133,8 @@ RSpec.feature 'The self service adviser list page', :inline_job_queue do
   def then_there_is_a_prompt_to_add_an_adviser
     expect(advisers_index_page).not_to have_advisers
     expect(advisers_index_page).to have_no_advisers_message(
-      text: I18n.t('self_service.advisers_index.no_advisers_message'))
+      text: I18n.t('self_service.advisers_index.no_advisers_message')
+    )
     expect(advisers_index_page).to have_add_adviser_link
   end
 

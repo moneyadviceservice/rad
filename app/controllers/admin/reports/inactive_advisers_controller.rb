@@ -10,10 +10,10 @@ class Admin::Reports::InactiveAdvisersController < Admin::ApplicationController
   private
 
   def find_inactive_advisers
-    Adviser
+    AdvisersRetirementFirm
       .joins('LEFT JOIN lookup_advisers ' \
-             'ON lookup_advisers.reference_number = advisers.reference_number')
+             'ON lookup_advisers.reference_number = advisers_retirement_firms.reference_number')
       .where('lookup_advisers.id' => nil,
-             'advisers.bypass_reference_number_check' => false)
+             'advisers_retirement_firms.bypass_reference_number_check' => false)
   end
 end

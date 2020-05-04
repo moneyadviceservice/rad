@@ -15,7 +15,7 @@ RSpec.feature 'The self service office edit page', :inline_job_queue do
   let(:principal) { FactoryBot.create(:principal) }
   let(:user) { FactoryBot.create(:user, principal: principal) }
   let(:office) do
-    FactoryBot.create(:office,
+    FactoryBot.create(:office_retirement_firm,
                        firm: principal.firm,
                        address_line_one: address_line_one,
                        address_line_two: '',
@@ -62,7 +62,7 @@ RSpec.feature 'The self service office edit page', :inline_job_queue do
 
   def given_i_am_a_fully_registered_principal_user
     firm_attrs = FactoryBot.attributes_for(:firm, fca_number: principal.fca_number)
-    principal.firm.update_attributes(firm_attrs)
+    principal.firm.update(firm_attrs)
     expect(Firm.onboarded.find(principal.firm.id)).to be_present
   end
 

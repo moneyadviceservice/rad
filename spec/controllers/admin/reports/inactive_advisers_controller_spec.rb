@@ -7,7 +7,7 @@ RSpec.describe Admin::Reports::InactiveAdvisersController, type: :request do
 
     it 'assigns a list of inactive advisers' do
       FactoryBot.create(:advisers_retirement_firm)
-      inactive_adviser = FactoryBot.build(:adviser, create_linked_lookup_advisor: false)
+      inactive_adviser = FactoryBot.build(:advisers_retirement_firm, create_linked_lookup_advisor: false)
       inactive_adviser.save!(validate: false)
 
       get admin_reports_inactive_adviser_path
@@ -17,7 +17,7 @@ RSpec.describe Admin::Reports::InactiveAdvisersController, type: :request do
     it 'excludes advisers that have skipped the reference number check' do
       FactoryBot.create(:advisers_retirement_firm)
       noref_adviser = FactoryBot.build(
-        :adviser,
+        :advisers_retirement_firm,
         bypass_reference_number_check: true,
         create_linked_lookup_advisor: false
       )
@@ -46,12 +46,13 @@ RSpec.describe Admin::Reports::InactiveAdvisersController, type: :request do
 
       it 'renders inactive adviser content' do
         firm = FactoryBot.create(:firm, registered_name: 'Acme Inc.')
+        ret_firm = FactoryBot.create(:retirement_firm, firm: firm)
         inactive_adviser = FactoryBot.build(
-          :adviser,
+          :advisers_retirement_firm,
           create_linked_lookup_advisor: false,
           reference_number: 123_456,
           name: 'Amear Pittance',
-          firm: firm
+          retirement_firm: ret_firm
         )
         inactive_adviser.save!(validate: false)
 

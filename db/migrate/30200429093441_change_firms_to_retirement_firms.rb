@@ -18,8 +18,8 @@ class ChangeFirmsToRetirementFirms < ActiveRecord::Migration[5.2]
     rename_column :other_advice_methods_retirement_firms, :firm_id, :retirement_firm_id
     rename_table :inactive_firms, :retirement_firms_inactive
     rename_column :retirement_firms_inactive, :firm_id, :retirement_firm_id
-    rename_table :offices, :offices_retirement_firms
-    rename_column :offices_retirement_firms, :firm_id, :retirement_firm_id
+    rename_table :offices, :office_retirement_firms
+    rename_column :office_retirement_firms, :firm_id, :retirement_firm_id
     rename_table :advisers, :advisers_retirement_firms
     rename_column :advisers_retirement_firms, :firm_id, :retirement_firm_id
     rename_table :allowed_payment_methods_firms, :allowed_payment_methods_retirement_firms
@@ -28,5 +28,7 @@ class ChangeFirmsToRetirementFirms < ActiveRecord::Migration[5.2]
     remove_column :retirement_firms, :fca_number, :integer
     remove_column :retirement_firms, :parent_id, :integer
     remove_column :retirement_firms, :registered_name, :string
+
+    add_column :retirement_firms, :firm_id, :integer, references: :firm
   end
 end

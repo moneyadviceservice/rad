@@ -182,7 +182,7 @@ ActiveRecord::Schema.define(version: 3020_04_29_093442) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "offices_retirement_firms", id: :serial, force: :cascade do |t|
+  create_table "office_retirement_firms", id: :serial, force: :cascade do |t|
     t.string "address_line_one", null: false
     t.string "address_line_two"
     t.string "address_town", null: false
@@ -293,6 +293,7 @@ ActiveRecord::Schema.define(version: 3020_04_29_093442) do
     t.boolean "workplace_financial_advice_flag", default: false, null: false
     t.boolean "non_uk_residents_flag", default: false, null: false
     t.datetime "approved_at"
+    t.integer "firm_id"
     t.index ["approved_at"], name: "index_retirement_firms_on_approved_at"
     t.index ["initial_meeting_duration_id"], name: "index_retirement_firms_on_initial_meeting_duration_id"
   end

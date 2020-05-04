@@ -42,7 +42,7 @@ RSpec.describe AlgoliaIndex::Office do
   end
 
   shared_examples('update firm advisers') do |trigger_call|
-    let(:advisers) { FactoryBot.create_list(:adviser, 3, firm: firm) }
+    let(:advisers) { FactoryBot.create_list(:advisers_retirement_firm, 3, firm: firm) }
     let(:serialized_advisers) do
       advisers.map { |adv| AlgoliaIndex::AdviserSerializer.new(adv) }
     end
@@ -60,7 +60,7 @@ RSpec.describe AlgoliaIndex::Office do
   end
 
   describe '#update' do
-    let!(:office) { FactoryBot.create(:office, id: id, firm_id: firm.id) }
+    let!(:office) { FactoryBot.create(:office_retirement_firm, id: id, firm_id: firm.id) }
 
     context 'when the office firm is approved' do
       include_examples 'update firm advisers', :update
@@ -96,7 +96,7 @@ RSpec.describe AlgoliaIndex::Office do
   end
 
   describe '#destroy' do
-    let!(:office) { FactoryBot.create(:office, id: id, firm_id: firm.id) }
+    let!(:office) { FactoryBot.create(:office_retirement_firm, id: id, firm_id: firm.id) }
 
     context 'when the office firm is not approved' do
       let(:firm) { FactoryBot.create(:firm_without_advisers, :not_approved) }

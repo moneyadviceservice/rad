@@ -12,7 +12,7 @@ class Firm < ApplicationRecord
   has_one :retirement_firm, dependent: :destroy
   has_one :travel_insurance_firm, dependent: :destroy
 
-  after_commit :notify_indexer
+  # after_commit :notify_indexer
 
   # TODO : temporarily delegate all original retirement calls received. Callers should migrate to calling the specialist retirement_fimr directly to get rid of this delegatio
   delegate :onboarded?, :in_person_advice?, :postcode_searchable?, :trading_name?, :subsidiary?, :field_order?, :advice_types, :primary_advice_method, :main_office, :publishable?, to: :retirement_firm
@@ -37,7 +37,7 @@ class Firm < ApplicationRecord
   # TODO : delegate the algolia indexing to the retirement_firm.
   # Remember to flatten the index record to look exactly like what rad-consumer currently consumes thus avoiding rad-consumer code changes
   # clients should be migrated to using retirement_firm directly
-  delegate :notify_indexer, to: :retirement_firm
+  # delegate :notify_indexer, to: :retirement_firm
 
   def trading_name?
     parent.present?

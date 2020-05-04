@@ -1,5 +1,5 @@
 FactoryBot.define do
-  factory :office do
+  factory :office_retirement_firm do
     address_line_one { Faker::Address.street_address }
     address_line_two { Faker::Address.secondary_address }
     address_town { Faker::Address.city }

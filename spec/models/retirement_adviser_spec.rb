@@ -1,7 +1,7 @@
 RSpec.describe RetirementAdviser do
   describe 'before validation' do
     context 'when a reference number is present' do
-      let(:attributes) { attributes_for(:adviser, reference_number: 'ABC12345') }
+      let(:attributes) { attributes_for(:advisers_retirement_firm, reference_number: 'ABC12345') }
       let(:adviser) { RetirementAdviser.new(attributes) }
 
       before do
@@ -48,31 +48,31 @@ RSpec.describe RetirementAdviser do
 
   describe 'validation' do
     it 'is valid with valid attributes' do
-      expect(build(:adviser)).to be_valid
+      expect(build(:adviser_retirement_firm)).to be_valid
     end
 
     it 'orders fields correctly for dough' do
-      expect(build(:adviser).field_order).not_to be_empty
+      expect(build(:adviser_retirement_firm).field_order).not_to be_empty
     end
 
     describe 'geographical coverage' do
       describe 'travel distance' do
         it 'must be provided' do
-          expect(build(:adviser, travel_distance: nil)).to_not be_valid
+          expect(build(:advisers_retirement_firm, travel_distance: nil)).to_not be_valid
         end
 
         it 'must be within the allowed options' do
-          expect(build(:adviser, travel_distance: 999)).to_not be_valid
+          expect(build(:advisers_retirement_firm, travel_distance: 999)).to_not be_valid
         end
       end
 
       describe 'postcode' do
         it 'must be provided' do
-          expect(build(:adviser, postcode: nil)).to_not be_valid
+          expect(build(:advisers_retirement_firm, postcode: nil)).to_not be_valid
         end
 
         it 'must be a valid format' do
-          expect(build(:adviser, postcode: 'Z')).to_not be_valid
+          expect(build(:advisers_retirement_firm, postcode: 'Z')).to_not be_valid
         end
       end
     end
@@ -80,27 +80,27 @@ RSpec.describe RetirementAdviser do
     describe 'reference number' do
       context 'when `bypass_reference_number_check` is true' do
         it 'is not required' do
-          expect(build(:adviser, bypass_reference_number_check: true, reference_number: nil)).to be_valid
+          expect(build(:advisers_retirement_firm, bypass_reference_number_check: true, reference_number: nil)).to be_valid
         end
       end
 
       context 'when `bypass_reference_number_check` is false' do
         it 'is required' do
-          expect(build(:adviser, reference_number: nil)).to_not be_valid
+          expect(build(:advisers_retirement_firm, reference_number: nil)).to_not be_valid
         end
 
         it 'must be three characters and five digits exactly' do
           %w[badtimes ABCDEFGH 8008135! 12345678].each do |bad|
             Lookup::Adviser.create!(reference_number: bad, name: 'Mr. Derp')
 
-            expect(build(:adviser,
+            expect(build(:advisers_retirement_firm,
                          reference_number: bad,
                          create_linked_lookup_advisor: false)).to_not be_valid
           end
         end
 
         it 'must be matched to the lookup data' do
-          build(:adviser, reference_number: 'ABC12345').tap do |a|
+          build(:advisers_retirement_firm, reference_number: 'ABC12345').tap do |a|
             Lookup::Adviser.delete_all
 
             expect(a).to_not be_valid
@@ -115,7 +115,7 @@ RSpec.describe RetirementAdviser do
           end
 
           it 'must not be valid' do
-            expect(build(:adviser,
+            expect(build(:advisers_retirement_firm,
                          reference_number: reference_number,
                          create_linked_lookup_advisor: false)).to_not be_valid
           end
@@ -133,7 +133,7 @@ RSpec.describe RetirementAdviser do
 
   it_should_behave_like 'geocodable' do
     let(:invalid_geocodable) { Adviser.new }
-    let(:valid_new_geocodable) { FactoryBot.build(:adviser) }
+    let(:valid_new_geocodable) { FactoryBot.build(:adviser_retirement_firm) }
     let(:saved_geocodable) { FactoryBot.create(:advisers_retirement_firm) }
     let(:address_field_name) { :postcode }
     let(:address_field_updated_value) { 'S032 2AY' }

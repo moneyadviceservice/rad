@@ -80,7 +80,7 @@ RSpec.feature 'The registration status' do
 
   def and_i_have_a_firm
     firm_attrs = FactoryBot.attributes_for(:firm, fca_number: @principal.fca_number)
-    @principal.firm.update_attributes(firm_attrs)
+    @principal.firm.update(firm_attrs)
     @principal.firm.website_address
   end
   alias_method :and_i_have_a_firm_without_advisers, :and_i_have_a_firm
@@ -105,11 +105,11 @@ RSpec.feature 'The registration status' do
   end
 
   def and_i_have_a_firm_with_advisers
-    @principal.firm.update(advisers: FactoryBot.create_list(:adviser, 1))
+    @principal.firm.update(advisers: FactoryBot.create_list(:advisers_retirement_firm, 1))
   end
 
   def and_i_have_a_firm_with_offices
-    FactoryBot.create(:office, firm: @principal.firm)
+    FactoryBot.create(:office_retirement_firm, firm: @principal.firm)
   end
 
   def and_i_have_a_firm_with_advisers_and_offices

@@ -1,5 +1,6 @@
 FactoryBot.define do
   factory :retirement_firm, class: RetirementFirm, aliases: %i[publishable_firm onboarded_firm] do
+    firm { create(:firm) }
     website_address { Faker::Internet.url }
     in_person_advice_methods { create_list(:in_person_advice_method, rand(1..3)) }
     free_initial_meeting { [true, false].sample }
@@ -21,9 +22,9 @@ FactoryBot.define do
       offices_count { 1 }
     end
 
-    after(:create) do |firm, evaluator|
-      create_list(:office, evaluator.offices_count, firm: firm)
-      firm.reload
+    after(:create) do |ret_firm, evaluator|
+      create_list(:office_retirement_firm, evaluator.offices_count, retirement_firm: ret_firm)
+      ret_firm.reload
     end
 
     transient do
@@ -31,7 +32,7 @@ FactoryBot.define do
     end
 
     after(:create) do |firm, evaluator|
-      create_list(:advisers_retirement_firm, evaluator.advisers_count, firm: firm)
+      create_list(:advisers_retirement_firm, evaluator.advisers_count, retirement_firm: firm)
     end
 
     factory :retirement_firm_with_advisers, traits: [:with_advisers]
