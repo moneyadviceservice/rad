@@ -6,11 +6,11 @@
 <div class="l-2col-even-row">
   <div class="l-2col">
     <section class="l-2col-main" data-wizard-form>
-      <%= form_for @form, url: medical_conditions_questionaire_travel_insurance_registrations_path, html: { class: 'form' }, builder: Dough::Forms::Builders::Validation do |f| %>
+      <%= form_for @form, url: medical_conditions_questionaire_travel_insurance_registrations_path, html: { class: 'wizard-form' }, builder: Dough::Forms::Builders::Validation do |f| %>
         <%= f.validation_summary %>
 
         <% t('registration.medical_conditions_questionaire').each_with_index do |(key, item), index| %>
-          <%= f.form_row key,  html_options: { classes: 'wizard-form-item' } do %>
+          <div class="form__row" data-wizard-item>
             <fieldset class="form__group-item t-<%=key%>">
 
               <legend class="l-pre-qualification__question l-pre-qualification__question--with-desc">
@@ -48,12 +48,13 @@
                 </label>
               </div>
             </fieldset>
-          <% end %>
+          </div>
         <% end %>
 
-        <button class="button button--secondary" style="display:none"><%= t('travel_insurance_registrations.previous_question_button') %></button>
+        <button class="button previous-item-button" data-wizard-previous-button><%= t('travel_insurance_registrations.previous_question_button') %></button>
 
-        <%= button_primary t('travel_insurance_registrations.register_button') %>
+        <button class="button button--primary" data-wizard-next-button><%= t('travel_insurance_registrations.register_button') %></button>
+
       <% end %>
     </section>
 

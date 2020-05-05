@@ -1,20 +1,58 @@
-.form.js-wizard{
-  position: relative;
-  overflow: hidden;
-
-  .wizard-form-item{
-    transform: translateX(100%);
-    padding: 1px;
-    background-color: #fff;
+form{
+  &.wizard-form {
+    .previous-item-button{
+      @extend .button--secondary !optional;
+      display: none;
+    }
   }
+}
 
-  .wizard-form-item.show-previous {
-    transform: translateX(-100%);
-  }
+.js {
+  form.wizard-form {
+    position: relative;
+    overflow: hidden;
 
-  .wizard-form-item.show {
-    display: block;
-    transform: translateX(0%);
-    transition: transform 0.3s ease-in-out;
+    .form__row {
+      transform: translateX(100%);
+      padding: 1px;
+      background-color: #fff;
+      transform: translateX(0%);
+      & ~ .form__row {
+          display: none;
+      }
+
+      &.hidden {
+        display: none
+      }
+
+      &.show-previous {
+        display: block;
+        animation: previousSlide 600s
+      }
+
+      &.show {
+        display: block;
+        animation: nextSlide 600s
+      }
+    }
+
+    @keyframes nextSlide {
+      0% {
+        transform: translateX(100%);
+        display: block;
+      }
+      0.1%, 100% {
+        transform: translateX(0%);
+      }
+    }
+
+    @keyframes previousSlide {
+      0% {
+        transform: translateX(-100%);
+      }
+      0.1%, 100% {
+        transform: translateX(0%);
+      }
+    }
   }
 }

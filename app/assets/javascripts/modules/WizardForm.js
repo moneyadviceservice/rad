@@ -1,18 +1,14 @@
 define(['jquery'], function($) {
   'use strict';
 
-  var $form = $('[data-wizard-form] form'),
-      $formItems = $form.find('.wizard-form-item'),
-      $submitButton = $form.find('button.button--primary'),
-      $prevButton = $form.find('button.button--secondary'),
+  var $form = $('[data-wizard-form] form.wizard-form'),
+      $formItems = $form.find('[data-wizard-item]'),
+      $submitButton = $form.find('[data-wizard-next-button]'),
+      $prevButton = $form.find('[data-wizard-previous-button]'),
       $currentStep = $formItems.first(),
       $currentStepNumber = 0;
 
-  $formItems.hide().first().show().addClass('show');
-  $form.addClass('js-wizard');
-
   addStepEventHandler($currentStep)
-  disableOrEnableSubmitButton($currentStep);
 
   $submitButton.on('click', function(e){
     e.preventDefault();
@@ -20,11 +16,11 @@ define(['jquery'], function($) {
     if($formItems.length - 1 == $currentStepNumber){
       $form.submit();
     }else{
-      $currentStep.hide().removeClass('show')
+      $currentStep.addClass('hidden').removeClass('show show-previous')
       $currentStepNumber += 1
 
       $currentStep = $($formItems[$currentStepNumber])
-      $currentStep.show().addClass('show')
+      $currentStep.removeClass('hidden show-previous').addClass('show')
       addStepEventHandler($currentStep)
       disableOrEnableSubmitButton($currentStep);
     }
@@ -33,16 +29,15 @@ define(['jquery'], function($) {
   $prevButton.on('click', function(e){
     e.preventDefault();
 
-    $currentStep.hide().removeClass('show-previous show')
+    $currentStep.addClass('hidden').removeClass('show-previous show')
     $currentStepNumber -= 1
 
     $currentStep = $($formItems[$currentStepNumber])
-    $currentStep.addClass('show-previous').show().addClass('show')
+    $currentStep.removeClass('hidden').addClass('show-previous')
 
     addStepEventHandler($currentStep)
     disableOrEnableSubmitButton($currentStep);
   })
-
 
   function addStepEventHandler(step){
     step.on('change', function(e){
