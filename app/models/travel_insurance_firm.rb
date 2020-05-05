@@ -38,7 +38,8 @@ class TravelInsuranceFirm < ApplicationRecord
 
   def populate_question_answers
     KNOWN_REGISTRATION_QUESTIONS.each do |question|
-      send("#{question}=", REGISTRATION_QUESTION_ANSWERS[fca_number][:question.to_sym]) unless REGISTRATION_QUESTION_ANSWERS[fca_number].empty?
+      send("#{question}=".to_sym, REGISTRATION_QUESTION_ANSWERS[ffca_number.to_s.to_sym][:question.to_sym]) unless REGISTRATION_QUESTION_ANSWERS[fca_number].empty?
+      REGISTRATION_QUESTION_ANSWERS.delete[fca_number.to_s.to_sym]
     end
   end
 end
