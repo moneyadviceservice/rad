@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 3019_11_18_100139) do
+ActiveRecord::Schema.define(version: 3019_11_18_100157) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -195,21 +195,21 @@ ActiveRecord::Schema.define(version: 3019_11_18_100139) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "lookup_advisers", id: :integer, force: :cascade do |t|
+  create_table "lookup_advisers", id: :serial, force: :cascade do |t|
     t.string "reference_number", limit: 20, null: false
     t.string "name", limit: 255, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "lookup_firms", id: :integer, force: :cascade do |t|
+  create_table "lookup_firms", id: :serial, force: :cascade do |t|
     t.integer "fca_number", null: false
     t.string "registered_name", limit: 255, default: "", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "lookup_subsidiaries", id: :integer, force: :cascade do |t|
+  create_table "lookup_subsidiaries", id: :serial, force: :cascade do |t|
     t.integer "fca_number", null: false
     t.string "name", limit: 255, default: "", null: false
     t.datetime "created_at", null: false
@@ -366,6 +366,24 @@ ActiveRecord::Schema.define(version: 3019_11_18_100139) do
     t.datetime "approved_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "covers_medical_condition_question"
+    t.boolean "covered_by_ombudsman_question"
+    t.string "risk_profile_approach_question"
+    t.boolean "metastatic_breast_cancer_question"
+    t.boolean "ulceritive_colitis_and_anaemia_question"
+    t.boolean "heart_attack_with_hbp_and_high_cholesterol_question"
+    t.boolean "copd_with_respiratory_infection_question"
+    t.boolean "motor_neurone_disease_question"
+    t.boolean "hodgkin_lymphoma_question"
+    t.boolean "acute_myeloid_leukaemia_question"
+    t.boolean "guillain_barre_syndrome_question"
+    t.boolean "heart_failure_and_arrhytmia_question"
+    t.boolean "stroke_with_hbp_question"
+    t.boolean "peripheral_vascular_disease_question"
+    t.boolean "schizophrenia_question"
+    t.boolean "lupus_question"
+    t.boolean "sickle_cell_and_renal_question"
+    t.boolean "sub_arachnoid_haemorrhage_and_epilepsy_question"
     t.index ["approved_at"], name: "index_travel_insurance_firms_on_approved_at"
     t.index ["fca_number"], name: "index_travel_insurance_firms_on_fca_number", unique: true
   end
