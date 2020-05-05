@@ -28,9 +28,9 @@ class TravelInsuranceFirm < ApplicationRecord
 
   before_create :populate_question_answers
 
-  def cache_question_answers(fca_number, question_answers)
+  def cache_question_answers(_fca_number, question_answers)
     KNOWN_REGISTRATION_QUESTIONS.each do |question|
-      REGISTRATION_QUESTION_ANSWERS[fca_number.to_s.to_sym][question.to_sym] = question_answers[question.to_sym]
+      REGISTRATION_QUESTION_ANSWERS[cache_key][question.to_sym] = question_answers[question.to_sym]
     end
   end
 
@@ -38,8 +38,14 @@ class TravelInsuranceFirm < ApplicationRecord
 
   def populate_question_answers
     KNOWN_REGISTRATION_QUESTIONS.each do |question|
-      send("#{question}=".to_sym, REGISTRATION_QUESTION_ANSWERS[ffca_number.to_s.to_sym][:question.to_sym]) unless REGISTRATION_QUESTION_ANSWERS[fca_number].empty?
+      send("#{question}=".to_sym, REGISTRATION_QUESTION_ANSWERS[cache_key][:question.to_sym]) unless REGISTRATION_QUESTION_ANSWERS[fca_number].empty?
       REGISTRATION_QUESTION_ANSWERS.delete[fca_number.to_s.to_sym]
     end
+  end
+
+  def cache_key
+    # TODO: - double check this... may need to get key details from submitted form for cache entry and from Principal for cache retrieval
+    principle = Principal.find_by(fca_number: fca_number)
+    "#{fca_number}_#{principle.email_address}"
   end
 end
