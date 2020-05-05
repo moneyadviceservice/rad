@@ -15,7 +15,7 @@ form{
     .form__row {
       transform: translateX(100%);
       padding: 1px;
-      background-color: #fff;
+      background-color: $color-white;
       transform: translateX(0%);
       & ~ .form__row {
           display: none;
