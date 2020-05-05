@@ -327,10 +327,10 @@ RSpec.feature 'Principal provides travel insurance information', :inline_job_que
 
   def then_i_am_shown_a_thank_you_for_registering_message
     expect(thank_you_for_registering_page).to have_content(
-      I18n.t('success.heading')
+      I18n.t('success.travel_insurance_registrations.heading')
     )
     expect(thank_you_for_registering_page).to have_content(
-      I18n.t('success.message')
+      I18n.t('success.travel_insurance_registrations.message')
     )
   end
 
