@@ -47,7 +47,7 @@ class TravelInsuranceFirm < ApplicationRecord
       firm_principal = Principal.find_by(fca_number: fca_number)
       cache_key = TravelInsuranceFirm.compute_cache_key(fca_number: fca_number, email: firm_principal.email_address)
       cached_answers = REGISTRATION_QUESTION_ANSWERS[cache_key(fca_number: fca_number, email: principal.email_address)]
-      instance_eval("#{question} = '#{cached_answers[question.to_sym]}'") unless cached_answers.empty?
+      instance_eval("#{question} = '#{cached_answers[question.to_sym]}'", __FILE__, __LINE__) unless cached_answers.empty?
 
       REGISTRATION_QUESTION_ANSWERS.delete(cache_key)
     end
