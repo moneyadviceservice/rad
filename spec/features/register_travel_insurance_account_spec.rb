@@ -311,13 +311,12 @@ RSpec.feature 'Principal provides travel insurance information', :inline_job_que
   end
 
   def and_i_registered_a_principal_and_travel_insurance_firm
+    fca_number = '311244'
     principal = create_principal(
       manually_build_firms: true,
-      travel_insurance_firm: FactoryBot.create(
-        :travel_insurance_firm,
-        fca_number: '311244'
-      )
+      fca_number: fca_number
     )
+    FactoryBot.create(:travel_insurance_firm, fca_number: fca_number)
 
     expect(principal.firm).to be_nil
     expect(principal.travel_insurance_firm).to_not be_nil
@@ -386,11 +385,11 @@ RSpec.feature 'Principal provides travel insurance information', :inline_job_que
 
   def principal_details
     OpenStruct.new(
-      first_name: 'Ben',
-      last_name: 'Lovell',
-      job_title: 'Director',
-      email_address: 'ben@moneyadviceservice.org.uk',
-      telephone_number: '07715 930 400'
+      first_name: 'test',
+      last_name: 'principal',
+      job_title: 'The tester',
+      email_address: 'test@moneyadviceservice.org.uk',
+      telephone_number: '07777 777 777'
     )
   end
 end
