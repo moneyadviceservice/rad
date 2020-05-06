@@ -43,7 +43,7 @@ RSpec.feature 'Searching for travel insurance firms on the admin interface' do
 
     ['123456',
      '123457'].each do |fca_number|
-      principal = FactoryBot.create(:principal, manually_build_firms: true, fca_number: fca_number)
+      FactoryBot.create(:principal, manually_build_firms: true, fca_number: fca_number)
       @firms << FactoryBot.create(:travel_insurance_firm, fca_number: fca_number)
     end
   end
