@@ -24,11 +24,9 @@ RSpec.describe PrincipalRegistrationStatus do
 
     context 'when principal has a travel insurance firm' do
       let(:principal) do
-        FactoryBot.create(
-          :principal,
-          manually_build_firms: true,
-          travel_insurance_firm: FactoryBot.create(:travel_insurance_firm)
-        )
+        principal = FactoryBot.create(:principal, manually_build_firms: true)
+        FactoryBot.create(:travel_insurance_firm, fca_number: principal.fca_number)
+        principal
       end
 
       it 'returns true if the principal has a firm matching the registration type' do

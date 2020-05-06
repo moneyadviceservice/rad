@@ -89,6 +89,8 @@ class TravelInsuranceRegistrationsController < BaseRegistrationsController
 
   def register_and_redirect_user
     submitted_data = NewPrincipalForm.new(session[:principal])
+    answers = risk_profile_form_params.merge(medical_conditions_form_params).merge(fca_number: submitted_data.fca_number, email: submitted_data.email)
+    TravelInsuranceFirm.cache_question_answers(answers)
     DirectoryRegistrationService.call(submitted_data)
     render :show
   end

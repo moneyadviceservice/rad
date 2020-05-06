@@ -22,30 +22,34 @@ class TravelInsuranceFirm < ApplicationRecord
     sub_arachnoid_haemorrhage_and_epilepsy_question
   ].freeze
 
+  # TODO: these might get stale if the fca lookup fails so implement a regular clean of the cache or consider using a gem that does so instead of re-inventing the cache implementation wheel
   REGISTRATION_QUESTION_ANSWERS = Hash.new({})
 
   belongs_to :principal, primary_key: :fca_number, foreign_key: :fca_number
 
   before_create :populate_question_answers
 
-  def cache_question_answers(_fca_number, question_answers)
+  def self.cache_question_answers(question_answers)
+    cache_key = compute_cache_key(fca_number: question_answers[:fca_number], email: question_answers[:email])
     KNOWN_REGISTRATION_QUESTIONS.each do |question|
-      REGISTRATION_QUESTION_ANSWERS[cache_key][question.to_sym] = question_answers[question.to_sym]
+      REGISTRATION_QUESTION_ANSWERS[cache_key][question.to_sym] = question_answers[question.to_sym] unless question_answers[question.to_sym].nil?
     end
+  end
+
+  def self.compute_cache_key(params)
+    "#{params[:fca_number]}_#{params[:email]}".to_sym
   end
 
   private
 
   def populate_question_answers
     KNOWN_REGISTRATION_QUESTIONS.each do |question|
-      send("#{question}=".to_sym, REGISTRATION_QUESTION_ANSWERS[cache_key][:question.to_sym]) unless REGISTRATION_QUESTION_ANSWERS[fca_number].empty?
-      REGISTRATION_QUESTION_ANSWERS.delete[fca_number.to_s.to_sym]
-    end
-  end
+      firm_principal = Principal.find_by(fca_number: fca_number)
+      cache_key = TravelInsuranceFirm.compute_cache_key(fca_number: fca_number, email: firm_principal.email_address)
+      cached_answers = REGISTRATION_QUESTION_ANSWERS[cache_key(fca_number: fca_number, email: principal.email_address)]
+      instance_eval("#{question} = '#{cached_answers[question.to_sym]}'") unless cached_answers.empty?
 
-  def cache_key
-    # TODO: - double check this... may need to get key details from submitted form for cache entry and from Principal for cache retrieval
-    principle = Principal.find_by(fca_number: fca_number)
-    "#{fca_number}_#{principle.email_address}"
+      REGISTRATION_QUESTION_ANSWERS.delete(cache_key)
+    end
   end
 end

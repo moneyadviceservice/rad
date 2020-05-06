@@ -31,17 +31,21 @@ RSpec.feature 'Searching for travel insurance firms on the admin interface' do
   end
 
   def given_there_are_firms
-    @firms = [
-      FactoryBot.create(
-        :travel_insurance_firm, registered_name: 'Acme Finance'
-      ),
-      FactoryBot.create(:travel_insurance_firm, fca_number: '123456'),
-      FactoryBot.create(:travel_insurance_firm, fca_number: '123457'),
-      FactoryBot.create(:travel_insurance_firm, registered_name: 'Travel #4'),
-      FactoryBot.create(:travel_insurance_firm, registered_name: 'Travel #5'),
-      FactoryBot.create(:travel_insurance_firm, registered_name: 'Travel #6'),
-      FactoryBot.create(:travel_insurance_firm, registered_name: 'Travel #7')
-    ]
+    @firms = []
+    ['Acme Finance',
+     'Travel #4',
+     'Travel #5',
+     'Travel #6',
+     'Travel #7'].each do |name|
+       principal = FactoryBot.create(:principal, manually_build_firms: true)
+       @firms << FactoryBot.create(:travel_insurance_firm, fca_number: principal.fca_number, registered_name: name)
+     end
+
+    ['123456',
+     '123457'].each do |fca_number|
+      principal = FactoryBot.create(:principal, manually_build_firms: true, fca_number: fca_number)
+      @firms << FactoryBot.create(:travel_insurance_firm, fca_number: fca_number)
+    end
   end
 
   def when_i_clear_all_filters
