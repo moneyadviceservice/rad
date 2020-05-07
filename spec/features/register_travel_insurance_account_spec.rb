@@ -111,19 +111,33 @@ RSpec.feature 'Principal provides travel insurance information', :inline_job_que
       then_i_am_told_which_fields_are_incorrect_and_why
     end
 
-    scenario 'a firm that supports one_specific type of medical condition' do
+    scenario 'a firm that supports answers yes to all questions' do
       given_i_am_on_the_travel_insurance_medical_conditions_questionaire_page
-      and_i_provide_complete_answers_to_step_4
+      and_i_answer_yes_to_questions_on_step_4(15)
       then_i_am_shown_a_thank_you_for_registering_message
       and_i_should_have_a_travel_insurance_firm
       and_i_later_receive_an_email_confirming_my_registration
+    end
+
+    scenario 'a firm that answers yes to 8 questions and the rest no' do
+      given_i_am_on_the_travel_insurance_medical_conditions_questionaire_page
+      and_i_answer_yes_to_questions_on_step_4(8)
+      then_i_am_shown_a_thank_you_for_registering_message
+      and_i_should_have_a_travel_insurance_firm
+      and_i_later_receive_an_email_confirming_my_registration
+    end
+
+    scenario 'a firm that answers yes to 7 questions and the rest no' do
+      given_i_am_on_the_travel_insurance_medical_conditions_questionaire_page
+      and_i_answer_yes_to_questions_on_step_4(7)
+      then_i_am_notified_i_cannot_proceed
     end
   end
 
   scenario 'Registering a travel insurance firm having a retirement firm' do
     given_i_am_on_the_travel_insurance_medical_conditions_questionaire_page
     and_i_registered_a_principal_and_retirement_advice_firm
-    and_i_provide_complete_answers_to_step_4
+    and_i_answer_yes_to_questions_on_step_4(15)
     then_i_am_shown_a_thank_you_for_registering_message
     and_i_should_have_a_retirement_and_travel_insurance_firm
     and_i_later_receive_an_email_confirming_my_registration
@@ -249,23 +263,14 @@ RSpec.feature 'Principal provides travel insurance information', :inline_job_que
     end
   end
 
-  def and_i_provide_complete_answers_to_step_4
+  def and_i_answer_yes_to_questions_on_step_4(how_many)
+    questions = I18n.t('registration.medical_conditions_questionaire').keys
+
     travel_insurance_medical_conditions_questionaire_page.tap do |p|
-      p.metastatic_breast_cancer_question.choose 'Yes'
-      p.ulceritive_colitis_and_anaemia_question.choose 'Yes'
-      p.heart_attack_with_hbp_and_high_cholesterol_question.choose 'Yes'
-      p.copd_with_respiratory_infection_question.choose 'Yes'
-      p.motor_neurone_disease_question.choose 'Yes'
-      p.hodgkin_lymphoma_question.choose 'Yes'
-      p.acute_myeloid_leukaemia_question.choose 'Yes'
-      p.guillain_barre_syndrome_question.choose 'Yes'
-      p.heart_failure_and_arrhytmia_question.choose 'Yes'
-      p.stroke_with_hbp_question.choose 'Yes'
-      p.peripheral_vascular_disease_question.choose 'Yes'
-      p.schizophrenia_question.choose 'Yes'
-      p.lupus_question.choose 'Yes'
-      p.sickle_cell_and_renal_question.choose 'Yes'
-      p.sub_arachnoid_haemorrhage_and_epilepsy_question.choose 'Yes'
+      questions.each_with_index do |question, index|
+        answer = index < how_many ? 'Yes' : 'No'
+        p.send(question).send(:choose, answer)
+      end
 
       VCR.use_cassette('registrations_fca_firm_api_call') do
         p.register.click
@@ -322,10 +327,10 @@ RSpec.feature 'Principal provides travel insurance information', :inline_job_que
 
   def then_i_am_shown_a_thank_you_for_registering_message
     expect(thank_you_for_registering_page).to have_content(
-      I18n.t('success.heading')
+      I18n.t('success.travel_insurance_registrations.heading')
     )
     expect(thank_you_for_registering_page).to have_content(
-      I18n.t('success.message')
+      I18n.t('success.travel_insurance_registrations.message')
     )
   end
 
