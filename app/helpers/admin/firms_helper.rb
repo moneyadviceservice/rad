@@ -36,4 +36,16 @@ module Admin::FirmsHelper
     output = "#{output}%" if attribute_name =~ /percent/
     output
   end
+
+  def travel_registration_questions
+    TravelInsuranceFirm::KNOWN_REGISTRATION_QUESTIONS
+  end
+
+  def get_answer(question)
+    @firm.send(question.to_sym) || 'EMPTY'
+  end
+
+  def this_is_a_travel_insurance_firm
+    @firm.is_a? TravelInsuranceFirm
+  end
 end

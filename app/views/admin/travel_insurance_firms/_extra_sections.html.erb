@@ -1,0 +1,13 @@
+<% if this_is_a_travel_insurance_firm then %>
+  <div>
+    <h2>Travel Registration Questions</h2>
+  </div>
+  <% travel_registration_questions.each do | question |%> 
+    <div class="row">
+      <div class="l-2col-side--align-right col-xs-6">
+        <%= question %>
+      </div>
+      <%= get_answer(question) %>
+    </div>
+  <% end %>
+<% end %>
