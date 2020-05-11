@@ -47,7 +47,7 @@ class TravelInsuranceFirm < ApplicationRecord
     KNOWN_REGISTRATION_QUESTIONS.each do |question|
       cache_key = TravelInsuranceFirm.compute_cache_key(fca_number: fca_number, email: firm_principal.email_address, question: question)
       cached_answer = Rails.cache.fetch(cache_key) { nil }
-      send("#{question}=", cached_answer)
+      send("#{question}=", cached_answer) if send(question.to_s).nil?
     end
   end
 end
