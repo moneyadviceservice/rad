@@ -20,7 +20,7 @@ class TravelInsuranceFirm < ApplicationRecord
     lupus_question
     sickle_cell_and_renal_question
     sub_arachnoid_haemorrhage_and_epilepsy_question
-  ].freeze
+  ].map(&:to_sym).freeze
 
   belongs_to :principal, primary_key: :fca_number, foreign_key: :fca_number
 
