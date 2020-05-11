@@ -59,7 +59,7 @@ class TravelInsuranceRegistrationsController < BaseRegistrationsController
 
   def rejected_registration?
     if params[:current_step].to_sym == :risk_profile
-      risk_profile_form_params[:covered_by_ombudsman_question] == '0' || risk_profile_form_params[:risk_profile_approach_question] == 'neither'
+      risk_profile_form_params[:covered_by_ombudsman_question] == 'false' || risk_profile_form_params[:risk_profile_approach_question] == 'neither'
     else
       false
     end
@@ -68,7 +68,7 @@ class TravelInsuranceRegistrationsController < BaseRegistrationsController
   def completed_registration?
     case params[:current_step].to_sym
     when :risk_profile
-      risk_profile_form_params[:covered_by_ombudsman_question] == '1' && risk_profile_form_params[:risk_profile_approach_question] == 'bespoke'
+      risk_profile_form_params[:covered_by_ombudsman_question] == 'true' && risk_profile_form_params[:risk_profile_approach_question] == 'bespoke'
     when :medical_conditions
       medical_conditions_form_params[:covers_medical_condition_question] == 'one_specific'
     else
