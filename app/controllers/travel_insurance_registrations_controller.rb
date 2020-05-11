@@ -46,6 +46,7 @@ class TravelInsuranceRegistrationsController < BaseRegistrationsController
     session[params[:current_step].to_sym] = form_params
 
     if @form.valid?
+      update_registration_answers
       if completed_registration?
         register_and_redirect_user
       elsif rejected_registration?
@@ -127,9 +128,14 @@ class TravelInsuranceRegistrationsController < BaseRegistrationsController
     positive_answers_count >= (medical_conditions_questionaire_form_params.values.count * 0.5).ceil
   end
 
+  def update_registration_answers
+    session[:registration_answers] ||= {}
+    session[:registration_answers].merge(send("#{params[:current_step]}_form_params"))
+  end
+
   def register_and_redirect_user
     submitted_data = NewPrincipalForm.new(session[:principal])
-    answers = risk_profile_form_params.merge(medical_conditions_form_params).merge(fca_number: submitted_data.fca_number, email: submitted_data.email)
+    answers = session[:registration_answers].merge(fca_number: submitted_data.fca_number, email: submitted_data.email)
     TravelInsuranceFirm.cache_question_answers(answers)
     DirectoryRegistrationService.call(submitted_data)
     render :show
