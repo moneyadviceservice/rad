@@ -41,7 +41,6 @@ class TravelInsuranceRegistrationsController < BaseRegistrationsController
     session[params[:current_step].to_sym] = form_params
 
     if @form.valid?
-      update_registration_answers
       if completed_registration?
         register_and_redirect_user
       elsif rejected_registration?
