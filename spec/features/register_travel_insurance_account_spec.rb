@@ -15,6 +15,10 @@ RSpec.feature 'Principal provides travel insurance information', :inline_job_que
     TravelInsuranceMedicalConditionsPage.new
   end
 
+  let(:travel_insurance_medical_conditions_questionaire_page) do
+    TravelInsuranceMedicalConditionsQuestionairePage.new
+  end
+
   let(:rejection_page) { RejectionPage.new }
   let(:sign_in_page) { SignInPage.new }
 
@@ -94,20 +98,50 @@ RSpec.feature 'Principal provides travel insurance information', :inline_job_que
     end
 
     scenario 'a firm that supports all_conditions type of medical conditions' do
-      # Add later to move to Step 4
-      # given_i_am_on_the_travel_insurance_medical_conditions_page
-      # and_i_provide_information_that_my_company_covers_all_medical_conditions
-      # then_i_am_taken_to_the_fourth_step_of_signup
+      given_i_am_on_the_travel_insurance_medical_conditions_page
+      and_i_provide_information_that_my_company_covers_all_medical_conditions
+      then_i_am_taken_to_the_fourth_step_of_signup
     end
   end
 
-  # scenario 'Registering a travel insurance firm having a retirement firm' do
-  #   given_i_am_on_the_travel_insurance_registration_page
-  #   and_i_registered_a_principal_and_retirement_advice_firm
-  #   when_i_provide_my_firms_fca_reference_number
-  #   and_i_provide_my_identifying_particulars
-  #   then_i_am_taken_to_the_second_step_of_signup
-  # end
+  context 'Step 4' do
+    scenario 'Not filling all required fields' do
+      given_i_am_on_the_travel_insurance_medical_conditions_questionaire_page
+      and_i_provide_incomplete_answers_to_step_4
+      then_i_am_told_which_fields_are_incorrect_and_why
+    end
+
+    scenario 'a firm that supports answers yes to all questions' do
+      given_i_am_on_the_travel_insurance_medical_conditions_questionaire_page
+      and_i_answer_yes_to_questions_on_step_4(15)
+      then_i_am_shown_a_thank_you_for_registering_message
+      and_i_should_have_a_travel_insurance_firm
+      and_i_later_receive_an_email_confirming_my_registration
+    end
+
+    scenario 'a firm that answers yes to 8 questions and the rest no' do
+      given_i_am_on_the_travel_insurance_medical_conditions_questionaire_page
+      and_i_answer_yes_to_questions_on_step_4(8)
+      then_i_am_shown_a_thank_you_for_registering_message
+      and_i_should_have_a_travel_insurance_firm
+      and_i_later_receive_an_email_confirming_my_registration
+    end
+
+    scenario 'a firm that answers yes to 7 questions and the rest no' do
+      given_i_am_on_the_travel_insurance_medical_conditions_questionaire_page
+      and_i_answer_yes_to_questions_on_step_4(7)
+      then_i_am_notified_i_cannot_proceed
+    end
+  end
+
+  scenario 'Registering a travel insurance firm having a retirement firm' do
+    given_i_am_on_the_travel_insurance_medical_conditions_questionaire_page
+    and_i_registered_a_principal_and_retirement_advice_firm
+    and_i_answer_yes_to_questions_on_step_4(15)
+    then_i_am_shown_a_thank_you_for_registering_message
+    and_i_should_have_a_retirement_and_travel_insurance_firm
+    and_i_later_receive_an_email_confirming_my_registration
+  end
 
   def given_i_am_on_the_travel_insurance_registration_page
     travel_insurance_registration_page.load
@@ -125,6 +159,12 @@ RSpec.feature 'Principal provides travel insurance information', :inline_job_que
     given_i_am_on_the_travel_insurance_risk_profile_page
     and_i_provide_information_that_my_company_offers_a_questionaire
     travel_insurance_medical_conditions_page.load
+  end
+
+  def given_i_am_on_the_travel_insurance_medical_conditions_questionaire_page
+    given_i_am_on_the_travel_insurance_medical_conditions_page
+    and_i_provide_information_that_my_company_covers_all_medical_conditions
+    travel_insurance_medical_conditions_questionaire_page.load
   end
 
   def and_i_provide_information_that_our_risk_profile_approach_is_neither
@@ -217,6 +257,27 @@ RSpec.feature 'Principal provides travel insurance information', :inline_job_que
     end
   end
 
+  def and_i_provide_incomplete_answers_to_step_4
+    travel_insurance_medical_conditions_questionaire_page.tap do |p|
+      p.register.click
+    end
+  end
+
+  def and_i_answer_yes_to_questions_on_step_4(how_many)
+    questions = I18n.t('registration.medical_conditions_questionaire').keys
+
+    travel_insurance_medical_conditions_questionaire_page.tap do |p|
+      questions.each_with_index do |question, index|
+        answer = index < how_many ? 'Yes' : 'No'
+        p.send(question).send(:choose, answer)
+      end
+
+      VCR.use_cassette('registrations_fca_firm_api_call') do
+        p.register.click
+      end
+    end
+  end
+
   def and_i_later_receive_an_email_confirming_my_registration
     email =
       ActionMailer::Base.deliveries.find do |mail|
@@ -258,12 +319,18 @@ RSpec.feature 'Principal provides travel insurance information', :inline_job_que
     )
   end
 
+  def then_i_am_taken_to_the_fourth_step_of_signup
+    expect(travel_insurance_medical_conditions_page).to have_content(
+      'Step 4 of 4'
+    )
+  end
+
   def then_i_am_shown_a_thank_you_for_registering_message
     expect(thank_you_for_registering_page).to have_content(
-      I18n.t('success.heading')
+      I18n.t('success.travel_insurance_registrations.heading')
     )
     expect(thank_you_for_registering_page).to have_content(
-      I18n.t('success.message')
+      I18n.t('success.travel_insurance_registrations.message')
     )
   end
 
