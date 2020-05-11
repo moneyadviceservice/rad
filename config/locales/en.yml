@@ -319,20 +319,26 @@ en:
       password_confirmation: Password confirmation *
 
   rejection:
-    contact_sent: Your message has been sent and we will respond shortly.
     heading: Sorry...
-    subheading: "Unfortunately your firm can't be listed on our directory unless you:"
-    reasons:
-     - heading: Are active in the retirement planning market
-       explanation: This could include either 'at retirement' or 'post retirement'.
-     - heading: Your primary business model is regulated advice
-       explanation: This could be full or focused advice but must be fully covered by the financial services authority.
-     - heading: You offer a whole market service
-       explanation: This means that you are not restricted in the number of providers you are able to access for a given product.
-    email_address: Please enter your email address
-    message: Please enter your message below
-    input_label: If you believe you've been excluded in error, please send us an explanatory message and we will be in touch with you.
-    submit_button: Send message
+    contact_sent: Your message has been sent and we will respond shortly.
+
+    travel_insurance:
+      subheading: Based on the information you have supplied, your firm is not eligible to be listed on the Money & Pensions Service Travel Insurance Directory.
+      secondary_message: "If you would like to discuss this with us, please contact us in the first instance at:"
+
+    retirement_advice:
+      subheading: "Unfortunately your firm can't be listed on our directory unless you:"
+      reasons:
+       - heading: Are active in the retirement planning market
+         explanation: This could include either 'at retirement' or 'post retirement'.
+       - heading: Your primary business model is regulated advice
+         explanation: This could be full or focused advice but must be fully covered by the financial services authority.
+       - heading: You offer a whole market service
+         explanation: This means that you are not restricted in the number of providers you are able to access for a given product.
+      email_address: Please enter your email address
+      message: Please enter your message below
+      input_label: If you believe you've been excluded in error, please send us an explanatory message and we will be in touch with you.
+      submit_button: Send message
 
   in_person_advice_method:
     ordinal:

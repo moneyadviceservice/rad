@@ -1,4 +1,4 @@
-class RejectionPage < SitePrism::Page
+class RetirementAdviceRejectionPage < SitePrism::Page
   set_url '/retirement_advice_registrations/reject'
   set_url_matcher(/reject/)
 

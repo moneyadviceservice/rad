@@ -19,7 +19,7 @@ RSpec.feature 'Principal provides travel insurance information', :inline_job_que
     TravelInsuranceMedicalConditionsQuestionairePage.new
   end
 
-  let(:rejection_page) { RejectionPage.new }
+  let(:rejection_page) { TravelInsuranceRejectionPage.new }
   let(:sign_in_page) { SignInPage.new }
 
   before { ActionMailer::Base.deliveries.clear }

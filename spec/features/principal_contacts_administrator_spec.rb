@@ -1,5 +1,5 @@
 RSpec.feature 'Principal contacts Administrator', :inline_job_queue do
-  let(:rejection_page) { RejectionPage.new }
+  let(:rejection_page) { RetirementAdviceRejectionPage.new }
 
   scenario 'Sending a valid message' do
     given_i_have_failed_pre_qualification

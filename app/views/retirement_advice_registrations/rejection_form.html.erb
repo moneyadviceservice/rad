@@ -2,28 +2,28 @@
   builder: Dough::Forms::Builders::Validation do |f| %>
   <%= f.validation_summary %>
   <%= heading_tag(t('rejection.heading'), level: 1) %>
-  <p><%= t('rejection.subheading') %></p>
+  <p><%= t('rejection.retirement_advice.subheading') %></p>
 
   <section class="l-pre-qualification__explanation">
-    <% t('rejection.reasons').each do |item| %>
+    <% t('rejection.retirement_advice.reasons').each do |item| %>
       <%= heading_tag(item[:heading], level: 2, class: 'l-pre-qualification__question') %>
       <p><%= item[:explanation] %></p>
     <% end %>
   </section>
 
-  <p class="form__label-heading"><%= t('rejection.input_label') %></p>
+  <p class="form__label-heading"><%= t('rejection.retirement_advice.input_label') %></p>
 
   <%= f.form_row :email do %>
     <%= f.errors_for :email %>
-    <label class="form__label-heading"><%= t('rejection.email_address') %></label>
+    <label class="form__label-heading"><%= t('rejection.retirement_advice.email_address') %></label>
     <%= f.email_field :email, class: 't-email' %>
   <% end %>
 
   <%= f.form_row :message do %>
     <%= f.errors_for :message %>
-    <label class="form__label-heading"><%= t('rejection.message') %></label>
+    <label class="form__label-heading"><%= t('rejection.retirement_advice.message') %></label>
     <%= f.text_area :message, cols: 30, rows: 10, class: 't-message' %>
   <% end %>
 
-  <%= button_primary t('rejection.submit_button') %>
+  <%= button_primary t('rejection.retirement_advice.submit_button') %>
 <% end %>
