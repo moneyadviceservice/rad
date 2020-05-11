@@ -122,7 +122,7 @@ en:
       thanks: We are pleased to confirm your firm has been accepted onto the Money & Pensions Service Travel Insurance Directory.
       advice: We are currently developing the next phase of registration which will enable you to provide more details of the services you offer.
       further_instructions: An email with further instructions will be sent to you as soon as this next phase is completed and ready. This make take us a few weeks, so please bear with us.
-      contact_info: In the meantime, if you have any questions or concerns please contact us at traveldirectory@maps.org.uk
+      contact_info: "In the meantime, if you have any questions or concerns please contact us at %{email_address}"
 
   sign_in_panel:
     heading: Already Registered?
