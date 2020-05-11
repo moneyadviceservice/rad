@@ -128,15 +128,17 @@ class TravelInsuranceRegistrationsController < BaseRegistrationsController
     positive_answers_count >= (medical_conditions_questionaire_form_params.values.count * 0.5).ceil
   end
 
-  def update_registration_answers
-    session[:registration_answers] ||= {}
-    session[:registration_answers].merge(send("#{params[:current_step]}_form_params"))
+  def all_registration_answers
+    registration_answers = {}
+    WIZARD_STEPS.each do |step|
+      registration_answers.merge(send("#{step}_form_params"))
+    end
+    registration_answers
   end
 
   def register_and_redirect_user
     submitted_data = NewPrincipalForm.new(session[:principal])
-    answers = session[:registration_answers].merge(fca_number: submitted_data.fca_number, email: submitted_data.email)
-    TravelInsuranceFirm.cache_question_answers(answers)
+    TravelInsuranceFirm.cache_question_answers(all_registration_answers)
     DirectoryRegistrationService.call(submitted_data)
     render :show
   end

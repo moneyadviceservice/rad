@@ -9,7 +9,7 @@ RSpec.describe TravelInsuranceFirm, type: :model do
     describe 'saving the travel firm' do
       it 'will add the cached question value to the saved firm' do
         travel_firm.save
-        expect(travel_firm.covered_by_ombudsman_question).to be 'true'
+        expect(travel_firm.covered_by_ombudsman_question.to_s).to eq 'true'
       end
     end
   end
