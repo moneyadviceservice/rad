@@ -18,6 +18,10 @@ RSpec.feature 'Principal provides travel insurance information', :inline_job_que
   let(:rejection_page) { RejectionPage.new }
   let(:sign_in_page) { SignInPage.new }
 
+  let(:travel_insurance_firm_page) do
+    Admin::TravelInsuranceFirmPage.new
+  end
+
   before { ActionMailer::Base.deliveries.clear }
 
   context 'Step 1' do
@@ -69,6 +73,7 @@ RSpec.feature 'Principal provides travel insurance information', :inline_job_que
       then_i_am_shown_a_thank_you_for_registering_message
       and_i_should_have_a_travel_insurance_firm
       and_i_later_receive_an_email_confirming_my_registration
+      and_i_should_see_the_bespoke_risk_profile_answer_on_the_firm_admin_page
     end
 
     scenario 'a firm that offers a questionaire as risk profiling approach' do
@@ -111,6 +116,14 @@ RSpec.feature 'Principal provides travel insurance information', :inline_job_que
 
   def given_i_am_on_the_travel_insurance_registration_page
     travel_insurance_registration_page.load
+  end
+
+  def and_i_should_see_the_bespoke_risk_profile_answer_on_the_firm_admin_page
+    principal = Principal.find_by(fca_number: '311244')
+    travel_insurance_firm_page.load(firm_id: principal.travel_insurance_firm.id)
+    expect(
+      travel_insurance_firm_page.registration_questions.text
+    ).to match(/^.*risk_profile_approach_question bespoke.*/)
   end
 
   def given_i_am_on_the_travel_insurance_risk_profile_page
