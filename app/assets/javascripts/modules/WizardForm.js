@@ -48,7 +48,7 @@ define(['jquery'], function($) {
   function disableOrEnableSubmitButton(step){
     $submitButton.attr('disabled', step.find('input:checked').length <= 0)
     if($currentStepNumber > 0){
-      $prevButton.show()
+      $prevButton.css('display', 'inline-block')
     }else{
       $prevButton.hide()
     }
