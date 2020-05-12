@@ -123,7 +123,7 @@ class TravelInsuranceRegistrationsController < BaseRegistrationsController
   end
 
   def medical_questionaire_acceptable?
-    positive_answers_count = medical_conditions_questionaire_form_params.values.select { |i| i == '1' }.count
+    positive_answers_count = medical_conditions_questionaire_form_params.values.select { |i| i == 'true' }.count
     positive_answers_count >= (medical_conditions_questionaire_form_params.values.count * 0.5).ceil
   end
 
