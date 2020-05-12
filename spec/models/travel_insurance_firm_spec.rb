@@ -19,7 +19,7 @@ RSpec.describe TravelInsuranceFirm, type: :model do
     [:sickle_cell_and_renal_question, 'false'],
     [:sub_arachnoid_haemorrhage_and_epilepsy_question, 'false']
   ]
-  test_questions = Hash[test_question_answers.sample(rand(1..18)).map { |key, value| [key, value] }]
+  test_questions = HashWithIndifferentAccess[test_question_answers.sample(rand(1..18)).map { |key, value| [key, value] }]
 
   describe "the question answers: #{test_questions} are cached before saving a firm" do
     let(:travel_firm) do

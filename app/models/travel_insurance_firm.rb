@@ -27,11 +27,11 @@ class TravelInsuranceFirm < ApplicationRecord
   before_create :populate_question_answers
 
   def self.cache_question_answers(question_answers)
-    the_questions = KNOWN_REGISTRATION_QUESTIONS.filter { |question| question_answers.key?(question) }
+    the_questions = KNOWN_REGISTRATION_QUESTIONS.filter { |question| question_answers.key?(question.to_s) }
     the_questions.each do |question|
       cache_key = compute_cache_key(fca_number: question_answers[:fca_number], email: question_answers[:email], question: question)
       # TODO: consider placing timeouts in config
-      Rails.cache.write(cache_key, question_answers[question.to_sym], expires_in: 1.minute)
+      Rails.cache.write(cache_key, question_answers[question.to_s], expires_in: 1.minute)
     end
   end
 

@@ -130,14 +130,14 @@ class TravelInsuranceRegistrationsController < BaseRegistrationsController
   def all_registration_answers
     registration_answers = {}
     WIZARD_STEPS.each do |step|
-      registration_answers.merge(send("#{step}_form_params"))
+      registration_answers.merge!(send("#{step}_form_params"))
     end
     registration_answers
   end
 
   def register_and_redirect_user
     submitted_data = NewPrincipalForm.new(session[:principal])
-    TravelInsuranceFirm.cache_question_answers(all_registration_answers)
+    TravelInsuranceFirm.cache_question_answers(all_registration_answers.merge(fca_number: submitted_data.fca_number, email: submitted_data.email_address))
     DirectoryRegistrationService.call(submitted_data)
     render :show
   end
