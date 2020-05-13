@@ -61,6 +61,15 @@ class TravelInsuranceRegistrationsController < BaseRegistrationsController
 
   def rejection_form
     Stats.increment('tadsignup.prequalification.rejection')
+
+    principal_details = ActiveSupport::HashWithIndifferentAccess.new(session[:principal]).slice(
+      :fca_number,
+      :first_name,
+      :last_name,
+      :email
+    )
+
+    Admin::FirmMailer.rejected_firm(principal_details).deliver_later if principal_details.present?
   end
 
   private
