@@ -50,7 +50,7 @@ define(['jquery'], function($) {
     if($currentStepNumber > 0){
       $prevButton.css('display', 'inline-block')
     }else{
-      $prevButton.hide()
+      $prevButton.css('display', 'none')
     }
   }
 });
