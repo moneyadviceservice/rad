@@ -131,7 +131,8 @@ en:
   travel_insurance_registrations:
     heading: Travel Insurance Directory - Firm Registration
     intro: Welcome to the registration page for the Money & Pensions Service Travel Insurance Directory.
-    prompt: The data submitted should be confirmed to be accurate and complete by a senior manager of the firm who is approved by the FCA to perform a senior management function (as shown on the FCA Register).
+    prompt: Please enter the name and job title of the Senior Manager* responsible for the accuracy of the information provided.
+    prompt_explanation: "*An individual approved by the FCA to perform a senior management function and listed on the FCA Register."
     reference_number: FCA Firm Reference Number (FRN)
     frn_linked_trading_names_info: You can register the main firm and up to two trading names linked to this FRN.
 
