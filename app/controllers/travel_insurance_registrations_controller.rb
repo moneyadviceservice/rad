@@ -49,7 +49,7 @@ class TravelInsuranceRegistrationsController < BaseRegistrationsController
       if completed_registration?
         register_and_redirect_user
       elsif rejected_registration?
-        redirect_to reject_retirement_advice_registrations_path
+        redirect_to reject_travel_insurance_registrations_path
       else
         redirect_to next_url
       end
@@ -57,6 +57,19 @@ class TravelInsuranceRegistrationsController < BaseRegistrationsController
       flash.now[:error] = t('registration.principal.validation_error_html')
       render form_name.to_sym
     end
+  end
+
+  def rejection_form
+    Stats.increment('tadsignup.prequalification.rejection')
+
+    principal_details = ActiveSupport::HashWithIndifferentAccess.new(session[:principal]).slice(
+      :fca_number,
+      :first_name,
+      :last_name,
+      :email
+    )
+
+    Admin::FirmMailer.rejected_firm(principal_details).deliver_later if principal_details.present?
   end
 
   private

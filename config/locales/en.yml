@@ -119,8 +119,10 @@ en:
       advice: We advise you to keep this email safe as you will need the link below to continue your firm's registration process.
       verify_email_link: Please click the link below to verify your email address and continue with the registration process.
     travel_insurance_registrations:
-      thanks: Thank you for registering your interest in the Money & Pensions Service Travel Insurance Directory for providers of specialist insurance covering pre-existing medical conditions.
-      advice: We are currently finalising entry criteria for the Directory. Once this has been completed we will email you with a link so you can return and complete your registration entry. Please bear with us. We will contact you again soon. In the meantime, if you have any questions, please contact Teresa.Fritz@maps.org.uk
+      thanks: We are pleased to confirm your firm has been accepted onto the Money & Pensions Service Travel Insurance Directory.
+      advice: We are currently developing the next phase of registration which will enable you to provide more details of the services you offer.
+      further_instructions: An email with further instructions will be sent to you as soon as this next phase is completed and ready. This make take us a few weeks, so please bear with us.
+      contact_info: "In the meantime, if you have any questions or concerns please contact us at %{email_address}"
 
   sign_in_panel:
     heading: Already Registered?
@@ -321,20 +323,26 @@ en:
       password_confirmation: Password confirmation *
 
   rejection:
-    contact_sent: Your message has been sent and we will respond shortly.
     heading: Sorry...
-    subheading: "Unfortunately your firm can't be listed on our directory unless you:"
-    reasons:
-     - heading: Are active in the retirement planning market
-       explanation: This could include either 'at retirement' or 'post retirement'.
-     - heading: Your primary business model is regulated advice
-       explanation: This could be full or focused advice but must be fully covered by the financial services authority.
-     - heading: You offer a whole market service
-       explanation: This means that you are not restricted in the number of providers you are able to access for a given product.
-    email_address: Please enter your email address
-    message: Please enter your message below
-    input_label: If you believe you've been excluded in error, please send us an explanatory message and we will be in touch with you.
-    submit_button: Send message
+    contact_sent: Your message has been sent and we will respond shortly.
+
+    travel_insurance:
+      subheading: Based on the information you have supplied, your firm is not eligible to be listed on the Money & Pensions Service Travel Insurance Directory.
+      secondary_message: "If you would like to discuss this with us, please contact us in the first instance at:"
+
+    retirement_advice:
+      subheading: "Unfortunately your firm can't be listed on our directory unless you:"
+      reasons:
+       - heading: Are active in the retirement planning market
+         explanation: This could include either 'at retirement' or 'post retirement'.
+       - heading: Your primary business model is regulated advice
+         explanation: This could be full or focused advice but must be fully covered by the financial services authority.
+       - heading: You offer a whole market service
+         explanation: This means that you are not restricted in the number of providers you are able to access for a given product.
+      email_address: Please enter your email address
+      message: Please enter your message below
+      input_label: If you believe you've been excluded in error, please send us an explanatory message and we will be in touch with you.
+      submit_button: Send message
 
   in_person_advice_method:
     ordinal:

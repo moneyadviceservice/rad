@@ -37,6 +37,18 @@ RSpec.describe TravelInsuranceRegistrationsController, type: :controller do
     end
   end
 
+  describe 'GET #rejection_form' do
+    it 'renders successfully' do
+      get :rejection_form
+      expect(response).to be_successful
+    end
+
+    it 'calls Stats.increment when rejection page is loaded' do
+      expect(Stats).to receive(:increment).with('tadsignup.prequalification.rejection')
+      get :rejection_form
+    end
+  end
+
   describe 'GET #wizard_form' do
     it 'is successful for :risk_profile step' do
       get :wizard_form, params: { current_step: 'risk_profile' }
@@ -60,7 +72,7 @@ RSpec.describe TravelInsuranceRegistrationsController, type: :controller do
     context 'when not qualified' do
       it 'redirects to reject page' do
         post :wizard, params: { current_step: :risk_profile, travel_insurance_risk_profile_form: { covered_by_ombudsman_question: '1', risk_profile_approach_question: 'neither' } }
-        expect(response).to redirect_to reject_retirement_advice_registrations_path
+        expect(response).to redirect_to reject_travel_insurance_registrations_path
       end
     end
   end

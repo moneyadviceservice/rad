@@ -19,7 +19,7 @@ RSpec.feature 'Principal provides travel insurance information', :inline_job_que
     TravelInsuranceMedicalConditionsQuestionairePage.new
   end
 
-  let(:rejection_page) { RejectionPage.new }
+  let(:rejection_page) { TravelInsuranceRejectionPage.new }
   let(:sign_in_page) { SignInPage.new }
 
   before { ActionMailer::Base.deliveries.clear }
@@ -59,12 +59,14 @@ RSpec.feature 'Principal provides travel insurance information', :inline_job_que
       given_i_am_on_the_travel_insurance_risk_profile_page
       and_i_provide_information_that_our_firm_is_not_covered_by_ombudsman
       then_i_am_notified_i_cannot_proceed
+      and_admins_later_receive_an_email_about_the_rejection
     end
 
     scenario 'a firm that chooses neither for risk profiling approach' do
       given_i_am_on_the_travel_insurance_risk_profile_page
       and_i_provide_information_that_our_risk_profile_approach_is_neither
       then_i_am_notified_i_cannot_proceed
+      and_admins_later_receive_an_email_about_the_rejection
     end
 
     scenario 'a firm that offers a bespoke risk profiling approach' do
@@ -131,6 +133,7 @@ RSpec.feature 'Principal provides travel insurance information', :inline_job_que
       given_i_am_on_the_travel_insurance_medical_conditions_questionaire_page
       and_i_answer_yes_to_questions_on_step_4(7)
       then_i_am_notified_i_cannot_proceed
+      and_admins_later_receive_an_email_about_the_rejection
     end
   end
 
@@ -286,6 +289,19 @@ RSpec.feature 'Principal provides travel insurance information', :inline_job_que
 
     expect(email).to_not be_nil
     expect(email.body.raw_source).to include('Travel Insurance Directory')
+  end
+
+  def and_admins_later_receive_an_email_about_the_rejection
+    email =
+      ActionMailer::Base.deliveries.find do |mail|
+        mail.subject.match?(/rejected firm/)
+      end
+
+    expect(email).to_not be_nil
+    expect(email.body.raw_source).to include('311244')
+    expect(email.body.raw_source).to include(principal_details.first_name)
+    expect(email.body.raw_source).to include(principal_details.last_name)
+    expect(email.body.raw_source).to include(principal_details.email_address)
   end
 
   def and_i_registered_a_principal_and_retirement_advice_firm

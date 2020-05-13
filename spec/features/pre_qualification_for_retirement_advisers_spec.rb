@@ -1,7 +1,7 @@
 RSpec.feature 'Principal answers pre-qualification questions' do
   let(:pre_qualification_page) { PreQualificationPage.new }
   let(:identification_page) { IdentificationPage.new }
-  let(:rejection_page) { RejectionPage.new }
+  let(:rejection_page) { RetirementAdviceRejectionPage.new }
 
   before do
     pre_qualification_page.load
