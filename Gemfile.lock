@@ -491,6 +491,7 @@ DEPENDENCIES
   rails_email_validator
   ransack
   rb-readline
+  redis
   rollbar
   rspec-collection_matchers
   rspec-rails
