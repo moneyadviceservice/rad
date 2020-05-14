@@ -38,7 +38,7 @@ module Admin::FirmsHelper
   end
 
   def travel_registration_questions
-    TravelInsuranceFirm::KNOWN_REGISTRATION_QUESTIONS
+    TravelInsuranceFirm::KNOWN_REGISTRATION_QUESTIONS.filter { |question| get_answer(question) != 'EMPTY' }
   end
 
   def get_answer(question)
