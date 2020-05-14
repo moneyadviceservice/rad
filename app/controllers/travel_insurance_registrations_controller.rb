@@ -130,7 +130,7 @@ class TravelInsuranceRegistrationsController < BaseRegistrationsController
   def all_registration_answers
     registration_answers = {}
     WIZARD_STEPS.each do |step|
-      registration_answers.merge!(send("#{step}_form_params"))
+      registration_answers.merge!(session[step.to_sym])
     end
     registration_answers
   end
