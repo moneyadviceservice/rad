@@ -21,14 +21,13 @@ RSpec.describe TravelInsuranceFirm, type: :model do
   ]
   test_questions = HashWithIndifferentAccess[test_question_answers.sample(rand(1..18)).map { |key, value| [key, value] }]
 
-  describe "the question answers: #{test_questions} are cached before saving a firm" do
+  describe "the question answers: #{test_questions} cached before creating the corresponding firm" do
     let(:travel_firm) do
       existing_principal = create(:principal, manually_build_firms: true)
       TravelInsuranceFirm.cache_question_answers(test_questions.merge(fca_number: existing_principal.fca_number, email: existing_principal.email_address))
       TravelInsuranceFirm.create(fca_number: existing_principal.fca_number, registered_name: 'Test Travel Firm')
     end
-    it 'will add the cached  to the saved firm' do
-      travel_firm.save
+    it 'will be transparently added to the newly created firm' do
       test_questions.each do |question_answer|
         expect(travel_firm[question_answer[0].to_sym].to_s).to eq question_answer[1]
       end

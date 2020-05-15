@@ -44,8 +44,4 @@ module Admin::FirmsHelper
   def get_answer(question)
     @firm.send(question.to_sym) || 'EMPTY'
   end
-
-  def this_is_a_travel_insurance_firm
-    @firm.is_a? TravelInsuranceFirm
-  end
 end

@@ -31,8 +31,8 @@ class TravelInsuranceFirm < ApplicationRecord
     Rails.cache.write(cache_key, question_answers.reject { |key, _value| %w[fca_number email].include? key.to_s }.to_json, expires_in: 1.minute)
   end
 
-  def self.compute_cache_key(params)
-    "#{params[:fca_number]}_#{params[:email]}"
+  def self.compute_cache_key(fca_number:, email:)
+    "#{fca_number}_#{email}"
   end
 
   private
