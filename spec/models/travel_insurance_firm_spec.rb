@@ -48,9 +48,6 @@ RSpec.describe TravelInsuranceFirm, type: :model do
       create(:principal, fca_number: '111111', email_address: 'first@email.com', manually_build_firms: true)
       TravelInsuranceFirm.cache_question_answers(fca_number: '111111', email: 'first@email.com', covered_by_ombudsman_question: 'true')
       TravelInsuranceFirm.cache_question_answers(fca_number: '111111', email: 'second@email.com', covered_by_ombudsman_question: 'false')
-      TravelInsuranceFirm.cache_question_answers(fca_number: '111111', email: 'second@email.com', covered_by_ombudsman_question: 'false')
-      TravelInsuranceFirm.cache_question_answers(fca_number: '111111', email: 'second@email.com', covered_by_ombudsman_question: 'false')
-      TravelInsuranceFirm.cache_question_answers(fca_number: '111111', email: 'second@email.com', covered_by_ombudsman_question: 'false')
 
       TravelInsuranceFirm.create(fca_number: '111111', registered_name: 'Test Travel Firm')
     end
