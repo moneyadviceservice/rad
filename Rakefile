@@ -27,7 +27,7 @@ described_task :npm_test, description: 'npm test' do
   sh 'npm test'
 end
 
-if Rails.env.production?
+if Rails.env.production? || Rails.env.staging?
   task :default
 else
   require 'rubocop/rake_task'
