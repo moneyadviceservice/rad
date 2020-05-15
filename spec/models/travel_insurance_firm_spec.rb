@@ -45,7 +45,7 @@ RSpec.describe TravelInsuranceFirm, type: :model do
   end
   describe 'multiple simultaneos cache requests with the same fca_number but different email address should be independent' do
     let(:travel_firm) do
-      existing_principal = create(:principal, fca_number: '111111', email_address: 'first@email.com', manually_build_firms: true)
+      create(:principal, fca_number: '111111', email_address: 'first@email.com', manually_build_firms: true)
       TravelInsuranceFirm.cache_question_answers(fca_number: '111111', email: 'first@email.com', covered_by_ombudsman_question: 'true')
       TravelInsuranceFirm.cache_question_answers(fca_number: '111111', email: 'second@email.com', covered_by_ombudsman_question: 'false')
       TravelInsuranceFirm.cache_question_answers(fca_number: '111111', email: 'second@email.com', covered_by_ombudsman_question: 'false')

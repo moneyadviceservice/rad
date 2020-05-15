@@ -41,11 +41,13 @@ class TravelInsuranceFirm < ApplicationRecord
     firm_principal = Principal.find_by(fca_number: fca_number)
     cache_key = TravelInsuranceFirm.compute_cache_key(fca_number: fca_number, email: firm_principal.email_address)
     cached_answers = Rails.cache.fetch(cache_key)
-    if cached_answers
-      cached_answers = JSON.parse(cached_answers)
-      cached_answers.keys.each do |question|
-        send("#{question}=", cached_answers[question]) if send(question.to_s).nil?
-      end
+    populate_answers(cached_answers) if cached_answers
+  end
+
+  def populate_answers(cached_answers)
+    cached_answers = JSON.parse(cached_answers)
+    cached_answers.keys.each do |question|
+      send("#{question}=", cached_answers[question]) if send(question.to_s).nil?
     end
   end
 end
