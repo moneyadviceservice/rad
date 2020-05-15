@@ -40,8 +40,22 @@ RSpec.describe TravelInsuranceFirm, type: :model do
       TravelInsuranceFirm.create(fca_number: existing_principal.fca_number, registered_name: 'Test Travel Firm', covered_by_ombudsman_question: 'false')
     end
     it 'will not be overwritten by the cache' do
-      travel_firm.save
       expect(travel_firm[:covered_by_ombudsman_question].to_s).to eq 'false'
+    end
+  end
+  describe 'multiple simultaneos cache requests with the same fca_number but different email address should be independent' do
+    let(:travel_firm) do
+      existing_principal = create(:principal, fca_number: '111111', email_address: 'first@email.com', manually_build_firms: true)
+      TravelInsuranceFirm.cache_question_answers(fca_number: '111111', email: 'first@email.com', covered_by_ombudsman_question: 'true')
+      TravelInsuranceFirm.cache_question_answers(fca_number: '111111', email: 'second@email.com', covered_by_ombudsman_question: 'false')
+      TravelInsuranceFirm.cache_question_answers(fca_number: '111111', email: 'second@email.com', covered_by_ombudsman_question: 'false')
+      TravelInsuranceFirm.cache_question_answers(fca_number: '111111', email: 'second@email.com', covered_by_ombudsman_question: 'false')
+      TravelInsuranceFirm.cache_question_answers(fca_number: '111111', email: 'second@email.com', covered_by_ombudsman_question: 'false')
+
+      TravelInsuranceFirm.create(fca_number: '111111', registered_name: 'Test Travel Firm')
+    end
+    it 'will be transparently added to the newly created firm' do
+      expect(travel_firm[:covered_by_ombudsman_question].to_s).to eq 'true'
     end
   end
 end
