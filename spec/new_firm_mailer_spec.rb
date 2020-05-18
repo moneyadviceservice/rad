@@ -1,7 +1,6 @@
 RSpec.describe NewFirmMailer, type: :mailer do
   let(:recipient)    { ENV['TAD_ADMIN_EMAIL'] }
   let(:subject_line) { 'New Firm registered in the directory' }
-  let(:retirement_firm) { create(:firm, registered_name: 'OrgName') }
 
   shared_examples_for 'new firm notification mailer' do
     describe '#notify' do
@@ -14,12 +13,12 @@ RSpec.describe NewFirmMailer, type: :mailer do
   end
 
   describe 'retirement advice firm' do
-    let(:firm) { create(:firm, registered_name: 'OrgName') }
+    let!(:firm) { create(:firm_with_principal, registered_name: 'OrgName') }
     it_behaves_like 'new firm notification mailer'
   end
 
   describe 'travel insurance firm' do
-    let(:firm) { create(:travel_insurance_firm, registered_name: 'TavelInsurance') }
+    let!(:firm) { create(:travel_insurance_firm, registered_name: 'TavelInsurance', create_associated_principle: true) }
     it_behaves_like 'new firm notification mailer'
   end
 end
