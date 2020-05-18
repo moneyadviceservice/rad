@@ -22,6 +22,10 @@ RSpec.feature 'Principal provides travel insurance information', :inline_job_que
   let(:rejection_page) { TravelInsuranceRejectionPage.new }
   let(:sign_in_page) { SignInPage.new }
 
+  let(:travel_insurance_firm_page) do
+    Admin::TravelInsuranceFirmPage.new
+  end
+
   before { ActionMailer::Base.deliveries.clear }
 
   context 'Step 1' do
@@ -75,6 +79,7 @@ RSpec.feature 'Principal provides travel insurance information', :inline_job_que
       then_i_am_shown_a_thank_you_for_registering_message
       and_i_should_have_a_travel_insurance_firm
       and_i_later_receive_an_email_confirming_my_registration
+      and_i_should_see_the_bespoke_risk_profile_answer_on_the_firm_admin_page
     end
 
     scenario 'a firm that offers a questionaire as risk profiling approach' do
@@ -119,6 +124,8 @@ RSpec.feature 'Principal provides travel insurance information', :inline_job_que
       then_i_am_shown_a_thank_you_for_registering_message
       and_i_should_have_a_travel_insurance_firm
       and_i_later_receive_an_email_confirming_my_registration
+      and_i_should_see_that_my_company_covers_all_medical_conditions_on_the_firm_admin_page
+      and_i_should_see_all_questionaire_questions_as_true_on_the_firm_admin_page
     end
 
     scenario 'a firm that answers yes to 8 questions and the rest no' do
@@ -148,6 +155,34 @@ RSpec.feature 'Principal provides travel insurance information', :inline_job_que
 
   def given_i_am_on_the_travel_insurance_registration_page
     travel_insurance_registration_page.load
+  end
+
+  def and_i_should_see_the_bespoke_risk_profile_answer_on_the_firm_admin_page
+    principal = Principal.find_by(fca_number: '311244')
+    travel_insurance_firm_page.load(firm_id: principal.travel_insurance_firm.id)
+    expect(
+      travel_insurance_firm_page.registration_questions.text
+    ).to match(/^.*risk_profile_approach_question bespoke.*/)
+  end
+
+  def and_i_should_see_all_questionaire_questions_as_true_on_the_firm_admin_page
+    questions = I18n.t('registration.medical_conditions_questionaire').keys
+    principal = Principal.find_by(fca_number: '311244')
+    travel_insurance_firm_page.load(firm_id: principal.travel_insurance_firm.id)
+
+    questions.each_with_index do |question, _index|
+      expect(
+        travel_insurance_firm_page.registration_questions.text
+      ).to match(/^.*#{question} true.*/)
+    end
+  end
+
+  def and_i_should_see_that_my_company_covers_all_medical_conditions_on_the_firm_admin_page
+    principal = Principal.find_by(fca_number: '311244')
+    travel_insurance_firm_page.load(firm_id: principal.travel_insurance_firm.id)
+    expect(
+      travel_insurance_firm_page.registration_questions.text
+    ).to match(/^.*covers_medical_condition_question all.*/)
   end
 
   def given_i_am_on_the_travel_insurance_risk_profile_page
@@ -311,13 +346,12 @@ RSpec.feature 'Principal provides travel insurance information', :inline_job_que
   end
 
   def and_i_registered_a_principal_and_travel_insurance_firm
+    fca_number = '311244'
     principal = create_principal(
       manually_build_firms: true,
-      travel_insurance_firm: FactoryBot.create(
-        :travel_insurance_firm,
-        fca_number: '311244'
-      )
+      fca_number: fca_number
     )
+    FactoryBot.create(:travel_insurance_firm, fca_number: fca_number)
 
     expect(principal.firm).to be_nil
     expect(principal.travel_insurance_firm).to_not be_nil
@@ -386,11 +420,11 @@ RSpec.feature 'Principal provides travel insurance information', :inline_job_que
 
   def principal_details
     OpenStruct.new(
-      first_name: 'Ben',
-      last_name: 'Lovell',
-      job_title: 'Director',
-      email_address: 'ben@moneyadviceservice.org.uk',
-      telephone_number: '07715 930 400'
+      first_name: 'test',
+      last_name: 'principal',
+      job_title: 'The tester',
+      email_address: 'test@moneyadviceservice.org.uk',
+      telephone_number: '07777 777 777'
     )
   end
 end

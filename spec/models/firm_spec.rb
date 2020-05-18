@@ -450,7 +450,7 @@ RSpec.describe Firm do
     it 'updating a firm calls notify_indexer' do
       firm = FactoryBot.create(:firm)
       expect(firm).to receive(:notify_indexer)
-      firm.update_attributes(registered_name: 'A new name')
+      firm.update(registered_name: 'A new name')
     end
 
     it 'destroying a firm calls notify_indexer' do

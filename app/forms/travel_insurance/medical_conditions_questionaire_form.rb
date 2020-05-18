@@ -16,5 +16,5 @@ class TravelInsurance::MedicalConditionsQuestionaireForm
             :heart_failure_and_arrhytmia_question, :stroke_with_hbp_question,
             :peripheral_vascular_disease_question, :schizophrenia_question,
             :lupus_question, :sickle_cell_and_renal_question, :sub_arachnoid_haemorrhage_and_epilepsy_question,
-            inclusion: { in: %w[0 1], message: '%{value} is required' }
+            inclusion: { in: %w[false true], message: '%{value} is required' }
 end

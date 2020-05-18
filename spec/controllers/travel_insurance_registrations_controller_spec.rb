@@ -47,31 +47,60 @@ RSpec.describe TravelInsuranceRegistrationsController, type: :controller do
       expect(Stats).to receive(:increment).with('tadsignup.prequalification.rejection')
       get :rejection_form
     end
+
+    it 'clears the session data' do
+      session[:principal] = 123
+      get :rejection_form
+      expect(session[:principal]).to be_nil
+    end
   end
 
   describe 'GET #wizard_form' do
-    it 'is successful for :risk_profile step' do
-      get :wizard_form, params: { current_step: 'risk_profile' }
-      expect(response).to be_successful
+    context 'when the user filled in the principal details' do
+      before do
+        session[:principal] = { name: 'Test' }
+      end
+
+      it 'is successful for :risk_profile step' do
+        get :wizard_form, params: { current_step: 'risk_profile' }
+        expect(response).to be_successful
+      end
+
+      it 'is successful for :medical_conditions step' do
+        get :wizard_form, params: { current_step: 'medical_conditions' }
+        expect(response).to be_successful
+      end
+
+      it 'clears out future question answers if the user goes back' do
+        session[:medical_conditions] = 123
+        get :wizard_form, params: { current_step: 'risk_profile' }
+        expect(session[:medical_conditions]).to be_nil
+      end
     end
 
-    it 'is successful for :medical_conditions step' do
-      get :wizard_form, params: { current_step: 'medical_conditions' }
-      expect(response).to be_successful
+    context 'when the user tries to bypass principal questions' do
+      before do
+        session[:principal] = nil
+      end
+
+      it 'redirects to the new page' do
+        get :wizard_form, params: { current_step: 'risk_profile' }
+        expect(response).to redirect_to(new_travel_insurance_registration_path)
+      end
     end
   end
 
   describe 'POST #wizard as risk_profile' do
     context 'when allowed to continue' do
       it 'redirects to the next step when allowed to continue' do
-        post :wizard, params: { current_step: :risk_profile, travel_insurance_risk_profile_form: { covered_by_ombudsman_question: '1', risk_profile_approach_question: 'questionaire' } }
+        post :wizard, params: { current_step: :risk_profile, travel_insurance_risk_profile_form: { covered_by_ombudsman_question: 'true', risk_profile_approach_question: 'questionaire' } }
         expect(response).to redirect_to medical_conditions_travel_insurance_registrations_path
       end
     end
 
     context 'when not qualified' do
       it 'redirects to reject page' do
-        post :wizard, params: { current_step: :risk_profile, travel_insurance_risk_profile_form: { covered_by_ombudsman_question: '1', risk_profile_approach_question: 'neither' } }
+        post :wizard, params: { current_step: :risk_profile, travel_insurance_risk_profile_form: { covered_by_ombudsman_question: 'true', risk_profile_approach_question: 'neither' } }
         expect(response).to redirect_to reject_travel_insurance_registrations_path
       end
     end
