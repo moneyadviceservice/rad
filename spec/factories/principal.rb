@@ -16,7 +16,7 @@ FactoryBot.define do
       if principal.firm.blank? && !evaluator.manually_build_firms
         principal.firm = Firm.new(
           fca_number: principal.fca_number,
-          registered_name:  Faker::Name.first_name
+          registered_name: Faker::Name.first_name
         )
       end
     end

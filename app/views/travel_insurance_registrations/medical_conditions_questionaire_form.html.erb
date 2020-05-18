@@ -36,14 +36,14 @@
 
               <div class="form__group-item">
                 <label>
-                  <%= f.radio_button key, 1, class: 'form__group-input' %>
+                  <%= f.radio_button key, true, class: 'form__group-input' %>
                   <%= t('registration.answer_yes') %>
                 </label>
               </div>
 
               <div class="form__group-item">
                 <label>
-                  <%= f.radio_button key, 0, class: 'form__group-input' %>
+                  <%= f.radio_button key, false, class: 'form__group-input' %>
                   <%= t('registration.answer_no') %>
                 </label>
               </div>
