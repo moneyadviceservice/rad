@@ -33,9 +33,14 @@ class TravelInsuranceRegistrationsController < BaseRegistrationsController
   end
 
   def wizard_form
-    form_name = "#{params[:current_step]}_form"
-    @form = "TravelInsurance::#{form_name.camelize}".constantize.new
-    render form_name
+    if session[:principal].blank?
+      redirect_to new_travel_insurance_registration_path
+    else
+      clear_any_future_questions
+      form_name = "#{params[:current_step]}_form"
+      @form = "TravelInsurance::#{form_name.camelize}".constantize.new
+      render form_name
+    end
   end
 
   def wizard
@@ -70,6 +75,7 @@ class TravelInsuranceRegistrationsController < BaseRegistrationsController
     )
 
     Admin::FirmMailer.rejected_firm(principal_details).deliver_later if principal_details.present?
+    session.clear
   end
 
   private
@@ -139,6 +145,7 @@ class TravelInsuranceRegistrationsController < BaseRegistrationsController
     submitted_data = NewPrincipalForm.new(session[:principal])
     TravelInsuranceFirm.cache_question_answers(all_registration_answers.merge(fca_number: submitted_data.fca_number, email: submitted_data.email_address))
     DirectoryRegistrationService.call(submitted_data)
+    session.clear
     render :show
   end
 
@@ -148,6 +155,12 @@ class TravelInsuranceRegistrationsController < BaseRegistrationsController
       send("#{next_step}_travel_insurance_registrations_path")
     else
       root_path
+    end
+  end
+
+  def clear_any_future_questions
+    WIZARD_STEPS.drop(WIZARD_STEPS.find_index(params[:current_step].to_sym) + 1).each do |next_step|
+      session[next_step] = nil
     end
   end
 end
