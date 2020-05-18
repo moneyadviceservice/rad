@@ -45,6 +45,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'uk_phone_numbers', '~> 0.1.1'
 gem 'uk_postcode', '~> 2.1.2'
 gem 'unicorn'
+gem 'lockup'
 
 group :development do
   gem 'better_errors'
