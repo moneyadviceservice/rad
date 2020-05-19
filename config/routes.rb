@@ -3,7 +3,9 @@ require 'sidekiq/web'
 Rails.application.routes.draw do
   devise_for :users
 
-  mount Lockup::Engine, at: '/lockup'
+  if Rails.env.staging?
+    mount Lockup::Engine, at: '/lockup'
+  end
 
   unauthenticated do
     root 'retirement_advice_registrations#pre_qualification_form'
