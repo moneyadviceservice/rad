@@ -1,7 +1,7 @@
 module HttpAuthentication
   class << self
     def required?
-      Rails.env.production?
+      Rails.env.production? || Rails.env.staging?
     end
 
     def username

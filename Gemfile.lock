@@ -215,6 +215,8 @@ GEM
     listen (3.2.0)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
+    lockup (1.5.1)
+      rails (>= 3, < 6.1)
     loofah (2.5.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
@@ -481,6 +483,7 @@ DEPENDENCIES
   launchy
   letter_opener
   listen
+  lockup
   mailjet
   oga
   pg (~> 0.20.0)
