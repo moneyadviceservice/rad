@@ -6,7 +6,7 @@
 <div class="l-2col-even-row">
   <div class="l-2col">
     <section class="l-2col-main" data-wizard-form>
-      <%= form_for @form, url: medical_conditions_questionaire_travel_insurance_registrations_path, html: { class: 'wizard-form' }, builder: Dough::Forms::Builders::Validation do |f| %>
+      <%= form_for @form, url: medical_conditions_questionaire_travel_insurance_registrations_path, html: { class: 'wizard-form travel-registration-form' }, builder: Dough::Forms::Builders::Validation do |f| %>
         <%= f.validation_summary %>
 
         <% t('registration.medical_conditions_questionaire').each_with_index do |(key, item), index| %>
