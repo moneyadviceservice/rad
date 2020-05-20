@@ -1,6 +1,6 @@
 class BaseRegistrationsController < ApplicationController
   before_action :validate_registration_type, only: [:create]
-
+  before_action :set_cache_buster, only: :new
   def new
     @form = NewPrincipalForm.new
     Stats.increment('radsignup.prequalification.success')
@@ -46,5 +46,11 @@ class BaseRegistrationsController < ApplicationController
       .in?(
         DirectoryRegistrationService::REGISTRATION_TYPE_TO_FIRM_MAPPING.keys
       )
+  end
+
+  def set_cache_buster
+    response.headers['Cache-Control'] = 'no-cache, no-store, max-age=0, must-revalidate'
+    response.headers['Pragma'] = 'no-cache'
+    response.headers['Expires'] = 1.year.ago.httpdate
   end
 end
