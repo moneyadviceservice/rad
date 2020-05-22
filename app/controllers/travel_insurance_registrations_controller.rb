@@ -37,18 +37,18 @@ class TravelInsuranceRegistrationsController < BaseRegistrationsController
       redirect_to new_travel_insurance_registration_path
     else
       clear_any_future_questions
-      form_name = "#{params[:current_step]}_form"
+      form_name = "#{current_step}_form"
       @form = "TravelInsurance::#{form_name.camelize}".constantize.new
       render form_name
     end
   end
 
   def wizard
-    form_name = "#{params[:current_step]}_form"
-    form_params = send("#{params[:current_step]}_form_params")
+    form_name = "#{current_step}_form"
+    form_params = send("#{current_step}_form_params")
 
     @form = "TravelInsurance::#{form_name.camelize}".constantize.new(form_params)
-    session[params[:current_step].to_sym] = form_params
+    session[current_step.to_sym] = form_params
 
     if @form.valid?
       if completed_registration?
@@ -81,7 +81,7 @@ class TravelInsuranceRegistrationsController < BaseRegistrationsController
   private
 
   def rejected_registration?
-    case params[:current_step].to_sym
+    case current_step.to_sym
     when :risk_profile
       risk_profile_form_params[:covered_by_ombudsman_question] == 'false' || risk_profile_form_params[:risk_profile_approach_question] == 'neither'
     when :medical_conditions_questionaire
@@ -92,7 +92,7 @@ class TravelInsuranceRegistrationsController < BaseRegistrationsController
   end
 
   def completed_registration?
-    case params[:current_step].to_sym
+    case current_step.to_sym
     when :risk_profile
       risk_profile_form_params[:covered_by_ombudsman_question] == 'true' && risk_profile_form_params[:risk_profile_approach_question] == 'bespoke'
     when :medical_conditions
@@ -150,7 +150,7 @@ class TravelInsuranceRegistrationsController < BaseRegistrationsController
   end
 
   def next_url
-    current_step_index = WIZARD_STEPS.index(params[:current_step].to_sym)
+    current_step_index = WIZARD_STEPS.index(current_step.to_sym)
     if (next_step = WIZARD_STEPS[current_step_index + 1])
       send("#{next_step}_travel_insurance_registrations_path")
     else
@@ -159,8 +159,14 @@ class TravelInsuranceRegistrationsController < BaseRegistrationsController
   end
 
   def clear_any_future_questions
-    WIZARD_STEPS.drop(WIZARD_STEPS.find_index(params[:current_step].to_sym) + 1).each do |next_step|
+    WIZARD_STEPS.drop(WIZARD_STEPS.find_index(current_step.to_sym) + 1).each do |next_step|
       session[next_step] = nil
     end
+  end
+
+  def current_step
+    raise unless WIZARD_STEPS.include?(params[:current_step].to_sym)
+
+    params[:current_step]
   end
 end
