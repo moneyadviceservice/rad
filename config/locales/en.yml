@@ -135,7 +135,8 @@ en:
     prompt_explanation: "*An individual approved by the FCA to perform a senior management function and listed on the FCA Register."
     reference_number: FCA Firm Reference Number (FRN)
     frn_linked_trading_names_info: You can register the main firm and up to two trading names linked to this FRN.
-
+    email_and_phone_message: Enter the email address and telephone number of the named Senior Manager or a person appointed to act on their behalf.
+    questionaire_instructions: "You have confirmed that you will offer travel insurance to people with any/most types of serious medical conditions. Please now confirm in which of the fifteen hypothetical scenarios below your firm would offer single trip cover (without medical exclusions). Please select ‘yes’’ or ‘no’ for each scenario"
     confirmation_statement_html: |
       By registering your firm’s details with the Money & Pensions Service you are confirming that the information supplied, and the responses given to our registration questions, are correct and accurately reflect the services offered by your firm and any trading names registered on the Directory under this FRN.
       <br/><br/>
