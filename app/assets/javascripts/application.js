@@ -9,4 +9,5 @@ require(['jquery'], function ($) {
   require(['AdviserAjaxCall']);
   require(['RemoteAndFaceToFaceOptions']);
   require(['WizardForm']);
+  require(['CacheBuster']);
 });
