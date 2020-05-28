@@ -46,7 +46,11 @@ module SelfService
     end
 
     def current_firm
-      Firm.find_by(id: params[:firm_id], fca_number: principal.fca_number)
+      if params[:firm_type] == 'Firm'
+        Firm.find_by(id: params[:firm_id], fca_number: principal.fca_number)
+      else
+        TravelInsuranceFirm.find_by(id: params[:firm_id], fca_number: principal.fca_number)
+      end
     end
 
     def current_office

@@ -225,12 +225,15 @@ ActiveRecord::Schema.define(version: 3019_11_18_100159) do
     t.string "email_address"
     t.string "telephone_number"
     t.boolean "disabled_access", default: false, null: false
-    t.integer "firm_id", null: false
+    t.integer "firm_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.float "latitude"
     t.float "longitude"
     t.string "website"
+    t.string "officeable_type"
+    t.bigint "officeable_id"
+    t.index ["officeable_type", "officeable_id"], name: "index_offices_on_officeable_type_and_officeable_id"
   end
 
   create_table "old_passwords", id: :serial, force: :cascade do |t|

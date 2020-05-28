@@ -26,7 +26,7 @@
           <td class="t-address" data-dough-filterable>
 
             <%= link_to office_address_table_cell(office),
-                        edit_self_service_firm_office_path(office.firm, office),
+                        edit_self_service_firm_office_path(office.officeable, office),
                         class: 't-edit-link' %>
           </td>
           <td class="t-address-postcode" data-dough-filterable><%= office.address_postcode %></td>
@@ -38,7 +38,7 @@
               <span class="t-main-office">Main Office</span>
             <% else %>
               <%= button_to t('self_service.offices_index.delete_office_button'),
-                            self_service_firm_office_path(office.firm, office),
+                            self_service_firm_office_path(office.officeable, office),
                             method: :delete,
                             'data-dough-component' => 'ConfirmableForm',
                             'data-dough-confirmation-message' => t('self_service.offices_index.delete_office_confirmation',

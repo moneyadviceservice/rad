@@ -47,7 +47,7 @@ Rails.application.routes.draw do
 
     resources :firms, only: [:index, :edit, :update] do
       resources :advisers, except: [:show]
-      resources :offices, except: [:show]
+      resources :offices, except: [:show], defaults: { firm_type: 'Firm' }
     end
 
     resources :travel_insurance_firms, only: [:index, :edit, :update]

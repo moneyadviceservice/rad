@@ -38,7 +38,7 @@ class Firm < ApplicationRecord
 
   has_one :inactive_firm, dependent: :destroy
   has_many :advisers, dependent: :destroy
-  has_many :offices, -> { order created_at: :asc }, dependent: :destroy
+  has_many :offices, -> { order created_at: :asc }, dependent: :destroy, as: :officeable
   has_many :subsidiaries, class_name: 'Firm',
                           foreign_key: :parent_id,
                           dependent: :destroy

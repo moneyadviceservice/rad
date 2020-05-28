@@ -12,7 +12,7 @@ class Office < ApplicationRecord
     address_postcode
   ].freeze
 
-  belongs_to :firm
+  belongs_to :officeable, polymorphic: true
 
   validates :email_address,
             presence: false,
