@@ -26,6 +26,7 @@ class TravelInsuranceFirm < ApplicationRecord
 
   before_create :populate_question_answers
 
+  belongs_to :parent, class_name: 'TravelInsuranceFirm'
   def self.cache_question_answers(question_answers)
     cache_key = compute_cache_key(fca_number: question_answers[:fca_number], email: question_answers[:email])
     Rails.cache.write(cache_key, question_answers.reject { |key, _value| %w[fca_number email].include? key.to_s }.to_json, expires_in: 1.minute)
