@@ -7,4 +7,7 @@ repairs:
     replacement: 'KCS01025|Mr Konstantinos "Constantine" Sarafopoulos|||3|SARAFOPOULOSKONSTANTINOSCONSTANTINE|20160305|'
   -
     line: '926033|McMillan?s Property Maintenance Ltd "|5|27||14 Glenmuir Court||||Ayr|South Ayrshire|KA8|9PZ|+44|-|07455090919||||Registered|20200513||MCMILLAN¿SPROPERTYMAINTENANCELTD|20200513|||||'
-    replacement: '926033|McMillan?s Property Maintenance Ltd|5|27||14 Glenmuir Court||||Ayr|South Ayrshire|KA8|9PZ|+44|-|07455090919||||Registered|20200513||MCMILLANSPROPERTYMAINTENANCELTD|20200513|||||'
+    replacement: '926033|McMillans Property Maintenance Ltd|5|27||14 Glenmuir Court||||Ayr|South Ayrshire|KA8|9PZ|+44|-|07455090919||||Registered|20200513||MCMILLANSPROPERTYMAINTENANCELTD|20200513|||||'
+  -
+    line: '926558|,,Courtier" Ltd.|51|5||||||||||||||||EEA Authorised|20200521||COURTIERLTD|20200522|||||'
+    replacement: '926558|,,Courtier Ltd.|51|5||||||||||||||||EEA Authorised|20200521||COURTIERLTD|20200522|||||'
