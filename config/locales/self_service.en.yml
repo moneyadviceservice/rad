@@ -56,3 +56,8 @@ en:
       breadcrumb: "%{firm_name}"
       title: "Edit: %{firm_name}"
       saved: The trading name has been saved
+
+    travel_insurance_firm:
+      status:
+        firm_details: 'Cover & service details'
+        contact_details: 'Customer contact details'

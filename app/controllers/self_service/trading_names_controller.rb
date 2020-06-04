@@ -15,11 +15,11 @@ module SelfService
     end
 
     def edit
-      @firm = principal.firm.trading_names.find(params[:id])
+      @firm = current_firm.trading_names.find(params[:id])
     end
 
     def update
-      @firm = principal.firm.trading_names.find(params[:id])
+      @firm = current_firm.trading_names.find(params[:id])
       if @firm.update(firm_params)
         flash[:notice] = I18n.t('self_service.firm_edit.saved')
         redirect_to_edit
@@ -29,7 +29,7 @@ module SelfService
     end
 
     def destroy
-      trading_name = principal.firm.trading_names.onboarded.find(params[:id])
+      trading_name = current_firm.trading_names.onboarded.find(params[:id])
       trading_name.destroy
       flash[:notice] = I18n.t('self_service.trading_name_destroy.deleted',
                               name: trading_name.registered_name)
@@ -48,10 +48,19 @@ module SelfService
     def initialize_firm_from_lookup_trading_name(id)
       lookup_name = Lookup::Subsidiary
                     .find_by!(id: id, fca_number: principal.fca_number)
-      @firm = principal.firm.trading_names.find_or_initialize_by(
+
+      @firm = current_firm.trading_names.find_or_initialize_by(
         registered_name: lookup_name.name,
         fca_number: lookup_name.fca_number
       )
+    end
+
+    def current_firm
+      if principal.firm.instance_of?(Firm)
+        principal.firm
+      else
+        principal.travel_insurance_firm
+      end
     end
   end
 end

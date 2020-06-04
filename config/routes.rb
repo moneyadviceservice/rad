@@ -49,6 +49,8 @@ Rails.application.routes.draw do
       resources :advisers, except: [:show]
       resources :offices, except: [:show]
     end
+
+    resources :travel_insurance_firms, only: [:index, :edit, :update]
   end
 
   resource :contact, only: :create

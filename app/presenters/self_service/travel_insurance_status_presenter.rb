@@ -1,0 +1,56 @@
+module SelfService
+  class TravelInsuranceStatusPresenter < SimpleDelegator
+    include Rails.application.routes.url_helpers
+    include ActionView::Helpers::UrlHelper
+
+    def overall_status
+      publishable? ? 'published' : 'unpublished'
+    end
+
+    def overall_status_icon
+      icon_toggle publishable?
+    end
+
+    def firm_details_icon
+      icon_toggle onboarded?
+    end
+
+    def advisers_icon
+      icon_toggle advisers?
+    end
+
+    def offices_icon
+      icon_toggle offices.any?
+    end
+
+    def firm_details_link(opts = {})
+      path = if trading_name?
+               edit_self_service_trading_name_path(self)
+             else
+               edit_self_service_travel_insurance_firm_path(self)
+             end
+
+      label = if onboarded?
+                I18n.t('self_service.status.edit')
+              else
+                I18n.t('self_service.status.add')
+              end
+
+      link_to label, path, opts
+    end
+
+    def needs_advisers?
+      false
+    end
+
+    def needs_offices?
+      false
+    end
+
+    private
+
+    def icon_toggle(condition_met)
+      condition_met ? 'tick' : 'exclamation'
+    end
+  end
+end

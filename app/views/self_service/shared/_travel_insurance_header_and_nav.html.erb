@@ -1,0 +1,23 @@
+<% presenter = SelfService::TravelInsuranceStatusPresenter.new(firm) %>
+
+<div class="l-back-link t-back-to-firm-list">
+  <%= link_to '< Back to firm list', self_service_travel_insurance_firms_path %>
+</div>
+
+<h1 class="t-firm-name">
+  <%= firm.registered_name %>
+</h1>
+
+<%= render 'self_service/shared/overall_status_panel', presenter: presenter %>
+
+<div class="tab-selector tab-selector--without-js">
+  <div class="tab-selector__triggers-outer">
+    <div class="tab-selector__triggers-inner">
+      <div class="tab-selector__trigger-container t-firm-details-tab">
+        <%= tab_link edit_self_service_travel_insurance_firm_url(firm), 'tab-selector__trigger' do %>
+          <%= status_icon('exclamation') unless presenter.onboarded? %>
+          Firm details
+        <% end %>
+    </div>
+  </div>
+</div>

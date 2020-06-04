@@ -1,0 +1,45 @@
+<% render_breadcrumbs(breadcrumbs_root) %>
+
+<h1 class="t-page-title">
+  <%= t('self_service.travel_insurance_firms_index.title', count: @presenter.total_firms) %>
+</h1>
+<p><%= t('self_service.travel_insurance_firms_index.primary_instructions_html') %></p>
+<p><%= t('self_service.travel_insurance_firms_index.secondary_instructions_html') %></p>
+
+<h2 class="t-parent-firm-heading"><%= t('self_service.firms_index.firm_heading') %></h2>
+<p><%= t('self_service.travel_insurance_firms_index.firm_subheading') %></p>
+
+<%= render 'table_parent_firm' %>
+
+<% if @presenter.firm_has_trading_names? %>
+  <div id="firm-list" class="t-trading-names-block" data-dough-component="MultiTableFilter">
+    <h2><%= t('self_service.firms_index.trading_names_heading') %></h2>
+
+    <% if @presenter.no_trading_names_have_been_added? %>
+      <p class="t-add-trading-names-prompt">
+        <%= t('self_service.firms_index.add_trading_names_prompt') %>
+      </p>
+    <% else %>
+      <%= filter_field :trading_names, locale_prefix: 'self_service.firms_index.trading_names_filter' %>
+      <%= render 'self_service/firms/table_trading_names' %>
+    <% end %>
+  </div>
+<% end %>
+
+<% if @presenter.trading_names_are_available_to_add? %>
+  <div id="trading-name-list" class="t-available-trading-names-block" data-dough-component="MultiTableFilter PopupTip" >
+    <h2>
+      <%= t('self_service.firms_index.available_trading_names_heading') %>
+      <%= popup_tip_trigger options: {
+          text: t('tooltip_show')
+        } %>
+    </h2>
+
+    <%= popup_tip_content options: {
+      text: t('registration.covers_medical_condition_question.answers.one_specific_tooltip'),
+      tooltip_hide: t('tooltip_hide')
+    } %>
+    <%= filter_field :trading_names, locale_prefix: 'self_service.firms_index.available_trading_names_filter' %>
+    <%= render 'self_service/firms/table_available_trading_names' %>
+  </div>
+<% end %>
