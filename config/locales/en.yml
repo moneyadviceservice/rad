@@ -138,9 +138,9 @@ en:
     email_and_phone_message: Enter the email address and telephone number of the named Senior Manager or a person appointed to act on their behalf.
     questionaire_instructions: "You have confirmed that you will offer travel insurance to people with any/most types of serious medical conditions. Please now confirm in which of the fifteen hypothetical scenarios below your firm would offer single trip cover (without medical exclusions). Please select ‘yes’’ or ‘no’ for each scenario"
     confirmation_statement_html: |
-      By registering your firm’s details with the Money & Pensions Service you are confirming that the information supplied, and the responses given to our registration questions, are correct and accurately reflect the services offered by your firm and any trading names registered on the Directory under this FRN.
+      By registering your firm’s details with the Money & Pensions Service you are confirming that the information supplied, and the responses given to our registration questions, are correct and accurately reflect the services offered by your firm and any trading names registered on the Directory under this FRN. You may be required to provide further information to justify or evidence the information you provide.
       <br/><br/>
-      Firms also consent to MaPS sharing any information provided by firms as part of the registration process with the FCA or about the conduct of firms, if, during the course of operating the Directory, MaPS becomes aware of practices by FCA-regulated persons which it considers to be detrimental to consumers.
+      Firms also consent to MaPS sharing any information provided as part of the registration process with the FCA. In addition, if during the course of operating the Directory, MaPS becomes aware of practices by FCA-regulated persons which it considers to be detrimental to consumers, MaPS may share that information with FCA.
     register_button: Continue
     previous_question_button: Previous question
   retirement_advice_registrations:
@@ -192,13 +192,13 @@ en:
     generic_circumstances_assumption:
       heading: "Generic circumstances and assumptions:"
       list:
-        - Assume travel by airplane for all trips
+        - Assume travel by aeroplane for all trips
         - Assume no claims made on a travel insurance policy over previous two years
         - Assume no non-routine health appointments are scheduled
-        - Assume that customer is not waiting on undergoing any diagnostic tests, test results or treatment (unless specified)
+        - Assume that customer is not awaiting on undergoing any diagnostic tests, test results or treatment (unless specified)
         - Assume that customer has not been admitted to hospital in last two years, unless stated.
-        - Assume that customer is not participating in an ‘experimental’ drug programmes
-        - Where process requires further information, a ‘neutral’ outcome should be selected (e.g. that would not in itself increase risk or require additional clarification.
+        - Assume that customer is not participating in an ‘experimental’ drug programme
+        - Where process requires further information, a ‘neutral’ outcome should be selected (e.g. that would not in itself increase risk or require additional clarification).
         - In all cases reasonable assumptions and judgements to be applied.
     medical_conditions_questionaire:
       metastatic_breast_cancer_question:
