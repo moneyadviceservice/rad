@@ -136,7 +136,7 @@ en:
     reference_number: FCA Firm Reference Number (FRN)
     frn_linked_trading_names_info: You can register the main firm and up to two trading names linked to this FRN.
     email_and_phone_message: Enter the email address and telephone number of the named Senior Manager or a person appointed to act on their behalf.
-    questionaire_instructions: "You have confirmed that you will offer travel insurance to people with any/most types of serious medical conditions. Please now confirm in which of the fifteen hypothetical scenarios below your firm would offer single trip cover (without medical exclusions). Please select ‘yes’’ or ‘no’ for each scenario"
+    questionaire_instructions: "You have confirmed that you will offer travel insurance to people with any/most types of serious medical conditions. Please now confirm in which of the fifteen hypothetical scenarios below your firm would offer single trip cover (without medical exclusions). Please select ‘yes’ or ‘no’ for each scenario."
     confirmation_statement_html: |
       By registering your firm’s details with the Money & Pensions Service you are confirming that the information supplied, and the responses given to our registration questions, are correct and accurately reflect the services offered by your firm and any trading names registered on the Directory under this FRN. You may be required to provide further information to justify or evidence the information you provide.
       <br/><br/>
@@ -164,7 +164,7 @@ en:
       description: ""
       answers:
         one_specific: Does your firm only offer travel insurance for one specific serious medical condition?
-        one_specific_tooltip: Firms that offer cover for one specific type of serious medical condition (i.e. cancer or heart conditions) will be eligible to register onto the Directory but must confirm on their profile the medical condition they specialise in
+        one_specific_tooltip: Firms that offer cover for one specific type of serious medical condition (e.g. cancer or heart conditions) will be eligible to register onto the Directory but must confirm on their profile the medical condition they specialise in
         all_conditions: Does your firm offer travel insurance that will cover any/most types of serious medical conditions?
         all_conditions_tooltip: Firms that offer cover for any or most types of serious medical conditions will be asked to confirm whether they would offer cover without medical exclusions in certain hypothetical medical scenarios listed on the next screen.
     risk_profile_approach_question:
@@ -195,28 +195,28 @@ en:
         - Assume travel by aeroplane for all trips
         - Assume no claims made on a travel insurance policy over previous two years
         - Assume no non-routine health appointments are scheduled
-        - Assume that customer is not awaiting on undergoing any diagnostic tests, test results or treatment (unless specified)
-        - Assume that customer has not been admitted to hospital in last two years, unless stated.
+        - Assume that customer is not awaiting or undergoing any diagnostic tests, test results or treatment (unless specified)
+        - Assume that customer has not been admitted to hospital in last two years, unless stated
         - Assume that customer is not participating in an ‘experimental’ drug programme
-        - Where process requires further information, a ‘neutral’ outcome should be selected (e.g. that would not in itself increase risk or require additional clarification).
-        - In all cases reasonable assumptions and judgements to be applied.
+        - Where process requires further information, a ‘neutral’ outcome should be selected (e.g. that would not in itself increase risk or require additional clarification)
+        - In all cases reasonable assumptions and judgements to be applied
     medical_conditions_questionaire:
       metastatic_breast_cancer_question:
-        scenario: Metastatic Breast cancer
+        scenario: Metastatic Breast Cancer
         primary_health_condition: Stage 4 breast cancer that has spread to the liver and lungs. Taking tamoxifen only at this stage with no other treatment planned. The condition is relatively stable with the latest scan showing no change in tumour activity. Able to carry out usual activities and not requiring any strong painkillers. Appointments typically held every three months.
         secondary_health_condition: None.
         age: 65
         trip: Single trip to France for three weeks.
 
       ulceritive_colitis_and_anaemia_question:
-        scenario: Ulcerative Colitis and anaemia
+        scenario: Ulcerative Colitis and Anaemia
         primary_health_condition: Ulcerative colitis with two unplanned hospital admissions within the last two years. Surgery one month ago to remove a diseased section of bowel. Requires three different medicines daily. No previous episodes of bowel obstruction. No stoma. No changes to medication in last three months. A post operation consultation is scheduled but no further appointments scheduled.
         secondary_health_condition: Anaemia with one blood test in the last year. No blood transfusions.
         age: 65
         trip: Single trip to Spain for three weeks.
 
       heart_attack_with_hbp_and_high_cholesterol_question:
-        scenario: Heart attack with High Blood Pressure and High Cholesterol
+        scenario: Heart Attack with High Blood Pressure and High Cholesterol
         primary_health_condition: Three heart attacks with the most recent three months ago treated with three stents. Continues to have chest pains despite recent procedure but only on exertion and not at rest. Can walk 200 metres on the flat without getting breathless. Not currently waiting for any new tests or investigations. Average weight (is not over or under weight).
         secondary_health_condition: Takes two medications for high blood pressure with a recent increase in the dosage following the latest heart attack. Takes statins for high cholesterol levels and continues to smoke daily. No other medication taken.
         age: 65
@@ -230,7 +230,7 @@ en:
         trip: Single trip to Spain for three weeks.
 
       motor_neurone_disease_question:
-        scenario: Motor neurone disease
+        scenario: Motor Neurone Disease
         primary_health_condition: Amyotrophic lateral sclerosis (a form of motor neurone disease) diagnosed 18 months ago. Now requiring a wheelchair to mobilise. Requires assistance with washing, dressing and eating. Not yet requiring ventilatory assistance nor having issues with swallowing. Medication sometimes used to manage symptoms of condition, such as muscle cramps.
         secondary_health_condition: None.
         age: 65
@@ -245,7 +245,7 @@ en:
 
       acute_myeloid_leukaemia_question:
         scenario: Acute Myeloid Leukaemia
-        primary_health_condition: Acute myeloid leukaemia, Initial remission was achieved but relapsed. No treatment required for the last two years.
+        primary_health_condition: Acute myeloid leukaemia. Initial remission was achieved but relapsed. No treatment required for the last two years.
         secondary_health_condition: None.
         age: 14
         trip: Single trip to France for three weeks.
@@ -258,7 +258,7 @@ en:
         trip: Single trip to Spain for three weeks.
 
       heart_failure_and_arrhytmia_question:
-        scenario: Heart Failure and arrhythmia
+        scenario: Heart Failure and Arrhythmia
         primary_health_condition: Congestive cardiac failure with symptoms (e.g. ankle swelling) for over three years. Taking four medications, unable to lie flat without becoming breathless and gets mildly short of breath when walking. Has required a visit to A&E within the last 12 months (11 months ago). Never required oxygen other than when in hospital, gave up smoking over a year ago, no ischaemic heart disease. GTN spray not used. Average weight (is not over or under weight).
         secondary_health_condition: Arrhythmia, takes medication only, no visits to hospital within the last year, not awaiting any investigations or treatment, takes anticoagulants, not symptomatic (blackouts etc). Never had a stroke.
         age: 65
@@ -273,8 +273,8 @@ en:
 
       peripheral_vascular_disease_question:
         scenario: Peripheral Vascular Disease with High Blood Pressure and High Cholesterol
-        primary_health_condition: Two medications for high blood pressure with no recent dose changes. Takes medication for high cholesterol levels.
-        secondary_health_condition: Also has Peripheral vascular disease with no amputations due to poor blood supply but has had a procedure to widen the vessels and has pain in calves when walking with two unplanned hospital admissions within the last two years (last one year ago). Still smoking. No medication taken for PVD. Blood pressure within normal limits when last measured.
+        primary_health_condition: Peripheral Vascular Disease with no amputations due to poor blood supply but has had a procedure to widen the vessels and has pain in calves when waking with two unplanned hospital admissions within the last two years (last one year ago). Still smoking. No medication taken for PVD. Blood pressure within normal limits when last measured.
+        secondary_health_condition: Two medications for high blood pressure with no recent dose changes. Takes medication for high cholesterol levels.
         age: 65
         trip: Single trip to France for three weeks.
 
@@ -286,21 +286,21 @@ en:
         trip: Single trip to France for three weeks.
 
       lupus_question:
-        scenario: Lupus with pericarditis and Neuropathy
+        scenario: Lupus with Pericarditis and Neuropathy
         primary_health_condition: Lupus diagnosed within the last 12 months. Takes two medications (oral) and required one unplanned hospital admission six months ago. No change in medication in last 12 months. No deterioration in lupus in last six months. One episode of pericarditis two years ago requiring surgery to remove the pericardium. No lasting heart damage but still not made a full recovery. Also developed nerve damage which interferes with activities of daily living and required a hospital admission within the last year. Needs a walking stick for mobility. Appointments typically held every six months.
         secondary_health_condition: Incorporated into above description.
         age: 65
         trip: Single trip to USA for three weeks.
 
       sickle_cell_and_renal_question:
-        scenario: Sickle cell anaemia and renal disease
-        primary_health_condition: Sickle cell anaemia with a crisis within the last year requiring admission and blood transfusions. Admission and blood transfusion around six months ago. Single blood transfusion of two units. No bone marrow transplant so far. No ongoingmedication. Haemoglobin level of 8g/dL.
-        secondary_health_condition: "Renal disease: No dialysis, no transplant, not awaiting transplant. Under review by specialist. No medication."
+        scenario: Sickle Cell Anaemia and Renal Disease
+        primary_health_condition: Sickle cell anaemia with a crisis within the last year requiring admission and blood transfusions. Admission and blood transfusion around six months ago. Single blood transfusion of two units. No bone marrow transplant so far. No ongoing medication. Haemoglobin level of 8g/dL.
+        secondary_health_condition: "Renal disease. No dialysis, no transplant, not awaiting transplant. Under review by specialist. No medication."
         age: 65
         trip: Single trip to USA for three weeks.
 
       sub_arachnoid_haemorrhage_and_epilepsy_question:
-        scenario: Sub-arachnoid haemorrhage with epilepsy
+        scenario: Sub-Arachnoid Haemorrhage with Epilepsy
         primary_health_condition: Sub-arachnoid haemorrhage due to aneurysm two years ago. Aneurysm caused by berry aneurysm in Circle of Willis. Still has unsecured aneurysms in the brain. Walks with a stick and has developed epilepsy. Three seizures (of less than 30 minutes) causing loss of consciousness within the last six months, one of which was within the last four weeks. Takes two medications (for epilepsy) and no hospital admissions within the last 12 months. First seizure was more than 12 months ago. No surgery planned.
         secondary_health_condition: None.
         age: 65
