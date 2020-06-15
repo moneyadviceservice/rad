@@ -1,6 +1,6 @@
 <nav class="t-navigation">
   <ul class="navigation">
-    <% unless user_signed_in? %>
+    <% if current_user.blank? && !user_signed_in? %>
       <li class='navigation__item'>
         <%= link_to t('authentication_sign_in'), new_user_session_path, class: 'navigation__link t-sign-in' %>
       </li>
@@ -11,9 +11,11 @@
       <li class='navigation__item'>
         <%= link_to t('self_service.navigation.root'), self_service_root_path, class: 'navigation__link t-navigation-link' %>
       </li>
-      <li class='navigation__item--desktop-only'>
-        <%= link_to t('self_service.navigation.edit_principal'), edit_self_service_principal_path(@current_user.principal), class: 'navigation__link t-navigation-link' %>
-      </li>
+      <% if @current_user && @current_user.principal.present? %>
+        <li class='navigation__item--desktop-only'>
+          <%= link_to t('self_service.navigation.edit_principal'), edit_self_service_principal_path(@current_user.principal), class: 'navigation__link t-navigation-link' %>
+        </li>
+      <% end %>
       <li class='navigation__item--desktop-only'>
         <%= link_to t('authentication.edit_account'), edit_user_registration_path, class: 'navigation__link' %>
       </li>

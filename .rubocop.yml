@@ -10,3 +10,12 @@ inherit_mode:
 AllCops:
   Exclude:
     - 'lib/fca/**/*'
+
+# Once we upgrade rubocop we should be able to remove this
+Rails/UnknownEnv:
+  Environments:
+    - production
+    - staging
+    - development
+    - local
+    - test

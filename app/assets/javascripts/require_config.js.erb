@@ -3,14 +3,19 @@
 
 //= depend_on_asset dough/assets/js/lib/componentLoader
 //= depend_on_asset dough/assets/js/lib/utilities
+//= depend_on_asset dough/assets/js/lib/mediaQueries
+//= depend_on_asset dough/assets/js/lib/featureDetect
+
 //= depend_on_asset dough/assets/js/components/DoughBaseComponent
 //= depend_on_asset dough/assets/js/components/FieldHelpText
+//= depend_on_asset dough/assets/js/components/PopupTip
 //= depend_on_asset eventsWithPromises/src/eventsWithPromises
 //= depend_on_asset rsvp/rsvp
 
 //= depend_on_asset modules/FieldToggleVisibility
 //= depend_on_asset modules/AdviserAjaxCall
 //= depend_on_asset modules/RemoteAndFaceToFaceOptions
+//= depend_on_asset modules/WizardForm
 //= depend_on_asset modules/MultiTableFilter
 //= depend_on_asset modules/ConfirmableForm
 //= depend_on_asset modules/LanguageSelector
@@ -24,14 +29,20 @@
     paths: {
       jquery: requirejs_path('jquery/dist/jquery'),
       jqueryFastLiveFilter: requirejs_path('jquery-fastlivefilter/jquery.fastLiveFilter.js'),
+      jqueryThrottleDebounce: requirejs_path('jqueryThrottleDebounce/jquery.ba-throttle-debounce'),
       FieldToggleVisibility: requirejs_path('modules/FieldToggleVisibility'),
       AdviserAjaxCall: requirejs_path('modules/AdviserAjaxCall'),
       RemoteAndFaceToFaceOptions: requirejs_path('modules/RemoteAndFaceToFaceOptions'),
+      WizardForm: requirejs_path('modules/WizardForm'),
+      CacheBuster: requirejs_path('modules/CacheBuster'),
       MultiTableFilter: requirejs_path('modules/MultiTableFilter'),
       ConfirmableForm: requirejs_path('modules/ConfirmableForm'),
       LanguageSelector: requirejs_path('modules/LanguageSelector'),
       componentLoader: requirejs_path('dough/assets/js/lib/componentLoader'),
       utilities: requirejs_path('dough/assets/js/lib/utilities'),
+      featureDetect: requirejs_path('dough/assets/js/lib/featureDetect'),
+      mediaQueries: requirejs_path('dough/assets/js/lib/mediaQueries'),
+      PopupTip: requirejs_path('dough/assets/js/components/PopupTip'),
       DoughBaseComponent: requirejs_path('dough/assets/js/components/DoughBaseComponent'),
       FieldHelpText: requirejs_path('dough/assets/js/components/FieldHelpText'),
       eventsWithPromises: requirejs_path('eventsWithPromises/src/eventsWithPromises'),

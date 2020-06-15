@@ -1,0 +1,31 @@
+<% if @firm.onboarded? %>
+  <h2>Questionnaire Responses</h2>
+  <ul>
+    <% [
+         :in_person_advice_methods,
+         :other_advice_methods,
+         :free_initial_meeting,
+         :initial_meeting_duration,
+         :initial_advice_fee_structures,
+         :ongoing_advice_fee_structures,
+         :allowed_payment_methods,
+         :minimum_fixed_fee,
+         *t('self_service.firm_form.business_split_options').keys,
+         :investment_sizes,
+         :ethical_investing_flag,
+         :sharia_investing_flag,
+         :workplace_financial_advice_flag,
+       ].each do |attribute|
+    %>
+      <li>
+        <strong><%= attribute.to_s.humanize %>:</strong>
+        <%= render_questionnaire_response(@firm, attribute) %>
+      </li>
+    <% end %>
+
+    <li>
+      <strong>Languages:</strong>
+      <%= render_inline_language_list(@firm) %>
+    </li>
+  </ul>
+<% end %>

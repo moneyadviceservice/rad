@@ -23,7 +23,7 @@
     <% @inactive_trading_names.each do |trading_name| %>
       <tr>
         <td><%= trading_name.fca_number %></td>
-        <td><%= link_to trading_name.registered_name, admin_firm_path(trading_name) %></td>
+        <td><%= link_to trading_name.registered_name, admin_retirement_firm_path(trading_name) %></td>
         <td><%= trading_name.publishable? ? 'Yes' : 'No' %></td>
       </tr>
     <% end %>

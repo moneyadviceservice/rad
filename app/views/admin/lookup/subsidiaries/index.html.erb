@@ -37,10 +37,10 @@
         <% @subsidiaries.each do |subsidiary| %>
           <tr>
             <td>
-              <%= link_to subsidiary.fca_number, admin_firms_path(q: { fca_number_eq: subsidiary.fca_number }) %>
+              <%= link_to subsidiary.fca_number, admin_retirement_firms_path(q: { fca_number_eq: subsidiary.fca_number }) %>
             </td>
             <td>
-              <%= link_to subsidiary.name, admin_firms_path(q: { registered_name_cont: subsidiary.name }) %>
+              <%= link_to subsidiary.name, admin_retirement_firms_path(q: { registered_name_cont: subsidiary.name }) %>
             </td>
             <td><%= subsidiary.created_at.to_s(:short) %></td>
           </tr>

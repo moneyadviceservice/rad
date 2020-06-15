@@ -1,7 +1,7 @@
 <div class="form-group">
   <%= f.label :postcode %>
   <% if @adviser.errors.include?(:address) %>
-    <p class="bg-danger"><%= t('adviser.geocoding.failure_explanation', email: @admin_email_address) %></p>
+    <p class="bg-danger"><%= t('adviser.geocoding.failure_explanation', email: admin_email_address) %></p>
   <% end %>
   <%= f.text_field(:postcode, class: 'form-control t-postcode') %>
 </div>

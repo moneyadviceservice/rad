@@ -11,7 +11,7 @@ RSpec.describe Admin::Reports::InactiveAdvisersController, type: :request do
       inactive_adviser.save!(validate: false)
 
       get admin_reports_inactive_adviser_path
-      expect(response.body).to include(inactive_adviser.name)
+      expect(response.body).to include(CGI.escapeHTML(inactive_adviser.name))
     end
 
     it 'excludes advisers that have skipped the reference number check' do

@@ -1,0 +1,6 @@
+<% content_for :content do %>
+<section class="l-identity">
+  <%= content_for?(:registration_form) ? yield(:registration_form) : yield %>
+</section>
+<% end %>
+<%= render template: "layouts/application" %>

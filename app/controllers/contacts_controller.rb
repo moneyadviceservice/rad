@@ -4,9 +4,9 @@ class ContactsController < ApplicationController
 
     if @message.valid?
       deliver_message_later
-      redirect_to reject_principals_path, notice: t('rejection.contact_sent')
+      redirect_to reject_retirement_advice_registrations_path, notice: t('rejection.contact_sent')
     else
-      render 'principals/rejection_form'
+      render 'retirement_advice_registrations/rejection_form'
     end
   end
 

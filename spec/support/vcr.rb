@@ -4,6 +4,8 @@ VCR.configure do |config|
   config.configure_rspec_metadata!
 
   config.filter_sensitive_data('<API_KEY>') { ENV['GOOGLE_GEOCODER_API_KEY'] }
+  config.filter_sensitive_data('<X-Auth-Key>') { ENV['FCA_API_KEY'] }
+  config.filter_sensitive_data('<X-Auth-Email>') { ENV['FCA_API_EMAIL'] }
 
   config.around_http_request do |request|
     uri = URI(request.uri)

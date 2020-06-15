@@ -34,18 +34,18 @@ RSpec.describe SelfService::StatusPresenter do
   end
 
   describe '#firm_details_icon' do
-    before { allow(firm).to receive(:registered?).and_return(firm_registered) }
+    before { allow(firm).to receive(:onboarded?).and_return(firm_onboarded) }
 
-    context 'when the firm is registered' do
-      let(:firm_registered) { true }
+    context 'when the firm is onboarded' do
+      let(:firm_onboarded) { true }
 
       it 'provides "tick"' do
         expect(presenter.firm_details_icon).to eq('tick')
       end
     end
 
-    context 'when the firm is not registered' do
-      let(:firm_registered) { false }
+    context 'when the firm is not onboarded' do
+      let(:firm_onboarded) { false }
 
       it 'provides "exclamation"' do
         expect(presenter.firm_details_icon).to eq('exclamation')
@@ -79,18 +79,18 @@ RSpec.describe SelfService::StatusPresenter do
     end
 
     describe 'button label' do
-      before { allow(firm).to receive(:registered?).and_return(firm_registered) }
+      before { allow(firm).to receive(:onboarded?).and_return(firm_onboarded) }
 
-      context 'when the firm is registered' do
-        let(:firm_registered) { true }
+      context 'when the firm is onboarded' do
+        let(:firm_onboarded) { true }
 
         it 'sets the button text to edit' do
           expect(presenter.firm_details_link).to match('Edit')
         end
       end
 
-      context 'when the firm is not registered' do
-        let(:firm_registered) { false }
+      context 'when the firm is not onboarded' do
+        let(:firm_onboarded) { false }
 
         it 'sets the button text to add' do
           expect(presenter.firm_details_link).to match('Add')

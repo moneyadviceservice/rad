@@ -29,7 +29,7 @@ module SelfService
     end
 
     def destroy
-      trading_name = principal.firm.trading_names.registered.find(params[:id])
+      trading_name = principal.firm.trading_names.onboarded.find(params[:id])
       trading_name.destroy
       flash[:notice] = I18n.t('self_service.trading_name_destroy.deleted',
                               name: trading_name.registered_name)

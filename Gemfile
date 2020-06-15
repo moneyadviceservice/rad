@@ -30,11 +30,13 @@ gem 'httpclient', '~> 2.8.3'
 gem 'jquery-rails'
 gem 'kaminari'
 gem 'language_list', '~> 1.2.1'
+gem 'lockup'
 gem 'mailjet'
 gem 'oga'
 gem 'pg', '~> 0.20.0'
 gem 'rails_email_validator'
 gem 'ransack'
+gem 'redis'
 gem 'rollbar'
 gem 'rubyzip'
 gem 'sass-rails'
@@ -51,6 +53,10 @@ group :development do
   gem 'binding_of_caller'
   gem 'letter_opener'
   gem 'listen'
+  gem 'rails-erd'
+  gem 'solargraph'
+  gem 'spring'
+  gem 'spring-commands-rspec'
 end
 
 group :test, :development do
@@ -78,5 +84,5 @@ group :test do
   gem 'timecop'
   gem 'tzinfo-data'
   gem 'vcr'
-  gem 'webmock'
+  gem 'webmock', '3.5.0'
 end

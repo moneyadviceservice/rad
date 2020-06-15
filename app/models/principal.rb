@@ -11,6 +11,11 @@ class Principal < ApplicationRecord
           foreign_key: :fca_number,
           dependent: :destroy
 
+  has_one :travel_insurance_firm,
+    primary_key: :fca_number,
+    foreign_key: :fca_number,
+    dependent: :destroy
+
   validates :fca_number,
             presence: true,
             uniqueness: true,
@@ -68,7 +73,7 @@ class Principal < ApplicationRecord
     "#{first_name} #{last_name}"
   end
 
-  def onboarded?
+  def publishable_retirement_advice_firm?
     main_firm_with_trading_names.any?(&:publishable?)
   end
 

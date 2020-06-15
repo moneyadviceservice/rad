@@ -1,0 +1,6 @@
+<section class="l-notice">
+  <%= heading_tag(t("success.#{directory_type}.heading"), level: 1, class: '') %>
+  <p><%= t("success.#{directory_type}.message") %></p>
+  <p><%= t("success.#{directory_type}.secondary_message", default: '') %></p>
+  <p><%= t("success.#{directory_type}.contact_us") %> <%= mail_to admin_email_address, admin_email_address %></p>
+</section>

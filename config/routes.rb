@@ -3,8 +3,12 @@ require 'sidekiq/web'
 Rails.application.routes.draw do
   devise_for :users
 
+  if Rails.env.staging?
+    mount Lockup::Engine, at: '/lockup'
+  end
+
   unauthenticated do
-    root 'principals#pre_qualification_form'
+    root 'retirement_advice_registrations#pre_qualification_form'
   end
 
   authenticated do
@@ -14,10 +18,20 @@ Rails.application.routes.draw do
 
   get 'error', to: 'pages#error'
 
-  resources :principals, param: :token do
+  resources :retirement_advice_registrations, param: :token do
     collection do
       get 'prequalify',  action: 'pre_qualification_form'
       post 'prequalify', action: 'pre_qualification'
+      get 'reject',      action: 'rejection_form'
+    end
+  end
+
+  resources :travel_insurance_registrations, only: [:new, :create] do
+    collection do
+      [:risk_profile, :medical_conditions, :medical_conditions_questionaire].each do |action_name|
+        get action_name,  action: "wizard_form", defaults: { current_step: action_name }, constraints: { current_step: action_name }
+        post action_name, action: "wizard", defaults: { current_step: action_name }, constraints: { current_step: action_name }
+      end
       get 'reject',      action: 'rejection_form'
     end
   end
@@ -46,7 +60,15 @@ Rails.application.routes.draw do
 
     resources :advisers, only: [:index, :show, :edit, :update, :destroy]
 
-    resources :firms, only: [:index, :show] do
+    resources :travel_insurance_firms, only: [:index, :show] do
+      post :approve
+    end
+
+    resources :travel_insurance_principals do
+      resource :user, only: [:edit, :update]
+    end
+
+    resources :retirement_firms, only: [:index, :show] do
       post :approve
 
       collection do
@@ -72,7 +94,7 @@ Rails.application.routes.draw do
       resources :subsidiaries, only: :index
       resources :fca_import, only: [:index, :create, :update]
     end
-    resources :principals, except: [:new, :create] do
+    resources :retirement_principals, except: [:new, :create] do
       resource :user, only: [:edit, :update]
     end
 

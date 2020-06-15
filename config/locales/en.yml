@@ -96,28 +96,57 @@ en:
   authentication_sign_up: Register
   authentication_sign_out: Sign out
   required: "* indicates required fields"
-  confirmation_statement: By registering your firm's details with the Money Advice Service, you are confirming that these details and any responses you give to our registration questions are true and accurate.
-
+  confirmation_statement: By registering your firm's details with the Money & Pensions Service,  you are confirming that these details and any responses you give to our registration questions are true and accurate.
+  tooltip_show: show help
+  tooltip_hide: hide help
   footer:
     text: If you need help please contact us at
 
   success:
-    heading: Thank you
-    message: An email will be sent to you shortly with further instructions.
-    contact_us: If you do not receive an email from us within 24 hours, please contact us at
+    retirement_advice_registrations:
+      heading: Thank you
+      message: An email will be sent to you shortly with further instructions.
+      contact_us: If you do not receive an email from us within 24 hours, please contact us at
+    travel_insurance_registrations:
+      heading: Thank you
+      message: We are pleased to confirm your firm has been accepted onto the Money & Pensions Service Travel Insurance Directory.
+      secondary_message: An email with further instructions will be sent to you shortly.
+      contact_us: If you do not receive an email from us within 24 hours, please contact us at
 
-  identification:
-    contact:
-      thanks: Thank you for your interest in joining the Retirement Adviser Directory.
+  successful_registration_mailer:
+    retirement_advice_registrations:
+      thanks: Thank you for your interest in joining the Adviser Directory.
       advice: We advise you to keep this email safe as you will need the link below to continue your firm's registration process.
       verify_email_link: Please click the link below to verify your email address and continue with the registration process.
+    travel_insurance_registrations:
+      thanks: We are pleased to confirm your firm has been accepted onto the Money & Pensions Service Travel Insurance Directory.
+      advice: We are currently developing the next phase of registration which will enable you to provide more details of the services you offer.
+      further_instructions: An email with further instructions will be sent to you as soon as this next phase is completed and ready. This make take us a few weeks, so please bear with us.
+      contact_info: "In the meantime, if you have any questions or concerns please contact us at %{email_address}"
 
   sign_in_panel:
     heading: Already Registered?
     description: Sign in to your account to edit your firm's details.
 
-  registration:
+  travel_insurance_registrations:
+    heading: Travel Insurance Directory - Firm Registration
+    intro: Welcome to the registration page for the Money & Pensions Service Travel Insurance Directory.
+    prompt: Please enter the name and job title of the Senior Manager* responsible for the accuracy of the information provided.
+    prompt_explanation: "*An individual approved by the FCA to perform a senior management function and listed on the FCA Register."
+    reference_number: FCA Firm Reference Number (FRN)
+    frn_linked_trading_names_info: You can register the main firm and up to two trading names linked to this FRN.
+    email_and_phone_message: Enter the email address and telephone number of the named Senior Manager or a person appointed to act on their behalf.
+    questionaire_instructions: "You have confirmed that you will offer travel insurance to people with any/most types of serious medical conditions. Please now confirm in which of the fifteen hypothetical scenarios below your firm would offer single trip cover (without medical exclusions). Please select ‘yes’’ or ‘no’ for each scenario"
+    confirmation_statement_html: |
+      By registering your firm’s details with the Money & Pensions Service you are confirming that the information supplied, and the responses given to our registration questions, are correct and accurately reflect the services offered by your firm and any trading names registered on the Directory under this FRN. You may be required to provide further information to justify or evidence the information you provide.
+      <br/><br/>
+      Firms also consent to MaPS sharing any information provided as part of the registration process with the FCA. In addition, if during the course of operating the Directory, MaPS becomes aware of practices by FCA-regulated persons which it considers to be detrimental to consumers, MaPS may share that information with FCA.
+    register_button: Continue
+    previous_question_button: Previous question
+  retirement_advice_registrations:
     heading: Retirement Adviser Directory – Self Service
+
+  registration:
     introduction: Sign in to edit your firm's details, or register your firm to appear in the directory.
     sub_heading: Register your firm
     eligibility_explanation: Answer the following questions to see if your firm is eligible to appear in the directory.
@@ -127,6 +156,24 @@ en:
     answer_yes: "Yes"
     answer_no: "No"
 
+    covered_by_ombudsman_question:
+      heading: Are the firm’s customers fully covered by the UK Financial Ombudsman Service (FOS) and the UK Financial Services Compensation Scheme (FSCS)?
+      description: ""
+    covers_medical_condition_question:
+      heading: Please select one of the following
+      description: ""
+      answers:
+        one_specific: Does your firm only offer travel insurance for one specific serious medical condition?
+        one_specific_tooltip: Firms that offer cover for one specific type of serious medical condition (i.e. cancer or heart conditions) will be eligible to register onto the Directory but must confirm on their profile the medical condition they specialise in
+        all_conditions: Does your firm offer travel insurance that will cover any/most types of serious medical conditions?
+        all_conditions_tooltip: Firms that offer cover for any or most types of serious medical conditions will be asked to confirm whether they would offer cover without medical exclusions in certain hypothetical medical scenarios listed on the next screen.
+    risk_profile_approach_question:
+      heading: Which approach does your firm use to confirm the risk profile of applicants with serious pre-existing medical conditions seeking travel insurance?
+      description: ""
+      answers:
+        bespoke: Underwriting decisions are based on a bespoke consultation by the firm with the individual to understand their health and the severity of their medical condition (we would expect this option to apply primarily to firms that do not use an external medical screening company)
+        questionaire: Underwriting decisions are primarily based on the use of a risk rating (medical screening) tool which generates set questions that are used to understand an individual’s health and the severity of their medical condition
+        neither: 'Neither of the above'
     active_question:
       heading: Is your firm active in the retirement planning market?
       description: This could include either "at retirement" or "post retirement".
@@ -142,6 +189,122 @@ en:
       heading: Is this status because your firm focuses on a particular market and/or excludes certain high-risk or niche products from its product offering?
     consider_available_providers_question:
       heading: Does your firm consider a wide range of providers from within the market you are advising on?
+    generic_circumstances_assumption:
+      heading: "Generic circumstances and assumptions:"
+      list:
+        - Assume travel by aeroplane for all trips
+        - Assume no claims made on a travel insurance policy over previous two years
+        - Assume no non-routine health appointments are scheduled
+        - Assume that customer is not awaiting on undergoing any diagnostic tests, test results or treatment (unless specified)
+        - Assume that customer has not been admitted to hospital in last two years, unless stated.
+        - Assume that customer is not participating in an ‘experimental’ drug programme
+        - Where process requires further information, a ‘neutral’ outcome should be selected (e.g. that would not in itself increase risk or require additional clarification).
+        - In all cases reasonable assumptions and judgements to be applied.
+    medical_conditions_questionaire:
+      metastatic_breast_cancer_question:
+        scenario: Metastatic Breast cancer
+        primary_health_condition: Stage 4 breast cancer that has spread to the liver and lungs. Taking tamoxifen only at this stage with no other treatment planned. The condition is relatively stable with the latest scan showing no change in tumour activity. Able to carry out usual activities and not requiring any strong painkillers. Appointments typically held every three months.
+        secondary_health_condition: None.
+        age: 65
+        trip: Single trip to France for three weeks.
+
+      ulceritive_colitis_and_anaemia_question:
+        scenario: Ulcerative Colitis and anaemia
+        primary_health_condition: Ulcerative colitis with two unplanned hospital admissions within the last two years. Surgery one month ago to remove a diseased section of bowel. Requires three different medicines daily. No previous episodes of bowel obstruction. No stoma. No changes to medication in last three months. A post operation consultation is scheduled but no further appointments scheduled.
+        secondary_health_condition: Anaemia with one blood test in the last year. No blood transfusions.
+        age: 65
+        trip: Single trip to Spain for three weeks.
+
+      heart_attack_with_hbp_and_high_cholesterol_question:
+        scenario: Heart attack with High Blood Pressure and High Cholesterol
+        primary_health_condition: Three heart attacks with the most recent three months ago treated with three stents. Continues to have chest pains despite recent procedure but only on exertion and not at rest. Can walk 200 metres on the flat without getting breathless. Not currently waiting for any new tests or investigations. Average weight (is not over or under weight).
+        secondary_health_condition: Takes two medications for high blood pressure with a recent increase in the dosage following the latest heart attack. Takes statins for high cholesterol levels and continues to smoke daily. No other medication taken.
+        age: 65
+        trip: Single trip to USA for three weeks.
+
+      copd_with_respiratory_infection_question:
+        scenario: COPD with recent respiratory infection
+        primary_health_condition: Chronic Obstructive Pulmonary Disease requiring five daily medications to manage (in both inhaler and tablet form). A nebuliser is required. One recent hospital admission (within last six months) for an infective exacerbation of the condition (pneumonia) requiring IV antibiotic treatment. Gets short of breath walking 200 metres on the flat although not yet required any oxygen outside of hospital. Recent smoker having given up in the last year. No other comorbidities. Average weight (is not over or under weight).
+        secondary_health_condition: None.
+        age: 65
+        trip: Single trip to Spain for three weeks.
+
+      motor_neurone_disease_question:
+        scenario: Motor neurone disease
+        primary_health_condition: Amyotrophic lateral sclerosis (a form of motor neurone disease) diagnosed 18 months ago. Now requiring a wheelchair to mobilise. Requires assistance with washing, dressing and eating. Not yet requiring ventilatory assistance nor having issues with swallowing. Medication sometimes used to manage symptoms of condition, such as muscle cramps.
+        secondary_health_condition: None.
+        age: 65
+        trip: Single trip to Spain for three weeks.
+
+      hodgkin_lymphoma_question:
+        scenario: Hodgkin Lymphoma
+        primary_health_condition: Stage 4 Hodgkin lymphoma with no remission and treatment is ongoing (chemotherapy every four weeks). Not recurrent infections. No symptoms.
+        secondary_health_condition: None.
+        age: 65
+        trip: Single trip to France for three weeks.
+
+      acute_myeloid_leukaemia_question:
+        scenario: Acute Myeloid Leukaemia
+        primary_health_condition: Acute myeloid leukaemia, Initial remission was achieved but relapsed. No treatment required for the last two years.
+        secondary_health_condition: None.
+        age: 14
+        trip: Single trip to France for three weeks.
+
+      guillain_barre_syndrome_question:
+        scenario: Guillain-Barré Syndrome
+        primary_health_condition: Guillain-Barré syndrome still active following a relapse. Limb weakness present and unable to carry out normal activities of daily living. No breathing difficulties. No associated complications. No medication taken.
+        secondary_health_condition: None.
+        age: 65
+        trip: Single trip to Spain for three weeks.
+
+      heart_failure_and_arrhytmia_question:
+        scenario: Heart Failure and arrhythmia
+        primary_health_condition: Congestive cardiac failure with symptoms (e.g. ankle swelling) for over three years. Taking four medications, unable to lie flat without becoming breathless and gets mildly short of breath when walking. Has required a visit to A&E within the last 12 months (11 months ago). Never required oxygen other than when in hospital, gave up smoking over a year ago, no ischaemic heart disease. GTN spray not used. Average weight (is not over or under weight).
+        secondary_health_condition: Arrhythmia, takes medication only, no visits to hospital within the last year, not awaiting any investigations or treatment, takes anticoagulants, not symptomatic (blackouts etc). Never had a stroke.
+        age: 65
+        trip: Single trip to Spain for three weeks.
+
+      stroke_with_hbp_question:
+        scenario: Stroke with High Blood Pressure and High Cholesterol
+        primary_health_condition: Three strokes in total, the most recent being four months ago and has had several transient ischaemic attacks since. Taking anti-coagulant medication. Still smoking. Awaiting scans and possibly surgery required. No atrial fibrillation.
+        secondary_health_condition: High Blood Pressure and High Cholesterol. Two medications taken for HBP and one medication for raised HCL. No changes to medication recently.
+        age: 65
+        trip: Single trip to USA for three weeks.
+
+      peripheral_vascular_disease_question:
+        scenario: Peripheral Vascular Disease with High Blood Pressure and High Cholesterol
+        primary_health_condition: Two medications for high blood pressure with no recent dose changes. Takes medication for high cholesterol levels.
+        secondary_health_condition: Also has Peripheral vascular disease with no amputations due to poor blood supply but has had a procedure to widen the vessels and has pain in calves when walking with two unplanned hospital admissions within the last two years (last one year ago). Still smoking. No medication taken for PVD. Blood pressure within normal limits when last measured.
+        age: 65
+        trip: Single trip to France for three weeks.
+
+      schizophrenia_question:
+        scenario: Schizophrenia
+        primary_health_condition: Schizophrenia with a compulsory admission to hospital six months ago (no other hospital trips within the last two years). Compliant with medication which has been taken throughout the last two years (and no recent change in medication over last three months). Travelling with partner (who is familiar with management of condition). Onset of condition was not travel related. Not currently experiencing any symptoms. Does not require assistance for day-to-day activities.
+        secondary_health_condition: None.
+        age: 65
+        trip: Single trip to France for three weeks.
+
+      lupus_question:
+        scenario: Lupus with pericarditis and Neuropathy
+        primary_health_condition: Lupus diagnosed within the last 12 months. Takes two medications (oral) and required one unplanned hospital admission six months ago. No change in medication in last 12 months. No deterioration in lupus in last six months. One episode of pericarditis two years ago requiring surgery to remove the pericardium. No lasting heart damage but still not made a full recovery. Also developed nerve damage which interferes with activities of daily living and required a hospital admission within the last year. Needs a walking stick for mobility. Appointments typically held every six months.
+        secondary_health_condition: Incorporated into above description.
+        age: 65
+        trip: Single trip to USA for three weeks.
+
+      sickle_cell_and_renal_question:
+        scenario: Sickle cell anaemia and renal disease
+        primary_health_condition: Sickle cell anaemia with a crisis within the last year requiring admission and blood transfusions. Admission and blood transfusion around six months ago. Single blood transfusion of two units. No bone marrow transplant so far. No ongoingmedication. Haemoglobin level of 8g/dL.
+        secondary_health_condition: "Renal disease: No dialysis, no transplant, not awaiting transplant. Under review by specialist. No medication."
+        age: 65
+        trip: Single trip to USA for three weeks.
+
+      sub_arachnoid_haemorrhage_and_epilepsy_question:
+        scenario: Sub-arachnoid haemorrhage with epilepsy
+        primary_health_condition: Sub-arachnoid haemorrhage due to aneurysm two years ago. Aneurysm caused by berry aneurysm in Circle of Willis. Still has unsecured aneurysms in the brain. Walks with a stick and has developed epilepsy. Three seizures (of less than 30 minutes) causing loss of consciousness within the last six months, one of which was within the last four weeks. Takes two medications (for epilepsy) and no hospital admissions within the last 12 months. First seizure was more than 12 months ago. No surgery planned.
+        secondary_health_condition: None.
+        age: 65
+        trip: Single trip to Spain for three weeks.
 
     firm:
       heading: Firm FCA information
@@ -162,20 +325,26 @@ en:
       password_confirmation: Password confirmation *
 
   rejection:
-    contact_sent: Your message has been sent and we will respond shortly.
     heading: Sorry...
-    subheading: "Unfortunately your firm can't be listed on our directory unless you:"
-    reasons:
-     - heading: Are active in the retirement planning market
-       explanation: This could include either 'at retirement' or 'post retirement'.
-     - heading: Your primary business model is regulated advice
-       explanation: This could be full or focused advice but must be fully covered by the financial services authority.
-     - heading: You offer a whole market service
-       explanation: This means that you are not restricted in the number of providers you are able to access for a given product.
-    email_address: Please enter your email address
-    message: Please enter your message below
-    input_label: If you believe you've been excluded in error, please send us an explanatory message and we will be in touch with you.
-    submit_button: Send message
+    contact_sent: Your message has been sent and we will respond shortly.
+
+    travel_insurance:
+      subheading: Based on the information you have supplied, your firm is not eligible to be listed on the Money & Pensions Service Travel Insurance Directory.
+      secondary_message: "If you would like to discuss this with us, please contact us in the first instance at:"
+
+    retirement_advice:
+      subheading: "Unfortunately your firm can't be listed on our directory unless you:"
+      reasons:
+       - heading: Are active in the retirement planning market
+         explanation: This could include either 'at retirement' or 'post retirement'.
+       - heading: Your primary business model is regulated advice
+         explanation: This could be full or focused advice but must be fully covered by the financial services authority.
+       - heading: You offer a whole market service
+         explanation: This means that you are not restricted in the number of providers you are able to access for a given product.
+      email_address: Please enter your email address
+      message: Please enter your message below
+      input_label: If you believe you've been excluded in error, please send us an explanatory message and we will be in touch with you.
+      submit_button: Send message
 
   in_person_advice_method:
     ordinal:

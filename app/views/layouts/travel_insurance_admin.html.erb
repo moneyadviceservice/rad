@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="MAS Travel Insurance Directory Administration">
+  <meta name="author" content="Team A">
+  <title>Travel Insurance Administration</title>
+  <%= stylesheet_link_tag 'admin' %>
+  <%= csrf_meta_tags %>
+</head>
+
+<body>
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Travel Insurance Directory Administration</a>
+    </div>
+    <div id="navbar" class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+        <%= active_link_to 'Firms',
+              admin_travel_insurance_firms_path, wrap_tag: 'li' %>
+        <%= active_link_to 'Principals',
+              admin_travel_insurance_principals_path, wrap_tag: 'li' %>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<%= render 'shared/admin_content' %>
+</body>
+</html>

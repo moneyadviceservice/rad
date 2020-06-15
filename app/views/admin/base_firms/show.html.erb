@@ -1,0 +1,45 @@
+<h1>
+  <%= @firm.registered_name %>
+  <small>FCA Number <%= @firm.fca_number %></small>
+</h1>
+
+<div class="panel panel-default">
+  <div class="panel-body">
+    <p>
+      <strong>Principal:</strong>
+      <%= link_to "#{@firm.principal.first_name} #{@firm.principal.last_name}", resource_path %>
+      <ul>
+        <li><strong>Principal Email:</strong> <%= mail_to @firm.principal.email_address %></li>
+        <li><strong>Principal Phone:</strong> <%= @firm.principal.telephone_number %></li>
+      </ul>
+    </p>
+    <p>
+      <strong>FCA Number:</strong> <%= @firm.fca_number %>
+    </p>
+    <p>
+      <strong>Registered Name:</strong> <%= @firm.registered_name %>
+    </p>
+    <% if @firm.respond_to?(:website_address) %>
+      <p>
+        <strong>Website Address:</strong> <%= link_to @firm.website_address if @firm.website_address %>
+      </p>
+    <% end %>
+    <p>
+      <strong>Added:</strong> <%= @firm.created_at.to_s(:long) %>
+    </p>
+    <p>
+      <strong>Approved:</strong> <%= @firm.approved_at&.to_s(:long) || 'Not approved' %>
+    </p>
+    <% if @firm.approved_at.blank? %>
+      <p>
+        <%= button_to('Approve Firm',
+                      approval_path,
+                      class: 'btn btn-success',
+                      method: :post) %>
+      </p>
+    <% end %>
+  </div>
+</div>
+
+<%= render 'admin/shared/sign_in_as_principal', principal: @firm.principal %>
+<%= render 'extra_sections' %>
