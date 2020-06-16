@@ -109,7 +109,7 @@ RSpec.feature 'The registration status' do
   end
 
   def and_i_have_a_firm_with_offices
-    FactoryBot.create(:office, firm: @principal.firm)
+    FactoryBot.create(:office, officeable: @principal.firm)
   end
 
   def and_i_have_a_firm_with_advisers_and_offices

@@ -3,6 +3,7 @@ module AlgoliaIndex
     attributes :_geoloc,
                :objectID,
                :firm_id,
+               :officeable_type,
                :address_line_one,
                :address_line_two,
                :address_town,
@@ -13,10 +14,12 @@ module AlgoliaIndex
                :disabled_access,
                :website
 
-    delegate :firm_id, to: :object
-
     def objectID # rubocop:disable Naming/MethodName
       object.id
+    end
+
+    def firm_id
+      object.officeable_id
     end
 
     def _geoloc

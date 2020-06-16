@@ -2,7 +2,7 @@ RSpec.describe AlgoliaIndex::OfficeSerializer do
   describe 'json' do
     subject(:serialized) { JSON.parse(described_class.new(office).to_json) }
 
-    let(:office) { FactoryBot.create(:office, firm: FactoryBot.build(:firm)) }
+    let(:office) { FactoryBot.create(:office, officeable: FactoryBot.build(:firm)) }
     let(:expected_json) do
       {
         _geoloc: {
@@ -10,7 +10,8 @@ RSpec.describe AlgoliaIndex::OfficeSerializer do
           lng: office.longitude
         },
         objectID: office.id,
-        firm_id: office.firm_id,
+        firm_id: office.officeable_id,
+        officeable_type: office.officeable_type,
         address_line_one: office.address_line_one,
         address_line_two: office.address_line_two,
         address_town: office.address_town,

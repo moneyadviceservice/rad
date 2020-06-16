@@ -1,20 +1,19 @@
 module SelfService
-  class OfficesController < ApplicationController
+  class TravelInsuranceOfficesController < ApplicationController
     before_action :authenticate_user!
     before_action -> { @firm = current_firm }
     before_action -> { @office = current_office }, only: %i[edit update destroy]
 
-    def index; end
-
     def new
-      @office = @firm.offices.build
+      @office = @firm.build_office
     end
 
     def create
-      @office = @firm.offices.build(office_params)
+      @office = @firm.build_office(office_params)
+
       if @office.save_with_geocoding
         flash[:notice] = I18n.t('self_service.office_add.saved')
-        redirect_to self_service_firm_offices_path(@firm)
+        redirect_to self_service_travel_insurance_firms_path
       else
         render :new
       end
@@ -23,9 +22,9 @@ module SelfService
     def edit; end
 
     def update
-      if @office.update_with_geocoding(office_params)
+      if @office.update(office_params)
         flash[:notice] = I18n.t('self_service.office_edit.saved')
-        redirect_to self_service_firm_offices_path(@firm)
+        redirect_to self_service_travel_insurance_firms_path
       else
         render :edit
       end
@@ -36,7 +35,7 @@ module SelfService
       flash[:notice] = I18n.t('self_service.office_destroy.deleted',
                               postcode: @office.address_postcode)
 
-      redirect_back(fallback_location: self_service_firm_offices_path(@firm))
+      redirect_back(fallback_location: self_service_travel_insurance_firms_path)
     end
 
     private
@@ -46,15 +45,11 @@ module SelfService
     end
 
     def current_firm
-      if params[:firm_type] == 'Firm'
-        Firm.find_by(id: params[:firm_id], fca_number: principal.fca_number)
-      else
-        TravelInsuranceFirm.find_by(id: params[:travel_insurance_firm_id], fca_number: principal.fca_number)
-      end
+      TravelInsuranceFirm.find_by(id: params[:travel_insurance_firm_id], fca_number: principal.fca_number)
     end
 
     def current_office
-      @firm.offices.find(params[:id])
+      @firm.office
     end
 
     def office_params

@@ -1,0 +1,20 @@
+<fieldset class="form__group form__group--inline">
+  <legend class="l-questionnaire__legend"><%= t('self_service.firm_form.status_heading') %></legend>
+
+  <%= f.form_row :status do %>
+    <%= f.errors_for :status %>
+    <div class="form__group-item">
+      <label>
+        <%= f.radio_button :status, :independent, class: 'form__group-input t-status-independent' %>
+        <%= t('self_service.firm_form.status_answer_independent') %>
+      </label>
+    </div>
+
+    <div class="form__group-item">
+      <label>
+        <%= f.radio_button :status, :restricted, class: 'form__group-input t-status-restricted' %>
+        <%= t('self_service.firm_form.status_answer_restricted') %>
+      </label>
+    </div>
+  <% end %>
+</fieldset>

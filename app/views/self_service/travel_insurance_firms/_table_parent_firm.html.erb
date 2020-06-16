@@ -1,0 +1,30 @@
+<div class="table-wrapper">
+  <table class="firms-table">
+    <thead>
+      <tr>
+        <th class="firms-table__name">
+          <%= Firm.human_attribute_name(:registered_name) %>
+        </th>
+        <th class="firms-table__frn">
+          <%= Firm.human_attribute_name(:fca_number) %>
+        </th>
+        <th class="firms-table__status">
+          <%= t('self_service.firms_index.status_column_heading') %>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="t-parent-firm-table-row">
+        <td class="t-firm-name">
+          <%= link_to edit_self_service_firm_path(@presenter.firm), class: 't-edit-link' do %>
+            <%= @presenter.firm.registered_name %>
+          <% end %>
+        </td>
+        <td class="t-frn"><%= @presenter.firm.fca_number %></td>
+        <td class="t-status">
+          <%= render 'status', presenter: SelfService::TravelInsuranceStatusPresenter.new(@presenter.firm) %>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,8 @@
+<fieldset class="form__group l-half-width">
+  <p><%= t('self_service.firm_form.website_address_description') %></p>
+  <%= f.form_row :website_address do %>
+    <%= f.errors_for :website_address %>
+    <%= f.label :website_address, t('self_service.firm_form.website_address_label'), class: 'form__label-heading' %>
+    <%= f.text_field :website_address, class: 't-website-address' %>
+  <% end %>
+</fieldset>

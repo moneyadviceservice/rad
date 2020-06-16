@@ -40,7 +40,7 @@ module SelfService::BreadcrumbsHelper
   end
 
   def crumb_root
-    { locale_key: 'self_service.navigation.root', url: self_service_root_path }
+    { locale_key: 'self_service.navigation.root', url: firm_root_path }
   end
 
   def crumb_trading_name_edit
@@ -57,7 +57,7 @@ module SelfService::BreadcrumbsHelper
     {
       name: t('self_service.firm_edit.breadcrumb',
               firm_name: @firm.registered_name),
-      url: edit_self_service_firm_path(@firm)
+      url: firm_edit_path
     }
   end
 
@@ -101,5 +101,21 @@ module SelfService::BreadcrumbsHelper
   def crumb_principal_edit
     { name: t('self_service.principal_edit.breadcrumb',
               firm_name: @firm.registered_name) }
+  end
+
+  def firm_edit_path
+    if @firm.instance_of?(TravelInsuranceFirm)
+      edit_self_service_travel_insurance_firm_path(@firm)
+    else
+      edit_self_service_firm_path(@firm)
+    end
+  end
+
+  def firm_root_path
+    if @firm.instance_of?(TravelInsuranceFirm)
+      self_service_travel_insurance_firms_path
+    else
+      self_service_root_path
+    end
   end
 end

@@ -1,0 +1,100 @@
+<p><%= t('self_service.required_fields_message') %></p>
+
+<div class="t-validation-summary">
+  <%= f.validation_summary %>
+</div>
+
+<div class="l-half-width">
+
+  <%= f.form_row :geocoding do %>
+    <%= f.errors_for :geocoding %>
+
+    <% if f.object.errors.include?(:geocoding) %>
+      <p><%= t('office.geocoding.failure_explanation', email: admin_email_address) %></p>
+    <% end %>
+
+    <%= f.form_row :website do %>
+      <%= f.errors_for :website %>
+      <%= f.label :website,
+                  Office.human_attribute_name(:website),
+                  class: 'form__label-heading' %>
+      <%= f.text_field :website %>
+    <% end %>
+
+    <%= f.form_row :telephone_number do %>
+      <%= f.errors_for :telephone_number %>
+      <%= f.label :telephone_number,
+                  required_asterisk(Office.human_attribute_name(:telephone_number)),
+                  class: 'form__label-heading' %>
+      <%= f.text_field :telephone_number, class: 't-telephone-number' %>
+    <% end %>
+
+    <%= f.form_row :email_address do %>
+      <%= f.errors_for :email_address %>
+      <%= f.label :email_address,
+                  required_asterisk(Office.human_attribute_name(:email_address)),
+                  class: 'form__label-heading' %>
+      <%= f.text_field :email_address, class: 't-email-address' %>
+    <% end %>
+
+
+    <%= f.form_row :address_line_one do %>
+      <%= f.errors_for :address_line_one %>
+      <%= f.label :address_line_one,
+                  required_asterisk(Office.human_attribute_name(:address_line_one)),
+                  class: 'form__label-heading' %>
+      <%= f.text_field :address_line_one, class: 't-address-line-one' %>
+    <% end %>
+
+    <%= f.form_row :address_line_two do %>
+      <%= f.errors_for :address_line_two %>
+      <%= f.label :address_line_two,
+                  Office.human_attribute_name(:address_line_two),
+                  class: 'form__label-heading' %>
+      <%= f.text_field :address_line_two, class: 't-address-line-two' %>
+    <% end %>
+
+    <%= f.form_row :address_town do %>
+      <%= f.errors_for :address_town %>
+      <%= f.label :address_town,
+                  required_asterisk(Office.human_attribute_name(:address_town)),
+                  class: 'form__label-heading' %>
+      <%= f.text_field :address_town, class: 't-address-town' %>
+    <% end %>
+
+    <%= f.form_row :address_county do %>
+      <%= f.errors_for :address_county %>
+      <%= f.label :address_county,
+                  Office.human_attribute_name(:address_county),
+                  class: 'form__label-heading' %>
+      <%= f.text_field :address_county, class: 't-address-county' %>
+    <% end %>
+
+    <%= f.form_row :address_postcode, html_options: { classes: 'form-row--collapsed-margin-bottom' } do %>
+      <%= f.errors_for :address_postcode %>
+      <%= f.label :address_postcode,
+                  required_asterisk(Office.human_attribute_name(:address_postcode)),
+                  class: 'form__label-heading' %>
+      <%= f.text_field :address_postcode, class: 't-address-postcode form__input-container--medium' %>
+    <% end %>
+  <% end %>
+
+  <%= f.form_row :disabled_access do %>
+    <%= f.errors_for :disabled_access %>
+    <label>
+      <%= f.check_box :disabled_access, class: "form__input t-disabled-access" %>
+      <%= Office.human_attribute_name(:disabled_access) %>
+    </label>
+  <% end %>
+</div>
+
+<div class="l-self-service-action-row">
+  <%= link_to t('self_service.cancel_button'),
+              self_service_firm_offices_path(f.object.officeable),
+              class: 'l-self-service-action-row__cancel' %>
+  <% if f.object.persisted? %>
+    <%= f.submit t('self_service.office_edit.submit_button'), class: 'button button--primary t-submit' %>
+  <% else %>
+    <%= f.submit t('self_service.office_new.submit_button'), class: 'button button--primary t-submit' %>
+  <% end %>
+</div>

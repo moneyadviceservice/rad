@@ -113,10 +113,10 @@ RSpec.describe Firm do
     let(:firm) { create(:firm, offices_count: 0) }
     let!(:unsorted_offices) do
       [
-        FactoryBot.create(:office, firm: firm, address_line_one: 'fourth', created_at: Time.zone.now),
-        FactoryBot.create(:office, firm: firm, address_line_one: 'second', created_at: 2.days.ago),
-        FactoryBot.create(:office, firm: firm, address_line_one: 'first',  created_at: 3.days.ago),
-        FactoryBot.create(:office, firm: firm, address_line_one: 'third',  created_at: 1.day.ago)
+        FactoryBot.create(:office, officeable: firm, address_line_one: 'fourth', created_at: Time.zone.now),
+        FactoryBot.create(:office, officeable: firm, address_line_one: 'second', created_at: 2.days.ago),
+        FactoryBot.create(:office, officeable: firm, address_line_one: 'first',  created_at: 3.days.ago),
+        FactoryBot.create(:office, officeable: firm, address_line_one: 'third',  created_at: 1.day.ago)
       ]
     end
 
@@ -135,7 +135,7 @@ RSpec.describe Firm do
     end
 
     context 'when the firm has offices' do
-      before { FactoryBot.create_list(:office, 3, firm: firm) }
+      before { FactoryBot.create_list(:office, 3, officeable: firm) }
       # We implement using #first (which runs one query) but test against
       # offices[0]. Both should return the same value or things are not
       # correct.

@@ -224,7 +224,7 @@ module AlgoliaIndex
 
       office1 = create_office_for_firm(
         id: 1,
-        firm: firm1,
+        officeable: firm1,
         address_line_one: '493 Tremblay Pass',
         address_line_two: 'Apt. 746',
         address_town: 'Kaseyview',
@@ -237,7 +237,7 @@ module AlgoliaIndex
       )
       office2 = create_office_for_firm(
         id: 2,
-        firm: firm1,
+        officeable: firm1,
         address_line_one: '49759 Wyman Parkways',
         address_line_two: 'Suite 863',
         address_town: 'Devanhaven',
@@ -250,7 +250,7 @@ module AlgoliaIndex
       )
       office3 = create_office_for_firm(
         id: 3,
-        firm: firm2,
+        officeable: firm2,
         address_line_one: '57328 Kiehn Mountain',
         address_line_two: 'Suite 507',
         address_town: 'New Roderick',

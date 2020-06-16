@@ -6,7 +6,7 @@ RSpec.describe Office do
 
   it_should_behave_like 'geocodable' do
     let(:invalid_geocodable) { Office.new }
-    let(:valid_new_geocodable) { FactoryBot.build(:office, firm: firm) }
+    let(:valid_new_geocodable) { FactoryBot.build(:office, officeable: firm) }
     let(:saved_geocodable) { office }
     let(:address_field_name) { :address_postcode }
     let(:address_field_updated_value) { 'SO32 2AY' }
@@ -16,7 +16,7 @@ RSpec.describe Office do
   describe '#notify_indexer' do
     it 'notifies the indexer that the office has changed' do
       expect(UpdateAlgoliaIndexJob).to receive(:perform_later)
-        .with('Office', subject.id, subject.firm_id)
+        .with('Office', subject.id, subject.officeable_id)
 
       office.notify_indexer
     end
@@ -24,7 +24,7 @@ RSpec.describe Office do
 
   describe 'after_commit' do
     it 'saving a new office calls notify_indexer' do
-      office = FactoryBot.build(:office, firm: firm)
+      office = FactoryBot.build(:office, officeable: firm)
       expect(office).to receive(:notify_indexer)
       office.save
     end

@@ -15,6 +15,7 @@
   let(:user) { FactoryBot.create(:user, principal: principal) }
   let(:office) do
     FactoryBot.attributes_for(:office,
+                               officeable: firm,
                                address_line_one: address_line_one,
                                address_line_two: address_line_two,
                                address_town: address_town,

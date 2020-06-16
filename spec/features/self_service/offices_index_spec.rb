@@ -7,7 +7,7 @@ RSpec.feature 'The self service firm offices list page', :inline_job_queue do
   let(:principal) { FactoryBot.create(:principal) }
   let(:firm) { principal.firm }
   let(:user) { FactoryBot.create(:user, principal: principal) }
-  let(:offices) { FactoryBot.create_list(:office, 3, firm: firm) }
+  let(:offices) { FactoryBot.create_list(:office, 3, officeable: firm) }
 
   scenario 'The page requires authentication to access' do
     when_i_navigate_to_the_offices_page_for_my_firm

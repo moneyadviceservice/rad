@@ -38,7 +38,7 @@ RSpec.feature 'Approving firms on the admin interface', :inline_job_queue do
     @firms = @principals.map(&:firm)
     @firms.each do |firm|
       firm.advisers << FactoryBot.create(:adviser, firm: firm)
-      firm.offices << FactoryBot.create(:office, firm: firm)
+      firm.offices << FactoryBot.create(:office, officeable: firm)
     end
   end
 

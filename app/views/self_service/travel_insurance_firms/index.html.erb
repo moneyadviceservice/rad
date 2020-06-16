@@ -3,10 +3,13 @@
 <h1 class="t-page-title">
   <%= t('self_service.travel_insurance_firms_index.title', count: @presenter.total_firms) %>
 </h1>
-<p><%= t('self_service.travel_insurance_firms_index.primary_instructions_html') %></p>
-<p><%= t('self_service.travel_insurance_firms_index.secondary_instructions_html') %></p>
-
-<h2 class="t-parent-firm-heading"><%= t('self_service.firms_index.firm_heading') %></h2>
+<div class="panel t-onboarding-message">
+  <p><%= t('self_service.travel_insurance_firms_index.primary_instructions_html') %></p>
+  <p><%= t('self_service.travel_insurance_firms_index.secondary_instructions_html') %></p>
+</div>
+<% if @presenter.firm_has_trading_names? %>
+  <h2 class="t-parent-firm-heading"><%= t('self_service.firms_index.firm_heading') %></h2>
+<% end %>
 <p><%= t('self_service.travel_insurance_firms_index.firm_subheading') %></p>
 
 <%= render 'table_parent_firm' %>
