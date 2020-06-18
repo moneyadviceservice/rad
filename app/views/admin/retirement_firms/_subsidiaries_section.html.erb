@@ -2,7 +2,7 @@
   <h2>Parent Firm</h2>
   <p>
     <%= @firm.registered_name %> is a subsidiary of
-    <%= link_to @firm.parent.registered_name, admin_retirement_firm_path_path(@firm.parent) %>.
+    <%= link_to @firm.parent.registered_name, admin_retirement_firm_path(@firm.parent) %>.
   </p>
 <% end %>
 
