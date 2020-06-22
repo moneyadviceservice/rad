@@ -6,6 +6,7 @@ module SelfService
 
     def new
       @office = @firm.build_office
+      @office.build_opening_time
     end
 
     def create
@@ -15,6 +16,7 @@ module SelfService
         flash[:notice] = I18n.t('self_service.office_add.saved')
         redirect_to self_service_travel_insurance_firms_path
       else
+        @office.build_opening_time
         render :new
       end
     end
@@ -62,7 +64,18 @@ module SelfService
         :email_address,
         :telephone_number,
         :website,
-        :disabled_access
+        :disabled_access,
+        opening_time_attributes: [
+          :id,
+          :weekday_opening_time,
+          :weekday_closing_time,
+          :open_saturday,
+          :open_sunday,
+          :saturday_opening_time,
+          :saturday_closing_time,
+          :sunday_opening_time,
+          :sunday_closing_time
+        ]
       )
     end
   end

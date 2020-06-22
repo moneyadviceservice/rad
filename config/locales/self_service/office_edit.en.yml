@@ -5,3 +5,9 @@ en:
       title: "Edit office: %{postcode}"
       submit_button: Save office
       saved: The office has been saved
+
+      opening_time_label: Opening time
+      closing_time_label: Closing time
+      weekday_opening_hours: Monday to Friday opening hours
+      saturday_opening_hours: Saturday opening hours
+      sunday_opening_hours: Sunday opening hours

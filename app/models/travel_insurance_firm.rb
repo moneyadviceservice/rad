@@ -34,6 +34,8 @@ class TravelInsuranceFirm < ApplicationRecord
                            foreign_key: :parent_id,
                            dependent: :destroy
 
+  scope :onboarded, -> { joins(:office) }
+
   def trading_name?
     parent.present?
   end

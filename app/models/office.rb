@@ -12,6 +12,9 @@ class Office < ApplicationRecord
     address_postcode
   ].freeze
 
+  has_one :opening_time, dependent: :destroy
+  accepts_nested_attributes_for :opening_time
+
   belongs_to :officeable, polymorphic: true
 
   validates :email_address,

@@ -8,6 +8,7 @@ require(['jquery', 'componentLoader', 'eventsWithPromises'], function ($, compon
 require(['jquery'], function ($) {
   require(['AdviserAjaxCall']);
   require(['RemoteAndFaceToFaceOptions']);
+  require(['OfficeOpeningTime']);
   require(['WizardForm']);
   require(['CacheBuster']);
 });

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 3019_11_18_100160) do
+ActiveRecord::Schema.define(version: 3019_11_18_100161) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -252,6 +252,19 @@ ActiveRecord::Schema.define(version: 3019_11_18_100160) do
     t.integer "order", default: 0, null: false
   end
 
+  create_table "opening_times", force: :cascade do |t|
+    t.bigint "office_id"
+    t.time "weekday_opening_time"
+    t.time "weekday_closing_time"
+    t.time "saturday_opening_time"
+    t.time "saturday_closing_time"
+    t.time "sunday_opening_time"
+    t.time "sunday_closing_time"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["office_id"], name: "index_opening_times_on_office_id"
+  end
+
   create_table "other_advice_methods", id: :serial, force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", null: false
@@ -424,4 +437,5 @@ ActiveRecord::Schema.define(version: 3019_11_18_100160) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "opening_times", "offices"
 end

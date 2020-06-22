@@ -29,6 +29,10 @@
       <%= f.text_field :telephone_number, class: 't-telephone-number' %>
     <% end %>
 
+    <div class="panel">
+      <%= render partial: 'self_service/offices/opening_time', locals: { f: f } %>
+    </div>
+
     <%= f.form_row :email_address do %>
       <%= f.errors_for :email_address %>
       <%= f.label :email_address,

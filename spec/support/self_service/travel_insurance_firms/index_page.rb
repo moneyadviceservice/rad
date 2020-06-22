@@ -15,6 +15,8 @@ module SelfService
       sections :available_trading_names, FirmTableRowSection, '.t-available-trading-name-table-row'
       section :navigation, NavigationSection, '.t-navigation'
       element :onboarding_message, '.t-onboarding-message'
+
+      element :add_office_link, '.t-office-link'
     end
   end
 end
