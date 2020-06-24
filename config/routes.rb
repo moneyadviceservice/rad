@@ -41,7 +41,7 @@ Rails.application.routes.draw do
   end
 
   namespace :self_service do
-    root to: redirect('/self_service/firms')
+    root to: 'base#choose_firm_type'
     resources :trading_names, only: [:new, :create, :edit, :update, :destroy]
     resources :principals, only: [:edit, :update]
 
