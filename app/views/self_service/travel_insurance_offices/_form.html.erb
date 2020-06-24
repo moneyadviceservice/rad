@@ -82,14 +82,6 @@
       <%= f.text_field :address_postcode, class: 't-address-postcode form__input-container--medium' %>
     <% end %>
   <% end %>
-
-  <%= f.form_row :disabled_access do %>
-    <%= f.errors_for :disabled_access %>
-    <label>
-      <%= f.check_box :disabled_access, class: "form__input t-disabled-access" %>
-      <%= Office.human_attribute_name(:disabled_access) %>
-    </label>
-  <% end %>
 </div>
 
 <div class="l-self-service-action-row">
