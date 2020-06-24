@@ -5,8 +5,12 @@ module SelfService
     before_action -> { @office = current_office }, only: %i[edit update destroy]
 
     def new
-      @office = @firm.build_office
-      @office.build_opening_time
+      if @firm.office
+        redirect_to edit_self_service_travel_insurance_firm_office_path(@firm, @firm.office)
+      else
+        @office = @firm.build_office
+        @office.build_opening_time
+      end
     end
 
     def create
