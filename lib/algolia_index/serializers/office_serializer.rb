@@ -3,7 +3,7 @@ module AlgoliaIndex
     attributes :_geoloc,
                :objectID,
                :firm_id,
-               :officeable_type,
+               :firm_type,
                :address_line_one,
                :address_line_two,
                :address_town,
@@ -20,6 +20,14 @@ module AlgoliaIndex
 
     def firm_id
       object.officeable_id
+    end
+
+    def firm_type
+      if object.officeable.class.name == 'Firm'
+        'retirement_firm'
+      else
+        object.officeable.model_name.singular
+      end
     end
 
     def _geoloc
