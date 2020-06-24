@@ -137,6 +137,42 @@ RSpec.describe Office do
       end
     end
 
+    describe 'website url' do
+      it 'must not exceed 100 characters' do
+        office.website = "#{'a' * 100}.com"
+        expect(office).to_not be_valid
+      end
+
+      it 'must contain at least one .' do
+        office.website = 'http://examplecom'
+        expect(office).to_not be_valid
+      end
+
+      it 'must not contain spaces' do
+        office.website = 'http://example site.com'
+        expect(office).not_to be_valid
+      end
+
+      it 'does not require the protocol to be present' do
+        office.website = 'www.example.com'
+        expect(office).to be_valid
+      end
+
+      it 'must require the protocol to be http or https if provided' do
+        office.website = 'http://www.example.com'
+        expect(office).to be_valid
+        office.website = 'https://www.example.com'
+        expect(office).to be_valid
+        office.website = 'ftp://www.example.com'
+        expect(office).to_not be_valid
+      end
+
+      it 'allows paths to be in the address' do
+        office.website = 'www.example.com/user'
+        expect(office).to be_valid
+      end
+    end
+
     describe 'telephone number' do
       # See http://www.area-codes.org.uk/formatting.php#programmers for background info
 

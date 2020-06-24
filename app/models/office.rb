@@ -41,6 +41,11 @@ class Office < ApplicationRecord
             presence: false,
             length: { maximum: 100 }
 
+  validates :website,
+            allow_blank: true,
+            length: { maximum: 100 },
+            format: { with: /\A(https?:\/\/)?([a-zA-Z0-9-]+\.)+[a-zA-Z0-9-]+/ }
+
   validates :disabled_access, inclusion: { in: [true, false] }
 
   after_commit :notify_indexer
