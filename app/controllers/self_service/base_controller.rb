@@ -1,5 +1,7 @@
 module SelfService
   class BaseController < ApplicationController
+    before_action :authenticate_user!
+
     def choose_firm_type
       if current_user.principal.firm
         redirect_to self_service_firms_path
