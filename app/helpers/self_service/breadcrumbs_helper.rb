@@ -39,8 +39,16 @@ module SelfService::BreadcrumbsHelper
     breadcrumbs_firm_edit << crumb_principal_edit
   end
 
+  def breadcrumbs_travel_insurance_firm_office_edit
+    breadcrumbs_root << crumb_travel_insurance_office
+  end
+
   def crumb_root
     { locale_key: 'self_service.navigation.root', url: firm_root_path }
+  end
+
+  def crumb_travel_insurance_office
+    { locale_key: 'self_service.travel_insurance_firm.office_edit.breadcrumb' }
   end
 
   def crumb_trading_name_edit

@@ -61,3 +61,6 @@ en:
       status:
         firm_details: 'Cover & service details'
         contact_details: 'Customer contact details'
+
+      office_edit:
+        breadcrumb: 'Customer contact details'
