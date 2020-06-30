@@ -3,6 +3,6 @@ en:
     travel_insurance_firms_index:
       title: Register your firm
       primary_instructions_html: You can enter details for your main parent firm and/or up to two trading names. <strong>Only firms/trading names that specialise in providing travel insurance to people with serious pre-existing medical conditions should be added</strong>
-      secondary_instructions_html: <strong>Details of cover & service and Customer Contact Details</strong> must be completed for each firm and trading name you wish to be visible on the Directory.
+      secondary_instructions_html: <strong>Cover & service and Customer contact details</strong> must be completed for each firm and trading name you wish to be visible on the Directory.
       firm_heading: Parent Firm
       firm_subheading: Leave Parent firm details blank if not appearing on the Directory.

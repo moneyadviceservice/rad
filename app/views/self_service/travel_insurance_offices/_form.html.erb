@@ -1,3 +1,4 @@
+<p><%= t('self_service.customer_contact_details_message') %></p>
 <p><%= t('self_service.required_fields_message') %></p>
 
 <div class="t-validation-summary">
@@ -16,7 +17,7 @@
     <%= f.form_row :website do %>
       <%= f.errors_for :website %>
       <%= f.label :website,
-                  Office.human_attribute_name(:website),
+                  required_asterisk(Office.human_attribute_name(:website)),
                   class: 'form__label-heading' %>
       <%= f.text_field :website %>
     <% end %>
@@ -24,7 +25,7 @@
     <%= f.form_row :telephone_number do %>
       <%= f.errors_for :telephone_number %>
       <%= f.label :telephone_number,
-                  required_asterisk(Office.human_attribute_name(:telephone_number)),
+                  required_asterisk(t('self_service.travel_insurance_firm.office_edit.telephone_number')),
                   class: 'form__label-heading' %>
       <%= f.text_field :telephone_number, class: 't-telephone-number' %>
     <% end %>
@@ -36,12 +37,13 @@
     <%= f.form_row :email_address do %>
       <%= f.errors_for :email_address %>
       <%= f.label :email_address,
-                  required_asterisk(Office.human_attribute_name(:email_address)),
+                  required_asterisk(t('self_service.travel_insurance_firm.office_edit.email_address')),
                   class: 'form__label-heading' %>
       <%= f.text_field :email_address, class: 't-email-address' %>
     <% end %>
 
-
+    <h4><%= t('self_service.travel_insurance_firm.office_edit.address_heading') %></h4>
+    <br/>
     <%= f.form_row :address_line_one do %>
       <%= f.errors_for :address_line_one %>
       <%= f.label :address_line_one,
@@ -61,7 +63,7 @@
     <%= f.form_row :address_town do %>
       <%= f.errors_for :address_town %>
       <%= f.label :address_town,
-                  required_asterisk(Office.human_attribute_name(:address_town)),
+                  required_asterisk(t('self_service.travel_insurance_firm.office_edit.address_town')),
                   class: 'form__label-heading' %>
       <%= f.text_field :address_town, class: 't-address-town' %>
     <% end %>
@@ -69,7 +71,7 @@
     <%= f.form_row :address_county do %>
       <%= f.errors_for :address_county %>
       <%= f.label :address_county,
-                  Office.human_attribute_name(:address_county),
+                  t('self_service.travel_insurance_firm.office_edit.address_county'),
                   class: 'form__label-heading' %>
       <%= f.text_field :address_county, class: 't-address-county' %>
     <% end %>
@@ -77,7 +79,7 @@
     <%= f.form_row :address_postcode, html_options: { classes: 'form-row--collapsed-margin-bottom' } do %>
       <%= f.errors_for :address_postcode %>
       <%= f.label :address_postcode,
-                  required_asterisk(Office.human_attribute_name(:address_postcode)),
+                  required_asterisk(t('self_service.travel_insurance_firm.office_edit.address_postcode')),
                   class: 'form__label-heading' %>
       <%= f.text_field :address_postcode, class: 't-address-postcode form__input-container--medium' %>
     <% end %>

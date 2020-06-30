@@ -5,6 +5,7 @@ en:
     add_trading_name_button: Add a trading name
     cancel_button: Cancel
     save_button: Save
+    customer_contact_details_message: Enter the contact details you want customers to use.
     required_fields_message: "* Indicates required fields"
 
     navigation: # name according to route name
@@ -59,8 +60,14 @@ en:
 
     travel_insurance_firm:
       status:
-        firm_details: 'Cover & service details'
+        firm_details: 'Cover & service'
         contact_details: 'Customer contact details'
 
       office_edit:
         breadcrumb: 'Customer contact details'
+        email_address: Customer contact email address
+        telephone_number: Customer contact telephone number
+        address_town: Town
+        address_county: County
+        address_postcode: Postcode
+        address_heading: Principle place of business
