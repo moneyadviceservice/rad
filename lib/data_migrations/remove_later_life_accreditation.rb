@@ -16,7 +16,7 @@ class RemoveLaterLifeAccreditation
 
     # There should be no advisers with this accreditation, this is just in case one gets added in the meantime
     Adviser.includes(:accreditations).where(accreditations: { id: accreditation.id }).find_each do |adviser|
-      adviser.delete(accreditation)
+      adviser.accreditations.delete(accreditation)
     end
 
     # Remove the accreditation so it's not available for advisers to add it
