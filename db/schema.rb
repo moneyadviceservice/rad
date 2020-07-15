@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 3019_11_18_100161) do
+ActiveRecord::Schema.define(version: 3019_11_18_100165) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -216,6 +216,17 @@ ActiveRecord::Schema.define(version: 3019_11_18_100161) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "medical_specialisms", force: :cascade do |t|
+    t.bigint "travel_insurance_firm_id"
+    t.string "specialised_medical_conditions_cover"
+    t.string "likely_not_cover_medical_condition"
+    t.boolean "cover_undergoing_treatment"
+    t.boolean "terminal_prognosis_cover"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["travel_insurance_firm_id"], name: "index_medical_specialisms_on_travel_insurance_firm_id"
+  end
+
   create_table "offices", id: :serial, force: :cascade do |t|
     t.string "address_line_one", null: false
     t.string "address_line_two"
@@ -311,6 +322,17 @@ ActiveRecord::Schema.define(version: 3019_11_18_100161) do
     t.index ["updated_at"], name: "index_rad_consumer_sessions_on_updated_at"
   end
 
+  create_table "service_details", force: :cascade do |t|
+    t.bigint "travel_insurance_firm_id"
+    t.boolean "offers_telephone_quote"
+    t.integer "cover_for_specialist_equipment"
+    t.string "medical_screening_company"
+    t.string "how_far_in_advance_trip_cover"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["travel_insurance_firm_id"], name: "index_service_details_on_travel_insurance_firm_id"
+  end
+
   create_table "snapshots", id: :serial, force: :cascade do |t|
     t.integer "firms_with_no_minimum_fee"
     t.integer "integer"
@@ -403,7 +425,22 @@ ActiveRecord::Schema.define(version: 3019_11_18_100161) do
     t.integer "parent_id"
     t.text "website_address"
     t.index ["approved_at"], name: "index_travel_insurance_firms_on_approved_at"
-    t.index ["fca_number"], name: "index_travel_insurance_firms_on_fca_number", unique: true
+    t.index ["fca_number"], name: "index_travel_insurance_firms_on_fca_number"
+  end
+
+  create_table "trip_covers", force: :cascade do |t|
+    t.bigint "travel_insurance_firm_id"
+    t.string "trip_type"
+    t.string "cover_area"
+    t.string "one_month_land_max_age"
+    t.string "one_month_cruise_max_age"
+    t.string "six_month_land_max_age"
+    t.string "six_month_cruise_max_age"
+    t.string "six_month_plus_land_max_age"
+    t.string "six_month_plus_cruise_max_age"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["travel_insurance_firm_id"], name: "index_trip_covers_on_travel_insurance_firm_id"
   end
 
   create_table "users", id: :serial, force: :cascade do |t|
@@ -437,5 +474,8 @@ ActiveRecord::Schema.define(version: 3019_11_18_100161) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "medical_specialisms", "travel_insurance_firms"
   add_foreign_key "opening_times", "offices"
+  add_foreign_key "service_details", "travel_insurance_firms"
+  add_foreign_key "trip_covers", "travel_insurance_firms"
 end

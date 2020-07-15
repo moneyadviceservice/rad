@@ -45,6 +45,7 @@ en:
       offices: Offices
       published: Visible on directory
       unpublished: Needs more information
+      complete: Complete
 
     trading_name_destroy:
       deleted: "%{name} has been successfully removed."
