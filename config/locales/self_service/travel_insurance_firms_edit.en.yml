@@ -1,0 +1,33 @@
+en:
+  self_service:
+    travel_insurance_firms_edit:
+      medical_specialism:
+        heading: Medical specialism
+        description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar sic tempor.
+        specialised_medical_conditions_cover_label: Does the firm specialise in covering any specific medical conditions?
+        likely_not_cover_medical_condition_label: Is the firm likely NOT to cover any specific medical conditions?
+        cover_undergoing_treatment_label: Will you offer cover if the customer is undergoing treatment at the time of travel?
+        terminal_prognosis_cover_label: Will you offer cover to customers who have been given a terminal prognosis?
+        medical_conditions_cover_select:
+          cancer: Cancer
+          heart_conditions: Heart conditions
+          respiratory_problems: Respiratory problems
+          mental_health_conditions: Mental health conditions
+
+      service_details:
+        heading: Service Details
+        description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar sic tempor.
+        offers_telephone_quote_label: Please confirm that you are able to offer a telephone quote service as a minimum (i.e. that your service is not online only).
+        cover_for_specialist_equipment_label: Will you offer cover for specialist medical equipment?
+        medical_screening_company_label: Which medical screening company do you use?
+        how_far_in_advance_trip_cover_label: How far in advance of trip will you provide cover?
+        medical_screening_companies_select:
+          verisik: Verisik
+          another_1: Another 1
+          another_2: Another 2
+        advance_of_trip_cover_select:
+          up_to_1_month: Up to 1 month
+          up_to_6_month: Up to 6 months
+          up_to_12_month: Up to 12 months
+          up_to_18_month: Up to 18 months
+          up_to_24_month: Up to 24 months

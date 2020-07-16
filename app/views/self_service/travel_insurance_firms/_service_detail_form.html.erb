@@ -1,0 +1,51 @@
+<%= f.fields_for :service_detail do |sd| %>
+  <%= sd.form_row :offers_telephone_quote do %>
+    <fieldset class="form__group t-offers-telephone-quote">
+      <%= sd.label :offers_telephone_quote,
+                t('self_service.travel_insurance_firms_edit.service_details.offers_telephone_quote_label'),
+                class: 'form__label-heading' %>
+
+      <%= sd.radio_button :offers_telephone_quote, 'true', class: 'form__group-input t-offers-telephone-quote-yes' %>
+      <%= t('registration.answer_yes') %>
+
+      <%= sd.radio_button :offers_telephone_quote, 'false', class: ' form__group-input t-offers-telephone-quote-no' %>
+      <%= t('registration.answer_no') %>
+    </fieldset>
+  <% end %>
+
+  <%= sd.form_row :cover_for_specialist_equipment do %>
+    <fieldset class="form__group">
+      <%= sd.label :cover_for_specialist_equipment,
+              t('self_service.travel_insurance_firms_edit.service_details.cover_for_specialist_equipment_label'),
+              class: 'form__label-heading' %>
+      <%= sd.radio_button :cover_for_specialist_equipment_select, 1, class: 'form__group-input t-covers-specialist-equipment-yes', checked: sd.object.cover_for_specialist_equipment.present?, data: { show_hide: 'data-specialist-equipment' } %>
+      <%= t('registration.answer_yes') %>
+
+      <%= sd.radio_button :cover_for_specialist_equipment_select, 0, class: 'form__group-input t-covers-specialist-equipment-no', checked: !sd.object.cover_for_specialist_equipment.present?, data: { show_hide: 'data-specialist-equipment' } %>
+      <%= t('registration.answer_no') %>
+    </fieldset>
+
+    <fieldset class="form__group t-covers-specialist-equipment-cost" data-specialist-equipment>
+      <br/>
+      <%= sd.number_field :cover_for_specialist_equipment, placeholder: 'up to what limit £' %>
+    </fieldset>
+  <% end %>
+
+  <%= sd.form_row :medical_screening_company_label do %>
+    <fieldset class="form__group t-medical-screening-company">
+      <%= sd.label :medical_screening_company_label,
+                t('self_service.travel_insurance_firms_edit.service_details.medical_screening_company_label'),
+                class: 'form__label-heading' %>
+      <%= sd.select :medical_screening_company, t('self_service.travel_insurance_firms_edit.service_details.medical_screening_companies_select').invert, { prompt: 'Please select', include_blank: true }  %>
+    </fieldset>
+  <% end %>
+
+  <%= sd.form_row :how_far_in_advance_trip_cover do %>
+    <fieldset class="form__group t-how-far-in-advance-cover">
+      <%= sd.label :how_far_in_advance_trip_cover,
+                t('self_service.travel_insurance_firms_edit.service_details.how_far_in_advance_trip_cover_label'),
+                class: 'form__label-heading' %>
+      <%= sd.select :how_far_in_advance_trip_cover, t('self_service.travel_insurance_firms_edit.service_details.advance_of_trip_cover_select').invert, { prompt: 'Please select', include_blank: true } %>
+    </fieldset>
+  <% end %>
+<% end %>

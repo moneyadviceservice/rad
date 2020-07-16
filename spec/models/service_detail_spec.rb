@@ -15,7 +15,7 @@ RSpec.describe ServiceDetail, type: :model do
       service_detail.offers_telephone_quote = false
       service_detail.save
 
-      expect(service_detail.cover_for_specialist_equipment_select).not_to be_nil
+      expect(service_detail.cover_for_specialist_equipment).not_to be_nil
     end
   end
 end

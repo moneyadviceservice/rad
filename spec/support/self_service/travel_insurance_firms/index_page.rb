@@ -17,6 +17,7 @@ module SelfService
       element :onboarding_message, '.t-onboarding-message'
 
       element :add_office_link, '.t-office-link'
+      element :cover_and_service_link, '.t-cover-and-service-link'
     end
   end
 end

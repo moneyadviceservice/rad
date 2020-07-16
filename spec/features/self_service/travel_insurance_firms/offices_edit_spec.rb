@@ -98,7 +98,6 @@ RSpec.feature 'The self service office edit page', :inline_job_queue do
 
   def when_i_change_the_information
     office_edit_page.address_line_one.set updated_line_one
-    office_edit_page.disabled_access.set true
   end
 
   def when_i_invalidate_the_information
@@ -120,7 +119,6 @@ RSpec.feature 'The self service office edit page', :inline_job_queue do
   def then_the_information_is_changed
     office.reload
     expect(office.address_line_one).to eq updated_line_one
-    expect(office.disabled_access).to eq true
   end
 
   def and_the_office_information_is_updated_in_the_directory
@@ -129,7 +127,6 @@ RSpec.feature 'The self service office edit page', :inline_job_queue do
     end
 
     expect(directory_office['address_line_one']).to eq updated_line_one
-    expect(directory_office['disabled_access']).to eq true
   end
 
   def then_the_information_is_not_changed

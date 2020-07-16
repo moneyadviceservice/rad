@@ -1,4 +1,4 @@
- RSpec.feature 'The self service office add page', :inline_job_queue do
+ RSpec.feature 'The travel insurance self service office add page', :inline_job_queue do
   include_context 'algolia index fake'
 
   let(:travel_insurance_index_page) { SelfService::TravelInsuranceFirms::IndexPage.new }
@@ -23,7 +23,7 @@
                                add_opening_time: true)
   end
 
-  scenario 'The principal add an office' do
+  scenario 'The principal adds office details' do
     given_i_am_a_fully_registered_principal_user
     and_the_principal_firm_has_no_office
     and_i_am_logged_in
@@ -40,8 +40,7 @@
     the_i_see(the_page: travel_insurance_index_page)
     then_no_errors_are_displayed_on(the_page: travel_insurance_index_page)
     then_i_see_a_success_notice
-    then_the_new_office_is_listed
-    and_the_new_office_is_present_in_the_directory
+    then_the_new_office_is_saved
     and_the_total_number_of_firm_offices_in_the_directory_gets_increased
   end
 
@@ -102,13 +101,12 @@
       :address_postcode,
       :email_address,
       :telephone_number,
-      :disabled_access,
     ].each do |field_name|
       office_add_page.send(field_name).set(office[field_name])
     end
 
-    office_add_page.weekday_opening_time.set(1.hour.ago)
-    office_add_page.weekday_closing_time.set(1.hour.ago)
+    office_add_page.select("02 AM", from: "office_opening_time_attributes_weekday_opening_time_4i")
+    office_add_page.select("05", from: "office_opening_time_attributes_weekday_opening_time_5i")
   end
 
   def and_i_invalidate_the_information
@@ -123,25 +121,15 @@
     expect(office_add_page).to have_flash_message(text: I18n.t('self_service.office_add.saved'))
   end
 
-  def then_the_new_office_is_listed
+  def then_the_new_office_is_saved
+    firm.reload
     expect(firm.office).to be_present
-    # expect(travel_insurance_index_page.offices.first.address).to have_text(office[:address_line_one])
-    # expect(travel_insurance_index_page.offices.first.address_postcode).to have_text(office[:address_postcode])
+    expect(firm.office.address_line_one).to have_text(office[:address_line_one])
+    expect(firm.office.address_postcode).to have_text(office[:address_postcode])
   end
 
   def and_the_principal_firm_has_no_office
-    # expect(firm_offices_in_directory(firm).size).to eq 0
-    # expect(firm_total_offices_in_directory(firm)).to eq 0
-  end
-
-  def and_the_new_office_is_present_in_the_directory
-    expect(firm_offices_in_directory(firm).size).to eq 1
-
-    directory_office = firm_offices_in_directory(firm).first
-    expect(directory_office['address_postcode']).to eq office[:address_postcode]
-    expect(directory_office['address_line_one']).to eq office[:address_line_one]
-    expect(directory_office['address_line_two']).to eq office[:address_line_two]
-    expect(directory_office['address_town']).to eq office[:address_town]
+    expect(firm.office).to be_nil
   end
 
   def and_the_total_number_of_firm_offices_in_the_directory_gets_increased

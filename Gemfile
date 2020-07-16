@@ -85,4 +85,5 @@ group :test do
   gem 'tzinfo-data'
   gem 'vcr'
   gem 'webmock', '3.5.0'
+  gem 'shoulda-matchers', '~> 4.0'
 end

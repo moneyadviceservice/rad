@@ -29,10 +29,15 @@ class TravelInsuranceFirm < ApplicationRecord
   belongs_to :parent, class_name: 'TravelInsuranceFirm'
 
   has_one :office, -> { order created_at: :asc }, dependent: :destroy, as: :officeable
+  has_one :medical_specialism
+  has_one :service_detail
 
   has_many :trading_names, class_name: 'Firm',
                            foreign_key: :parent_id,
                            dependent: :destroy
+
+  has_many :trip_covers
+  accepts_nested_attributes_for :trip_covers, :medical_specialism, :service_detail
 
   scope :onboarded, -> { joins(:office) }
 
