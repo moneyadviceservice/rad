@@ -1,6 +1,6 @@
 class TripCover < ApplicationRecord
-  COVERAGE_AREAS = ['uk_and_europe', 'worldwide_excluding_us_canada', 'worldwide_including_us_canada']
-  TRIP_TYPES = ['single_trip', 'annual_multi_trip']
+  COVERAGE_AREAS = ['uk_and_europe', 'worldwide_excluding_us_canada', 'worldwide_including_us_canada'].freeze
+  TRIP_TYPES = ['single_trip', 'annual_multi_trip'].freeze
 
   belongs_to :travel_insurance_firm
 

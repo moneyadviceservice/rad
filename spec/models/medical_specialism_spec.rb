@@ -20,7 +20,7 @@ RSpec.describe MedicalSpecialism, type: :model do
       expect(medical_specialism.likely_not_cover_medical_condition).to be_nil
     end
 
-    it "medical conditions selects are not cleared if not set to false" do
+    it 'medical conditions selects are not cleared if not set to false' do
       medical_specialism.terminal_prognosis_cover = false
       medical_specialism.save
 

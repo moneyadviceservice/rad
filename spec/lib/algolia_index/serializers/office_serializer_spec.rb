@@ -23,14 +23,14 @@ RSpec.describe AlgoliaIndex::OfficeSerializer do
       }.with_indifferent_access
     end
 
-    context "retirement advise firm" do
+    context 'retirement advise firm' do
       let(:firm_type) { 'retirement_firm' }
       let(:office) { FactoryBot.create(:office, officeable: FactoryBot.build(:firm)) }
 
       it { expect(serialized).to eq(expected_json) }
     end
 
-    context "travel insurance firm" do
+    context 'travel insurance firm' do
       let(:firm_type) { 'travel_insurance_firm' }
       let(:travel_insurance_firm) { FactoryBot.build(:travel_insurance_firm, create_associated_principle: true) }
       let(:office) { FactoryBot.create(:office, officeable: travel_insurance_firm) }

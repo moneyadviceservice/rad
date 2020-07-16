@@ -14,8 +14,8 @@ module SelfService
     def edit
       @firm = principal.travel_insurance_firm
       build_coverage_fields
-      @firm.build_medical_specialism unless @firm.medical_specialism.present?
-      @firm.build_service_detail unless @firm.service_detail.present?
+      @firm.build_medical_specialism if @firm.medical_specialism.blank?
+      @firm.build_service_detail if @firm.service_detail.blank?
     end
 
     def update

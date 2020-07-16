@@ -11,7 +11,6 @@ FactoryBot.define do
     latitude  { Faker::Address.latitude.to_f.round(6) }
     longitude { Faker::Address.longitude.to_f.round(6) }
 
-
     transient do
       add_opening_time { false }
     end

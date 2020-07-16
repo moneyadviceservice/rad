@@ -64,7 +64,7 @@
 
   def given_i_am_a_fully_registered_principal_user
     firm_attrs = FactoryBot.attributes_for(:firm, fca_number: principal.fca_number)
-    principal.firm.update_attributes(firm_attrs)
+    principal.firm.update(firm_attrs)
     expect(Firm.onboarded.find(principal.firm.id)).to be_present
   end
 
@@ -105,8 +105,8 @@
       office_add_page.send(field_name).set(office[field_name])
     end
 
-    office_add_page.select("02 AM", from: "office_opening_time_attributes_weekday_opening_time_4i")
-    office_add_page.select("05", from: "office_opening_time_attributes_weekday_opening_time_5i")
+    office_add_page.select('02 AM', from: 'office_opening_time_attributes_weekday_opening_time_4i')
+    office_add_page.select('05', from: 'office_opening_time_attributes_weekday_opening_time_5i')
   end
 
   def and_i_invalidate_the_information

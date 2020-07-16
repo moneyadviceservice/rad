@@ -50,7 +50,7 @@ RSpec.feature 'The self service TravelInsurance firm edit page' do
 
   def given_i_am_a_fully_registered_principal_user
     firm_attrs = FactoryBot.attributes_for(:travel_insurance_firm, fca_number: principal.fca_number)
-    principal.travel_insurance_firm.update_attributes(firm_attrs)
+    principal.travel_insurance_firm.update(firm_attrs)
     expect(TravelInsuranceFirm.find(principal.travel_insurance_firm.id)).to be_present
   end
 
@@ -124,55 +124,55 @@ RSpec.feature 'The self service TravelInsurance firm edit page' do
 
   def complete_europe_tab
     firm_edit_page.tap do |p|
-      p.single_europe_one_month_land.select("62")
-      p.single_europe_one_month_cruise.select("62")
-      p.single_europe_six_month_land.select("62")
-      p.single_europe_six_month_cruise.select("62")
-      p.single_europe_six_month_plus_land.select("62")
-      p.single_europe_six_month_plus_cruise.select("62")
+      p.single_europe_one_month_land.select('62')
+      p.single_europe_one_month_cruise.select('62')
+      p.single_europe_six_month_land.select('62')
+      p.single_europe_six_month_cruise.select('62')
+      p.single_europe_six_month_plus_land.select('62')
+      p.single_europe_six_month_plus_cruise.select('62')
 
-      p.annual_europe_one_month_land.select("62")
-      p.annual_europe_one_month_cruise.select("62")
-      p.annual_europe_six_month_land.select("62")
-      p.annual_europe_six_month_cruise.select("62")
-      p.annual_europe_six_month_plus_land.select("62")
-      p.annual_europe_six_month_plus_cruise.select("62")
+      p.annual_europe_one_month_land.select('62')
+      p.annual_europe_one_month_cruise.select('62')
+      p.annual_europe_six_month_land.select('62')
+      p.annual_europe_six_month_cruise.select('62')
+      p.annual_europe_six_month_plus_land.select('62')
+      p.annual_europe_six_month_plus_cruise.select('62')
     end
   end
 
   def complete_worldwide_excluding_us_tab
     firm_edit_page.tap do |p|
-      p.single_worldwide_excluding_us_one_month_land.select("62")
-      p.single_worldwide_excluding_us_one_month_cruise.select("62")
-      p.single_worldwide_excluding_us_six_month_land.select("62")
-      p.single_worldwide_excluding_us_six_month_cruise.select("62")
-      p.single_worldwide_excluding_us_six_month_plus_land.select("62")
-      p.single_worldwide_excluding_us_six_month_plus_cruise.select("62")
+      p.single_worldwide_excluding_us_one_month_land.select('62')
+      p.single_worldwide_excluding_us_one_month_cruise.select('62')
+      p.single_worldwide_excluding_us_six_month_land.select('62')
+      p.single_worldwide_excluding_us_six_month_cruise.select('62')
+      p.single_worldwide_excluding_us_six_month_plus_land.select('62')
+      p.single_worldwide_excluding_us_six_month_plus_cruise.select('62')
 
-      p.annual_worldwide_excluding_us_one_month_land.select("62")
-      p.annual_worldwide_excluding_us_one_month_cruise.select("62")
-      p.annual_worldwide_excluding_us_six_month_land.select("62")
-      p.annual_worldwide_excluding_us_six_month_cruise.select("62")
-      p.annual_worldwide_excluding_us_six_month_plus_land.select("62")
-      p.annual_worldwide_excluding_us_six_month_plus_cruise.select("62")
+      p.annual_worldwide_excluding_us_one_month_land.select('62')
+      p.annual_worldwide_excluding_us_one_month_cruise.select('62')
+      p.annual_worldwide_excluding_us_six_month_land.select('62')
+      p.annual_worldwide_excluding_us_six_month_cruise.select('62')
+      p.annual_worldwide_excluding_us_six_month_plus_land.select('62')
+      p.annual_worldwide_excluding_us_six_month_plus_cruise.select('62')
     end
   end
 
   def complete_worldwide_including_us_tab
     firm_edit_page.tap do |p|
-      p.single_worldwide_including_us_one_month_land.select("62")
-      p.single_worldwide_including_us_one_month_cruise.select("62")
-      p.single_worldwide_including_us_six_month_land.select("62")
-      p.single_worldwide_including_us_six_month_cruise.select("62")
-      p.single_worldwide_including_us_six_month_plus_land.select("62")
-      p.single_worldwide_including_us_six_month_plus_cruise.select("62")
+      p.single_worldwide_including_us_one_month_land.select('62')
+      p.single_worldwide_including_us_one_month_cruise.select('62')
+      p.single_worldwide_including_us_six_month_land.select('62')
+      p.single_worldwide_including_us_six_month_cruise.select('62')
+      p.single_worldwide_including_us_six_month_plus_land.select('62')
+      p.single_worldwide_including_us_six_month_plus_cruise.select('62')
 
-      p.annual_worldwide_including_us_one_month_land.select("62")
-      p.annual_worldwide_including_us_one_month_cruise.select("62")
-      p.annual_worldwide_including_us_six_month_land.select("62")
-      p.annual_worldwide_including_us_six_month_cruise.select("62")
-      p.annual_worldwide_including_us_six_month_plus_land.select("62")
-      p.annual_worldwide_including_us_six_month_plus_cruise.select("62")
+      p.annual_worldwide_including_us_one_month_land.select('62')
+      p.annual_worldwide_including_us_one_month_cruise.select('62')
+      p.annual_worldwide_including_us_six_month_land.select('62')
+      p.annual_worldwide_including_us_six_month_cruise.select('62')
+      p.annual_worldwide_including_us_six_month_plus_land.select('62')
+      p.annual_worldwide_including_us_six_month_plus_cruise.select('62')
     end
   end
 

@@ -63,7 +63,7 @@ RSpec.feature 'The self service office edit page', :inline_job_queue do
 
   def given_i_am_a_fully_registered_principal_user
     firm_attrs = FactoryBot.attributes_for(:travel_insurance_firm, fca_number: principal.fca_number)
-    principal.travel_insurance_firm.update_attributes(firm_attrs)
+    principal.travel_insurance_firm.update(firm_attrs)
     expect(TravelInsuranceFirm.onboarded.find(principal.travel_insurance_firm.id)).to be_present
   end
 

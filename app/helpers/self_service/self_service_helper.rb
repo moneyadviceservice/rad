@@ -87,10 +87,10 @@ module SelfService
       end
     end
 
-    def options_for_cover_ages(html_options={})
+    def options_for_cover_ages
       options = ['no_age_restriction', 'not_offered'] + (60..75).to_a
 
-      options.map{ |s| [(s.try(:humanize) || s), s] }
+      options.map { |s| [(s.try(:humanize) || s), s] }
     end
   end
 end

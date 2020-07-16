@@ -11,7 +11,7 @@ RSpec.describe ServiceDetail, type: :model do
       expect(service_detail.cover_for_specialist_equipment).to be_nil
     end
 
-    it "does not change any attributes unless cover_for_specialist_equipment_select is selected" do
+    it 'does not change any attributes unless cover_for_specialist_equipment_select is selected' do
       service_detail.offers_telephone_quote = false
       service_detail.save
 

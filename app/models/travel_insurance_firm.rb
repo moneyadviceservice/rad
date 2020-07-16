@@ -29,8 +29,8 @@ class TravelInsuranceFirm < ApplicationRecord
   belongs_to :parent, class_name: 'TravelInsuranceFirm'
 
   has_one :office, -> { order created_at: :asc }, dependent: :destroy, as: :officeable
-  has_one :medical_specialism
-  has_one :service_detail
+  has_one :medical_specialism, dependent: :destroy
+  has_one :service_detail, dependent: :destroy
 
   has_many :trading_names, class_name: 'Firm',
                            foreign_key: :parent_id,

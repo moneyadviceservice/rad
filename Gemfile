@@ -80,10 +80,10 @@ group :test do
   gem 'launchy'
   gem 'rspec-collection_matchers'
   gem 'rspec-sidekiq'
+  gem 'shoulda-matchers', '~> 4.0'
   gem 'site_prism'
   gem 'timecop'
   gem 'tzinfo-data'
   gem 'vcr'
   gem 'webmock', '3.5.0'
-  gem 'shoulda-matchers', '~> 4.0'
 end
