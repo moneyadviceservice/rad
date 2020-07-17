@@ -19,12 +19,12 @@ module SelfService
 
     %w[uk_and_europe worldwide_excluding_us_canada worldwide_including_us_canada].each do |area_covered|
       define_method "#{area_covered}_background" do
-        trip_covers.any? && trip_covers.send(area_covered).map(&:all_complete?).all? ? 'complete' : 'unpublished'
+        trip_covers.send(area_covered).present? && trip_covers.send(area_covered).map(&:all_complete?).all? ? 'complete' : 'unpublished'
       end
     end
 
-    def firm_details_icon
-      icon_toggle onboarded?
+    def cover_and_service_icon
+      icon_toggle cover_and_service_complete?
     end
 
     def advisers_icon
@@ -32,7 +32,7 @@ module SelfService
     end
 
     def offices_icon
-      icon_toggle offices.any?
+      icon_toggle main_office
     end
 
     def offices_link(opts = {})
@@ -68,7 +68,7 @@ module SelfService
     end
 
     def needs_offices?
-      false
+      main_office.present?
     end
 
     private

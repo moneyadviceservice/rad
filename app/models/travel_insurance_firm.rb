@@ -54,8 +54,13 @@ class TravelInsuranceFirm < ApplicationRecord
   end
 
   def publishable?
-    office.present?
-    # onboarded? && offices.any? && advisers.any?
+    office.present? && cover_and_service_complete?
+  end
+
+  def cover_and_service_complete?
+    medical_specialism.present? &&
+    service_detail.present? &&
+    trip_covers.any? && trip_covers.map(&:all_complete?).all?
   end
 
   def main_office

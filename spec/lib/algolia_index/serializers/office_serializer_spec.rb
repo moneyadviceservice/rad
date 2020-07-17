@@ -32,7 +32,7 @@ RSpec.describe AlgoliaIndex::OfficeSerializer do
 
     context 'travel insurance firm' do
       let(:firm_type) { 'travel_insurance_firm' }
-      let(:travel_insurance_firm) { FactoryBot.build(:travel_insurance_firm, create_associated_principle: true) }
+      let(:travel_insurance_firm) { FactoryBot.build(:travel_insurance_firm, with_associated_principle: true) }
       let(:office) { FactoryBot.create(:office, officeable: travel_insurance_firm) }
 
       it { expect(serialized).to eq(expected_json) }

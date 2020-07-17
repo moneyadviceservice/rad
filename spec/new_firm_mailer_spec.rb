@@ -19,7 +19,7 @@ RSpec.describe NewFirmMailer, type: :mailer do
   end
 
   describe 'travel insurance firm' do
-    let!(:firm) { create(:travel_insurance_firm, registered_name: 'TavelInsurance', create_associated_principle: true) }
+    let!(:firm) { create(:travel_insurance_firm, registered_name: 'TavelInsurance', with_associated_principle: true) }
     let(:email_recipient) { [ENV['TAD_ADMIN_EMAIL']] }
     it_behaves_like 'new firm notification mailer'
   end

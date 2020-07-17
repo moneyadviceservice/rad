@@ -50,7 +50,7 @@
           <h2>Single Trip</h2>
           <%= render partial: 'self_service/travel_insurance_firms/trip_cover_form', locals: { f: f, cover_data: @single_trip_europe, class: '' } %>
         </div>
-
+        <hr />
         <div class="t-annual-europe">
           <h2>Annual multi-trip</h2>
           <%= render partial: 'self_service/travel_insurance_firms/trip_cover_form', locals: { f: f, cover_data: @multi_trip_europe } %>
@@ -62,6 +62,7 @@
           <h2>Single Trip</h2>
           <%= render partial: 'self_service/travel_insurance_firms/trip_cover_form', locals: { f: f, cover_data: @single_worldwide_ex_us } %>
         </div>
+        <hr />
 
         <div class="t-annual-worldwide-excluding-us">
           <h2>Annual multi-trip</h2>
@@ -74,6 +75,7 @@
           <h2>Single Trip</h2>
           <%= render partial: 'self_service/travel_insurance_firms/trip_cover_form', locals: { f: f, cover_data: @single_worldwide_us } %>
         </div>
+        <hr />
 
         <div class="t-annual-worldwide-including-us">
           <h2>Annual multi-trip</h2>
@@ -92,7 +94,7 @@
     <section class="form-section">
       <h2><%= t('self_service.travel_insurance_firms_edit.service_details.heading') %></h2>
       <p><%= t('self_service.travel_insurance_firms_edit.service_details.description') %></p>
-      
+
       <%= render partial: 'service_detail_form', locals: { f: f } %>
     </section>
   </div>

@@ -21,6 +21,50 @@ RSpec.describe TravelInsuranceFirm, type: :model do
   ]
   test_questions = HashWithIndifferentAccess[test_question_answers.sample(rand(1..18)).map { |key, value| [key, value] }]
 
+  describe '#publishable?' do
+    let(:firm) { FactoryBot.create(:travel_insurance_firm, with_associated_principle: true) }
+    subject { firm.publishable? }
+
+    context 'when the firm is valid, has a main office, medical_specialism, service_details and trip_cover data' do
+      let(:firm) { FactoryBot.create(:travel_insurance_firm, completed_firm: true) }
+      it { is_expected.to be_truthy }
+    end
+
+    context 'when the firm is not valid' do
+      let(:firm) { build(:travel_insurance_firm) }
+
+      it { is_expected.to be_falsey }
+    end
+
+    context 'when the firm has no main office' do
+      let(:firm) { FactoryBot.create(:travel_insurance_firm, completed_firm: true,) }
+      before { allow(firm).to receive(:office).and_return(nil) }
+
+      it { is_expected.to be_falsey }
+    end
+
+    context 'when the firm has no medical_specialism' do
+      let(:firm) { FactoryBot.create(:travel_insurance_firm, completed_firm: true) }
+      before { allow(firm).to receive(:medical_specialism).and_return(nil) }
+
+      it { is_expected.to be_falsey }
+    end
+
+    context 'when the firm has no service_detail' do
+      let(:firm) { FactoryBot.create(:travel_insurance_firm, completed_firm: true) }
+      before { allow(firm).to receive(:service_detail).and_return(nil) }
+
+      it { is_expected.to be_falsey }
+    end
+
+    context 'when the firm has no trip_covers' do
+      let(:firm) { FactoryBot.create(:travel_insurance_firm, completed_firm: true) }
+      before { allow(firm).to receive(:trip_covers).and_return([]) }
+
+      it { is_expected.to be_falsey }
+    end
+  end
+
   describe "the question answers: #{test_questions} cached before creating the corresponding firm" do
     let(:travel_firm) do
       existing_principal = create(:principal, manually_build_firms: true)
