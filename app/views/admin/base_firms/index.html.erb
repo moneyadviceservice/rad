@@ -32,6 +32,13 @@
     <p class="t-page-entries-info">
       <%= page_entries_info @firms %>
     </p>
+
+    <% if params[:q] %>
+      <p>
+        <%= link_to "Export firm results", admin_retirement_firms_path(format: :csv, q: params[:q].to_enum.to_h) %>
+      </p>
+    <% end %>
+
     <p>
       <%= link_to "Firms' login report", login_report_admin_retirement_firms_path %>
     </p>
