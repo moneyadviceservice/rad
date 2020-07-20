@@ -82,6 +82,8 @@ module FCA
         line.gsub!(%r(BROKER INS " LTD), '')
       end
 
+      line.gsub!('"', '') if line.count('"') == 1
+
       match = repairs.find { |pair| pair['line'] == line }
 
       if match.nil?
