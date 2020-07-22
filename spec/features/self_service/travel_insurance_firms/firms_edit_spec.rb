@@ -124,55 +124,55 @@ RSpec.feature 'The self service TravelInsurance firm edit page' do
 
   def complete_europe_tab
     firm_edit_page.tap do |p|
-      p.single_europe_one_month_land.select('62')
-      p.single_europe_one_month_cruise.select('62')
-      p.single_europe_six_month_land.select('62')
-      p.single_europe_six_month_cruise.select('62')
-      p.single_europe_six_month_plus_land.select('62')
-      p.single_europe_six_month_plus_cruise.select('62')
+      p.single_europe_30_days_land.select('68')
+      p.single_europe_30_days_cruise.select('68')
+      p.single_europe_45_days_land.select('68')
+      p.single_europe_45_days_cruise.select('68')
+      p.single_europe_55_days_land.select('68')
+      p.single_europe_55_days_cruise.select('68')
 
-      p.annual_europe_one_month_land.select('62')
-      p.annual_europe_one_month_cruise.select('62')
-      p.annual_europe_six_month_land.select('62')
-      p.annual_europe_six_month_cruise.select('62')
-      p.annual_europe_six_month_plus_land.select('62')
-      p.annual_europe_six_month_plus_cruise.select('62')
+      p.annual_europe_30_days_land.select('68')
+      p.annual_europe_30_days_cruise.select('68')
+      p.annual_europe_45_days_land.select('68')
+      p.annual_europe_45_days_cruise.select('68')
+      p.annual_europe_55_days_land.select('68')
+      p.annual_europe_55_days_cruise.select('68')
     end
   end
 
   def complete_worldwide_excluding_us_tab
     firm_edit_page.tap do |p|
-      p.single_worldwide_excluding_us_one_month_land.select('62')
-      p.single_worldwide_excluding_us_one_month_cruise.select('62')
-      p.single_worldwide_excluding_us_six_month_land.select('62')
-      p.single_worldwide_excluding_us_six_month_cruise.select('62')
-      p.single_worldwide_excluding_us_six_month_plus_land.select('62')
-      p.single_worldwide_excluding_us_six_month_plus_cruise.select('62')
+      p.single_worldwide_excluding_us_30_days_land.select('68')
+      p.single_worldwide_excluding_us_30_days_cruise.select('68')
+      p.single_worldwide_excluding_us_45_days_land.select('68')
+      p.single_worldwide_excluding_us_45_days_cruise.select('68')
+      p.single_worldwide_excluding_us_55_days_land.select('68')
+      p.single_worldwide_excluding_us_55_days_cruise.select('68')
 
-      p.annual_worldwide_excluding_us_one_month_land.select('62')
-      p.annual_worldwide_excluding_us_one_month_cruise.select('62')
-      p.annual_worldwide_excluding_us_six_month_land.select('62')
-      p.annual_worldwide_excluding_us_six_month_cruise.select('62')
-      p.annual_worldwide_excluding_us_six_month_plus_land.select('62')
-      p.annual_worldwide_excluding_us_six_month_plus_cruise.select('62')
+      p.annual_worldwide_excluding_us_30_days_land.select('68')
+      p.annual_worldwide_excluding_us_30_days_cruise.select('68')
+      p.annual_worldwide_excluding_us_45_days_land.select('68')
+      p.annual_worldwide_excluding_us_45_days_cruise.select('68')
+      p.annual_worldwide_excluding_us_55_days_land.select('68')
+      p.annual_worldwide_excluding_us_55_days_cruise.select('68')
     end
   end
 
   def complete_worldwide_including_us_tab
     firm_edit_page.tap do |p|
-      p.single_worldwide_including_us_one_month_land.select('62')
-      p.single_worldwide_including_us_one_month_cruise.select('62')
-      p.single_worldwide_including_us_six_month_land.select('62')
-      p.single_worldwide_including_us_six_month_cruise.select('62')
-      p.single_worldwide_including_us_six_month_plus_land.select('62')
-      p.single_worldwide_including_us_six_month_plus_cruise.select('62')
+      p.single_worldwide_including_us_30_days_land.select('68')
+      p.single_worldwide_including_us_30_days_cruise.select('68')
+      p.single_worldwide_including_us_45_days_land.select('68')
+      p.single_worldwide_including_us_45_days_cruise.select('68')
+      p.single_worldwide_including_us_55_days_land.select('68')
+      p.single_worldwide_including_us_55_days_cruise.select('68')
 
-      p.annual_worldwide_including_us_one_month_land.select('62')
-      p.annual_worldwide_including_us_one_month_cruise.select('62')
-      p.annual_worldwide_including_us_six_month_land.select('62')
-      p.annual_worldwide_including_us_six_month_cruise.select('62')
-      p.annual_worldwide_including_us_six_month_plus_land.select('62')
-      p.annual_worldwide_including_us_six_month_plus_cruise.select('62')
+      p.annual_worldwide_including_us_30_days_land.select('68')
+      p.annual_worldwide_including_us_30_days_cruise.select('68')
+      p.annual_worldwide_including_us_45_days_land.select('68')
+      p.annual_worldwide_including_us_45_days_cruise.select('68')
+      p.annual_worldwide_including_us_55_days_land.select('68')
+      p.annual_worldwide_including_us_55_days_cruise.select('68')
     end
   end
 

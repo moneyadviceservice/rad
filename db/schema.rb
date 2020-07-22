@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 3019_11_18_100165) do
+ActiveRecord::Schema.define(version: 3019_11_18_100167) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -330,6 +330,8 @@ ActiveRecord::Schema.define(version: 3019_11_18_100165) do
     t.string "how_far_in_advance_trip_cover"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "covid19_medical_repatriation"
+    t.boolean "covid19_cancellation_cover"
     t.index ["travel_insurance_firm_id"], name: "index_service_details_on_travel_insurance_firm_id"
   end
 
@@ -432,12 +434,12 @@ ActiveRecord::Schema.define(version: 3019_11_18_100165) do
     t.bigint "travel_insurance_firm_id"
     t.string "trip_type"
     t.string "cover_area"
-    t.string "one_month_land_max_age"
-    t.string "one_month_cruise_max_age"
-    t.string "six_month_land_max_age"
-    t.string "six_month_cruise_max_age"
-    t.string "six_month_plus_land_max_age"
-    t.string "six_month_plus_cruise_max_age"
+    t.string "land_30_days_max_age"
+    t.string "cruise_30_days_max_age"
+    t.string "land_45_days_max_age"
+    t.string "cruise_45_days_max_age"
+    t.string "land_55_days_max_age"
+    t.string "cruise_55_days_max_age"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["travel_insurance_firm_id"], name: "index_trip_covers_on_travel_insurance_firm_id"

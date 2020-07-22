@@ -1,9 +1,20 @@
 en:
   self_service:
     travel_insurance_firms_edit:
+      enter_details: Please enter details about the cover and service you offer
+      age_limits: Age limits
+      age_limits_description: Enter the maximum age that can be covered for different destinations, durations and types of trip.
+      each_individual_trip: 'Each individual trip:'
+      maximum_age_non_cruise: 'Maximum age: non cruise trips'
+      maximum_age_cruise: 'Maximum age: cruise trips'
+
+      up_to_31_days: no longer than 31 days
+      up_to_45_days: no longer than 45 days
+      up_to_55_days: no longer than 55 days
+
       medical_specialism:
-        heading: Medical specialism
-        description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar sic tempor.
+        heading: Medical Specialism
+        description: Please confirm any medical specialisms or exclusions and whether cover can be provided for people who have been given a terminal prognosis.
         specialised_medical_conditions_cover_label: Does the firm specialise in covering any specific medical conditions?
         likely_not_cover_medical_condition_label: Is the firm likely NOT to cover any specific medical conditions?
         cover_undergoing_treatment_label: Will you offer cover if the customer is undergoing treatment at the time of travel?
@@ -11,20 +22,33 @@ en:
         medical_conditions_cover_select:
           cancer: Cancer
           heart_conditions: Heart conditions
+          strokes: Strokes or central nervous system disorders
           respiratory_problems: Respiratory problems
-          mental_health_conditions: Mental health conditions
+          mental_health_conditions: Psychological or mental health problems
 
       service_details:
         heading: Service Details
-        description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar sic tempor.
+        description: Please provide further details of the service and cover offered
         offers_telephone_quote_label: Please confirm that you are able to offer a telephone quote service as a minimum (i.e. that your service is not online only).
+        covid19_medical_repatriation_label: Will cover be provided for medical expenses and repatriation if Coronavirus is contracted on trip?
+        covid19_cancellation_cover_label: Do you offer cancellation cover if trip cancelled due to Coronavirus?
         cover_for_specialist_equipment_label: Will you offer cover for specialist medical equipment?
         medical_screening_company_label: Which medical screening company do you use?
         how_far_in_advance_trip_cover_label: How far in advance of trip will you provide cover?
+        covid_19_cancellation_cover_tooltip_html: |
+          Cancelled due to Coronavirus includes:
+          <ul>
+            <li>if customer has contracted Coronavirus or has been in contact with someone who has coronavirus and must self-isolate   and/or</li>
+            <li>travel restrictions have been imposed internationally, nationally or locally due to coronavirus.</li>
+          </ul>
+
+
         medical_screening_companies_select:
           verisik: Verisik
-          another_1: Another 1
-          another_2: Another 2
+          tamis: Travel and Medical Insurance Services (TAMIS)
+          protectif: Protectif
+          inhouse: Medical screening undertaken in-house
+
         advance_of_trip_cover_select:
           up_to_1_month: Up to 1 month
           up_to_6_month: Up to 6 months

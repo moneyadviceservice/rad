@@ -13,9 +13,9 @@ class TripCover < ApplicationRecord
 
   def all_complete?
     [
-      one_month_land_max_age, one_month_cruise_max_age,
-      six_month_land_max_age, six_month_cruise_max_age,
-      six_month_plus_land_max_age, six_month_plus_cruise_max_age
+      land_30_days_max_age, cruise_30_days_max_age,
+      land_45_days_max_age, cruise_45_days_max_age,
+      land_55_days_max_age, cruise_55_days_max_age
     ].map(&:present?).all?
   end
 end

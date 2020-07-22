@@ -59,12 +59,12 @@ module SelfService
           :id,
           :trip_type,
           :cover_area,
-          :one_month_land_max_age,
-          :one_month_cruise_max_age,
-          :six_month_land_max_age,
-          :six_month_cruise_max_age,
-          :six_month_plus_land_max_age,
-          :six_month_plus_cruise_max_age
+          :land_30_days_max_age,
+          :cruise_30_days_max_age,
+          :land_45_days_max_age,
+          :cruise_45_days_max_age,
+          :land_55_days_max_age,
+          :cruise_55_days_max_age
         ],
         medical_specialism_attributes: [
           :id,
@@ -78,6 +78,8 @@ module SelfService
         service_detail_attributes: [
           :id,
           :offers_telephone_quote,
+          :covid19_medical_repatriation,
+          :covid19_cancellation_cover,
           :cover_for_specialist_equipment_select,
           :cover_for_specialist_equipment,
           :medical_screening_company,
