@@ -94,5 +94,21 @@ module SelfService
         expect(helper.status_icon('tick')).to include('#icon-tick')
       end
     end
+
+    describe '#options_for_cover_ages' do
+      it 'returns an array' do
+        expect(helper.options_for_cover_ages).to be_a_kind_of(Array)
+      end
+
+      it 'includes no_age_restriction and not_offered options' do
+        expect(helper.options_for_cover_ages).to include(["No age restriction", "no_age_restriction"])
+        expect(helper.options_for_cover_ages).to include(["Not offered", "not_offered"])
+      end
+
+      it 'includes numbers 65 to 100 in options style array' do
+        ages_array = (65..100).to_a.map { |k| [k, k] }
+        expect(helper.options_for_cover_ages).to include(*ages_array)
+      end
+    end
   end
 end
