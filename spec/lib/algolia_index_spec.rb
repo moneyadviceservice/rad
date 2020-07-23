@@ -51,4 +51,16 @@ RSpec.describe AlgoliaIndex do
       expect(described_class.indexed_offices.name).to eq('firm-offices-test')
     end
   end
+
+  describe '.indexed_travel_insurance_firms' do
+    it 'returns the travel firms index from Algolia' do
+      expect(described_class.indexed_travel_insurance_firms.name).to eq('travel-firms-test')
+    end
+  end
+
+  describe '.indexed_travel_insurance_firm_offerings' do
+    it 'returns the travel firm offerings index from Algolia' do
+      expect(described_class.indexed_travel_insurance_firm_offerings.name).to eq('travel-firm-offerings-test')
+    end
+  end
 end
