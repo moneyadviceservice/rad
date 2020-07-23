@@ -10,7 +10,6 @@ RSpec.describe AlgoliaIndex::OfficeSerializer do
         },
         objectID: office.id,
         firm_id: office.officeable_id,
-        firm_type: firm_type,
         address_line_one: office.address_line_one,
         address_line_two: office.address_line_two,
         address_town: office.address_town,

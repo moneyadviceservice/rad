@@ -2,8 +2,10 @@
              url: self_service_travel_insurance_firm_path(@firm),
              builder: Dough::Forms::Builders::Validation do |f| %>
 
-  <p><%= t('self_service.required_fields_message') %></p>
-
+  <p><%= t('self_service.travel_insurance_firms_edit.enter_details') %></p>
+  <h2><%= t('self_service.travel_insurance_firms_edit.age_limits') %></h2>
+  <p><%= t('self_service.travel_insurance_firms_edit.age_limits_description') %></p>
+  <br />
   <% if @firm.errors.any? %>
     <div class="t-validation-summary">
       <%= f.validation_summary %>
@@ -53,6 +55,8 @@
         <hr />
         <div class="t-annual-europe">
           <h2>Annual multi-trip</h2>
+          <p><%= t('self_service.travel_insurance_firms_edit.each_individual_trip') %></p>
+
           <%= render partial: 'self_service/travel_insurance_firms/trip_cover_form', locals: { f: f, cover_data: @multi_trip_europe } %>
         </div>
      </div>
