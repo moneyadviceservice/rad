@@ -1,7 +1,5 @@
 <% render_breadcrumbs(breadcrumbs_firm_edit) %>
 
-<% presenter = SelfService::TravelInsuranceStatusPresenter.new(@firm) %>
-
 <div class="l-back-link t-back-to-firm-list">
   <%= link_to '< Back to firm list', self_service_travel_insurance_firms_path %>
 </div>
@@ -9,5 +7,10 @@
 <h1 class="t-firm-name">
   <%= @firm.registered_name %>
 </h1>
+<%= form_for @firm,
+             url: self_service_travel_insurance_firm_path(@firm),
+             builder: Dough::Forms::Builders::Validation do |f| %>
 
-<%= render 'self_service/travel_insurance_firms/form', presenter: presenter %>
+  <%= render partial: 'self_service/travel_insurance_firms/form', locals: { f: f } %>
+
+<% end %>

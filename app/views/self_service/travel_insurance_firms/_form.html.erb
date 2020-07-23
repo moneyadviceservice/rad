@@ -1,114 +1,111 @@
-<%= form_for @firm,
-             url: self_service_travel_insurance_firm_path(@firm),
-             builder: Dough::Forms::Builders::Validation do |f| %>
+<% presenter = SelfService::TravelInsuranceStatusPresenter.new(@firm) %>
 
-  <p><%= t('self_service.travel_insurance_firms_edit.enter_details') %></p>
-  <h2><%= t('self_service.travel_insurance_firms_edit.age_limits') %></h2>
-  <p><%= t('self_service.travel_insurance_firms_edit.age_limits_description') %></p>
-  <br />
-  <% if @firm.errors.any? %>
-    <div class="t-validation-summary">
-      <%= f.validation_summary %>
-    </div>
-  <% end %>
-
-  <div class="tab-selector" data-dough-component="TabSelector">
-     <div data-dough-tab-selector-triggers-outer class="tab-selector__triggers-outer">
-        <div data-dough-tab-selector-triggers-inner class="tab-selector__triggers-inner">
-           <div class="tab-selector__trigger-container is-active" data-dough-tab-selector-trigger-container>
-            <a class="t-europe-link tab-selector__trigger" href="#panel-1" data-dough-tab-selector-trigger="1">
-              United Kingdom & Europe
-              <div class="t-tab-status t-overall-status status__overall-status--<%= presenter.uk_and_europe_background %>">
-                <%= status_icon(presenter.uk_and_europe_icon) %>
-                <%= t("self_service.status.#{presenter.uk_and_europe_background}") %>
-              </div>
-            </a>
-          </div>
-
-          <div class="tab-selector__trigger-container is-inactive" data-dough-tab-selector-trigger-container>
-              <a class="t-worldwide-excluding-us-link tab-selector__trigger" href="#panel-2" data-dough-tab-selector-trigger="2">
-                Worldwide excluding USA, Canada & Caribbean
-                <div class="t-tab-status t-overall-status status__overall-status--<%= presenter.worldwide_excluding_us_canada_background %>">
-                  <%= status_icon(presenter.worldwide_excluding_us_canada_icon) %>
-                  <%= t("self_service.status.#{presenter.worldwide_excluding_us_canada_background}") %>
-                </div>
-              </a>
-          </div>
-
-          <div class="tab-selector__trigger-container is-inactive" data-dough-tab-selector-trigger-container>
-            <a class="t-worldwide-including-us-link tab-selector__trigger" href="#panel-3" data-dough-tab-selector-trigger="3">
-              Worldwide including USA, Canada & Caribbean
-              <div class="t-tab-status t-overall-status status__overall-status--<%= presenter.worldwide_including_us_canada_background %>">
-                  <%= status_icon(presenter.worldwide_including_us_canada_icon) %>
-                  <%= t("self_service.status.#{presenter.worldwide_including_us_canada_background}") %>
-                </div>
-            </a>
-          </div>
-        </div>
-     </div>
-
-     <div class="tab-selector__target is-active" id="panel-1" data-dough-tab-selector-target="1">
-        <div class="t-single-europe">
-          <h2><%= t('self_service.travel_insurance_firms_edit.single_trip') %></h2>
-          <%= render partial: 'self_service/travel_insurance_firms/trip_cover_form', locals: { f: f, cover_data: @single_trip_europe, class: '' } %>
-        </div>
-        <hr />
-        <div class="t-annual-europe">
-          <h2><%= t('self_service.travel_insurance_firms_edit.annual_multi_trip') %></h2>
-          <p><%= t('self_service.travel_insurance_firms_edit.each_individual_trip') %></p>
-
-          <%= render partial: 'self_service/travel_insurance_firms/trip_cover_form', locals: { f: f, cover_data: @multi_trip_europe } %>
-        </div>
-     </div>
-
-     <div class="tab-selector__target is-inactive t-worldwide-excluding-us" id="panel-2" data-dough-tab-selector-target="2">
-        <div class="t-single-worldwide-excluding-us">
-          <h2><%= t('self_service.travel_insurance_firms_edit.single_trip') %></h2>
-          <%= render partial: 'self_service/travel_insurance_firms/trip_cover_form', locals: { f: f, cover_data: @single_worldwide_ex_us } %>
-        </div>
-        <hr />
-
-        <div class="t-annual-worldwide-excluding-us">
-          <h2><%= t('self_service.travel_insurance_firms_edit.annual_multi_trip') %></h2>
-          <p><%= t('self_service.travel_insurance_firms_edit.each_individual_trip') %></p>
-
-          <%= render partial: 'self_service/travel_insurance_firms/trip_cover_form', locals: { f: f, cover_data: @multi_worldwide_ex_us } %>
-        </div>
-     </div>
-
-     <div class="tab-selector__target is-inactive t-worldwide-including-us" id="panel-3" data-dough-tab-selector-target="3">
-        <div class="t-single-worldwide-including-us">
-          <h2><%= t('self_service.travel_insurance_firms_edit.single_trip') %></h2>
-          <%= render partial: 'self_service/travel_insurance_firms/trip_cover_form', locals: { f: f, cover_data: @single_worldwide_us } %>
-        </div>
-        <hr />
-
-        <div class="t-annual-worldwide-including-us">
-          <h2><%= t('self_service.travel_insurance_firms_edit.annual_multi_trip') %></h2>
-          <p><%= t('self_service.travel_insurance_firms_edit.each_individual_trip') %></p>
-
-          <%= render partial: 'self_service/travel_insurance_firms/trip_cover_form', locals: { f: f, cover_data: @multi_worldwide_us } %>
-        </div>
-     </div>
-  </div>
-
-  <div class="l-half-width">
-    <section class="form-section">
-      <h2><%= t('self_service.travel_insurance_firms_edit.medical_specialism.heading') %></h2>
-      <p><%= t('self_service.travel_insurance_firms_edit.medical_specialism.description') %></p>
-      <%= render partial: 'medical_specialism_form', locals: { f: f } %>
-    </section>
-
-    <section class="form-section">
-      <h2><%= t('self_service.travel_insurance_firms_edit.service_details.heading') %></h2>
-      <p><%= t('self_service.travel_insurance_firms_edit.service_details.description') %></p>
-
-      <%= render partial: 'service_detail_form', locals: { f: f } %>
-    </section>
-  </div>
-
-  <div class="l-self-service-action-row">
-    <%= link_to t('self_service.cancel_button'), self_service_travel_insurance_firms_path, class: 'l-self-service-action-row__cancel' %>
-    <%= f.submit t('self_service.save_button'), class: 'button button--primary t-save-button' %>
+<p><%= t('self_service.travel_insurance_firms_edit.enter_details') %></p>
+<h2><%= t('self_service.travel_insurance_firms_edit.age_limits') %></h2>
+<p><%= t('self_service.travel_insurance_firms_edit.age_limits_description') %></p>
+<br />
+<% if @firm.errors.any? %>
+  <div class="t-validation-summary">
+    <%= f.validation_summary %>
   </div>
 <% end %>
+
+<div class="tab-selector" data-dough-component="TabSelector">
+   <div data-dough-tab-selector-triggers-outer class="tab-selector__triggers-outer">
+      <div data-dough-tab-selector-triggers-inner class="tab-selector__triggers-inner">
+         <div class="tab-selector__trigger-container is-active" data-dough-tab-selector-trigger-container>
+          <a class="t-europe-link tab-selector__trigger" href="#panel-1" data-dough-tab-selector-trigger="1">
+            United Kingdom & Europe
+            <div class="t-tab-status t-overall-status status__overall-status--<%= presenter.uk_and_europe_background %>">
+              <%= status_icon(presenter.uk_and_europe_icon) %>
+              <%= t("self_service.status.#{presenter.uk_and_europe_background}") %>
+            </div>
+          </a>
+        </div>
+
+        <div class="tab-selector__trigger-container is-inactive" data-dough-tab-selector-trigger-container>
+            <a class="t-worldwide-excluding-us-link tab-selector__trigger" href="#panel-2" data-dough-tab-selector-trigger="2">
+              Worldwide excluding USA, Canada & Caribbean
+              <div class="t-tab-status t-overall-status status__overall-status--<%= presenter.worldwide_excluding_us_canada_background %>">
+                <%= status_icon(presenter.worldwide_excluding_us_canada_icon) %>
+                <%= t("self_service.status.#{presenter.worldwide_excluding_us_canada_background}") %>
+              </div>
+            </a>
+        </div>
+
+        <div class="tab-selector__trigger-container is-inactive" data-dough-tab-selector-trigger-container>
+          <a class="t-worldwide-including-us-link tab-selector__trigger" href="#panel-3" data-dough-tab-selector-trigger="3">
+            Worldwide including USA, Canada & Caribbean
+            <div class="t-tab-status t-overall-status status__overall-status--<%= presenter.worldwide_including_us_canada_background %>">
+                <%= status_icon(presenter.worldwide_including_us_canada_icon) %>
+                <%= t("self_service.status.#{presenter.worldwide_including_us_canada_background}") %>
+              </div>
+          </a>
+        </div>
+      </div>
+   </div>
+
+   <div class="tab-selector__target is-active" id="panel-1" data-dough-tab-selector-target="1">
+      <div class="t-single-europe">
+        <h2><%= t('self_service.travel_insurance_firms_edit.single_trip') %></h2>
+        <%= render partial: 'self_service/travel_insurance_firms/trip_cover_form', locals: { f: f, cover_data: @single_trip_europe, class: '' } %>
+      </div>
+      <hr />
+      <div class="t-annual-europe">
+        <h2><%= t('self_service.travel_insurance_firms_edit.annual_multi_trip') %></h2>
+        <p><%= t('self_service.travel_insurance_firms_edit.each_individual_trip') %></p>
+
+        <%= render partial: 'self_service/travel_insurance_firms/trip_cover_form', locals: { f: f, cover_data: @multi_trip_europe } %>
+      </div>
+   </div>
+
+   <div class="tab-selector__target is-inactive t-worldwide-excluding-us" id="panel-2" data-dough-tab-selector-target="2">
+      <div class="t-single-worldwide-excluding-us">
+        <h2><%= t('self_service.travel_insurance_firms_edit.single_trip') %></h2>
+        <%= render partial: 'self_service/travel_insurance_firms/trip_cover_form', locals: { f: f, cover_data: @single_worldwide_ex_us } %>
+      </div>
+      <hr />
+
+      <div class="t-annual-worldwide-excluding-us">
+        <h2><%= t('self_service.travel_insurance_firms_edit.annual_multi_trip') %></h2>
+        <p><%= t('self_service.travel_insurance_firms_edit.each_individual_trip') %></p>
+
+        <%= render partial: 'self_service/travel_insurance_firms/trip_cover_form', locals: { f: f, cover_data: @multi_worldwide_ex_us } %>
+      </div>
+   </div>
+
+   <div class="tab-selector__target is-inactive t-worldwide-including-us" id="panel-3" data-dough-tab-selector-target="3">
+      <div class="t-single-worldwide-including-us">
+        <h2><%= t('self_service.travel_insurance_firms_edit.single_trip') %></h2>
+        <%= render partial: 'self_service/travel_insurance_firms/trip_cover_form', locals: { f: f, cover_data: @single_worldwide_us } %>
+      </div>
+      <hr />
+
+      <div class="t-annual-worldwide-including-us">
+        <h2><%= t('self_service.travel_insurance_firms_edit.annual_multi_trip') %></h2>
+        <p><%= t('self_service.travel_insurance_firms_edit.each_individual_trip') %></p>
+
+        <%= render partial: 'self_service/travel_insurance_firms/trip_cover_form', locals: { f: f, cover_data: @multi_worldwide_us } %>
+      </div>
+   </div>
+</div>
+
+<div class="l-half-width">
+  <section class="form-section">
+    <h2><%= t('self_service.travel_insurance_firms_edit.medical_specialism.heading') %></h2>
+    <p><%= t('self_service.travel_insurance_firms_edit.medical_specialism.description') %></p>
+    <%= render partial: 'self_service/travel_insurance_firms/medical_specialism_form', locals: { f: f } %>
+  </section>
+
+  <section class="form-section">
+    <h2><%= t('self_service.travel_insurance_firms_edit.service_details.heading') %></h2>
+    <p><%= t('self_service.travel_insurance_firms_edit.service_details.description') %></p>
+
+    <%= render partial: 'self_service/travel_insurance_firms/service_detail_form', locals: { f: f } %>
+  </section>
+</div>
+
+<div class="l-self-service-action-row">
+  <%= link_to t('self_service.cancel_button'), self_service_travel_insurance_firms_path, class: 'l-self-service-action-row__cancel' %>
+  <%= f.submit t('self_service.save_button'), class: 'button button--primary t-save-button' %>
+</div>
