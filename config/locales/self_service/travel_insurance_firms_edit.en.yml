@@ -1,6 +1,9 @@
 en:
   self_service:
     travel_insurance_firms_edit:
+      annual_multi_trip: Annual Mutli-trip
+      single_trip: Single Trip
+
       enter_details: Please enter details about the cover and service you offer
       age_limits: Age limits
       age_limits_description: Enter the maximum age that can be covered for different destinations, durations and types of trip.
