@@ -36,7 +36,7 @@ FactoryBot.define do
 
     after(:build) do |travel_insurance_firm, evaluator|
       if evaluator.with_main_office || evaluator.completed_firm
-        create(:office, officeable: travel_insurance_firm)
+        create(:office, officeable: travel_insurance_firm, opening_time: create(:opening_time))
       end
     end
 
