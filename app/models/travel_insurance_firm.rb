@@ -41,6 +41,12 @@ class TravelInsuranceFirm < ApplicationRecord
 
   scope :onboarded, -> { joins(:office) }
 
+  before_create :populate_question_answers
+  after_commit :notify_indexer
+
+  def notify_indexer
+    UpdateAlgoliaIndexJob.perform_later(model_name.name, id)
+  end
   def trading_name?
     parent.present?
   end

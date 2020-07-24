@@ -1,4 +1,6 @@
 RSpec.describe TravelInsuranceFirm, type: :model do
+  subject(:firm) { build(:travel_insurance_firm) }
+
   test_question_answers = [
     [:covered_by_ombudsman_question, 'true'],
     [:risk_profile_approach_question, 'bespoke'],
@@ -21,6 +23,35 @@ RSpec.describe TravelInsuranceFirm, type: :model do
   ]
   test_questions = HashWithIndifferentAccess[test_question_answers.sample(rand(1..18)).map { |key, value| [key, value] }]
 
+
+  describe 'after_commit' do
+    it 'saving a new firm calls notify_indexer' do
+      firm = FactoryBot.build(:travel_insurance_firm, with_associated_principle: true)
+      expect(firm).to receive(:notify_indexer)
+      firm.save
+    end
+
+    it 'updating a firm calls notify_indexer' do
+      firm = FactoryBot.create(:travel_insurance_firm, with_associated_principle: true)
+      expect(firm).to receive(:notify_indexer)
+      firm.update(registered_name: 'A new name')
+    end
+
+    it 'destroying a firm calls notify_indexer' do
+      firm = FactoryBot.create(:travel_insurance_firm, with_associated_principle: true)
+      expect(firm).to receive(:notify_indexer)
+      firm.destroy
+    end
+  end
+
+  describe '#notify_indexer' do
+    it 'notifies the indexer that the travel_insurance_firm has changed' do
+      expect(UpdateAlgoliaIndexJob).to receive(:perform_later)
+        .with('TravelInsuranceFirm', subject.id)
+
+      subject.notify_indexer
+    end
+  end
   describe '#publishable?' do
     let(:firm) { FactoryBot.create(:travel_insurance_firm, with_associated_principle: true) }
     subject { firm.publishable? }
