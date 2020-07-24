@@ -51,7 +51,9 @@ class Office < ApplicationRecord
   after_commit :notify_indexer
 
   def notify_indexer
-    UpdateAlgoliaIndexJob.perform_later(model_name.name, id, officeable_id)
+    if officeable.instance_of?(Firm)
+      UpdateAlgoliaIndexJob.perform_later(model_name.name, id, officeable_id)
+    end
   end
 
   def field_order
