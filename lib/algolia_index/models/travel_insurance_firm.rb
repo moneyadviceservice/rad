@@ -1,8 +1,6 @@
 module AlgoliaIndex
   class TravelInsuranceFirm < Base
     def update
-      return unless object.approved_at
-
       serialized = AlgoliaIndex::TravelInsuranceFirmSerializer.new(object)
       AlgoliaIndex.indexed_travel_insurance_firms.add_object(serialized)
 
