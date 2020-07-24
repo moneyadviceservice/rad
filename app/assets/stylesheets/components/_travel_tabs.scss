@@ -1,6 +1,47 @@
 .edit_travel_insurance_firm {
+  .tab-selector__trigger-container .tab-selector__trigger:after{
+    border: 0;
+  }
+
   .tab-selector .tab-selector__trigger.is-active,
   .tab-selector__target.is-active{
     background-color: #f7fbec;
+  }
+
+  .tab-selector__target {
+    border-bottom: 5px solid #edf0f0;
+
+    &> div:first-child{
+      border-bottom: 5px solid #edf0f0;
+    }
+  }
+
+  section.form-section:first-child{
+    border-top: 0;
+  }
+
+  @include respond-to($mq-m) {
+    .tab-selector__triggers-inner{
+      display: flex;
+    }
+
+    .tab-selector__trigger-container{
+      flex-grow: 1;
+
+      button {
+        width: 100%;
+        text-align: left;
+      }
+    }
+
+    .tab-selector__target{
+      .l-3col-even-row{
+        display: flex
+      }
+      .l-3col-even:first-child{
+        display: flex;
+        align-items: flex-end;
+      }
+    }
   }
 }

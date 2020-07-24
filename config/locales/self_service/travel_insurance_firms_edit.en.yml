@@ -1,9 +1,6 @@
 en:
   self_service:
     travel_insurance_firms_edit:
-      annual_multi_trip: Annual Mutli-trip
-      single_trip: Single Trip
-
       enter_details: Please enter details about the cover and service you offer
       age_limits: Age limits
       age_limits_description: Enter the maximum age that can be covered for different destinations, durations and types of trip.
@@ -11,9 +8,20 @@ en:
       maximum_age_non_cruise: 'Maximum age: non cruise trips'
       maximum_age_cruise: 'Maximum age: cruise trips'
 
-      up_to_31_days: no longer than 31 days
-      up_to_45_days: no longer than 45 days
-      up_to_55_days: no longer than 55 days
+      uk_and_europe: United Kingdom & Europe
+      worldwide_excluding_us_canada: Worldwide excluding USA, Canada & Caribbean
+      worldwide_including_us_canada: Worldwide including USA, Canada & Caribbean
+      single_trip:
+        heading: Single Trip
+        short_trip: Up to 1 month
+        medium_trip: 1 - 6 months
+        long_trip: 6 months +
+
+      annual_multi_trip:
+        heading: Annual Mutli-trip
+        short_trip: no longer than 31 days
+        medium_trip: no longer than 45 days
+        long_trip: no longer than 55 days
 
       medical_specialism:
         heading: Medical Specialism
