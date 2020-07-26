@@ -19,7 +19,7 @@
       <%= f.label :website,
                   required_asterisk(Office.human_attribute_name(:website)),
                   class: 'form__label-heading' %>
-      <%= f.text_field :website %>
+      <%= f.text_field :website, class: 't-website'  %>
     <% end %>
 
     <%= f.form_row :telephone_number do %>

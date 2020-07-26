@@ -1,5 +1,4 @@
  RSpec.feature 'The travel insurance self service office add page', :inline_job_queue do
-  include_context 'algolia index fake'
 
   let(:travel_insurance_index_page) { SelfService::TravelInsuranceFirms::IndexPage.new }
   let(:office_add_page) { SelfService::TravelInsuranceFirms::OfficeAddPage.new }
@@ -9,9 +8,10 @@
   let(:address_town)     { 'London' }
   let(:address_postcode) { 'EC1N 2TD' }
 
-  let!(:principal) { FactoryBot.create(:principal) }
-  let!(:firm) { FactoryBot.create(:travel_insurance_firm, principal: principal) }
+  let!(:firm) { FactoryBot.create(:travel_insurance_firm_with_principal, approved_at: nil) }
+  let(:principal) { firm.principal }
   let(:user) { FactoryBot.create(:user, principal: principal) }
+
   let(:office) do
     FactoryBot.attributes_for(:office,
                                officeable: firm,
@@ -22,6 +22,7 @@
                                address_postcode: address_postcode,
                                add_opening_time: true)
   end
+
 
   scenario 'The principal adds office details' do
     given_i_am_a_fully_registered_principal_user
@@ -41,7 +42,6 @@
     then_no_errors_are_displayed_on(the_page: travel_insurance_index_page)
     then_i_see_a_success_notice
     then_the_new_office_is_saved
-    and_the_total_number_of_firm_offices_in_the_directory_gets_increased
   end
 
   scenario 'The system shows validation messages if there are invalid inputs' do
@@ -63,9 +63,9 @@
   end
 
   def given_i_am_a_fully_registered_principal_user
-    firm_attrs = FactoryBot.attributes_for(:firm, fca_number: principal.fca_number)
-    principal.firm.update(firm_attrs)
-    expect(Firm.onboarded.find(principal.firm.id)).to be_present
+    # firm_attrs = FactoryBot.attributes_for(:travel_insurance_firm, fca_number: principal.fca_number)
+    # principal.firm.update(firm_attrs)
+    expect(TravelInsuranceFirm.find(principal.travel_insurance_firm.id)).to be_present
   end
 
   def and_i_am_logged_in
@@ -73,7 +73,7 @@
   end
 
   def when_i_am_on_the_offices_page
-    travel_insurance_index_page.load(firm_id: principal.firm.id)
+    travel_insurance_index_page.load(travel_insurance_firm_id: principal.travel_insurance_firm.id)
     expect(travel_insurance_index_page).to be_displayed
   end
 
@@ -94,6 +94,7 @@
 
   def when_i_fill_out_the_form
     [
+      :website,
       :address_line_one,
       :address_line_two,
       :address_town,
@@ -105,8 +106,11 @@
       office_add_page.send(field_name).set(office[field_name])
     end
 
-    office_add_page.select('02 AM', from: 'office_opening_time_attributes_weekday_opening_time_4i')
+    office_add_page.select('09 AM', from: 'office_opening_time_attributes_weekday_opening_time_4i')
     office_add_page.select('05', from: 'office_opening_time_attributes_weekday_opening_time_5i')
+
+    office_add_page.select('05 PM', from: 'office_opening_time_attributes_weekday_closing_time_4i')
+    office_add_page.select('05', from: 'office_opening_time_attributes_weekday_closing_time_5i')
   end
 
   def and_i_invalidate_the_information

@@ -94,14 +94,14 @@
   <section class="form-section">
     <h2><%= t('self_service.travel_insurance_firms_edit.medical_specialism.heading') %></h2>
     <p><%= t('self_service.travel_insurance_firms_edit.medical_specialism.description') %></p>
-    <%= render partial: 'medical_specialism_form', locals: { f: f } %>
+    <%= render partial: 'self_service/travel_insurance_firms/medical_specialism_form', locals: { f: f } %>
   </section>
 
   <section class="form-section">
     <h2><%= t('self_service.travel_insurance_firms_edit.service_details.heading') %></h2>
     <p><%= t('self_service.travel_insurance_firms_edit.service_details.description') %></p>
 
-    <%= render partial: 'service_detail_form', locals: { f: f } %>
+    <%= render partial: 'self_service/travel_insurance_firms/service_detail_form', locals: { f: f } %>
   </section>
 </div>
 

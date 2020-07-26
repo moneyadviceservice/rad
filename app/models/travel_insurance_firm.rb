@@ -32,36 +32,49 @@ class TravelInsuranceFirm < ApplicationRecord
   has_one :medical_specialism, dependent: :destroy
   has_one :service_detail, dependent: :destroy
 
-  has_many :trading_names, class_name: 'Firm',
+  has_many :subsidiaries, class_name: 'TravelInsuranceFirm',
+                          foreign_key: :parent_id,
+                          dependent: :destroy
+
+  has_many :trading_names, class_name: 'TravelInsuranceFirm',
                            foreign_key: :parent_id,
                            dependent: :destroy
 
-  has_many :trip_covers
+  has_many :trip_covers, dependent: :destroy
   accepts_nested_attributes_for :trip_covers, :medical_specialism, :service_detail
 
   scope :onboarded, -> { joins(:office) }
+  scope :sorted_by_registered_name, -> { order(:registered_name) }
 
-  before_create :populate_question_answers
   after_commit :notify_indexer
 
   def notify_indexer
-    UpdateAlgoliaIndexJob.perform_later(model_name.name, id)
+    UpdateAlgoliaIndexJob.perform_later(model_name.name, id) if approved_at.present?
   end
+
+  def validate_two_trading_names_only
+    return if can_add_more_trading_names?
+
+    errors.add(:base, 'Cannot add more than 2 trading names')
+  end
+
+  def can_add_more_trading_names?
+    trading_names.count < 2
+  end
+
   def trading_name?
     parent.present?
   end
+  alias subsidiary? trading_name?
 
   def advisers
     []
   end
 
-  def onboarded?
-    office.present?
-  end
-
   def publishable?
     office.present? && cover_and_service_complete?
   end
+  alias onboarded? publishable?
 
   def cover_and_service_complete?
     medical_specialism.present? &&

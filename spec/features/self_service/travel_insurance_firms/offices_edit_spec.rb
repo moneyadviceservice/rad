@@ -1,5 +1,4 @@
 RSpec.feature 'The self service office edit page', :inline_job_queue do
-  include_context 'algolia index fake'
 
   let(:travel_insurance_index_page) { SelfService::TravelInsuranceFirms::IndexPage.new }
   let(:office_edit_page) { SelfService::TravelInsuranceFirms::OfficeEditPage.new }
@@ -13,7 +12,7 @@ RSpec.feature 'The self service office edit page', :inline_job_queue do
   let(:original_postcode) { address_postcode }
 
   let!(:principal) { FactoryBot.create(:principal) }
-  let!(:firm) { FactoryBot.create(:travel_insurance_firm, principal: principal) }
+  let!(:firm) { FactoryBot.create(:travel_insurance_firm, principal: principal, approved_at: nil) }
   let(:user) { FactoryBot.create(:user, principal: principal) }
   let!(:office) do
     FactoryBot.create(:office,
@@ -43,7 +42,6 @@ RSpec.feature 'The self service office edit page', :inline_job_queue do
     then_no_errors_are_displayed_on(the_page: office_edit_page)
     then_i_see_a_success_notice
     then_the_information_is_changed
-    and_the_office_information_is_updated_in_the_directory
   end
 
   scenario 'The system shows validation messages if there are invalid inputs' do
@@ -62,7 +60,7 @@ RSpec.feature 'The self service office edit page', :inline_job_queue do
   end
 
   def given_i_am_a_fully_registered_principal_user
-    firm_attrs = FactoryBot.attributes_for(:travel_insurance_firm, fca_number: principal.fca_number)
+    firm_attrs = FactoryBot.attributes_for(:travel_insurance_firm, fca_number: principal.fca_number, approved_at: nil)
     principal.travel_insurance_firm.update(firm_attrs)
     expect(TravelInsuranceFirm.onboarded.find(principal.travel_insurance_firm.id)).to be_present
   end
@@ -119,14 +117,6 @@ RSpec.feature 'The self service office edit page', :inline_job_queue do
   def then_the_information_is_changed
     office.reload
     expect(office.address_line_one).to eq updated_line_one
-  end
-
-  def and_the_office_information_is_updated_in_the_directory
-    directory_office = offices_in_directory.find do |elem|
-      elem['objectID'] == office.id
-    end
-
-    expect(directory_office['address_line_one']).to eq updated_line_one
   end
 
   def then_the_information_is_not_changed

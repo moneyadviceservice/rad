@@ -49,7 +49,7 @@ module SelfService
 
     def firm_details_link(opts = {})
       path = if trading_name?
-               edit_self_service_trading_name_path(self)
+               edit_self_service_travel_insurance_trading_name_path(self)
              else
                edit_self_service_travel_insurance_firm_path(self)
              end

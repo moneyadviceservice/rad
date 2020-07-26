@@ -1,4 +1,14 @@
 RSpec.describe TravelInsuranceFirm, type: :model do
+  it { should belong_to :principal }
+  it { should belong_to(:parent).class_name(TravelInsuranceFirm) }
+  it { should have_one :office }
+  it { should have_one :medical_specialism }
+  it { should have_one :service_detail }
+  it { should have_many :trip_covers }
+  it { should accept_nested_attributes_for :trip_covers }
+  it { should accept_nested_attributes_for :medical_specialism }
+  it { should accept_nested_attributes_for :service_detail }
+
   subject(:firm) { build(:travel_insurance_firm) }
 
   test_question_answers = [
@@ -52,6 +62,26 @@ RSpec.describe TravelInsuranceFirm, type: :model do
       subject.notify_indexer
     end
   end
+
+  describe '#allowed_to_add_trading_names?' do
+    context 'when firm has no trading names' do
+      let(:travel_firm) { build(:travel_insurance_firm) }
+      it 'returns true' do
+        expect(travel_firm.can_add_more_trading_names?).to eq true
+      end
+    end
+
+    context 'when firm has 2 or more trading names' do
+      let!(:travel_firm) { create(:travel_insurance_firm, with_associated_principle: true) }
+      let!(:travel_firm_1) { create(:travel_insurance_firm, parent: travel_firm, fca_number: travel_firm.fca_number) }
+      let!(:travel_firm_2) { create(:travel_insurance_firm, parent: travel_firm, fca_number: travel_firm.fca_number) }
+
+      it 'returns false ' do
+        expect(travel_firm.reload.can_add_more_trading_names?).to eq false
+      end
+    end
+  end
+
   describe '#publishable?' do
     let(:firm) { FactoryBot.create(:travel_insurance_firm, with_associated_principle: true) }
     subject { firm.publishable? }
@@ -108,6 +138,7 @@ RSpec.describe TravelInsuranceFirm, type: :model do
       end
     end
   end
+
   describe 'saved question values' do
     let(:travel_firm) do
       existing_principal = create(:principal, manually_build_firms: true)
@@ -118,6 +149,7 @@ RSpec.describe TravelInsuranceFirm, type: :model do
       expect(travel_firm[:covered_by_ombudsman_question].to_s).to eq 'false'
     end
   end
+
   describe 'multiple simultaneos cache requests with the same fca_number but different email address should be independent' do
     let(:travel_firm) do
       create(:principal, fca_number: '111111', email_address: 'first@email.com', manually_build_firms: true)

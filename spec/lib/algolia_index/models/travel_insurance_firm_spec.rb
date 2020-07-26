@@ -25,11 +25,6 @@ RSpec.describe AlgoliaIndex::TravelInsuranceFirm do
         expect(indexed_travel_insurance_firms).not_to receive(:add_objects)
         instance.update
       end
-
-      it 'does not update any offices in the index' do
-        expect(indexed_travel_insurance_firm_offerings).not_to receive(:add_objects)
-        instance.update
-      end
     end
 
     context 'when the firm has been approved' do
@@ -61,11 +56,31 @@ RSpec.describe AlgoliaIndex::TravelInsuranceFirm do
     end
   end
 
-  describe '#destroy' do
-    it 'doesn\'t delete anything', :aggregate_failures do
-      expect(indexed_travel_insurance_firms).not_to receive(:delete_objects)
-      expect(indexed_travel_insurance_firm_offerings).not_to receive(:delete_objects)
-      instance.destroy
-    end
-  end
+  # describe '#destroy' do
+  #   context 'when the office firm is not approved' do
+  #     let(:firm) { FactoryBot.create(:travel_insurance_firm, completed_firm: true) }
+
+  #     it 'deletes the office in the index' do
+  #       expect(indexed_offices).to receive(:delete_object).with(firm.id)
+  #       instance.destroy
+  #     end
+
+  #     it 'does not update the firm advisers in the index' do
+  #       expect(indexed_advisers).not_to receive(:add_objects)
+  #       instance.destroy
+  #     end
+  #   end
+
+  #   context 'when the office firm is approved' do
+  #     include_examples 'update firm advisers', :destroy
+
+  #     let(:firm) { FactoryBot.create(:firm_without_advisers) }
+
+  #     it 'deletes the office in the index' do
+  #       expect(indexed_offices).to receive(:delete_object).with(id)
+  #       instance.destroy
+  #     end
+  #   end
+  # end
+
 end

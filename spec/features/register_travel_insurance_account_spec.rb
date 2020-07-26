@@ -351,7 +351,8 @@ RSpec.feature 'Principal provides travel insurance information', :inline_job_que
       manually_build_firms: true,
       fca_number: fca_number
     )
-    FactoryBot.create(:travel_insurance_firm, fca_number: fca_number)
+
+    FactoryBot.create(:travel_insurance_firm, fca_number: fca_number, approved_at: nil)
 
     expect(principal.firm).to be_nil
     expect(principal.travel_insurance_firm).to_not be_nil

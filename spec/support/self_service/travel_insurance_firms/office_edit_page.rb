@@ -7,6 +7,7 @@ module SelfService
       element :flash_message, '.t-flash-message'
       element :validation_summary, '.t-validation-summary'
 
+      element :website, '.t-website'
       element :address_line_one, '.t-address-line-one'
       element :address_line_two, '.t-address-line-two'
       element :address_town, '.t-address-town'

@@ -28,6 +28,15 @@ FactoryBot.define do
       completed_firm { false }
     end
 
+    trait :with_principal do
+      with_associated_principle { true }
+    end
+    factory :travel_insurance_firm_with_principal, traits: [:with_principal]
+
+    factory :travel_trading_name, aliases: [:travel_subsidiary] do
+      parent factory: :travel_insurance_firm_with_principal
+    end
+
     after(:build) do |travel_insurance_firm, evaluator|
       if evaluator.with_associated_principle || evaluator.completed_firm
         create(:principal, manually_build_firms: true, fca_number: travel_insurance_firm.fca_number)
@@ -50,6 +59,10 @@ FactoryBot.define do
       if evaluator.with_service_detail || evaluator.completed_firm
         create(:service_detail, travel_insurance_firm: travel_insurance_firm)
       end
+    end
+
+    trait :with_trading_names do
+      subsidiaries { create_list(:travel_trading_name, 3, fca_number: fca_number) }
     end
 
     after(:build) do |travel_insurance_firm, evaluator|

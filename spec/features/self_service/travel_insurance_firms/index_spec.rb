@@ -98,19 +98,25 @@ RSpec.feature 'The self service travel insurance firm list page' do
   end
 
   def given_i_am_a_fully_registered_principal_user
-    @principal = FactoryBot.create(:principal)
+    @principal = FactoryBot.create(:principal, firm: nil)
     @user = FactoryBot.create(:user, principal: @principal)
     @principal.travel_insurance_firm = FactoryBot.build(
       :travel_insurance_firm,
+      with_main_office: true,
+      with_medical_specialism: true,
+      with_service_detail: true,
+      with_trip_covers: true,
       fca_number: @principal.fca_number
     )
   end
 
   def and_i_have_a_firm_with_both_available_and_added_trading_names
     @lookup_trading_name = FactoryBot.create(:lookup_subsidiary, fca_number: @principal.fca_number)
-    @principal.travel_insurance_firm.trading_names = create_list(:trading_name,
+
+    @principal.travel_insurance_firm.trading_names = create_list(:travel_trading_name,
                                                 3,
                                                 fca_number: @principal.fca_number)
+
     expect(@principal.travel_insurance_firm.trading_names).to have(3).items
   end
 
@@ -133,6 +139,7 @@ RSpec.feature 'The self service travel insurance firm list page' do
 
   def and_i_have_an_unpublished_firm
     @travel_insurance_firm = @principal.travel_insurance_firm
+    @travel_insurance_firm.office = nil
 
     expect(@travel_insurance_firm).not_to be_publishable
   end
@@ -140,12 +147,22 @@ RSpec.feature 'The self service travel insurance firm list page' do
 
   def and_one_of_those_trading_names_is_unpublishable
     @unpublished_trading_name = @principal.travel_insurance_firm.trading_names.first
-    @unpublished_trading_name.offices = []
+    @unpublished_trading_name.office = nil
     expect(@unpublished_trading_name).not_to be_publishable
   end
 
+  # @todo can we improve this?
   def and_one_of_those_trading_names_is_publishable
     @published_trading_name = @principal.travel_insurance_firm.trading_names.first
+    @published_trading_name.update(
+      office: create(:office),
+      service_detail: create(:service_detail),
+      medical_specialism: create(:medical_specialism),
+    )
+    TripCover::COVERAGE_AREAS.each do |area|
+      create(:trip_cover, cover_area: area, trip_type: 'single_trip', travel_insurance_firm: @published_trading_name)
+      create(:trip_cover, cover_area: area, trip_type: 'annual_multi_trip', travel_insurance_firm: @published_trading_name)
+    end
     expect(@published_trading_name).to be_publishable
   end
 
