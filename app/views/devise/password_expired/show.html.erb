@@ -4,7 +4,7 @@
                          html: {class: "form", novalidate: 'novalidate', method: :put},
                          builder: Dough::Forms::Builders::Validation) do |f| %>
 
-  <%= devise_error_messages! %>
+  <%= render partial: 'devise/shared/error_messages' %>
 
     <div class="registration__row">
       <div class="registration__field">
