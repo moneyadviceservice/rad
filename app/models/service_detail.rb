@@ -8,8 +8,8 @@ class ServiceDetail < ApplicationRecord
   private
 
   def clear_opening_times
-    if cover_for_specialist_equipment_select == false
-      self.cover_for_specialist_equipment = nil
-    end
+    return unless cover_for_specialist_equipment_select == false
+
+    self.cover_for_specialist_equipment = nil
   end
 end

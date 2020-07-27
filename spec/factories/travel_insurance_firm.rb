@@ -38,27 +38,27 @@ FactoryBot.define do
     end
 
     after(:build) do |travel_insurance_firm, evaluator|
-      if evaluator.with_associated_principle || evaluator.completed_firm
-        create(:principal, manually_build_firms: true, fca_number: travel_insurance_firm.fca_number)
-      end
+      return unless evaluator.with_associated_principle || evaluator.completed_firm
+
+      create(:principal, manually_build_firms: true, fca_number: travel_insurance_firm.fca_number)
     end
 
     after(:build) do |travel_insurance_firm, evaluator|
-      if evaluator.with_main_office || evaluator.completed_firm
-        create(:office, officeable: travel_insurance_firm, opening_time: create(:opening_time))
-      end
+      return unless evaluator.with_main_office || evaluator.completed_firm
+
+      create(:office, officeable: travel_insurance_firm, opening_time: create(:opening_time))
     end
 
     after(:build) do |travel_insurance_firm, evaluator|
-      if evaluator.with_medical_specialism || evaluator.completed_firm
-        create(:medical_specialism, travel_insurance_firm: travel_insurance_firm)
-      end
+      return unless evaluator.with_medical_specialism || evaluator.completed_firm
+
+      create(:medical_specialism, travel_insurance_firm: travel_insurance_firm)
     end
 
     after(:build) do |travel_insurance_firm, evaluator|
-      if evaluator.with_service_detail || evaluator.completed_firm
-        create(:service_detail, travel_insurance_firm: travel_insurance_firm)
-      end
+      return unless evaluator.with_service_detail || evaluator.completed_firm
+
+      create(:service_detail, travel_insurance_firm: travel_insurance_firm)
     end
 
     trait :with_trading_names do
@@ -66,11 +66,11 @@ FactoryBot.define do
     end
 
     after(:build) do |travel_insurance_firm, evaluator|
-      if evaluator.with_trip_covers || evaluator.completed_firm
-        TripCover::COVERAGE_AREAS.each do |area|
-          create(:trip_cover, cover_area: area, trip_type: 'single_trip', travel_insurance_firm: travel_insurance_firm)
-          create(:trip_cover, cover_area: area, trip_type: 'annual_multi_trip', travel_insurance_firm: travel_insurance_firm)
-        end
+      return unless evaluator.with_trip_covers || evaluator.completed_firm
+
+      TripCover::COVERAGE_AREAS.each do |area|
+        create(:trip_cover, cover_area: area, trip_type: 'single_trip', travel_insurance_firm: travel_insurance_firm)
+        create(:trip_cover, cover_area: area, trip_type: 'annual_multi_trip', travel_insurance_firm: travel_insurance_firm)
       end
     end
   end
