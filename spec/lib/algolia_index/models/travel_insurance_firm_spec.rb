@@ -29,7 +29,7 @@ RSpec.describe AlgoliaIndex::TravelInsuranceFirm do
 
     context 'when the firm has been approved' do
       let!(:firm) { FactoryBot.create(:travel_insurance_firm, id: id, completed_firm: true) }
-      let(:serialized_travel_firm){ AlgoliaIndex::TravelInsuranceFirmSerializer.new(firm) }
+      let(:serialized_travel_firm) { AlgoliaIndex::TravelInsuranceFirmSerializer.new(firm) }
 
       let(:serialized_offerings) do
         firm.trip_covers.map do |trip_cover|
@@ -82,5 +82,4 @@ RSpec.describe AlgoliaIndex::TravelInsuranceFirm do
   #     end
   #   end
   # end
-
 end

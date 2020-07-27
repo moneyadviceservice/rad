@@ -1,5 +1,4 @@
- RSpec.feature 'The travel insurance self service office add page', :inline_job_queue do
-
+RSpec.feature 'The travel insurance self service office add page', :inline_job_queue do
   let(:travel_insurance_index_page) { SelfService::TravelInsuranceFirms::IndexPage.new }
   let(:office_add_page) { SelfService::TravelInsuranceFirms::OfficeAddPage.new }
 
@@ -22,7 +21,6 @@
                                address_postcode: address_postcode,
                                add_opening_time: true)
   end
-
 
   scenario 'The principal adds office details' do
     given_i_am_a_fully_registered_principal_user
@@ -101,7 +99,7 @@
       :address_county,
       :address_postcode,
       :email_address,
-      :telephone_number,
+      :telephone_number
     ].each do |field_name|
       office_add_page.send(field_name).set(office[field_name])
     end

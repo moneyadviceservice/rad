@@ -23,7 +23,7 @@ RSpec.describe AlgoliaIndex::TravelInsuranceFirmSerializer do
             open_time: firm.main_office.opening_time.saturday_opening_time&.to_s(:time),
             close_time: firm.main_office.opening_time.saturday_closing_time&.to_s(:time)
           },
-         sundays: {
+          sundays: {
             open_time: firm.main_office.opening_time.sunday_opening_time&.to_s(:time),
             close_time: firm.main_office.opening_time.sunday_closing_time&.to_s(:time)
           }

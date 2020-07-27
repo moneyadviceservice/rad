@@ -39,7 +39,7 @@ module AlgoliaIndex
           open_time: opening_times.saturday_opening_time&.to_s(:time),
           close_time: opening_times.saturday_closing_time&.to_s(:time)
         },
-       sundays: {
+        sundays: {
           open_time: opening_times.sunday_opening_time&.to_s(:time),
           close_time: opening_times.sunday_closing_time&.to_s(:time)
         }

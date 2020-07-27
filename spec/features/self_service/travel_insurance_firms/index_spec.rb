@@ -157,7 +157,7 @@ RSpec.feature 'The self service travel insurance firm list page' do
     @published_trading_name.update(
       office: create(:office),
       service_detail: create(:service_detail),
-      medical_specialism: create(:medical_specialism),
+      medical_specialism: create(:medical_specialism)
     )
     TripCover::COVERAGE_AREAS.each do |area|
       create(:trip_cover, cover_area: area, trip_type: 'single_trip', travel_insurance_firm: @published_trading_name)

@@ -9,12 +9,7 @@ class MedicalSpecialism < ApplicationRecord
   private
 
   def clear_no_attributes
-    if specialised_medical_conditions_cover_select == false
-      self.specialised_medical_conditions_cover = nil
-    end
-
-    if likely_not_cover_medical_condition_select == false
-      self.likely_not_cover_medical_condition = nil
-    end
+    self.specialised_medical_conditions_cover = nil if specialised_medical_conditions_cover_select == false
+    self.likely_not_cover_medical_condition = nil if likely_not_cover_medical_condition_select == false
   end
 end

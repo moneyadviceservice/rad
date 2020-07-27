@@ -33,7 +33,6 @@ RSpec.describe TravelInsuranceFirm, type: :model do
   ]
   test_questions = HashWithIndifferentAccess[test_question_answers.sample(rand(1..18)).map { |key, value| [key, value] }]
 
-
   describe 'after_commit' do
     it 'saving a new firm calls notify_indexer' do
       firm = FactoryBot.build(:travel_insurance_firm, with_associated_principle: true)
@@ -98,7 +97,7 @@ RSpec.describe TravelInsuranceFirm, type: :model do
     end
 
     context 'when the firm has no main office' do
-      let(:firm) { FactoryBot.create(:travel_insurance_firm, completed_firm: true,) }
+      let(:firm) { FactoryBot.create(:travel_insurance_firm, completed_firm: true) }
       before { allow(firm).to receive(:office).and_return(nil) }
 
       it { is_expected.to be_falsey }

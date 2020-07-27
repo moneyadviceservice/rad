@@ -101,8 +101,8 @@ module SelfService
       end
 
       it 'includes no_age_restriction and not_offered options' do
-        expect(helper.options_for_cover_ages).to include(["No age restriction", "no_age_restriction"])
-        expect(helper.options_for_cover_ages).to include(["Not offered", "not_offered"])
+        expect(helper.options_for_cover_ages).to include(['No age restriction', 'no_age_restriction'])
+        expect(helper.options_for_cover_ages).to include(['Not offered', 'not_offered'])
       end
 
       it 'includes numbers 65 to 100 in options style array' do

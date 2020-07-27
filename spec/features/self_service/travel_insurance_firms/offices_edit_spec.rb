@@ -1,5 +1,4 @@
 RSpec.feature 'The self service office edit page', :inline_job_queue do
-
   let(:travel_insurance_index_page) { SelfService::TravelInsuranceFirms::IndexPage.new }
   let(:office_edit_page) { SelfService::TravelInsuranceFirms::OfficeEditPage.new }
 

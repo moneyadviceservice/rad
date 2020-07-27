@@ -16,7 +16,7 @@ module AlgoliaIndex
     advisers: "firm-advisers#{'-test' if Rails.env.test?}",
     offices: "firm-offices#{'-test' if Rails.env.test?}",
     travel_firms: "travel-firms#{'-test' if Rails.env.test?}",
-    travel_firm_offerings: "travel-firm-offerings#{'-test' if Rails.env.test?}",
+    travel_firm_offerings: "travel-firm-offerings#{'-test' if Rails.env.test?}"
   }.freeze
 
   class << self
@@ -34,11 +34,11 @@ module AlgoliaIndex
     end
 
     def indexed_travel_insurance_firms
-      @indexed_travel_firms ||= Algolia::Index.new(INDICES[:travel_firms])
+      @indexed_travel_insurance_firms ||= Algolia::Index.new(INDICES[:travel_firms])
     end
 
     def indexed_travel_insurance_firm_offerings
-      @indexed_travel_firm_offerings ||= Algolia::Index.new(INDICES[:travel_firm_offerings])
+      @indexed_travel_insurance_firm_offerings ||= Algolia::Index.new(INDICES[:travel_firm_offerings])
     end
 
     def indexed_advisers

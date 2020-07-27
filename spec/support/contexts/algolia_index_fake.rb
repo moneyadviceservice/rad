@@ -9,6 +9,7 @@ RSpec.shared_context 'algolia index fake' do
     allow(Algolia::Index).to receive(:new)
       .with('firm-advisers-test')
       .and_return(algolia_advisers_index)
+
     allow(Algolia::Index).to receive(:new)
       .with('firm-offices-test')
       .and_return(algolia_offices_index)

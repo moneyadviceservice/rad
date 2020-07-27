@@ -25,8 +25,7 @@ RSpec.feature 'Approving travel insurance firms', :inline_job_queue do
   def given_there_are_registered_travel_insurance_firms
     @firm = FactoryBot.create(:travel_insurance_firm,
       completed_firm: true,
-      approved_at: nil
-    )
+      approved_at: nil)
     @user = FactoryBot.create(:user, principal: @firm.principal)
   end
 

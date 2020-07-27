@@ -78,8 +78,9 @@ class TravelInsuranceFirm < ApplicationRecord
 
   def cover_and_service_complete?
     medical_specialism.present? &&
-    service_detail.present? &&
-    trip_covers.any? && trip_covers.map(&:all_complete?).all?
+      service_detail.present? &&
+      trip_covers.any? &&
+      trip_covers.map(&:all_complete?).all?
   end
 
   def main_office

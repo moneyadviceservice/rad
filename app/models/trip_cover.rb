@@ -1,11 +1,11 @@
 class TripCover < ApplicationRecord
-  COVERAGE_AREAS = ['uk_and_europe', 'worldwide_excluding_us_canada', 'worldwide_including_us_canada'].freeze
-  TRIP_TYPES = ['single_trip', 'annual_multi_trip'].freeze
+  COVERAGE_AREAS = %w[uk_and_europe worldwide_excluding_us_canada worldwide_including_us_canada].freeze
+  TRIP_TYPES = %w[single_trip annual_multi_trip].freeze
 
   belongs_to :travel_insurance_firm
 
-  validates_inclusion_of :cover_area, in: COVERAGE_AREAS
-  validates_inclusion_of :trip_type, in: TRIP_TYPES
+  validates :cover_area, inclusion: COVERAGE_AREAS
+  validates :trip_type, inclusion: TRIP_TYPES
 
   COVERAGE_AREAS.each do |area|
     scope area, -> { where(cover_area: area) }
