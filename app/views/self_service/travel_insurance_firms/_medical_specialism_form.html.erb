@@ -13,7 +13,8 @@
     </fieldset>
 
     <fieldset class="form__group t-specialised-medical-conditions-cover" data-specialised-conditions>
-      <%= ms.select :specialised_medical_conditions_cover, t('self_service.travel_insurance_firms_edit.medical_specialism.medical_conditions_cover_select').invert, { prompt: 'Please select', include_blank: true } %>
+      <br/>
+      <%= ms.select :specialised_medical_conditions_cover, t('self_service.travel_insurance_firms_edit.medical_specialism.medical_conditions_cover_select').invert, { prompt: 'Please select', include_blank: false } %>
     </fieldset>
   <% end %>
 
@@ -33,6 +34,7 @@
     <fieldset class="form__group t-not-covering-medical-condition-text" data-not-likely-cover>
       <%= ms.errors_for :likely_not_cover_medical_condition %>
 
+      <br/>
       <%= ms.text_area :likely_not_cover_medical_condition %>
     </fieldset>
   <% end %>

@@ -11,14 +11,14 @@
       <%= tc.label :land_30_days_max_age,
                   t('self_service.travel_insurance_firms_edit.maximum_age_non_cruise'),
                   class: 'form__label-heading' %>
-      <%= tc.select :land_30_days_max_age, options_for_cover_ages, { prompt: 'Please select', include_blank: true }, { class: 't-one-month-land' } %>
+      <%= tc.select :land_30_days_max_age, options_for_cover_ages, { prompt: 'Please select', include_blank: false }, { class: 't-one-month-land' } %>
     </div>
 
     <div class="l-3col-even">
       <%= tc.label :cruise_30_days_max_age,
                   t('self_service.travel_insurance_firms_edit.maximum_age_cruise'),
                   class: 'form__label-heading' %>
-      <%= tc.select :cruise_30_days_max_age, options_for_cover_ages, { prompt: 'Please select', include_blank: true }, { class: 't-one-month-cruise' } %>
+      <%= tc.select :cruise_30_days_max_age, options_for_cover_ages, { prompt: 'Please select', include_blank: false }, { class: 't-one-month-cruise' } %>
     </div>
   </div>
   <br />
@@ -32,14 +32,14 @@
       <%= tc.label :land_45_days_max_age,
                   t('self_service.travel_insurance_firms_edit.maximum_age_non_cruise'),
                   class: 'form__label-heading' %>
-      <%= tc.select :land_45_days_max_age, options_for_cover_ages, { prompt: 'Please select', include_blank: true }, { class: 't-six-month-land' } %>
+      <%= tc.select :land_45_days_max_age, options_for_cover_ages, { prompt: 'Please select', include_blank: false }, { class: 't-six-month-land' } %>
     </div>
 
     <div class="l-3col-even">
       <%= tc.label :cruise_45_days_max_age,
                   t('self_service.travel_insurance_firms_edit.maximum_age_cruise'),
                   class: 'form__label-heading' %>
-      <%= tc.select :cruise_45_days_max_age, options_for_cover_ages, { prompt: 'Please select', include_blank: true }, { class: 't-six-month-cruise' } %>
+      <%= tc.select :cruise_45_days_max_age, options_for_cover_ages, { prompt: 'Please select', include_blank: false }, { class: 't-six-month-cruise' } %>
     </div>
   </div>
   <br />
@@ -53,14 +53,14 @@
       <%= tc.label :land_55_days_max_age,
                   t('self_service.travel_insurance_firms_edit.maximum_age_non_cruise'),
                   class: 'form__label-heading' %>
-      <%= tc.select :land_55_days_max_age, options_for_cover_ages, { prompt: 'Please select', include_blank: true }, { class: 't-six-month-plus-land' } %>
+      <%= tc.select :land_55_days_max_age, options_for_cover_ages, { prompt: 'Please select', include_blank: false }, { class: 't-six-month-plus-land' } %>
     </div>
 
     <div class="l-3col-even">
       <%= tc.label :cruise_55_days_max_age,
                   t('self_service.travel_insurance_firms_edit.maximum_age_cruise'),
                   class: 'form__label-heading' %>
-      <%= tc.select :cruise_55_days_max_age, options_for_cover_ages, { prompt: 'Please select', include_blank: true }, { class: 't-six-month-plus-cruise' } %>
+      <%= tc.select :cruise_55_days_max_age, options_for_cover_ages, { prompt: 'Please select', include_blank: false }, { class: 't-six-month-plus-cruise' } %>
     </div>
   </div>
   <br />

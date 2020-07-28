@@ -74,7 +74,7 @@
       <%= sd.label :medical_screening_company_label,
                 t('self_service.travel_insurance_firms_edit.service_details.medical_screening_company_label'),
                 class: 'form__label-heading' %>
-      <%= sd.select :medical_screening_company, t('self_service.travel_insurance_firms_edit.service_details.medical_screening_companies_select').invert, { prompt: 'Please select', include_blank: true }  %>
+      <%= sd.select :medical_screening_company, t('self_service.travel_insurance_firms_edit.service_details.medical_screening_companies_select').invert, { prompt: 'Please select', include_blank: false }  %>
     </fieldset>
   <% end %>
 
@@ -83,7 +83,7 @@
       <%= sd.label :how_far_in_advance_trip_cover,
                 t('self_service.travel_insurance_firms_edit.service_details.how_far_in_advance_trip_cover_label'),
                 class: 'form__label-heading' %>
-      <%= sd.select :how_far_in_advance_trip_cover, t('self_service.travel_insurance_firms_edit.service_details.advance_of_trip_cover_select').invert, { prompt: 'Please select', include_blank: true } %>
+      <%= sd.select :how_far_in_advance_trip_cover, t('self_service.travel_insurance_firms_edit.service_details.advance_of_trip_cover_select').invert, { prompt: 'Please select', include_blank: false } %>
     </fieldset>
   <% end %>
 <% end %>
