@@ -1,4 +1,4 @@
-.edit_travel_insurance_firm {
+.l-travel-insurance-form {
   .tab-selector__trigger-container .tab-selector__trigger:after{
     border: 0;
   }
@@ -26,7 +26,7 @@
     }
 
     .tab-selector__trigger-container{
-      flex-grow: 1;
+      width: 100%;
 
       button {
         width: 100%;
