@@ -12,6 +12,7 @@ class Principal < ApplicationRecord
           dependent: :destroy
 
   has_one :travel_insurance_firm,
+    -> { where(parent_id: nil) },
     primary_key: :fca_number,
     foreign_key: :fca_number,
     dependent: :destroy
