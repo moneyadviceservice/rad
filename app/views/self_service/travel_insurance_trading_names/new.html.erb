@@ -10,6 +10,5 @@
              html: { class: 'form l-travel-insurance-form' } do |f| %>
 
   <%= hidden_field_tag 'lookup_id', params[:lookup_id] %>
-  <%= render partial: 'self_service/travel_insurance_firms/form', locals: {f: f} %>
-
+  <%= render partial: 'self_service/travel_insurance_firms/form', locals: { f: f } %>
 <% end %>

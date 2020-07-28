@@ -13,7 +13,7 @@ module SelfService
 
     %w[uk_and_europe worldwide_excluding_us_canada worldwide_including_us_canada].each do |area_covered|
       define_method "#{area_covered}_icon" do
-        icon_toggle trip_covers.any? && trip_covers.send(area_covered).map(&:all_complete?).all?
+        icon_toggle trip_covers.send(area_covered).any? && trip_covers.send(area_covered).map(&:all_complete?).all?
       end
     end
 

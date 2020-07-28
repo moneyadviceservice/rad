@@ -4,7 +4,8 @@
 
 <%= form_for @firm,
              url: self_service_travel_insurance_trading_name_path(@firm),
-             builder: Dough::Forms::Builders::Validation do |f| %>
+             builder: Dough::Forms::Builders::Validation,
+             html: { class: 'form l-travel-insurance-form' } do |f| %>
 
   <%= render partial: 'self_service/travel_insurance_firms/form', locals: { f: f } %>
 <% end %>

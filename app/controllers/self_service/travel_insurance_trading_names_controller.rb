@@ -46,7 +46,6 @@ module SelfService
     def build_firm_from_lookup_trading_name
       initialize_firm_from_lookup_trading_name(params[:lookup_id]).tap do |firm|
         firm.assign_attributes(firm_params)
-        build_travel_firm_associations
       end
     end
 
