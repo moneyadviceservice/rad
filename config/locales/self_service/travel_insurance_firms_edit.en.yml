@@ -26,9 +26,11 @@ en:
 
       medical_specialism:
         heading: Medical Specialism
-        description: Please confirm any medical specialisms or exclusions and whether cover can be provided for people who have been given a terminal prognosis.
-        specialised_medical_conditions_cover_label: Does the firm specialise in covering any specific medical conditions?
-        likely_not_cover_medical_condition_label: Is the firm likely NOT to cover any specific medical conditions?
+        description: Please provide further details about the cover offered.
+        specialised_medical_conditions_cover_label: Select one of the following options
+        specialised_medical_conditions_cover_yes: The firm offers travel insurance that will cover any/most types of serious medical conditions
+        specialised_medical_conditions_cover_no: The firm <u>specialises</u> in offering travel insurance for <u>one of the following</u> medical conditions
+        likely_not_cover_medical_condition_label: Are there any medical conditions the firm will not cover?
         cover_undergoing_treatment_label: Will you offer cover if the customer is undergoing treatment at the time of travel?
         terminal_prognosis_cover_label: Will you offer cover to customers who have been given a terminal prognosis?
         medical_conditions_cover_select:
@@ -56,7 +58,7 @@ en:
 
 
         medical_screening_companies_select:
-          verisik: Verisik
+          verisik: Verisk/Healix
           tamis: Travel and Medical Insurance Services (TAMIS)
           protectif: Protectif
           inhouse: Medical screening undertaken in-house
