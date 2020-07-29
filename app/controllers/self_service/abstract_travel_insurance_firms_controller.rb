@@ -38,6 +38,11 @@ module SelfService
       ]
     ].freeze
 
+    def admin_email_address
+      ENV['TAD_ADMIN_EMAIL']
+    end
+    helper_method :admin_email_address
+
     protected
 
     def principal
