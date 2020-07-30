@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 3019_11_18_100167) do
+ActiveRecord::Schema.define(version: 3019_11_18_100168) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -224,6 +224,7 @@ ActiveRecord::Schema.define(version: 3019_11_18_100167) do
     t.boolean "terminal_prognosis_cover"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "specialised_medical_conditions_covers_all", default: true
     t.index ["travel_insurance_firm_id"], name: "index_medical_specialisms_on_travel_insurance_firm_id"
   end
 

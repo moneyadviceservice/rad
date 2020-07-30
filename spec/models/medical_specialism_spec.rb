@@ -4,8 +4,8 @@ RSpec.describe MedicalSpecialism, type: :model do
   describe 'before_save' do
     let(:medical_specialism) { create(:medical_specialism) }
 
-    it 'clears specialised_medical_conditions_cover when specialised_medical_conditions_cover_select is false' do
-      medical_specialism.specialised_medical_conditions_cover_select = false
+    it 'clears specialised_medical_conditions_cover when specialised_medical_conditions_covers_all is false' do
+      medical_specialism.specialised_medical_conditions_covers_all = true
       medical_specialism.save
 
       expect(medical_specialism.specialised_medical_conditions_cover).to be_nil

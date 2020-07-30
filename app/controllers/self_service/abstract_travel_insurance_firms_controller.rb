@@ -19,7 +19,7 @@ module SelfService
       ],
       medical_specialism_attributes: [
         :id,
-        :specialised_medical_conditions_cover_select,
+        :specialised_medical_conditions_covers_all,
         :likely_not_cover_medical_condition_select,
         :specialised_medical_conditions_cover,
         :likely_not_cover_medical_condition,
