@@ -35,7 +35,7 @@ module SelfService
       icon_toggle main_office
     end
 
-    def offices_link(opts = {})
+    def offices_link(**opts)
       if office.present?
         path = edit_self_service_travel_insurance_firm_office_path(self, office)
         text = I18n.t('self_service.status.edit')
@@ -47,7 +47,7 @@ module SelfService
       link_to text, path, opts
     end
 
-    def firm_details_link(opts = {})
+    def firm_details_link(**opts)
       path = if trading_name?
                edit_self_service_travel_insurance_trading_name_path(self)
              else

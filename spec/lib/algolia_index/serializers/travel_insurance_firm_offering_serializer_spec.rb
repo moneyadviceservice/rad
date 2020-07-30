@@ -22,6 +22,7 @@ RSpec.describe AlgoliaIndex::TravelInsuranceFirmOfferingSerializer do
         offers_telephone_quote: firm.service_detail.offers_telephone_quote,
         cover_undergoing_treatment: firm.medical_specialism.cover_undergoing_treatment,
         likely_not_cover_medical_condition: firm.medical_specialism.likely_not_cover_medical_condition,
+        specialised_medical_conditions_covers_all: false,
         specialised_medical_conditions_cover: firm.medical_specialism.specialised_medical_conditions_cover,
         terminal_prognosis_cover: firm.medical_specialism.terminal_prognosis_cover,
         trip_type: trip_cover.trip_type

@@ -27,7 +27,7 @@ module SelfService
     end
 
     def set_firm
-      @firm = @principal.firm ? @principal.firm : @principal.travel_insurance_firm
+      @firm = @principal.firm || @principal.travel_insurance_firm
     end
 
     def principal_params
