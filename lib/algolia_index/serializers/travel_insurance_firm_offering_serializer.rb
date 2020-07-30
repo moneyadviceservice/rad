@@ -15,6 +15,7 @@ module AlgoliaIndex
                :how_far_in_advance_trip_cover,
                :covid19_medical_repatriation,
                :covid19_cancellation_cover,
+               :specialised_medical_conditions_covers_all,
                :specialised_medical_conditions_cover,
                :likely_not_cover_medical_condition,
                :cover_undergoing_treatment,
@@ -38,6 +39,7 @@ module AlgoliaIndex
     end
 
     [
+      :specialised_medical_conditions_covers_all,
       :specialised_medical_conditions_cover,
       :likely_not_cover_medical_condition,
       :cover_undergoing_treatment,
