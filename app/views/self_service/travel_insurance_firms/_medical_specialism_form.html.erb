@@ -8,16 +8,17 @@
     </fieldset>
 
       <fieldset class="form__group-item">
-        <%= ms.radio_button :specialised_medical_conditions_cover_select, 1, class: 'form__group-input  t-specialised-medical-conditions-yes', checked: ms.object.specialised_medical_conditions_cover.present?, data: { show_hide: 'data-specialised-conditions' } %>
+        <%= ms.radio_button :specialised_medical_conditions_cover_select, 1, class: 'form__group-input  t-specialised-medical-conditions-yes', checked: ms.object.specialised_medical_conditions_cover.present?, data: { show_hide: 'data-specialised-conditions', show_hide_trigger: 1 } %>
         <%= ms.label :specialised_medical_conditions_cover_select_1, t('self_service.travel_insurance_firms_edit.medical_specialism.specialised_medical_conditions_cover_yes')%>
       </fieldset>
 
       <fieldset>
-        <%= ms.radio_button :specialised_medical_conditions_cover_select, 0, class: 'form__group-input  t-specialised-medical-conditions-no', checked: ms.object.specialised_medical_conditions_cover.nil?, data: { show_hide: 'data-specialised-conditions' } %>
+        <%= ms.radio_button :specialised_medical_conditions_cover_select, 0, class: 'form__group-input  t-specialised-medical-conditions-no', checked: ms.object.specialised_medical_conditions_cover.nil?, data: { show_hide: 'data-specialised-conditions', show_hide_trigger: 1 } %>
         <%= ms.label :specialised_medical_conditions_cover_select_0, t('self_service.travel_insurance_firms_edit.medical_specialism.specialised_medical_conditions_cover_no').html_safe%>
       </fieldset>
 
     <fieldset class="form__group t-specialised-medical-conditions-cover" data-specialised-conditions>
+      <br />
       <%= ms.select :specialised_medical_conditions_cover, t('self_service.travel_insurance_firms_edit.medical_specialism.medical_conditions_cover_select').invert, { prompt: 'Please select', include_blank: false } %>
     </fieldset>
   <% end %>
