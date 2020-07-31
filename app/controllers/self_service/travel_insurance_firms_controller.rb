@@ -23,6 +23,7 @@ module SelfService
         flash[:notice] = I18n.t('self_service.firm_edit.saved')
         redirect_to_edit
       else
+        build_travel_firm_associations
         render :edit
       end
     end

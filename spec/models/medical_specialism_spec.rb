@@ -1,6 +1,32 @@
 RSpec.describe MedicalSpecialism, type: :model do
   it { should belong_to :travel_insurance_firm }
 
+  describe 'validations' do
+    before { allow(subject).to receive(:likely_not_cover_medical_condition_select).and_return(true) }
+
+    it 'validates presence of likely_not_cover_medical_condition if likely_not_cover_medical_condition_select is true' do
+      is_expected.to validate_presence_of(:likely_not_cover_medical_condition)
+    end
+  end
+
+  describe '#completed?' do
+    context 'when all required fields are present' do
+      let(:medical_specialism) { create(:medical_specialism) }
+
+      it 'returns true' do
+        expect(medical_specialism.completed?).to eq true
+      end
+    end
+
+    context 'when not all required fields are present' do
+      let(:medical_specialism) { create(:medical_specialism, cover_undergoing_treatment: nil) }
+
+      it 'returns false' do
+        expect(medical_specialism.completed?).to eq false
+      end
+    end
+  end
+
   describe 'before_save' do
     let(:medical_specialism) { create(:medical_specialism) }
 
