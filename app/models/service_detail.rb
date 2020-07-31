@@ -5,6 +5,16 @@ class ServiceDetail < ApplicationRecord
 
   before_save :clear_opening_times
 
+  def completed?
+    [
+      offers_telephone_quote,
+      medical_screening_company,
+      how_far_in_advance_trip_cover,
+      covid19_medical_repatriation,
+      covid19_cancellation_cover
+    ].all?
+  end
+
   private
 
   def clear_opening_times

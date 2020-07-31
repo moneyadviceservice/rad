@@ -18,4 +18,22 @@ RSpec.describe ServiceDetail, type: :model do
       expect(service_detail.cover_for_specialist_equipment).not_to be_nil
     end
   end
+
+  describe '#completed?' do
+    context 'when all required fields are present' do
+      let(:service_detail) { create(:service_detail) }
+
+      it 'returns true' do
+        expect(service_detail.completed?).to eq true
+      end
+    end
+
+    context 'when not all required fields are present' do
+      let(:service_detail) { create(:service_detail, how_far_in_advance_trip_cover: nil) }
+
+      it 'returns false' do
+        expect(service_detail.completed?).to eq false
+      end
+    end
+  end
 end
