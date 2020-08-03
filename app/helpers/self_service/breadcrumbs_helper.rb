@@ -31,6 +31,14 @@ module SelfService::BreadcrumbsHelper
     breadcrumbs_firm_offices << crumb_firm_office_new
   end
 
+  def breadcrumbs_travel_firm_office_new
+    breadcrumbs_firm_edit << crumb_firm_office_new
+  end
+
+  def breadcrumbs_travel_firm_office_edit
+    breadcrumbs_firm_edit << crumb_firm_office_edit
+  end
+
   def breadcrumbs_trading_name_new
     breadcrumbs_root << crumb_trading_name_new
   end
