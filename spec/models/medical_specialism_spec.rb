@@ -17,23 +17,35 @@ RSpec.describe MedicalSpecialism, type: :model do
         end
       end
     end
+
+    describe 'specialised_medical_conditions_cover' do
+      context 'when specialised_medical_conditions_covers_all is false' do
+        before { allow(subject).to receive(:specialised_medical_conditions_covers_all).and_return(false) }
+
+        it 'validates presence of specialised_medical_conditions_cover' do
+          is_expected.to validate_presence_of(:specialised_medical_conditions_cover)
+        end
+      end
+
+      context 'when specialised_medical_conditions_covers_all is set to true' do
+        before { allow(subject).to receive(:specialised_medical_conditions_covers_all).and_return(true) }
+
+        it 'does not validate presence of specialised_medical_conditions_cover' do
+          is_expected.not_to validate_presence_of(:specialised_medical_conditions_cover)
+        end
+      end
+    end
   end
 
   describe '#completed?' do
     context 'when all required fields are present' do
       let(:medical_specialism) { create(:medical_specialism) }
-
-      it 'returns true' do
-        expect(medical_specialism.completed?).to eq true
-      end
+      it { expect(medical_specialism.completed?).to eq true }
     end
 
     context 'when not all required fields are present' do
       let(:medical_specialism) { create(:medical_specialism, cover_undergoing_treatment: nil) }
-
-      it 'returns false' do
-        expect(medical_specialism.completed?).to eq false
-      end
+      it { expect(medical_specialism.completed?).to eq false }
     end
   end
 

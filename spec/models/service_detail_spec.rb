@@ -20,20 +20,19 @@ RSpec.describe ServiceDetail, type: :model do
   end
 
   describe '#completed?' do
+    context 'when offers_telephone_quote is set to nil' do
+      let(:service_detail) { create(:service_detail, offers_telephone_quote: nil) }
+      it { expect(service_detail.completed?).to eq false }
+    end
+
     context 'when all required fields are present' do
       let(:service_detail) { create(:service_detail) }
-
-      it 'returns true' do
-        expect(service_detail.completed?).to eq true
-      end
+      it { expect(service_detail.completed?).to eq true }
     end
 
     context 'when not all required fields are present' do
       let(:service_detail) { create(:service_detail, how_far_in_advance_trip_cover: nil) }
-
-      it 'returns false' do
-        expect(service_detail.completed?).to eq false
-      end
+      it { expect(service_detail.completed?).to eq false }
     end
   end
 end

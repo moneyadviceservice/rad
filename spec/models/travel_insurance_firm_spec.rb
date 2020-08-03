@@ -85,15 +85,9 @@ RSpec.describe TravelInsuranceFirm, type: :model do
     let(:firm) { FactoryBot.create(:travel_insurance_firm, with_associated_principle: true) }
     subject { firm.publishable? }
 
-    context 'when the firm is valid, has a main office, medical_specialism, service_details and trip_cover data' do
+    context 'when the firm is valid and complete' do
       let(:firm) { FactoryBot.create(:travel_insurance_firm, completed_firm: true) }
       it { is_expected.to be_truthy }
-    end
-
-    context 'when the firm is not valid' do
-      let(:firm) { build(:travel_insurance_firm) }
-
-      it { is_expected.to be_falsey }
     end
 
     context 'when the firm has no main office' do
@@ -103,25 +97,54 @@ RSpec.describe TravelInsuranceFirm, type: :model do
       it { is_expected.to be_falsey }
     end
 
-    context 'when the firm has no medical_specialism' do
+    context 'when the firm is not cover_and_service_complete?' do
       let(:firm) { FactoryBot.create(:travel_insurance_firm, completed_firm: true) }
-      before { allow(firm).to receive(:medical_specialism).and_return(nil) }
+      before { allow(firm).to receive(:cover_and_service_complete?).and_return(false) }
 
       it { is_expected.to be_falsey }
     end
+  end
 
-    context 'when the firm has no service_detail' do
-      let(:firm) { FactoryBot.create(:travel_insurance_firm, completed_firm: true) }
-      before { allow(firm).to receive(:service_detail).and_return(nil) }
+  describe '#cover_and_service_complete?' do
+    let(:firm) { FactoryBot.create(:travel_insurance_firm, completed_firm: true) }
 
-      it { is_expected.to be_falsey }
+    it 'returns true when everything is complete' do
+      expect(firm.cover_and_service_complete?).to eq true
     end
 
-    context 'when the firm has no trip_covers' do
-      let(:firm) { FactoryBot.create(:travel_insurance_firm, completed_firm: true) }
-      before { allow(firm).to receive(:trip_covers).and_return([]) }
+    context 'when service_detail is not present' do
+      it 'returns false when service_detail is not present' do
+        allow(firm).to receive(:service_detail).and_return(nil)
+        expect(firm.cover_and_service_complete?).to eq false
+      end
+    end
 
-      it { is_expected.to be_falsey }
+    context 'when medical_specialism is not present' do
+      it 'returns false when medical_specialism is not present' do
+        allow(firm).to receive(:medical_specialism).and_return(nil)
+        expect(firm.cover_and_service_complete?).to eq false
+      end
+    end
+
+    context 'when medical_specialism is not complete' do
+       it 'returns false' do
+        allow(firm.medical_specialism).to receive(:completed?).and_return(false)
+        expect(firm.cover_and_service_complete?).to eq false
+      end
+    end
+
+    context 'when service_detail is not complete' do
+       it 'returns false' do
+        allow(firm.service_detail).to receive(:completed?).and_return(false)
+        expect(firm.cover_and_service_complete?).to eq false
+      end
+    end
+
+    context 'when trip_covers is not complete' do
+      it 'returns false' do
+        allow(firm).to receive(:trip_covers).and_return([])
+        expect(firm.cover_and_service_complete?).to eq false
+      end
     end
   end
 

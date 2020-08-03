@@ -6,8 +6,9 @@ class ServiceDetail < ApplicationRecord
   before_save :clear_opening_times
 
   def completed?
+    return false if offers_telephone_quote.nil?
+
     [
-      offers_telephone_quote,
       medical_screening_company,
       how_far_in_advance_trip_cover,
       covid19_medical_repatriation,

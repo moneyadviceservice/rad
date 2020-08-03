@@ -6,6 +6,7 @@ class MedicalSpecialism < ApplicationRecord
   before_save :clear_no_attributes
 
   validates :likely_not_cover_medical_condition, presence: true, if: :likely_not_cover_medical_condition_select
+  validates :specialised_medical_conditions_cover, presence: true, unless: :specialised_medical_conditions_covers_all
 
   def completed?
     [

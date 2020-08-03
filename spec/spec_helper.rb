@@ -38,6 +38,7 @@ RSpec.configure do |c|
 
   c.include Devise::Test::IntegrationHelpers, type: :request
   c.include Devise::Test::IntegrationHelpers, type: :feature
+  c.include Devise::Test::ControllerHelpers, type: :controller
 
   c.example_status_persistence_file_path = 'spec/test_status.txt'
 end
