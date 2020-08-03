@@ -77,10 +77,10 @@ class TravelInsuranceFirm < ApplicationRecord
   alias onboarded? publishable?
 
   def cover_and_service_complete?
-    medical_specialism.present? &&
-      service_detail.present? &&
-      trip_covers.any? &&
-      trip_covers.map(&:all_complete?).all?
+    return false unless medical_specialism.present? && service_detail.present?
+    return false unless medical_specialism.completed? && service_detail.completed?
+
+    trip_covers.any? && trip_covers.map(&:all_complete?).all?
   end
 
   def main_office

@@ -2,10 +2,20 @@ RSpec.describe MedicalSpecialism, type: :model do
   it { should belong_to :travel_insurance_firm }
 
   describe 'validations' do
-    before { allow(subject).to receive(:likely_not_cover_medical_condition_select).and_return(true) }
+    describe 'likely_not_cover_medical_condition' do
+      context 'when likely_not_cover_medical_condition_select is true' do
+        before { allow(subject).to receive(:likely_not_cover_medical_condition_select).and_return(true) }
 
-    it 'validates presence of likely_not_cover_medical_condition if likely_not_cover_medical_condition_select is true' do
-      is_expected.to validate_presence_of(:likely_not_cover_medical_condition)
+        it 'validates presence of likely_not_cover_medical_condition' do
+          is_expected.to validate_presence_of(:likely_not_cover_medical_condition)
+        end
+      end
+
+      context 'when likely_not_cover_medical_condition_select is not set' do
+        it 'does not validate presence of likely_not_cover_medical_condition' do
+          is_expected.not_to validate_presence_of(:likely_not_cover_medical_condition)
+        end
+      end
     end
   end
 
