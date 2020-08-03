@@ -24,11 +24,11 @@ module SelfService::BreadcrumbsHelper
   end
 
   def breadcrumbs_firm_office_edit
-    breadcrumbs_firm_offices << crumb_firm_office_edit
+    breadcrumbs_firm_offices << { name: t('self_service.travel_insurance_office.title') }
   end
 
   def breadcrumbs_firm_office_new
-    breadcrumbs_firm_offices << crumb_firm_office_new
+    breadcrumbs_firm_offices << { name: t('self_service.travel_insurance_office.title') }
   end
 
   def breadcrumbs_travel_firm_office_new

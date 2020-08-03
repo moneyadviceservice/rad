@@ -19,11 +19,12 @@ class ApplicationController < ActionController::Base
   end
 
   def admin_email_address
-    if current_user.principal.travel_insurance_firm
+    if current_user && current_user.principal.travel_insurance_firm
       ENV['TAD_ADMIN_EMAIL']
     else
       ENV['RAD_ADMIN_EMAIL']
     end
   end
+
   helper_method :admin_email_address
 end
