@@ -7,7 +7,8 @@ RSpec.describe AlgoliaIndex::TravelInsuranceFirmOfferingSerializer do
     let(:expected_json) do
       {
         objectID: trip_cover.id,
-        cover_area: trip_cover.cover_area,
+        cover_area: [I18n.t("self_service.travel_insurance_firms_edit.#{trip_cover.cover_area}")],
+        trip_type: [I18n.t("self_service.travel_insurance_firms_edit.#{trip_cover.trip_type}.heading")],
         cruise_30_days_max_age: trip_cover.cruise_30_days_max_age,
         cruise_45_days_max_age: trip_cover.cruise_45_days_max_age,
         cruise_55_days_max_age: trip_cover.cruise_55_days_max_age,
@@ -15,17 +16,16 @@ RSpec.describe AlgoliaIndex::TravelInsuranceFirmOfferingSerializer do
         land_45_days_max_age: trip_cover.land_45_days_max_age,
         land_55_days_max_age: trip_cover.land_55_days_max_age,
         cover_for_specialist_equipment: firm.service_detail.cover_for_specialist_equipment,
-        covid19_cancellation_cover: firm.service_detail.covid19_cancellation_cover,
-        covid19_medical_repatriation: firm.service_detail.covid19_medical_repatriation,
-        how_far_in_advance_trip_cover: firm.service_detail.how_far_in_advance_trip_cover,
-        medical_screening_company: firm.service_detail.medical_screening_company,
-        offers_telephone_quote: firm.service_detail.offers_telephone_quote,
-        cover_undergoing_treatment: firm.medical_specialism.cover_undergoing_treatment,
+        covid19_cancellation_cover: ['Yes'],
+        covid19_medical_repatriation: ['Yes'],
+        how_far_in_advance_trip_cover: [I18n.t("self_service.travel_insurance_firms_edit.service_details.advance_of_trip_cover_select.#{firm.service_detail.how_far_in_advance_trip_cover}")],
+        medical_screening_company: [I18n.t("self_service.travel_insurance_firms_edit.service_details.medical_screening_companies_select.#{firm.service_detail.medical_screening_company}")],
+        offers_telephone_quote: ['Yes'],
+        cover_undergoing_treatment: ['Yes'],
         likely_not_cover_medical_condition: firm.medical_specialism.likely_not_cover_medical_condition,
-        specialised_medical_conditions_covers_all: false,
-        specialised_medical_conditions_cover: firm.medical_specialism.specialised_medical_conditions_cover,
-        terminal_prognosis_cover: firm.medical_specialism.terminal_prognosis_cover,
-        trip_type: trip_cover.trip_type
+        specialised_medical_conditions_covers_all: ['No'],
+        specialised_medical_conditions_cover: [I18n.t("self_service.travel_insurance_firms_edit.medical_specialism.medical_conditions_cover_select.#{firm.medical_specialism.specialised_medical_conditions_cover}")],
+        terminal_prognosis_cover: ['Yes'],
       }.with_indifferent_access
     end
 

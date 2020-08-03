@@ -3,7 +3,7 @@ class ServiceDetail < ApplicationRecord
 
   attribute :cover_for_specialist_equipment_select, :boolean
 
-  before_save :clear_opening_times
+  before_save :clear_cover_for_specialist_equipment_amount, if: :cover_for_specialist_equipment_select
 
   def completed?
     return false if offers_telephone_quote.nil?
@@ -18,9 +18,7 @@ class ServiceDetail < ApplicationRecord
 
   private
 
-  def clear_opening_times
-    return unless cover_for_specialist_equipment_select == false
-
+  def clear_cover_for_specialist_equipment_amount
     self.cover_for_specialist_equipment = nil
   end
 end
