@@ -20,6 +20,7 @@
     border-top: 0;
   }
 
+
   @include respond-to($mq-m) {
     .tab-selector__triggers-inner{
       display: flex;
@@ -43,5 +44,25 @@
         align-items: flex-end;
       }
     }
+  }
+}
+
+.mq-s, .mq-xs, .mq-m{
+  .tab-selector__triggers-inner{
+    display: block;
+    width: 100%;
+    text-align: left;
+  }
+
+  .tab-selector__trigger-container button.tab-selector__trigger.is-active{
+    border-width: 1px;
+    border-radius: 5px;
+  }
+
+  .tab-selector__trigger-container,
+  .tab-selector__trigger-container button{
+    width: 100%;
+    text-align: left;
+    margin-bottom: 10px;
   }
 }
