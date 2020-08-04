@@ -24,19 +24,11 @@ module SelfService::BreadcrumbsHelper
   end
 
   def breadcrumbs_firm_office_edit
-    breadcrumbs_firm_offices << { name: t('self_service.travel_insurance_office.title') }
+    breadcrumbs_firm_offices << crumb_firm_office_edit
   end
 
   def breadcrumbs_firm_office_new
-    breadcrumbs_firm_offices << { name: t('self_service.travel_insurance_office.title') }
-  end
-
-  def breadcrumbs_travel_firm_office_new
-    breadcrumbs_firm_edit << crumb_firm_office_new
-  end
-
-  def breadcrumbs_travel_firm_office_edit
-    breadcrumbs_firm_edit << crumb_firm_office_edit
+    breadcrumbs_firm_offices << crumb_firm_office_new
   end
 
   def breadcrumbs_trading_name_new
@@ -47,7 +39,7 @@ module SelfService::BreadcrumbsHelper
     breadcrumbs_firm_edit << crumb_principal_edit
   end
 
-  def breadcrumbs_travel_insurance_firm_office_edit
+  def breadcrumbs_travel_insurance_firm_office
     breadcrumbs_root << crumb_travel_insurance_office
   end
 
