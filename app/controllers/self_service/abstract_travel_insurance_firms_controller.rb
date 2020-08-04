@@ -52,14 +52,19 @@ module SelfService
       @firm.build_medical_specialism unless @firm.medical_specialism
       @firm.build_service_detail unless @firm.service_detail
 
-      @single_trip_europe = @firm.trip_covers.find_or_initialize_by(cover_area: 'uk_and_europe', trip_type: 'single_trip')
-      @multi_trip_europe = @firm.trip_covers.find_or_initialize_by(cover_area: 'uk_and_europe', trip_type: 'annual_multi_trip')
+      @single_trip_europe = find_or_initialize_covers(cover_area: 'uk_and_europe', trip_type: 'single_trip')
+      @multi_trip_europe = find_or_initialize_covers(cover_area: 'uk_and_europe', trip_type: 'annual_multi_trip')
 
-      @single_worldwide_us = @firm.trip_covers.find_or_initialize_by(cover_area: 'worldwide_including_us_canada', trip_type: 'single_trip')
-      @multi_worldwide_us = @firm.trip_covers.find_or_initialize_by(cover_area: 'worldwide_including_us_canada', trip_type: 'annual_multi_trip')
+      @single_worldwide_us = find_or_initialize_covers(cover_area: 'worldwide_including_us_canada', trip_type: 'single_trip')
+      @multi_worldwide_us = find_or_initialize_covers(cover_area: 'worldwide_including_us_canada', trip_type: 'annual_multi_trip')
 
-      @single_worldwide_ex_us = @firm.trip_covers.find_or_initialize_by(cover_area: 'worldwide_excluding_us_canada', trip_type: 'single_trip')
-      @multi_worldwide_ex_us = @firm.trip_covers.find_or_initialize_by(cover_area: 'worldwide_excluding_us_canada', trip_type: 'annual_multi_trip')
+      @single_worldwide_ex_us = find_or_initialize_covers(cover_area: 'worldwide_excluding_us_canada', trip_type: 'single_trip')
+      @multi_worldwide_ex_us = find_or_initialize_covers(cover_area: 'worldwide_excluding_us_canada', trip_type: 'annual_multi_trip')
+    end
+
+    def find_or_initialize_covers(cover_area:, trip_type:)
+      @firm.trip_covers.select{ |tc|  tc.cover_area == cover_area && tc.trip_type == trip_type }&.first ||
+        @firm.trip_covers.find_or_initialize_by(cover_area: cover_area, trip_type: trip_type)
     end
 
     def redirect_to_edit(firm_id: params[:firm_id])

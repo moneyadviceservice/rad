@@ -32,7 +32,7 @@
       <%= ms.radio_button :likely_not_cover_medical_condition_select, 1, class: 'form__group-input t-not-covering-medical-condition-yes', checked: ms.object.likely_not_cover_medical_condition.present?, data: { show_hide: 'data-not-likely-cover ' } %>
       <%= t('registration.answer_yes') %>
 
-      <%= ms.radio_button :likely_not_cover_medical_condition_select, 0, class: 'form__group-input t-not-covering-medical-condition-no', checked: ms.object.likely_not_cover_medical_condition.nil?, data: { show_hide: 'data-not-likely-cover ' } %>
+      <%= ms.radio_button :likely_not_cover_medical_condition_select, 0, class: 'form__group-input t-not-covering-medical-condition-no', checked: (ms.object.likely_not_cover_medical_condition.nil? && ms.object.persisted?), data: { show_hide: 'data-not-likely-cover ' } %>
       <%= t('registration.answer_no') %>
     </fieldset>
 

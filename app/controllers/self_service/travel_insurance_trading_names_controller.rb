@@ -12,6 +12,7 @@ module SelfService
         flash[:notice] = I18n.t('self_service.trading_name_edit.saved')
         redirect_to edit_self_service_travel_insurance_trading_name_path(@firm)
       else
+        build_travel_firm_associations
         render :new
       end
     end

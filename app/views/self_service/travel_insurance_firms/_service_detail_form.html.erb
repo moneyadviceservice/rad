@@ -21,7 +21,7 @@
       <%= sd.radio_button :cover_for_specialist_equipment_select, 1, class: 'form__group-input t-covers-specialist-equipment-yes', checked: sd.object.cover_for_specialist_equipment.present?, data: { show_hide: 'data-specialist-equipment' } %>
       <%= t('registration.answer_yes') %>
 
-      <%= sd.radio_button :cover_for_specialist_equipment_select, 0, class: 'form__group-input t-covers-specialist-equipment-no', checked: !sd.object.cover_for_specialist_equipment.present?, data: { show_hide: 'data-specialist-equipment' } %>
+      <%= sd.radio_button :cover_for_specialist_equipment_select, 0, class: 'form__group-input t-covers-specialist-equipment-no', checked: (sd.object.cover_for_specialist_equipment.nil? && sd.object.persisted?), data: { show_hide: 'data-specialist-equipment' } %>
       <%= t('registration.answer_no') %>
     </fieldset>
 
