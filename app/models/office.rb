@@ -53,6 +53,8 @@ class Office < ApplicationRecord
   def notify_indexer
     if officeable_type == 'Firm'
       UpdateAlgoliaIndexJob.perform_later(model_name.name, id, officeable_id)
+    else
+      UpdateAlgoliaIndexJob.perform_later(officeable.model_name.name, officeable_id)
     end
   end
 

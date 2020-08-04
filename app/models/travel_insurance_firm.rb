@@ -43,6 +43,7 @@ class TravelInsuranceFirm < ApplicationRecord
   has_many :trip_covers, dependent: :destroy
   accepts_nested_attributes_for :trip_covers, :medical_specialism, :service_detail
 
+  scope :approved, -> { where.not(approved_at: nil) }
   scope :onboarded, -> { joins(:office) }
   scope :sorted_by_registered_name, -> { order(:registered_name) }
 

@@ -42,4 +42,20 @@ namespace :index do
 
     Rails.logger.info 'Index built successfully'
   end
+
+  desc '(Re-)index all existing Travel Insurance Firms and their offerings'
+  task travel_insurance: :environment do
+    Rails.logger.info 'Querying the db (this might take some time...)'
+
+    firms = TravelInsuranceFirm
+                   .approved
+                   .includes(:trip_covers, :medical_specialism, :service_detail)
+
+    Rails.logger.info 'Building a complete production index...'
+    Rails.logger.info "(#{firms.size} firms)"
+
+    AlgoliaIndex::TravelInsuranceFirm.create(firms)
+
+    Rails.logger.info 'Index built successfully'
+  end
 end
