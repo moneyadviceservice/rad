@@ -19,7 +19,7 @@ en:
         long_trip: 6 months +
 
       annual_multi_trip:
-        heading: Annual Mutli-trip
+        heading: Annual Multi-trip
         short_trip: no longer than 31 days
         medium_trip: no longer than 45 days
         long_trip: no longer than 55 days
