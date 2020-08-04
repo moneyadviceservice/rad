@@ -47,9 +47,8 @@ namespace :index do
   task travel_insurance: :environment do
     Rails.logger.info 'Querying the db (this might take some time...)'
 
-    firms = TravelInsuranceFirm
-                   .approved
-                   .includes(:trip_covers, :medical_specialism, :service_detail)
+    firms = TravelInsuranceFirm.approved
+                              .includes(:trip_covers, :medical_specialism, :service_detail)
 
     Rails.logger.info 'Building a complete production index...'
     Rails.logger.info "(#{firms.size} firms)"

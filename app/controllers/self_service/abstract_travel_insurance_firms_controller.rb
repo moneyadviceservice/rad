@@ -63,7 +63,7 @@ module SelfService
     end
 
     def find_or_initialize_covers(cover_area:, trip_type:)
-      @firm.trip_covers.select{ |tc|  tc.cover_area == cover_area && tc.trip_type == trip_type }&.first ||
+      @firm.trip_covers.select { |tc| tc.cover_area == cover_area && tc.trip_type == trip_type }&.first ||
         @firm.trip_covers.find_or_initialize_by(cover_area: cover_area, trip_type: trip_type)
     end
 

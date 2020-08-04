@@ -24,6 +24,7 @@ module AlgoliaIndex
     def objectID # rubocop:disable Naming/MethodName
       object.id
     end
+
     # Trip covers
     def cover_area
       [I18n.t("self_service.travel_insurance_firms_edit.#{object.cover_area}")]
@@ -33,14 +34,13 @@ module AlgoliaIndex
       [I18n.t("self_service.travel_insurance_firms_edit.#{object.trip_type}.heading")]
     end
 
-
     # Service details
     def how_far_in_advance_trip_cover
       [I18n.t("self_service.travel_insurance_firms_edit.service_details.advance_of_trip_cover_select.#{service_detail.how_far_in_advance_trip_cover}")]
     end
 
     def medical_screening_company
-     [I18n.t("self_service.travel_insurance_firms_edit.service_details.medical_screening_companies_select.#{service_detail.medical_screening_company}")]
+      [I18n.t("self_service.travel_insurance_firms_edit.service_details.medical_screening_companies_select.#{service_detail.medical_screening_company}")]
     end
 
     def cover_for_specialist_equipment
@@ -59,7 +59,7 @@ module AlgoliaIndex
 
     # Medical specialism
     def specialised_medical_conditions_cover
-      return nil unless medical_specialism.specialised_medical_conditions_cover.present?
+      return if medical_specialism.specialised_medical_conditions_cover.present?
 
       [I18n.t("self_service.travel_insurance_firms_edit.medical_specialism.medical_conditions_cover_select.#{medical_specialism.specialised_medical_conditions_cover}")]
     end
@@ -81,7 +81,8 @@ module AlgoliaIndex
     private
 
     def bool_to_string(data)
-      return nil if data.nil?
+      return if data.nil?
+
       data ? 'Yes' : 'No'
     end
 

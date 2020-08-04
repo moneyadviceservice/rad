@@ -127,14 +127,14 @@ RSpec.describe TravelInsuranceFirm, type: :model do
     end
 
     context 'when medical_specialism is not complete' do
-       it 'returns false' do
+      it 'returns false' do
         allow(firm.medical_specialism).to receive(:completed?).and_return(false)
         expect(firm.cover_and_service_complete?).to eq false
       end
     end
 
     context 'when service_detail is not complete' do
-       it 'returns false' do
+      it 'returns false' do
         allow(firm.service_detail).to receive(:completed?).and_return(false)
         expect(firm.cover_and_service_complete?).to eq false
       end

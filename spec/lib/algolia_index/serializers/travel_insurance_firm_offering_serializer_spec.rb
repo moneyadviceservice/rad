@@ -25,7 +25,7 @@ RSpec.describe AlgoliaIndex::TravelInsuranceFirmOfferingSerializer do
         likely_not_cover_medical_condition: firm.medical_specialism.likely_not_cover_medical_condition,
         specialised_medical_conditions_covers_all: ['No'],
         specialised_medical_conditions_cover: [I18n.t("self_service.travel_insurance_firms_edit.medical_specialism.medical_conditions_cover_select.#{firm.medical_specialism.specialised_medical_conditions_cover}")],
-        terminal_prognosis_cover: ['Yes'],
+        terminal_prognosis_cover: ['Yes']
       }.with_indifferent_access
     end
 
