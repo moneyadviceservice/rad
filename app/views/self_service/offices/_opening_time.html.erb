@@ -29,10 +29,10 @@
   <div>
     <strong><%= t('self_service.office_edit.saturday_opening_hours')%></strong>
     <p>
-      <%= ot.radio_button :open_saturday, 1, class: 'form__group-input t-open-saturday', checked: ot.object.open_saturday?, data: { show_hide: 'data-saturday-fieldset' } %>
+      <%= ot.radio_button :open_saturday, 1, class: 'form__group-input t-open-saturday', checked: ot.object.open_saturday?, data: { show_hide: 'data-saturday-fieldset', show_hide_trigger: 1 } %>
       <%= t('registration.answer_yes') %>
 
-      <%= ot.radio_button :open_saturday, 0, class: 'form__group-input t-closed-saturday', checked: !ot.object.open_saturday?, data: { show_hide: 'data-saturday-fieldset' } %>
+      <%= ot.radio_button :open_saturday, 0, class: 'form__group-input t-closed-saturday', checked: !ot.object.open_saturday?, data: { show_hide: 'data-saturday-fieldset', show_hide_trigger: 1 } %>
       <%= t('registration.answer_no') %>
     </p>
   </div>
@@ -63,10 +63,10 @@
   <div>
     <strong><%= t('self_service.office_edit.sunday_opening_hours')%></strong>
     <p>
-      <%= ot.radio_button :open_sunday, 1, class: 'form__group-input t-open-sunday', checked: ot.object.open_sunday?, data: { show_hide: 'data-sunday-fieldset' } %>
+      <%= ot.radio_button :open_sunday, 1, class: 'form__group-input t-open-sunday', checked: ot.object.open_sunday?, data: { show_hide: 'data-sunday-fieldset', show_hide_trigger: 1 } %>
       <%= t('registration.answer_yes') %>
 
-      <%= ot.radio_button :open_sunday, 0, class: 'form__group-input t-closed-sunday', checked: !ot.object.open_sunday?, data: { show_hide: 'data-sunday-fieldset' } %>
+      <%= ot.radio_button :open_sunday, 0, class: 'form__group-input t-closed-sunday', checked: !ot.object.open_sunday?, data: { show_hide: 'data-sunday-fieldset', show_hide_trigger: 1 } %>
       <%= t('registration.answer_no') %>
     </p>
   </div>
