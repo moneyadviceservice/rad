@@ -59,7 +59,7 @@ module AlgoliaIndex
 
     # Medical specialism
     def specialised_medical_conditions_cover
-      return if medical_specialism.specialised_medical_conditions_cover.present?
+      return if medical_specialism.specialised_medical_conditions_covers_all
 
       [I18n.t("self_service.travel_insurance_firms_edit.medical_specialism.medical_conditions_cover_select.#{medical_specialism.specialised_medical_conditions_cover}")]
     end

@@ -24,7 +24,7 @@ module SelfService
 
     def update
       @firm = current_firm.trading_names.find(params[:id])
-
+      build_travel_firm_associations
       if @firm.update(firm_params)
         flash[:notice] = I18n.t('self_service.firm_edit.saved')
         redirect_to_edit

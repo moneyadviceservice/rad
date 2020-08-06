@@ -1,24 +1,22 @@
 class MedicalSpecialism < ApplicationRecord
   belongs_to :travel_insurance_firm
 
-  attribute :likely_not_cover_medical_condition_select, :boolean
-
   before_save :clear_no_attributes
 
-  validates :likely_not_cover_medical_condition, presence: true, if: :likely_not_cover_medical_condition_select
-  validates :specialised_medical_conditions_cover, presence: true, unless: :specialised_medical_conditions_covers_all
+  validates :terminal_prognosis_cover,
+            :will_not_cover_some_medical_conditions,
+            :will_cover_undergoing_treatment,
+            inclusion: { in: [true, false] }
 
-  def completed?
-    [
-      cover_undergoing_treatment,
-      terminal_prognosis_cover
-    ].all?
-  end
+  validates :specialised_medical_conditions_cover, presence: true, unless: :specialised_medical_conditions_covers_all
+  validates :likely_not_cover_medical_condition, presence: true, if: :will_not_cover_some_medical_conditions
+  validates :cover_undergoing_treatment, presence: true, unless: :will_cover_undergoing_treatment
 
   private
 
   def clear_no_attributes
     self.specialised_medical_conditions_cover = nil if specialised_medical_conditions_covers_all == true
-    self.likely_not_cover_medical_condition = nil if likely_not_cover_medical_condition_select == false
+    self.likely_not_cover_medical_condition = nil if will_not_cover_some_medical_conditions == false
+    self.cover_undergoing_treatment = nil if will_cover_undergoing_treatment == true
   end
 end

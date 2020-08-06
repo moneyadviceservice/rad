@@ -1,9 +1,8 @@
 RSpec.describe AlgoliaIndex::TravelInsuranceFirmOfferingSerializer do
   describe 'json' do
+    let(:firm) { FactoryBot.create(:travel_insurance_firm, completed_firm: true) }
     let(:trip_cover) { firm.trip_covers.last }
     subject(:serialized) { JSON.parse(described_class.new(trip_cover).to_json) }
-
-    let(:firm) { FactoryBot.create(:travel_insurance_firm, completed_firm: true) }
     let(:expected_json) do
       {
         objectID: trip_cover.id,

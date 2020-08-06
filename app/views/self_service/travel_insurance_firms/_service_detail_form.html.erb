@@ -1,10 +1,8 @@
 <%= f.fields_for :service_detail do |sd| %>
   <%= sd.form_row :offers_telephone_quote do %>
-    <fieldset class="form__group t-offers-telephone-quote">
-      <%= sd.label :offers_telephone_quote,
-                t('self_service.travel_insurance_firms_edit.service_details.offers_telephone_quote_label'),
-                class: 'form__label-heading' %>
+    <legend class="l-questionnaire__legend"><%= required_asterisk t('self_service.travel_insurance_firms_edit.service_details.offers_telephone_quote_label') %></legend>
 
+    <fieldset class="form__group t-offers-telephone-quote">
       <%= sd.radio_button :offers_telephone_quote, 'true', class: 'form__group-input t-offers-telephone-quote-yes' %>
       <%= t('registration.answer_yes') %>
 
@@ -13,30 +11,27 @@
     </fieldset>
   <% end %>
 
-  <%= sd.form_row :cover_for_specialist_equipment do %>
+  <%= sd.form_row :will_cover_specialist_equipment do %>
+    <legend class="l-questionnaire__legend"><%= required_asterisk t('self_service.travel_insurance_firms_edit.service_details.cover_for_specialist_equipment_label') %></legend>
+
     <fieldset class="form__group">
-      <%= sd.label :cover_for_specialist_equipment,
-              t('self_service.travel_insurance_firms_edit.service_details.cover_for_specialist_equipment_label'),
-              class: 'form__label-heading' %>
-      <%= sd.radio_button :cover_for_specialist_equipment_select, 1, class: 'form__group-input t-covers-specialist-equipment-yes', checked: sd.object.cover_for_specialist_equipment.present?, data: { show_hide: 'data-specialist-equipment' } %>
+      <%= sd.radio_button :will_cover_specialist_equipment, 1, class: 'form__group-input t-covers-specialist-equipment-yes', checked: sd.object.will_cover_specialist_equipment == true, data: { show_hide: 'data-specialist-equipment', show_hide_trigger: 1 } %>
       <%= t('registration.answer_yes') %>
 
-      <%= sd.radio_button :cover_for_specialist_equipment_select, 0, class: 'form__group-input t-covers-specialist-equipment-no', checked: (sd.object.cover_for_specialist_equipment.nil? && sd.object.persisted?), data: { show_hide: 'data-specialist-equipment' } %>
+      <%= sd.radio_button :will_cover_specialist_equipment, 0, class: 'form__group-input t-covers-specialist-equipment-no', checked: sd.object.will_cover_specialist_equipment == false, data: { show_hide: 'data-specialist-equipment', show_hide_trigger: 1 } %>
       <%= t('registration.answer_no') %>
-    </fieldset>
-
-    <fieldset class="form__group t-covers-specialist-equipment-cost" data-specialist-equipment>
-      <br/>
-      <%= sd.number_field :cover_for_specialist_equipment, placeholder: 'up to what limit £' %>
     </fieldset>
   <% end %>
 
-  <%= sd.form_row :covid19_medical_repatriation do %>
-    <fieldset class="form__group t-covid19-medical-repatriation">
-      <%= sd.label :covid19_medical_repatriation,
-                t('self_service.travel_insurance_firms_edit.service_details.covid19_medical_repatriation_label'),
-                class: 'form__label-heading' %>
+  <fieldset class="form__group t-covers-specialist-equipment-cost" data-specialist-equipment>
+    <%= sd.form_row :cover_for_specialist_equipment do %>
+      <%= sd.number_field :cover_for_specialist_equipment, placeholder: 'up to what limit £' %>
+    <% end %>
+  </fieldset>
 
+  <%= sd.form_row :covid19_medical_repatriation do %>
+   <legend class="l-questionnaire__legend"><%= required_asterisk t('self_service.travel_insurance_firms_edit.service_details.covid19_medical_repatriation_label') %></legend>
+    <fieldset class="form__group t-covid19-medical-repatriation">
       <%= sd.radio_button :covid19_medical_repatriation, 'true', class: 'form__group-input t-covid19-medical-repatriation-yes' %>
       <%= t('registration.answer_yes') %>
 
@@ -46,21 +41,21 @@
   <% end %>
 
   <%= sd.form_row :covid19_cancellation_cover do %>
-    <fieldset class="form__group t-covid19-cancellation-cover">
-        <%= sd.label :covid19_cancellation_cover,
-                  class: 'form__label-heading' do %>
-          <div data-dough-component="PopupTip">
-            <%= t('self_service.travel_insurance_firms_edit.service_details.covid19_cancellation_cover_label') %>
-            <%= popup_tip_trigger options: {
-              text: t('tooltip_show')
-            } %>
-
-          <%= popup_tip_content options: {
-            text: t('self_service.travel_insurance_firms_edit.service_details.covid_19_cancellation_cover_tooltip_html'),
-            tooltip_hide: t('tooltip_hide')
+    <legend class="l-questionnaire__legend">
+      <div data-dough-component="PopupTip">
+        <%= required_asterisk t('self_service.travel_insurance_firms_edit.service_details.covid19_cancellation_cover_label') %>
+          <%= popup_tip_trigger options: {
+            text: t('tooltip_show')
           } %>
-          </div>
-          <% end %>
+
+        <%= popup_tip_content options: {
+          text: t('self_service.travel_insurance_firms_edit.service_details.covid_19_cancellation_cover_tooltip_html'),
+          tooltip_hide: t('tooltip_hide')
+        } %>
+      </div>
+    </legend>
+
+    <fieldset class="form__group t-covid19-cancellation-cover">
       <%= sd.radio_button :covid19_cancellation_cover, 'true', class: 'form__group-input t-covid19-cancellation-cover-yes' %>
       <%= t('registration.answer_yes') %>
 
@@ -69,20 +64,17 @@
     </fieldset>
   <% end %>
 
-  <%= sd.form_row :medical_screening_company_label do %>
+  <%= sd.form_row :medical_screening_company do %>
+    <legend class="l-questionnaire__legend"><%= required_asterisk t('self_service.travel_insurance_firms_edit.service_details.medical_screening_company_label') %></legend>
+
     <fieldset class="form__group t-medical-screening-company">
-      <%= sd.label :medical_screening_company_label,
-                t('self_service.travel_insurance_firms_edit.service_details.medical_screening_company_label'),
-                class: 'form__label-heading' %>
       <%= sd.select :medical_screening_company, t('self_service.travel_insurance_firms_edit.service_details.medical_screening_companies_select').invert, { prompt: 'Please select', include_blank: false }  %>
     </fieldset>
   <% end %>
 
   <%= sd.form_row :how_far_in_advance_trip_cover do %>
+     <legend class="l-questionnaire__legend"><%= required_asterisk t('self_service.travel_insurance_firms_edit.service_details.how_far_in_advance_trip_cover_label') %></legend>
     <fieldset class="form__group t-how-far-in-advance-cover">
-      <%= sd.label :how_far_in_advance_trip_cover,
-                t('self_service.travel_insurance_firms_edit.service_details.how_far_in_advance_trip_cover_label'),
-                class: 'form__label-heading' %>
       <%= sd.select :how_far_in_advance_trip_cover, t('self_service.travel_insurance_firms_edit.service_details.advance_of_trip_cover_select').invert, { prompt: 'Please select', include_blank: false } %>
     </fieldset>
   <% end %>

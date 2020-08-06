@@ -1,24 +1,22 @@
 class ServiceDetail < ApplicationRecord
   belongs_to :travel_insurance_firm
 
-  attribute :cover_for_specialist_equipment_select, :boolean
+  validates :offers_telephone_quote,
+            :will_cover_specialist_equipment,
+            :covid19_cancellation_cover,
+            :covid19_medical_repatriation,
+            inclusion: { in: [true, false] }
 
-  before_save :clear_cover_for_specialist_equipment_amount, if: :cover_for_specialist_equipment_select
+  validates :medical_screening_company, :how_far_in_advance_trip_cover, presence: true
+  validates :cover_for_specialist_equipment, presence: true, if: :will_cover_specialist_equipment
 
-  def completed?
-    return false if offers_telephone_quote.nil?
-
-    [
-      medical_screening_company,
-      how_far_in_advance_trip_cover,
-      covid19_medical_repatriation,
-      covid19_cancellation_cover
-    ].all?
-  end
+  before_save :clear_cover_for_specialist_equipment_amount, unless: :will_cover_specialist_equipment
 
   private
 
   def clear_cover_for_specialist_equipment_amount
+    return if will_cover_specialist_equipment.nil?
+
     self.cover_for_specialist_equipment = nil
   end
 end

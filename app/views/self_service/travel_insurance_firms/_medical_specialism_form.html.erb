@@ -1,19 +1,16 @@
 <%= f.fields_for :medical_specialism do |ms| %>
-  <%= ms.form_row :specialised_medical_conditions_cover do %>
-    <fieldset class="form__group">
-      <%= ms.errors_for :specialised_medical_conditions_cover %>
-      <%= ms.label :specialised_medical_conditions_cover,
-                  t('self_service.travel_insurance_firms_edit.medical_specialism.specialised_medical_conditions_cover_label'),
-                  class: 'form__label-heading' %>
-    </fieldset>
 
+  <%= ms.form_row :specialised_medical_conditions_cover do %>
+    <legend class="l-questionnaire__legend"><%= required_asterisk t('self_service.travel_insurance_firms_edit.medical_specialism.specialised_medical_conditions_cover_label') %></legend>
+
+      <%= ms.errors_for :specialised_medical_conditions_cover %>
       <fieldset class="form__group-item">
-        <%= ms.radio_button :specialised_medical_conditions_covers_all, 1, class: 'form__group-input  t-specialised-medical-conditions-yes', checked: ms.object.specialised_medical_conditions_covers_all == true, data: { show_hide: 'data-specialised-conditions', show_hide_trigger: 1 } %>
+        <%= ms.radio_button :specialised_medical_conditions_covers_all, 1, class: 'form__group-input  t-specialised-medical-conditions-yes', checked: ms.object.specialised_medical_conditions_covers_all == true, data: { show_hide: 'data-specialised-conditions', show_hide_trigger: 0 } %>
         <%= ms.label :specialised_medical_conditions_covers_all_1, t('self_service.travel_insurance_firms_edit.medical_specialism.specialised_medical_conditions_cover_yes')%>
       </fieldset>
 
       <fieldset>
-        <%= ms.radio_button :specialised_medical_conditions_covers_all, 0, class: 'form__group-input  t-specialised-medical-conditions-no', checked: ms.object.specialised_medical_conditions_covers_all == false, data: { show_hide: 'data-specialised-conditions', show_hide_trigger: 1 } %>
+        <%= ms.radio_button :specialised_medical_conditions_covers_all, 0, class: 'form__group-input  t-specialised-medical-conditions-no', checked: ms.object.specialised_medical_conditions_covers_all == false, data: { show_hide: 'data-specialised-conditions', show_hide_trigger: 0 } %>
         <%= ms.label :specialised_medical_conditions_covers_all_0, t('self_service.travel_insurance_firms_edit.medical_specialism.specialised_medical_conditions_cover_no').html_safe%>
       </fieldset>
 
@@ -23,46 +20,49 @@
     </fieldset>
   <% end %>
 
-  <%= ms.form_row :likely_not_cover_medical_condition do %>
-    <fieldset class="form__group">
-      <%= ms.label :likely_not_cover_medical_condition,
-                  t('self_service.travel_insurance_firms_edit.medical_specialism.likely_not_cover_medical_condition_label'),
-                  class: 'form__label-heading' %>
+  <%= ms.form_row :will_not_cover_some_medical_conditions do %>
+    <legend class="l-questionnaire__legend"><%= required_asterisk t('self_service.travel_insurance_firms_edit.medical_specialism.likely_not_cover_medical_condition_label') %></legend>
 
-      <%= ms.radio_button :likely_not_cover_medical_condition_select, 1, class: 'form__group-input t-not-covering-medical-condition-yes', checked: ms.object.likely_not_cover_medical_condition.present?, data: { show_hide: 'data-not-likely-cover ' } %>
+    <%= ms.errors_for :will_not_cover_some_medical_conditions %>
+
+    <fieldset class="form__group">
+      <%= ms.radio_button :will_not_cover_some_medical_conditions, 1, checked: ms.object.will_not_cover_some_medical_conditions == true, class: 'form__group-input t-not-covering-medical-condition-yes', data: { show_hide: 'data-not-likely-cover', show_hide_trigger: 1 } %>
       <%= t('registration.answer_yes') %>
 
-      <%= ms.radio_button :likely_not_cover_medical_condition_select, 0, class: 'form__group-input t-not-covering-medical-condition-no', checked: (ms.object.likely_not_cover_medical_condition.nil? && ms.object.persisted?), data: { show_hide: 'data-not-likely-cover ' } %>
+      <%= ms.radio_button :will_not_cover_some_medical_conditions, 0, checked: ms.object.will_not_cover_some_medical_conditions == false, class: 'form__group-input t-not-covering-medical-condition-no', data: { show_hide: 'data-not-likely-cover', show_hide_trigger: 1 } %>
       <%= t('registration.answer_no') %>
     </fieldset>
+  <% end %>
 
-    <fieldset class="form__group t-not-covering-medical-condition-text" data-not-likely-cover>
-      <%= ms.errors_for :likely_not_cover_medical_condition %>
-
-      <br/>
+  <fieldset class="form__group t-not-covering-medical-condition-text" data-not-likely-cover>
+    <%= ms.form_row :likely_not_cover_medical_condition do %>
       <%= ms.text_area :likely_not_cover_medical_condition, placeholder: 'Up to 250 character limit' %>
-    </fieldset>
-  <% end %>
+    <% end %>
+  </fieldset>
 
-  <%= ms.form_row :cover_undergoing_treatment do %>
+
+  <%= ms.form_row :will_cover_undergoing_treatment do %>
+    <legend class="l-questionnaire__legend"><%= required_asterisk t('self_service.travel_insurance_firms_edit.medical_specialism.cover_undergoing_treatment_label') %></legend>
+
     <fieldset class="form__group">
-      <%= ms.label :cover_undergoing_treatment,
-                  t('self_service.travel_insurance_firms_edit.medical_specialism.cover_undergoing_treatment_label'),
-                class: 'form__label-heading' %>
-      <%= ms.radio_button :cover_undergoing_treatment, 'true', class: 'form__group-input t-cover-undergoing-treatment-yes' %>
+      <%= ms.radio_button :will_cover_undergoing_treatment, 1, checked: ms.object.will_cover_undergoing_treatment == true, class: 'form__group-input t-cover-undergoing-treatment-yes', data: { show_hide: 'data-cover-undergoing-treatment', show_hide_trigger: 0 } %>
       <%= t('registration.answer_yes') %>
 
-      <%= ms.radio_button :cover_undergoing_treatment, 'false', class: 'form__group-input t-cover-undergoing-treatment-no' %>
+      <%= ms.radio_button :will_cover_undergoing_treatment, 0, checked: ms.object.will_cover_undergoing_treatment == false, class: 'form__group-input t-cover-undergoing-treatment-no', data: { show_hide: 'data-cover-undergoing-treatment', show_hide_trigger: 0 } %>
       <%= t('registration.answer_no') %>
     </fieldset>
   <% end %>
+
+  <fieldset class="form__group t-cover-undergoing-treatment-text" data-cover-undergoing-treatment>
+    <%= ms.form_row :cover_undergoing_treatment do %>
+      <%= ms.text_area :cover_undergoing_treatment, placeholder: 'Up to 250 character limit' %>
+    <% end %>
+  </fieldset>
 
   <%= ms.form_row :terminal_prognosis_cover do %>
-    <fieldset class="form__group">
-      <%= ms.label :terminal_prognosis_cover,
-                t('self_service.travel_insurance_firms_edit.medical_specialism.terminal_prognosis_cover_label'),
-                class: 'form__label-heading' %>
+    <legend class="l-questionnaire__legend"><%= required_asterisk  t('self_service.travel_insurance_firms_edit.medical_specialism.terminal_prognosis_cover_label') %></legend>
 
+    <fieldset class="form__group">
       <%= ms.radio_button :terminal_prognosis_cover, 'true', class: 'form__group-input t-covers-terminal-prognosis-yes' %>
       <%= t('registration.answer_yes') %>
 

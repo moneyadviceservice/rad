@@ -20,9 +20,10 @@ module SelfService
       medical_specialism_attributes: [
         :id,
         :specialised_medical_conditions_covers_all,
-        :likely_not_cover_medical_condition_select,
+        :will_not_cover_some_medical_conditions,
         :specialised_medical_conditions_cover,
         :likely_not_cover_medical_condition,
+        :will_cover_undergoing_treatment,
         :cover_undergoing_treatment,
         :terminal_prognosis_cover
       ],
@@ -31,7 +32,7 @@ module SelfService
         :offers_telephone_quote,
         :covid19_medical_repatriation,
         :covid19_cancellation_cover,
-        :cover_for_specialist_equipment_select,
+        :will_cover_specialist_equipment,
         :cover_for_specialist_equipment,
         :medical_screening_company,
         :how_far_in_advance_trip_cover

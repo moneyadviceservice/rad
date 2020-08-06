@@ -75,7 +75,6 @@ class TravelInsuranceFirm < ApplicationRecord
 
   def cover_and_service_complete?
     return false unless medical_specialism.present? && service_detail.present?
-    return false unless medical_specialism.completed? && service_detail.completed?
 
     trip_covers.any? && trip_covers.map(&:all_complete?).all?
   end
