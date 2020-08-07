@@ -34,6 +34,7 @@ module SelfService
       params.require(:principal).permit(
         :first_name,
         :last_name,
+        :senior_manager_name,
         :email_address,
         :telephone_number,
         :job_title

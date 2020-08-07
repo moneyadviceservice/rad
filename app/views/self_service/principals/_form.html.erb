@@ -27,6 +27,15 @@
     <%= f.text_field :job_title, class: 't-job-title' %>
   <% end %>
 
+  <p><%= t('self_service.principal_edit.firm_senior_manager_explanation') %></p>
+  <p><%= t('self_service.principal_edit.firm_senior_manager_contact_details') %></p>
+
+  <%= f.form_row(:senior_manager_name) do %>
+    <%= f.errors_for :senior_manager_name %>
+    <%= f.label :senior_manager_name, t('registration.principal.senior_manager_name'), class: 'form__label-heading' %>
+    <%= f.text_field :senior_manager_name, class: 't-senior-manager-name' %>
+  <% end %>
+
   <%= f.form_row(:email_address) do %>
     <%= f.errors_for :email_address %>
     <%= f.label :email_address, t('registration.principal.email_address'), class: 'form__label-heading' %>

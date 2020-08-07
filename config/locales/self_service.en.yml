@@ -11,7 +11,7 @@ en:
     navigation: # name according to route name
       root: Home
       firms: Firms
-      edit_principal: Edit principal
+      edit_principal: Edit account
 
     adviser_edit:
       breadcrumb: "%{adviser_name}"

@@ -24,7 +24,7 @@ en:
     sign_in: Sign in
     sign_out: Sign out
     register: Register
-    edit_account: Edit account
+    edit_account: Change password
     mandatory_warning: "All fields are required"
 
     links:

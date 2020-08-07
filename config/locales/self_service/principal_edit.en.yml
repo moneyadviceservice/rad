@@ -1,11 +1,11 @@
 en:
   self_service:
     principal_edit:
-      breadcrumb: Edit Principal
-      title: Edit Principal for %{firm_name}
-      saved: Your principal has been saved
-      submit_button: Save principal
+      breadcrumb: Edit account
+      title: Edit account for %{firm_name}
+      saved: Your account has been saved
+      submit_button: Save account
       firm_section_explanation:
-        - Below are details of the person who completed the registration process on behalf of your firm. Please check this is correct and amend if necessary.
-        - Registration must be authorised by the Principal or the Compliance Officer for the parent firm on behalf of all firms or trading names registered under the FCA firm reference number (FRN) supplied. However you may empower someone within your firm to act on your behalf.
-        - I confirm the person named below is either the Principal or Compliance Officer for this firm, or an individual empowered to act on behalf of the Principal or Compliance Officer of this firm.
+        - Below are details of the named Senior Manager responsible for the accuracy of the information listed on the Money & Pensions Service Directory. Please check this is correct and amend if necessary.
+      firm_senior_manager_explanation: Registration must be authorised by a Senior Manager on behalf of the parent firm and any trading names registered under the FCA firm reference number (FRN) supplied. However the named Senior Manager may empower someone within the firm to act on their behalf.
+      firm_senior_manager_contact_details: The contact details below are  either those of the named Senior Manager or an individual authorised to act on their behalf.
