@@ -4,9 +4,15 @@ class OpeningTime < ApplicationRecord
 
   belongs_to :office
 
-  validates_presence_of :weekday_opening_time, :weekday_closing_time
-  validates_presence_of :saturday_opening_time, :saturday_closing_time, if: :open_saturday
-  validates_presence_of :sunday_opening_time, :sunday_closing_time, if: :open_sunday
+
+  validates :weekday_opening_time, presence: true
+  validates :weekday_closing_time, presence: true
+
+  validates :saturday_opening_time, presence: true, if: :open_saturday
+  validates :saturday_closing_time, presence: true, if: :open_saturday
+
+  validates :sunday_opening_time, presence: true, if: :open_sunday
+  validates :sunday_closing_time, presence: true, if: :open_sunday
 
   validate :weekday_opening_time_is_less_than_closing
   validate :saturday_opening_time_is_less_than_closing, if: :open_saturday
