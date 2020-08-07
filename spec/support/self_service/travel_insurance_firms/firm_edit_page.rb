@@ -73,27 +73,31 @@ module SelfService
       # Service details section
       element :offers_telephone_quote_yes, '.t-offers-telephone-quote-yes'
       element :offers_telephone_quote_no, '.t-offers-telephone-quote-no'
-      element :covid19_medical_repatriation, '.t-covid19-medical-repatriation-yes'
-      element :covid19_medical_repatriation, '.t-covid19-medical-repatriation-no'
-      element :covid19_medical_repatriation, '.t-covid19-cancellation-cover-yes'
-      element :covid19_medical_repatriation, '.t-covid19-cancellation-cover-no'
       element :covers_specialist_equipment_yes, '.t-covers-specialist-equipment-yes'
       element :covers_specialist_equipment_no, '.t-covers-specialist-equipment-no'
-      element :covers_specialist_equipment_cost, '.t-covers-specialist-equipment-cost'
+      element :covers_specialist_equipment_cost, '.t-covers-specialist-equipment-cost input'
+      element :covid19_medical_repatriation_yes, '.t-covid19-medical-repatriation-yes'
+      element :covid19_medical_repatriation_no, '.t-covid19-medical-repatriation-no'
+      element :covid19_cancellation_cover_yes, '.t-covid19-cancellation-cover-yes'
+      element :covid19_cancellation_cover_no, '.t-covid19-cancellation-cover-no'
       element :medial_screening_company, '.t-medical-screening-company'
-      element :how_far_in_advance_cover, '.t-how-far-in-advance-cover'
+      element :how_far_in_advance_cover, '.t-how-far-in-advance-cover select'
       element :save_button, '.t-save-button'
 
       # Medical specialism section
-      element :specialised_medical_conditions_yes, '.t-specialised-medical-conditions-yes'
-      element :specialised_medical_conditions_no, '.t-specialised-medical-conditions-no'
-      element :specialised_medical_conditions_cover, '.t-specialised-medical-conditions-cover'
+      element :specialised_medical_conditions_covers_all_yes, '.t-specialised-medical-conditions-covers-all-yes'
+      element :specialised_medical_conditions_covers_all_no, '.t-specialised-medical-conditions-covers-all-no'
+      element :specialised_medical_conditions_cover, '.t-specialised-medical-conditions-cover select'
+
       element :not_covering_medical_conditions_yes, '.t-not-covering-medical-condition-yes'
       element :not_covering_medical_conditions_no, '.t-not-covering-medical-condition-no'
-      element :not_covering_medical_conditions_text, '.t-not-covering-medical-condition textarea'
+      element :not_covering_medical_conditions_text, '.t-not-covering-medical-condition-text textarea'
+
       element :covers_undergoing_treatment_yes, '.t-cover-undergoing-treatment-yes'
       element :covers_undergoing_treatment_no, '.t-cover-undergoing-treatment-no'
-      element :covers_terminal_prognosis, '.t-covers-terminal-prognosis'
+      element :covers_undergoing_treatment_text, '.t-cover-undergoing-treatment-text textarea'
+      element :covers_terminal_prognosis_yes, '.t-covers-terminal-prognosis-yes'
+      element :covers_terminal_prognosis_no, '.t-covers-terminal-prognosis-no'
     end
   end
 end

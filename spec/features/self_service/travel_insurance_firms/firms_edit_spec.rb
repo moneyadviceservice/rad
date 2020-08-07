@@ -113,6 +113,8 @@ RSpec.feature 'The self service TravelInsurance firm edit page' do
 
   def when_i_change_the_information
     complete_europe_tab
+    complete_service_details
+    complete_medical_specialism_details
   end
 
   def when_i_complete_all_the_form
@@ -120,6 +122,7 @@ RSpec.feature 'The self service TravelInsurance firm edit page' do
     complete_worldwide_excluding_us_tab
     complete_worldwide_including_us_tab
     complete_service_details
+    complete_medical_specialism_details
   end
 
   def complete_europe_tab
@@ -178,15 +181,22 @@ RSpec.feature 'The self service TravelInsurance firm edit page' do
 
   def complete_service_details
     firm_edit_page.tap do |p|
-      p.offers_telephone_quote_yes.set(true)
-      p.covers_undergoing_treatment_yes.set(true)
+      p.offers_telephone_quote_yes.set('1')
+      p.covers_specialist_equipment_yes.set(true)
+      p.covers_specialist_equipment_cost.set(100_000)
+      p.covid19_medical_repatriation_yes.set(true)
+      p.covid19_cancellation_cover_yes.set(true)
+      p.medial_screening_company.select('Protectif')
+      p.how_far_in_advance_cover.select('Up to 1 month')
     end
   end
 
   def complete_medical_specialism_details
     firm_edit_page.tap do |p|
-      p.specialised_medical_conditions_yes.set(true)
-      p.covers_specialist_equipment_yes.set(true)
+      p.specialised_medical_conditions_covers_all_yes.set(true)
+      p.not_covering_medical_conditions_no.set(true)
+      p.covers_undergoing_treatment_yes.set(true)
+      p.covers_terminal_prognosis_yes.set(true)
     end
   end
 end
