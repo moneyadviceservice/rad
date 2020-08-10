@@ -56,6 +56,10 @@
   padding-right: 5px;
 }
 
+a.button[disabled]{
+  color: $color-button-text-disabled;
+}
+
 html.dev .translation_missing {
   color: #f00 !important;
 }
