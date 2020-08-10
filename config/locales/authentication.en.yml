@@ -54,11 +54,11 @@ en:
       field_labels:
         <<: *new_password_fields
       field_help_texts:
-        email: Please enter a valid email address if you would like to change your current one
+        email: Please enter the email address of the named Senior Manager or the person authorised to act on their behalf
         <<: *field_help_texts
       change_password: 'Change my password'
       label: Update
-      title: Edit my account
+      title: Change password
 
     accept_invitation_page:
       field_labels:
