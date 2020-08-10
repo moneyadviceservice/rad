@@ -34,7 +34,7 @@ module AlgoliaIndex
     end
 
     def firm
-      if @klass == 'TravelInsuranceFirm'
+      if @klass == 'TravelInsuranceFirm' # rubocop:disable Style/ConditionalAssignment
         @firm ||= TravelInsuranceFirm.new(klass: 'TravelInsuranceFirm', id: firm_id || object&.firm_id)
       else
         @firm ||= Firm.new(klass: 'Firm', id: firm_id || object&.firm_id)

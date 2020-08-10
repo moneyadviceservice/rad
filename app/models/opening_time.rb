@@ -4,7 +4,6 @@ class OpeningTime < ApplicationRecord
 
   belongs_to :office
 
-
   validates :weekday_opening_time, presence: true
   validates :weekday_closing_time, presence: true
 

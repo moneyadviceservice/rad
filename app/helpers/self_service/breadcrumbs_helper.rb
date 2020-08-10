@@ -1,4 +1,4 @@
-module SelfService::BreadcrumbsHelper
+module SelfService::BreadcrumbsHelper # rubocop:disable Metrics/ModuleLength
   def breadcrumbs_root
     [crumb_root]
   end

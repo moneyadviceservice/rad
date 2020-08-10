@@ -9,7 +9,6 @@ module AlgoliaIndex
                :cruise_45_days_max_age,
                :land_55_days_max_age,
                :cruise_55_days_max_age,
-
                # Service details
                :offers_telephone_quote,
                :will_cover_specialist_equipment,
@@ -18,7 +17,6 @@ module AlgoliaIndex
                :covid19_cancellation_cover,
                :medical_screening_company,
                :how_far_in_advance_trip_cover,
-
                # Medical specialism
                :will_cover_all_specialised_medical_conditions,
                :specialised_medical_conditions_cover,
@@ -92,9 +90,7 @@ module AlgoliaIndex
       [bool_to_string(medical_specialism.will_not_cover_some_medical_conditions)]
     end
 
-    def likely_not_cover_medical_condition
-      medical_specialism.likely_not_cover_medical_condition
-    end
+    delegate :likely_not_cover_medical_condition, to: :medical_specialism
 
     def will_cover_terminal_prognosis
       [bool_to_string(medical_specialism.terminal_prognosis_cover)]
