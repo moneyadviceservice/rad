@@ -41,19 +41,21 @@
   <% end %>
 
   <%= sd.form_row :covid19_cancellation_cover do %>
-    <legend class="l-questionnaire__legend">
-      <div data-dough-component="PopupTip">
+    <div class="l-inline-legend-with-tooltip">
+      <span class="l-questionnaire__legend">
         <%= required_asterisk t('self_service.travel_insurance_firms_edit.service_details.covid19_cancellation_cover_label') %>
-          <%= popup_tip_trigger options: {
-            text: t('tooltip_show')
-          } %>
+      </span>
+      <span data-dough-component="PopupTip">
+        <%= popup_tip_trigger options: {
+          text: t('tooltip_show')
+        } %>
 
         <%= popup_tip_content options: {
           text: t('self_service.travel_insurance_firms_edit.service_details.covid_19_cancellation_cover_tooltip_html'),
           tooltip_hide: t('tooltip_hide')
         } %>
-      </div>
-    </legend>
+      </span>
+    </div>
 
     <fieldset class="form__group t-covid19-cancellation-cover">
       <%= sd.radio_button :covid19_cancellation_cover, 'true', class: 'form__group-input t-covid19-cancellation-cover-yes' %>

@@ -20,7 +20,6 @@
     border-top: 0;
   }
 
-
   @include respond-to($mq-m) {
     .tab-selector__triggers-inner{
       display: flex;
@@ -65,4 +64,8 @@
     text-align: left;
     margin-bottom: 10px;
   }
+}
+
+.l-inline-legend-with-tooltip{
+  margin-bottom: 0.75rem;
 }

@@ -3,7 +3,6 @@
   <%= ms.form_row :specialised_medical_conditions_cover do %>
     <legend class="l-questionnaire__legend"><%= required_asterisk t('self_service.travel_insurance_firms_edit.medical_specialism.specialised_medical_conditions_cover_label') %></legend>
 
-      <%= ms.errors_for :specialised_medical_conditions_cover %>
       <fieldset class="form__group-item">
         <%= ms.radio_button :specialised_medical_conditions_covers_all, 1, class: 'form__group-input  t-specialised-medical-conditions-covers-all-yes', checked: ms.object.specialised_medical_conditions_covers_all == true, data: { show_hide: 'data-specialised-conditions', show_hide_trigger: 0 } %>
         <%= ms.label :specialised_medical_conditions_covers_all_1, t('self_service.travel_insurance_firms_edit.medical_specialism.specialised_medical_conditions_cover_yes')%>
@@ -22,8 +21,6 @@
 
   <%= ms.form_row :will_not_cover_some_medical_conditions do %>
     <legend class="l-questionnaire__legend"><%= required_asterisk t('self_service.travel_insurance_firms_edit.medical_specialism.likely_not_cover_medical_condition_label') %></legend>
-
-    <%= ms.errors_for :will_not_cover_some_medical_conditions %>
 
     <fieldset class="form__group">
       <%= ms.radio_button :will_not_cover_some_medical_conditions, 1, checked: ms.object.will_not_cover_some_medical_conditions == true, class: 'form__group-input t-not-covering-medical-condition-yes', data: { show_hide: 'data-not-likely-cover', show_hide_trigger: 1 } %>
