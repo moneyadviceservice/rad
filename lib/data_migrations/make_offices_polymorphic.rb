@@ -11,7 +11,7 @@ class MakeOfficesPolymorphic
 
   def update_offices_with_model_name
     Office.find_each do |office|
-      office.update_columns(
+      office.update(
         officeable_id: office.firm_id,
         officeable_type: 'Firm'
       )
