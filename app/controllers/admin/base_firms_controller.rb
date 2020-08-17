@@ -2,6 +2,17 @@ class Admin::BaseFirmsController < Admin::ApplicationController
   def index
     @search = resource_class.ransack(params[:q])
     @firms = @search.result.page(params[:page]).per(20)
+
+    respond_to do |format|
+      format.csv do
+        send_data(
+          ::Reports::FirmsExport.new(@search.result).generate_csv,
+          filename: csv_filename
+        )
+      end
+
+      format.html { render :index }
+    end
   end
 
   def show
@@ -25,6 +36,11 @@ class Admin::BaseFirmsController < Admin::ApplicationController
   end
 
   private
+
+  def csv_filename
+    firm_type = @firms.first.class.name == 'Firm' ? 'retirement_firms' : @firms.first.class.name.underscore
+    "#{firm_type}_#{Time.zone.now.to_formatted_s(:number)}.csv"
+  end
 
   def resource_class
     raise NotImplementedError

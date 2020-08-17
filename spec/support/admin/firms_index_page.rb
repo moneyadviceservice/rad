@@ -27,6 +27,14 @@ class Admin::FirmsIndexPage < SitePrism::Page
   element :ethical_investing_flag_field, '.t-ethical-investing-flag-field'
   element :sharia_investing_flag_field, '.t-sharia-investing-flag-field'
   element :workplace_financial_advice_flag_field, '.t-workplace-financial-advice-flag'
+
+  element :retirement_income_products_flag_field, '.t-retirement-income-products-flag-field'
+  element :pension_transfer_flag_field, '.t-pension-transfer-flag-field'
+  element :long_term_care_flag_field, '.t-long-term-card-flag-field'
+  element :equity_release_flag_field, '.t-equity-release-flag-field'
+  element :inheritance_tax_and_estate_planning_flag_field, '.t-inheritance-tax-and-estate-planning-flag-field'
+  element :wills_and_probate_flag_field, '.t-wills-and-probate-flag-field'
+
   element :languages_field, '.t-languages-field'
   element :submit, '.t-submit'
 

@@ -1,6 +1,45 @@
 
 <div class="form-group">
-  <label>Filter by Service</label>
+  <label>Types of advice provided</label>
+  <div class="checkbox">
+    <%= f.label :retirement_income_products_flag_true do %>
+      <%= f.check_box :retirement_income_products_flag_true,
+                      { class: 't-retirement-income-products-flag-field' },
+                      '1', nil %>Conversion of pension
+    <% end %>
+
+    <%= f.label :pension_transfer_flag_true do %>
+      <%= f.check_box :pension_transfer_flag_true,
+                      { class: 't-pension-transfer-flag-field' },
+                      '1', nil %>Defined benefit
+    <% end %>
+
+    <%= f.label :long_term_care_flag_true do %>
+      <%= f.check_box :long_term_care_flag_true,
+                      { class: 't-long-term-care-flag-field' },
+                      '1', nil %>Long term care
+    <% end %>
+
+    <%= f.label :equity_release_flag_true do %>
+      <%= f.check_box :equity_release_flag_true,
+                      { class: 't-equity-release-flag-field' },
+                      '1', nil %>Equity release
+    <% end %>
+
+    <%= f.label :inheritance_tax_and_estate_planning_flag_true do %>
+      <%= f.check_box :inheritance_tax_and_estate_planning_flag_true,
+                      { class: 't-inheritance-tax-and-estate-planning-flag-field' },
+                      '1', nil %>Inheritance Tax
+    <% end %>
+
+    <%= f.label :wills_and_probate_flag_true do %>
+      <%= f.check_box :wills_and_probate_flag_true,
+                      { class: 't-wills-and-probate-flag-field' },
+                      '1', nil %>Wills & Probate
+    <% end %>
+  </div>
+
+  <label>Other services</label>
   <div class="checkbox">
     <%= f.label :ethical_investing_flag_true do %>
       <%= f.check_box :ethical_investing_flag_true,
