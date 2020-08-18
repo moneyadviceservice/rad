@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 3019_11_18_100172) do
+ActiveRecord::Schema.define(version: 3019_11_18_100173) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -439,14 +439,14 @@ ActiveRecord::Schema.define(version: 3019_11_18_100172) do
     t.bigint "travel_insurance_firm_id"
     t.string "trip_type"
     t.string "cover_area"
-    t.string "land_30_days_max_age"
-    t.string "cruise_30_days_max_age"
-    t.string "land_45_days_max_age"
-    t.string "cruise_45_days_max_age"
-    t.string "land_55_days_max_age"
-    t.string "cruise_55_days_max_age"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "land_30_days_max_age"
+    t.integer "cruise_30_days_max_age"
+    t.integer "land_45_days_max_age"
+    t.integer "cruise_45_days_max_age"
+    t.integer "land_55_days_max_age"
+    t.integer "cruise_55_days_max_age"
     t.index ["travel_insurance_firm_id"], name: "index_trip_covers_on_travel_insurance_firm_id"
   end
 

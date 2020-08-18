@@ -1,0 +1,16 @@
+class ChangingAgesFromStringToInteger < ActiveRecord::Migration[5.2]
+  def change
+    remove_column :trip_covers, :land_30_days_max_age
+    add_column :trip_covers, :land_30_days_max_age, :integer
+    remove_column :trip_covers, :cruise_30_days_max_age
+    add_column :trip_covers, :cruise_30_days_max_age, :integer
+    remove_column :trip_covers, :land_45_days_max_age
+    add_column :trip_covers, :land_45_days_max_age, :integer
+    remove_column :trip_covers, :cruise_45_days_max_age
+    add_column :trip_covers, :cruise_45_days_max_age, :integer
+    remove_column :trip_covers, :land_55_days_max_age
+    add_column :trip_covers, :land_55_days_max_age, :integer
+    remove_column :trip_covers, :cruise_55_days_max_age
+    add_column :trip_covers, :cruise_55_days_max_age, :integer
+  end
+end
