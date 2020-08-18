@@ -61,8 +61,8 @@ en:
 
     travel_insurance_firm:
       status:
-        firm_details: 'Cover & service'
-        contact_details: 'Customer contact details'
+        firm_details: 'Cover & Service'
+        contact_details: 'Customer Contact Details'
 
       office_edit:
         breadcrumb: 'Customer contact details'

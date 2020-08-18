@@ -1,7 +1,7 @@
 <%= f.fields_for :medical_specialism do |ms| %>
 
   <%= ms.form_row :specialised_medical_conditions_cover do %>
-    <legend class="l-questionnaire__legend"><%= required_asterisk t('self_service.travel_insurance_firms_edit.medical_specialism.specialised_medical_conditions_cover_label') %></legend>
+    <legend class="l-questionnaire__legend"><%= t('self_service.travel_insurance_firms_edit.medical_specialism.specialised_medical_conditions_cover_label') %></legend>
 
       <fieldset class="form__group-item">
         <%= ms.radio_button :specialised_medical_conditions_covers_all, 1, class: 'form__group-input  t-specialised-medical-conditions-covers-all-yes', checked: ms.object.specialised_medical_conditions_covers_all == true, data: { show_hide: 'data-specialised-conditions', show_hide_trigger: 0 } %>
@@ -20,7 +20,7 @@
   <% end %>
 
   <%= ms.form_row :will_not_cover_some_medical_conditions do %>
-    <legend class="l-questionnaire__legend"><%= required_asterisk t('self_service.travel_insurance_firms_edit.medical_specialism.likely_not_cover_medical_condition_label') %></legend>
+    <legend class="l-questionnaire__legend"><%= t('self_service.travel_insurance_firms_edit.medical_specialism.likely_not_cover_medical_condition_label') %></legend>
 
     <fieldset class="form__group">
       <%= ms.radio_button :will_not_cover_some_medical_conditions, 1, checked: ms.object.will_not_cover_some_medical_conditions == true, class: 'form__group-input t-not-covering-medical-condition-yes', data: { show_hide: 'data-not-likely-cover', show_hide_trigger: 1 } %>
@@ -39,7 +39,7 @@
 
 
   <%= ms.form_row :will_cover_undergoing_treatment do %>
-    <legend class="l-questionnaire__legend"><%= required_asterisk t('self_service.travel_insurance_firms_edit.medical_specialism.cover_undergoing_treatment_label') %></legend>
+    <legend class="l-questionnaire__legend"><%= t('self_service.travel_insurance_firms_edit.medical_specialism.cover_undergoing_treatment_label') %></legend>
 
     <fieldset class="form__group">
       <%= ms.radio_button :will_cover_undergoing_treatment, 1, checked: ms.object.will_cover_undergoing_treatment == true, class: 'form__group-input t-cover-undergoing-treatment-yes', data: { show_hide: 'data-cover-undergoing-treatment', show_hide_trigger: 0 } %>
@@ -57,7 +57,7 @@
   </fieldset>
 
   <%= ms.form_row :terminal_prognosis_cover do %>
-    <legend class="l-questionnaire__legend"><%= required_asterisk  t('self_service.travel_insurance_firms_edit.medical_specialism.terminal_prognosis_cover_label') %></legend>
+    <legend class="l-questionnaire__legend"><%=  t('self_service.travel_insurance_firms_edit.medical_specialism.terminal_prognosis_cover_label') %></legend>
 
     <fieldset class="form__group">
       <%= ms.radio_button :terminal_prognosis_cover, 'true', class: 'form__group-input t-covers-terminal-prognosis-yes' %>

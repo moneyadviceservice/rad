@@ -11,7 +11,7 @@
         <%= ot.label :weekday_opening_time,
                     t('self_service.office_edit.opening_time_label'),
                     class: 'form__label-heading' %>
-        <%= ot.time_select :weekday_opening_time, ampm: true, minute_step: 5, class: 't-weekday-opening-time' %>
+        <%= ot.time_select :weekday_opening_time, ampm: false, minute_step: 5, class: 't-weekday-opening-time' %>
       <% end %>
     </div>
 
@@ -21,7 +21,7 @@
         <%= ot.label :weekday_closing_time,
                     t('self_service.office_edit.closing_time_label'),
                     class: 'form__label-heading' %>
-        <%= ot.time_select :weekday_closing_time, ampm: true, minute_step: 5, class: 't-weekday-closing-time' %>
+        <%= ot.time_select :weekday_closing_time, ampm: false, minute_step: 5, class: 't-weekday-closing-time' %>
       <% end %>
     </div>
   </div>
@@ -45,7 +45,7 @@
         <%= ot.label :saturday_opening_time,
                     t('self_service.office_edit.opening_time_label'),
                     class: 'form__label-heading' %>
-        <%= ot.time_select :saturday_opening_time, ampm: true, minute_step: 5, class: 't-saturday-opening-time' %>
+        <%= ot.time_select :saturday_opening_time, ampm: false, minute_step: 5, class: 't-saturday-opening-time' %>
       <% end %>
     </div>
 
@@ -55,7 +55,7 @@
         <%= ot.label :saturday_closing_time,
                     t('self_service.office_edit.closing_time_label'),
                     class: 'form__label-heading' %>
-        <%= ot.time_select :saturday_closing_time, ampm: true, minute_step: 5, class: 't-saturday-closing-time' %>
+        <%= ot.time_select :saturday_closing_time, ampm: false, minute_step: 5, class: 't-saturday-closing-time' %>
       <% end %>
     </div>
   </div>
@@ -79,7 +79,7 @@
         <%= ot.label :sunday_opening_time,
                     t('self_service.office_edit.opening_time_label'),
                     class: 'form__label-heading' %>
-        <%= ot.time_select :sunday_opening_time, ampm: true, minute_step: 5, class: 't-sunday-opening-time' %>
+        <%= ot.time_select :sunday_opening_time, ampm: false, minute_step: 5, class: 't-sunday-opening-time' %>
       <% end %>
     </div>
 
@@ -89,7 +89,7 @@
         <%= ot.label :sunday_closing_time,
                     t('self_service.office_edit.closing_time_label'),
                     class: 'form__label-heading' %>
-        <%= ot.time_select :sunday_closing_time, ampm: true, minute_step: 5, class: 't-sunday-closing-time' %>
+        <%= ot.time_select :sunday_closing_time, ampm: false, minute_step: 5, class: 't-sunday-closing-time' %>
       <% end %>
     </div>
   </div>
