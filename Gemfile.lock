@@ -204,6 +204,9 @@ GEM
     kaminari-activerecord (1.1.1)
       activerecord
       kaminari-core (= 1.1.1)
+    kaminari-bootstrap3 (0.1.0)
+      kaminari
+      rails
     kaminari-core (1.1.1)
     kgio (2.11.2)
     kramdown (1.17.0)
@@ -481,6 +484,7 @@ DEPENDENCIES
   httpclient (~> 2.8.3)
   jquery-rails
   kaminari
+  kaminari-bootstrap3
   language_list (~> 1.2.1)
   launchy
   letter_opener
