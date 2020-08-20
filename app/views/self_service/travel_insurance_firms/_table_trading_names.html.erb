@@ -18,7 +18,7 @@
       <% @presenter.trading_names.sorted_by_registered_name.each do |trading_name| %>
         <tr class="t-trading-name-table-row">
           <td class="t-firm-name" data-dough-filterable>
-            <%= link_to edit_self_service_trading_name_path(trading_name), class: 't-edit-link' do %>
+            <%= link_to edit_self_service_travel_insurance_trading_name_path(trading_name), class: 't-edit-link' do %>
               <%= trading_name.registered_name %>
             <% end %>
           </td>
