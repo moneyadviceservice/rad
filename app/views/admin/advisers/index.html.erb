@@ -57,8 +57,8 @@
     </p>
   </div>
   <div class="col-xs-10">
-    <table class="table table-bordered">
-      <tr>
+    <table class="table table-bordered table-hover">
+      <thead>
         <th><%= sort_link(@search, :reference_number, 'Ref Number') %></th>
         <th><%= sort_link(@search, :name) %></th>
         <% unless firm.present? %>
@@ -66,8 +66,9 @@
         <% end %>
         <th><%= sort_link(@search, :postcode, 'Post Code') %></th>
         <th><%= sort_link(@search, :created_at, 'Added') %></th>
-      </tr>
-      <% if @advisers.present? %>
+      </thead>
+      <tbody>
+        <% if @advisers.present? %>
           <% @advisers.each do |adviser| %>
               <tr class="t-adviser-row">
                 <td class="t-reference-number"><%= adviser.reference_number %></td>
@@ -81,11 +82,12 @@
                 <td><%= adviser.created_at.strftime("%d %b %Y") %></td>
               </tr>
           <% end %>
-      <% else %>
+        <% else %>
           <tr>
             <td colspan="5">No advisers to display</td>
           </tr>
-      <% end %>
+        <% end %>
+      </tbody>
     </table>
 
     <p>
