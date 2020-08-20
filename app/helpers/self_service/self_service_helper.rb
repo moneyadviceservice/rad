@@ -88,8 +88,9 @@ module SelfService
     end
 
     def options_for_cover_ages
-      options = ['no_age_restriction', 'not_offered'] + (65..100).to_a
+      options = (65..100).to_a
 
+      [['No age restriction', 1000], ['Not offered', -1]] +
       options.map { |s| [(s.try(:humanize) || s), s] }
     end
   end
