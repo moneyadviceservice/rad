@@ -16,7 +16,7 @@ module AlgoliaIndex
                :covid19_medical_repatriation,
                :covid19_cancellation_cover,
                :medical_screening_company,
-               :how_far_in_advance_trip_cover,
+               :how_far_in_advance_trip_cover_weeks,
                # Medical specialism
                :will_cover_all_specialised_medical_conditions,
                :specialised_medical_conditions_cover,
@@ -62,8 +62,8 @@ module AlgoliaIndex
       [I18n.t("self_service.travel_insurance_firms_edit.service_details.medical_screening_companies_select.#{service_detail.medical_screening_company}")]
     end
 
-    def how_far_in_advance_trip_cover
-      [I18n.t("self_service.travel_insurance_firms_edit.service_details.advance_of_trip_cover_select.#{service_detail.how_far_in_advance_trip_cover}")]
+    def how_far_in_advance_trip_cover_weeks
+      [I18n.t("self_service.travel_insurance_firms_edit.service_details.advance_of_trip_cover_select.#{service_detail.how_far_in_advance_trip_cover}.no_of_weeks")]
     end
 
     [

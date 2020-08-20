@@ -64,8 +64,18 @@ en:
           inhouse: Medical screening undertaken in-house
 
         advance_of_trip_cover_select:
-          up_to_1_month: Up to 1 month
-          up_to_6_month: Up to 6 months
-          up_to_12_month: Up to 12 months
-          up_to_18_month: Up to 18 months
-          up_to_24_month: Up to 24 months
+          up_to_1_month:
+            label: Up to 1 month
+            no_of_weeks: 4
+          up_to_6_month:
+            label: Up to 6 months
+            no_of_weeks: 26
+          up_to_12_month:
+            label: Up to 12 months
+            no_of_weeks: 52
+          up_to_18_month:
+            label: Up to 18 months
+            no_of_weeks: 78
+          up_to_24_month:
+            label: Up to 24 months
+            no_of_weeks: 104

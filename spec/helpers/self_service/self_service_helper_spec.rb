@@ -110,5 +110,17 @@ module SelfService
         expect(helper.options_for_cover_ages).to include(*ages_array)
       end
     end
+
+    describe '#options_for_how_much_in_advance' do
+      it 'returns an array' do
+        expect(helper.options_for_how_much_in_advance).to be_a_kind_of(Array)
+      end
+
+      it 'includes the correct key values of dropdown' do
+        items = t('self_service.travel_insurance_firms_edit.service_details.advance_of_trip_cover_select')
+        select_data = items.map { |k, v| [v[:label], k] }
+        expect(helper.options_for_how_much_in_advance).to eq(select_data)
+      end
+    end
   end
 end

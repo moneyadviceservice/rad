@@ -77,7 +77,7 @@
   <%= sd.form_row :how_far_in_advance_trip_cover do %>
      <legend class="l-questionnaire__legend"><%= t('self_service.travel_insurance_firms_edit.service_details.how_far_in_advance_trip_cover_label') %></legend>
     <fieldset class="form__group t-how-far-in-advance-cover">
-      <%= sd.select :how_far_in_advance_trip_cover, t('self_service.travel_insurance_firms_edit.service_details.advance_of_trip_cover_select').invert, { prompt: 'Please select', include_blank: false } %>
+      <%= sd.select :how_far_in_advance_trip_cover, options_for_how_much_in_advance, { prompt: 'Please select', include_blank: false } %>
     </fieldset>
   <% end %>
 <% end %>
