@@ -2,6 +2,6 @@
   <h2>Sign in as Principal</h2>
 
   <%= form_tag(admin_user_session_path(user_for(principal))) do %>
-    <%= submit_tag "Access #{principal.travel_insurance_firm? ? 'TAD' : 'RAD'} as #{principal.full_name}", class: 't-sign-in-as-principal' %>
+    <%= submit_tag "Access #{principal&.travel_insurance_firm&.present? ? 'TAD' : 'RAD'} as #{principal.full_name}", class: 'btn btn-primary t-sign-in-as-principal' %>
   <% end %>
 <% end %>
