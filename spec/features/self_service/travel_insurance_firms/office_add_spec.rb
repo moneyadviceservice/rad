@@ -104,10 +104,10 @@ RSpec.feature 'The travel insurance self service office add page', :inline_job_q
       office_add_page.send(field_name).set(office[field_name])
     end
 
-    office_add_page.select('09 AM', from: 'office_opening_time_attributes_weekday_opening_time_4i')
+    office_add_page.select('09', from: 'office_opening_time_attributes_weekday_opening_time_4i')
     office_add_page.select('05', from: 'office_opening_time_attributes_weekday_opening_time_5i')
 
-    office_add_page.select('05 PM', from: 'office_opening_time_attributes_weekday_closing_time_4i')
+    office_add_page.select('17', from: 'office_opening_time_attributes_weekday_closing_time_4i')
     office_add_page.select('05', from: 'office_opening_time_attributes_weekday_closing_time_5i')
   end
 
