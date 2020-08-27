@@ -4,7 +4,8 @@ module AlgoliaIndex
                :offering_ids,
                :company,
                :online,
-               :opening_times
+               :opening_times,
+               :offerings
 
     def objectID # rubocop:disable Naming/MethodName
       object.id
@@ -25,6 +26,10 @@ module AlgoliaIndex
         phone: object.main_office.telephone_number,
         telephone_quote: object.service_detail.offers_telephone_quote
       }
+    end
+
+    def offerings
+      serialized = object.trip_covers.map(&AlgoliaIndex::TravelInsuranceFirmOfferingSerializer.method(:new))
     end
 
     def opening_times
