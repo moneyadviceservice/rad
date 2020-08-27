@@ -32,6 +32,7 @@ en:
         specialised_medical_conditions_cover_no: The firm <u>specialises</u> in offering travel insurance for <u>one of the following</u> medical conditions
         likely_not_cover_medical_condition_label: Are there any medical conditions the firm will not cover?
         cover_undergoing_treatment_label: Will you offer cover if the customer is undergoing treatment at the time of travel?
+        cover_undergoing_treatment_tooltip: This question relates to medical treatment the customer is currently undergoing to treat a known and existing diagnosed condition.
         terminal_prognosis_cover_label: Will you offer cover to customers who have been given a terminal prognosis?
         medical_conditions_cover_select:
           cancer: Cancer

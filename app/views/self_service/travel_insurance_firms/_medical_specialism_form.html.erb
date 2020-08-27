@@ -39,7 +39,21 @@
 
 
   <%= ms.form_row :will_cover_undergoing_treatment do %>
-    <legend class="l-questionnaire__legend"><%= t('self_service.travel_insurance_firms_edit.medical_specialism.cover_undergoing_treatment_label') %></legend>
+    <div class="l-inline-legend-with-tooltip">
+      <span class="l-questionnaire__legend">
+        <%= t('self_service.travel_insurance_firms_edit.medical_specialism.cover_undergoing_treatment_label') %>
+      </span>
+      <span data-dough-component="PopupTip">
+        <%= popup_tip_trigger options: {
+          text: t('tooltip_show')
+        } %>
+
+        <%= popup_tip_content options: {
+          text:t('self_service.travel_insurance_firms_edit.medical_specialism.cover_undergoing_treatment_tooltip'),
+          tooltip_hide: t('tooltip_hide')
+        } %>
+      </span>
+    </div>
 
     <fieldset class="form__group">
       <%= ms.radio_button :will_cover_undergoing_treatment, 1, checked: ms.object.will_cover_undergoing_treatment == true, class: 'form__group-input t-cover-undergoing-treatment-yes', data: { show_hide: 'data-cover-undergoing-treatment', show_hide_trigger: 0 } %>
