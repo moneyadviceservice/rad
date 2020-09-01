@@ -26,6 +26,63 @@ class TravelInsuranceFirm < ApplicationRecord
 
   before_create :populate_question_answers
 
+  belongs_to :parent, class_name: 'TravelInsuranceFirm'
+
+  has_one :office, -> { order created_at: :asc }, dependent: :destroy, as: :officeable
+  has_one :medical_specialism, dependent: :destroy
+  has_one :service_detail, dependent: :destroy
+
+  has_many :subsidiaries, class_name: 'TravelInsuranceFirm',
+                          foreign_key: :parent_id,
+                          dependent: :destroy
+
+  has_many :trading_names, class_name: 'TravelInsuranceFirm',
+                           foreign_key: :parent_id,
+                           dependent: :destroy
+
+  has_many :trip_covers, dependent: :destroy
+  accepts_nested_attributes_for :trip_covers, :medical_specialism, :service_detail
+
+  scope :approved, -> { where.not(approved_at: nil) }
+  scope :onboarded, -> { joins(:office) }
+  scope :sorted_by_registered_name, -> { order(:registered_name) }
+
+  after_commit :notify_indexer
+
+  def notify_indexer
+    UpdateAlgoliaIndexJob.perform_later(model_name.name, id) if approved_at.present?
+  end
+
+  def validate_two_trading_names_only
+    return if can_add_more_trading_names?
+
+    errors.add(:base, 'Cannot add more than 2 trading names')
+  end
+
+  def can_add_more_trading_names?
+    trading_names.count < 2
+  end
+
+  def trading_name?
+    parent.present?
+  end
+  alias subsidiary? trading_name?
+
+  def publishable?
+    office.present? && cover_and_service_complete?
+  end
+  alias onboarded? publishable?
+
+  def cover_and_service_complete?
+    return false unless medical_specialism.present? && service_detail.present?
+
+    trip_covers.any? && trip_covers.map(&:all_complete?).all?
+  end
+
+  def main_office
+    office
+  end
+
   def self.cache_question_answers(question_answers)
     cache_key = compute_cache_key(fca_number: question_answers[:fca_number], email: question_answers[:email])
     Rails.cache.write(cache_key, question_answers.reject { |key, _value| %w[fca_number email].include? key.to_s }.to_json, expires_in: 1.minute)

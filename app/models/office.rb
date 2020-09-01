@@ -12,7 +12,10 @@ class Office < ApplicationRecord
     address_postcode
   ].freeze
 
-  belongs_to :firm
+  has_one :opening_time, dependent: :destroy
+  accepts_nested_attributes_for :opening_time
+
+  belongs_to :officeable, polymorphic: true
 
   validates :email_address,
             presence: false,
@@ -38,12 +41,19 @@ class Office < ApplicationRecord
             presence: false,
             length: { maximum: 100 }
 
+  validates :website,
+            allow_blank: true,
+            length: { maximum: 100 },
+            format: { with: /\A(https?:\/\/)?([a-zA-Z0-9-]+\.)+[a-zA-Z0-9-]+/ }
+
   validates :disabled_access, inclusion: { in: [true, false] }
 
   after_commit :notify_indexer
 
   def notify_indexer
-    UpdateAlgoliaIndexJob.perform_later(model_name.name, id, firm_id)
+    if officeable_type == 'Firm'
+      UpdateAlgoliaIndexJob.perform_later(model_name.name, id, officeable_id)
+    end
   end
 
   def field_order

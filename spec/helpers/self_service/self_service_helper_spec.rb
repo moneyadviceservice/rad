@@ -94,5 +94,33 @@ module SelfService
         expect(helper.status_icon('tick')).to include('#icon-tick')
       end
     end
+
+    describe '#options_for_cover_ages' do
+      it 'returns an array' do
+        expect(helper.options_for_cover_ages).to be_a_kind_of(Array)
+      end
+
+      it 'includes no_age_restriction and not_offered options' do
+        expect(helper.options_for_cover_ages).to include(['No age restriction', 1000])
+        expect(helper.options_for_cover_ages).to include(['Not offered', -1])
+      end
+
+      it 'includes numbers 65 to 100 in options style array' do
+        ages_array = (65..100).to_a.map { |k| [k, k] }
+        expect(helper.options_for_cover_ages).to include(*ages_array)
+      end
+    end
+
+    describe '#options_for_how_much_in_advance' do
+      it 'returns an array' do
+        expect(helper.options_for_how_much_in_advance).to be_a_kind_of(Array)
+      end
+
+      it 'includes the correct key values of dropdown' do
+        items = t('self_service.travel_insurance_firms_edit.service_details.advance_of_trip_cover_select')
+        select_data = items.map { |k, v| [v[:label], k] }
+        expect(helper.options_for_how_much_in_advance).to eq(select_data)
+      end
+    end
   end
 end

@@ -13,10 +13,12 @@ module AlgoliaIndex
                :disabled_access,
                :website
 
-    delegate :firm_id, to: :object
-
     def objectID # rubocop:disable Naming/MethodName
       object.id
+    end
+
+    def firm_id
+      object.officeable_id
     end
 
     def _geoloc

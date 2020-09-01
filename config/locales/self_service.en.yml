@@ -5,12 +5,13 @@ en:
     add_trading_name_button: Add a trading name
     cancel_button: Cancel
     save_button: Save
+    customer_contact_details_message: Enter the contact details you want customers to use.
     required_fields_message: "* Indicates required fields"
 
     navigation: # name according to route name
       root: Home
       firms: Firms
-      edit_principal: Edit principal
+      edit_principal: Edit account
 
     adviser_edit:
       breadcrumb: "%{adviser_name}"
@@ -44,6 +45,7 @@ en:
       offices: Offices
       published: Visible on directory
       unpublished: Needs more information
+      complete: Complete
 
     trading_name_destroy:
       deleted: "%{name} has been successfully removed."
@@ -56,3 +58,17 @@ en:
       breadcrumb: "%{firm_name}"
       title: "Edit: %{firm_name}"
       saved: The trading name has been saved
+
+    travel_insurance_firm:
+      status:
+        firm_details: 'Cover & Service'
+        contact_details: 'Customer Contact Details'
+
+      office_edit:
+        breadcrumb: 'Customer contact details'
+        email_address: Customer contact email address
+        telephone_number: Customer contact telephone number
+        address_town: Town
+        address_county: County
+        address_postcode: Postcode
+        address_heading: Principle place of business

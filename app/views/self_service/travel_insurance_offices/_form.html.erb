@@ -1,0 +1,94 @@
+<p><%= t('self_service.customer_contact_details_message') %></p>
+<p><%= t('self_service.required_fields_message') %></p>
+
+<div class="t-validation-summary">
+  <%= f.validation_summary %>
+</div>
+
+<div class="l-half-width">
+
+  <%= f.form_row :geocoding do %>
+    <%= f.errors_for :geocoding %>
+
+    <% if f.object.errors.include?(:geocoding) %>
+      <p><%= t('office.geocoding.failure_explanation', email: admin_email_address) %></p>
+    <% end %>
+
+    <%= f.form_row :website do %>
+      <%= f.errors_for :website %>
+      <%= f.label :website,
+                  required_asterisk(Office.human_attribute_name(:website)),
+                  class: 'form__label-heading' %>
+      <%= f.text_field :website, class: 't-website'  %>
+    <% end %>
+
+    <%= f.form_row :telephone_number do %>
+      <%= f.errors_for :telephone_number %>
+      <%= f.label :telephone_number,
+                  required_asterisk(t('self_service.travel_insurance_firm.office_edit.telephone_number')),
+                  class: 'form__label-heading' %>
+      <%= f.text_field :telephone_number, class: 't-telephone-number' %>
+    <% end %>
+
+    <div class="panel">
+      <%= render partial: 'self_service/offices/opening_time', locals: { f: f } %>
+    </div>
+
+    <%= f.form_row :email_address do %>
+      <%= f.errors_for :email_address %>
+      <%= f.label :email_address,
+                  required_asterisk(t('self_service.travel_insurance_firm.office_edit.email_address')),
+                  class: 'form__label-heading' %>
+      <%= f.text_field :email_address, class: 't-email-address' %>
+    <% end %>
+
+    <h4><%= t('self_service.travel_insurance_firm.office_edit.address_heading') %></h4>
+    <br/>
+    <%= f.form_row :address_line_one do %>
+      <%= f.errors_for :address_line_one %>
+      <%= f.label :address_line_one,
+                  required_asterisk(Office.human_attribute_name(:address_line_one)),
+                  class: 'form__label-heading' %>
+      <%= f.text_field :address_line_one, class: 't-address-line-one' %>
+    <% end %>
+
+    <%= f.form_row :address_line_two do %>
+      <%= f.errors_for :address_line_two %>
+      <%= f.label :address_line_two,
+                  Office.human_attribute_name(:address_line_two),
+                  class: 'form__label-heading' %>
+      <%= f.text_field :address_line_two, class: 't-address-line-two' %>
+    <% end %>
+
+    <%= f.form_row :address_town do %>
+      <%= f.errors_for :address_town %>
+      <%= f.label :address_town,
+                  required_asterisk(t('self_service.travel_insurance_firm.office_edit.address_town')),
+                  class: 'form__label-heading' %>
+      <%= f.text_field :address_town, class: 't-address-town' %>
+    <% end %>
+
+    <%= f.form_row :address_county do %>
+      <%= f.errors_for :address_county %>
+      <%= f.label :address_county,
+                  t('self_service.travel_insurance_firm.office_edit.address_county'),
+                  class: 'form__label-heading' %>
+      <%= f.text_field :address_county, class: 't-address-county' %>
+    <% end %>
+
+    <%= f.form_row :address_postcode, html_options: { classes: 'form-row--collapsed-margin-bottom' } do %>
+      <%= f.errors_for :address_postcode %>
+      <%= f.label :address_postcode,
+                  required_asterisk(t('self_service.travel_insurance_firm.office_edit.address_postcode')),
+                  class: 'form__label-heading' %>
+      <%= f.text_field :address_postcode, class: 't-address-postcode form__input-container--medium' %>
+    <% end %>
+  <% end %>
+</div>
+
+<div class="l-self-service-action-row">
+  <%= link_to t('self_service.cancel_button'),
+              self_service_travel_insurance_firms_path,
+              class: 'l-self-service-action-row__cancel' %>
+  <%= f.submit t('self_service.save_button'), class: 'button button--primary t-submit' %>
+</div>

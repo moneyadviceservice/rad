@@ -32,7 +32,7 @@ FactoryBot.define do
     end
 
     after(:create) do |firm, evaluator|
-      create_list(:office, evaluator.offices_count, firm: firm)
+      create_list(:office, evaluator.offices_count, officeable: firm)
       firm.reload
     end
 

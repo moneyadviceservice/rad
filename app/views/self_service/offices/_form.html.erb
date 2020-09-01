@@ -89,7 +89,7 @@
 
 <div class="l-self-service-action-row">
   <%= link_to t('self_service.cancel_button'),
-              self_service_firm_offices_path(f.object.firm),
+              self_service_firm_offices_path(f.object.officeable),
               class: 'l-self-service-action-row__cancel' %>
   <% if f.object.persisted? %>
     <%= f.submit t('self_service.office_edit.submit_button'), class: 'button button--primary t-submit' %>

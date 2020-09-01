@@ -1,0 +1,9 @@
+<% presenter = SelfService::TravelInsuranceStatusPresenter.new(firm) %>
+
+<div class="l-back-link t-back-to-firm-list">
+  <%= link_to '< Back to firm list', self_service_travel_insurance_firms_path %>
+</div>
+
+<h1 class="t-firm-name">
+  <%= firm.registered_name %>
+</h1>

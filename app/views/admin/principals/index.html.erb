@@ -28,8 +28,8 @@
     </p>
   </div>
   <div class="col-xs-10">
-    <table class="table table-bordered">
-      <tr>
+    <table class="table table-bordered table-hover">
+      <thead>
         <th><%= sort_link(@search, :firm_registered_name, 'Firm') %></th>
         <th><%= sort_link(@search, :fca_number, 'FCA Number') %></th>
         <th>
@@ -38,20 +38,22 @@
           <%= sort_link(@search, :last_name, 'Last Name') %>
         </th>
         <th><%= sort_link(@search, :created_at, 'Added') %></th>
-      </tr>
-      <% if @principals.present? %>
-        <% @principals.each do |principal| %>
-          <%= render 'principal', principal: principal %>
+      </thead>
+      <tbody>
+        <% if @principals.present? %>
+          <% @principals.each do |principal| %>
+            <%= render 'principal', principal: principal %>
+          <% end %>
+        <% else %>
+          <tr>
+            <td colspan="6">No principals to display</td>
+          </tr>
         <% end %>
-      <% else %>
-        <tr>
-          <td colspan="6">No principals to display</td>
-        </tr>
-      <% end %>
+      </tbody>
     </table>
 
     <p>
-      <%= paginate @principals %>
+      <%= paginate @principals, theme: 'bootstrap' %>
     </p>
   </div>
 </div>

@@ -1,0 +1,24 @@
+<div class="t-overall-status status__overall-status status__overall-status--<%= presenter.overall_status %>">
+  <%= status_icon(presenter.overall_status_icon) %>
+  <%= t("self_service.status.#{presenter.overall_status}") %>
+</div>
+
+<div class="l-2col status__row">
+  <div class="l-2col-main">
+    <%= status_icon(presenter.cover_and_service_icon) %>
+    <%= t("self_service.travel_insurance_firm.status.firm_details") %>
+  </div>
+  <div class="l-2col-side l-2col-side--align-right">
+    <%= presenter.firm_details_link(class: 'button button--small t-cover-and-service-link') %>
+  </div>
+</div>
+
+<div class="l-2col status__row">
+  <div class="l-2col-main">
+    <%= status_icon(presenter.offices_icon) %>
+    <%= t("self_service.travel_insurance_firm.status.contact_details") %>
+  </div>
+  <div class="l-2col-side l-2col-side--align-right">
+    <%= presenter.offices_link(class: 'button button--small t-office-link') %>
+  </div>
+</div>

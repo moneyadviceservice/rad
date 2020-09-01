@@ -40,6 +40,7 @@
 @import 'components/password_policy';
 @import 'components/sign_in_panel';
 @import 'components/registration';
+@import 'components/travel_tabs';
 @import 'components/status/all';
 
 @import 'components/common/popup_tip';
@@ -53,6 +54,10 @@
   // Is there an error with how this component is laid out which is causing this?
   padding-left: 0;
   padding-right: 5px;
+}
+
+a.button[disabled]{
+  color: $color-button-text-disabled;
 }
 
 html.dev .translation_missing {
@@ -73,4 +78,9 @@ main {
 .l-footer {
   flex-shrink: 0;
   height: auto;
+}
+.popup-tip__container{
+  ul{
+    font-size: 16px;
+  }
 }

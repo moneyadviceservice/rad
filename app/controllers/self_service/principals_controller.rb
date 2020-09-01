@@ -2,7 +2,7 @@ module SelfService
   class PrincipalsController < ApplicationController
     before_action :authenticate_user!
     before_action -> { @principal = principal }
-    before_action -> { @firm = principal.firm }
+    before_action :set_firm
 
     def edit; end
 
@@ -26,10 +26,15 @@ module SelfService
       current_user.principal.id == params[:id]
     end
 
+    def set_firm
+      @firm = @principal.firm || @principal.travel_insurance_firm
+    end
+
     def principal_params
       params.require(:principal).permit(
         :first_name,
         :last_name,
+        :senior_manager_name,
         :email_address,
         :telephone_number,
         :job_title

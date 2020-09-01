@@ -1,0 +1,28 @@
+<div class="table-wrapper">
+  <table class="firms-table">
+    <thead>
+      <tr>
+        <th class="firms-table__name">
+          <%= Firm.human_attribute_name(:registered_name) %>
+        </th>
+        <th class="firms-table__frn">
+          <%= Firm.human_attribute_name(:fca_number) %>
+        </th>
+        <th class="firms-table__action"></th>
+      </tr>
+    </thead>
+    <tbody data-dough-filter-rows>
+      <% @presenter.lookup_names.each do |lookup_name| %>
+        <tr class="t-available-trading-name-table-row">
+          <td class="t-firm-name" data-dough-filterable>
+            <%= lookup_name.name %>
+          </td>
+          <td class="t-frn" data-dough-filterable><%= lookup_name.fca_number %></td>
+          <td>
+            <%= link_to t('self_service.firms_index.new_trading_name_link'), new_self_service_travel_insurance_trading_name_path(lookup_id: lookup_name.id), class: 'button button--small t-edit-link', disabled: !@presenter.firm.can_add_more_trading_names? %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

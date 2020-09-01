@@ -1,5 +1,6 @@
 RSpec.feature 'Approving travel insurance firms', :inline_job_queue do
   include ActiveSupport::Testing::TimeHelpers
+  include_context 'algolia index fake'
 
   let(:travel_insurance_firm_page) do
     Admin::TravelInsuranceFirmPage.new
@@ -18,15 +19,14 @@ RSpec.feature 'Approving travel insurance firms', :inline_job_queue do
     then_the_firm_becomes_approved
     and_i_dont_see_the_approve_button
     and_the_firm_is_listed_as_approved_in_the_firms_index
+    then_the_travel_insurance_firm_and_offerings_gets_pushed_to_the_directory
   end
 
   def given_there_are_registered_travel_insurance_firms
-    user = FactoryBot.create(:user)
-    @firm = FactoryBot.create(
-      :travel_insurance_firm,
-      fca_number: user.principal.fca_number,
-      approved_at: nil
-    )
+    @firm = FactoryBot.create(:travel_insurance_firm,
+      completed_firm: true,
+      approved_at: nil)
+    @user = FactoryBot.create(:user, principal: @firm.principal)
   end
 
   def when_i_visit_a_travel_insurance_firm_page
@@ -56,5 +56,18 @@ RSpec.feature 'Approving travel insurance firms', :inline_job_queue do
     expect(
       travel_insurance_firms_index_page.firms.map(&:approved)
     ).to eq([approval_date.to_s(:short)])
+  end
+
+  def then_the_travel_insurance_firm_and_offerings_gets_pushed_to_the_directory
+    directory_travel_firms = travel_firms_in_directory
+    directory_travel_firm_offerins = travel_firm_offerings_in_directory
+
+    aggregate_failures 'firm info in directory' do
+      expect(directory_travel_firms.map { |firm| firm['objectID'] })
+        .to eq [@firm.id]
+
+      expect(directory_travel_firm_offerins.map { |offerings| offerings['objectID'] })
+        .to eq @firm.trip_covers.pluck(:id)
+    end
   end
 end

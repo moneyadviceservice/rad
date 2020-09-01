@@ -204,6 +204,9 @@ GEM
     kaminari-activerecord (1.1.1)
       activerecord
       kaminari-core (= 1.1.1)
+    kaminari-bootstrap3 (0.1.0)
+      kaminari
+      rails
     kaminari-core (1.1.1)
     kgio (2.11.2)
     kramdown (1.17.0)
@@ -381,6 +384,8 @@ GEM
     sawyer (0.8.1)
       addressable (>= 2.3.5, < 2.6)
       faraday (~> 0.8, < 1.0)
+    shoulda-matchers (4.3.0)
+      activesupport (>= 4.2.0)
     sidekiq (6.0.2)
       connection_pool (>= 2.2.2)
       rack (>= 2.0.0)
@@ -479,6 +484,7 @@ DEPENDENCIES
   httpclient (~> 2.8.3)
   jquery-rails
   kaminari
+  kaminari-bootstrap3
   language_list (~> 1.2.1)
   launchy
   letter_opener
@@ -502,6 +508,7 @@ DEPENDENCIES
   rubocop (= 0.62.0)
   rubyzip
   sass-rails
+  shoulda-matchers (~> 4.0)
   sidekiq
   sidekiq-unique-jobs (~> 6.0.16)
   site_prism

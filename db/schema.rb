@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 3019_11_18_100157) do
+ActiveRecord::Schema.define(version: 3019_11_18_100173) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -216,6 +216,20 @@ ActiveRecord::Schema.define(version: 3019_11_18_100157) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "medical_specialisms", force: :cascade do |t|
+    t.bigint "travel_insurance_firm_id"
+    t.string "specialised_medical_conditions_cover"
+    t.string "likely_not_cover_medical_condition"
+    t.string "cover_undergoing_treatment"
+    t.boolean "terminal_prognosis_cover"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.boolean "specialised_medical_conditions_covers_all"
+    t.boolean "will_not_cover_some_medical_conditions"
+    t.boolean "will_cover_undergoing_treatment"
+    t.index ["travel_insurance_firm_id"], name: "index_medical_specialisms_on_travel_insurance_firm_id"
+  end
+
   create_table "offices", id: :serial, force: :cascade do |t|
     t.string "address_line_one", null: false
     t.string "address_line_two"
@@ -225,12 +239,15 @@ ActiveRecord::Schema.define(version: 3019_11_18_100157) do
     t.string "email_address"
     t.string "telephone_number"
     t.boolean "disabled_access", default: false, null: false
-    t.integer "firm_id", null: false
+    t.integer "firm_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.float "latitude"
     t.float "longitude"
     t.string "website"
+    t.string "officeable_type"
+    t.bigint "officeable_id"
+    t.index ["officeable_type", "officeable_id"], name: "index_offices_on_officeable_type_and_officeable_id"
   end
 
   create_table "old_passwords", id: :serial, force: :cascade do |t|
@@ -247,6 +264,19 @@ ActiveRecord::Schema.define(version: 3019_11_18_100157) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "order", default: 0, null: false
+  end
+
+  create_table "opening_times", force: :cascade do |t|
+    t.bigint "office_id"
+    t.time "weekday_opening_time"
+    t.time "weekday_closing_time"
+    t.time "saturday_opening_time"
+    t.time "saturday_closing_time"
+    t.time "sunday_opening_time"
+    t.time "sunday_closing_time"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["office_id"], name: "index_opening_times_on_office_id"
   end
 
   create_table "other_advice_methods", id: :serial, force: :cascade do |t|
@@ -268,6 +298,7 @@ ActiveRecord::Schema.define(version: 3019_11_18_100157) do
     t.boolean "confirmed_disclaimer", default: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text "senior_manager_name"
     t.index ["fca_number"], name: "index_principals_on_fca_number", unique: true
     t.index ["token"], name: "index_principals_on_token", unique: true
   end
@@ -293,6 +324,20 @@ ActiveRecord::Schema.define(version: 3019_11_18_100157) do
     t.datetime "updated_at"
     t.index ["session_id"], name: "index_rad_consumer_sessions_on_session_id", unique: true
     t.index ["updated_at"], name: "index_rad_consumer_sessions_on_updated_at"
+  end
+
+  create_table "service_details", force: :cascade do |t|
+    t.bigint "travel_insurance_firm_id"
+    t.boolean "offers_telephone_quote"
+    t.integer "cover_for_specialist_equipment"
+    t.string "medical_screening_company"
+    t.string "how_far_in_advance_trip_cover"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.boolean "covid19_medical_repatriation"
+    t.boolean "covid19_cancellation_cover"
+    t.boolean "will_cover_specialist_equipment"
+    t.index ["travel_insurance_firm_id"], name: "index_service_details_on_travel_insurance_firm_id"
   end
 
   create_table "snapshots", id: :serial, force: :cascade do |t|
@@ -384,8 +429,25 @@ ActiveRecord::Schema.define(version: 3019_11_18_100157) do
     t.string "lupus_question"
     t.string "sickle_cell_and_renal_question"
     t.string "sub_arachnoid_haemorrhage_and_epilepsy_question"
+    t.integer "parent_id"
+    t.text "website_address"
     t.index ["approved_at"], name: "index_travel_insurance_firms_on_approved_at"
-    t.index ["fca_number"], name: "index_travel_insurance_firms_on_fca_number", unique: true
+    t.index ["fca_number"], name: "index_travel_insurance_firms_on_fca_number"
+  end
+
+  create_table "trip_covers", force: :cascade do |t|
+    t.bigint "travel_insurance_firm_id"
+    t.string "trip_type"
+    t.string "cover_area"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "land_30_days_max_age"
+    t.integer "cruise_30_days_max_age"
+    t.integer "land_45_days_max_age"
+    t.integer "cruise_45_days_max_age"
+    t.integer "land_55_days_max_age"
+    t.integer "cruise_55_days_max_age"
+    t.index ["travel_insurance_firm_id"], name: "index_trip_covers_on_travel_insurance_firm_id"
   end
 
   create_table "users", id: :serial, force: :cascade do |t|
@@ -419,4 +481,8 @@ ActiveRecord::Schema.define(version: 3019_11_18_100157) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "medical_specialisms", "travel_insurance_firms"
+  add_foreign_key "opening_times", "offices"
+  add_foreign_key "service_details", "travel_insurance_firms"
+  add_foreign_key "trip_covers", "travel_insurance_firms"
 end

@@ -1,0 +1,68 @@
+<%= f.fields_for :trip_covers, cover_data do |tc| %>
+  <%= tc.hidden_field :trip_type %>
+  <%= tc.hidden_field :cover_area %>
+
+  <div class="l-3col-even-row">
+    <div class="l-3col-even">
+      <strong><%= t("self_service.travel_insurance_firms_edit.#{cover_data.trip_type}.short_trip")%></strong>
+    </div>
+
+    <div class="l-3col-even">
+      <%= tc.label :land_30_days_max_age,
+                  t('self_service.travel_insurance_firms_edit.maximum_age_non_cruise'),
+                  class: 'form__label-heading' %>
+      <%= tc.select :land_30_days_max_age, options_for_cover_ages, { prompt: 'Please select', include_blank: false }, { class: 't-one-month-land' } %>
+    </div>
+
+    <div class="l-3col-even">
+      <%= tc.label :cruise_30_days_max_age,
+                  t('self_service.travel_insurance_firms_edit.maximum_age_cruise'),
+                  class: 'form__label-heading' %>
+      <%= tc.select :cruise_30_days_max_age, options_for_cover_ages, { prompt: 'Please select', include_blank: false }, { class: 't-one-month-cruise' } %>
+    </div>
+  </div>
+  <br />
+
+  <div class="l-3col-even-row">
+    <div class="l-3col-even">
+      <strong><%= t("self_service.travel_insurance_firms_edit.#{cover_data.trip_type}.medium_trip")%></strong>
+    </div>
+
+    <div class="l-3col-even">
+      <%= tc.label :land_45_days_max_age,
+                  t('self_service.travel_insurance_firms_edit.maximum_age_non_cruise'),
+                  class: 'form__label-heading' %>
+      <%= tc.select :land_45_days_max_age, options_for_cover_ages, { prompt: 'Please select', include_blank: false }, { class: 't-six-month-land' } %>
+    </div>
+
+    <div class="l-3col-even">
+      <%= tc.label :cruise_45_days_max_age,
+                  t('self_service.travel_insurance_firms_edit.maximum_age_cruise'),
+                  class: 'form__label-heading' %>
+      <%= tc.select :cruise_45_days_max_age, options_for_cover_ages, { prompt: 'Please select', include_blank: false }, { class: 't-six-month-cruise' } %>
+    </div>
+  </div>
+  <br />
+
+  <div class="l-3col-even-row">
+    <div class="l-3col-even">
+      <strong><%= t("self_service.travel_insurance_firms_edit.#{cover_data.trip_type}.long_trip")%></strong>
+    </div>
+
+    <div class="l-3col-even">
+      <%= tc.label :land_55_days_max_age,
+                  t('self_service.travel_insurance_firms_edit.maximum_age_non_cruise'),
+                  class: 'form__label-heading' %>
+      <%= tc.select :land_55_days_max_age, options_for_cover_ages, { prompt: 'Please select', include_blank: false }, { class: 't-six-month-plus-land' } %>
+    </div>
+
+    <div class="l-3col-even">
+      <%= tc.label :cruise_55_days_max_age,
+                  t('self_service.travel_insurance_firms_edit.maximum_age_cruise'),
+                  class: 'form__label-heading' %>
+      <%= tc.select :cruise_55_days_max_age, options_for_cover_ages, { prompt: 'Please select', include_blank: false }, { class: 't-six-month-plus-cruise' } %>
+    </div>
+  </div>
+  <br />
+
+<% end %>

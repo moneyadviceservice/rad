@@ -2,7 +2,6 @@ RSpec.describe AlgoliaIndex::OfficeSerializer do
   describe 'json' do
     subject(:serialized) { JSON.parse(described_class.new(office).to_json) }
 
-    let(:office) { FactoryBot.create(:office, firm: FactoryBot.build(:firm)) }
     let(:expected_json) do
       {
         _geoloc: {
@@ -10,7 +9,7 @@ RSpec.describe AlgoliaIndex::OfficeSerializer do
           lng: office.longitude
         },
         objectID: office.id,
-        firm_id: office.firm_id,
+        firm_id: office.officeable_id,
         address_line_one: office.address_line_one,
         address_line_two: office.address_line_two,
         address_town: office.address_town,
@@ -23,6 +22,19 @@ RSpec.describe AlgoliaIndex::OfficeSerializer do
       }.with_indifferent_access
     end
 
-    it { expect(serialized).to eq(expected_json) }
+    context 'retirement advise firm' do
+      let(:firm_type) { 'retirement_firm' }
+      let(:office) { FactoryBot.create(:office, officeable: FactoryBot.build(:firm)) }
+
+      it { expect(serialized).to eq(expected_json) }
+    end
+
+    context 'travel insurance firm' do
+      let(:firm_type) { 'travel_insurance_firm' }
+      let(:travel_insurance_firm) { FactoryBot.build(:travel_insurance_firm, with_associated_principle: true) }
+      let(:office) { FactoryBot.create(:office, officeable: travel_insurance_firm) }
+
+      it { expect(serialized).to eq(expected_json) }
+    end
   end
 end

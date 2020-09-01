@@ -10,5 +10,13 @@ FactoryBot.define do
     disabled_access { [true, false].sample }
     latitude  { Faker::Address.latitude.to_f.round(6) }
     longitude { Faker::Address.longitude.to_f.round(6) }
+
+    transient do
+      add_opening_time { false }
+    end
+
+    after(:create) do |office, evaluator|
+      create(:opening_time, office: office) if evaluator.add_opening_time
+    end
   end
 end

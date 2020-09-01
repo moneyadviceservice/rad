@@ -16,7 +16,7 @@ RSpec.feature 'The self service office edit page', :inline_job_queue do
   let(:user) { FactoryBot.create(:user, principal: principal) }
   let(:office) do
     FactoryBot.create(:office,
-                       firm: principal.firm,
+                       officeable: principal.firm,
                        address_line_one: address_line_one,
                        address_line_two: '',
                        address_town: address_town,

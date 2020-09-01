@@ -1,0 +1,49 @@
+<%= f.form_row :covered_by_ombudsman_question do %>
+  <fieldset class="form__group t-covered_by_ombudsman_question">
+    <legend class="l-pre-qualification__question l-pre-qualification__question--with-desc"><%= t('registration.covered_by_ombudsman_question.heading') %></legend>
+    <p><%= t('registration.covered_by_ombudsman_question.description') %></p>
+
+    <div class="form__group-item">
+      <label>
+        <%= f.radio_button :covered_by_ombudsman_question, 'true', class: 'form__group-input' %>
+        <%= t('registration.answer_yes') %>
+      </label>
+    </div>
+
+    <div class="form__group-item">
+      <label>
+        <%= f.radio_button :covered_by_ombudsman_question, 'false', class: 'form__group-input' %>
+        <%= t('registration.answer_no') %>
+      </label>
+    </div>
+  </fieldset>
+<% end %>
+
+
+<%= f.form_row :risk_profile_approach_question do %>
+  <fieldset class="form__group t-risk_profile_approach_question">
+    <legend class="l-pre-qualification__question l-pre-qualification__question--with-desc"><%= t('registration.risk_profile_approach_question.heading') %></legend>
+    <p><%= t('registration.risk_profile_approach_question.description') %></p>
+
+    <div class="form__group-item">
+      <label>
+        <%= f.radio_button :risk_profile_approach_question, 'bespoke', class: 'form__group-input' %>
+        <%= t('registration.risk_profile_approach_question.answers.bespoke') %>
+      </label>
+    </div>
+
+    <div class="form__group-item">
+      <label>
+        <%= f.radio_button :risk_profile_approach_question, 'questionaire', class: 'form__group-input' %>
+        <%= t('registration.risk_profile_approach_question.answers.questionaire') %>
+      </label>
+    </div>
+
+    <div class="form__group-item">
+      <label>
+        <%= f.radio_button :risk_profile_approach_question, 'neither', class: 'form__group-input' %>
+        <%= t('registration.risk_profile_approach_question.answers.neither') %>
+      </label>
+    </div>
+  </fieldset>
+<% end %>

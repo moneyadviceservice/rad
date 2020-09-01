@@ -1,5 +1,5 @@
-<table class="table table-bordered">
-  <tr>
+<table class="table table-bordered table-hover">
+  <thead>
     <th>
       <%= sort_link(@search, :principal_first_name, 'Principal First Name') %>
       &
@@ -9,35 +9,41 @@
     <th><%= sort_link(@search, :registered_name, 'Firm Registered Name') %></th>
     <th><%= sort_link(@search, :created_at, 'Added') %></th>
     <th><%= sort_link(@search, :approved_at, 'Approved') %></th>
-  </tr>
-  <% if @firms.present? %>
-    <% @firms.each do |firm| %>
-      <tr class="t-firm-row">
-        <td>
-          <% if firm.principal.present? %>
-            <%= "#{firm.principal.first_name} #{firm.principal.last_name}" %>
-          <% else %>
-            N/A
-          <% end %>
-        </td>
-        <td class="t-fca-number"><%= firm.fca_number %></td>
-        <td>
-          <%= link_to(
-            firm.registered_name,
-            admin_travel_insurance_firm_path(firm),
-            class: 't-registered-name') %>
-        </td>
-        <td><%= firm.created_at.to_s(:short) %></td>
-        <td><%= firm.approved_at&.to_s(:short) || 'Not approved' %></td>
+  </thead>
+  <tbody>
+    <% if @firms.present? %>
+      <% @firms.each do |firm| %>
+        <tr class="t-firm-row">
+          <td>
+            <% if firm.principal.present? %>
+              <%= "#{firm.principal.first_name} #{firm.principal.last_name}" %>
+            <% else %>
+              N/A
+            <% end %>
+          </td>
+          <td class="t-fca-number"><%= firm.fca_number %></td>
+          <td>
+            <%= link_to(
+              firm.registered_name,
+              admin_travel_insurance_firm_path(firm),
+              class: 't-registered-name') %>
+            <% if firm.subsidiary? %>
+              <br />
+              <em>subsidiary of <%= link_to firm.parent.registered_name, admin_retirement_firm_path(firm.parent) %></em>
+            <% end %>
+          </td>
+          <td><%= firm.created_at.to_s(:short) %></td>
+          <td><%= firm.approved_at&.to_s(:short) || 'Not approved' %></td>
+        </tr>
+      <% end %>
+    <% else %>
+      <tr>
+        <td colspan="6">No firms to display</td>
       </tr>
     <% end %>
-  <% else %>
-    <tr>
-      <td colspan="6">No firms to display</td>
-    </tr>
-  <% end %>
+  </tbody>
 </table>
 
 <p>
-  <%= paginate @firms %>
+  <%= paginate @firms, theme: 'bootstrap' %>
 </p>

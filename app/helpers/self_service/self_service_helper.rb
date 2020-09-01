@@ -86,5 +86,19 @@ module SelfService
         tag :use, 'xlink:href': "#icon-#{icon_type}"
       end
     end
+
+    def options_for_cover_ages
+      options = (65..100).to_a
+
+      [['No age restriction', 1000], ['Not offered', -1]] + options.map do |option|
+        [(option.try(:humanize) || option), option]
+      end
+    end
+
+    def options_for_how_much_in_advance
+      t('self_service.travel_insurance_firms_edit.service_details.advance_of_trip_cover_select').map do |key, item|
+        [item[:label], key]
+      end
+    end
   end
 end

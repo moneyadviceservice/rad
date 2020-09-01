@@ -4,3 +4,5 @@ en:
       breadcrumb: Add an office
       title: "Add an office to %{firm_name}"
       submit_button: Add office
+    travel_insurance_office:
+      title: "Customer contact details"

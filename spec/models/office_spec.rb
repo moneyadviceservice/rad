@@ -6,7 +6,7 @@ RSpec.describe Office do
 
   it_should_behave_like 'geocodable' do
     let(:invalid_geocodable) { Office.new }
-    let(:valid_new_geocodable) { FactoryBot.build(:office, firm: firm) }
+    let(:valid_new_geocodable) { FactoryBot.build(:office, officeable: firm) }
     let(:saved_geocodable) { office }
     let(:address_field_name) { :address_postcode }
     let(:address_field_updated_value) { 'SO32 2AY' }
@@ -16,15 +16,26 @@ RSpec.describe Office do
   describe '#notify_indexer' do
     it 'notifies the indexer that the office has changed' do
       expect(UpdateAlgoliaIndexJob).to receive(:perform_later)
-        .with('Office', subject.id, subject.firm_id)
+        .with('Office', subject.id, subject.officeable_id)
 
       office.notify_indexer
+    end
+
+    context 'when officeable is TraveInsuranceFirm' do
+      subject { build(:office, officeable: build(:travel_insurance_firm)) }
+
+      it 'does not notify the indexer' do
+        expect(UpdateAlgoliaIndexJob).not_to receive(:perform_later)
+          .with('Office', subject.id, subject.officeable_id)
+
+        office.notify_indexer
+      end
     end
   end
 
   describe 'after_commit' do
     it 'saving a new office calls notify_indexer' do
-      office = FactoryBot.build(:office, firm: firm)
+      office = FactoryBot.build(:office, officeable: firm)
       expect(office).to receive(:notify_indexer)
       office.save
     end
@@ -134,6 +145,42 @@ RSpec.describe Office do
       context 'length' do
         specify { expect_length_of(office, :email_address, 50).to be_valid }
         specify { expect_length_of(office, :email_address, 51).not_to be_valid }
+      end
+    end
+
+    describe 'website url' do
+      it 'must not exceed 100 characters' do
+        office.website = "#{'a' * 100}.com"
+        expect(office).to_not be_valid
+      end
+
+      it 'must contain at least one .' do
+        office.website = 'http://examplecom'
+        expect(office).to_not be_valid
+      end
+
+      it 'must not contain spaces' do
+        office.website = 'http://example site.com'
+        expect(office).not_to be_valid
+      end
+
+      it 'does not require the protocol to be present' do
+        office.website = 'www.example.com'
+        expect(office).to be_valid
+      end
+
+      it 'must require the protocol to be http or https if provided' do
+        office.website = 'http://www.example.com'
+        expect(office).to be_valid
+        office.website = 'https://www.example.com'
+        expect(office).to be_valid
+        office.website = 'ftp://www.example.com'
+        expect(office).to_not be_valid
+      end
+
+      it 'allows paths to be in the address' do
+        office.website = 'www.example.com/user'
+        expect(office).to be_valid
       end
     end
 

@@ -316,6 +316,7 @@ en:
       last_name: Last name *
       job_title: Job title *
       email_address: Email address *
+      senior_manager_name: Name (if not Senior Manager name above)
       telephone_number: Telephone number *
       fca_number_unmatched: could not be matched
       validation_error_html: We weren't able to sign you up. If you have any queries, please contact <a href="mailto:RADenquiries@moneyadviceservice.org.uk">RADenquiries@moneyadviceservice.org.uk</a>.
