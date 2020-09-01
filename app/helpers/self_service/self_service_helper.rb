@@ -91,7 +91,10 @@ module SelfService
       options = (65..100).to_a
 
       [['No age restriction', 1000], ['Not offered', -1]] +
-      options.map { |s| [(s.try(:humanize) || s), s] }
+
+      options.map do |option|
+        [(option.try(:humanize) || option), option]
+      end
     end
 
     def options_for_how_much_in_advance
