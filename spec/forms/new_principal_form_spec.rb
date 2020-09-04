@@ -17,6 +17,10 @@ RSpec.describe NewPrincipalForm, type: :model do
   end
 
   context 'with valid params' do
+    before do
+      allow_any_instance_of(FcaApi::Request).to receive(:get_firm) { true }
+    end
+
     subject { NewPrincipalForm.new(valid_params) }
 
     it { is_expected.to be_valid }
@@ -41,6 +45,10 @@ RSpec.describe NewPrincipalForm, type: :model do
   context 'with invalid params' do
     let(:invalid_params) { valid_params.merge(email: '') }
     subject { NewPrincipalForm.new(invalid_params) }
+
+    before do
+      allow_any_instance_of(FcaApi::Request).to receive(:get_firm) { false }
+    end
 
     it { is_expected.not_to be_valid }
 

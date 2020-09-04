@@ -18,6 +18,7 @@ class NewPrincipalForm
 
   validate do
     user = validated_user
+    validate_fca_number
 
     PARAMS.each do |param|
       user.errors[param].each do |error|
@@ -62,6 +63,19 @@ class NewPrincipalForm
     User.new(user_params).tap do |user|
       user.build_principal(principal_params)
       user.validate
+    end
+  end
+
+  def validate_fca_number
+    Rails.cache.fetch(["registration_fca_number", fca_number], expires_in: 1.hour) do
+      begin
+        response = FcaApi::Request.new.get_firm(fca_number)
+        raise unless response.ok?
+        response.ok?
+      rescue
+        errors.add(:fca_number, 'is invalid')
+        false
+      end
     end
   end
 
