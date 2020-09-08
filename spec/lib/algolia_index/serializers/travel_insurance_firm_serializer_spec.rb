@@ -27,7 +27,33 @@ RSpec.describe AlgoliaIndex::TravelInsuranceFirmSerializer do
             open_time: firm.main_office.opening_time.sunday_opening_time&.to_s(:time),
             close_time: firm.main_office.opening_time.sunday_closing_time&.to_s(:time)
           }
-        }
+        },
+        overview: [
+          {
+            heading: 'Medical conditions covered',
+            text: 'specialises in Cancer'
+          },
+          {
+            heading: 'Offers Coronavirus cover for medical expenses',
+            text: 'Yes'
+          },
+          {
+            heading: 'Offers Coronavirus cover if trip cancelled',
+            text: 'Yes'
+          },
+          {
+            heading: 'Medical equipment cover',
+            text: 'yes up to £100'
+          },
+          {
+            heading: 'Cruise cover',
+            text: 'Yes'
+          },
+          {
+            heading: 'Medical Screening company used',
+            text: 'Verisk (formerly Healix Risk Rating)'
+          }
+        ]
       }.with_indifferent_access
     end
 
