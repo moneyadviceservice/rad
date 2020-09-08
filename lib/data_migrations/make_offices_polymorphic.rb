@@ -11,10 +11,12 @@ class MakeOfficesPolymorphic
 
   def update_offices_with_model_name
     Office.find_each do |office|
+      # rubocop:disable Rails/SkipsModelValidations
       office.update_columns(
         officeable_id: office.firm_id,
         officeable_type: 'Firm'
       )
+      # rubocop:enable Rails/SkipsModelValidations
     end
   end
 end
