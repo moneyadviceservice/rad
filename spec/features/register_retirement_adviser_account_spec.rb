@@ -71,7 +71,7 @@ RSpec.feature 'Principal provides identifying information', :inline_job_queue do
 
       p.confirmation.set true
 
-      VCR.use_cassette('registrations_fca_firm_api_call') do
+      VCR.use_cassette('registrations_fca_firm_api_call', allow_playback_repeats: true) do
         p.register.click
       end
     end
