@@ -67,15 +67,14 @@ class NewPrincipalForm
   end
 
   def validate_fca_number
-    Rails.cache.fetch(["registration_fca_number", fca_number], expires_in: 1.hour) do
-      begin
-        response = FcaApi::Request.new.get_firm(fca_number)
-        raise unless response.ok?
-        response.ok?
-      rescue
-        errors.add(:fca_number, 'is invalid')
-        false
-      end
+    Rails.cache.fetch(['registration_fca_number', fca_number], expires_in: 1.hour) do
+      response = FcaApi::Request.new.get_firm(fca_number)
+      raise 'firm not found' unless response.ok?
+
+      response.ok?
+    rescue RuntimeError
+      errors.add(:fca_number, 'is invalid')
+      false
     end
   end
 
