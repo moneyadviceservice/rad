@@ -4,7 +4,8 @@ RSpec.describe TravelInsuranceRegistrationsController, type: :controller do
   include Devise::Test::ControllerHelpers
 
   before do
-    allow_any_instance_of(FcaApi::Request).to receive(:get_firm) { true }
+    response = double(FcaApi::Response, ok?: true)
+    allow_any_instance_of(FcaApi::Request).to receive(:get_firm) { response }
   end
 
   it 'should have overriden admin email address' do
