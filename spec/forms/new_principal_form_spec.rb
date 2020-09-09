@@ -15,13 +15,14 @@ RSpec.describe NewPrincipalForm, type: :model do
       password_confirmation: 'Password1!'
     }
   end
+  let(:fca_response) { double(FcaApi::Response, ok?: false) }
+
+  before do
+    allow_any_instance_of(FcaApi::Request).to receive(:get_firm) { fca_response }
+  end
 
   context 'with valid params' do
-    before do
-      response = double(FcaApi::Response, ok?: true)
-      allow_any_instance_of(FcaApi::Request).to receive(:get_firm) { response }
-    end
-
+    let(:fca_response) { double(FcaApi::Response, ok?: true) }
     subject { NewPrincipalForm.new(valid_params) }
 
     it { is_expected.to be_valid }
@@ -46,10 +47,6 @@ RSpec.describe NewPrincipalForm, type: :model do
   context 'with invalid params' do
     let(:invalid_params) { valid_params.merge(email: '') }
     subject { NewPrincipalForm.new(invalid_params) }
-
-    before do
-      allow_any_instance_of(FcaApi::Request).to receive(:get_firm) { false }
-    end
 
     it { is_expected.not_to be_valid }
 
