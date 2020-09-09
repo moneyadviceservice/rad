@@ -43,7 +43,7 @@ RSpec.describe AlgoliaIndex::TravelInsuranceFirmSerializer do
           },
           {
             heading: 'Medical equipment cover',
-            text: 'yes up to £100'
+            text: 'yes up to £1,000'
           },
           {
             heading: 'Cruise cover',
