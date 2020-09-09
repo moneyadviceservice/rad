@@ -25,6 +25,9 @@ RSpec.feature 'Principal provides identifying information', :inline_job_queue do
   end
 
   def when_i_provide_incorrect_or_invalid_information
+    response = double(FcaApi::Response, ok?: false)
+    allow_any_instance_of(FcaApi::Request).to receive(:get_firm) { response }
+
     identification_page.tap do |p|
       p.email.set 'welp'
       p.first_name.set ''
