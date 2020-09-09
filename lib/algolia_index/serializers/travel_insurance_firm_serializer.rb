@@ -1,5 +1,7 @@
 module AlgoliaIndex
   class TravelInsuranceFirmSerializer < ActiveModel::Serializer
+    include ActionView::Helpers::NumberHelper
+
     attributes :objectID,
                :offering_ids,
                :company,
@@ -86,7 +88,7 @@ module AlgoliaIndex
 
     def specialist_equipment_text
       if service_detail.will_cover_specialist_equipment? && service_detail.cover_for_specialist_equipment > 0
-        "yes up to £#{service_detail.cover_for_specialist_equipment}"
+        "yes up to £#{number_with_delimiter(service_detail.cover_for_specialist_equipment)}"
       else
         'cover for medical equipment not offered'
       end

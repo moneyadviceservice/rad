@@ -5,7 +5,7 @@ FactoryBot.define do
     covid19_medical_repatriation { true }
     covid19_cancellation_cover { true }
     will_cover_specialist_equipment { true }
-    cover_for_specialist_equipment { 100 }
+    cover_for_specialist_equipment { 1000 }
     medical_screening_company { 'verisik' }
     how_far_in_advance_trip_cover { 'one_month_plus' }
   end
