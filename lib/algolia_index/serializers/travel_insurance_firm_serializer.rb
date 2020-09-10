@@ -56,13 +56,13 @@ module AlgoliaIndex
       {
         medical_conditions_cover: {
           most_conditions_covered: medical_specialism.specialised_medical_conditions_covers_all?,
-          specialises_in: medical_specialism.specialised_medical_conditions_cover,
+          specialises_in: medical_specialism.specialised_medical_conditions_cover
         },
         coronavirus_medical_expense: service_detail.covid19_medical_repatriation?,
         coronavirus_cancellation_cover: service_detail.covid19_cancellation_cover?,
-        medical_equipment_cover:{
+        medical_equipment_cover: {
           offers_cover: service_detail.will_cover_specialist_equipment?,
-          cover_amount: service_detail.cover_for_specialist_equipment,
+          cover_amount: service_detail.cover_for_specialist_equipment
         },
         cruise_cover: cruise_cover?,
         medical_screening_company: service_detail.medical_screening_company

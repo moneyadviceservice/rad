@@ -35,13 +35,13 @@ RSpec.describe AlgoliaIndex::TravelInsuranceFirmSerializer do
           coronavirus_cancellation_cover: true,
           coronavirus_medical_expense: true,
           cruise_cover: true,
-          medical_conditions_cover:  {
+          medical_conditions_cover: {
             most_conditions_covered: false,
             specialises_in: 'cancer'
           },
           medical_equipment_cover: {
-              cover_amount: 1000,
-              offers_cover: true
+            cover_amount: 1000,
+            offers_cover: true
           },
           medical_screening_company: 'verisik'
         }
