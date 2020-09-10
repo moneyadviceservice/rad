@@ -15,8 +15,14 @@ RSpec.describe NewPrincipalForm, type: :model do
       password_confirmation: 'Password1!'
     }
   end
+  let(:fca_response) { double(FcaApi::Response, ok?: false) }
+
+  before do
+    allow_any_instance_of(FcaApi::Request).to receive(:get_firm) { fca_response }
+  end
 
   context 'with valid params' do
+    let(:fca_response) { double(FcaApi::Response, ok?: true) }
     subject { NewPrincipalForm.new(valid_params) }
 
     it { is_expected.to be_valid }

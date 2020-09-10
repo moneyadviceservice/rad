@@ -18,6 +18,7 @@ class NewPrincipalForm
 
   validate do
     user = validated_user
+    validate_fca_number
 
     PARAMS.each do |param|
       user.errors[param].each do |error|
@@ -63,6 +64,19 @@ class NewPrincipalForm
       user.build_principal(principal_params)
       user.validate
     end
+  end
+
+  def validate_fca_number
+    response = Rails.cache.fetch(['registration_fca_number', fca_number], expires_in: 1.hour) do
+      response = FcaApi::Request.new.get_firm(fca_number)
+      raise 'firm not found' unless response.ok?
+
+      response.ok?
+    rescue RuntimeError
+      false
+    end
+
+    errors.add(:fca_number, 'is invalid') unless response
   end
 
   def add_deduplicated_error(param, error)
