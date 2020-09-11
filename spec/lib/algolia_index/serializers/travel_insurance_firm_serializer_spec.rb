@@ -16,44 +16,35 @@ RSpec.describe AlgoliaIndex::TravelInsuranceFirmSerializer do
         },
         opening_times: {
           week_days: {
+            opens: firm.main_office.opening_time.weekday_opening_time.present?,
             open_time: firm.main_office.opening_time.weekday_opening_time.to_s(:time),
             close_time: firm.main_office.opening_time.weekday_closing_time.to_s(:time)
           },
           saturdays: {
+            opens: firm.main_office.opening_time.saturday_opening_time.present?,
             open_time: firm.main_office.opening_time.saturday_opening_time&.to_s(:time),
             close_time: firm.main_office.opening_time.saturday_closing_time&.to_s(:time)
           },
           sundays: {
+            opens: firm.main_office.opening_time.sunday_opening_time.present?,
             open_time: firm.main_office.opening_time.sunday_opening_time&.to_s(:time),
             close_time: firm.main_office.opening_time.sunday_closing_time&.to_s(:time)
           }
         },
-        overview: [
-          {
-            heading: 'Medical conditions covered',
-            text: 'specialises in Cancer'
+        overview: {
+          coronavirus_cancellation_cover: true,
+          coronavirus_medical_expense: true,
+          cruise_cover: true,
+          medical_conditions_cover: {
+            most_conditions_covered: false,
+            specialises_in: 'cancer'
           },
-          {
-            heading: 'Offers Coronavirus cover for medical expenses',
-            text: 'Yes'
+          medical_equipment_cover: {
+            cover_amount: 1000,
+            offers_cover: true
           },
-          {
-            heading: 'Offers Coronavirus cover if trip cancelled',
-            text: 'Yes'
-          },
-          {
-            heading: 'Medical equipment cover',
-            text: 'yes up to £1,000'
-          },
-          {
-            heading: 'Cruise cover',
-            text: 'Yes'
-          },
-          {
-            heading: 'Medical Screening company used',
-            text: 'Verisk (formerly Healix Risk Rating)'
-          }
-        ]
+          medical_screening_company: 'verisik'
+        }
       }.with_indifferent_access
     end
 
