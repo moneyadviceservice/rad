@@ -2,6 +2,7 @@ class Admin::BaseFirmsController < Admin::ApplicationController
   def index
     @search = resource_class.ransack(params[:q])
     @firms = @search.result.page(params[:page]).per(20)
+    @directory_type = resource_class.name
 
     respond_to do |format|
       format.csv do

@@ -3,6 +3,7 @@
     <h1>Registered Firms</h1>
   </div>
 </div>
+
 <div class="row">
   <div class="col-xs-2">
     <%= search_form_for @search, url: firms_search_path, method: :get do |f| %>
@@ -33,18 +34,21 @@
       <%= page_entries_info @firms %>
     </p>
 
-    <% if params[:q] %>
+    <% if @directory_type == 'Firm' %>
+      <% if params[:q] %>
+        <p>
+          <%= link_to "Export firm results", admin_retirement_firms_path(format: :csv, q: params[:q].to_enum.to_h) %>
+        </p>
+      <% end %>
+
       <p>
-        <%= link_to "Export firm results", admin_retirement_firms_path(format: :csv, q: params[:q].to_enum.to_h) %>
+        <%= link_to "Firms' login report", login_report_admin_retirement_firms_path %>
+      </p>
+      <p>
+        <%= link_to "Firms adviser report", adviser_report_admin_retirement_firms_path(format: :csv) %>
       </p>
     <% end %>
 
-    <p>
-      <%= link_to "Firms' login report", login_report_admin_retirement_firms_path %>
-    </p>
-    <p>
-      <%= link_to "Firms adviser report", adviser_report_admin_retirement_firms_path(format: :csv) %>
-    </p>
   </div>
   <div class="col-xs-10">
     <%= render 'firms_list' %>
