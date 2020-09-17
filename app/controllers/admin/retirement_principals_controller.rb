@@ -1,6 +1,6 @@
 class Admin::RetirementPrincipalsController < Admin::PrincipalsController
   def collection
-    Principal.joins(:firm)
+    Principal.joins(:firm).includes(:firm)
   end
 
   def collection_path

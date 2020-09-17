@@ -1,6 +1,6 @@
 class Admin::AdvisersController < Admin::ApplicationController
   def index
-    @search = Adviser.ransack(params[:q])
+    @search = Adviser.includes(:firm).ransack(params[:q])
 
     @advisers = @search.result
     @advisers = @advisers.where(firm_id: firm) if firm

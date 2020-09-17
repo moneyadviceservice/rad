@@ -2,7 +2,7 @@ class Admin::TravelInsurancePrincipalsController < Admin::PrincipalsController
   layout 'travel_insurance_admin'
 
   def collection
-    Principal.joins(:travel_insurance_firm)
+    Principal.joins(:travel_insurance_firm).includes(:travel_insurance_firm)
   end
 
   def collection_path
