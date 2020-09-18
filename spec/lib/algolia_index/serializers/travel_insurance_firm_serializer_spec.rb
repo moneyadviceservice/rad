@@ -11,7 +11,7 @@ RSpec.describe AlgoliaIndex::TravelInsuranceFirmSerializer do
         online: {
           website: firm.main_office.website,
           email: firm.main_office.email_address,
-          phone: firm.main_office.telephone_number,
+          phone: firm.main_office.telephone_number.delete(' '),
           telephone_quote: firm.service_detail.offers_telephone_quote
         },
         opening_times: {
