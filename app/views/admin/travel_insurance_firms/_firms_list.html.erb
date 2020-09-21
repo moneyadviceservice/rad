@@ -29,7 +29,7 @@
               class: 't-registered-name') %>
             <% if firm.subsidiary? %>
               <br />
-              <em>subsidiary of <%= link_to firm.parent.registered_name, admin_retirement_firm_path(firm.parent) %></em>
+              <em>subsidiary of <%= link_to firm.parent.registered_name, admin_travel_insurance_firm_path(firm.parent) %></em>
             <% end %>
           </td>
           <td><%= firm.created_at.to_s(:short) %></td>

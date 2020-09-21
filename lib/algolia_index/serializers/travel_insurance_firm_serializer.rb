@@ -25,7 +25,7 @@ module AlgoliaIndex
       {
         website: object.main_office.website,
         email: object.main_office.email_address,
-        phone: object.main_office.telephone_number,
+        phone: object.main_office.telephone_number.delete(' '),
         telephone_quote: service_detail.offers_telephone_quote
       }
     end

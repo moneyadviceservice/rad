@@ -32,6 +32,6 @@ class Admin::RetirementFirmsController < Admin::BaseFirmsController
   private
 
   def resource_class
-    Firm
+    Firm.includes(:principal)
   end
 end

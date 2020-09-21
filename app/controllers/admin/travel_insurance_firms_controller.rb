@@ -18,6 +18,6 @@ class Admin::TravelInsuranceFirmsController < Admin::BaseFirmsController
   private
 
   def resource_class
-    TravelInsuranceFirm
+    TravelInsuranceFirm.includes(:principal)
   end
 end
