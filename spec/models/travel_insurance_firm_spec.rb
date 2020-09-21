@@ -54,11 +54,26 @@ RSpec.describe TravelInsuranceFirm, type: :model do
   end
 
   describe '#notify_indexer' do
-    it 'notifies the indexer that the travel_insurance_firm has changed' do
-      expect(UpdateAlgoliaIndexJob).to receive(:perform_later)
-        .with('TravelInsuranceFirm', subject.id)
+    context 'when travel firm is completed' do
+      let!(:travel_firm) { create(:travel_insurance_firm, completed_firm: true) }
 
-      subject.notify_indexer
+      it 'notifies the indexer that the travel_insurance_firm has changed' do
+        expect(UpdateAlgoliaIndexJob).to receive(:perform_later)
+          .with('TravelInsuranceFirm', travel_firm.id)
+
+        travel_firm.notify_indexer
+      end
+    end
+
+    context 'when travel firm is not complete' do
+      let!(:travel_firm) { create(:travel_insurance_firm, with_associated_principle: true) }
+
+      it 'notifies the indexer that the travel_insurance_firm has changed' do
+        expect(UpdateAlgoliaIndexJob).to receive(:perform_later)
+          .with('TravelInsuranceFirm', travel_firm.id).never
+
+        travel_firm.notify_indexer
+      end
     end
   end
 

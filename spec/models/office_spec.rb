@@ -22,13 +22,13 @@ RSpec.describe Office do
     end
 
     context 'when officeable is TraveInsuranceFirm' do
-      subject { build(:office, officeable: build(:travel_insurance_firm)) }
+      let(:travel_firm) { FactoryBot.create(:travel_insurance_firm, with_associated_principle: true) }
+      subject { build(:office, officeable: travel_firm) }
 
-      it 'does not notify the indexer' do
-        expect(UpdateAlgoliaIndexJob).not_to receive(:perform_later)
-          .with('Office', subject.id, subject.officeable_id)
+      it 'notifies the indexed on the officeable model' do
+        expect(travel_firm).to receive(:notify_indexer).once
 
-        office.notify_indexer
+        subject.notify_indexer
       end
     end
   end

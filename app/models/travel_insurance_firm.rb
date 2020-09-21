@@ -50,7 +50,9 @@ class TravelInsuranceFirm < ApplicationRecord
   after_commit :notify_indexer
 
   def notify_indexer
-    UpdateAlgoliaIndexJob.perform_later(model_name.name, id) if approved_at.present?
+    return unless publishable? && approved_at.present?
+
+    UpdateAlgoliaIndexJob.perform_later(model_name.name, id)
   end
 
   def validate_two_trading_names_only
