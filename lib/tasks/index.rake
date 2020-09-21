@@ -48,7 +48,7 @@ namespace :index do
     Rails.logger.info 'Querying the db (this might take some time...)'
 
     firms = TravelInsuranceFirm.approved
-                               .joins(:office)
+                               .joins(:office, :service_detail, :medical_specialism)
                                .includes(:trip_covers, :medical_specialism, :service_detail)
 
     Rails.logger.info 'Building a complete production index...'
