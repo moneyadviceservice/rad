@@ -29,22 +29,29 @@ class EnqueueFirmStatusChecksJob < ApplicationJob
   # window of length WINDOW_LENGTH_IN_SECONDS. Within this window, enqueue one
   # job per firm to check the status.
   def perform(batches: BigDecimal::INFINITY)
-    time_window = 0
+    @time_window = 0
+    @batches = batches
     InactiveFirm.delete_all
 
-    Firm
+    run_for_resource(Firm)
+    run_for_resource(TravelInsuranceFirm)
+  end
+
+  def run_for_resource(resource)
+    resource.where(parent_id: nil)
       .find_in_batches(batch_size: BATCH_SIZE)
       .with_index do |group, batch_number|
-      break if batch_number == batches
+      break if batch_number == @batches
 
       group.each do |firm|
         current_time = Time.now.to_f
 
         FirmStatusCheckJob
-          .set(wait_until: current_time + time_window.seconds)
-          .perform_later(firm.fca_number)
+          .set(wait_until: current_time + @time_window.seconds)
+          .perform_later(firm)
       end
-      time_window += WINDOW_LENGTH_IN_SECONDS
+
+      @time_window += WINDOW_LENGTH_IN_SECONDS
     end
   end
 end
