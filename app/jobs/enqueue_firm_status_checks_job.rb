@@ -39,8 +39,8 @@ class EnqueueFirmStatusChecksJob < ApplicationJob
 
   def run_for_resource(resource)
     resource.where(parent_id: nil)
-      .find_in_batches(batch_size: BATCH_SIZE)
-      .with_index do |group, batch_number|
+            .find_in_batches(batch_size: BATCH_SIZE)
+            .with_index do |group, batch_number|
       break if batch_number == @batches
 
       group.each do |firm|
