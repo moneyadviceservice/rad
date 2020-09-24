@@ -36,7 +36,7 @@ class Firm < ApplicationRecord
   belongs_to :principal, primary_key: :fca_number, foreign_key: :fca_number
   belongs_to :parent, class_name: 'Firm'
 
-  has_one :inactive_firm, dependent: :destroy
+  has_one :inactive_firm, as: :firmable, dependent: :destroy
   has_many :advisers, dependent: :destroy
   has_many :offices, -> { order created_at: :asc }, dependent: :destroy, as: :officeable
   has_many :subsidiaries, class_name: 'Firm',

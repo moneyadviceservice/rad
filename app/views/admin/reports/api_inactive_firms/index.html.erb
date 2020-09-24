@@ -15,7 +15,14 @@
   The <a href="https://register.fca.org.uk/">Financial Services Register</a>
   can be searched to determine exactly what status change has occurred.
 </p>
+<br />
 
+<ul class="nav nav-tabs">
+  <%= active_link_to 'Retirement firms', admin_reports_api_inactive_firms_path, wrap_tag: 'li', active: :exact %>
+  <%= active_link_to 'Travel firms', admin_reports_api_inactive_firms_path(type: :travel), wrap_tag: 'li', active: :exact %>
+</ul>
+<br />
+<br />
 <table class="table table-bordered">
   <tr>
     <th>FCA Number</th>
@@ -23,11 +30,18 @@
     <th>Visible on Directory?</th>
     <th>API Status</th>
   </tr>
-  <% if @inactive_firms.present? %>
+  <% if @inactive_firms.any? %>
     <% @inactive_firms.each do |inactive_firm| %>
       <tr>
         <td><%= inactive_firm.fca_number %></td>
-        <td><%= link_to inactive_firm.registered_name, admin_retirement_firm_path(inactive_firm.firm) %></td>
+        <td>
+          <% if inactive_firm.firmable_type == 'Firm' %>
+            <%= link_to inactive_firm.registered_name, admin_retirement_firm_path(inactive_firm.firmable) %>
+          <% else %>
+            <%= link_to inactive_firm.registered_name, admin_travel_insurance_firm_path(inactive_firm.firmable) %>
+          <% end %>
+
+        </td>
         <td><%= inactive_firm.publishable? ? 'Yes' : 'No' %></td>
         <td><%= inactive_firm.api_status %></td>
       </tr>

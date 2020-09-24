@@ -32,6 +32,8 @@ class TravelInsuranceFirm < ApplicationRecord
   has_one :medical_specialism, dependent: :destroy
   has_one :service_detail, dependent: :destroy
 
+  has_one :inactive_firm, as: :firmable, dependent: :destroy
+
   has_many :subsidiaries, class_name: 'TravelInsuranceFirm',
                           foreign_key: :parent_id,
                           dependent: :destroy

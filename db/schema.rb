@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 3019_11_18_100173) do
+ActiveRecord::Schema.define(version: 3019_11_18_100175) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -145,11 +145,12 @@ ActiveRecord::Schema.define(version: 3019_11_18_100173) do
   end
 
   create_table "inactive_firms", id: :serial, force: :cascade do |t|
-    t.integer "firm_id"
     t.string "api_status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["firm_id"], name: "index_inactive_firms_on_firm_id", unique: true
+    t.string "firmable_type"
+    t.bigint "firmable_id"
+    t.index ["firmable_type", "firmable_id"], name: "index_inactive_firms_on_firmable_type_and_firmable_id"
   end
 
   create_table "initial_advice_fee_structures", id: :serial, force: :cascade do |t|
