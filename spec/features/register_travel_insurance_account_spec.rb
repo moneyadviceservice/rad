@@ -130,7 +130,7 @@ RSpec.feature 'Principal provides travel insurance information', :inline_job_que
 
     scenario 'a firm that answers yes to 8 questions and the rest no' do
       given_i_am_on_the_travel_insurance_medical_conditions_questionaire_page
-      and_i_answer_yes_to_questions_on_step_4(8)
+      and_i_answer_yes_to_questions_on_step_4(12)
       then_i_am_shown_a_thank_you_for_registering_message
       and_i_should_have_a_travel_insurance_firm
       and_i_later_receive_an_email_confirming_my_registration
@@ -138,7 +138,7 @@ RSpec.feature 'Principal provides travel insurance information', :inline_job_que
 
     scenario 'a firm that answers yes to 7 questions and the rest no' do
       given_i_am_on_the_travel_insurance_medical_conditions_questionaire_page
-      and_i_answer_yes_to_questions_on_step_4(7)
+      and_i_answer_yes_to_questions_on_step_4(11)
       then_i_am_notified_i_cannot_proceed
       and_admins_later_receive_an_email_about_the_rejection
     end

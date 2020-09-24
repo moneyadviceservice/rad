@@ -1,5 +1,6 @@
 class TravelInsuranceRegistrationsController < BaseRegistrationsController
   WIZARD_STEPS = [:risk_profile, :medical_conditions, :medical_conditions_questionaire].freeze
+  MIN_REQUIRED_POSITIVE_ANSWERS = 12
 
   def registration_title
     'travel_insurance_registrations.heading'
@@ -130,7 +131,7 @@ class TravelInsuranceRegistrationsController < BaseRegistrationsController
 
   def medical_questionaire_acceptable?
     positive_answers_count = medical_conditions_questionaire_form_params.values.select { |i| i == 'true' }.count
-    positive_answers_count >= (medical_conditions_questionaire_form_params.values.count * 0.5).ceil
+    positive_answers_count >= MIN_REQUIRED_POSITIVE_ANSWERS
   end
 
   def all_registration_answers
