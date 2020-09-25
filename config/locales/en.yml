@@ -119,10 +119,9 @@ en:
       advice: We advise you to keep this email safe as you will need the link below to continue your firm's registration process.
       verify_email_link: Please click the link below to verify your email address and continue with the registration process.
     travel_insurance_registrations:
-      thanks: We are pleased to confirm your firm has been accepted onto the Money & Pensions Service Travel Insurance Directory.
-      advice: We are currently developing the next phase of registration which will enable you to provide more details of the services you offer.
-      further_instructions: An email with further instructions will be sent to you as soon as this next phase is completed and ready. This make take us a few weeks, so please bear with us.
-      contact_info: "In the meantime, if you have any questions or concerns please contact us at %{email_address}"
+      thanks: Thank you for your interest in joining the Travel Insurance Directory.
+      advice: We advise you to keep this email safe as you will need the link below to continue your firm's registration process.
+      further_instructions: Please click the link below to verify your email address and continue with the registration process.
 
   sign_in_panel:
     heading: Already Registered?
