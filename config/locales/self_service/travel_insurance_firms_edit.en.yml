@@ -51,11 +51,7 @@ en:
         medical_screening_company_label: Which medical screening company do you use?
         how_far_in_advance_trip_cover_label: How far in advance of trip will you provide cover?
         covid_19_cancellation_cover_tooltip_html: |
-          Cancelled due to Coronavirus includes:
-          <ul>
-            <li>if customer has contracted Coronavirus or has been in contact with someone who has coronavirus and must self-isolate   and/or</li>
-            <li>travel restrictions have been imposed internationally, nationally or locally due to coronavirus.</li>
-          </ul>
+          In this context <strong>Cancelled due to Coronavirus</strong> means the policyholder has tested positive for Coronavirus and is unable to travel. <br /><br />Cover may not apply if the policyholder is self-isolating or in quarantine.
 
 
         medical_screening_companies_select:
