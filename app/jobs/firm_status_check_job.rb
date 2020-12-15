@@ -18,9 +18,14 @@ class FirmStatusCheckJob < ApplicationJob
   sidekiq_options unique: :until_executed, retry: 5
 
   def perform(firm)
-    api_request = FcaApi::Request.new
-    response = api_request.get_firm(firm.fca_number)
-    status = response.data.fetch('Status')
+    response = FcaApi::Request.new.get_firm(firm.fca_number)
+
+    if response.ok?
+      status = response.data.fetch('Status')
+    else
+      logger.info "Firm #{firm.fca_number} is not in FCA API"
+      status = 'Not Found'
+    end
 
     if status.in? ACTIVE_FIRM_STATUS_CODES
       logger.info "Firm #{firm.fca_number} is ACTIVE"
