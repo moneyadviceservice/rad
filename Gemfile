@@ -25,7 +25,7 @@ gem 'dough-ruby',
     git: 'https://github.com/moneyadviceservice/dough.git',
     branch: 'master',
     ref: '238a329'
-gem 'geocoder', '~> 1.4.7'
+gem 'geocoder', '>= 1.6.1'
 gem 'httpclient', '~> 2.8.3'
 gem 'jquery-rails'
 gem 'kaminari'
@@ -39,7 +39,7 @@ gem 'rails_email_validator'
 gem 'ransack'
 gem 'redis'
 gem 'rollbar'
-gem 'rubyzip'
+gem 'rubyzip', '~> 1.3'
 gem 'sass-rails'
 gem 'sidekiq'
 gem 'sidekiq-unique-jobs', '~> 6.0.16'
