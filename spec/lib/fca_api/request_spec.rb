@@ -6,7 +6,7 @@ RSpec.describe FcaApi::Request do
   let(:firm_id) { 100_001 }
   let(:response) { instance_double(Faraday::Response) }
   let(:response_failed) { instance_double(FcaApi::Response) }
-  
+
   before do
     stub_env('FCA_API_DOMAIN', domain)
     stub_env('FCA_API_MAX_RETRIES', 2)
@@ -38,8 +38,10 @@ RSpec.describe FcaApi::Request do
   end
 
   describe 'API down for maintenance' do
+    # rubocop:disable Style/HashSyntax
     let(:response_failure_message) { { :Message => 'Failure' } }
-    let(:down_for_maintenance) { { 'Success' => 'true', 'Message' => 'The Application Programming Interface (API) will be out of service'} }
+    # rubocop:enable Style/HashSyntax
+    let(:down_for_maintenance) { { 'Success' => 'true', 'Message' => 'API down' } }
 
 
     before do

@@ -9,8 +9,8 @@ module FcaApi
     end
 
     def get_firm(firm_id)
-      begin 
-        response = connection.get(full_path(FIRM_ENDPOINT, firm_id)) 
+      begin
+        response = connection.get(full_path(FIRM_ENDPOINT, firm_id))
       rescue Faraday::ParsingError
         response = Faraday::Response.new(body: { 'Message': 'Failure' })
       end
