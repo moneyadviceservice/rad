@@ -43,7 +43,6 @@ RSpec.describe FcaApi::Request do
     # rubocop:enable Style/HashSyntax
     let(:down_for_maintenance) { { 'Success' => 'true', 'Message' => 'API down' } }
 
-
     before do
       allow(FcaApi::Connection)
         .to receive(:new)
