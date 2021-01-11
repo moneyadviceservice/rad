@@ -9,4 +9,7 @@ class Admin::FirmPage < SitePrism::Page
   element :new_adviser, '.t-new-adviser'
   element :approved, 'p:contains("Approved:")'
   element :approve_button, 'input[value="Approve Firm"]'
+  element :hide_button, 'input[value="Hide Firm"]'
+  element :unhide_button, 'input[value="Unhide Firm"]'
+  element :hidden, 'p:contains("Hidden:")'
 end

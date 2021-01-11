@@ -46,6 +46,7 @@ class TravelInsuranceFirm < ApplicationRecord
   accepts_nested_attributes_for :trip_covers, :medical_specialism, :service_detail
 
   scope :approved, -> { where.not(approved_at: nil) }
+  scope :hidden, -> { where.not(hidden_at: nil) }
   scope :onboarded, -> { joins(:office) }
   scope :sorted_by_registered_name, -> { order(:registered_name) }
 
