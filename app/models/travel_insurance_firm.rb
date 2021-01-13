@@ -53,7 +53,7 @@ class TravelInsuranceFirm < ApplicationRecord
   after_commit :notify_indexer
 
   def notify_indexer
-    UpdateAlgoliaIndexJob.perform_later(model_name.name, id) if approved_at.present?
+    UpdateAlgoliaIndexJob.perform_later(model_name.name, id)
   end
 
   def validate_two_trading_names_only
@@ -72,9 +72,17 @@ class TravelInsuranceFirm < ApplicationRecord
   alias subsidiary? trading_name?
 
   def publishable?
-    office.present? && cover_and_service_complete?
+    office.present? && cover_and_service_complete? && !hidden?
   end
   alias onboarded? publishable?
+
+  def hidden?
+    hidden_at.present?
+  end
+
+  def approved?
+    approved_at.present?
+  end
 
   def cover_and_service_complete?
     return false unless medical_specialism.present? && service_detail.present?

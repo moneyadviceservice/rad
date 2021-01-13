@@ -8,7 +8,7 @@ RSpec.describe AlgoliaIndex::Base do
   describe '#present_in_db?' do
     context 'when db record exists and it is not hidden' do
       before do
-        FactoryBot.create(:firm, id: id, status: 1)
+        FactoryBot.create(:firm, id: id)
       end
 
       it 'returns true' do
@@ -16,11 +16,11 @@ RSpec.describe AlgoliaIndex::Base do
       end
     end
 
-    context 'when db record exists is hidden' do
+    context 'when db record exists and is hidden' do
       before do
-        FactoryBot.create(:firm, id: id, status: 2)
+        FactoryBot.create(:firm, id: id, hidden_at: Time.now)
       end
-
+      
       it 'returns false' do
         expect(instance).to_not be_present_in_db
       end

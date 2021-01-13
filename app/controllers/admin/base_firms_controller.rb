@@ -32,6 +32,13 @@ class Admin::BaseFirmsController < Admin::ApplicationController
     redirect_back(fallback_location: admin_retirement_firm_path(@firm))
   end
 
+  def hide
+    firm_id = params[:retirement_firm_id] || params[:travel_insurance_firm_id]
+    @firm = resource_class.find(firm_id)
+    @firm.hide!
+    redirect_back(fallback_location: admin_retirement_firm_path(@firm))
+  end
+
   def firms_search_path
     raise NotImplementedError
   end

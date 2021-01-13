@@ -1,4 +1,6 @@
 RSpec.feature 'The travel insurance self service office add page', :inline_job_queue do
+  include_context 'algolia index fake'
+  
   let(:travel_insurance_index_page) { SelfService::TravelInsuranceFirms::IndexPage.new }
   let(:office_add_page) { SelfService::TravelInsuranceFirms::OfficeAddPage.new }
 
@@ -7,8 +9,10 @@ RSpec.feature 'The travel insurance self service office add page', :inline_job_q
   let(:address_town)     { 'London' }
   let(:address_postcode) { 'EC1N 2TD' }
 
+  
   let!(:firm) { FactoryBot.create(:travel_insurance_firm_with_principal, approved_at: nil) }
   let(:principal) { firm.principal }
+
   let(:user) { FactoryBot.create(:user, principal: principal) }
 
   let(:office) do
@@ -61,8 +65,6 @@ RSpec.feature 'The travel insurance self service office add page', :inline_job_q
   end
 
   def given_i_am_a_fully_registered_principal_user
-    # firm_attrs = FactoryBot.attributes_for(:travel_insurance_firm, fca_number: principal.fca_number)
-    # principal.firm.update(firm_attrs)
     expect(TravelInsuranceFirm.find(principal.travel_insurance_firm.id)).to be_present
   end
 

@@ -103,6 +103,11 @@ RSpec.describe TravelInsuranceFirm, type: :model do
 
       it { is_expected.to be_falsey }
     end
+
+    context 'when the firm is hidden' do
+      let(:firm) { FactoryBot.create(:travel_insurance_firm, completed_firm: true, hidden_at: Time.now) }
+      it { is_expected.to be_falsey }
+    end
   end
 
   describe '#cover_and_service_complete?' do

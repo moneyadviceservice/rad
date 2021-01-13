@@ -109,7 +109,7 @@ RSpec.feature 'The self service firm list page' do
     @principal = FactoryBot.create(:principal)
     @user = FactoryBot.create(:user, principal: @principal)
     @principal.firm = FactoryBot.build(
-      :firm,
+      :firm_not_approved,
       fca_number: @principal.fca_number
     )
   end

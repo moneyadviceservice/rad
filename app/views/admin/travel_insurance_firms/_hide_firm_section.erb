@@ -1,0 +1,18 @@
+<% if !@firm.hidden? %>
+	<p>
+        <%= button_to('Hide firm from directory',
+                      hide_path,
+                      class: 'btn btn-success',
+                      method: :post) %>
+     </p>
+<% else %>
+	<p>
+	  <strong>Hidden:</strong> <%= @firm.hidden_at&.to_s(:long) %>
+	</p>
+	<p>
+	  <%= button_to('Add Hidden firm to directory',
+	                hide_path,
+	                class: 'btn btn-success',
+	                method: :post) %>
+	</p>
+<% end %>

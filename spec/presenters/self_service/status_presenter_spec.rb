@@ -21,7 +21,7 @@ RSpec.describe SelfService::StatusPresenter do
     let(:firm) { FactoryBot.create(:firm_without_offices) }
 
     describe '#overall_status' do
-      it 'provides "published" if the firm is publishable' do
+      it 'provides "unpublished" if the firm is not publishable' do
         expect(presenter.overall_status).to eq('unpublished')
       end
     end
@@ -29,6 +29,22 @@ RSpec.describe SelfService::StatusPresenter do
     describe '#overall_status_icon' do
       it 'provides "exclamation"' do
         expect(presenter.overall_status_icon).to eq('exclamation')
+      end
+    end
+  end
+
+  context 'when the firm is hidden' do
+    let(:firm) { FactoryBot.create(:firm_hidden) }
+
+    describe '#overall_status' do
+      it 'provides "hidden" if the firm is hidden' do
+        expect(presenter.overall_status).to eq('hidden')
+      end
+    end
+
+    describe '#overall_status_icon' do
+      it 'provides "tick"' do
+        expect(presenter.overall_status_icon).to eq('tick')
       end
     end
   end

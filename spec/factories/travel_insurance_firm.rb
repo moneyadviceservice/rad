@@ -2,7 +2,7 @@ FactoryBot.define do
   factory :travel_insurance_firm do
     fca_number
     registered_name
-    approved_at { Time.zone.now }
+    hidden_at { nil }
 
     transient do
       with_associated_principle { false }
@@ -27,6 +27,23 @@ FactoryBot.define do
     transient do
       completed_firm { false }
     end
+
+    trait :hidden do
+      completed_firm { true }
+      hidden_at { Time.zone.now }
+    end
+    factory :travel_insurance_firm_hidden, traits: [:hidden]
+
+    trait :not_approved do
+      with_associated_principle { true }
+      approved_at { nil }
+    end
+    factory :travel_insurance_firm_not_approved, traits: [:not_approved]
+
+    trait :approved do
+      approved_at { Time.zone.now }
+    end
+    factory :travel_insurance_firm_approved, traits: [:approved]
 
     trait :with_principal do
       with_associated_principle { true }
