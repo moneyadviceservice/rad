@@ -26,7 +26,7 @@ RSpec.shared_context 'algolia index fake' do
   after do
     algolia_advisers_index.clear_index
     algolia_offices_index.clear_index
-
+    Rails.logger.info("CLEARING UP SHITSTORM")
     algolia_travel_firms_index.clear_index
     algolia_travel_firms_offerings_index.clear_index
   end

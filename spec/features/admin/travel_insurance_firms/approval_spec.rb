@@ -10,7 +10,7 @@ RSpec.feature 'Approval Travel Insurance Firms', :inline_job_queue do
     Admin::TravelInsuranceFirmsIndexPage.new
   end
 
-  let(:firm) { FactoryBot.create(:travel_insurance_firm, completed_firm: true) }
+  let!(:firm) { FactoryBot.create(:travel_insurance_firm_not_approved) }
   let(:approval_date) { Time.utc(2019, 6, 1) }
 
    scenario 'Approving a travel insurance firm' do
@@ -57,18 +57,16 @@ RSpec.feature 'Approval Travel Insurance Firms', :inline_job_queue do
   end
 
   def then_the_travel_insurance_firm_is_pushed_to_the_directory
-  	# LOADING THE FOLLOWING PAGE BREAKS ALL OTHER TESTS
-  	
-    # directory_travel_firms = travel_firms_in_directory
-    # directory_travel_firm_offerins = travel_firm_offerings_in_directory
+    directory_travel_firms = travel_firms_in_directory
+    directory_travel_firm_offerins = travel_firm_offerings_in_directory
 
-    # aggregate_failures 'firm info in directory' do
-    #   expect(directory_travel_firms.map { |firm| firm['objectID'] })
-    #     .to eq [firm.id]
+    aggregate_failures 'firm info in directory' do
+      expect(directory_travel_firms.map { |firm| firm['objectID'] })
+        .to eq [firm.id]
 
-    #   expect(directory_travel_firm_offerins.map { |offerings| offerings['objectID'] })
-    #     .to eq firm.trip_covers.pluck(:id)
-    # end
+      expect(directory_travel_firm_offerins.map { |offerings| offerings['objectID'] })
+        .to eq firm.trip_covers.pluck(:id)
+    end
   end
 
 end
