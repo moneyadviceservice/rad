@@ -14,7 +14,7 @@ module AlgoliaIndex
     end
 
     def offering_ids
-      object.trip_covers.pluck(:id)
+      object.trip_covers.pluck(:id) if object.try(:trip_covers)
     end
 
     def company
@@ -23,15 +23,16 @@ module AlgoliaIndex
 
     def online
       {
-        website: object.main_office.website,
-        email: object.main_office.email_address,
-        phone: object.main_office.telephone_number.delete(' '),
-        telephone_quote: service_detail.offers_telephone_quote
+        website: office.try(:website),
+        email: office.try(:email_address),
+        phone: tel,
+        telephone_quote: service_detail.try(:offers_telephone_quote)
       }
     end
 
     def opening_times
-      opening_times = object.main_office.opening_time
+      opening_times = object.main_office.try(:opening_time)
+      return {} unless opening_times
 
       {
         week_days: {
@@ -55,17 +56,17 @@ module AlgoliaIndex
     def overview
       {
         medical_conditions_cover: {
-          most_conditions_covered: medical_specialism.specialised_medical_conditions_covers_all?,
-          specialises_in: medical_specialism.specialised_medical_conditions_cover
+          most_conditions_covered: medical_specialism.try(:specialised_medical_conditions_covers_all?),
+          specialises_in: medical_specialism.try(:specialised_medical_conditions_cover)
         },
-        coronavirus_medical_expense: service_detail.covid19_medical_repatriation?,
-        coronavirus_cancellation_cover: service_detail.covid19_cancellation_cover?,
+        coronavirus_medical_expense: service_detail.try(:covid19_medical_repatriation?),
+        coronavirus_cancellation_cover: service_detail.try(:covid19_cancellation_cover?),
         medical_equipment_cover: {
-          offers_cover: service_detail.will_cover_specialist_equipment?,
-          cover_amount: service_detail.cover_for_specialist_equipment
+          offers_cover: service_detail.try(:will_cover_specialist_equipment?),
+          cover_amount: service_detail.try(:cover_for_specialist_equipment)
         },
         cruise_cover: cruise_cover?,
-        medical_screening_company: service_detail.medical_screening_company
+        medical_screening_company: service_detail.try(:medical_screening_company)
       }
     end
 
@@ -75,8 +76,18 @@ module AlgoliaIndex
       object.medical_specialism
     end
 
+    def office
+      object.main_office
+    end
+
     def service_detail
       object.service_detail
+    end
+
+    def tel
+      return nil unless office
+
+      office.telephone_number.delete(' ') if office.telephone_number.present?
     end
 
     def cruise_cover?

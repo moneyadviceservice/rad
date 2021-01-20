@@ -30,6 +30,14 @@ module AlgoliaIndex
       object.id
     end
 
+    # Comment (TG 18-01-2021). This file needs refactoring
+    # Firstly the define_method code should apply to all attributes,
+    # The 'bool_to_string' method should be part of that method
+    # Anything which needs a different method name should be aliased
+    # Duplicate methods should be removed
+    # We should try to bring it inline with the other serializers which are much more simple,
+    # and use delegate method where appropriate
+
     # Trip covers
     def cover_area
       [I18n.t("self_service.travel_insurance_firms_edit.#{object.cover_area}")]
