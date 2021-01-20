@@ -10,4 +10,10 @@ module Admin::Lookup::FcaImportHelper
       diff:    b - a
     }
   end
+
+  def prepare_table_info(import, table_name)
+    formatted_diff(*import.send(table_name.to_sym))
+  rescue
+    { error: 'Could not calculate difference. Try reloading the page.' }
+  end
 end
