@@ -13,7 +13,9 @@ module Admin::Lookup::FcaImportHelper
 
   def prepare_table_info(import, table_name)
     formatted_diff(*import.send(table_name.to_sym))
+  # rubocop:disable Style/RescueStandardError
   rescue
     { error: 'Could not calculate difference. Try reloading the page.' }
   end
+  # rubocop:enable Style/RescueStandardError
 end

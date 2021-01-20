@@ -78,6 +78,7 @@ RSpec.shared_context 'algolia index fake' do
   def parse_index(index_name)
     a = AlgoliaIndex.send(index_name).browse('')
     return a['hits'] unless a.is_a?(String)
+
     JSON.parse(a)['hits']
   end
 end

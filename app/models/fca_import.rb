@@ -1,5 +1,6 @@
 class FcaImport < ApplicationRecord
   STATUSES = %w[processing processed confirmed cancelled].freeze
+  FCA_IMPORT_EXCEPTIONS = [PG::InFailedSqlTransaction, StandardError].freeze
 
   scope :not_confirmed, -> { where(status: STATUSES.take(2)) }
 
@@ -64,13 +65,12 @@ class FcaImport < ApplicationRecord
   # Either remove the need for temporary tables
   # Use the API instead of file imports
   # Or failing the above make the temporary tables Rails models.
-  FCA_IMPORT_EXCEPTIONS = [PG::InFailedSqlTransaction, StandardError].freeze
 
   def exec(sql)
     result = ActiveRecord::Base.connection.execute(sql)
     result[0]['total'].to_i
   rescue *FCA_IMPORT_EXCEPTIONS
     ActiveRecord::Base.connection.clear_cache!
-    return 0
+    0
   end
 end
