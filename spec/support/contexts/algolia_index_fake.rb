@@ -6,6 +6,12 @@ RSpec.shared_context 'algolia index fake' do
   let(:algolia_travel_firms_offerings_index) { AlgoliaIndex::Fake.new('travel-firm-offerings-test') }
 
   before do
+    algolia_advisers_index.clear_index
+    algolia_offices_index.clear_index
+
+    algolia_travel_firms_index.clear_index
+    algolia_travel_firms_offerings_index.clear_index
+
     allow(Algolia::Index).to receive(:new)
       .with('firm-advisers-test')
       .and_return(algolia_advisers_index)
@@ -32,19 +38,19 @@ RSpec.shared_context 'algolia index fake' do
   end
 
   def travel_firms_in_directory
-    JSON.parse(AlgoliaIndex.indexed_travel_insurance_firms.browse(''))['hits']
+    parse_index('indexed_travel_insurance_firms')
   end
 
   def travel_firm_offerings_in_directory
-    JSON.parse(AlgoliaIndex.indexed_travel_insurance_firm_offerings.browse(''))['hits']
+    parse_index('indexed_travel_insurance_firm_offerings')
   end
 
   def advisers_in_directory
-    JSON.parse(AlgoliaIndex.indexed_advisers.browse(''))['hits']
+    parse_index('indexed_advisers')
   end
 
   def offices_in_directory
-    JSON.parse(AlgoliaIndex.indexed_offices.browse(''))['hits']
+    parse_index('indexed_offices')
   end
 
   def firm_advisers_in_directory(firm)
@@ -65,5 +71,14 @@ RSpec.shared_context 'algolia index fake' do
 
   def firm_total_advisers_in_directory(firm)
     firm_advisers_in_directory(firm).first.dig('firm', 'total_advisers')
+  end
+
+  private
+
+  def parse_index(index_name)
+    a = AlgoliaIndex.send(index_name).browse('')
+    return a['hits'] unless a.is_a?(String)
+
+    JSON.parse(a)['hits']
   end
 end

@@ -36,49 +36,49 @@
 </div>
 
 <% if @import.try(:processed?) %>
-<div class="row">
   <div class="row">
-    <div class="col-xs-10 col-xs-push-2">
-      <h1>
-        FCA Import Result
-        <small>(Import ready for confirmation)</small>
-      </h1>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-xs-2">
-    </div>
-    <div class="col-xs-10">
-      <%= form_tag(admin_lookup_fca_import_path(@import), method: :put) do %>
-      <%= hidden_field_tag 'apply' %>
-      <table class="table table-bordered">
-        <tr>
-          <% @tables.each do |t| %>
-            <th><%= t %></th>
-          <% end %>
-        </tr>
-        <tr>
-          <% @tables.each do |t| %>
-          <td>
-            <ul>
-              <% formatted_diff(*@import.send(t.to_sym)).each do |k, v| %>
-                <li><%= "#{k}: #{v}" %></li>
-              <% end %>
-              </ul>
-          </td>
-          <% end %>
-        </tr>
-      </table>
-      <div class="row">
-        <div class="col-xs-11"><%= submit_tag "Confirm"%></div>
-        <%= submit_tag "Cancel"%>
+    <div class="row">
+      <div class="col-xs-10 col-xs-push-2">
+        <h1>
+          FCA Import Result
+          <small>(Import ready for confirmation)</small>
+        </h1>
       </div>
-      <% end %>
+    </div>
+    <div class="row">
+      <div class="col-xs-2">
+      </div>
+      <div class="col-xs-10">
+        <%= form_tag(admin_lookup_fca_import_path(@import), method: :put) do %>
+        <%= hidden_field_tag 'apply' %>
+        <table class="table table-bordered">
+          <tr>
+            <% @tables.each do |t| %>
+              <th><%= t %></th>
+            <% end %>
+          </tr>
+          <tr>
+            <% @tables.each do |t| %>
+              <td>
+                <ul>
+                  <% prepare_table_info(@import, t).each do |k, v| %>
+                    <li><%= "#{k}: #{v}" %></li>
+                  <% end %>
+                  </ul>
+              </td>
+            <% end %>
+          </tr>
+        </table>
+        <div class="row">
+          <div class="col-xs-11"><%= submit_tag "Confirm"%></div>
+          <%= submit_tag "Cancel"%>
+        </div>
+        <% end %>
+      </div>
     </div>
   </div>
-</div>
-
 <% end %>
+
 <% if @import.try(:processing?)%>
   <div class="row">
     <div class="col-xs-10 col-xs-push-2">

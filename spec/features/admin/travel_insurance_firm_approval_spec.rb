@@ -12,8 +12,13 @@ RSpec.feature 'Approving travel insurance firms', :inline_job_queue do
 
   let(:approval_date) { Time.utc(2019, 6, 1) }
 
+  # Comment (TG 19-01-2021). This file needs refactoring
+  # This scenario needs to be reviewed but is inline with usage of the application
+  # Admins currently approve firms with missing information
+  # They want the firms added to the index even if firm.publishable? is false
   scenario 'Approving a travel insurance firm' do
-    given_there_are_registered_travel_insurance_firms
+    given_there_are_unapproved_travel_insurance_firms
+    and_the_firm_is_not_publishable
     when_i_visit_a_travel_insurance_firm_page
     and_i_approve_the_firm
     then_the_firm_becomes_approved
@@ -22,11 +27,17 @@ RSpec.feature 'Approving travel insurance firms', :inline_job_queue do
     then_the_travel_insurance_firm_and_offerings_gets_pushed_to_the_directory
   end
 
-  def given_there_are_registered_travel_insurance_firms
+  def given_there_are_unapproved_travel_insurance_firms
+    @principal = FactoryBot.create(:principal, manually_build_firms: true)
     @firm = FactoryBot.create(:travel_insurance_firm,
-      completed_firm: true,
+      principal: @principal,
+      fca_number: @principal.fca_number,
+      registered_name: 'Acme Travel',
       approved_at: nil)
-    @user = FactoryBot.create(:user, principal: @firm.principal)
+  end
+
+  def and_the_firm_is_not_publishable
+    expect(@firm.publishable?).to be_falsey
   end
 
   def when_i_visit_a_travel_insurance_firm_page
