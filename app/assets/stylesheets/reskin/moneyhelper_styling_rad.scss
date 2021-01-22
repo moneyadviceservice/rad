@@ -177,6 +177,9 @@
     .validation-summary__list .validation-summary__error a{
         color: $red_error!important;
     }
+    .button.button--small.t-remove-button{
+        padding: 8px 16px;
+    }
     @media(max-width:768px){
         
         .js .tab-selector__trigger-container{
