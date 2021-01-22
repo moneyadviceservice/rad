@@ -215,6 +215,9 @@
         }
 
     }
+    input[type="text"].filter-field__input:focus{
+        border: 2px solid $support_focus;
+    }
 // ------------------------------------------------------------------------
 
 
