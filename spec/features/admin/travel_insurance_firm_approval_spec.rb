@@ -18,7 +18,7 @@ RSpec.feature 'Approving travel insurance firms', :inline_job_queue do
   # They want the firms added to the index even if firm.publishable? is false
   scenario 'Approving a travel insurance firm' do
     given_there_are_unapproved_travel_insurance_firms
-    and_the_firm_is_not_publishable
+    and_the_firm_is_publishable
     when_i_visit_a_travel_insurance_firm_page
     and_i_approve_the_firm
     then_the_firm_becomes_approved
@@ -28,16 +28,11 @@ RSpec.feature 'Approving travel insurance firms', :inline_job_queue do
   end
 
   def given_there_are_unapproved_travel_insurance_firms
-    @principal = FactoryBot.create(:principal, manually_build_firms: true)
-    @firm = FactoryBot.create(:travel_insurance_firm,
-      principal: @principal,
-      fca_number: @principal.fca_number,
-      registered_name: 'Acme Travel',
-      approved_at: nil)
+    @firm = FactoryBot.create(:travel_insurance_firm, completed_firm: true, approved_at: nil)
   end
 
-  def and_the_firm_is_not_publishable
-    expect(@firm.publishable?).to be_falsey
+  def and_the_firm_is_publishable
+    expect(@firm.publishable?).to be_truthy
   end
 
   def when_i_visit_a_travel_insurance_firm_page
