@@ -12,6 +12,10 @@ RSpec.feature 'Approving travel insurance firms', :inline_job_queue do
 
   let(:approval_date) { Time.utc(2019, 6, 1) }
 
+  # Comment (TG 19-01-2021). This file needs refactoring
+  # This scenario needs to be reviewed but is inline with usage of the application
+  # Admins currently approve firms with missing information
+  # They want the firms added to the index even if firm.publishable? is false
   scenario 'Approving a travel insurance firm' do
     given_there_are_unapproved_travel_insurance_firms
     and_the_firm_is_publishable
