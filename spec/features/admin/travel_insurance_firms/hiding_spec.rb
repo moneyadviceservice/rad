@@ -73,7 +73,7 @@ RSpec.feature 'Hiding Travel Insurance Firms', :inline_job_queue do
 
   def and_the_firm_appears_hidden_in_the_firms_index
     travel_insurance_firms_index_page.load
-    expect(travel_insurance_firms_index_page.approved_field.text).to eq("Hidden")
+    expect(travel_insurance_firms_index_page.approved_field.text).to eq('Hidden')
   end
 
   def and_the_firm_is_listed_as_approved_in_the_firms_index

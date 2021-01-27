@@ -12,7 +12,6 @@ RSpec.feature 'The self service office edit page', :inline_job_queue do
   let(:updated_line_one) { '120 Holborn' }
   let(:original_postcode) { address_postcode }
 
-  
   let!(:firm) { FactoryBot.create(:travel_insurance_firm_with_principal, approved_at: nil) }
   let(:principal) { firm.principal }
 

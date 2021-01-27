@@ -14,7 +14,7 @@ module SelfService
     end
 
     def overall_status_icon
-      icon_toggle (publishable? || hidden?)
+      icon_toggle(publishable? || hidden?)
     end
 
     def firm_details_icon
@@ -90,6 +90,5 @@ module SelfService
     def advisers?
       advisers.any?
     end
-
   end
 end

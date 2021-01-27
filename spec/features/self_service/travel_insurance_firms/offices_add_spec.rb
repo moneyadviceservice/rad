@@ -1,6 +1,6 @@
 RSpec.feature 'The travel insurance self service office add page', :inline_job_queue do
   include_context 'algolia index fake'
-  
+
   let(:travel_insurance_index_page) { SelfService::TravelInsuranceFirms::IndexPage.new }
   let(:office_add_page) { SelfService::TravelInsuranceFirms::OfficeAddPage.new }
 
@@ -9,7 +9,6 @@ RSpec.feature 'The travel insurance self service office add page', :inline_job_q
   let(:address_town)     { 'London' }
   let(:address_postcode) { 'EC1N 2TD' }
 
-  
   let!(:firm) { FactoryBot.create(:travel_insurance_firm_with_principal, approved_at: nil) }
   let(:principal) { firm.principal }
 

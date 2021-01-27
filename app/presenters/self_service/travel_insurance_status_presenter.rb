@@ -16,7 +16,7 @@ module SelfService
     end
 
     def overall_status_icon
-      icon_toggle (publishable? || hidden?)
+      icon_toggle(publishable? || hidden?)
     end
 
     %w[uk_and_europe worldwide_excluding_us_canada worldwide_including_us_canada].each do |area_covered|
@@ -84,6 +84,5 @@ module SelfService
     def icon_toggle(condition_met)
       condition_met ? 'tick' : 'exclamation'
     end
-
   end
 end

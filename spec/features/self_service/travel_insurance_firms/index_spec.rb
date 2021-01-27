@@ -129,7 +129,6 @@ RSpec.feature 'The self service travel insurance firm list page' do
     expect(@principal.travel_insurance_firm.trading_names).to have(3).items
   end
 
-
   def and_i_have_a_firm_with_no_available_or_added_trading_names
     expect(@principal.travel_insurance_firm.trading_names).to be_empty
   end
