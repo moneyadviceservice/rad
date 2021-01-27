@@ -12,6 +12,7 @@ RSpec.feature 'Approving firms on the admin interface', :inline_job_queue do
     then_i_see_all_firms
     then_all_firms_are_not_approved
     and_no_advisers_or_offices_are_present_in_the_directory
+    and_all_the_firms_are_publishable
 
     when_i_visit_a_firm_page(@firms.first)
     then_i_see_the_firm_is_not_approved
@@ -33,9 +34,18 @@ RSpec.feature 'Approving firms on the admin interface', :inline_job_queue do
   end
 
   def given_there_are_fully_registered_principal_users_with_advisers_and_offices
-    @users = FactoryBot.create_list(:user, 2)
-    @principals = @users.map(&:principal)
-    @firms = @principals.map(&:firm)
+    @principals = []
+    3.times { @principals << FactoryBot.create(:principal, manually_build_firms: true) }
+
+    @firms = @principals.collect do |p|
+      FactoryBot.create(:firm,
+        fca_number: p.fca_number,
+        principal: p,
+        registered_name: Faker::Name.first_name,
+        free_initial_meeting: true,
+        approved_at: nil)
+    end
+
     @firms.each do |firm|
       firm.advisers << FactoryBot.create(:adviser, firm: firm)
       firm.offices << FactoryBot.create(:office, officeable: firm)
@@ -57,6 +67,12 @@ RSpec.feature 'Approving firms on the admin interface', :inline_job_queue do
         expect(firm_advisers_in_directory(firm)).to be_empty
         expect(firm_offices_in_directory(firm)).to be_empty
       end
+    end
+  end
+
+  def and_all_the_firms_are_publishable
+    @firms.each do |firm|
+      expect(firm.publishable?).to be_truthy
     end
   end
 

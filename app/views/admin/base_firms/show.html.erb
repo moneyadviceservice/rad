@@ -30,7 +30,7 @@
     <p>
       <strong>Approved:</strong> <%= @firm.approved_at&.to_s(:long) || 'Not approved' %>
     </p>
-    <% if !@firm.approved? %>
+    <% if @firm.approved_at.blank? && @firm.publishable? %>
       <p>
         <%= button_to('Approve Firm',
                       approval_path,
@@ -40,7 +40,6 @@
     <% elsif @firm.class.name == "TravelInsuranceFirm" %>
       <%= render 'hide_firm_section' %>
     <% end %>
-
   </div>
 </div>
 

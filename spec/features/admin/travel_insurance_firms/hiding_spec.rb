@@ -13,12 +13,10 @@ RSpec.feature 'Hiding Travel Insurance Firms', :inline_job_queue do
   let(:approved_at) { Time.utc(2021, 1, 6) }
   let(:hidden_at) { Time.utc(2021, 1, 7) }
 
-  let!(:firm) { FactoryBot.create(:travel_insurance_firm_approved) }
-
   scenario 'Hiding and unhiding a Firm' do
-    given_there_are_registered_travel_insurance_firms
+    given_there_are_approved_travel_insurance_firms
+    and_the_firm_is_publishable
     when_i_visit_a_travel_insurance_firm_page
-    and_the_firm_is_approved
     and_i_see_the_hide_button
     and_i_hide_the_firm
     then_the_firm_becomes_hidden
@@ -33,16 +31,16 @@ RSpec.feature 'Hiding Travel Insurance Firms', :inline_job_queue do
     # then_the_travel_insurance_firm_is_pushed_to_the_directory
   end
 
-  def given_there_are_registered_travel_insurance_firms
-    firm.reload
+  def given_there_are_approved_travel_insurance_firms
+    @firm = FactoryBot.create(:travel_insurance_firm, completed_firm: true, approved_at: approved_at)
+  end
+
+  def and_the_firm_is_publishable
+    expect(@firm.publishable?).to be_truthy
   end
 
   def when_i_visit_a_travel_insurance_firm_page
-    travel_insurance_firm_page.load(firm_id: firm.id)
-  end
-
-  def and_the_firm_is_approved
-    expect(firm.approved_at.blank?).to be_falsey
+    travel_insurance_firm_page.load(firm_id: @firm.id)
   end
 
   def and_i_see_the_hide_button
@@ -66,11 +64,11 @@ RSpec.feature 'Hiding Travel Insurance Firms', :inline_job_queue do
   end
 
   def then_the_firm_becomes_hidden
-    expect(firm.reload.hidden_at.present?).to be true
+    expect(@firm.reload.hidden_at.present?).to be_truthy
   end
 
   def then_the_firm_is_visible
-    expect(firm.reload.hidden_at.present?).to be_falsey
+    expect(@firm.reload.hidden_at.present?).to be_falsey
   end
 
   def and_the_firm_appears_hidden_in_the_firms_index
@@ -102,10 +100,10 @@ RSpec.feature 'Hiding Travel Insurance Firms', :inline_job_queue do
 
     aggregate_failures 'firm info in directory' do
       expect(directory_travel_firms.map { |firm| firm['objectID'] })
-        .to eq [firm.id]
+        .to eq [@firm.id]
 
       expect(directory_travel_firm_offerings.map { |offerings| offerings['objectID'] })
-        .to eq firm.trip_covers.pluck(:id)
+        .to eq @firm.trip_covers.pluck(:id)
     end
   end
 end
