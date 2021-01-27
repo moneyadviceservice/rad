@@ -187,7 +187,7 @@ class Firm < ApplicationRecord
   end
 
   def publishable?
-    onboarded? && offices.any? && advisers.any? && !hidden?
+    onboarded? && offices.any? && advisers.any?
   end
 
   def hidden?
