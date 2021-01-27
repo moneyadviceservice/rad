@@ -73,7 +73,7 @@ RSpec.feature 'Approving travel insurance firms', :inline_job_queue do
         .to include(@firm.id)
 
       expect(directory_travel_firm_offerins.map { |offerings| offerings['objectID'] })
-        .to eq @firm.trip_covers.pluck(:id)
+        .to include(*@firm.trip_covers.pluck(:id))
     end
   end
 end

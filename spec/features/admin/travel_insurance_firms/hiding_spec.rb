@@ -90,7 +90,7 @@ RSpec.feature 'Hiding Travel Insurance Firms', :inline_job_queue do
         .not_to include(@firm.id)
 
       expect(directory_travel_firm_offerings.map { |offerings| offerings['objectID'] })
-        .to eq @firm.trip_covers.pluck(:id)
+        .not_to include(*@firm.trip_covers.pluck(:id))
     end
   end
 
@@ -103,7 +103,7 @@ RSpec.feature 'Hiding Travel Insurance Firms', :inline_job_queue do
         .to include(@firm.id)
 
       expect(directory_travel_firm_offerings.map { |offerings| offerings['objectID'] })
-        .to eq @firm.trip_covers.pluck(:id)
+        .to include(*@firm.trip_covers.pluck(:id))
     end
   end
 end
