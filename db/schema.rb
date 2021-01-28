@@ -199,21 +199,21 @@ ActiveRecord::Schema.define(version: 3019_11_18_100176) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "lookup_advisers", id: :integer, default: -> { "nextval('fcaimport_lookup_advisers_id_seq'::regclass)" }, force: :cascade do |t|
+  create_table "lookup_advisers", id: :serial, force: :cascade do |t|
     t.string "reference_number", limit: 20, null: false
     t.string "name", limit: 255, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "lookup_firms", id: :integer, default: -> { "nextval('fcaimport_lookup_firms_id_seq'::regclass)" }, force: :cascade do |t|
+  create_table "lookup_firms", id: :serial, force: :cascade do |t|
     t.integer "fca_number", null: false
     t.string "registered_name", limit: 255, default: "", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "lookup_subsidiaries", id: :integer, default: -> { "nextval('fcaimport_lookup_subsidiaries_id_seq'::regclass)" }, force: :cascade do |t|
+  create_table "lookup_subsidiaries", id: :serial, force: :cascade do |t|
     t.integer "fca_number", null: false
     t.string "name", limit: 255, default: "", null: false
     t.datetime "created_at", null: false
