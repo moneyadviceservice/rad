@@ -1,4 +1,6 @@
 RSpec.feature 'The self service office edit page', :inline_job_queue do
+  include_context 'algolia index fake'
+
   let(:travel_insurance_index_page) { SelfService::TravelInsuranceFirms::IndexPage.new }
   let(:office_edit_page) { SelfService::TravelInsuranceFirms::OfficeEditPage.new }
 
@@ -10,10 +12,11 @@ RSpec.feature 'The self service office edit page', :inline_job_queue do
   let(:updated_line_one) { '120 Holborn' }
   let(:original_postcode) { address_postcode }
 
-  let!(:principal) { FactoryBot.create(:principal) }
-  let!(:firm) { FactoryBot.create(:travel_insurance_firm, principal: principal, approved_at: nil) }
+  let!(:firm) { FactoryBot.create(:travel_insurance_firm_with_principal, approved_at: nil) }
+  let(:principal) { firm.principal }
+
   let(:user) { FactoryBot.create(:user, principal: principal) }
-  let!(:office) do
+  let(:office) do
     FactoryBot.create(:office,
                       officeable: firm,
                       address_line_one: address_line_one,
@@ -27,7 +30,6 @@ RSpec.feature 'The self service office edit page', :inline_job_queue do
 
   scenario 'The principal can edit their office' do
     given_i_am_a_fully_registered_principal_user
-    and_my_firm_has_an_office
     and_i_am_logged_in
 
     when_i_am_on_the_travel_insurance_index_page
@@ -45,7 +47,6 @@ RSpec.feature 'The self service office edit page', :inline_job_queue do
 
   scenario 'The system shows validation messages if there are invalid inputs' do
     given_i_am_a_fully_registered_principal_user
-    and_my_firm_has_an_office
     and_i_am_logged_in
 
     when_i_am_on_the_travel_insurance_index_page
@@ -59,13 +60,9 @@ RSpec.feature 'The self service office edit page', :inline_job_queue do
   end
 
   def given_i_am_a_fully_registered_principal_user
-    firm_attrs = FactoryBot.attributes_for(:travel_insurance_firm, fca_number: principal.fca_number, approved_at: nil)
-    principal.travel_insurance_firm.update(firm_attrs)
-    expect(TravelInsuranceFirm.onboarded.find(principal.travel_insurance_firm.id)).to be_present
-  end
-
-  def and_my_firm_has_an_office
+    office.reload
     principal.travel_insurance_firm.reload
+    expect(TravelInsuranceFirm.onboarded.find(principal.travel_insurance_firm.id)).to be_present
   end
 
   def and_i_am_logged_in

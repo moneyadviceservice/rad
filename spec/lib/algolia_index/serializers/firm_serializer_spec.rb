@@ -9,7 +9,7 @@ RSpec.describe AlgoliaIndex::FirmSerializer do
         registered_name: firm.registered_name,
         postcode_searchable: firm.postcode_searchable?,
         telephone_number: firm.main_office.try(:telephone_number),
-        website_address: firm.main_office.try(:website) || firm.website_address,
+        website_address: firm.website_address || firm.main_office.try(:website),
         email_address: firm.main_office.try(:email_address),
         free_initial_meeting: firm.free_initial_meeting,
         minimum_fixed_fee: firm.minimum_fixed_fee,

@@ -46,13 +46,14 @@ class TravelInsuranceFirm < ApplicationRecord
   accepts_nested_attributes_for :trip_covers, :medical_specialism, :service_detail
 
   scope :approved, -> { where.not(approved_at: nil) }
+  scope :hidden, -> { where.not(hidden_at: nil) }
   scope :onboarded, -> { joins(:office) }
   scope :sorted_by_registered_name, -> { order(:registered_name) }
 
   after_commit :notify_indexer
 
   def notify_indexer
-    UpdateAlgoliaIndexJob.perform_later(model_name.name, id) if approved_at.present?
+    UpdateAlgoliaIndexJob.perform_later(model_name.name, id)
   end
 
   def validate_two_trading_names_only
@@ -74,6 +75,14 @@ class TravelInsuranceFirm < ApplicationRecord
     office.present? && cover_and_service_complete?
   end
   alias onboarded? publishable?
+
+  def hidden?
+    hidden_at.present?
+  end
+
+  def approved?
+    approved_at.present?
+  end
 
   def cover_and_service_complete?
     return false unless medical_specialism.present? && service_detail.present?

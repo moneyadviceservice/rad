@@ -58,9 +58,19 @@ FactoryBot.define do
     factory :firm_with_remote_advice, traits: [:with_remote_advice]
     factory :firm_with_subsidiaries, traits: [:with_trading_names]
     factory :firm_with_trading_names, traits: [:with_trading_names]
+    factory :firm_hidden, traits: [:hidden]
+    factory :firm_not_approved, traits: [:not_approved]
 
     trait :not_approved do
       approved_at { nil }
+    end
+
+    trait :approved do
+      approved_at { Time.zone.now }
+    end
+
+    trait :hidden do
+      hidden_at { Time.zone.now }
     end
 
     trait :with_no_business_split do

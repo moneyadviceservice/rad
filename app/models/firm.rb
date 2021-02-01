@@ -190,6 +190,14 @@ class Firm < ApplicationRecord
     onboarded? && offices.any? && advisers.any?
   end
 
+  def hidden?
+    hidden_at.present?
+  end
+
+  def approved?
+    approved_at.present?
+  end
+
   private
 
   def infer_primary_advice_method

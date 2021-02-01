@@ -89,7 +89,7 @@ RSpec.feature 'The self service travel insurance firm list page' do
 
   scenario 'The principal can see the status of publishable trading names' do
     given_i_am_a_fully_registered_principal_user
-    and_i_have_a_firm_with_both_available_and_added_trading_names
+    and_i_have_a_firm_with_both_available_and_approved_and_added_trading_names
     and_one_of_those_trading_names_is_publishable
     when_i_am_logged_in
     and_i_am_on_the_principals_firms_index_page
@@ -116,7 +116,16 @@ RSpec.feature 'The self service travel insurance firm list page' do
     @principal.travel_insurance_firm.trading_names = create_list(:travel_trading_name,
                                                 3,
                                                 fca_number: @principal.fca_number)
+    expect(@principal.travel_insurance_firm.trading_names).to have(3).items
+  end
 
+  def and_i_have_a_firm_with_both_available_and_approved_and_added_trading_names
+    @lookup_trading_name = FactoryBot.create(:lookup_subsidiary, fca_number: @principal.fca_number)
+
+    @principal.travel_insurance_firm.trading_names = create_list(:travel_trading_name,
+                                                3,
+                                                fca_number: @principal.fca_number,
+                                                approved_at: Time.zone.now)
     expect(@principal.travel_insurance_firm.trading_names).to have(3).items
   end
 
@@ -130,6 +139,7 @@ RSpec.feature 'The self service travel insurance firm list page' do
   end
 
   def and_i_have_a_published_firm
+    @principal.travel_insurance_firm.approved_at = Time.zone.now
     @principal.travel_insurance_firm.save
     FactoryBot.create(:office, officeable: @principal.travel_insurance_firm)
 
@@ -148,10 +158,10 @@ RSpec.feature 'The self service travel insurance firm list page' do
   def and_one_of_those_trading_names_is_unpublishable
     @unpublished_trading_name = @principal.travel_insurance_firm.trading_names.first
     @unpublished_trading_name.office = nil
+    @unpublished_trading_name.approved_at = nil
     expect(@unpublished_trading_name).not_to be_publishable
   end
 
-  # @todo can we improve this?
   def and_one_of_those_trading_names_is_publishable
     @published_trading_name = @principal.travel_insurance_firm.trading_names.first
     @published_trading_name.update(

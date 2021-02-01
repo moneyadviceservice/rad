@@ -4,11 +4,17 @@ module SelfService
     include ActionView::Helpers::UrlHelper
 
     def overall_status
-      publishable? ? 'published' : 'unpublished'
+      if hidden?
+        'hidden'
+      elsif publishable?
+        'published'
+      else
+        'unpublished'
+      end
     end
 
     def overall_status_icon
-      icon_toggle publishable?
+      icon_toggle(publishable? || hidden?)
     end
 
     def firm_details_icon

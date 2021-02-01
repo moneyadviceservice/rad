@@ -67,6 +67,7 @@ Rails.application.routes.draw do
 
     resources :travel_insurance_firms, only: [:index, :show] do
       post :approve
+      post :hide
     end
 
     resources :travel_insurance_principals do

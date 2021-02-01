@@ -44,7 +44,9 @@ en:
       needs_offices: You need to add one or more offices
       offices: Offices
       published: Visible on directory
+      pending: Pending approval
       unpublished: Needs more information
+      hidden: Not visible on directory
       complete: Complete
 
     trading_name_destroy:

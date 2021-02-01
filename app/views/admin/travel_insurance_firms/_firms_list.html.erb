@@ -33,7 +33,14 @@
             <% end %>
           </td>
           <td><%= firm.created_at.to_s(:short) %></td>
-          <td><%= firm.approved_at&.to_s(:short) || 'Not approved' %></td>
+          <td class="t-approved"><% if firm.hidden_at.present? %>
+                Hidden
+              <% elsif firm.approved_at.present? %>
+                <%= firm.approved_at&.to_s(:short) %> 
+              <% else %> 
+                Not approved
+              <% end %>
+            </td>
         </tr>
       <% end %>
     <% else %>

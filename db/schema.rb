@@ -10,9 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 3019_11_18_100175) do
+ActiveRecord::Schema.define(version: 3019_11_18_100176) do
 
   # These are extensions that must be enabled in order to support this database
+  enable_extension "pg_stat_statements"
   enable_extension "plpgsql"
 
   create_table "accreditations", id: :serial, force: :cascade do |t|
@@ -103,7 +104,9 @@ ActiveRecord::Schema.define(version: 3019_11_18_100175) do
     t.boolean "workplace_financial_advice_flag", default: false, null: false
     t.boolean "non_uk_residents_flag", default: false, null: false
     t.datetime "approved_at"
+    t.datetime "hidden_at"
     t.index ["approved_at"], name: "index_firms_on_approved_at"
+    t.index ["hidden_at"], name: "index_firms_on_hidden_at"
     t.index ["initial_meeting_duration_id"], name: "index_firms_on_initial_meeting_duration_id"
   end
 
@@ -432,8 +435,10 @@ ActiveRecord::Schema.define(version: 3019_11_18_100175) do
     t.string "sub_arachnoid_haemorrhage_and_epilepsy_question"
     t.integer "parent_id"
     t.text "website_address"
+    t.datetime "hidden_at"
     t.index ["approved_at"], name: "index_travel_insurance_firms_on_approved_at"
     t.index ["fca_number"], name: "index_travel_insurance_firms_on_fca_number"
+    t.index ["hidden_at"], name: "index_travel_insurance_firms_on_hidden_at"
   end
 
   create_table "trip_covers", force: :cascade do |t|
