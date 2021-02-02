@@ -13,10 +13,10 @@ module AlgoliaIndex
     end
 
     def present_in_db?
-      if object.respond_to? :hidden_at
-        object.present? && object.hidden_at.nil?
+      if object.respond_to? :publishable?
+        object.present? && object.try(:publishable?) && object.try(:hidden_at).nil?
       else
-        object.present?
+        object.present? && object.try(:hidden_at).nil?
       end
     end
 

@@ -11,7 +11,7 @@ RSpec.describe AlgoliaIndex do
       instance_double(AlgoliaIndex::Firm, present_in_db?: present_in_db?)
     end
 
-    context 'when record exists in the db' do
+    context 'when record exists in the db, and is publishable and not hidden' do
       let(:present_in_db?) { true }
 
       it 'updates the record in the index', :aggregate_failures do
@@ -25,7 +25,7 @@ RSpec.describe AlgoliaIndex do
       end
     end
 
-    context 'when record does not exist in the db' do
+    context 'when record does not exist in the db, or it is not publishable or hidden' do
       let(:present_in_db?) { false }
 
       it 'destroys the record from the index', :aggregate_failures do
