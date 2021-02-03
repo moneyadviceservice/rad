@@ -7,14 +7,12 @@ RSpec.feature 'Approving firms on the admin interface', :inline_job_queue do
   let(:approval_date) { Time.utc(2019, 6, 1) }
 
   scenario 'Approving a Firm' do
-    given_there_are_fully_registered_principal_users_with_advisers_and_offices
+    given_there_firms_awaiting_approval_and_firms_awaiting_details
     given_i_am_at_the_admin_firms_index_page
     then_i_see_all_firms
-    then_all_firms_are_not_approved
+    then_two_firms_are_awaiting_approval_and_one_is_not_publishable
     and_no_advisers_or_offices_are_present_in_the_directory
-    and_all_the_firms_are_publishable
-
-    when_i_visit_a_firm_page(@firms.first)
+    when_i_visit_a_publishable_firms_page
     then_i_see_the_firm_is_not_approved
 
     travel_to(approval_date) do
@@ -33,7 +31,7 @@ RSpec.feature 'Approving firms on the admin interface', :inline_job_queue do
     expect_no_errors
   end
 
-  def given_there_are_fully_registered_principal_users_with_advisers_and_offices
+  def given_there_firms_awaiting_approval_and_firms_awaiting_details
     @principals = []
     3.times { @principals << FactoryBot.create(:principal, manually_build_firms: true) }
 
@@ -45,11 +43,8 @@ RSpec.feature 'Approving firms on the admin interface', :inline_job_queue do
         free_initial_meeting: true,
         approved_at: nil)
     end
-
-    @firms.each do |firm|
-      firm.advisers << FactoryBot.create(:adviser, firm: firm)
-      firm.offices << FactoryBot.create(:office, officeable: firm)
-    end
+    # make the last firm not publishable by removing its office details
+    @firms.last.offices.delete_all
   end
 
   def then_i_see_all_firms
@@ -57,8 +52,8 @@ RSpec.feature 'Approving firms on the admin interface', :inline_job_queue do
     expect(index_page.firms.count).to eq(@firms.count)
   end
 
-  def then_all_firms_are_not_approved
-    expect(index_page.firms.map(&:approved)).to rspec_all(eq('Not approved'))
+  def then_two_firms_are_awaiting_approval_and_one_is_not_publishable
+    expect(index_page.firms.map(&:approved)).to eq(['Not approved', 'Not approved', 'Not completed'])
   end
 
   def and_no_advisers_or_offices_are_present_in_the_directory
@@ -70,19 +65,14 @@ RSpec.feature 'Approving firms on the admin interface', :inline_job_queue do
     end
   end
 
-  def and_all_the_firms_are_publishable
-    @firms.each do |firm|
-      expect(firm.publishable?).to be_truthy
-    end
-  end
-
   def expect_no_errors
     return unless status_code == 500
     expect(index_page).not_to have_text %r{[Ee]rror|[Ww]arn|[Ee]xception}
   end
 
-  def when_i_visit_a_firm_page(firm)
-    firm_page.load(firm_id: firm.id)
+  def when_i_visit_a_publishable_firms_page
+    expect(@firms.first.publishable?).to be_truthy
+    firm_page.load(firm_id: @firms.first.id)
     expect(firm_page).to be_displayed
     expect_no_errors
   end
