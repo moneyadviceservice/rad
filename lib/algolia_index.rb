@@ -27,6 +27,7 @@ module AlgoliaIndex
         firm_id: firm_id
       )
       if indexed_record.present_in_db?
+        Rails.logger.info "ITS GOING TO UPDATE"
         indexed_record.update
       else
         indexed_record.destroy

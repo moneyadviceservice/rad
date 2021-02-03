@@ -14,6 +14,7 @@ module AlgoliaIndex
 
     def present_in_db?
       if object.respond_to? :publishable?
+        Rails.logger.info "PUBLISHABLE"
         object.present? && object.try(:publishable?) && object.try(:hidden_at).nil?
       else
         object.present? && object.try(:hidden_at).nil?
@@ -42,6 +43,12 @@ module AlgoliaIndex
         @firm ||= TravelInsuranceFirm.new(klass: 'TravelInsuranceFirm', id: firm_id || object&.firm_id)
       else
         @firm ||= Firm.new(klass: 'Firm', id: firm_id || object&.firm_id)
+      end
+    end
+
+    def trip_covers
+      if @klass == 'TravelInsuranceFirm' # rubocop:disable Style/ConditionalAssignment
+        @trip_covers ||= TripCover.where(travel_insurance_firm_id: firm_id || object&.firm_id)
       end
     end
   end

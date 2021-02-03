@@ -15,7 +15,7 @@ class Office < ApplicationRecord
   has_one :opening_time, dependent: :destroy
   accepts_nested_attributes_for :opening_time
 
-  belongs_to :officeable, polymorphic: true
+  belongs_to :officeable, polymorphic: true, touch: true
 
   validates :email_address,
             presence: false,
@@ -51,7 +51,11 @@ class Office < ApplicationRecord
   after_commit :notify_indexer
 
   def notify_indexer
-    UpdateAlgoliaIndexJob.perform_later(model_name.name, id, officeable_id)
+    if officeable_type == 'Firm'
+      UpdateAlgoliaIndexJob.perform_later(model_name.name, id, officeable_id)
+    else
+      UpdateAlgoliaIndexJob.perform_later(officeable_type, id)
+    end
   end
 
   def field_order
