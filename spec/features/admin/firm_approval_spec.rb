@@ -53,7 +53,7 @@ RSpec.feature 'Approving firms on the admin interface', :inline_job_queue do
   end
 
   def then_two_firms_are_awaiting_approval_and_one_is_not_publishable
-    expect(index_page.firms.map(&:approved)).to eq(['Not approved', 'Not approved', 'Not completed'])
+    expect(index_page.firms.map(&:approved)).to eq(['Not approved', 'Not approved', 'Not approved'])
   end
 
   def and_no_advisers_or_offices_are_present_in_the_directory

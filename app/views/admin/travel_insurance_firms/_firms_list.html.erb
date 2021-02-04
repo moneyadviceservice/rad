@@ -38,10 +38,8 @@
               Hidden
             <% elsif firm.approved_at.present? %>
               <%= firm.approved_at&.to_s(:short) %>
-            <% elsif firm.publishable? %>
-              Not approved
             <% else %>
-              Not completed
+              Not approved
             <% end %>
           </td>
         </tr>
