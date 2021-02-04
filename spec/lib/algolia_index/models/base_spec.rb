@@ -6,22 +6,30 @@ RSpec.describe AlgoliaIndex::Base do
   let(:id) { 1 }
 
   describe '#present_in_db?' do
-    context 'when db record exists and it is not hidden' do
-      before do
-        FactoryBot.create(:firm, id: id)
-      end
+    context 'when db record exists, it is publishable and it is not hidden' do
+      let(:firm) { FactoryBot.create(:firm, id: id) }
 
       it 'returns true' do
+        expect(firm.publishable?).to be_truthy
+        expect(firm.hidden_at).to be_nil
         expect(instance).to be_present_in_db
       end
     end
 
     context 'when db record exists and is hidden' do
-      before do
-        FactoryBot.create(:firm, id: id, hidden_at: Time.zone.now)
-      end
+      let(:firm) { FactoryBot.create(:firm, id: id, hidden_at: Time.zone.now) }
 
       it 'returns false' do
+        expect(firm.publishable?).to be_truthy
+        expect(instance).to_not be_present_in_db
+      end
+    end
+
+    context 'when db record exists, but it is not publishable' do
+      let(:firm) { FactoryBot.create(:firm_without_offices, id: id) }
+
+      it 'returns false' do
+        expect(firm.publishable?).to be_falsy
         expect(instance).to_not be_present_in_db
       end
     end
