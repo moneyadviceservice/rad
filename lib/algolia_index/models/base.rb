@@ -13,12 +13,7 @@ module AlgoliaIndex
     end
 
     def present_in_db?
-      if object.respond_to? :publishable?
-        Rails.logger.info "PUBLISHABLE"
-        object.present? && object.try(:publishable?) && object.try(:hidden_at).nil?
-      else
-        object.present? && object.try(:hidden_at).nil?
-      end
+      object.present? && object.visible_in_directory?
     end
 
     def update

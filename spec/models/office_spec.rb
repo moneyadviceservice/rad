@@ -24,9 +24,9 @@ RSpec.describe Office do
     context 'when officeable is TraveInsuranceFirm' do
       subject { build(:office, officeable: build(:travel_insurance_firm)) }
 
-      it 'does not notify the indexer' do
+      it 'notifies the indexer that the TravelInsuranceFirm has updated' do
         expect(UpdateAlgoliaIndexJob).not_to receive(:perform_later)
-          .with('Office', subject.id, subject.officeable_id)
+          .with('TravelInsuranceFirm', subject.officeable_id)
 
         office.notify_indexer
       end

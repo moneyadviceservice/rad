@@ -121,9 +121,7 @@ class Firm < ApplicationRecord
     UpdateAlgoliaIndexJob.perform_later(model_name.name, id)
   end
 
-  def onboarded?
-    !send(ONBOARDED_MARKER_FIELD).nil?
-  end
+
 
   if Rails.env.test?
     # A helper to shield tests from modifying the marker field directly
@@ -184,6 +182,14 @@ class Firm < ApplicationRecord
 
   def main_office
     offices.first
+  end
+
+  def onboarded?
+    !send(ONBOARDED_MARKER_FIELD).nil?
+  end
+
+  def visible_in_directory?
+    publishable? && approved? && !hidden?
   end
 
   def publishable?

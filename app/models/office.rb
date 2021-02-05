@@ -48,6 +48,8 @@ class Office < ApplicationRecord
 
   validates :disabled_access, inclusion: { in: [true, false] }
 
+  delegate :visible_in_directory?, to: :officeable, prefix: false
+
   after_commit :notify_indexer
 
   def notify_indexer
