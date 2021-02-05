@@ -24,6 +24,7 @@ RSpec.configure do |c|
   c.order = 'random'
   c.run_all_when_everything_filtered = true
   c.disable_monkey_patching!
+  c.filter_gems_from_backtrace 'activesupport', 'activerecord', 'activejob', 'factory_bot', 'database_cleaner'
 
   c.include FactoryBot::Syntax::Methods
 

@@ -51,10 +51,11 @@ class Office < ApplicationRecord
   after_commit :notify_indexer
 
   def notify_indexer
+    # Because officable is not a mandatory field, we should not trigger the update if this office is not yet associated with a firm
     if officeable_type == 'Firm'
       UpdateAlgoliaIndexJob.perform_later(model_name.name, id, officeable_id)
-    else
-      UpdateAlgoliaIndexJob.perform_later(officeable_type, id)
+    elsif officeable_type == 'TravelInsuranceFirm'
+      UpdateAlgoliaIndexJob.perform_later(officeable_type, officeable_id)
     end
   end
 
