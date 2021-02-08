@@ -2,7 +2,7 @@ class OpeningTime < ApplicationRecord
   attribute :open_saturday, :boolean
   attribute :open_sunday, :boolean
 
-  belongs_to :office
+  belongs_to :office, inverse_of: :opening_time
 
   validates :weekday_opening_time, presence: true
   validates :weekday_closing_time, presence: true

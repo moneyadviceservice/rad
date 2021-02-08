@@ -4,17 +4,19 @@ class Principal < ApplicationRecord
   before_validation :downcase_email
   before_create :generate_token
 
-  has_one :user, foreign_key: :principal_token
+  has_one :user, inverse_of: :principal, foreign_key: :principal_token
   has_one :firm,
           -> { where(parent_id: nil) },
           primary_key: :fca_number,
           foreign_key: :fca_number,
+          inverse_of: :principal,
           dependent: :destroy
 
   has_one :travel_insurance_firm,
     -> { where(parent_id: nil) },
     primary_key: :fca_number,
     foreign_key: :fca_number,
+    inverse_of: :principal,
     dependent: :destroy
 
   validates :fca_number,
