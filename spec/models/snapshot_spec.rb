@@ -611,6 +611,28 @@ RSpec.describe Snapshot do
     it { expect(subject.query_advisers_with_qualification_in_fcii.count).to eq(2) }
   end
 
+  describe '#query_advisers_with_qualification_in_chartered_associate' do
+    before do
+      qualification = FactoryBot.create(:qualification, name: 'Chartered Associate of The London Institute of Banking & Finance')
+      FactoryBot.create(:adviser)
+      FactoryBot.create(:adviser, qualifications: [qualification])
+      FactoryBot.create(:adviser, qualifications: [qualification])
+    end
+
+    it { expect(subject.query_advisers_with_qualification_in_chartered_associate.count).to eq(2) }
+  end
+
+  describe '#query_advisers_with_qualification_in_chartered_fellow' do
+    before do
+      qualification = FactoryBot.create(:qualification, name: 'Chartered Fellow of The London Institute of Banking & Finance')
+      FactoryBot.create(:adviser)
+      FactoryBot.create(:adviser, qualifications: [qualification])
+      FactoryBot.create(:adviser, qualifications: [qualification])
+    end
+
+    it { expect(subject.query_advisers_with_qualification_in_chartered_fellow.count).to eq(2) }
+  end
+
   describe '#metrics_in_order' do
     it 'has the configured order' do
       expect(subject.metrics_in_order).to eq(%i[
@@ -666,6 +688,8 @@ RSpec.describe Snapshot do
                                                advisers_with_qualification_in_long_term_care_planning
                                                advisers_with_qualification_in_tep
                                                advisers_with_qualification_in_fcii
+                                               advisers_with_qualification_in_chartered_associate
+                                               advisers_with_qualification_in_chartered_fellow
                                              ])
     end
   end

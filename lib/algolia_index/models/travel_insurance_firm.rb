@@ -23,7 +23,6 @@ module AlgoliaIndex
     end
 
     def destroy
-
       trip_covers.ids.each do |t_id|
         AlgoliaIndex.indexed_travel_insurance_firm_offerings.delete_object(t_id)
       end

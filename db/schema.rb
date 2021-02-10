@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 3019_11_18_100176) do
+ActiveRecord::Schema.define(version: 3019_11_18_100178) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
@@ -407,6 +407,8 @@ ActiveRecord::Schema.define(version: 3019_11_18_100176) do
     t.datetime "updated_at", null: false
     t.integer "firms_providing_workplace_financial_advice", default: 0
     t.integer "firms_providing_non_uk_residents", default: 0
+    t.integer "advisers_with_qualification_in_chartered_associate", default: 0
+    t.integer "advisers_with_qualification_in_chartered_fellow", default: 0
   end
 
   create_table "travel_insurance_firms", force: :cascade do |t|
