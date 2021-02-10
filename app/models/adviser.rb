@@ -34,6 +34,8 @@ class Adviser < ApplicationRecord
 
   after_commit :notify_indexer
 
+  delegate :visible_in_directory?, to: :firm, prefix: false
+
   def notify_indexer
     UpdateAlgoliaIndexJob.perform_later(model_name.name, id, firm_id)
   end

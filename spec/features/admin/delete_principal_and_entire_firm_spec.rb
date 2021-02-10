@@ -14,7 +14,7 @@ RSpec.feature 'Deleting principal and all related firm, adviser, office and trad
   end
 
   def given_there_is_firm
-    @firm = FactoryBot.create(:firm_with_trading_names, :with_principal)
+    @firm = FactoryBot.create(:firm_with_trading_names, :with_principal, approved_at: Time.zone.now)
     @principal = @firm.principal
     @principal.update(firm: @firm)
     @user = FactoryBot.create(:user, principal: @principal)

@@ -13,11 +13,7 @@ module AlgoliaIndex
     end
 
     def present_in_db?
-      if object.respond_to? :publishable?
-        object.present? && object.try(:publishable?) && object.try(:hidden_at).nil?
-      else
-        object.present? && object.try(:hidden_at).nil?
-      end
+      object.present? && object.visible_in_directory?
     end
 
     def update
@@ -39,9 +35,15 @@ module AlgoliaIndex
 
     def firm
       if @klass == 'TravelInsuranceFirm' # rubocop:disable Style/ConditionalAssignment
-        @firm ||= TravelInsuranceFirm.new(klass: 'TravelInsuranceFirm', id: firm_id || object&.firm_id)
+        @firm ||= TravelInsuranceFirm.new(klass: 'TravelInsuranceFirm', id: id)
       else
         @firm ||= Firm.new(klass: 'Firm', id: firm_id || object&.firm_id)
+      end
+    end
+
+    def trip_covers
+      if @klass == 'TravelInsuranceFirm' # rubocop:disable Style/ConditionalAssignment
+        @trip_covers ||= TripCover.where(travel_insurance_firm_id: id || object&.firm_id)
       end
     end
   end

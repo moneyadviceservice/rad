@@ -14,6 +14,7 @@ RSpec.feature 'The self service office edit page', :inline_job_queue do
 
   let(:principal) { FactoryBot.create(:principal) }
   let(:user) { FactoryBot.create(:user, principal: principal) }
+  let(:adviser) {  FactoryBot.create :adviser }
   let(:office) do
     FactoryBot.create(:office,
                        officeable: principal.firm,
@@ -28,7 +29,8 @@ RSpec.feature 'The self service office edit page', :inline_job_queue do
 
   scenario 'The principal can edit their office' do
     given_i_am_a_fully_registered_principal_user
-    and_my_firm_has_offices
+    and_my_firm_has_offices_and_advisers
+    and_my_firm_is_approved
     and_i_am_logged_in
 
     when_i_am_on_the_offices_page
@@ -47,7 +49,7 @@ RSpec.feature 'The self service office edit page', :inline_job_queue do
 
   scenario 'The system shows validation messages if there are invalid inputs' do
     given_i_am_a_fully_registered_principal_user
-    and_my_firm_has_offices
+    and_my_firm_has_offices_and_advisers
     and_i_am_logged_in
 
     when_i_am_on_the_offices_page
@@ -66,9 +68,15 @@ RSpec.feature 'The self service office edit page', :inline_job_queue do
     expect(Firm.onboarded.find(principal.firm.id)).to be_present
   end
 
-  def and_my_firm_has_offices
+  def and_my_firm_has_offices_and_advisers
+    principal.firm.advisers << adviser
     offices
     principal.firm.reload
+  end
+
+  def and_my_firm_is_approved
+    principal.firm.update_attributes(approved_at: Time.zone.now)
+    expect(principal.firm.approved?).to be_truthy
   end
 
   def and_i_am_logged_in

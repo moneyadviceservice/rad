@@ -71,6 +71,10 @@ class TravelInsuranceFirm < ApplicationRecord
   end
   alias subsidiary? trading_name?
 
+  def visible_in_directory?
+    publishable? && approved? && !hidden?
+  end
+
   def publishable?
     office.present? && cover_and_service_complete?
   end
