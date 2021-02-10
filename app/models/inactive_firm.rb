@@ -5,4 +5,9 @@ class InactiveFirm < ApplicationRecord
 
   scope :retirement, -> { where(firmable_type: 'Firm') }
   scope :travel, -> { where(firmable_type: 'TravelInsuranceFirm') }
+
+  def visible_in_directory?
+  	false
+  end
+
 end

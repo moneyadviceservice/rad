@@ -31,7 +31,7 @@ module AlgoliaIndex
     end
 
     def opening_times
-      opening_times = object.main_office.try(:opening_time)
+      opening_times = object.office.try(:opening_time)
       return {} unless opening_times
 
       {
