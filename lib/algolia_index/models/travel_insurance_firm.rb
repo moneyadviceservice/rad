@@ -29,6 +29,10 @@ module AlgoliaIndex
       end
 
       AlgoliaIndex.indexed_travel_insurance_firms.delete_object(id)
+
+      object.trip_covers.ids.each do |t_id|
+        AlgoliaIndex.indexed_travel_insurance_firm_offerings.delete_object(t_id)
+      end
     end
   end
 end
