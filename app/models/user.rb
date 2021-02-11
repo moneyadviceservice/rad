@@ -6,7 +6,7 @@ class User < ApplicationRecord
 
   validates :email, email: { validate_mx: false, allow_idn: false }
 
-  belongs_to :principal, foreign_key: :principal_token
+  belongs_to :principal, inverse_of: :user, foreign_key: :principal_token
 
   accepts_nested_attributes_for :principal
 

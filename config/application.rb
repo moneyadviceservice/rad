@@ -17,6 +17,8 @@ module Rad
     config.i18n.load_path += Dir[
       Rails.root.join('config', 'locales', '**', '*.{rb,yml}')
     ]
+    # Allows organisation of models directory
+    config.autoload_paths += Dir[Rails.root.join('app', 'models', '{**/}')]
 
     config.action_mailer.default_options = {
       from: 'RADenquiries@moneyadviceservice.org.uk',

@@ -78,6 +78,14 @@ module Snapshot::AdviserQueries
     advisers_with_qualification('Fellow of the Chartered Insurance Institute (FCII)')
   end
 
+  def query_advisers_with_qualification_in_chartered_associate
+    advisers_with_qualification('Chartered Associate of The London Institute of Banking & Finance')
+  end
+
+  def query_advisers_with_qualification_in_chartered_fellow
+    advisers_with_qualification('Chartered Fellow of The London Institute of Banking & Finance')
+  end
+
   private
 
   def advisers_in_country(advisers, country)

@@ -12,6 +12,7 @@ class Snapshot < ApplicationRecord
   private
 
   def publishable_firms
+    # REVIEW REQD - SHOULD BE ALTERED TO Firm.visible_in_directory?
     @_publishable_firms ||= Firm.onboarded.select(&:publishable?)
   end
 

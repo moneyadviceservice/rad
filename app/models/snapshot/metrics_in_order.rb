@@ -53,6 +53,8 @@ module Snapshot::MetricsInOrder
       advisers_with_qualification_in_long_term_care_planning
       advisers_with_qualification_in_tep
       advisers_with_qualification_in_fcii
+      advisers_with_qualification_in_chartered_associate
+      advisers_with_qualification_in_chartered_fellow
     ]
   end
 end
