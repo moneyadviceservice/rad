@@ -9,6 +9,8 @@ module FcaApi
     end
 
     def ok?
+      return false if raw_response.body['Message'].nil?
+
       raw_response.body['Message'].downcase.include?(SUCCESS_MESSAGE)
     end
 
