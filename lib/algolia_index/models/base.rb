@@ -34,17 +34,19 @@ module AlgoliaIndex
     end
 
     def firm
-      if @klass == 'TravelInsuranceFirm' # rubocop:disable Style/ConditionalAssignment
+      # rubocop:disable Style/ConditionalAssignment
+      if @klass == 'TravelInsuranceFirm'
         @firm ||= TravelInsuranceFirm.new(klass: 'TravelInsuranceFirm', id: id)
       else
         @firm ||= Firm.new(klass: 'Firm', id: firm_id || object&.firm_id)
       end
+      # rubocop:enable Style/ConditionalAssignment
     end
 
     def trip_covers
-      if @klass == 'TravelInsuranceFirm' # rubocop:disable Style/ConditionalAssignment
-        @trip_covers ||= TripCover.where(travel_insurance_firm_id: id || object&.firm_id)
-      end
+      return nil unless @klass == 'TravelInsuranceFirm'
+
+      @trip_covers ||= TripCover.where(travel_insurance_firm_id: id || object&.firm_id)
     end
   end
 end

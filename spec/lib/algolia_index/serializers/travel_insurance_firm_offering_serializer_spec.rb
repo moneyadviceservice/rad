@@ -10,9 +10,11 @@ RSpec.describe AlgoliaIndex::TravelInsuranceFirmOfferingSerializer do
         trip_type: [I18n.t("self_service.travel_insurance_firms_edit.#{trip_cover.trip_type}.heading")],
         cruise_30_days_max_age: trip_cover.cruise_30_days_max_age,
         cruise_45_days_max_age: trip_cover.cruise_45_days_max_age,
+        cruise_50_days_max_age: trip_cover.cruise_50_days_max_age,
         cruise_55_days_max_age: trip_cover.cruise_55_days_max_age,
         land_30_days_max_age: trip_cover.land_30_days_max_age,
         land_45_days_max_age: trip_cover.land_45_days_max_age,
+        land_50_days_max_age: trip_cover.land_50_days_max_age,
         land_55_days_max_age: trip_cover.land_55_days_max_age,
 
         # Service Details

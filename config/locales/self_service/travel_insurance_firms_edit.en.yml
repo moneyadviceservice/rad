@@ -15,7 +15,8 @@ en:
       single_trip:
         heading: Single Trip
         short_trip: Up to 1 month
-        medium_trip: 1 - 6 months
+        medium_trip: 1 - 3 months
+        medium_plus_trip: 3 - 6 months
         long_trip: 6 months +
 
       annual_multi_trip:

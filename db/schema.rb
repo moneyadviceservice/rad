@@ -10,7 +10,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 3019_11_18_100178) do
+ActiveRecord::Schema.define(version: 3019_11_18_100179) do
+
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
   enable_extension "plpgsql"
@@ -454,6 +455,8 @@ ActiveRecord::Schema.define(version: 3019_11_18_100178) do
     t.integer "cruise_45_days_max_age"
     t.integer "land_55_days_max_age"
     t.integer "cruise_55_days_max_age"
+    t.integer "land_50_days_max_age"
+    t.integer "cruise_50_days_max_age"
     t.index ["travel_insurance_firm_id"], name: "index_trip_covers_on_travel_insurance_firm_id"
   end
 

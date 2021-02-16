@@ -131,6 +131,8 @@ RSpec.feature 'The self service TravelInsurance firm edit page' do
       p.single_europe_30_days_cruise.select('68')
       p.single_europe_45_days_land.select('68')
       p.single_europe_45_days_cruise.select('68')
+      p.single_europe_50_days_land.select('68')
+      p.single_europe_50_days_cruise.select('68')
       p.single_europe_55_days_land.select('68')
       p.single_europe_55_days_cruise.select('68')
 
@@ -149,6 +151,8 @@ RSpec.feature 'The self service TravelInsurance firm edit page' do
       p.single_worldwide_excluding_us_30_days_cruise.select('68')
       p.single_worldwide_excluding_us_45_days_land.select('68')
       p.single_worldwide_excluding_us_45_days_cruise.select('68')
+      p.single_worldwide_excluding_us_50_days_land.select('68')
+      p.single_worldwide_excluding_us_50_days_cruise.select('68')
       p.single_worldwide_excluding_us_55_days_land.select('68')
       p.single_worldwide_excluding_us_55_days_cruise.select('68')
 
@@ -167,6 +171,8 @@ RSpec.feature 'The self service TravelInsurance firm edit page' do
       p.single_worldwide_including_us_30_days_cruise.select('68')
       p.single_worldwide_including_us_45_days_land.select('68')
       p.single_worldwide_including_us_45_days_cruise.select('68')
+      p.single_worldwide_including_us_50_days_land.select('68')
+      p.single_worldwide_including_us_50_days_cruise.select('68')
       p.single_worldwide_including_us_55_days_land.select('68')
       p.single_worldwide_including_us_55_days_cruise.select('68')
 

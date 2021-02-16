@@ -121,8 +121,6 @@ class Firm < ApplicationRecord
     UpdateAlgoliaIndexJob.perform_later(model_name.name, id)
   end
 
-
-
   if Rails.env.test?
     # A helper to shield tests from modifying the marker field directly
     def __set_registered(state)

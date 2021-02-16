@@ -18,7 +18,7 @@ Layout/AlignHash:
     - 'app/helpers/admin/lookup/fca_import_helper.rb'
     - 'app/jobs/fca_confirmation_job.rb'
     - 'app/jobs/fca_import_job.rb'
-    - 'app/models/travel_distance.rb'
+    - 'app/models/concerns/travel_distance.rb'
     - 'config/initializers/cloud_storage.rb'
     - 'lib/cloud/config.rb'
     - 'lib/cloud/providers/azure.rb'
@@ -203,7 +203,7 @@ Lint/DuplicateMethods:
 # Offense count: 1
 Lint/NestedMethodDefinition:
   Exclude:
-    - 'app/models/friendly_namable.rb'
+    - 'app/models/concerns/friendly_namable.rb'
 
 # Offense count: 2
 Lint/ReturnInVoidContext:
@@ -246,11 +246,15 @@ Metrics/BlockLength:
 # Configuration parameters: CountComments.
 Metrics/ClassLength:
   Max: 167
+  Exclude:
+    - 'app/models/firm.rb'
 
 # Offense count: 5
 # Configuration parameters: CountComments, ExcludedMethods.
 Metrics/MethodLength:
   Max: 54
+  Exclude:
+    - 'app/models/snapshot/metrics_in_order.rb'
 
 # Offense count: 3
 # Configuration parameters: EnforcedStyleForLeadingUnderscores.
@@ -333,6 +337,10 @@ Rails/BulkChangeTable:
     - 'db/migrate/20150930140851_remove_firm_email_and_phone.rb'
     - 'db/migrate/20151103161642_add_latitude_and_longitude_to_office.rb'
     - 'db/migrate/20151111132037_remove_latitude_and_longitude_from_firm.rb'
+    - 'db/migrate/30191118100178_add_new_qualifications_to_snapshots.rb'
+    - 'db/migrate/30191118100171_adding_will_cover_undergoing_treatment.rb'
+    - 'db/migrate/30191118100166_adding_medical_corona_repatriation_field.rb'
+    - 'db/migrate/30191118100173_changing_ages_from_string_to_integer.rb'
 
 # Offense count: 1
 # Cop supports --auto-correct.
@@ -356,20 +364,20 @@ Rails/FilePath:
 Rails/HasAndBelongsToMany:
   Exclude:
     - 'app/models/adviser.rb'
-    - 'app/models/allowed_payment_method.rb'
+    - 'app/models/retirement/allowed_payment_method.rb'
     - 'app/models/firm.rb'
-    - 'app/models/in_person_advice_method.rb'
-    - 'app/models/initial_advice_fee_structure.rb'
-    - 'app/models/investment_size.rb'
-    - 'app/models/ongoing_advice_fee_structure.rb'
-    - 'app/models/other_advice_method.rb'
+    - 'app/models/retirement/in_person_advice_method.rb'
+    - 'app/models/retirement/initial_advice_fee_structure.rb'
+    - 'app/models/retirement/investment_size.rb'
+    - 'app/models/retirement/ongoing_advice_fee_structure.rb'
+    - 'app/models/retirement/other_advice_method.rb'
 
 # Offense count: 3
 # Configuration parameters: Include.
 # Include: app/models/**/*.rb
 Rails/HasManyOrHasOneDependent:
   Exclude:
-    - 'app/models/initial_meeting_duration.rb'
+    - 'app/models/retirement/initial_meeting_duration.rb'
     - 'app/models/lookup/firm.rb'
     - 'app/models/principal.rb'
 
