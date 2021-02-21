@@ -1,0 +1,445 @@
+/*
+Stylesheet to override MAS styles with Moneyhelper styles
+Fonts come from dough/assets/fonts
+ */
+
+@import "moneyhelper_variables";
+
+//Media Query Variables (copied from dough/assets/stylesheets/lib/_mediaqueries.scss - we will need to find a global
+//place for these or write to 3 into 1 mq
+
+$mq-xs: 0 !default;
+$mq-xs-max: (479px) !default;
+$mq-s: (480px) !default;
+$mq-s-max: (719px) !default;
+$mq-m: (720px) !default;
+$mq-m-max: (959px) !default;
+$mq-l: (960px) !default;
+$mq-l-max: (1199px) !default;
+$mq-xl: (1200px) !default;
+
+//Print Styles for last page button
+@media print {
+  // hide everything
+  body * {
+    visibility: hidden;
+  }
+  // show only results
+  #stewd_parent,
+  #stewd_parent * {
+    visibility: visible;
+  }
+  // show collapsible info
+  #stewd_parent .collapsable__target {
+    display: block;
+  }
+  // position the element in page
+  #stewd_parent {
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+}
+
+.l-container-tool {
+  // general
+  color: $color-dark-blue-secondary;
+
+  h1 {
+    color: #0f19a0;
+  }
+
+  h2 {
+    color: #000b3b;
+    margin-top: 0;
+
+    &.heading-medium {
+      color: #0f19a0;
+    }
+
+    &.stewd__target-income {
+      margin-top: 2.625rem;
+    }
+  }
+
+  p,
+  ul {
+    line-height: 23px;
+  }
+  ul {
+    padding-left: 15px;
+  }
+  .list {
+    font-size: 1rem;
+  }
+
+  /* links */
+  a {
+    &:active {
+      color: $color-magenta-primary;
+      text-decoration: none;
+    }
+    &:hover {
+      color: $color-magenta-dark-primary;
+    }
+
+    &:focus {
+      outline: none;
+      color: $color-dark-blue-secondary;
+      background-color: $color-yellow-secondary;
+      border-bottom: 4px solid $color-violet-primary;
+    }
+
+    &:target {
+      color: $color-violet-secondary;
+    }
+  }
+
+  /* buttons */
+  .button {
+    box-shadow: 0px 3px 0px rgba(0, 11, 59, 0.25);
+    background: $color-white-supporting;
+    color: $color-magenta-primary;
+    border: 1px solid $color-magenta-primary;
+    border-radius: 4px;
+    padding: 8px 12px;
+    text-decoration: none;
+    height: 40px;
+    font-size: 16px;
+    line-height: 23px;
+    font-weight: 600;
+
+    &:visited {
+      text-decoration: none;
+    }
+
+    &:hover {
+      color: $color-magenta-dark-primary;
+      background: $color-light-grey-supporting;
+      border: 1px solid $color-magenta-dark-primary;
+      box-shadow: 0px 1px 0px rgba(0, 11, 59, 0.25);
+    }
+
+    &:focus,
+    &:active,
+    &:active:focus {
+      padding: 6px 10px;
+      border: 3px solid $color-violet-primary;
+      color: $color-dark-blue-secondary;
+      outline: none;
+    }
+
+    &:focus {
+      background: $color-yellow-secondary;
+      box-shadow: 0px 1px 0px rgba(0, 11, 59, 0.25);
+    }
+
+    &:active,
+    &:active:focus {
+      background: $color-light-grey-supporting;
+      box-shadow: 0px 1px 0px $color-white-supporting,
+        inset 0px 5px 2px rgba(0, 11, 59, 0.25);
+    }
+
+    &.button--primary {
+      color: $color-white-supporting;
+      background: $color-magenta-primary;
+      box-shadow: 0px 3px 0px rgba(0, 0, 0, 0.25);
+
+      &:hover {
+        color: $color-white-supporting;
+        background: $color-magenta-dark-primary;
+        box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.25);
+      }
+
+      &:focus {
+        background: $color-yellow-secondary;
+        box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.25);
+        color: $color-dark-blue-secondary;
+      }
+
+      &:active,
+      &:active:focus {
+        background: $color-magenta-dark-primary;
+        border: 3px solid $color-yellow-secondary;
+        color: $color-white-supporting;
+        box-shadow: 0px 1px 0px $color-white-supporting,
+          inset 0px 5px 2px rgba(0, 11, 59, 0.25);
+      }
+    }
+
+    &:disabled {
+      background-color: transparent;
+      border: 1px solid $color-grey;
+      color: $color-grey-secondary;
+      box-shadow: none;
+    }
+
+    &.button--compact .icon {
+      display: none;
+    }
+  }
+
+  /* forms from yeast */
+  // fieldset
+  fieldset {
+    legend {
+      color: $color-dark-blue-secondary;
+    }
+  }
+  // input containers
+  .form__input-container {
+    border-radius: 4px;
+    color: $color-grey-secondary;
+
+    .form__input-outline {
+      border-radius: 4px;
+      border-color: $color-grey-secondary;
+    }
+
+    .form__input {
+      border: 2px solid transparent;
+      font-weight: normal;
+      font-style: italic;
+      color: $color-grey-secondary;
+      outline: none;
+
+      &:focus {
+        border: 2px solid $color-violet-primary;
+        outline: none;
+      }
+    }
+  }
+  // inputs
+  input[type="text"] {
+    min-height: 40px;
+    padding: 18px 15px;
+  }
+  input[type="text"],
+  input[type="number"],
+  input[type="select"],
+  input[type="email"],
+  input[type="search"],
+  input[type="password"],
+  textarea {
+    border-radius: 4px;
+  }
+  // outlines
+  input[type="submit"]:focus,
+  input[type="checkbox"]:focus,
+  input[type="radio"]:focus,
+  textarea:focus {
+    outline: solid 0.1875rem $color-violet-primary;
+  }
+  input[type="text"]:focus,
+  input[type="number"]:focus,
+  input[type="email"]:focus,
+  input[type="search"]:focus,
+  input[type="password"]:focus {
+    outline: 2px solid $color-violet-primary;
+    background-color: $color-yellow-secondary;
+  }
+  // hover
+  input[type="checkbox"]:hover,
+  input[type="radio"]:hover {
+    outline: solid 0.1875rem $color-violet-primary;
+  }
+
+  // select
+  select {
+    background-color: $color-white-supporting;
+    border: 1px solid $color-grey-secondary;
+    border-radius: 4px;
+    font-weight: normal;
+    font-style: italic;
+    color: $color-grey-secondary;
+    padding: 8px 15px;
+
+    &:focus {
+      color: $color-dark-blue-secondary;
+      outline: 2px solid $color-violet-primary;
+      background-color: $color-yellow-secondary;
+    }
+  }
+
+  // radio buttons
+  .input--radio-first,
+  .input--radio {
+    width: 28px;
+    height: 28px;
+    border: 1px solid $color-grey-secondary;
+
+    &:focus {
+      border: 2px solid $color-violet-primary;
+      outline: 2px solid $color-yellow-secondary;
+    }
+  }
+
+  // expander button
+  .unstyled-button {
+    padding-right: 10px;
+    border-bottom: 4px solid transparent;
+
+    &:focus {
+      background-color: $color-yellow-secondary;
+      border-bottom: 4px solid $color-violet-primary;
+      outline: none;
+    }
+  }
+
+  // slider styles
+  input[type="range"] {
+    height: 40px;
+    -webkit-appearance: none;
+    margin: 10px 0;
+    width: 100%;
+    border: 2px solid transparent;
+    border-radius: 4px;
+  }
+  input[type="range"]:focus {
+    border: 2px solid $color-violet-primary;
+    outline: none;
+  }
+  // webkit
+  input[type="range"]::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 8px;
+    cursor: pointer;
+    box-shadow: 1px 1px 1px #000000;
+    background: $color-magenta-primary;
+    border-radius: 7px;
+    border: 0px solid #010101;
+  }
+  input[type="range"]::-webkit-slider-thumb {
+    box-shadow: 0px 0px 0px #000031;
+    border: 2px solid $color-magenta-primary;
+    height: 28px;
+    width: 28px;
+    border-radius: 15px;
+    background: $color-magenta-primary;
+    cursor: pointer;
+    -webkit-appearance: none;
+    margin-top: -10px;
+  }
+  input[type="range"]:hover::-webkit-slider-thumb {
+    background: $color-magenta-dark-primary;
+  }
+  input[type="range"]:focus::-webkit-slider-thumb {
+    border: 2px solid $color-violet-primary;
+    background: $color-yellow-secondary;
+  }
+  input[type="range"]:focus::-webkit-slider-runnable-track {
+    background: $color-magenta-primary;
+  }
+  // moz
+  input[type="range"]::-moz-range-track {
+    width: 100%;
+    height: 8px;
+    cursor: pointer;
+    box-shadow: 1px 1px 1px #000000;
+    background: $color-magenta-primary;
+    border-radius: 7px;
+    border: 0px solid #010101;
+  }
+  input[type="range"]::-moz-range-thumb {
+    box-shadow: 0px 0px 0px #000031;
+    border: 2px solid $color-magenta-primary;
+    height: 28px;
+    width: 28px;
+    border-radius: 15px;
+    background: $color-magenta-primary;
+    cursor: pointer;
+  }
+  // ms
+  input[type="range"]::-ms-track {
+    width: 100%;
+    height: 8px;
+    cursor: pointer;
+    background: transparent;
+    border-color: transparent;
+    color: transparent;
+  }
+  input[type="range"]::-ms-fill-lower {
+    background: $color-magenta-primary;
+    border: 0px solid #010101;
+    border-radius: 14px;
+    box-shadow: 1px 1px 1px #000000;
+  }
+  input[type="range"]::-ms-fill-upper {
+    background: $color-magenta-primary;
+    border: 0px solid #010101;
+    border-radius: 14px;
+    box-shadow: 1px 1px 1px #000000;
+  }
+  input[type="range"]::-ms-thumb {
+    margin-top: 1px;
+    box-shadow: 0px 0px 0px #000031;
+    border: 2px solid $color-magenta-primary;
+    height: 28px;
+    width: 28px;
+    border-radius: 15px;
+    background: $color-magenta-primary;
+    cursor: pointer;
+  }
+  input[type="range"]:focus::-ms-fill-lower {
+    background: $color-magenta-primary;
+  }
+  input[type="range"]:focus::-ms-fill-upper {
+    background: $color-magenta-primary;
+  }
+  .is-errored {
+    color: $error-red;
+    border-left: 5px solid $error-red;
+  }
+
+  // collapsibles
+  .collapsable__trigger-icon {
+    display: inline-block;
+    background-position: 0 0;
+    background-repeat: no-repeat;
+    background-size: auto;
+    padding-left: 30px;
+    height: 40px;
+    line-height: 40px;
+    padding-right: 15px;
+
+    &.icon--down-chevron-blue {
+      background-image: image_url("images-mh/tool-accordion-icon.png");
+    }
+
+    &.icon--up-chevron-blue {
+      background-image: image_url("images-mh/tool-accordion-icon-close.png");
+    }
+  }
+
+  // tables
+  table,
+  th,
+  td {
+    font-size: 16px;
+    line-height: 23px;
+  }
+  thead > tr {
+    background-color: white;
+    color: $color-dark-blue-secondary;
+    border-bottom: 1px solid $color-grey-blue-supporting;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 23px;
+  }
+  th,
+  th > p {
+    font-weight: 700;
+  }
+  th,
+  td {
+    border-right: none;
+    border-bottom: 1px solid $color-grey-blue-supporting;
+  }
+  tbody tr td:first-of-type {
+    font-weight: 700;
+  }
+  tr:nth-child(even) {
+    background-color: white;
+  }
+}

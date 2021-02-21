@@ -33,7 +33,7 @@ Make sure all dependencies are available to the application:
 npm install
 npm install bower -g
 bundle install
-bundle exec bowndler update
+bowndler install
 ```
 
 Create a local .env file from the example.
@@ -42,7 +42,13 @@ Create a local .env file from the example.
 cp .env-example .env
 ```
 
-### Set up cloud storage
+Create a local cloud_storage.yml from the example.
+
+```
+cp config/cloud_storage.example.yml config/cloud_storage.yml
+```
+
+### Configure cloud storage (if needed)
 
 Make sure the following variables are set with appropriate values in your .env file.
 
