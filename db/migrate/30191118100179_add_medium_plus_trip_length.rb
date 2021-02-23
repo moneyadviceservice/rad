@@ -8,7 +8,6 @@ class AddMediumPlusTripLength < ActiveRecord::Migration[5.2]
       tc.cruise_50_days_max_age = tc.cruise_45_days_max_age
       tc.save
     end
-
   end
 
   def self.down

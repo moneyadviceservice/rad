@@ -9,7 +9,7 @@ class AddNewAttributesToOfferings
 
   private
 
-  def  update_algolia_offerings
+  def update_algolia_offerings
     TravelInsuranceFirm.all.each do |object|
       if object.visible_in_directory?
         tc = object.trip_covers.map(&AlgoliaIndex::TravelInsuranceFirmOfferingSerializer.method(:new))
