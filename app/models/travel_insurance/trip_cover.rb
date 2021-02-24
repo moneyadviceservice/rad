@@ -12,12 +12,21 @@ class TripCover < ApplicationRecord
   end
 
   def all_complete?
-    a = [
-      land_30_days_max_age, cruise_30_days_max_age,
-      land_45_days_max_age, cruise_45_days_max_age,
-      land_55_days_max_age, cruise_55_days_max_age
-    ]
-    a << [land_50_days_max_age, cruise_50_days_max_age] if trip_type == 'single_trip'
+    if trip_type == 'single_trip'
+      a = [
+        land_30_days_max_age, cruise_30_days_max_age,
+        land_45_days_max_age, cruise_45_days_max_age,
+        land_50_days_max_age, cruise_50_days_max_age,
+        land_55_days_max_age, cruise_55_days_max_age
+      ]
+    else
+       a = [
+        land_30_days_max_age, cruise_30_days_max_age,
+        land_45_days_max_age, cruise_45_days_max_age,
+        land_55_days_max_age, cruise_55_days_max_age
+      ]
+    end
+
     a.map(&:present?).all?
   end
 end

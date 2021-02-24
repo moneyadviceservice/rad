@@ -10,6 +10,12 @@ class AddNewAttributesToOfferings
   private
 
   def update_algolia_offerings
+    TripCover.all.each do |tc|
+      tc.land_50_days_max_age = tc.land_45_days_max_age
+      tc.cruise_50_days_max_age = tc.cruise_45_days_max_age
+      tc.save
+    end
+
     TravelInsuranceFirm.all.each do |object|
       if object.visible_in_directory?
         tc = object.trip_covers.map(&AlgoliaIndex::TravelInsuranceFirmOfferingSerializer.method(:new))
