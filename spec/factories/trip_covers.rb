@@ -7,6 +7,8 @@ FactoryBot.define do
     cruise_30_days_max_age { '69' }
     land_45_days_max_age { '69' }
     cruise_45_days_max_age { '69' }
+    land_50_days_max_age { '69' }
+    cruise_50_days_max_age { '69' }
     land_55_days_max_age { '69' }
     cruise_55_days_max_age { '69' }
   end

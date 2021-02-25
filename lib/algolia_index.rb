@@ -13,10 +13,10 @@ require_relative 'algolia_index/serializers/travel_insurance_firm_offering_seria
 
 module AlgoliaIndex
   INDICES = {
-    advisers: "firm-advisers#{'-test' if Rails.env.test? || Rails.env.development? }",
-    offices: "firm-offices#{'-test' if Rails.env.test? || Rails.env.development? }",
-    travel_firms: "travel-firms#{'-test' if Rails.env.test? || Rails.env.development? }",
-    travel_firm_offerings: "travel-firm-offerings#{'-test' if Rails.env.test? || Rails.env.development? }"
+    advisers: "firm-advisers#{'-test' if Rails.env.test? || Rails.env.development?}",
+    offices: "firm-offices#{'-test' if Rails.env.test? || Rails.env.development?}",
+    travel_firms: "travel-firms#{'-test' if Rails.env.test? || Rails.env.development?}",
+    travel_firm_offerings: "travel-firm-offerings#{'-test' if Rails.env.test? || Rails.env.development?}"
   }.freeze
 
   class << self

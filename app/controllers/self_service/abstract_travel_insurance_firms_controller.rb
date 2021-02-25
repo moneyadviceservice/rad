@@ -14,6 +14,8 @@ module SelfService
         :cruise_30_days_max_age,
         :land_45_days_max_age,
         :cruise_45_days_max_age,
+        :land_50_days_max_age,
+        :cruise_50_days_max_age,
         :land_55_days_max_age,
         :cruise_55_days_max_age
       ],
