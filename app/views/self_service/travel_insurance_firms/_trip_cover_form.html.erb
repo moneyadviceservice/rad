@@ -32,17 +32,40 @@
       <%= tc.label :land_45_days_max_age,
                   t('self_service.travel_insurance_firms_edit.maximum_age_non_cruise'),
                   class: 'form__label-heading' %>
-      <%= tc.select :land_45_days_max_age, options_for_cover_ages, { prompt: 'Please select', include_blank: false }, { class: 't-six-month-land' } %>
+      <%= tc.select :land_45_days_max_age, options_for_cover_ages, { prompt: 'Please select', include_blank: false }, { class: 't-three-month-land' } %>
     </div>
 
     <div class="l-3col-even">
       <%= tc.label :cruise_45_days_max_age,
                   t('self_service.travel_insurance_firms_edit.maximum_age_cruise'),
                   class: 'form__label-heading' %>
-      <%= tc.select :cruise_45_days_max_age, options_for_cover_ages, { prompt: 'Please select', include_blank: false }, { class: 't-six-month-cruise' } %>
+      <%= tc.select :cruise_45_days_max_age, options_for_cover_ages, { prompt: 'Please select', include_blank: false }, { class: 't-three-month-cruise' } %>
     </div>
   </div>
   <br />
+
+  <% if cover_data.trip_type == 'single_trip' %>
+    <div class="l-3col-even-row">
+      <div class="l-3col-even">
+        <strong><%= t("self_service.travel_insurance_firms_edit.#{cover_data.trip_type}.medium_plus_trip")%></strong>
+      </div>
+
+      <div class="l-3col-even">
+        <%= tc.label :land_50_days_max_age,
+                    t('self_service.travel_insurance_firms_edit.maximum_age_non_cruise'),
+                    class: 'form__label-heading' %>
+        <%= tc.select :land_50_days_max_age, options_for_cover_ages, { prompt: 'Please select', include_blank: false }, { class: 't-three-month-plus-land' } %>
+      </div>
+
+      <div class="l-3col-even">
+        <%= tc.label :cruise_50_days_max_age,
+                    t('self_service.travel_insurance_firms_edit.maximum_age_cruise'),
+                    class: 'form__label-heading' %>
+        <%= tc.select :cruise_50_days_max_age, options_for_cover_ages, { prompt: 'Please select', include_blank: false }, { class: 't-three-month-plus-cruise' } %>
+      </div>
+    </div>
+    <br />
+  <% end %>
 
   <div class="l-3col-even-row">
     <div class="l-3col-even">

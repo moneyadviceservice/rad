@@ -10,5 +10,4 @@ class AddHiddenAtToFirms < ActiveRecord::Migration[5.2]
     remove_column :travel_insurance_firms, :hidden_at
     remove_column :firms, :hidden_at
   end
-
 end
