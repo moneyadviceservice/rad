@@ -102,6 +102,10 @@ Layout/ExtraSpacing:
   Exclude:
     - 'config/initializers/fca.rb'
 
+Layout/IndentArray:
+  Exclude:
+    - 'app/models/travel_insurance/trip_cover.rb'
+
 # Offense count: 2
 # Cop supports --auto-correct.
 # Configuration parameters: IndentationWidth.
@@ -457,6 +461,10 @@ Style/BlockDelimiters:
 Style/BracesAroundHashParameters:
   Exclude:
     - 'config/initializers/ransack.rb'
+
+Style/ConditionalAssignment:
+  Exclude:
+    - 'app/models/travel_insurance/trip_cover.rb'
 
 # Offense count: 9
 Style/DoubleNegation:
