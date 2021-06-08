@@ -497,6 +497,7 @@ DEPENDENCIES
   listen
   lockup
   mailjet
+  mimemagic (~> 0.3)
   oga
   pg (~> 0.20.0)
   pry-byebug
