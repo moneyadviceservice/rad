@@ -21,8 +21,8 @@ module Rad
     config.autoload_paths += Dir[Rails.root.join('app', 'models', '{**/}')]
 
     config.action_mailer.default_options = {
-      from: 'RADenquiries@moneyadviceservice.org.uk',
-      to: 'RADenquiries@moneyadviceservice.org.uk'
+      from: 'RADenquiries@moneyhelper.org.uk',
+      to: 'RADenquiries@moneyhelper.org.uk'
     }
     # Settings in config/environments/* take precedence over those specified
     # here.  Application configuration should go into files in
