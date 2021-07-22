@@ -3,15 +3,28 @@ module FCA
     HEADER_NAME = 1
     REFERENCE_NUMBER = 0
     NAME = 1
-    ADVISER_STATUS_CODE = 4
-    FIRM_AUTHORISATION_STATUS_CODE = 19
-    SUBSIDIARY_END_DATE = 4
 
-    ACTIVE_FIRM_AUTHORISATION_STATUS_CODES = [
+    #ADVISER_STATUS_CODE = 4
+    #FIRM_AUTHORISATION_STATUS_CODE = 19
+    #SUBSIDIARY_END_DATE = 4
+
+    #ACTIVE_FIRM_AUTHORISATION_STATUS_CODES = [
+    #  'Authorised',
+    #  'Registered',
+    #  'EEA Authorised'
+    #].freeze
+
+    ADVISER_STATUS_INDEX = 2
+    ADVISER_APPROVED_STATUSES =  ['Approved by regulator', 'Regulatory approval no longer required']
+
+    FIRM_AUTHORISATION_STATUS_INDEX = 14
+    FIRM_APPROVED_STATUSES = [
       'Authorised',
       'Registered',
       'EEA Authorised'
     ].freeze
+
+    SUBSIDIARY_END_DATE_INDEX = 4
 
     attr_reader :line, :repairs, :row, :trading_names, :delimeter, :prefix
     def initialize(line, options = {})
@@ -53,15 +66,15 @@ module FCA
     private
 
     def active_adviser?
-      %w[4 9].include?(row[ADVISER_STATUS_CODE])
+      ADVISER_APPROVED_STATUSES.include?(row[ADVISER_STATUS_INDEX])
     end
 
     def active_firm?
-      ACTIVE_FIRM_AUTHORISATION_STATUS_CODES.include?(row[FIRM_AUTHORISATION_STATUS_CODE])
+      FIRM_APPROVED_STATUSES.include?(row[FIRM_AUTHORISATION_STATUS_INDEX])
     end
 
     def active_subsidiary?
-      row[SUBSIDIARY_END_DATE].empty? && unique_trading_name?
+      row[SUBSIDIARY_END_DATE_INDEX].empty? && unique_trading_name?
     end
 
     def unique_trading_name?

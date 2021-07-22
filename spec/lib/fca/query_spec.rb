@@ -4,12 +4,12 @@ RSpec.describe FCA::Query do
   let(:options) { { prefix: 'test', delimeter: ',' } }
 
   describe 'tables mapping' do
-    it 'line Header with `Individual Details`' do
-      expect(tables['Individual Details']).to eq :lookup_advisers
+    it 'line Header with `Approved Individual Details`' do
+      expect(tables['Approved Individual Details']).to eq :lookup_advisers
     end
 
-    it 'line Header with `Firms Master List`' do
-      expect(tables['Firms Master List']).to eq :lookup_firms
+    it 'line Header with `Firm Authorisation`' do
+      expect(tables['Firm Authorisation']).to eq :lookup_firms
     end
 
     it 'line Header with `Alternative Firm Name`' do
@@ -64,7 +64,6 @@ RSpec.describe FCA::Query do
   describe 'sql statements' do
     subject     { FCA::Query.new(table: :lookup_advisers, delimeter: '|', prefix: 'test') }
     let(:line)  { ' ' }
-    let(:row)   { FCA::Row.new(line, delimeter: '|', table: :lookup_advisers) }
 
     it '.begin' do
       expect(subject.begin).to eq "BEGIN;\n"
@@ -92,26 +91,129 @@ CREATE TABLE IF NOT EXISTS test_lookup_advisers (id integer PRIMARY KEY DEFAULT 
     end
 
     describe '.values' do
-      %w[4 9].each do |status|
-        context "active adviser status=#{status}" do
-          let(:line) do
-            "100039|Crawfords|23|1|#{status}|Stanton House|41 Blackfriars Road|||Salford|Lancashire|M3|7DB|44|0161|832 5366|44|0161|832 1829|Cancelled|20090521|20011201|CRAWFORDS|20090521|".force_encoding('ISO-8859-1')
-          end
+      def new_query(table)
+        FCA::Query.new(delimeter: '|', table: table)
+      end
 
-          it 'should be included in import' do
-            expect(subject.values(row)).to include '100039|Crawford'
+      def new_row(line, table)
+        FCA::Row.new(line, delimeter: '|', table: table)
+      end
+
+      describe 'firms' do
+        let(:table) { :lookup_firms }
+
+        let(:query_table) { new_query(table) }
+
+        def line(status)
+          "100015|Saffron Building Society|Incorporated under Building Societies Act 1986|Regulated|Not hold and not control client money|Saffron House|1a Market Place|||Saffron Walden|Essex|CB10 1HX|44|01799522211|#{status}|20011201|20010704|SAFFRONBUILDINGSOCIETY|20210511|IP00485B|||"
+        end
+
+        allowed = ['Authorised', 'EEA Authorised', 'Registered']
+
+        allowed.each do |status|
+          context "approval status: #{status}" do
+            it 'should be included in import' do
+              line = line(status)
+
+              row = new_row(line, table)
+
+              expect(query_table.values(row)).to include line[0..15]
+            end
+          end
+        end
+
+        disallowed = ['Authorised - Closed to Regulated Bisiness',
+                      'No longer registered as an Appointed Representative',
+                      'Temporary Registration']
+
+        disallowed.each do |status|
+          context "approval status: #{status}" do
+            it 'should NOT be included in import' do
+              row = new_row(line(status), table)
+
+              expect(query_table.values(row)).to be_nil
+            end
           end
         end
       end
 
-      %w[1 2 3 5 6 7 8 N].each do |status|
-        context "inactive adviser status=#{status}" do
-          let(:line) do
-            '100039|Crawfords|23|1|N|Stanton House|41 Blackfriars Road|||Salford|Lancashire|M3|7DB|44|0161|832 5366|44|0161|832 1829|Cancelled|20090521|20011201|CRAWFORDS|20090521|'
-          end
+      describe 'advisers' do
+        let(:table) { :lookup_advisers }
 
-          it 'should not be included in import' do
-            expect(subject.values(row)).to be_nil
+        let(:query_table) { new_query(table) }
+
+        def line(status)
+          "AAA00005|Mr Anthony Andrew Apps|#{status}|APPSANTHONYANDREW|20210426|"
+        end
+
+        allowed = ['Approved by regulator', 'Regulatory approval no longer required']
+
+        allowed.each do |status|
+          context "approval status: #{status}" do
+            it 'should be included in import' do
+              line = line(status)
+
+              row = new_row(line, table)
+
+              expect(query_table.values(row)).to include line[0..15]
+            end
+          end
+        end
+
+        context 'approval status: Prohibited' do
+          it 'should NOT be included in import' do
+            row = new_row(line('Prohibited'), table)
+
+            expect(query_table.values(row)).to be_nil
+          end
+        end
+      end
+
+      describe 'subsidiary' do
+        let(:table) { :lookup_subsidiaries }
+
+        let(:query_table) { new_query(table) }
+
+        let(:query_header) { new_row('Header|Alternative Firm Name', table).query }
+
+        def line(date: '', name: 'Saffron Insure')
+          "100015|#{name}|Trading|20071101|#{date}|SAFFRONINSURE|20200403|"
+        end
+
+        context 'has NO End Date' do
+          it 'should be included in import' do
+            row = new_row(line, table)
+
+            expect(query_table.values(row)).to include line[0..9]
+          end
+        end
+
+        context 'has an End Date' do
+          it 'should NOT be included in import' do
+            row = new_row(line(date: '20210403'), table)
+
+            expect(query_table.values(row)).to be_nil
+          end
+        end
+
+        context 'repeated firms' do
+          it 'should NOT be included in import' do
+            row = new_row(line, table)
+
+            expect(query_header.values(row)).not_to be_nil
+
+            expect(query_header.values(row)).to be_nil
+          end
+        end
+
+        context 'unrepeated firms' do
+          it 'should be included in import' do
+            row = new_row(line(name: 'Saffron Robe'), table)
+            query_header.values(row)
+
+            row = new_row(line, table)
+
+            expect(query_table.values(row)).to include line[0..15]
           end
         end
       end
