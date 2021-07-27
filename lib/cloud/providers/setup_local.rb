@@ -13,7 +13,7 @@ module Cloud
     class SetupLocal
       # rubocop:disable all
 =begin
-      PATH = '/tmp/azure'.freeze
+      PATH = 'tmp/azure'.freeze
 
       DOWNLOADS = '~/Downloads'
 
