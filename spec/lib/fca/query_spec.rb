@@ -108,9 +108,7 @@ CREATE TABLE IF NOT EXISTS test_lookup_advisers (id integer PRIMARY KEY DEFAULT 
           "100015|Saffron Building Society|Incorporated under Building Societies Act 1986|Regulated|Not hold and not control client money|Saffron House|1a Market Place|||Saffron Walden|Essex|CB10 1HX|44|01799522211|#{status}|20011201|20010704|SAFFRONBUILDINGSOCIETY|20210511|IP00485B|||"
         end
 
-        allowed = ['Authorised', 'EEA Authorised', 'Registered']
-
-        allowed.each do |status|
+        FCA::Row::FIRM_APPROVED_STATUSES.each do |status|
           context "approval status: #{status}" do
             it 'should be included in import' do
               line = line(status)
@@ -122,7 +120,7 @@ CREATE TABLE IF NOT EXISTS test_lookup_advisers (id integer PRIMARY KEY DEFAULT 
           end
         end
 
-        disallowed = ['Authorised - Closed to Regulated Bisiness',
+        disallowed = ['Authorised - Closed to Regulated Business',
                       'No longer registered as an Appointed Representative',
                       'Temporary Registration']
 
@@ -146,9 +144,7 @@ CREATE TABLE IF NOT EXISTS test_lookup_advisers (id integer PRIMARY KEY DEFAULT 
           "AAA00005|Mr Anthony Andrew Apps|#{status}|APPSANTHONYANDREW|20210426|"
         end
 
-        allowed = ['Approved by regulator', 'Regulatory approval no longer required']
-
-        allowed.each do |status|
+        FCA::Row::ADVISER_APPROVED_STATUSES.each do |status|
           context "approval status: #{status}" do
             it 'should be included in import' do
               line = line(status)

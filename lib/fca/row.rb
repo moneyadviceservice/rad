@@ -1,21 +1,11 @@
 module FCA
   class Row
-    HEADER_NAME = 1
-    REFERENCE_NUMBER = 0
-    NAME = 1
-
-    #ADVISER_STATUS_CODE = 4
-    #FIRM_AUTHORISATION_STATUS_CODE = 19
-    #SUBSIDIARY_END_DATE = 4
-
-    #ACTIVE_FIRM_AUTHORISATION_STATUS_CODES = [
-    #  'Authorised',
-    #  'Registered',
-    #  'EEA Authorised'
-    #].freeze
+    HEADER_NAME_INDEX = 1
+    REFERENCE_NUMBER_INDEX = 0
+    NAME_INDEX = 1
 
     ADVISER_STATUS_INDEX = 2
-    ADVISER_APPROVED_STATUSES =  ['Approved by regulator', 'Regulatory approval no longer required']
+    ADVISER_APPROVED_STATUSES =  ['Approved by regulator', 'Regulatory approval no longer required'].freeze
 
     FIRM_AUTHORISATION_STATUS_INDEX = 14
     FIRM_APPROVED_STATUSES = [
@@ -45,7 +35,7 @@ module FCA
     end
 
     def query
-      q = Query.find(row[HEADER_NAME], delimeter: delimeter, prefix: prefix)
+      q = Query.find(row[HEADER_NAME_INDEX], delimeter: delimeter, prefix: prefix)
       yield Query.headers.join(', ') if q.nil? && block_given?
       q
     end
@@ -78,7 +68,7 @@ module FCA
     end
 
     def unique_trading_name?
-      trading_names.add?("#{row[REFERENCE_NUMBER]}|#{row[NAME]}")
+      trading_names.add?("#{row[REFERENCE_NUMBER_INDEX]}|#{row[NAME_INDEX]}")
     end
 
     def repair

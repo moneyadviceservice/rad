@@ -114,7 +114,7 @@ EOF
     end
 
     def number(row)
-      table == :lookup_advisers ? "'#{row[Row::REFERENCE_NUMBER]}'" : row[Row::REFERENCE_NUMBER]
+      table == :lookup_advisers ? "'#{row[Row::REFERENCE_NUMBER_INDEX]}'" : row[Row::REFERENCE_NUMBER_INDEX]
     end
 
     def escape(str)
@@ -124,7 +124,7 @@ EOF
     def vals(row)
       [
         number(row),
-        escape(row[Row::NAME].strip), # name
+        escape(row[Row::NAME_INDEX].strip), # name
         timestamp,
         timestamp
       ].join(delimeter)
