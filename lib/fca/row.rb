@@ -1,17 +1,20 @@
 module FCA
   class Row
-    HEADER_NAME = 1
-    REFERENCE_NUMBER = 0
-    NAME = 1
-    ADVISER_STATUS_CODE = 4
-    FIRM_AUTHORISATION_STATUS_CODE = 19
-    SUBSIDIARY_END_DATE = 4
+    HEADER_NAME_INDEX = 1
+    REFERENCE_NUMBER_INDEX = 0
+    NAME_INDEX = 1
 
-    ACTIVE_FIRM_AUTHORISATION_STATUS_CODES = [
+    ADVISER_STATUS_INDEX = 2
+    ADVISER_APPROVED_STATUSES =  ['Approved by regulator', 'Regulatory approval no longer required'].freeze
+
+    FIRM_AUTHORISATION_STATUS_INDEX = 14
+    FIRM_APPROVED_STATUSES = [
       'Authorised',
       'Registered',
       'EEA Authorised'
     ].freeze
+
+    SUBSIDIARY_END_DATE_INDEX = 4
 
     attr_reader :line, :repairs, :row, :trading_names, :delimeter, :prefix
     def initialize(line, options = {})
@@ -32,7 +35,7 @@ module FCA
     end
 
     def query
-      q = Query.find(row[HEADER_NAME], delimeter: delimeter, prefix: prefix)
+      q = Query.find(row[HEADER_NAME_INDEX], delimeter: delimeter, prefix: prefix)
       yield Query.headers.join(', ') if q.nil? && block_given?
       q
     end
@@ -53,19 +56,19 @@ module FCA
     private
 
     def active_adviser?
-      %w[4 9].include?(row[ADVISER_STATUS_CODE])
+      ADVISER_APPROVED_STATUSES.include?(row[ADVISER_STATUS_INDEX])
     end
 
     def active_firm?
-      ACTIVE_FIRM_AUTHORISATION_STATUS_CODES.include?(row[FIRM_AUTHORISATION_STATUS_CODE])
+      FIRM_APPROVED_STATUSES.include?(row[FIRM_AUTHORISATION_STATUS_INDEX])
     end
 
     def active_subsidiary?
-      row[SUBSIDIARY_END_DATE].empty? && unique_trading_name?
+      row[SUBSIDIARY_END_DATE_INDEX].empty? && unique_trading_name?
     end
 
     def unique_trading_name?
-      trading_names.add?("#{row[REFERENCE_NUMBER]}|#{row[NAME]}")
+      trading_names.add?("#{row[REFERENCE_NUMBER_INDEX]}|#{row[NAME_INDEX]}")
     end
 
     def repair
