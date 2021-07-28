@@ -1,4 +1,6 @@
 RSpec.feature 'Principal provides travel insurance information', :inline_job_queue do
+  include_context 'algolia index fake'
+
   let(:travel_insurance_registration_page) do
     TravelInsuranceRegistrationPage.new
   end
