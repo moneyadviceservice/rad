@@ -1,4 +1,13 @@
 RSpec.describe FcaApi::Request do
+  it_behaves_like 'an fca api', 'firm' do
+    let(:lookup_key) { 100015 }
+
+    let(:expected_fields) { [['Organisation Name', 'Saffron Building Society'], %w[Status Authorised]] }
+
+    let(:bad_lookup_key) { 666666 }
+  end
+
+  context 'implementation' do
   subject { described_class.new }
 
   let(:connection) { FcaApi::Connection.new(domain) }
@@ -60,6 +69,7 @@ RSpec.describe FcaApi::Request do
       expect(FcaApi::Response).to receive(:new).with(response).and_return(response_failed)
 
       subject.get_firm(firm_id)
+    end
     end
   end
 

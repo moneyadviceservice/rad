@@ -1,0 +1,46 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://register.fca.org.uk/services/V0.1/Firm/100015
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      X-Auth-Email:
+      - margo.urey@moneyadviceservice.org.uk
+      X-Auth-Key:
+      - 8c5e94fd07d788dfbdf14fcb6c799999
+      User-Agent:
+      - Faraday v0.14.0
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 403
+      message: Forbidden
+    headers:
+      Date:
+      - Thu, 29 Jul 2021 14:54:24 GMT
+      Content-Type:
+      - text/plain;charset=UTF-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Expect-Ct:
+      - max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"
+      Vary:
+      - Accept-Encoding
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 67672ea8a88606f1-LHR
+    body:
+      encoding: ASCII-8BIT
+      string: '{"Success":"false", "Sorry, this page is not available. Incorrect Headers."}'
+    http_version: 
+  recorded_at: Thu, 29 Jul 2021 14:54:24 GMT
+recorded_with: VCR 4.0.0
