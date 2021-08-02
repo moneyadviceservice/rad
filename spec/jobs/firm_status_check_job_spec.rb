@@ -8,6 +8,8 @@ RSpec.describe FirmStatusCheckJob do
     let(:unauthorised_firm) { create(:firm, registered_name: 'Davies Watson', fca_number: 100044) }
     let(:unknown_firm) { create(:firm, registered_name: 'Beasts', fca_number: 666666) }
 
+    let(:last_inactive_firm) { InactiveFirm.last }
+
     def use_cassette(name)
       VCR.use_cassette("firm-status-check-job-#{name}") { yield }
     end
@@ -45,10 +47,10 @@ RSpec.describe FirmStatusCheckJob do
         use_cassette(:inactive) do
           perform_now(unauthorised_firm)
 
-          if inactive_firm = InactiveFirm.last
-            expect(inactive_firm.firmable).to eq unauthorised_firm
+          if last_inactive_firm
+            expect(last_inactive_firm.firmable).to eq unauthorised_firm
 
-            expect(inactive_firm.api_status).to eq 'No longer authorised'
+            expect(last_inactive_firm.api_status).to eq 'No longer authorised'
           end
         end
       end
@@ -57,16 +59,43 @@ RSpec.describe FirmStatusCheckJob do
         use_cassette(:unknown) do
           perform_now(unknown_firm)
 
-          if inactive_firm = InactiveFirm.last
-            expect(inactive_firm.firmable).to eq unknown_firm
+          if last_inactive_firm
+            expect(last_inactive_firm.firmable).to eq unknown_firm
 
-            expect(inactive_firm.api_status).to eq 'Not Found'
+            expect(last_inactive_firm.api_status).to eq 'Not Found'
           end
         end
       end
     end
 
-    context 'failures when calling api' do
+    # This context is for pre-existing bugs
+    context 'failure in API call' do
+      context 'raises exception' do
+        it 'should not really omit an unauthorised firm from the inactive firm list' do
+          # In this case, it's impossible to determine whether the firm in question is
+          # actually anauthorised. We'd need the incoming API result to tell us that!
+          # Instead we trap the exception and flag an error.
+          use_cassette(:exception) do
+            set_env_var('FCA_API_TIMEOUT', '0')
+
+            check_inactive_firm_creation(0) do
+              expect { perform_now(unauthorised_firm) }.to raise_error(Faraday::ConnectionFailed)
+            end
+          end
+        end
+      end
+
+      context 'returns error' do
+        it 'should not add an authorised firm to the inactive firm list' do
+          # In this case, we obviously omit the record from the inactive list,
+          # and just flag an error.
+          use_cassette(:failure) do
+            set_env_var('FCA_API_KEY', '8c5e94fd07d788dfbdf14fcb6c799999')
+
+            check_inactive_firm_creation { perform_now(active_firm) }
+          end
+        end
+      end
     end
   end
 
