@@ -1,6 +1,6 @@
-module FcaTestApiCreds
+module FcaApiExtractCreds
   def set_env_for_api_calls
-    extract_fca_vars_from_dot_env.each {|name, value| set_env_var(name, value) }
+    extract_fca_vars_from_dot_env.each { |name, value| set_env_var(name, value) }
   end
 
   def set_env_var(name, value)
@@ -8,14 +8,14 @@ module FcaTestApiCreds
   end
 
   def extract_fca_vars_from_dot_env
-    File.readlines('.env').inject Hash.new do |acca, line|
+    File.readlines('.env').each_with_object({}) do |line, api_params|
       key, value = line.chomp.split('=')
 
       value = value.gsub(/^'|'$/, '')
 
-      acca[key] = value if key.start_with?('FCA_API')
+      api_params[key] = value if key.start_with?('FCA_API')
 
-      acca
+      api_params
     end
   end
 end

@@ -1,10 +1,10 @@
 RSpec.describe FirmStatusCheckJob do
   describe 'with api call' do
-    include FcaTestApiCreds
+    include FcaApiExtractCreds
 
     before { set_env_for_api_calls }
 
-    let(:active_firm) { create(:firm, registered_name: 'Leek United Building Society', fca_number: 100014) }
+    let(:approved_firm) { create(:firm, registered_name: 'Leek United Building Society', fca_number: 100014) }
     let(:unauthorised_firm) { create(:firm, registered_name: 'Davies Watson', fca_number: 100044) }
     let(:unknown_firm) { create(:firm, registered_name: 'Beasts', fca_number: 666666) }
 
@@ -14,7 +14,7 @@ RSpec.describe FirmStatusCheckJob do
       VCR.use_cassette("firm-status-check-job-#{name}") { yield }
     end
 
-    def perform_now(firm)
+    def perform_job(firm)
       described_class.perform_now(firm)
     end
 
@@ -25,19 +25,19 @@ RSpec.describe FirmStatusCheckJob do
     context 'an inactive_firm record' do
       it 'is created if firm exists with inactive status' do
         use_cassette(:inactive) do
-          check_inactive_firm_creation { perform_now(unauthorised_firm) }
+          check_inactive_firm_creation { perform_job(unauthorised_firm) }
         end
       end
 
       it 'is created if firm does not exist' do
         use_cassette(:unknown) do
-          check_inactive_firm_creation { perform_now(unknown_firm) }
+          check_inactive_firm_creation { perform_job(unknown_firm) }
         end
       end
 
       it 'is not created if firm exists with active status' do
         use_cassette(:active) do
-          check_inactive_firm_creation(0) { perform_now(active_firm) }
+          check_inactive_firm_creation(0) { perform_job(approved_firm) }
         end
       end
     end
@@ -45,7 +45,7 @@ RSpec.describe FirmStatusCheckJob do
     context 'field of inactive_firm record' do
       it 'has correct value if firm exists with inactive status' do
         use_cassette(:inactive) do
-          perform_now(unauthorised_firm)
+          perform_job(unauthorised_firm)
 
           if last_inactive_firm
             expect(last_inactive_firm.firmable).to eq unauthorised_firm
@@ -57,7 +57,7 @@ RSpec.describe FirmStatusCheckJob do
 
       it 'has correct value if firm does not exist' do
         use_cassette(:unknown) do
-          perform_now(unknown_firm)
+          perform_job(unknown_firm)
 
           if last_inactive_firm
             expect(last_inactive_firm.firmable).to eq unknown_firm
@@ -68,7 +68,7 @@ RSpec.describe FirmStatusCheckJob do
       end
     end
 
-    # This context is for pre-existing bugs
+    # This context verifies pre-existing bugs. They actually test unwanted behaviour.
     context 'failure in API call' do
       context 'raises exception' do
         it 'should not really omit an unauthorised firm from the inactive firm list' do
@@ -79,7 +79,7 @@ RSpec.describe FirmStatusCheckJob do
             set_env_var('FCA_API_TIMEOUT', '0')
 
             check_inactive_firm_creation(0) do
-              expect { perform_now(unauthorised_firm) }.to raise_error(Faraday::ConnectionFailed)
+              expect { perform_job(unauthorised_firm) }.to raise_error(Faraday::ConnectionFailed)
             end
           end
         end
@@ -92,7 +92,7 @@ RSpec.describe FirmStatusCheckJob do
           use_cassette(:failure) do
             set_env_var('FCA_API_KEY', '8c5e94fd07d788dfbdf14fcb6c799999')
 
-            check_inactive_firm_creation { perform_now(active_firm) }
+            check_inactive_firm_creation { perform_job(approved_firm) }
           end
         end
       end

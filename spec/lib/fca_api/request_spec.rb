@@ -6,8 +6,9 @@ RSpec.describe FcaApi::Request do
 
     let(:bad_lookup_key) { 666666 }
   end
+end
 
-  context 'implementation' do
+RSpec.describe FcaApi::Request do
   subject { described_class.new }
 
   let(:connection) { FcaApi::Connection.new(domain) }
@@ -69,7 +70,6 @@ RSpec.describe FcaApi::Request do
       expect(FcaApi::Response).to receive(:new).with(response).and_return(response_failed)
 
       subject.get_firm(firm_id)
-    end
     end
   end
 

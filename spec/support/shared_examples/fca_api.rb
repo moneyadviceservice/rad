@@ -1,5 +1,5 @@
 RSpec.shared_examples 'an fca api' do |lookup_type|
-  include FcaTestApiCreds
+  include FcaApiExtractCreds
 
   before { set_env_for_api_calls }
 
@@ -47,7 +47,7 @@ RSpec.shared_examples 'an fca api' do |lookup_type|
 
     context 'api failures' do
       it 'down for maintenance' do
-        allow(request.connection).to receive(:get).and_raise(Faraday::ParsingError.new Hash.new)
+        allow(request.connection).to receive(:get).and_raise(Faraday::ParsingError.new({}))
 
         response = response(lookup_key)
 

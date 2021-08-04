@@ -1,0 +1,60 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://register.fca.org.uk/services/V0.1/Firm/666666
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      X-Auth-Email:
+      - margo.urey@moneyadviceservice.org.uk
+      X-Auth-Key:
+      - 8c5e94fd07d788dfbdf14fcb6c7e836f
+      User-Agent:
+      - Faraday v0.14.0
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 04 Aug 2021 18:29:46 GMT
+      Content-Type:
+      - application/json;charset=UTF-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Cf-Ray:
+      - 6799da5f7da10796-LHR
+      Cache-Control:
+      - no-cache,must-revalidate,max-age=0,no-store,private
+      Set-Cookie:
+      - CookieConsentPolicy=0:0; domain=register.fca.org.uk; path=/; expires=Thu,
+        04-Aug-2022 18:29:45 GMT; Max-Age=31536000
+      Strict-Transport-Security:
+      - max-age=31536004; includeSubDomains
+      Vary:
+      - Accept-Encoding
+      Cf-Cache-Status:
+      - DYNAMIC
+      Expect-Ct:
+      - max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"
+      X-Content-Type-Options:
+      - nosniff
+      X-Xss-Protection:
+      - 1; mode=block
+      Server:
+      - cloudflare
+    body:
+      encoding: ASCII-8BIT
+      string: '{"Status":"FSR-API-02-01-11","ResultInfo":null,"Message":"Firm not
+        found","Data":null}'
+    http_version: 
+  recorded_at: Wed, 04 Aug 2021 18:29:46 GMT
+recorded_with: VCR 4.0.0
