@@ -1,6 +1,9 @@
 class Principal < ApplicationRecord
   self.primary_key = 'token'
 
+  attr_accessor :travel_insurance_principal
+  alias travel_insurance_principal? travel_insurance_principal
+
   before_validation :downcase_email
   before_create :generate_token
 
@@ -31,6 +34,8 @@ class Principal < ApplicationRecord
             length: { maximum: 50 },
             format: { with: /.+@.+\..+/ }
 
+  validates :individual_reference_number, presence: true, if: :travel_insurance_principal?
+
   validates :first_name, :last_name, :job_title, presence: true, length: 2..80
 
   validates :telephone_number,
@@ -57,6 +62,7 @@ class Principal < ApplicationRecord
       fca_number
       first_name
       last_name
+      individual_reference_number
       job_title
       email_address
       telephone_number

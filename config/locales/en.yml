@@ -313,6 +313,7 @@ en:
       explanation: Please enter the details of the person completing the registration process on behalf of your firm. We recommend that registration is completed by a Principal, Compliance officer or the equivalent.
       first_name: First name *
       last_name: Last name *
+      individual_reference_number: Individual reference number (IRN) *
       job_title: Job title *
       email_address: Email address *
       senior_manager_name: Name (if not Senior Manager name above)

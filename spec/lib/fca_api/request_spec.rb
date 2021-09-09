@@ -13,16 +13,14 @@ RSpec.describe FcaApi::Request do
     stub_env('FCA_API_TIMEOUT', 1)
     stub_env('FCA_API_EMAIL', 'email@maps.org.uk')
     stub_env('FCA_API_KEY', 'xyz123abc')
+
+    allow(FcaApi::Connection)
+      .to receive(:new)
+      .with(domain)
+      .and_return(connection)
   end
 
   describe '#get_firm' do
-    before do
-      allow(FcaApi::Connection)
-        .to receive(:new)
-        .with(domain)
-        .and_return(connection)
-    end
-
     let(:response_message) { { 'Message' => 'Ok. Firm Found' } }
 
     it 'returns a firm with the provided reference number' do
@@ -37,18 +35,26 @@ RSpec.describe FcaApi::Request do
     end
   end
 
+  describe '#get_individual' do
+    let(:response_message) { { 'Message' => 'Ok. Individual found' } }
+
+    it 'returns an individual with the provided reference number' do
+      expect(connection)
+        .to receive(:get)
+        .with('/services/V0.1/Individuals/123')
+        .and_return(response)
+
+      expect(FcaApi::Response).to receive(:new).with(response)
+
+      subject.get_individual('123')
+    end
+  end
+
   describe 'API down for maintenance' do
     # rubocop:disable Style/HashSyntax
     let(:response_failure_message) { { :Message => 'Failure' } }
     # rubocop:enable Style/HashSyntax
     let(:down_for_maintenance) { { 'Success' => 'true', 'Message' => 'API down' } }
-
-    before do
-      allow(FcaApi::Connection)
-        .to receive(:new)
-        .with(domain)
-        .and_return(connection)
-    end
 
     it 'returns a failed response' do
       allow(connection)

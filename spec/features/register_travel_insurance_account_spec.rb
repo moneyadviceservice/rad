@@ -45,13 +45,6 @@ RSpec.feature 'Principal provides travel insurance information', :inline_job_que
       and_i_provide_my_identifying_particulars
       then_i_am_told_which_fields_are_incorrect_and_why
     end
-
-    scenario 'Registering a travel insurance firm' do
-      given_i_am_on_the_travel_insurance_registration_page
-      when_i_provide_my_firms_fca_reference_number
-      and_i_provide_my_identifying_particulars
-      then_i_am_taken_to_the_second_step_of_signup
-    end
   end
 
   context 'Step 2' do
@@ -228,7 +221,7 @@ RSpec.feature 'Principal provides travel insurance information', :inline_job_que
       p.covered_by_ombudsman_question.choose 'No'
       p.risk_profile_approach_question.choose I18n.t('registration.risk_profile_approach_question.answers.bespoke')
 
-      VCR.use_cassette('registrations_fca_firm_api_call') do
+      VCR.use_cassette('registrations_fca_firm_api_call', allow_playback_repeats: true) do
         p.register.click
       end
     end
@@ -239,7 +232,7 @@ RSpec.feature 'Principal provides travel insurance information', :inline_job_que
       p.covered_by_ombudsman_question.choose 'Yes'
       p.risk_profile_approach_question.choose I18n.t('registration.risk_profile_approach_question.answers.bespoke')
 
-      VCR.use_cassette('registrations_fca_firm_api_call') do
+      VCR.use_cassette('registrations_fca_firm_api_call', allow_playback_repeats: true) do
         p.register.click
       end
     end
@@ -249,7 +242,7 @@ RSpec.feature 'Principal provides travel insurance information', :inline_job_que
     travel_insurance_medical_conditions_page.tap do |p|
       p.covers_medical_condition_question.choose I18n.t('registration.covers_medical_condition_question.answers.one_specific')
 
-      VCR.use_cassette('registrations_fca_firm_api_call') do
+      VCR.use_cassette('registrations_fca_firm_api_call', allow_playback_repeats: true) do
         p.register.click
       end
     end
@@ -271,6 +264,7 @@ RSpec.feature 'Principal provides travel insurance information', :inline_job_que
       p.first_name.set principal_details.first_name
       p.last_name.set principal_details.last_name
       p.job_title.set principal_details.job_title
+      p.individual_reference_number.set principal_details.individual_reference_number
       p.email.set principal_details.email_address
       p.password.set 'Password1!'
       p.password_confirmation.set 'Password1!'
@@ -278,7 +272,7 @@ RSpec.feature 'Principal provides travel insurance information', :inline_job_que
 
       p.confirmation.set true
 
-      VCR.use_cassette('registrations_fca_firm_api_call') do
+      VCR.use_cassette('registrations_fca_firm_api_call', allow_playback_repeats: true) do
         p.register.click
       end
     end
@@ -312,7 +306,7 @@ RSpec.feature 'Principal provides travel insurance information', :inline_job_que
         p.send(question).send(:choose, answer)
       end
 
-      VCR.use_cassette('registrations_fca_firm_api_call') do
+      VCR.use_cassette('registrations_fca_firm_api_call', allow_playback_repeats: true) do
         p.register.click
       end
     end
@@ -425,6 +419,7 @@ RSpec.feature 'Principal provides travel insurance information', :inline_job_que
     OpenStruct.new(
       first_name: 'test',
       last_name: 'principal',
+      individual_reference_number: 'LXD25428',
       job_title: 'The tester',
       email_address: 'test@moneyadviceservice.org.uk',
       telephone_number: '07777 777 777'

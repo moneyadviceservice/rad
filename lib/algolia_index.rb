@@ -34,19 +34,19 @@ module AlgoliaIndex
     end
 
     def indexed_travel_insurance_firms
-      @indexed_travel_insurance_firms ||= Algolia::Index.new(INDICES[:travel_firms])
+      @indexed_travel_insurance_firms = Algolia::Index.new(INDICES[:travel_firms])
     end
 
     def indexed_travel_insurance_firm_offerings
-      @indexed_travel_insurance_firm_offerings ||= Algolia::Index.new(INDICES[:travel_firm_offerings])
+      @indexed_travel_insurance_firm_offerings = Algolia::Index.new(INDICES[:travel_firm_offerings])
     end
 
     def indexed_advisers
-      @indexed_advisers ||= Algolia::Index.new(INDICES[:advisers])
+      @indexed_advisers = Algolia::Index.new(INDICES[:advisers])
     end
 
     def indexed_offices
-      @indexed_offices ||= Algolia::Index.new(INDICES[:offices])
+      @indexed_offices = Algolia::Index.new(INDICES[:offices])
     end
   end
 end

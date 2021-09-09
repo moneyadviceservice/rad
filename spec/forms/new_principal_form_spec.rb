@@ -27,6 +27,10 @@ RSpec.describe NewPrincipalForm, type: :model do
 
     it { is_expected.to be_valid }
 
+    it 'defaults `individual_reference_number` to an empty string' do
+      expect(subject.individual_reference_number).to eq('')
+    end
+
     describe '#user_params' do
       let(:user) { User.new(subject.user_params) }
 

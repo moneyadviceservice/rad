@@ -2,6 +2,12 @@ RSpec.describe Principal do
   let(:principal) { create(:principal) }
   let(:trading_name) { create(:firm, parent: principal.firm, fca_number: principal.fca_number) }
 
+  describe '#travel_insurance_principal?' do
+    it 'defaults to false' do
+      expect(principal).not_to be_travel_insurance_principal
+    end
+  end
+
   describe '#firm' do
     let(:parent_firm) { Firm.find_by(fca_number: principal.fca_number, parent: nil) }
 
@@ -157,6 +163,7 @@ RSpec.describe Principal do
         fca_number
         first_name
         last_name
+        individual_reference_number
         job_title
         email_address
         telephone_number

@@ -2,7 +2,7 @@ class NewPrincipalForm
   include ActiveModel::Model
 
   PRINCIPAL_PARAMS = %i[
-    fca_number first_name last_name job_title email_address
+    fca_number first_name last_name individual_reference_number job_title email_address
     telephone_number confirmed_disclaimer
   ].freeze
   USER_PARAMS = %i[email password password_confirmation].freeze
@@ -19,6 +19,7 @@ class NewPrincipalForm
   validate do
     user = validated_user
     validate_fca_number
+    validate_individual_reference_number
 
     PARAMS.each do |param|
       user.errors[param].each do |error|
@@ -34,7 +35,7 @@ class NewPrincipalForm
   def principal_params
     PRINCIPAL_PARAMS.inject({}) do |principal_params, param_name|
       principal_params.update(param_name => send(param_name))
-    end
+    end.merge(travel_insurance_principal: travel_insurance_registration?)
   end
 
   def user_params
@@ -48,6 +49,7 @@ class NewPrincipalForm
       fca_number
       first_name
       last_name
+      individual_reference_number
       job_title
       email
       telephone_number
@@ -55,6 +57,10 @@ class NewPrincipalForm
       password_confirmation
       confirmed_disclaimer
     ]
+  end
+
+  def individual_reference_number
+    @individual_reference_number.to_s
   end
 
   private
@@ -77,6 +83,23 @@ class NewPrincipalForm
     end
 
     errors.add(:fca_number, 'is invalid') unless response
+  end
+
+  def validate_individual_reference_number
+    return unless travel_insurance_registration? && individual_reference_number.present?
+
+    response = Rails.cache.fetch(['registration_individual_reference', individual_reference_number], expires_in: 1.hour) do
+      response = FcaApi::Request.new.get_individual(individual_reference_number)
+      response.ok?
+    rescue RuntimeError
+      false
+    end
+
+    errors.add(:individual_reference_number, 'is invalid') unless response
+  end
+
+  def travel_insurance_registration?
+    registration_type == 'travel_insurance_registrations'
   end
 
   def add_deduplicated_error(param, error)
