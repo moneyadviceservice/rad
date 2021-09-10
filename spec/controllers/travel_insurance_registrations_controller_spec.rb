@@ -101,14 +101,30 @@ RSpec.describe TravelInsuranceRegistrationsController, type: :controller do
   describe 'POST #wizard as risk_profile' do
     context 'when allowed to continue' do
       it 'redirects to the next step when allowed to continue' do
-        post :wizard, params: { current_step: :risk_profile, travel_insurance_risk_profile_form: { covered_by_ombudsman_question: 'true', risk_profile_approach_question: 'questionaire' } }
+        post :wizard, params: {
+          current_step: :risk_profile,
+          travel_insurance_risk_profile_form: {
+            covered_by_ombudsman_question: 'true',
+            risk_profile_approach_question: 'questionaire',
+            supplies_documentation_when_needed_question: 'true'
+          }
+        }
+
         expect(response).to redirect_to medical_conditions_travel_insurance_registrations_path
       end
     end
 
     context 'when not qualified' do
       it 'redirects to reject page' do
-        post :wizard, params: { current_step: :risk_profile, travel_insurance_risk_profile_form: { covered_by_ombudsman_question: 'true', risk_profile_approach_question: 'neither' } }
+        post :wizard, params: {
+          current_step: :risk_profile,
+          travel_insurance_risk_profile_form: {
+            covered_by_ombudsman_question: 'true',
+            risk_profile_approach_question: 'neither',
+            supplies_documentation_when_needed_question: 'false'
+          }
+        }
+
         expect(response).to redirect_to reject_travel_insurance_registrations_path
       end
     end

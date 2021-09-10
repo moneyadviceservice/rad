@@ -56,5 +56,26 @@
     </fieldset>
   <% end %>
 
+  <%= f.form_row :supplies_documentation_when_needed_question do %>
+    <fieldset class="form__group t-supplies_document_when_needed_question">
+      <legend class="l-pre-qualification__question l-pre-qualification__question--with-desc"><%= t('registration.supplies_documentation_when_needed_question.heading') %></legend>
+      <p><%= t('registration.supplies_documentation_when_needed_question.description_html') %></p>
+
+      <div class="form__group-item">
+        <label>
+          <%= f.radio_button :supplies_documentation_when_needed_question, 'true', class: 'form__group-input' %>
+          <%= t('registration.answer_yes') %>
+        </label>
+      </div>
+
+      <div class="form__group-item">
+        <label>
+          <%= f.radio_button :supplies_documentation_when_needed_question, 'false', class: 'form__group-input' %>
+          <%= t('registration.answer_no') %>
+        </label>
+      </div>
+    </fieldset>
+  <% end %>
+
   <%= button_primary t('travel_insurance_registrations.register_button') %>
 <% end %>

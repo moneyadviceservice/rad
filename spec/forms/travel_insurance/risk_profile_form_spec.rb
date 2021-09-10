@@ -7,7 +7,8 @@ RSpec.describe TravelInsurance::RiskProfileForm, '#valid?', type: :model do
     let(:params) do
       {
         covered_by_ombudsman_question: 'true',
-        risk_profile_approach_question: 'bespoke'
+        risk_profile_approach_question: 'bespoke',
+        supplies_documentation_when_needed_question: 'true'
       }
     end
 
@@ -15,7 +16,7 @@ RSpec.describe TravelInsurance::RiskProfileForm, '#valid?', type: :model do
   end
 
   context 'when not all questions are answered' do
-    let(:params) { { covered_by_ombudsman_question: 'true' } }
+    let(:params) { { supplies_documentation_when_needed_question: 'true' } }
     it { is_expected.not_to be_valid }
   end
 end

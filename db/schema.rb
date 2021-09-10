@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 3019_11_18_100180) do
+ActiveRecord::Schema.define(version: 3019_11_18_100181) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
@@ -439,6 +439,7 @@ ActiveRecord::Schema.define(version: 3019_11_18_100180) do
     t.integer "parent_id"
     t.text "website_address"
     t.datetime "hidden_at"
+    t.string "supplies_documentation_when_needed_question"
     t.index ["approved_at"], name: "index_travel_insurance_firms_on_approved_at"
     t.index ["fca_number"], name: "index_travel_insurance_firms_on_fca_number"
     t.index ["hidden_at"], name: "index_travel_insurance_firms_on_hidden_at"

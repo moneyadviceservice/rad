@@ -6,6 +6,7 @@ class TravelInsuranceRiskProfilePage < SitePrism::Page
 
   element :covered_by_ombudsman_question, '.t-covered_by_ombudsman_question'
   element :risk_profile_approach_question, '.t-risk_profile_approach_question'
+  element :supplies_documentation_when_needed_question, '.t-supplies_document_when_needed_question'
 
   element :register, '.button--primary'
 
