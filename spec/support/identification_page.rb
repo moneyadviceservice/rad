@@ -7,6 +7,7 @@ class IdentificationPage < SitePrism::Page
   element :reference_number, '.t-reference-number'
   element :first_name, '.t-first-name'
   element :last_name, '.t-last-name'
+  element :individual_reference_number, '.t-individual-reference-number'
   element :job_title, '.t-job-title'
   element :email, '.t-email-address'
   element :password, '.t-password'

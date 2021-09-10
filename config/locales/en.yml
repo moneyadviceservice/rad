@@ -130,16 +130,16 @@ en:
   travel_insurance_registrations:
     heading: Travel Insurance Directory - Firm Registration
     intro: Welcome to the registration page for the Money & Pensions Service Travel Insurance Directory.
-    prompt: Please enter the name and job title of the Senior Manager* responsible for the accuracy of the information provided.
-    prompt_explanation: "*An individual approved by the FCA to perform a senior management function and listed on the FCA Register."
+    prompt: Please enter the name and FCA Individual Reference Number (IRN) of the Senior Manager* responsible for the accuracy of the information provided.
+    prompt_explanation: "*An individual approved by the FCA to perform a senior management function and listed on the FCA Register under the FCA Firm Reference Number given above."
     reference_number: FCA Firm Reference Number (FRN)
-    frn_linked_trading_names_info: You can register the main firm and up to two trading names linked to this FRN.
+    frn_linked_trading_names_info: You can enter details for one firm. This can be the main authorised firm OR one trading name registered to the FCA Firm Reference Number (FRN) above.
     email_and_phone_message: Enter the email address and telephone number of the named Senior Manager or a person appointed to act on their behalf.
     questionaire_instructions: "You have confirmed that you will offer travel insurance to people with any/most types of serious medical conditions. Please now confirm in which of the fifteen hypothetical scenarios below your firm would offer single trip cover (without medical exclusions). Please select ‘yes’ or ‘no’ for each scenario."
     confirmation_statement_html: |
-      By registering your firm’s details with the Money & Pensions Service you are confirming that the information supplied, and the responses given to our registration questions, are correct and accurately reflect the services offered by your firm and any trading names registered on the Directory under this FRN. You may be required to provide further information to justify or evidence the information you provide.
-      <br/><br/>
-      Firms also consent to MaPS sharing any information provided as part of the registration process with the FCA. In addition, if during the course of operating the Directory, MaPS becomes aware of practices by FCA-regulated persons which it considers to be detrimental to consumers, MaPS may share that information with FCA.
+      The Money & Pension Service ("MaPS") is operating this Directory pursuant to rules set out in the Financial Conduct Authority ("FCA") Handbook and an agreement with the FCA.  MaPS reserves the right to obtain and maintain complete and continuous verification (including time-to-time at MaPS’ discretion) any information provided in whole or in part in connection with a firm’s application to be in the Directory.  Such verification shall include MaPS seeking corroboration as to such evidence from the applicable firm, the FCA and/or any other third party.
+      <br><br>
+      MaPS also reserves the right to pass to the FCA any information from or about a firm that has applied to be in the Directory, including as to whether a firm has failed for any reason to provide complete and accurate information relevant to such application and the firm’s appearance in the Directory. [No firm will be considered for the Directory without the electronic signature of a senior manager of the firm on the application.  Such signature will constitute (i) the firm’s agreement to the terms for being in the Directory, and (ii) the personal warranty of the signatory of their authority to bind the applicable firm to such terms.]
     register_button: Continue
     previous_question_button: Previous question
   retirement_advice_registrations:
@@ -313,6 +313,7 @@ en:
       explanation: Please enter the details of the person completing the registration process on behalf of your firm. We recommend that registration is completed by a Principal, Compliance officer or the equivalent.
       first_name: First name *
       last_name: Last name *
+      individual_reference_number: Individual reference number (IRN) *
       job_title: Job title *
       email_address: Email address *
       senior_manager_name: Name (if not Senior Manager name above)

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 3019_11_18_100179) do
+ActiveRecord::Schema.define(version: 3019_11_18_100180) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
@@ -303,6 +303,7 @@ ActiveRecord::Schema.define(version: 3019_11_18_100179) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text "senior_manager_name"
+    t.string "individual_reference_number", default: "", null: false
     t.index ["fca_number"], name: "index_principals_on_fca_number", unique: true
     t.index ["token"], name: "index_principals_on_token", unique: true
   end

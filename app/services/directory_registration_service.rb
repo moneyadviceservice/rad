@@ -50,6 +50,7 @@ class DirectoryRegistrationService
       fca_number
       first_name
       last_name
+      individual_reference_number
       job_title
       email
       telephone_number

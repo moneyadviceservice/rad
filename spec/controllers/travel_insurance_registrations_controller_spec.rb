@@ -5,7 +5,9 @@ RSpec.describe TravelInsuranceRegistrationsController, type: :controller do
 
   before do
     response = double(FcaApi::Response, ok?: true)
+
     allow_any_instance_of(FcaApi::Request).to receive(:get_firm) { response }
+    allow_any_instance_of(FcaApi::Request).to receive(:get_individual) { response }
   end
 
   it 'should have overriden admin email address' do
@@ -19,6 +21,7 @@ RSpec.describe TravelInsuranceRegistrationsController, type: :controller do
           fca_number: '123456',
           first_name: 'Insurance',
           last_name: 'Advisor',
+          individual_reference_number: 'AXA12345',
           job_title: 'Insurer',
           email: 'email@email.com',
           telephone_number: '02089765432',

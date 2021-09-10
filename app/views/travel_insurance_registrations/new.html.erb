@@ -18,7 +18,12 @@
       <% end %>
     </div>
   </div>
-  <strong><%= t('travel_insurance_registrations.frn_linked_trading_names_info') %></strong>
+
+  <div class="l-identity__row">
+    <div class="l-identity__field l-identity__field--wide">
+      <strong><%= t('travel_insurance_registrations.frn_linked_trading_names_info') %></strong>
+    </div>
+  </div>
 
   <hr>
 
@@ -50,6 +55,16 @@
         <%= f.errors_for :last_name %>
         <%= f.label :last_name, t('registration.principal.last_name'), class: 'form__label-heading' %>
         <%= f.text_field :last_name, class: 't-last-name' %>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="l-identity__row">
+    <div class="l-identity__field">
+      <%= f.form_row(:individual_reference_number) do %>
+        <%= f.errors_for :individual_reference_number %>
+        <%= f.label :individual_reference_number, t('registration.principal.individual_reference_number'), class: 'form__label-heading' %>
+        <%= f.text_field :individual_reference_number, class: 't-individual-reference-number' %>
       <% end %>
     </div>
   </div>
