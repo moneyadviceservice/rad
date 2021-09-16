@@ -4,6 +4,7 @@ class TravelInsuranceFirm < ApplicationRecord
   KNOWN_REGISTRATION_QUESTIONS = %w[
     covered_by_ombudsman_question
     risk_profile_approach_question
+    supplies_documentation_when_needed_question
     covers_medical_condition_question
     metastatic_breast_cancer_question
     ulceritive_colitis_and_anaemia_question

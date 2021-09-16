@@ -173,6 +173,14 @@ en:
         bespoke: Underwriting decisions are based on a bespoke consultation by the firm with the individual to understand their health and the severity of their medical condition (we would expect this option to apply primarily to firms that do not use an external medical screening company)
         questionaire: Underwriting decisions are primarily based on the use of a risk rating (medical screening) tool which generates set questions that are used to understand an individual’s health and the severity of their medical condition
         neither: 'Neither of the above'
+    supplies_documentation_when_needed_question:
+      heading: "Does your firm undertake to produce to MaPS on demand any of the following evidence to demonstrate your firm's Relevant Capability and Relevant Risk Appetite, and in particular a clear track record or objectively realistic plan for effecting, carrying out and distributing travel insurance policies that cover more serious medical conditions:"
+      description_html: |
+        <ul>
+          <li>regulatory returns or submissions;</li>
+          <li>delegated authority or other insurance distribution agreements, plus performance data arising from the operation thereof;</li>
+          <li>copy policy and other customer-facing compliance documentation (eg IPID)</li>
+        </ul>
     active_question:
       heading: Is your firm active in the retirement planning market?
       description: This could include either "at retirement" or "post retirement".

@@ -84,7 +84,9 @@ class TravelInsuranceRegistrationsController < BaseRegistrationsController
   def rejected_registration?
     case current_step.to_sym
     when :risk_profile
-      risk_profile_form_params[:covered_by_ombudsman_question] == 'false' || risk_profile_form_params[:risk_profile_approach_question] == 'neither'
+      risk_profile_form_params[:covered_by_ombudsman_question] == 'false' ||
+        risk_profile_form_params[:risk_profile_approach_question] == 'neither' ||
+        risk_profile_form_params[:supplies_documentation_when_needed_question] == 'false'
     when :medical_conditions_questionaire
       !medical_questionaire_acceptable?
     else
@@ -95,7 +97,9 @@ class TravelInsuranceRegistrationsController < BaseRegistrationsController
   def completed_registration?
     case current_step.to_sym
     when :risk_profile
-      risk_profile_form_params[:covered_by_ombudsman_question] == 'true' && risk_profile_form_params[:risk_profile_approach_question] == 'bespoke'
+      risk_profile_form_params[:covered_by_ombudsman_question] == 'true' &&
+        risk_profile_form_params[:risk_profile_approach_question] == 'bespoke' &&
+        risk_profile_form_params[:supplies_documentation_when_needed_question] == 'true'
     when :medical_conditions
       medical_conditions_form_params[:covers_medical_condition_question] == 'one_specific'
     when :medical_conditions_questionaire
@@ -107,7 +111,9 @@ class TravelInsuranceRegistrationsController < BaseRegistrationsController
 
   def risk_profile_form_params
     params.fetch(:travel_insurance_risk_profile_form, {}).permit(
-      :covered_by_ombudsman_question, :risk_profile_approach_question
+      :covered_by_ombudsman_question,
+      :risk_profile_approach_question,
+      :supplies_documentation_when_needed_question
     )
   end
 
