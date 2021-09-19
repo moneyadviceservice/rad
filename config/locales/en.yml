@@ -167,12 +167,12 @@ en:
         all_conditions: Does your firm offer travel insurance that will cover any/most types of serious medical conditions?
         all_conditions_tooltip: Firms that offer cover for any or most types of serious medical conditions will be asked to confirm whether they would offer cover without medical exclusions in certain hypothetical medical scenarios listed on the next screen.
     risk_profile_approach_question:
-      heading: Which approach does your firm use to confirm the risk profile of applicants with serious pre-existing medical conditions seeking travel insurance?
+      heading: "For a firm to be on the register it must demonstrate that it has (i) the capability to assess the risk profile of applicants for travel insurance policies that cover more serious medical conditions (“Relevant Capability”) and (ii) the risk appetite to offer such policies (“Relevant Risk Appetite”). Please state whether such capability and appetite is demonstrated by one or more of the following means:  Please note that ‘Risk Data’ means ‘data as to the nature and severity of an applicant’s medical condition(s)’, and ‘Underwriting Decision’ means ‘your firm’s decision - or that of an insurer where your firm does not have direct or other underwriting authority — whether or not to agree policy terms with the applicant’."
       description: ""
       answers:
-        bespoke: Underwriting decisions are based on a bespoke consultation by the firm with the individual to understand their health and the severity of their medical condition (we would expect this option to apply primarily to firms that do not use an external medical screening company)
-        questionaire: Underwriting decisions are primarily based on the use of a risk rating (medical screening) tool which generates set questions that are used to understand an individual’s health and the severity of their medical condition
-        neither: 'Neither of the above'
+        bespoke: 'Your firm, or someone on its behalf, undertakes a bespoke consultation with the applicant from which Risk Data is obtained and then assessed in the Underwriting Decision []. Please state if your firm or an insurer makes such decision. “[US / INSURER].”'
+        questionaire: 'Your firm, or someone on its behalf, uses your firm’s own proprietary medical screening questionnaire, software or other pre-prepared methodology in communicating with the applicant by which means Risk Data is obtained and then assessed in the Underwriting Decision []. Please state if your firm or an insurer makes such decision. “[US / INSURER].”'
+        neither: 'None of the above'
     supplies_documentation_when_needed_question:
       heading: "Does your firm undertake to produce to MaPS on demand any of the following evidence to demonstrate your firm's Relevant Capability and Relevant Risk Appetite, and in particular a clear track record or objectively realistic plan for effecting, carrying out and distributing travel insurance policies that cover more serious medical conditions:"
       description_html: |
