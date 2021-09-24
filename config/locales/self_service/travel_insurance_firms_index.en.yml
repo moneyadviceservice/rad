@@ -5,5 +5,4 @@ en:
       primary_instructions_html: You can enter details for one firm. This can be the main authorised firm <strong>OR</strong> one trading name. <strong>Only firms that specialise in providing travel insurance to people with serious pre-existing medical conditions should be added.</strong>
       secondary_instructions_html: The sections <strong>Cover & Service</strong> and <strong>Customer Contact Details</strong> must be completed before your firm can be approved and visible on the Directory.
       firm_heading: Main authorised firm
-      firm_subheading: Leave Parent firm details blank if not appearing on the Directory.
       available_trading_names_tooltip: Only up to two trading names can be added and only those specialising in providing travel insurance to people with serious pre-existing medical conditions.
