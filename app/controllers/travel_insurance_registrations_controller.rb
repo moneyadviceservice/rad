@@ -96,10 +96,6 @@ class TravelInsuranceRegistrationsController < BaseRegistrationsController
 
   def completed_registration?
     case current_step.to_sym
-    when :risk_profile
-      risk_profile_form_params[:covered_by_ombudsman_question] == 'true' &&
-        risk_profile_form_params[:risk_profile_approach_question] == 'bespoke' &&
-        risk_profile_form_params[:supplies_documentation_when_needed_question] == 'true'
     when :medical_conditions
       medical_conditions_form_params[:covers_medical_condition_question] == 'one_specific'
     when :medical_conditions_questionaire

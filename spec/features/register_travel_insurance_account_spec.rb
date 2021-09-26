@@ -78,10 +78,7 @@ RSpec.feature 'Principal provides travel insurance information', :inline_job_que
     scenario 'a firm that offers a bespoke risk profiling approach' do
       given_i_am_on_the_travel_insurance_risk_profile_page
       and_i_provide_a_bespoke_risk_profile_approach
-      then_i_am_shown_a_thank_you_for_registering_message
-      and_i_should_have_a_travel_insurance_firm
-      and_i_later_receive_an_email_confirming_my_registration
-      and_i_should_see_the_bespoke_risk_profile_answer_on_the_firm_admin_page
+      then_i_am_taken_to_the_third_step_of_signup
     end
 
     scenario 'a firm that offers a questionaire as risk profiling approach' do

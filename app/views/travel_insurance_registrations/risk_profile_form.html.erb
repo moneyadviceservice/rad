@@ -31,7 +31,7 @@
   <%= f.form_row :risk_profile_approach_question do %>
     <fieldset class="form__group t-risk_profile_approach_question">
       <legend class="l-pre-qualification__question l-pre-qualification__question--with-desc"><%= t('registration.risk_profile_approach_question.heading') %></legend>
-      <p><%= t('registration.risk_profile_approach_question.description') %></p>
+      <%= t('registration.risk_profile_approach_question.description_html') %>
 
       <div class="form__group-item">
         <label>
@@ -44,6 +44,13 @@
         <label>
           <%= f.radio_button :risk_profile_approach_question, 'questionaire', class: 'form__group-input' %>
           <%= t('registration.risk_profile_approach_question.answers.questionaire') %>
+        </label>
+      </div>
+
+      <div class="form__group-item">
+        <label>
+          <%= f.radio_button :risk_profile_approach_question, 'non-proprietary', class: 'form__group-input' %>
+          <%= t('registration.risk_profile_approach_question.answers.non_proprietary') %>
         </label>
       </div>
 
