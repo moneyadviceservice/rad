@@ -336,7 +336,7 @@ en:
       senior_manager_name: Name (if not Senior Manager name above)
       telephone_number: Telephone number *
       fca_number_unmatched: could not be matched
-      validation_error_html: We weren't able to sign you up. If you have any queries, please contact <a href="mailto:RADenquiries@moneyadviceservice.org.uk">RADenquiries@moneyadviceservice.org.uk</a>.
+      validation_error_html: We weren't able to sign you up. If you have any queries, please contact <a href="mailto:RADenquiries@moneyhelper.org.uk">RADenquiries@moneyhelper.org.uk</a>.
     register_button: Register my firm
     user:
       password: Password *
