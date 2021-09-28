@@ -10,7 +10,7 @@ RSpec.describe SuccessfulRegistrationMailer, '#contact' do
     end
 
     it 'has a from address' do
-      expect(subject.from.first).to eq('RADenquiries@moneyadviceservice.org.uk')
+      expect(subject.from.first).to eq('RADenquiries@moneyhelper.org.uk')
     end
 
     it 'addressed to the principal' do
@@ -32,7 +32,7 @@ RSpec.describe SuccessfulRegistrationMailer, '#contact' do
     end
 
     it 'has a from address' do
-      expect(subject.from.first).to eq('RADenquiries@moneyadviceservice.org.uk')
+      expect(subject.from.first).to eq('RADenquiries@moneyhelper.org.uk')
     end
 
     it 'addressed to the principal' do
