@@ -1,5 +1,5 @@
 GIT
-  remote: git://github.com/moneyadviceservice/bowndler.git
+  remote: https://github.com/moneyadviceservice/bowndler.git
   revision: f836a295f0eac8ba02a6dc4733d000a7f1fc8a00
   specs:
     bowndler (1.0.2)
@@ -175,7 +175,7 @@ GEM
     faraday_middleware (0.12.2)
       faraday (>= 0.7.4, < 1.0)
     ffaker (2.8.1)
-    ffi (1.11.1)
+    ffi (1.15.4)
     geocoder (1.6.4)
     git (1.5.0)
     globalid (0.4.2)
@@ -375,7 +375,7 @@ GEM
     safe_yaml (1.0.5)
     sass-rails (6.0.0)
       sassc-rails (~> 2.1, >= 2.1.1)
-    sassc (2.2.1)
+    sassc (2.4.0)
       ffi (~> 1.9)
     sassc-rails (2.1.2)
       railties (>= 4.0.0)

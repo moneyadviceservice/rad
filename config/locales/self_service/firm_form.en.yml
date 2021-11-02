@@ -38,7 +38,8 @@ en:
       business_split_heading: "Types of advice provided"
       business_split_options:
         retirement_income_products_flag: Conversion of pension pot/other liquid savings into retirement income
-        pension_transfer_flag: Defined benefit pensions (including transfers)
+        pension_transfer_flag: |
+          Defined benefit pensions (including transfers) <span class="form__hint">Only tick this box if your firm employs at least one adviser who holds the <strong>appropriate qualifications to carry out the regulated activity of a pension transfer specialist (PTS) AND</strong> who holds the <strong>Pension Transfer Gold Standard</strong> accredited by the Personal Finance Society.</span>
         long_term_care_flag: Long term care
         equity_release_flag: Equity release
         inheritance_tax_and_estate_planning_flag: Inheritance Tax and Estate Planning
