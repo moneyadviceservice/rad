@@ -34,7 +34,7 @@ class RetirementAdviceRegistrationsController < BaseRegistrationsController
   private
 
   def pre_qualification_form_params
-    params.require(:pre_qualification_form).permit(
+    params.fetch(:pre_qualification_form, {}).permit(
       :active_question,
       :business_model_question,
       :status_question,
