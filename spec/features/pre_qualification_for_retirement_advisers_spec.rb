@@ -7,6 +7,11 @@ RSpec.feature 'Principal answers pre-qualification questions' do
     pre_qualification_page.load
   end
 
+  scenario 'Submitting the blank form without answering anything' do
+    when_i_submit_my_answers
+    then_i_am_notified_i_cannot_proceed
+  end
+
   scenario 'Answering all questions "Yes" and choosing "Independent"' do
     given_i_answer_all_questions_yes_and_choose_independent
     when_i_submit_my_answers
