@@ -9,7 +9,6 @@ GIT
   remote: https://github.com/moneyadviceservice/dough.git
   revision: 238a32999b040d89aa5774d510525e46904079b4
   ref: 238a329
-  branch: master
   specs:
     dough-ruby (6.0.0)
       activemodel
