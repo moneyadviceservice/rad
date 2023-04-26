@@ -1,7 +1,7 @@
 <%= heading_tag(t(registration_title), level: 1) %>
 <p><%= t('travel_insurance_registrations.intro') %></p>
 
-<p class="registration__progress">Step 2 of 4</p>
+<h2>Step 2 of 4</h2>
 
 <%= form_for @form, url: risk_profile_travel_insurance_registrations_path, html: { class: 'form travel-registration-form' }, builder: Dough::Forms::Builders::Validation do |f| %>
   <%= f.validation_summary %>

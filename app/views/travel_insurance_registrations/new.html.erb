@@ -1,7 +1,7 @@
 <%= heading_tag(t(registration_title), level: 1) %>
 <p><%= t('travel_insurance_registrations.intro') %></p>
 
-<p class="registration__progress">Step 1 of 4</p>
+<h2>Step 1 of 4</h2>
 <%= form_for @form,
   url: { controller: controller_name, action: 'create' },
   method: :post,
