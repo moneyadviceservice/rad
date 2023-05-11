@@ -27,7 +27,7 @@ p{
 
 // -- Links ------------------------------------------------------------------------
     a:not(.navigation__link):not(.mas-logo__link){
-        color: $magenta_primary!important;
+        color: $magenta_primary;
         text-decoration: underline;
         &:hover{
             color: $magenta_dark;
@@ -71,7 +71,7 @@ p{
         &:focus{
             background-color: $yellow_secondary;
             border: 3px solid $support_focus;
-            color: $text_secondary;
+            color: $text_secondary !important;
         }
         &:active{
             background: $magenta_darker;
