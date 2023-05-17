@@ -8,18 +8,18 @@ define(['jquery'], function($) {
         checked_inputs = otherInputs.filter(':checked');
 
     if(checked_inputs.length == 0 || checked_inputs.first().val() != checked_inputs.first().data('show-hide-trigger')){
-      target.hide()
+      target.hide();
     }
-  })
+  });
 
   $('[data-show-hide]').on('change', function(){
     var target = $('['+$(this).data('show-hide')+']'),
         triggerValue = $(this).data('show-hide-trigger') || 0;
 
     if($(this).val() != triggerValue){
-      target.slideUp()
+      target.slideUp();
     }else{
-      target.slideDown()
+      target.slideDown();
     }
-  })
+  });
 });
