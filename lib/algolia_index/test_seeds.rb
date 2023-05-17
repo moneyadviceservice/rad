@@ -280,8 +280,8 @@ module AlgoliaIndex
       {
         free_initial_meeting: true,
         initial_meeting_duration: ::InitialMeetingDuration.find(1),
-        initial_advice_fee_structures: ::InitialAdviceFeeStructure.where(id: [1]), # rubocop:disable Metrics/LineLength
-        ongoing_advice_fee_structures: ::OngoingAdviceFeeStructure.where(id: [2]), # rubocop:disable Metrics/LineLength
+        initial_advice_fee_structures: ::InitialAdviceFeeStructure.where(id: [1]), # rubocop:disable Layout/LineLength
+        ongoing_advice_fee_structures: ::OngoingAdviceFeeStructure.where(id: [2]), # rubocop:disable Layout/LineLength
         allowed_payment_methods: ::AllowedPaymentMethod.where(id: [2]),
         **ADVICE_TYPES_ATTRIBUTES.zip(
           Array.new(ADVICE_TYPES_ATTRIBUTES.size, false)
