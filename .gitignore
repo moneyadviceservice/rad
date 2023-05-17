@@ -14,3 +14,4 @@ config/database.yml
 node_modules/
 spec/test_status.txt
 latest.dump
+package-lock.json
