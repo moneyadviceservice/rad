@@ -22,7 +22,7 @@ module FcaApi
     def get_individual(reference)
       begin
         response = connection.get("#{INDIVIDUAL_ENDPOINT}/#{reference}")
-      rescue Faraday::ClientError, Faraday::ParsingError
+      rescue Faraday::ClientError
         response = Faraday::Response.new(body: { 'Message': 'Failure' })
       end
 
