@@ -62,3 +62,5 @@ jobs:
       - name: Run tests and lint Ruby
         run: |
           bundle exec rake
+      - name: Run JS tests and lint
+        run: npm test
