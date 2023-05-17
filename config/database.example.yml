@@ -12,6 +12,10 @@ development:
 test:
   <<: *default
   database: rad_test
+  <% if ENV['CI'] == 'true' %>
+  username: <%= ENV.fetch('POSTGRES_USER') { 'postgres ' } %>
+  password: <%= ENV.fetch('POSTGRES_PASSWORD') { 'postgres ' } %>
+  <% end %>
 
 production:
   <<: *default

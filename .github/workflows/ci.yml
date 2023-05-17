@@ -1,0 +1,64 @@
+name: "CI"
+on:
+  push:
+    branches: [ "main", "master" ]
+  pull_request:
+    branches: [ "main", "master" ]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
+    env:
+      AZURE_ACCOUNT: see-heroku-env-vars
+      AZURE_CONTAINER: see-heroku-env-vars
+      AZURE_SHARED_KEY: see-heroku-env-vars
+      GOOGLE_GEOCODER_API_KEY: changeme
+      GOOGLE_MAPS_API_KEY: changeme
+      ALGOLIA_APP_ID: changeme
+      ALGOLIA_API_KEY: changeme
+      FCA_API_DOMAIN: 'https://register.fca.org.uk'
+      FCA_API_EMAIL: 'example@moneyadviceservice.org.uk'
+      FCA_API_KEY: 'secret'
+      FCA_API_MAX_RETRIES: 5
+      FCA_API_TIMEOUT: 10
+      RAD_ADMIN_EMAIL: 'changeme@maps.org.uk'
+      TAD_ADMIN_EMAIL: 'changeme@maps.org.uk'
+      LOCKUP_CODEWORD: changeme
+      RAILS_ENV: test
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Install Ruby and gems
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v3.5.1
+        with:
+          node-version: 14
+      - name: Install bower
+        run: npm install -g bower
+      - name: Install npm packages
+        run: npm install
+      - name: Install bowndler packages
+        run: bundle exec bowndler update
+      - name: Set up database schema
+        run: |
+          cp "${GITHUB_WORKSPACE}/config/cloud_storage.example.yml" "${GITHUB_WORKSPACE}/config/cloud_storage.yml"
+          cp "${GITHUB_WORKSPACE}/config/database.example.yml" "${GITHUB_WORKSPACE}/config/database.yml"
+          bundle exec rake db:create db:schema:load
+      - name: Run tests and lint Ruby
+        run: |
+          bundle exec rake
