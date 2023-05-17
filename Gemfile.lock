@@ -7,11 +7,11 @@ GIT
 
 GIT
   remote: https://github.com/moneyadviceservice/dough.git
-  revision: 238a32999b040d89aa5774d510525e46904079b4
-  ref: 238a329
-  branch: master
+  revision: c84c153e3365c811475ed18877d61dcae4e8c7ea
+  ref: c84c153
+  branch: html-options-fix
   specs:
-    dough-ruby (6.0.0)
+    dough-ruby (6.2.0)
       activemodel
       activesupport
       rails (>= 3.2)
@@ -240,7 +240,7 @@ GEM
       nokogiri (~> 1)
       rake
     mini_mime (1.0.2)
-    mini_portile2 (2.4.0)
+    mini_portile2 (2.8.2)
     minitest (5.14.2)
     multi_json (1.13.1)
     multipart-post (2.0.0)
@@ -248,8 +248,11 @@ GEM
     netrc (0.11.0)
     nio4r (2.5.3)
     no_proxy_fix (0.1.2)
-    nokogiri (1.10.10)
-      mini_portile2 (~> 2.4.0)
+    nokogiri (1.15.0)
+      mini_portile2 (~> 2.8.2)
+      racc (~> 1.4)
+    nokogiri (1.15.0-x86_64-darwin)
+      racc (~> 1.4)
     octokit (4.13.0)
       sawyer (~> 0.8.0, >= 0.5.3)
     oga (2.14)
@@ -273,6 +276,7 @@ GEM
     pry-rails (0.3.6)
       pry (>= 0.10.4)
     public_suffix (3.0.2)
+    racc (1.6.2)
     rack (2.2.3)
     rack-protection (2.0.7)
       rack
@@ -529,7 +533,7 @@ DEPENDENCIES
   webmock (= 3.5.0)
 
 RUBY VERSION
-   ruby 2.6.5p114
+   ruby 2.7.7p221
 
 BUNDLED WITH
    1.17.3
