@@ -24,7 +24,7 @@ gem 'devise', '~> 4.7.1'
 gem 'devise-security', '~> 0.13'
 # Dough assets are loaded from a CDN instead of from the Gem. Do make sure that
 # the CDN version is the same as the Gem version.
-gem 'dough-ruby', github: 'moneyadviceservice/dough', branch: 'master', ref: '238a329'
+gem 'dough-ruby', github: 'moneyadviceservice/dough', branch: 'html-options-fix', ref: 'c84c153'
 gem 'geocoder', '>= 1.6.1'
 gem 'httpclient', '~> 2.8.3'
 gem 'jquery-rails'
@@ -69,7 +69,7 @@ group :test, :development do
   gem 'pry-rails'
   gem 'rb-readline'
   gem 'rspec-rails'
-  gem 'rubocop', '0.62.0'
+  gem 'rubocop', '0.80.0', require: false
 end
 
 group :test do

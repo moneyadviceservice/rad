@@ -8,8 +8,8 @@ require 'sidekiq/testing'
 require 'capybara/rails'
 require 'capybara/rspec'
 
-Dir[File.join(File.dirname(__FILE__), 'support', '**', '*_section.rb')].each { |f| require f }
-Dir[File.join(File.dirname(__FILE__), 'support', '**', '*.rb')].each { |f| require f }
+Dir[File.join(File.dirname(__FILE__), 'support', '**', '*_section.rb')].sort.each { |f| require f }
+Dir[File.join(File.dirname(__FILE__), 'support', '**', '*.rb')].sort.each { |f| require f }
 
 require File.join(File.dirname(__FILE__), 'support/fca_test_helpers.rb')
 

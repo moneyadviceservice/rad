@@ -1,5 +1,5 @@
 inherit_from:
-  - https://raw.githubusercontent.com/moneyadviceservice/mas-standards/master/.rubocop.yml
+  - https://raw.githubusercontent.com/moneyadviceservice/mas-standards/heroku-migration/.rubocop.yml
   - .rubocop_todo.yml
 
 inherit_mode:
@@ -11,11 +11,11 @@ AllCops:
   Exclude:
     - 'lib/fca/**/*'
 
-# Once we upgrade rubocop we should be able to remove this
-Rails/UnknownEnv:
-  Environments:
-    - production
-    - staging
-    - development
-    - local
-    - test
+Style/HashEachMethods:
+  Enabled: false
+
+Style/HashTransformKeys:
+  Enabled: false
+
+Style/HashTransformValues:
+  Enabled: false
