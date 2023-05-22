@@ -26,7 +26,7 @@ p{
 // ---------------------------------------------------------------------------------
 
 // -- Links ------------------------------------------------------------------------
-    a:not(.navigation__link):not(.mas-logo__link){
+    a:not(.navigation__link){
         color: $magenta_primary;
         text-decoration: underline;
         &:hover{
@@ -45,6 +45,19 @@ p{
             outline: none;
         }
     }
+
+    .navigation__link{
+        &:focus{
+            color: $text_secondary!important;
+            background-color: $yellow_secondary;
+            border-bottom: 4px solid $support_focus;
+            text-decoration: none;
+            outline: none; 
+        }
+    }
+
+ 
+    
 // ---------------------------------------------------------------------------------
 
 // -- Buttons ----------------------------------------------------------------------
