@@ -196,6 +196,10 @@
 
     }
 
+    .l-header__content{
+        background-color: $blue_primary;
+    }
+
     .mas-logo__link{
         &:focus{
             filter: invert(1);
