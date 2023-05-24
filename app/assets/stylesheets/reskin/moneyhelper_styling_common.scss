@@ -155,7 +155,7 @@ input[type=number],
 input[type=email],
 input[type=password], 
 textarea{
-    width: 285px;
+    max-width: 285px;
     height: 40px;
     font-family: 'Roobert-Regular', sans-serif;
     box-sizing: border-box;
