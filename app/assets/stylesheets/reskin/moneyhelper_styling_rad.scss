@@ -193,7 +193,32 @@
             height: 50px;
             background-repeat: no-repeat;
         }
+
     }
+
+    .mas-logo__link{
+        &:focus{
+            filter: invert(1);
+            background-color: #0f0fa5;
+            border-bottom: 4px solid #7dff2e;
+            text-decoration: none;
+            outline: none; 
+        }
+        &:hover{
+            text-decoration: none;
+        }
+    }
+
+    .navigation__link{
+        &:focus{
+            color: $text_secondary!important;
+            background-color: $yellow_secondary;
+            border-bottom: 4px solid $support_focus;
+            text-decoration: none;
+            outline: none; 
+        }
+    }
+
     .breadcrumbs__item,
     .l-back-link{
         font-family: 'Roobert-Regular', sans-serif;
