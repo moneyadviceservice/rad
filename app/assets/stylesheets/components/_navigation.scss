@@ -39,7 +39,8 @@
   @extend %font-heading-medium;
   @include body(14, 14);
   color: $color-white;
-
+  font-family: 'Roobert-Regular';
+  
   &:hover{
     outline: none;
     text-decoration: underline;
