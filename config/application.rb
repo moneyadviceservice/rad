@@ -34,5 +34,9 @@ module Rad
     config.assets.configure do |env|
       env.export_concurrent = false
     end
+
+    config.middleware.insert_before(Rack::Runtime, Rack::Rewrite) do
+      r301 %r{^/?(.*)}, 'https://radsignup.moneyhelper.org.uk/$1', host: 'radsignup.moneyadviceservice.org.uk'
+    end
   end
 end
