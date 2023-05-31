@@ -39,7 +39,6 @@
 @import 'components/offices_table';
 @import 'components/password_policy';
 @import 'components/sign_in_panel';
-@import 'components/registration';
 @import 'components/travel_tabs';
 @import 'components/status/all';
 
@@ -67,6 +66,7 @@ html.dev .translation_missing {
 
 html, body {
   height: 100%;
+  font-family: 'Roobert-Regular';
 }
 body {
   display: flex;

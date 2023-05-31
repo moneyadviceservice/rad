@@ -1,0 +1,253 @@
+// -- RAD specific styles -------------------------------------------------
+
+    .l-pre-qualification__question{
+        color: $blue_primary;
+    }
+    .panel{
+        background-color: $light_grey_2;
+        font-family: 'Roobert-Regular', sans-serif;
+        color: $text_secondary;
+        .panel__heading{
+            font-family: 'Roobert-Regular', sans-serif;
+            color: $text_secondary
+        }
+    }
+    table{
+        font-family: 'Roobert-Regular', sans-serif;
+        color: $text_secondary;
+        tr{
+            background-color: $white;
+            border-bottom: 1px solid $support_outline;
+            th,
+            td{
+                border-color: $support_outline;
+            }
+        }
+    }
+    .status__icon--tick,
+    .status__overall-status--published{
+        fill: $text_secondary;
+    }
+    .js{
+        .tab-selector__triggers-inner{
+            border-bottom: 1px solid $support_outline;
+        }
+        .tab-selector__trigger-container{
+            width: 33%;
+            .tab-selector__trigger{
+                font-family: 'Roobert-Regular', sans-serif;
+                color: $magenta_primary;
+                &.is-active{
+                    color: $blue_primary;
+                    border-color: $support_outline $support_outline $white $support_outline;
+                    border-width: 1px;
+                    background-color: rgba(255, 255, 255, 0.01);
+                    &:focus{
+                        outline: none;
+                    }
+                }
+                &.is-inactive{
+                    &:hover{
+                        text-decoration: underline;
+                    }
+                    &:focus{
+                        outline: none;
+                        background-color: $yellow_secondary;
+                        border-radius: $border_radius $border_radius 0 0;
+                    }
+                }
+            }
+        }
+        .l-travel-insurance-form{
+            .tab-selector__target{
+                &.is-active{
+                    background-color: $white;
+                    border-color: $support_outline;
+                    border-style: solid;
+                    border-width: 0 1px 1px 1px;
+                    color: $text_secondary;
+                    font-family: 'Roobert-Regular', sans-serif;
+                }
+            }
+        }
+    }
+    .l-travel-insurance-form .tab-selector__target > div:first-child{
+        border-bottom: 1px solid $support_outline;
+    }
+    .form__row{
+        legend{
+            font-family: 'Roobert-SemiBold', sans-serif;
+            color: $text_secondary;
+        }
+    }
+    .js{
+        .popup-tip__button{
+            background-color: #F3F1F3;
+            color: #C82A87;
+            border: 3px solid #C82A87;
+            &:focus{
+                background-color: #F0F05A;
+                border-color: #8200D1;
+                color: #8200D1;
+                outline: none;
+            }
+            @media print{
+                display: none;
+            }
+            span{
+                display: block;
+                margin-top: -2px;
+            }
+        }
+        .popup-tip__container{
+            border: 2px solid $blue_primary;
+            .popup-tip__close{
+                border: 2px solid $blue_primary;
+                svg{
+                    display: none;
+                }
+                &:before{
+                    content: '';
+                    background-image: $close_svg;
+                    width: 24px;
+                    height: 24px;
+                    background-size: 18px;
+                    background-position: 50%;
+                    background-repeat: no-repeat;
+                    display: block;
+                }
+            }
+        }
+    }
+    .form-section{
+        border-top: 1px solid $support_outline;
+    }
+    .form-section:last-child{
+        border-bottom: 1px solid $support_outline;
+    }
+    select[id^=office_opening_time]{
+        width: auto;
+    }
+    .validation-summary__content-container{
+        border-left: 4px solid $red_error;
+        background-color: $red_error_background;
+        color: $red_error;
+        font-family: 'Roobert-Regular', sans-serif;
+        .validation-summary__title{
+            color: $red_error;
+        }
+    }
+    a:not(.button):not(.navigation__link){
+        color: $magenta_primary!important;
+        text-decoration: none;
+    }
+    .form__row{
+        &.is-errored{
+            border-width: 4px;
+        }
+    }
+    #error_explanation{
+        border-left: 4px solid $red_error;
+        padding-left: 10px;
+        + .registration__row{
+            border-left: 4px solid $red_error;
+            margin: -24px 0 20px 0;
+            .is-errored{
+                border: none;
+            }
+        }
+        h2{
+            color: $text_secondary;
+        }
+        li{
+            color: $red_error;
+            padding-bottom: 10px;
+        }
+    }
+    fieldset{
+        border: none;
+    }
+    .l-questionnaire__legend{
+        font-family: 'Roobert-SemiBold', sans-serif;
+        color: $text_secondary;
+    }
+    .intro{
+        color: $text_secondary;
+    }
+    .validation-summary__list .validation-summary__error a{
+        color: $red_error!important;
+    }
+    .button.button--small.t-remove-button{
+        padding: 8px 16px;
+    }
+    .l-header{
+        background-color: $blue_primary;
+        .mas-logo__link{
+            img{
+                display: none;
+            }
+            background-image: $moneyHelper_svg;
+            background-size: 90px;
+            display: block;
+            width: 90px;
+            height: 50px;
+            background-repeat: no-repeat;
+        }
+
+    }
+
+    .l-header__content{
+        background-color: $blue_primary;
+    }
+
+    .mas-logo__link{
+        &:focus{
+            filter: invert(1);
+            background-color: #0f0fa5;
+            border-bottom: 4px solid #7dff2e;
+            text-decoration: none;
+            outline: none; 
+        }
+        &:hover{
+            text-decoration: none;
+        }
+    }
+
+    .navigation__link{
+        &:focus{
+            color: $text_secondary!important;
+            background-color: $yellow_secondary;
+            border-bottom: 4px solid $support_focus;
+            text-decoration: none;
+            outline: none; 
+        }
+    }
+
+    .breadcrumbs__item,
+    .l-back-link{
+        font-family: 'Roobert-Regular', sans-serif;
+        color: $text_secondary;
+    }
+    .l-footer{
+        background-color: $light_grey_2;
+    }
+    @media(max-width:768px){
+        
+        .js .tab-selector__trigger-container{
+            width: 100%;
+        }
+        .mq-m .tab-selector__trigger-container button.tab-selector__trigger,
+        .mq-m .tab-selector__trigger-container button.tab-selector__trigger.is-active{
+            border-width: 1px;
+            border-color: $support_outline;
+            border-radius: $border_radius;
+        }
+
+    }
+    input[type="text"].filter-field__input:focus{
+        border: 2px solid $support_focus;
+    }
+// ------------------------------------------------------------------------
+
+
+
