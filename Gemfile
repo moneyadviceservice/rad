@@ -12,7 +12,7 @@ ruby File.read('.ruby-version').chomp
 # 3. Place dependencies in the group they belong
 # 4. Only use version specifiers where appropriate
 
-gem 'rails', '~> 5.2.4'
+gem 'rails', '~> 5.2.8'
 
 gem 'active_link_to'
 gem 'active_model_serializers', '~> 0.10.1'
