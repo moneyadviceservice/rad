@@ -2,7 +2,7 @@ RSpec.shared_context 'offices controller' do
   let(:principal) { FactoryBot.create(:principal) }
   let(:firm) do
     firm_attrs = FactoryBot.attributes_for(:firm_with_trading_names, fca_number: principal.fca_number)
-    principal.firm.update_attributes(firm_attrs)
+    principal.firm.update(firm_attrs)
     principal.firm
   end
   let(:office) { FactoryBot.create :office, firm: firm }

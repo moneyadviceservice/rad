@@ -79,7 +79,7 @@ RSpec.feature 'The self service firm offices list page', :inline_job_queue do
 
   def given_i_am_a_fully_registered_principal_user
     firm_attrs = FactoryBot.attributes_for(:firm, fca_number: principal.fca_number)
-    firm.update_attributes(firm_attrs)
+    firm.update(firm_attrs)
     expect(Firm.onboarded.find(firm.id)).to be_present
   end
 

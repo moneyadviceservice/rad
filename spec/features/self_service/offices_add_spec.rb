@@ -65,7 +65,7 @@
 
   def given_i_am_a_fully_registered_principal_user
     firm_attrs = FactoryBot.attributes_for(:firm, fca_number: principal.fca_number)
-    principal.firm.update_attributes(firm_attrs)
+    principal.firm.update(firm_attrs)
     expect(Firm.onboarded.find(principal.firm.id)).to be_present
   end
 

@@ -38,7 +38,7 @@ RSpec.feature 'The self service trading name edit page' do
 
   def and_i_have_a_firm_with_trading_names
     firm_attrs = FactoryBot.attributes_for(:firm_with_trading_names, fca_number: @principal.fca_number)
-    @principal.firm.update_attributes(firm_attrs)
+    @principal.firm.update(firm_attrs)
     @original_website_address = trading_names(@principal).first.website_address
   end
 

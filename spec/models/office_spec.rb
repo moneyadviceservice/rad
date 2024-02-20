@@ -42,7 +42,7 @@ RSpec.describe Office do
 
     it 'updating an office calls notify_indexer' do
       expect(office).to receive(:notify_indexer)
-      office.update_attributes(address_line_one: 'A new street')
+      office.update(address_line_one: 'A new street')
     end
 
     it 'destroying an office calls notify_indexer' do

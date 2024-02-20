@@ -49,7 +49,7 @@ RSpec.feature 'The self service firm edit page', :inline_job_queue do
     @adviser = FactoryBot.create :adviser, postcode: original_postcode
     firm_attrs = FactoryBot.attributes_for(:firm, fca_number: @principal.fca_number)
     @principal.firm.advisers << @adviser
-    @principal.firm.update_attributes(firm_attrs)
+    @principal.firm.update(firm_attrs)
   end
 
   def and_i_am_logged_in
