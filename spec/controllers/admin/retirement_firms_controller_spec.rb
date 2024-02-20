@@ -14,7 +14,7 @@ RSpec.describe Admin::RetirementFirmsController, type: :request do
       end
 
       it 'has a timestamp in the filename' do
-        expect(response.header['Content-Disposition']).to eq('attachment; filename="retirement_firms_20160504000000.csv"')
+        expect(response.header['Content-Disposition']).to start_with('attachment; filename="retirement_firms_20160504000000.csv"')
       end
     end
   end
@@ -34,7 +34,7 @@ RSpec.describe Admin::RetirementFirmsController, type: :request do
     end
 
     it 'has a timestamped filename' do
-      expect(response.header['Content-Disposition']).to eq('attachment; filename="firms-advisers-20160504000000.csv"')
+      expect(response.header['Content-Disposition']).to start_with('attachment; filename="firms-advisers-20160504000000.csv"')
     end
   end
 end

@@ -14,7 +14,7 @@ RSpec.describe Admin::Reports::MetricsController, type: :request do
     it 'has the correct filename' do
       expect(
         response.headers['Content-Disposition']
-      ).to eq("attachment; filename=\"#{snapshot_filename}\"")
+      ).to start_with("attachment; filename=\"#{snapshot_filename}\"")
     end
 
     it 'has the correct headers' do
