@@ -40,6 +40,14 @@ class Adviser < ApplicationRecord
     UpdateAlgoliaIndexJob.perform_later(model_name.name, id, firm_id)
   end
 
+  def self.ransackable_associations(*)
+    %w[accreditations firm professional_standings qualifications]
+  end
+
+  def self.ransackable_attributes(*)
+    %w[firm_id id latitude longitude name postcode reference_number travel_distance]
+  end
+
   def self.on_firms_with_fca_number(fca_number)
     firms = Firm.where(fca_number: fca_number)
     where(firm: firms)
