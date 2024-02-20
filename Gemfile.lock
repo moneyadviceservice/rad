@@ -7,8 +7,8 @@ GIT
 
 GIT
   remote: https://github.com/moneyadviceservice/dough.git
-  revision: 0697a3eb2b636452a5a57d14ae2f2e2459ba2b33
-  ref: 0697a3e
+  revision: 13a94836137e68c3a3d44043fc0a6fd4e96c9c07
+  ref: 13a9483
   branch: html-options-fix
   specs:
     dough-ruby (6.2.0)
