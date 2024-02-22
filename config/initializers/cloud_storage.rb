@@ -1,7 +1,7 @@
 require File.join(Rails.root, 'lib/cloud.rb')
 
 data = if %w(development test).include?(Rails.env)
-  YAML.load(ERB.new(File.read(File.join(Rails.root, 'config/cloud_storage.yml'))).result)[Rails.env]
+  YAML.load(ERB.new(File.read(File.join(Rails.root, 'config/cloud_storage.yml'))).result, aliases: true)[Rails.env]
 else
   {
     'provider_name'  => 'azure',

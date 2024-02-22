@@ -121,9 +121,9 @@ class Office < ApplicationRecord
   end
 
   def postcode_is_valid
-    if address_postcode.nil? || !UKPostcode.parse(address_postcode).full_valid?
-      errors.add(:address_postcode, 'is invalid')
-    end
+    return unless address_postcode.nil? || !UKPostcode.parse(address_postcode).full_valid?
+
+    errors.add(:address_postcode, 'is invalid')
   end
 
   def telephone_number_is_valid
