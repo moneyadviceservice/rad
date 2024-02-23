@@ -114,6 +114,8 @@ GEM
       rack (>= 0.9.0)
     binding_of_caller (0.8.0)
       debug_inspector (>= 0.0.1)
+    bootsnap (1.18.3)
+      msgpack (~> 1.2)
     bootstrap-sass (3.4.1)
       autoprefixer-rails (>= 5.2.1)
       sassc (>= 2.0.0)
@@ -271,6 +273,7 @@ GEM
     mini_mime (1.1.5)
     mini_portile2 (2.8.5)
     minitest (5.22.2)
+    msgpack (1.7.2)
     multipart-post (2.4.0)
     nap (1.1.0)
     net-imap (0.4.10)
@@ -521,6 +524,7 @@ DEPENDENCIES
   azure-storage
   better_errors
   binding_of_caller
+  bootsnap
   bootstrap-sass
   bowndler!
   brakeman
