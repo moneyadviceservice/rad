@@ -16,7 +16,7 @@ class Admin::PrincipalsController < Admin::ApplicationController
   def update
     @principal = principal
 
-    if @principal.update_attributes(principal_params)
+    if @principal.update(principal_params)
       redirect_to resource_path
     else
       render 'edit'

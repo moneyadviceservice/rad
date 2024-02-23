@@ -3,8 +3,8 @@ FactoryBot.define do
     fca_number
     first_name { Faker::Name.first_name }
     last_name { Faker::Name.last_name }
-    email_address { Faker::Internet.email(first_name) }
-    job_title { Faker::Name.title }
+    email_address { Faker::Internet.email(name: first_name) }
+    job_title { Faker::Job.title }
     telephone_number { '07111 333 222' }
     confirmed_disclaimer { true }
 

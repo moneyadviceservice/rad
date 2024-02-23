@@ -45,6 +45,14 @@ class Principal < ApplicationRecord
 
   validates :confirmed_disclaimer, acceptance: { accept: true }
 
+  def self.ransackable_attributes(*)
+    %w[email_address fca_number first_name id individual_reference_number job_title last_name telephone_number]
+  end
+
+  def self.ransackable_associations(*)
+    %w[firm travel_insurance_firm]
+  end
+
   def main_firm_with_trading_names
     Firm.where(fca_number: fca_number)
   end

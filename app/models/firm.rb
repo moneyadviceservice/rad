@@ -1,4 +1,4 @@
-class Firm < ApplicationRecord
+class Firm < ApplicationRecord # rubocop:disable Metrics/ClassLength
   include FirmApproval
   FREE_INITIAL_MEETING_VALID_VALUES = [true, false].freeze
 
@@ -116,6 +116,45 @@ class Firm < ApplicationRecord
   end
 
   after_commit :notify_indexer
+
+  def self.ransackable_attributes(*)
+    %w[
+      equity_release_flag
+      ethical_investing_flag
+      fca_number
+      id
+      inheritance_tax_and_estate_planning_flag
+      languages
+      long_term_care_flag
+      pension_transfer_flag
+      registered_name
+      retirement_income_products_flag
+      sharia_investing_flag
+      wills_and_probate_flag
+      workplace_financial_advice_flag
+    ]
+  end
+
+  def self.ransackable_associations(*)
+    %w[
+      accreditations
+      advisers
+      allowed_payment_methods
+      in_person_advice_methods
+      inactive_firm
+      initial_advice_fee_structures
+      initial_meeting_duration
+      investment_sizes
+      offices
+      ongoing_advice_fee_structures
+      other_advice_methods
+      parent
+      principal
+      qualifications
+      subsidiaries
+      trading_names
+    ]
+  end
 
   def notify_indexer
     UpdateAlgoliaIndexJob.perform_later(model_name.name, id)

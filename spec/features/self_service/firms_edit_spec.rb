@@ -70,7 +70,7 @@ RSpec.feature 'The self service firm edit page' do
 
   def and_i_have_a_firm
     firm_attrs = FactoryBot.attributes_for(:firm, fca_number: @principal.fca_number)
-    @principal.firm.update_attributes(firm_attrs)
+    @principal.firm.update(firm_attrs)
     @original_firm_website = @principal.firm.website_address
   end
 

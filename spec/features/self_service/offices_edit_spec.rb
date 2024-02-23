@@ -64,7 +64,7 @@ RSpec.feature 'The self service office edit page', :inline_job_queue do
 
   def given_i_am_a_fully_registered_principal_user
     firm_attrs = FactoryBot.attributes_for(:firm, fca_number: principal.fca_number)
-    principal.firm.update_attributes(firm_attrs)
+    principal.firm.update(firm_attrs)
     expect(Firm.onboarded.find(principal.firm.id)).to be_present
   end
 
@@ -75,7 +75,7 @@ RSpec.feature 'The self service office edit page', :inline_job_queue do
   end
 
   def and_my_firm_is_approved
-    principal.firm.update_attributes(approved_at: Time.zone.now)
+    principal.firm.update(approved_at: Time.zone.now)
     expect(principal.firm.approved?).to be_truthy
   end
 

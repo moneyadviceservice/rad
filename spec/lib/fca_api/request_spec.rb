@@ -51,7 +51,6 @@ RSpec.describe FcaApi::Request do
   end
 
   describe 'API down for maintenance' do
-    # rubocop:disable Style/HashSyntax
     let(:response_failure_message) { { :Message => 'Failure' } }
     # rubocop:enable Style/HashSyntax
     let(:down_for_maintenance) { { 'Success' => 'true', 'Message' => 'API down' } }

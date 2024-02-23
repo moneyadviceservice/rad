@@ -12,19 +12,20 @@ ruby File.read('.ruby-version').chomp
 # 3. Place dependencies in the group they belong
 # 4. Only use version specifiers where appropriate
 
-gem 'rails', '~> 5.2.4'
+gem 'rails', '~> 6.1.7'
 
 gem 'active_link_to'
 gem 'active_model_serializers', '~> 0.10.1'
 gem 'algoliasearch'
 gem 'azure-storage'
+gem 'bootsnap'
 gem 'bootstrap-sass'
 gem 'bowndler', github: 'moneyadviceservice/bowndler'
-gem 'devise', '~> 4.7.1'
-gem 'devise-security', '~> 0.13'
+gem 'devise'
+gem 'devise-security', '~> 0.14'
 # Dough assets are loaded from a CDN instead of from the Gem. Do make sure that
 # the CDN version is the same as the Gem version.
-gem 'dough-ruby', github: 'moneyadviceservice/dough', branch: 'html-options-fix', ref: 'c84c153'
+gem 'dough-ruby', github: 'moneyadviceservice/dough', branch: 'html-options-fix', ref: 'd59e150'
 gem 'geocoder', '>= 1.6.1'
 gem 'httpclient', '~> 2.8.3'
 gem 'jquery-rails'
@@ -35,7 +36,7 @@ gem 'lockup'
 gem 'mailjet'
 gem 'mimemagic', '~> 0.3'
 gem 'oga'
-gem 'pg', '~> 0.20.0'
+gem 'pg'
 gem 'puma'
 gem 'rack-rewrite'
 gem 'rails_email_validator'
@@ -58,8 +59,6 @@ group :development do
   gem 'listen'
   gem 'rails-erd'
   gem 'solargraph'
-  gem 'spring'
-  gem 'spring-commands-rspec'
 end
 
 group :test, :development do
@@ -71,7 +70,7 @@ group :test, :development do
   gem 'pry-rails'
   gem 'rb-readline'
   gem 'rspec-rails'
-  gem 'rubocop', '0.80.0', require: false
+  gem 'rubocop', require: false
 end
 
 group :test do

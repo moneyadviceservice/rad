@@ -53,6 +53,14 @@ class TravelInsuranceFirm < ApplicationRecord
 
   after_commit :notify_indexer
 
+  def self.ransackable_attributes(*)
+    %w[fca_number registered_name]
+  end
+
+  def self.ransackable_associations(*)
+    %w[principal subsidiaries trading_names]
+  end
+
   def notify_indexer
     UpdateAlgoliaIndexJob.perform_later(model_name.name, id)
   end

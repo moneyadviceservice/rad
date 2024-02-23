@@ -7,7 +7,7 @@ class AdviserListCsv
     CSV.generate do |csv|
       csv << headings
       @lookup.each do |adviser_data|
-        csv << row(adviser_data)
+        csv << row(**adviser_data)
       end
     end
   end

@@ -8,7 +8,7 @@ class Admin::UsersController < Admin::ApplicationController
   def update
     @user = user
 
-    if @user.update_attributes(user_params)
+    if @user.update(user_params)
       redirect_to principal_resource_path
     else
       render 'edit'

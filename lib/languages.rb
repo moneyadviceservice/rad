@@ -1,5 +1,4 @@
 module Languages
-  # rubocop:disable Layout/LineLength
   UK_MINORITY_LANGUAGES = %w[sco gd bfi isg].map { |l| LanguageList::LanguageInfo.find l }
   EXCLUDED_LANGUAGES = %w[en].map { |l| LanguageList::LanguageInfo.find l }
   AVAILABLE_LANGUAGES = (

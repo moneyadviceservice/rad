@@ -36,7 +36,7 @@ RSpec.describe Admin::Reports::InactiveAdvisersController, type: :request do
 
       it 'sets the content type to "text/csv"' do
         get admin_reports_inactive_adviser_path, params: { format: :csv }
-        expect(response.content_type).to eq('text/csv')
+        expect(response.content_type).to start_with('text/csv')
       end
 
       it 'has the appropriate csv headers' do

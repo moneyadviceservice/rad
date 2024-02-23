@@ -37,7 +37,7 @@ RSpec.feature 'Firm login report' do
       fca_number: principal.fca_number
     ).merge(firm_attrs)
 
-    principal.firm.update_attributes!(firm_attrs)
+    principal.firm.update!(firm_attrs)
 
     FactoryBot.create :user, { principal: principal }.merge(user_attrs)
   end

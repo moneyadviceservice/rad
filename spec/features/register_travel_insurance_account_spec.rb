@@ -172,7 +172,7 @@ RSpec.feature 'Principal provides travel insurance information', :inline_job_que
     questions.each_with_index do |question, _index|
       expect(
         travel_insurance_firm_page.registration_questions.text
-      ).to match(/^.*#{question} true.*/)
+      ).to match(/^.*#{question}\strue.*/)
     end
   end
 
@@ -181,7 +181,7 @@ RSpec.feature 'Principal provides travel insurance information', :inline_job_que
     travel_insurance_firm_page.load(firm_id: principal.travel_insurance_firm.id)
     expect(
       travel_insurance_firm_page.registration_questions.text
-    ).to match(/^.*covers_medical_condition_question all.*/)
+    ).to match(/^.*covers_medical_condition_question\sall.*/)
   end
 
   def given_i_am_on_the_travel_insurance_risk_profile_page
