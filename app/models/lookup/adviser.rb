@@ -6,5 +6,9 @@ module Lookup
     def self.table_name
       "lookup_#{super}"
     end
+
+    def self.ransackable_attributes(*)
+      ['reference_number', 'name']
+    end
   end
 end
