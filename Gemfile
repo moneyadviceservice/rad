@@ -58,8 +58,6 @@ group :development do
   gem 'listen'
   gem 'rails-erd'
   gem 'solargraph'
-  gem 'spring'
-  gem 'spring-commands-rspec'
 end
 
 group :test, :development do
