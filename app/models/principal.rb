@@ -46,7 +46,7 @@ class Principal < ApplicationRecord
   validates :confirmed_disclaimer, acceptance: { accept: true }
 
   def self.ransackable_attributes(*)
-    %w[email_address fca_number first_name id individual_reference_number job_title last_name telephone_number]
+    %w[created_at email_address fca_number first_name id individual_reference_number job_title last_name telephone_number]
   end
 
   def self.ransackable_associations(*)

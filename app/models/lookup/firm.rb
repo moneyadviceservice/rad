@@ -15,7 +15,11 @@ module Lookup
     end
 
     def self.ransackable_attributes(*)
-      ['fca_number', 'registered_name']
+      %w[created_at fca_number registered_name]
+    end
+
+    def self.ransackable_associations(*)
+      ['subsidiaries']
     end
   end
 end

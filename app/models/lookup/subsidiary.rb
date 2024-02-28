@@ -9,7 +9,11 @@ module Lookup
     end
 
     def self.ransackable_attributes(*)
-      ['fca_number', 'name']
+      %w[created_at fca_number name]
+    end
+
+    def self.ransackable_associations(*)
+      []
     end
   end
 end

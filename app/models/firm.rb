@@ -132,6 +132,8 @@ class Firm < ApplicationRecord # rubocop:disable Metrics/ClassLength
       sharia_investing_flag
       wills_and_probate_flag
       workplace_financial_advice_flag
+      created_at
+      approved_at
     ]
   end
 
