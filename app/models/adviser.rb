@@ -45,7 +45,7 @@ class Adviser < ApplicationRecord
   end
 
   def self.ransackable_attributes(*)
-    %w[firm_id id latitude longitude name postcode reference_number travel_distance]
+    %w[created_at firm_id id latitude longitude name postcode reference_number travel_distance]
   end
 
   def self.on_firms_with_fca_number(fca_number)

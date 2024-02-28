@@ -8,7 +8,11 @@ module Lookup
     end
 
     def self.ransackable_attributes(*)
-      ['reference_number', 'name']
+      %w[created_at reference_number name]
+    end
+
+    def self.ransackable_associations(*)
+      []
     end
   end
 end
