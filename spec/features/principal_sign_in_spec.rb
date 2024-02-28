@@ -1,6 +1,14 @@
 RSpec.feature 'Principal can sign in' do
+  let(:change_password_page) { ChangePasswordPage.new }
   let(:sign_in_page) { SignInPage.new }
   let(:firms_index_page) { SelfService::FirmsIndexPage.new }
+
+  scenario 'Principal is signed out after changing their password' do
+    given_the_principal_user_exists
+    when_they_sign_in_with_frn_and_password
+    and_they_change_their_password
+    then_they_are_signed_out
+  end
 
   scenario 'Principal can sign in with FRN and password' do
     given_the_principal_user_exists
@@ -23,6 +31,18 @@ RSpec.feature 'Principal can sign in' do
     they_have_not_logged_in
     they_see_the_sign_in_page
     and_they_see_a_notice_that_their_details_were_incorrect
+  end
+
+  def and_they_change_their_password
+    change_password_page.load
+    change_password_page.new_password.set 'Abcdefg123456789!{}|'
+    change_password_page.confirm_new_password.set 'Abcdefg123456789!{}|'
+    change_password_page.current_password.set 'Password1!'
+    change_password_page.submit.click
+  end
+
+  def then_they_are_signed_out
+    expect(sign_in_page).to be_loaded
   end
 
   def given_the_principal_user_exists
