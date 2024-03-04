@@ -27,7 +27,7 @@ RSpec.feature 'Admin metrics list page' do
     expect(metrics_index_page.snapshots.count).to eq(3)
 
     Snapshot.all.each_with_index do |snapshot, i|
-      expect(metrics_index_page.snapshots.at(i)).to have_text(snapshot.created_at.strftime('%e %B %Y'))
+      expect(metrics_index_page.snapshots.at(i)).to have_text(snapshot.created_at.strftime('%e %B %Y').strip)
     end
   end
 
