@@ -1,6 +1,8 @@
 module Geocodable
-  def self.included(model)
-    model.scope :geocoded, -> { model.where.not(latitude: nil, longitude: nil) }
+  extend ActiveSupport::Concern
+
+  included do
+    scope :geocoded, -> { where.not(latitude: nil, longitude: nil) }
   end
 
   def latitude=(value)
