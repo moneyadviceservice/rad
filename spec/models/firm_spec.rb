@@ -189,8 +189,8 @@ RSpec.describe Firm do
 
     context 'on update' do
       describe 'website_address' do
-        it 'must not exceed 120 characters' do
-          firm.website_address = "#{'a' * 120}.com"
+        it 'must not exceed 300 characters' do
+          firm.website_address = "#{'a' * 300}.com"
           expect(firm).to_not be_valid
         end
 

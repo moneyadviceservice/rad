@@ -149,8 +149,8 @@ RSpec.describe Office do
     end
 
     describe 'website url' do
-      it 'must not exceed 100 characters' do
-        office.website = "#{'a' * 100}.com"
+      it 'must not exceed 300 characters' do
+        office.website = "#{'a' * 300}.com"
         expect(office).to_not be_valid
       end
 
