@@ -61,7 +61,7 @@ class Firm < ApplicationRecord # rubocop:disable Metrics/ClassLength
   with_options on: :update do |firm|
     firm.validates :website_address,
       allow_blank: true,
-      length: { maximum: 120 },
+      length: { maximum: 300 },
       format: { with: /\A(https?:\/\/)?([a-zA-Z0-9-]+\.)+[a-zA-Z0-9-]+/ }
 
     firm.validates :free_initial_meeting,
