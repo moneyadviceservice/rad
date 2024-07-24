@@ -25,7 +25,7 @@ class Principal < ApplicationRecord
   validates :fca_number,
             presence: true,
             uniqueness: true,
-            length: { is: 6 },
+            length: { in: 6..7 },
             numericality: { only_integer: true }
 
   validates :email_address,

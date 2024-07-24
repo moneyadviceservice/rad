@@ -3,7 +3,7 @@ module Lookup
     has_many :subsidiaries, primary_key: :fca_number, foreign_key: :fca_number
 
     validates :fca_number,
-              length: { is: 6 },
+              length: { in: 6..7 },
               numericality: { only_integer: true }
 
     def subsidiaries?

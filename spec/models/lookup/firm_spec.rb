@@ -11,8 +11,9 @@ RSpec.describe Lookup::Firm do
         expect(described_class.new(fca_number: '123A45')).to_not be_valid
       end
 
-      it 'accepts only 6 digits' do
-        expect(described_class.new(fca_number: 1_234_567)).to_not be_valid
+      it 'accepts between 6 and 7 digits' do
+        expect(described_class.new(fca_number: 1_234_567)).to be_valid
+        expect(described_class.new(fca_number: 1_234_567_8)).to_not be_valid
       end
     end
   end
