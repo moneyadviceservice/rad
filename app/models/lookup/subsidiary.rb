@@ -1,7 +1,7 @@
 module Lookup
   class Subsidiary < ApplicationRecord
     validates :fca_number,
-              length: { is: 6 },
+              length: { in: 6..7 },
               numericality: { only_integer: true }
 
     def self.table_name
