@@ -383,8 +383,8 @@ GEM
       netrc (~> 0.8)
     reverse_markdown (2.1.1)
       nokogiri
-    rexml (3.2.8)
-      strscan (>= 3.0.9)
+    rexml (3.3.6)
+      strscan
     rollbar (3.5.1)
     rspec-collection_matchers (1.1.3)
       rspec-expectations (>= 2.99.0.beta1)
