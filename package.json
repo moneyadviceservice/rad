@@ -24,7 +24,7 @@
     "karma-spec-reporter": "0.0.13",
     "mocha": "~1.15.1",
     "phantomjs-prebuilt": "2.1.14",
-    "requirejs": "2.2.0",
+    "requirejs": "2.3.7",
     "sinon": "^1.9.0"
   }
 }
