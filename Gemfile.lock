@@ -264,7 +264,7 @@ GEM
       activesupport (>= 3.1.0)
       rack (>= 1.4.0)
       rest-client
-    marcel (1.0.2)
+    marcel (1.0.4)
     matrix (0.4.2)
     method_source (1.0.0)
     mime-types (3.5.2)
