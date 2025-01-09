@@ -10,6 +10,8 @@ module Rad
   class Application < Rails::Application
     config.load_defaults 5.1
 
+    config.exceptions_app = self.routes
+
     config.action_mailer.delivery_job = "ActionMailer::MailDeliveryJob"
 
     config.active_record.belongs_to_required_by_default = false
