@@ -279,14 +279,14 @@ GEM
     msgpack (1.7.2)
     multipart-post (2.4.0)
     nap (1.1.0)
-    net-imap (0.4.10)
+    net-imap (0.4.17)
       date
       net-protocol
     net-pop (0.1.2)
       net-protocol
     net-protocol (0.2.2)
       timeout
-    net-smtp (0.4.0.1)
+    net-smtp (0.5.0)
       net-protocol
     netrc (0.11.0)
     nio4r (2.7.3)
