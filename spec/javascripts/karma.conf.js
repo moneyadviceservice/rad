@@ -30,7 +30,7 @@ module.exports = function(config) {
 
     // enable / disable watching file and executing tests whenever any file changes
     autoWatch: true,
-    browsers: ['PhantomJS'],
+    browsers: ['ChromeHeadless'],
     captureTimeout: 60000,
 
     // Continuous Integration mode
