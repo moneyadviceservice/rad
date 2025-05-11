@@ -84,11 +84,6 @@ var require = {
 
       html.className = html.className.replace('supports-js', 'supports-js js js-' + supports.js);
 
-      setTimeout(function() {
-        var src = d.location.protocol + "//dnn506yrbagrg.cloudfront.net/pages/scripts/0018/4438.js?" + Math.floor(new Date().getTime() / 3600000);
-        appendFile('script', src);
-      }, 1);
-
       var vp, ua, gs, sf;
       vp = d.querySelector && d.querySelector('meta[name="viewport"]');
       ua = navigator.userAgent;
