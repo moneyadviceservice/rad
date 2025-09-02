@@ -11,3 +11,6 @@ repairs:
   -
     line: '926558|,,Courtier" Ltd.|51|5||||||||||||||||EEA Authorised|20200521||COURTIERLTD|20200522|||||'
     replacement: '926558|,,Courtier Ltd.|51|5||||||||||||||||EEA Authorised|20200521||COURTIERLTD|20200522|||||'
+  -
+    line: '306536|It’s So Easy Travel Cover|Trading|20241023||ITSSOEASYTRAVELCOVER|20241023|'
+    replacement: "306536|It's So Easy Travel Cover|Trading|20241023||ITSSOEASYTRAVELCOVER|20241023|"
