@@ -8,17 +8,20 @@ RSpec.feature 'Principal answers pre-qualification questions' do
   end
 
   scenario 'Submitting the blank form without answering anything' do
+    skip 'Decommissioning'
     when_i_submit_my_answers
     then_i_am_notified_i_cannot_proceed
   end
 
   scenario 'Answering all questions "Yes" and choosing "Independent"' do
+    skip 'Decommissioning'
     given_i_answer_all_questions_yes_and_choose_independent
     when_i_submit_my_answers
     then_i_am_able_to_proceed_to_verify_my_identity
   end
 
   scenario 'Answering any question "No"' do
+    skip 'Decommissioning'
     given_i_answer_a_question_no
     when_i_submit_my_answers
     then_i_am_notified_i_cannot_proceed
