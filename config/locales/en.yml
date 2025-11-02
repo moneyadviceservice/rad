@@ -322,6 +322,34 @@ en:
         age: 65
         trip: Single trip to Spain for three weeks.
 
+      prostate_cancer_question:
+        scenario: Prostate Cancer
+        primary_health_condition: Stage two prostate cancer, taking bicalutamide once a day and has been for 16 months, no side effects from taking the medication. Continues to lead an active life, balancing treatment with daily activities. Appointments typically held every three months. No surgery planned currently. No hospital admissions in the last 12 months.
+        secondary_health_condition: None.
+        age: 70
+        trip: Single trip to Europe for five weeks.
+
+      type_one_diabetes_question:
+        scenario: Type 1 Diabetes
+        primary_health_condition: Type 1 diabetes. Diagnosed five years ago.  Insulin is administered using a tubeless insulin pump based on blood sugar levels which are monitored through a continuous glucose monitor (CGM) that communicates with the pump. Has quarterly check-ups with the GP, no concerns following the last visit. No hospital admissions in the last 12 months.
+        secondary_health_condition: None.
+        age: 86
+        trip: An annual European policy including cruise cover.
+
+      parkinsons_disease_question:
+        scenario: Parkinson’s Disease
+        primary_health_condition: Parkinson’s Disease, diagnosed three years ago. Taking Levodopa to start the day to help reduce stiffness and improve mobility, followed by a slow and careful routine to perform daily activities. Also taking Benserazide to reduce side effects of Levodopa. Regular exercise such as daily walking. Sees a specialist every 12 months.
+        secondary_health_condition: None.
+        age: 65
+        trip: An annual worldwide, excluding USA & Canada policy.
+
+      hiv_question:
+        scenario: HIV
+        primary_health_condition: HIV, diagnosed two years ago, taking antiretroviral therapy (ART) medications. Maintains a balanced diet to support immune system and overall health. Regular exercise and strength training, maintaining physical and mental well-being. Sees specialist every six months for lab tests. No hospital admissions in the last 12 months.
+        secondary_health_condition: None.
+        age: 75
+        trip: An annual worldwide including USA & Canada policy.
+
     firm:
       heading: Firm FCA information
       reference_number: Firm reference number *

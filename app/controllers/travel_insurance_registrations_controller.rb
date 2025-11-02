@@ -1,4 +1,4 @@
-class TravelInsuranceRegistrationsController < BaseRegistrationsController
+class TravelInsuranceRegistrationsController < BaseRegistrationsController # rubocop:disable Metrics/ClassLength
   WIZARD_STEPS = [:risk_profile, :medical_conditions, :medical_conditions_questionaire].freeze
   MIN_REQUIRED_POSITIVE_ANSWERS = 12
 
@@ -127,7 +127,8 @@ class TravelInsuranceRegistrationsController < BaseRegistrationsController
       :acute_myeloid_leukaemia_question, :guillain_barre_syndrome_question,
       :heart_failure_and_arrhytmia_question, :stroke_with_hbp_question,
       :peripheral_vascular_disease_question, :schizophrenia_question,
-      :lupus_question, :sickle_cell_and_renal_question, :sub_arachnoid_haemorrhage_and_epilepsy_question
+      :lupus_question, :sickle_cell_and_renal_question, :sub_arachnoid_haemorrhage_and_epilepsy_question,
+      :prostate_cancer_question, :type_one_diabetes_question, :parkinsons_disease_question, :hiv_question
     )
   end
 

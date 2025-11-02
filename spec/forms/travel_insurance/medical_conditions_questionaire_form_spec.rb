@@ -20,7 +20,11 @@ RSpec.describe TravelInsurance::MedicalConditionsQuestionaireForm, '#valid?', ty
         schizophrenia_question: 'true',
         lupus_question: 'true',
         sickle_cell_and_renal_question: 'true',
-        sub_arachnoid_haemorrhage_and_epilepsy_question: 'true'
+        sub_arachnoid_haemorrhage_and_epilepsy_question: 'true',
+        prostate_cancer_question: 'true',
+        type_one_diabetes_question: 'true',
+        parkinsons_disease_question: 'true',
+        hiv_question: 'true'
       }
     end
 

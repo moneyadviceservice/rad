@@ -29,7 +29,11 @@ RSpec.describe TravelInsuranceFirm, type: :model do
     [:schizophrenia_question, 'true'],
     [:lupus_question, 'true'],
     [:sickle_cell_and_renal_question, 'false'],
-    [:sub_arachnoid_haemorrhage_and_epilepsy_question, 'false']
+    [:sub_arachnoid_haemorrhage_and_epilepsy_question, 'false'],
+    [:prostate_cancer_question, 'true'],
+    [:type_one_diabetes_question, 'false'],
+    [:parkinsons_disease_question, 'true'],
+    [:hiv_question, 'false']
   ]
   test_questions = HashWithIndifferentAccess[test_question_answers.sample(rand(1..18)).map { |key, value| [key, value] }]
 
