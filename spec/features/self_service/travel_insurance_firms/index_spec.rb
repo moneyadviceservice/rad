@@ -37,7 +37,7 @@ RSpec.feature 'The self service travel insurance firm list page' do
     and_the_parent_firm_section_heading_is_visible
   end
 
-  xscenario 'The principal can remove trading names' do
+  scenario 'The principal can remove trading names' do
     given_i_am_a_fully_registered_principal_user
     and_i_have_a_firm_with_both_available_and_added_trading_names
     and_i_am_logged_in
