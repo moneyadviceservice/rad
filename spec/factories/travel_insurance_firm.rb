@@ -1,3 +1,4 @@
+# rubocop:disable Metrics/BlockLength
 FactoryBot.define do
   factory :travel_insurance_firm do
     fca_number
@@ -26,6 +27,33 @@ FactoryBot.define do
 
     transient do
       completed_firm { false }
+    end
+
+    trait :reregister_approved do
+      reregister_approved_at { Time.zone.now }
+    end
+
+    trait :with_all_medical_conditions do
+      covers_medical_condition_question { 'all' }
+      metastatic_breast_cancer_question { 'true' }
+      ulceritive_colitis_and_anaemia_question { 'true' }
+      heart_attack_with_hbp_and_high_cholesterol_question { 'true' }
+      copd_with_respiratory_infection_question { 'true' }
+      motor_neurone_disease_question { 'true' }
+      hodgkin_lymphoma_question { 'true' }
+      acute_myeloid_leukaemia_question { 'true' }
+      guillain_barre_syndrome_question { 'true' }
+      heart_failure_and_arrhytmia_question { 'true' }
+      stroke_with_hbp_question { 'true' }
+      peripheral_vascular_disease_question { 'true' }
+      schizophrenia_question { 'true' }
+      lupus_question { 'true' }
+      sickle_cell_and_renal_question { 'true' }
+      sub_arachnoid_haemorrhage_and_epilepsy_question { 'true' }
+      prostate_cancer_question { 'true' }
+      type_one_diabetes_question { 'true' }
+      parkinsons_disease_question { 'true' }
+      hiv_question { 'true' }
     end
 
     trait :hidden do
@@ -106,3 +134,4 @@ FactoryBot.define do
     end
   end
 end
+# rubocop:enable Metrics/BlockLength

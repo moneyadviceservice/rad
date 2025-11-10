@@ -37,23 +37,47 @@ RSpec.describe TravelInsuranceFirm, type: :model do
   ]
   test_questions = HashWithIndifferentAccess[test_question_answers.sample(rand(1..18)).map { |key, value| [key, value] }]
 
+  describe 'after_update' do
+    context 'when changing to only cover one specific condition' do
+      let(:firm) { FactoryBot.create(:travel_insurance_firm, :with_all_medical_conditions, with_associated_principle: true) }
+
+      it 'clears the previously chosen medical conditions' do
+        expect(firm.hiv_question).to eq('true')
+
+        firm.update!(covers_medical_condition_question: 'one_specific')
+
+        expect(firm.reload.attributes.slice(*TravelInsuranceFirm::MEDICAL_CONDITION_QUESTIONS)).to be_none
+      end
+    end
+  end
+
   describe 'after_commit' do
-    it 'saving a new firm calls notify_indexer' do
-      firm = FactoryBot.build(:travel_insurance_firm, with_associated_principle: true)
-      expect(firm).to receive(:notify_indexer)
-      firm.save
+    let(:firm) { FactoryBot.build(:travel_insurance_firm, :reregister_approved, with_associated_principle: true) }
+
+    context 'when the firm has been reregister approved' do
+      it 'saving a new firm calls notify_indexer' do
+        expect(firm).to receive(:notify_indexer)
+        firm.save
+      end
+
+      it 'updating a firm calls notify_indexer' do
+        expect(firm).to receive(:notify_indexer)
+        firm.update(registered_name: 'A new name')
+      end
+
+      it 'destroying a firm calls notify_indexer' do
+        expect(firm).to receive(:notify_indexer)
+        firm.destroy
+      end
     end
 
-    it 'updating a firm calls notify_indexer' do
-      firm = FactoryBot.create(:travel_insurance_firm, with_associated_principle: true)
-      expect(firm).to receive(:notify_indexer)
-      firm.update(registered_name: 'A new name')
-    end
+    context 'when the firm is not yet reregister approved' do
+      let(:firm) { FactoryBot.build(:travel_insurance_firm, with_associated_principle: true) }
 
-    it 'destroying a firm calls notify_indexer' do
-      firm = FactoryBot.create(:travel_insurance_firm, with_associated_principle: true)
-      expect(firm).to receive(:notify_indexer)
-      firm.destroy
+      it 'does not attempt to index' do
+        expect(firm).not_to receive(:notify_indexer)
+        firm.save
+      end
     end
   end
 

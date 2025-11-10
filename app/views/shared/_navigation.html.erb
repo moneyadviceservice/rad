@@ -11,9 +11,9 @@
       <li class='navigation__item'>
         <%= link_to t('self_service.navigation.root'), self_service_root_path, class: 'navigation__link t-navigation-link' %>
       </li>
-      <% if @current_user && @current_user.principal.present? %>
+      <% if current_user && current_user.principal.present? %>
         <li class='navigation__item--desktop-only'>
-          <%= link_to t('self_service.navigation.edit_principal'), edit_self_service_principal_path(@current_user.principal), class: 'navigation__link t-navigation-link' %>
+          <%= link_to t('self_service.navigation.edit_principal'), edit_self_service_principal_path(current_user.principal), class: 'navigation__link t-navigation-link' %>
         </li>
       <% end %>
       <li class='navigation__item--desktop-only'>

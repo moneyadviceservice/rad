@@ -58,6 +58,16 @@ Rails.application.routes.draw do
     resources :travel_insurance_firms, only: [:index, :edit, :update] do
       resources :offices, except: [:show], controller: 'travel_insurance_offices'
     end
+
+    resources :travel_insurance_reregistrations, only: [:new, :create] do
+      collection do
+        [:risk_profile, :medical_conditions, :medical_conditions_questionaire].each do |action_name|
+          get action_name,  action: "wizard_form", defaults: { current_step: action_name }, constraints: { current_step: action_name }
+          post action_name, action: "wizard", defaults: { current_step: action_name }, constraints: { current_step: action_name }
+        end
+        get 'reject',      action: 'rejection_form'
+      end
+    end
   end
 
   resource :contact, only: :create

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 3019_11_18_100182) do
+ActiveRecord::Schema.define(version: 3019_11_18_100185) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
@@ -444,6 +444,9 @@ ActiveRecord::Schema.define(version: 3019_11_18_100182) do
     t.string "type_one_diabetes_question"
     t.string "parkinsons_disease_question"
     t.string "hiv_question"
+    t.datetime "reregistered_at"
+    t.boolean "confirmed_disclaimer", default: false, null: false
+    t.datetime "reregister_approved_at"
     t.index ["approved_at"], name: "index_travel_insurance_firms_on_approved_at"
     t.index ["fca_number"], name: "index_travel_insurance_firms_on_fca_number"
     t.index ["hidden_at"], name: "index_travel_insurance_firms_on_hidden_at"
