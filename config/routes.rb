@@ -80,6 +80,7 @@ Rails.application.routes.draw do
     resources :advisers, only: [:index, :show, :edit, :update, :destroy]
 
     resources :travel_insurance_firms, only: [:index, :show] do
+      post :reregister_approve
       post :approve
       post :hide
     end

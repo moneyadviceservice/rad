@@ -77,6 +77,14 @@ class TravelInsuranceFirm < ApplicationRecord
     MEDICAL_CONDITION_QUESTIONS.each { |question| public_send("#{question}=", nil) }
   end
 
+  def requires_reregistration_approval?
+    reregistered_at? && !reregister_approved_at?
+  end
+
+  def reregister_approve!
+    update_attribute(:reregister_approved_at, Time.zone.now)
+  end
+
   def single_medical_condition?
     covers_medical_condition_question == 'one_specific'
   end

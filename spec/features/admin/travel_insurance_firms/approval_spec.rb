@@ -46,9 +46,7 @@ RSpec.feature 'Approving travel insurance firms', :inline_job_queue do
   end
 
   def then_the_firm_becomes_approved
-    expect(
-      travel_insurance_firm_page.approved.text
-    ).to eq("Approved: #{approval_date.to_s(:long)}")
+    expect(travel_insurance_firm_page.approved).to have_text(approval_date.to_s(:long))
     expect(@firm.reload.approved_at).to_not be_nil
   end
 

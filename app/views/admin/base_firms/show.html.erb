@@ -27,9 +27,22 @@
     <p>
       <strong>Added:</strong> <%= @firm.created_at.to_s(:long) %>
     </p>
-    <p>
+    <p class="t-approved-at">
       <strong>Approved:</strong> <%= @firm.approved_at&.to_s(:long) || 'Not approved' %>
     </p>
+    <% if @firm.is_a?(TravelInsuranceFirm) %>
+    <p>
+      <strong>Reregistered:</strong> <%= @firm.reregistered_at&.to_s(:long) || 'Not reregistered' %>
+    </p>
+    <p class="t-reregister-approved-label">
+      <strong>Reregistration Approved:</strong> <%= @firm.reregister_approved_at&.to_s(:long) || 'Not reregister approved' %>
+    </p>
+      <% if @firm.requires_reregistration_approval? %>
+        <p>
+          <%= button_to('Approve Reregistration', admin_travel_insurance_firm_reregister_approve_path(@firm), class: 'btn btn-success t-reregister-approve', method: :post) %>
+        </p>
+      <% end %>
+    <% end %>
     <% if @firm.publishable? %>
       <% if @firm.approved_at.blank?  %>
         <p>
