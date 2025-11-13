@@ -48,7 +48,7 @@ RSpec.feature 'Principal reregisters their travel insurance information', :inlin
   end
 
   def then_the_firm_is_marked_for_reregistration
-    expect(page).to have_text(I18n.t('travel_insurance_reregistrations.success_message'))
+    expect(page).to have_text('Thank you for reregistering')
 
     @firm.reload
 
