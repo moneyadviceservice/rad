@@ -400,6 +400,11 @@ en:
     travel_insurance:
       subheading: Based on the information you have supplied, your firm is not eligible to be listed on the Money & Pensions Service Travel Insurance Directory.
       secondary_message: "If you would like to discuss this with us, please contact us in the first instance at:"
+      reregistration:
+        heading: Your firm isn’t eligible
+        subheading_html: |
+          <p>Based on the information you have entered, your firm isn’t eligible to be listed on our Travel insurance directory.</p>
+          <p>If this doesn’t seem right, email us at <a href="mailto:traveldirectory@maps.org.uk">traveldirectory@maps.org.uk</a> and we will review your information.</p>
 
     retirement_advice:
       subheading: "Unfortunately your firm can't be listed on our directory unless you:"
