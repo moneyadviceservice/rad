@@ -146,19 +146,20 @@ en:
     previous_question_button: Previous question
 
   travel_insurance_reregistrations:
-    heading: "Firm confirmation - %{firm}"
-    intro: Blurb about why they need to confirm their firm's details again and next steps etc.
-    reference_number: "Your FCA Firm Reference Number (FRN) is:"
-    reference_number_change_prompt_html: If you need to change your firm's reference number you can contact <a href="mailto:blah@blah.com">blah@blah.com</a>
+    heading: "Confirm your details - %{firm}"
+    initial_heading: "Confirm your reference number - %{firm}"
+    intro: You must confirm your firm’s details again to ensure it remains listed on the Travel insurance directory.
+    reference_number: "FCA Firm Reference Number (FRN):"
+    reference_number_change_prompt_html: If you need to change your firm's reference number you can contact <a href="mailto:traveldirectory@maps.org.uk">traveldirectory@maps.org.uk</a>
     frn_linked_trading_names_info: You can enter details for one firm. This can be the main authorised firm OR one trading name registered to the FCA Firm Reference Number (FRN) above.
     email_and_phone_message: Enter the email address and telephone number of the named Senior Manager or a person appointed to act on their behalf.
     questionaire_instructions: "You have confirmed that you will offer travel insurance to people with any/most types of serious medical conditions. Please now confirm in which of the fifteen hypothetical scenarios below your firm would offer single trip cover (without medical exclusions). Please select ‘yes’ or ‘no’ for each scenario."
-    confirmation_statement: You agree to inform us of any changes in your organisation that could affect your status
+    confirmation_statement: You agree to inform us of any changes that could affect your organisation’s status or eligibility
     confirmation_statement_html: |
       The Money & Pension Service ("MaPS") is operating this Directory pursuant to rules set out in the Financial Conduct Authority ("FCA") Handbook and an agreement with the FCA.  MaPS reserves the right to obtain and maintain complete and continuous verification (including time-to-time at MaPS’ discretion) any information provided in whole or in part in connection with a firm’s application to be in the Directory.  Such verification shall include MaPS seeking corroboration as to such evidence from the applicable firm, the FCA and/or any other third party.
       <br><br>
       MaPS also reserves the right to pass to the FCA any information from or about a firm that has applied to be in the Directory, including as to whether a firm has failed for any reason to provide complete and accurate information relevant to such application and the firm’s appearance in the Directory. [No firm will be considered for the Directory without the electronic signature of a senior manager of the firm on the application.  Such signature will constitute (i) the firm’s agreement to the terms for being in the Directory, and (ii) the personal warranty of the signatory of their authority to bind the applicable firm to such terms.]
-    register_button: Confirm & Continue
+    register_button: Confirm and continue
     previous_question_button: Previous question
     success_message: Thank you. Your firm's details will be reviewed and we will contact you shortly.
 
