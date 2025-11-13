@@ -157,7 +157,7 @@ module SelfService
 
       Admin::FirmMailer.reregistered_firm(firm).deliver_later
 
-      flash[:success] = t('travel_insurance_reregistrations.success_message')
+      flash[:success] = t('travel_insurance_reregistrations.success_message_html')
       redirect_to self_service_root_path
     end
 

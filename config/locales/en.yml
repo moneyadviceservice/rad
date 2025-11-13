@@ -161,7 +161,9 @@ en:
       MaPS also reserves the right to pass to the FCA any information from or about a firm that has applied to be in the Directory, including as to whether a firm has failed for any reason to provide complete and accurate information relevant to such application and the firm’s appearance in the Directory. [No firm will be considered for the Directory without the electronic signature of a senior manager of the firm on the application.  Such signature will constitute (i) the firm’s agreement to the terms for being in the Directory, and (ii) the personal warranty of the signatory of their authority to bind the applicable firm to such terms.]
     register_button: Confirm and continue
     previous_question_button: Previous question
-    success_message: Thank you. Your firm's details will be reviewed and we will contact you shortly.
+    success_message_html: |
+      <p><strong>Thank you for reregistering</strong></p>
+      <p>Your firm’s details will be reviewed and we will contact you shortly.</p>
 
   retirement_advice_registrations:
     heading: Retirement Adviser Directory – Firm Registration
