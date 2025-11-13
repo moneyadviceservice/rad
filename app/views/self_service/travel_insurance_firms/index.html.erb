@@ -2,8 +2,8 @@
 
 <% if @presenter.requires_reregistration? %>
   <div class="panel t-reregistration-banner">
-    <p class="panel__heading">Your firm requires reregistration </>
-    <p>You must reregister your firm to continue listing in our travel insurance directory.</p>
+    <p class="panel__heading">You need to reregister your firm</>
+    <p>Reregistering will ensure your firm remains in our Travel insurance directory.</p>
     <p><%= link_to 'Get started', new_self_service_travel_insurance_reregistration_path, class: 'button button--primary' %></p>
   </div>
 <% end %>
