@@ -70,6 +70,8 @@ Rails.application.routes.draw do
     end
   end
 
+  get '/reregister', to: redirect('/self_service/travel_insurance_reregistrations/new')
+
   resource :contact, only: :create
 
   namespace :admin do

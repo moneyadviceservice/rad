@@ -18,7 +18,7 @@ RSpec.feature 'Principal reregisters their travel insurance information', :inlin
   end
 
   def when_i_attempt_to_reregister_my_firm
-    visit new_self_service_travel_insurance_reregistration_path
+    visit '/reregister'
     expect(page).to have_text('Step 1 of 4')
   end
 
