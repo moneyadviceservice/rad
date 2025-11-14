@@ -18,6 +18,8 @@ module SelfService
 
       element :add_office_link, '.t-office-link'
       element :cover_and_service_link, '.t-cover-and-service-link'
+
+      element :reregistration_banner, '.t-reregistration-banner'
     end
   end
 end

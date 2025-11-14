@@ -19,6 +19,10 @@ class TravelInsuranceMedicalConditionsQuestionairePage < SitePrism::Page
   element :lupus_question, '.t-lupus_question'
   element :sickle_cell_and_renal_question, '.t-sickle_cell_and_renal_question'
   element :sub_arachnoid_haemorrhage_and_epilepsy_question, '.t-sub_arachnoid_haemorrhage_and_epilepsy_question'
+  element :prostate_cancer_question, '.t-prostate_cancer_question'
+  element :type_one_diabetes_question, '.t-type_one_diabetes_question'
+  element :parkinsons_disease_question, '.t-parkinsons_disease_question'
+  element :hiv_question, '.t-hiv_question'
 
   element :register, '.button--primary'
 

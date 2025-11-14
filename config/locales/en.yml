@@ -7,6 +7,8 @@ en:
       new_principal_form:
         fca_number: FCA Number
         confirmed_disclaimer: Confirmation statement
+      travel_insurance/reregistration_form:
+        confirmed_disclaimer: Disclaimer
     errors:
       models:
         admin/move_advisers_form:
@@ -142,6 +144,27 @@ en:
       MaPS also reserves the right to pass to the FCA any information from or about a firm that has applied to be in the Directory, including as to whether a firm has failed for any reason to provide complete and accurate information relevant to such application and the firm’s appearance in the Directory. [No firm will be considered for the Directory without the electronic signature of a senior manager of the firm on the application.  Such signature will constitute (i) the firm’s agreement to the terms for being in the Directory, and (ii) the personal warranty of the signatory of their authority to bind the applicable firm to such terms.]
     register_button: Continue
     previous_question_button: Previous question
+
+  travel_insurance_reregistrations:
+    heading: "Confirm your details - %{firm}"
+    initial_heading: "Confirm your reference number - %{firm}"
+    intro: You must confirm your firm’s details again to ensure it remains listed on the Travel insurance directory.
+    reference_number: "FCA Firm Reference Number (FRN):"
+    reference_number_change_prompt_html: If you need to change your firm's reference number you can contact <a href="mailto:traveldirectory@maps.org.uk">traveldirectory@maps.org.uk</a>
+    frn_linked_trading_names_info: You can enter details for one firm. This can be the main authorised firm OR one trading name registered to the FCA Firm Reference Number (FRN) above.
+    email_and_phone_message: Enter the email address and telephone number of the named Senior Manager or a person appointed to act on their behalf.
+    questionaire_instructions: "You have confirmed that you will offer travel insurance to people with any/most types of serious medical conditions. Please now confirm in which of the fifteen hypothetical scenarios below your firm would offer single trip cover (without medical exclusions). Please select ‘yes’ or ‘no’ for each scenario."
+    confirmation_statement: You agree to inform us of any changes that could affect your organisation’s status or eligibility
+    confirmation_statement_html: |
+      The Money & Pension Service ("MaPS") is operating this Directory pursuant to rules set out in the Financial Conduct Authority ("FCA") Handbook and an agreement with the FCA.  MaPS reserves the right to obtain and maintain complete and continuous verification (including time-to-time at MaPS’ discretion) any information provided in whole or in part in connection with a firm’s application to be in the Directory.  Such verification shall include MaPS seeking corroboration as to such evidence from the applicable firm, the FCA and/or any other third party.
+      <br><br>
+      MaPS also reserves the right to pass to the FCA any information from or about a firm that has applied to be in the Directory, including as to whether a firm has failed for any reason to provide complete and accurate information relevant to such application and the firm’s appearance in the Directory. [No firm will be considered for the Directory without the electronic signature of a senior manager of the firm on the application.  Such signature will constitute (i) the firm’s agreement to the terms for being in the Directory, and (ii) the personal warranty of the signatory of their authority to bind the applicable firm to such terms.]
+    register_button: Confirm and continue
+    previous_question_button: Previous question
+    success_message_html: |
+      <p><strong>Thank you for reregistering</strong></p>
+      <p>Your firm’s details will be reviewed and we will contact you shortly.</p>
+
   retirement_advice_registrations:
     heading: Retirement Adviser Directory – Firm Registration
 
@@ -175,7 +198,7 @@ en:
           <li>the risk appetite to offer such policies (“Relevant Risk Appetite”)</li>
           </ul>
         </p>
-        <p><strong>Please state whether such capability and appetite is demonstrated by one or more of the following means:</strong></p>
+        <p><strong>Please state whether such capability and appetite is demonstrated by one of the following means:</strong></p>
         <p>Please note that ‘Risk Data’ means ‘data as to the nature and severity of an applicant’s medical condition(s)’, and ‘Underwriting Decision’ means ‘your firm’s decision - or that of an insurer where your firm does not have direct or other underwriting authority - whether or not to agree policy terms with the applicant’.</p>
       answers:
         bespoke: 'Your firm, or someone on its behalf, undertakes a bespoke consultation with the applicant from which Risk Data is obtained and then assessed in the Underwriting Decision'
@@ -322,6 +345,34 @@ en:
         age: 65
         trip: Single trip to Spain for three weeks.
 
+      prostate_cancer_question:
+        scenario: Prostate Cancer
+        primary_health_condition: Stage two prostate cancer, taking bicalutamide once a day and has been for 16 months, no side effects from taking the medication. Continues to lead an active life, balancing treatment with daily activities. Appointments typically held every three months. No surgery planned currently. No hospital admissions in the last 12 months.
+        secondary_health_condition: None.
+        age: 70
+        trip: Single trip to Europe for five weeks.
+
+      type_one_diabetes_question:
+        scenario: Type 1 Diabetes
+        primary_health_condition: Type 1 diabetes. Diagnosed five years ago.  Insulin is administered using a tubeless insulin pump based on blood sugar levels which are monitored through a continuous glucose monitor (CGM) that communicates with the pump. Has quarterly check-ups with the GP, no concerns following the last visit. No hospital admissions in the last 12 months.
+        secondary_health_condition: None.
+        age: 86
+        trip: An annual European policy including cruise cover.
+
+      parkinsons_disease_question:
+        scenario: Parkinson’s Disease
+        primary_health_condition: Parkinson’s Disease, diagnosed three years ago. Taking Levodopa to start the day to help reduce stiffness and improve mobility, followed by a slow and careful routine to perform daily activities. Also taking Benserazide to reduce side effects of Levodopa. Regular exercise such as daily walking. Sees a specialist every 12 months.
+        secondary_health_condition: None.
+        age: 65
+        trip: An annual worldwide, excluding USA & Canada policy.
+
+      hiv_question:
+        scenario: HIV
+        primary_health_condition: HIV, diagnosed two years ago, taking antiretroviral therapy (ART) medications. Maintains a balanced diet to support immune system and overall health. Regular exercise and strength training, maintaining physical and mental well-being. Sees specialist every six months for lab tests. No hospital admissions in the last 12 months.
+        secondary_health_condition: None.
+        age: 75
+        trip: An annual worldwide including USA & Canada policy.
+
     firm:
       heading: Firm FCA information
       reference_number: Firm reference number *
@@ -349,6 +400,11 @@ en:
     travel_insurance:
       subheading: Based on the information you have supplied, your firm is not eligible to be listed on the Money & Pensions Service Travel Insurance Directory.
       secondary_message: "If you would like to discuss this with us, please contact us in the first instance at:"
+      reregistration:
+        heading: Your firm isn’t eligible
+        subheading_html: |
+          <p>Based on the information you have entered, your firm isn’t eligible to be listed on our Travel insurance directory.</p>
+          <p>If this doesn’t seem right, email us at <a href="mailto:traveldirectory@maps.org.uk">traveldirectory@maps.org.uk</a> and we will review your information.</p>
 
     retirement_advice:
       subheading: "Unfortunately your firm can't be listed on our directory unless you:"

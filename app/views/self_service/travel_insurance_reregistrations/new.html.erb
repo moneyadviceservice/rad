@@ -1,0 +1,38 @@
+<%= heading_tag(t('travel_insurance_reregistrations.initial_heading', firm: current_user.principal.travel_insurance_firm.registered_name), level: 1) %>
+<div class="panel">
+  <p><%= t('travel_insurance_reregistrations.intro') %></p>
+</div>
+
+<h2>Step 1 of 4</h2>
+<%= form_for @form,
+  url: { controller: controller_name, action: 'create' },
+  method: :post,
+  html: { class: 'form' },
+  builder: Dough::Forms::Builders::Validation do |f| %>
+  <%= f.validation_summary %>
+
+  <div class="l-identity__row">
+    <div class="l-identity__field l-identity__field--wide">
+      <%= f.form_row(:fca_number) do %>
+        <%= f.errors_for :fca_number %>
+        <%= f.label :fca_number, t('travel_insurance_reregistrations.reference_number'), class: 'form__label-heading' %>
+        <%= f.text_field :fca_number, class: 't-reference-number', maxlength: 6, readonly: true, disabled: true %>
+        <span class="form__hint"><%= t('travel_insurance_reregistrations.reference_number_change_prompt_html') %></span>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="l-identity__row">
+    <div class="l-identity__field l-identity__field--wide">
+      <%= f.form_row(:confirmed_disclaimer) do %>
+        <%= f.errors_for :confirmed_disclaimer %>
+        <%= f.check_box :confirmed_disclaimer, class: 'l-identity__checkbox t-confirmation' %>
+        <%= f.label :confirmed_disclaimer, t('travel_insurance_reregistrations.confirmation_statement'), class: 'l-identity__disclaimer-label' %>
+      <% end %>
+    </div>
+  </div>
+
+  <%= f.hidden_field :registration_type, value: controller_name %>
+
+  <%= button_primary t('travel_insurance_reregistrations.register_button') %>
+<% end %>

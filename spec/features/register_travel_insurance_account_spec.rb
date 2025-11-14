@@ -119,7 +119,7 @@ RSpec.feature 'Principal provides travel insurance information', :inline_job_que
 
     scenario 'a firm that supports answers yes to all questions' do
       given_i_am_on_the_travel_insurance_medical_conditions_questionaire_page
-      and_i_answer_yes_to_questions_on_step_4(15)
+      and_i_answer_yes_to_questions_on_step_4(19)
       then_i_am_shown_a_thank_you_for_registering_message
       and_i_should_have_a_travel_insurance_firm
       and_i_later_receive_an_email_confirming_my_registration
