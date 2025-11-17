@@ -1,6 +1,6 @@
 class TravelInsuranceRegistrationsController < BaseRegistrationsController # rubocop:disable Metrics/ClassLength
   WIZARD_STEPS = [:risk_profile, :medical_conditions, :medical_conditions_questionaire].freeze
-  MIN_REQUIRED_POSITIVE_ANSWERS = 12
+  MIN_REQUIRED_POSITIVE_ANSWERS = 15
 
   def registration_title
     'travel_insurance_registrations.heading'

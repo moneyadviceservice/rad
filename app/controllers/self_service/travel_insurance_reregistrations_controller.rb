@@ -2,7 +2,7 @@ module SelfService
   # rubocop:disable Metrics/ClassLength
   class TravelInsuranceReregistrationsController < AbstractTravelInsuranceFirmsController
     WIZARD_STEPS = %i[risk_profile medical_conditions medical_conditions_questionaire].freeze
-    MIN_REQUIRED_POSITIVE_ANSWERS = 12
+    MIN_REQUIRED_POSITIVE_ANSWERS = 15
 
     before_action :build_reregistration_form, only: %i[new create]
 
