@@ -1,6 +1,20 @@
 RSpec.feature 'The self service travel insurance firm list page' do
   let(:firms_index_page) { SelfService::TravelInsuranceFirms::IndexPage.new }
 
+  scenario 'When the firm requires reregistration' do
+    given_i_am_a_fully_registered_principal_user
+    and_i_am_logged_in
+    when_i_am_on_the_principals_firms_index_page
+    then_i_see_the_reregistration_banner
+  end
+
+  scenario 'When the firm has already been reregistered' do
+    given_i_am_a_fully_registered_principal_user(reregistered_at: Time.zone.now)
+    and_i_am_logged_in
+    when_i_am_on_the_principals_firms_index_page
+    then_i_do_not_see_the_reregistration_banner
+  end
+
   scenario 'When there are both available and added trading names' do
     given_i_am_a_fully_registered_principal_user
     and_i_have_a_firm_with_both_available_and_added_trading_names
@@ -37,7 +51,7 @@ RSpec.feature 'The self service travel insurance firm list page' do
     and_the_parent_firm_section_heading_is_visible
   end
 
-  xscenario 'The principal can remove trading names' do
+  scenario 'The principal can remove trading names' do
     given_i_am_a_fully_registered_principal_user
     and_i_have_a_firm_with_both_available_and_added_trading_names
     and_i_am_logged_in
@@ -97,7 +111,15 @@ RSpec.feature 'The self service travel insurance firm list page' do
     and_the_trading_name_overall_status_is_published
   end
 
-  def given_i_am_a_fully_registered_principal_user
+  def then_i_do_not_see_the_reregistration_banner
+    expect(firms_index_page).not_to have_reregistration_banner
+  end
+
+  def then_i_see_the_reregistration_banner
+    expect(firms_index_page).to have_reregistration_banner
+  end
+
+  def given_i_am_a_fully_registered_principal_user(reregistered_at: nil)
     @principal = FactoryBot.create(:principal, firm: nil)
     @user = FactoryBot.create(:user, principal: @principal)
     @principal.travel_insurance_firm = FactoryBot.build(
@@ -106,6 +128,7 @@ RSpec.feature 'The self service travel insurance firm list page' do
       with_medical_specialism: true,
       with_service_detail: true,
       with_trip_covers: true,
+      reregistered_at: reregistered_at,
       fca_number: @principal.fca_number
     )
   end

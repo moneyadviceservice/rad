@@ -7,6 +7,6 @@ class Admin::FirmPage < SitePrism::Page
   element :move_advisers, '.t-move-advisers'
   element :sign_in_as_principal, '.t-sign-in-as-principal'
   element :new_adviser, '.t-new-adviser'
-  element :approved, 'p:contains("Approved:")'
+  element :approved, '.t-approved-at'
   element :approve_button, 'input[value="Approve Firm"]'
 end

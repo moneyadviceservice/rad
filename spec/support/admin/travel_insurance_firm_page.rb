@@ -6,4 +6,7 @@ class Admin::TravelInsuranceFirmPage < Admin::FirmPage
   element :hide_button, 'input[value="Hide firm from directory"]'
   element :unhide_button, 'input[value="Add Hidden firm to directory"]'
   element :hidden, 'p:contains("Hidden:")'
+
+  element :reregister_approve, '.t-reregister-approve'
+  element :reregister_approved_label, '.t-reregister-approved-label'
 end

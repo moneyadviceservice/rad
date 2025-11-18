@@ -244,6 +244,7 @@ Metrics/MethodLength:
   Exclude:
     - 'app/controllers/self_service/travel_insurance_offices_controller.rb'
     - 'app/controllers/travel_insurance_registrations_controller.rb'
+    - 'app/controllers/self_service/travel_insurance_reregistrations_controller.rb'
     - 'app/models/firm.rb'
     - 'app/models/snapshot/metrics_in_order.rb'
     - 'db/migrate/20141221140208_create_principals.rb'

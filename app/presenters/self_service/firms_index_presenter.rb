@@ -15,5 +15,9 @@ module SelfService
     def trading_names_are_available_to_add?
       lookup_names.present?
     end
+
+    def requires_reregistration?
+      !firm.reregistered_at?
+    end
   end
 end

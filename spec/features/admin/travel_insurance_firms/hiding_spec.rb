@@ -32,7 +32,7 @@ RSpec.feature 'Hiding Travel Insurance Firms', :inline_job_queue do
   end
 
   def given_there_are_approved_travel_insurance_firms
-    @firm = FactoryBot.create(:travel_insurance_firm, completed_firm: true, approved_at: approved_at)
+    @firm = FactoryBot.create(:travel_insurance_firm, completed_firm: true, approved_at: approved_at, reregister_approved_at: Time.zone.now)
   end
 
   def and_the_firm_is_publishable

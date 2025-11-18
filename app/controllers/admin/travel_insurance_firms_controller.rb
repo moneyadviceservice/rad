@@ -1,6 +1,13 @@
 class Admin::TravelInsuranceFirmsController < Admin::BaseFirmsController
   layout 'travel_insurance_admin'
 
+  def reregister_approve
+    @firm = TravelInsuranceFirm.find(params[:travel_insurance_firm_id])
+    @firm.reregister_approve!
+
+    redirect_back(fallback_location: admin_retirement_firm_path(@firm))
+  end
+
   def firms_search_path
     admin_travel_insurance_firms_path
   end

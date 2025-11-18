@@ -1,5 +1,13 @@
 <% render_breadcrumbs(breadcrumbs_root) %>
 
+<% if @presenter.requires_reregistration? %>
+  <div class="panel t-reregistration-banner">
+    <p class="panel__heading">You need to reregister your firm</>
+    <p>Reregistering will ensure your firm remains in our Travel insurance directory.</p>
+    <p><%= link_to 'Get started', new_self_service_travel_insurance_reregistration_path, class: 'button button--primary' %></p>
+  </div>
+<% end %>
+
 <h1 class="t-page-title">
   <%= t('self_service.travel_insurance_firms_index.title', count: @presenter.total_firms) %>
 </h1>

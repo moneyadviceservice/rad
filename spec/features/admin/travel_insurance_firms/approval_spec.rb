@@ -28,7 +28,7 @@ RSpec.feature 'Approving travel insurance firms', :inline_job_queue do
   end
 
   def given_there_are_unapproved_travel_insurance_firms
-    @firm = FactoryBot.create(:travel_insurance_firm, completed_firm: true, approved_at: nil)
+    @firm = FactoryBot.create(:travel_insurance_firm, completed_firm: true, approved_at: nil, reregister_approved_at: Time.zone.now)
   end
 
   def and_the_firm_is_publishable
@@ -46,9 +46,7 @@ RSpec.feature 'Approving travel insurance firms', :inline_job_queue do
   end
 
   def then_the_firm_becomes_approved
-    expect(
-      travel_insurance_firm_page.approved.text
-    ).to eq("Approved: #{approval_date.to_s(:long)}")
+    expect(travel_insurance_firm_page.approved).to have_text(approval_date.to_s(:long))
     expect(@firm.reload.approved_at).to_not be_nil
   end
 

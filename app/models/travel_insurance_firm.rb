@@ -1,11 +1,7 @@
 class TravelInsuranceFirm < ApplicationRecord
   include FirmApproval
 
-  KNOWN_REGISTRATION_QUESTIONS = %w[
-    covered_by_ombudsman_question
-    risk_profile_approach_question
-    supplies_documentation_when_needed_question
-    covers_medical_condition_question
+  MEDICAL_CONDITION_QUESTIONS = %i[
     metastatic_breast_cancer_question
     ulceritive_colitis_and_anaemia_question
     heart_attack_with_hbp_and_high_cholesterol_question
@@ -21,7 +17,18 @@ class TravelInsuranceFirm < ApplicationRecord
     lupus_question
     sickle_cell_and_renal_question
     sub_arachnoid_haemorrhage_and_epilepsy_question
-  ].map(&:to_sym).freeze
+    prostate_cancer_question
+    type_one_diabetes_question
+    parkinsons_disease_question
+    hiv_question
+  ].freeze
+
+  KNOWN_REGISTRATION_QUESTIONS = %i[
+    covered_by_ombudsman_question
+    risk_profile_approach_question
+    supplies_documentation_when_needed_question
+    covers_medical_condition_question
+  ] + MEDICAL_CONDITION_QUESTIONS
 
   belongs_to :principal, primary_key: :fca_number, foreign_key: :fca_number
 
@@ -51,7 +58,8 @@ class TravelInsuranceFirm < ApplicationRecord
   scope :onboarded, -> { joins(:office) }
   scope :sorted_by_registered_name, -> { order(:registered_name) }
 
-  after_commit :notify_indexer
+  before_update :verify_medical_questions, if: :single_medical_condition?
+  after_commit :notify_indexer, if: :reregister_approved_at?
 
   def self.ransackable_attributes(*)
     %w[fca_number registered_name]
@@ -63,6 +71,22 @@ class TravelInsuranceFirm < ApplicationRecord
 
   def notify_indexer
     UpdateAlgoliaIndexJob.perform_later(model_name.name, id)
+  end
+
+  def verify_medical_questions
+    MEDICAL_CONDITION_QUESTIONS.each { |question| public_send("#{question}=", nil) }
+  end
+
+  def requires_reregistration_approval?
+    reregistered_at? && !reregister_approved_at?
+  end
+
+  def reregister_approve!
+    update_attribute(:reregister_approved_at, Time.zone.now)
+  end
+
+  def single_medical_condition?
+    covers_medical_condition_question == 'one_specific'
   end
 
   def validate_two_trading_names_only
