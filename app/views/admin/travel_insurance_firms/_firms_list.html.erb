@@ -9,6 +9,8 @@
     <th><%= sort_link(@search, :registered_name, 'Firm Registered Name') %></th>
     <th><%= sort_link(@search, :created_at, 'Added') %></th>
     <th><%= sort_link(@search, :approved_at, 'Approved') %></th>
+    <th><%= sort_link(@search, :reregistered_at, 'Reregistered') %></th>
+    <th><%= sort_link(@search, :reregister_approved_at, 'Reapproved') %></th>
   </thead>
   <tbody>
     <% if @firms.present? %>
@@ -41,6 +43,12 @@
             <% else %>
               Not approved
             <% end %>
+          </td>
+          <td>
+            <%= travel_firm_reregistered_at(firm) %>
+          </td>
+          <td>
+            <%= travel_firm_reapproved_at(firm) %>
           </td>
         </tr>
       <% end %>

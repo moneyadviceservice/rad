@@ -1,4 +1,24 @@
 module Admin::FirmsHelper
+  def travel_firm_reregistered_at(firm)
+    firm = firm.parent if firm.subsidiary?
+
+    if firm.reregistered_at?
+      firm.reregistered_at.to_s(:short)
+    else
+      'Not reregistered'
+    end
+  end
+
+  def travel_firm_reapproved_at(firm)
+    firm = firm.parent if firm.subsidiary?
+
+    if firm.reregister_approved_at?
+      firm.reregister_approved_at.to_s(:short)
+    else
+      'Not reapproved'
+    end
+  end
+
   def render_questionnaire_response(firm, attribute_name)
     value = firm.send(attribute_name)
 
