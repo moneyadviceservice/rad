@@ -5,7 +5,7 @@ class Admin::FirmsIndexPage < SitePrism::Page
   class RowSection < SitePrism::Section
     element :fca_number_elem, '.t-fca-number'
     element :registered_name_elem, '.t-registered-name'
-    element :approved_elem, 'td:last-child'
+    element :approved_elem, '.t-approved'
 
     def fca_number
       fca_number_elem.text
