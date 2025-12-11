@@ -12,12 +12,20 @@ FactoryBot.define do
       manually_build_firms { false }
     end
 
+    transient do
+      include_user { false }
+    end
+
     after(:build) do |principal, evaluator|
       if principal.firm.blank? && !evaluator.manually_build_firms
         principal.firm = Firm.new(
           fca_number: principal.fca_number,
           registered_name: Faker::Name.first_name
         )
+      end
+
+      if !principal.user && evaluator.include_user
+        principal.user = build(:user)
       end
     end
   end

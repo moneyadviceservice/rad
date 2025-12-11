@@ -1,7 +1,7 @@
 RSpec.feature 'Principal can sign in using the embedded sign in panel' do
   let(:panel_host_page) { RootPage.new }
   let(:sign_in_page) { SignInPage.new }
-  let(:after_signin_page) { SelfService::FirmsIndexPage.new }
+  let(:after_signin_page) { SelfService::TravelInsuranceFirms::IndexPage.new }
   let(:forgot_password_page) { ForgotPasswordPage.new }
 
   scenario 'Principal can sign in with FRN and password' do
@@ -33,7 +33,7 @@ RSpec.feature 'Principal can sign in using the embedded sign in panel' do
   end
 
   def and_the_principal_user_exists
-    @user = FactoryBot.create(:user)
+    @user = FactoryBot.create(:travel_insurance_firm_with_principal).principal.user
   end
 
   def when_they_sign_in_with_frn_and_password

@@ -13,14 +13,13 @@ RSpec.describe 'GET /', type: :feature do
   end
 
   context 'when logged in to the self_service area' do
-    let(:user) { FactoryBot.create(:user, principal: principal) }
-    let(:principal) { FactoryBot.create(:principal) }
+    let(:principal) { FactoryBot.create(:travel_insurance_firm_with_principal).principal }
 
-    before { login_as(user, scope: :user) }
+    before { login_as(principal.user, scope: :user) }
 
-    it 'redirects to /self_service/firms' do
+    it 'redirects to /self_service/travel_insurance_firms' do
       visit '/'
-      expect(current_path).to eq(self_service_firms_path)
+      expect(current_path).to eq(self_service_travel_insurance_firms_path)
     end
   end
 end
