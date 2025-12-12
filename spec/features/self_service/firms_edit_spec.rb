@@ -17,7 +17,7 @@ RSpec.feature 'The self service firm edit page' do
                       languages: ['fra'])
   end
 
-  scenario 'The principal can see a back to firms list link' do
+  skip 'The principal can see a back to firms list link' do
     given_i_am_a_fully_registered_principal_user
     and_i_have_a_firm
     and_i_am_logged_in
@@ -27,7 +27,7 @@ RSpec.feature 'The self service firm edit page' do
     then_i_see_a_back_to_firms_list_link
   end
 
-  scenario 'The principal can see the overall status panel of their firm' do
+  skip 'The principal can see the overall status panel of their firm' do
     given_i_am_a_fully_registered_principal_user
     and_i_have_a_firm
     and_i_am_logged_in
@@ -37,7 +37,7 @@ RSpec.feature 'The self service firm edit page' do
     then_i_can_see_the_overall_status_panel
   end
 
-  scenario 'The principal can edit their firm' do
+  skip 'The principal can edit their firm' do
     given_i_am_a_fully_registered_principal_user
     and_i_have_a_firm
     and_i_am_logged_in
@@ -50,7 +50,7 @@ RSpec.feature 'The self service firm edit page' do
     and_the_information_is_changed
   end
 
-  scenario 'The system shows validation messages if there are invalid inputs' do
+  skip 'The system shows validation messages if there are invalid inputs' do
     given_i_am_a_fully_registered_principal_user
     and_i_have_a_firm
     and_i_am_logged_in

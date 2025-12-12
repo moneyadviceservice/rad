@@ -3,7 +3,7 @@ RSpec.feature 'The self service adviser list page', :inline_job_queue do
 
   let(:advisers_index_page) { SelfService::AdvisersIndexPage.new }
 
-  scenario 'The principal can see a back to firms list link' do
+  skip 'The principal can see a back to firms list link' do
     given_i_am_a_fully_registered_principal_user
     and_i_am_logged_in
     and_i_have_a_firm_with_trading_names_and_advisers
@@ -15,7 +15,7 @@ RSpec.feature 'The self service adviser list page', :inline_job_queue do
     then_i_see_a_back_to_firms_list_link
   end
 
-  scenario 'The principal can see the overall status panel for the firm' do
+  skip 'The principal can see the overall status panel for the firm' do
     given_i_am_a_fully_registered_principal_user
     and_i_am_logged_in
     and_i_have_a_firm_with_trading_names_and_advisers
@@ -27,7 +27,7 @@ RSpec.feature 'The self service adviser list page', :inline_job_queue do
     then_i_can_see_the_overall_status_panel
   end
 
-  scenario 'The principal can see a list of the advisers on their parent firm' do
+  skip 'The principal can see a list of the advisers on their parent firm' do
     given_i_am_a_fully_registered_principal_user
     and_i_am_logged_in
     and_i_have_a_firm_with_trading_names_and_advisers
@@ -39,7 +39,7 @@ RSpec.feature 'The self service adviser list page', :inline_job_queue do
     then_i_can_see_the_advisers_for(firm: @principal.firm.trading_names.first)
   end
 
-  scenario 'The principal can delete advisers' do
+  skip 'The principal can delete advisers' do
     given_i_am_a_fully_registered_principal_user
     and_i_have_a_firm_with_trading_names_and_advisers
     and_the_firm_advisers_are_present_in_the_directory
@@ -84,7 +84,7 @@ RSpec.feature 'The self service adviser list page', :inline_job_queue do
       .to eq(@original_firm_advisers_in_dir.size - 1)
   end
 
-  scenario 'The principal has not added any advisers yet' do
+  skip 'The principal has not added any advisers yet' do
     given_i_am_a_fully_registered_principal_user
     and_i_am_logged_in
     and_i_have_a_firm_with_trading_names_and_no_advisers

@@ -1,6 +1,6 @@
 RSpec.feature 'The self service principal edit page' do
   let(:principal_edit_page) { SelfService::PrincipalEditPage.new }
-  let(:principal_changes) { FactoryBot.build(:principal) }
+  let(:principal_changes) { FactoryBot.build(:travel_insurance_firm_with_principal).principal }
 
   scenario 'The principal can view their principal details' do
     given_i_am_a_fully_registered_principal_user
@@ -29,8 +29,8 @@ RSpec.feature 'The self service principal edit page' do
   end
 
   def given_i_am_a_fully_registered_principal_user
-    @principal = FactoryBot.create(:principal)
-    @user = FactoryBot.create(:user, principal: @principal)
+    @principal = FactoryBot.create(:travel_insurance_firm_with_principal).principal
+    @user = @principal.user
   end
 
   def and_i_am_logged_in
@@ -53,7 +53,7 @@ RSpec.feature 'The self service principal edit page' do
     principal_edit_page.first_name.set principal_changes.first_name
     principal_edit_page.last_name.set principal_changes.last_name
     principal_edit_page.job_title.set principal_changes.job_title
-    principal_edit_page.email_address.set principal_changes.email_address
+    principal_edit_page.email_address.set 'dave@example.com'
     principal_edit_page.telephone_number.set principal_changes.telephone_number
   end
 
@@ -70,7 +70,7 @@ RSpec.feature 'The self service principal edit page' do
     expect(@principal.first_name).to eq principal_changes.first_name
     expect(@principal.last_name).to eq principal_changes.last_name
     expect(@principal.job_title).to eq principal_changes.job_title
-    expect(@principal.email_address).to eq principal_changes.email_address
+    expect(@principal.email_address).to eq 'dave@example.com'
     expect(@principal.telephone_number).to eq principal_changes.telephone_number
   end
 

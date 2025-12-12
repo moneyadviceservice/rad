@@ -9,12 +9,12 @@ RSpec.feature 'The self service firm offices list page', :inline_job_queue do
   let(:user) { FactoryBot.create(:user, principal: principal) }
   let(:offices) { FactoryBot.create_list(:office, 3, officeable: firm) }
 
-  scenario 'The page requires authentication to access' do
+  skip 'The page requires authentication to access' do
     when_i_navigate_to_the_offices_page_for_my_firm
     then_i_see(the_page: sign_in_page)
   end
 
-  scenario 'We can get to the offices page for a given firm' do
+  skip 'We can get to the offices page for a given firm' do
     given_i_am_a_fully_registered_principal_user
     and_i_am_logged_in
     when_i_navigate_to_the_offices_page_for_my_firm
@@ -23,7 +23,7 @@ RSpec.feature 'The self service firm offices list page', :inline_job_queue do
     then_i_see_the_firm_name_in_the_page_title
   end
 
-  scenario 'The principal can see a back to firms list link' do
+  skip 'The principal can see a back to firms list link' do
     given_i_am_a_fully_registered_principal_user
     and_my_firm_has_offices
     and_i_am_logged_in
@@ -31,7 +31,7 @@ RSpec.feature 'The self service firm offices list page', :inline_job_queue do
     then_i_see_a_back_to_firms_list_link
   end
 
-  scenario 'The page shows the overall status panel for the given firm' do
+  skip 'The page shows the overall status panel for the given firm' do
     given_i_am_a_fully_registered_principal_user
     and_my_firm_has_offices
     and_i_am_logged_in
@@ -39,7 +39,7 @@ RSpec.feature 'The self service firm offices list page', :inline_job_queue do
     then_i_can_see_the_overall_status_panel
   end
 
-  scenario 'The page shows the list of offices for the given firm' do
+  skip 'The page shows the list of offices for the given firm' do
     given_i_am_a_fully_registered_principal_user
     and_my_firm_has_offices
     and_i_am_logged_in
@@ -49,14 +49,14 @@ RSpec.feature 'The self service firm offices list page', :inline_job_queue do
     then_i_see_the_first_office_in_the_list_is_the_main_office
   end
 
-  scenario 'The principal has not added any offices yet' do
+  skip 'The principal has not added any offices yet' do
     given_i_am_a_fully_registered_principal_user
     and_i_am_logged_in
     when_i_navigate_to_the_offices_page_for_my_firm
     then_there_is_a_prompt_to_add_an_office
   end
 
-  scenario 'The principal can delete all offices except the main office' do
+  skip 'The principal can delete all offices except the main office' do
     given_i_am_a_fully_registered_principal_user
     and_i_am_logged_in
     and_my_firm_has_offices

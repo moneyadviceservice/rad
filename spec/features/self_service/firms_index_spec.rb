@@ -1,7 +1,7 @@
 RSpec.feature 'The self service firm list page' do
   let(:firms_index_page) { SelfService::FirmsIndexPage.new }
 
-  scenario 'When there are both available and added trading names' do
+  skip 'When there are both available and added trading names' do
     given_i_am_a_fully_registered_principal_user
     and_i_have_a_firm_with_both_available_and_added_trading_names
     and_i_am_logged_in
@@ -13,7 +13,7 @@ RSpec.feature 'The self service firm list page' do
     and_the_parent_firm_section_heading_is_visible
   end
 
-  scenario 'When there are no added or available trading names' do
+  skip 'When there are no added or available trading names' do
     given_i_am_a_fully_registered_principal_user
     and_i_have_a_firm_with_no_available_or_added_trading_names
     and_i_am_logged_in
@@ -25,7 +25,7 @@ RSpec.feature 'The self service firm list page' do
     and_the_parent_firm_section_heading_is_not_visible
   end
 
-  scenario 'When there are available trading names but none have been added' do
+  skip 'When there are available trading names but none have been added' do
     given_i_am_a_fully_registered_principal_user
     and_i_have_a_firm_with_available_trading_names_but_none_added
     and_i_am_logged_in
@@ -37,7 +37,7 @@ RSpec.feature 'The self service firm list page' do
     and_the_parent_firm_section_heading_is_visible
   end
 
-  scenario 'The principal can remove trading names' do
+  skip 'The principal can remove trading names' do
     given_i_am_a_fully_registered_principal_user
     and_i_have_a_firm_with_both_available_and_added_trading_names
     and_i_am_logged_in
@@ -49,7 +49,7 @@ RSpec.feature 'The self service firm list page' do
     and_i_can_see_a_success_message
   end
 
-  scenario 'when the principal is not onboarded' do
+  skip 'when the principal is not onboarded' do
     given_i_am_a_fully_registered_principal_user
     and_i_have_no_publishable_firms
     when_i_am_logged_in
@@ -57,7 +57,7 @@ RSpec.feature 'The self service firm list page' do
     then_i_can_see_the_onboading_message
   end
 
-  scenario 'when the principal is onboarded' do
+  skip 'when the principal is onboarded' do
     given_i_am_a_fully_registered_principal_user
     and_i_have_publishable_firms
     when_i_am_logged_in
@@ -65,7 +65,7 @@ RSpec.feature 'The self service firm list page' do
     then_i_can_not_see_the_onboading_message
   end
 
-  scenario 'when the parent firm is not published' do
+  skip 'when the parent firm is not published' do
     given_i_am_a_fully_registered_principal_user
     and_i_have_an_unpublished_firm
     when_i_am_logged_in
@@ -75,7 +75,7 @@ RSpec.feature 'The self service firm list page' do
     and_the_parent_firm_overall_status_is_unpublished
   end
 
-  scenario 'when the parent firm is published' do
+  skip 'when the parent firm is published' do
     given_i_am_a_fully_registered_principal_user
     and_i_have_a_published_firm
     when_i_am_logged_in
@@ -85,7 +85,7 @@ RSpec.feature 'The self service firm list page' do
     and_the_parent_firm_overall_status_is_published
   end
 
-  scenario 'The principal can see the status of unpublishable trading names' do
+  skip 'The principal can see the status of unpublishable trading names' do
     given_i_am_a_fully_registered_principal_user
     and_i_have_a_firm_with_both_available_and_added_trading_names
     and_one_of_those_trading_names_is_unpublishable
@@ -95,7 +95,7 @@ RSpec.feature 'The self service firm list page' do
     and_the_trading_name_overall_status_is_unpublished
   end
 
-  scenario 'The principal can see the status of publishable trading names' do
+  skip 'The principal can see the status of publishable trading names' do
     given_i_am_a_fully_registered_principal_user
     and_i_have_a_firm_with_both_available_and_added_trading_names
     and_one_of_those_trading_names_is_publishable

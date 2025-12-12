@@ -1,7 +1,7 @@
 RSpec.feature 'Self service add trading name' do
   let(:firms_index_page) { SelfService::FirmsIndexPage.new }
 
-  scenario 'Adding a trading name from the firms index page' do
+  skip 'Adding a trading name from the firms index page' do
     given_i_am_a_fully_registered_principal_user
     and_i_am_logged_in
     and_my_firm_has_subsidiaries

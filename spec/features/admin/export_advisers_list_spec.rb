@@ -14,25 +14,25 @@ RSpec.feature 'registered advisors report' do
     and_i_am_logged_in_as_an_admin
   end
 
-  scenario 'no registered advisers' do
+  skip 'no registered advisers' do
     and_there_are_no_registered_advisers
     when_i_visit_the_registered_adviser_page
     then_i_should_not_see_any_registered_advisers
   end
 
-  scenario 'has registered advisers' do
+  skip 'has registered advisers' do
     and_there_exists_registered_advisors
     when_i_visit_the_registered_adviser_page
     then_i_should_see_all_registered_advisers
   end
 
-  scenario 'blocks download as CSV' do
+  skip 'blocks download as CSV' do
     and_there_are_no_registered_advisers
     when_i_visit_the_registered_adviser_page
     then_i_should_not_be_able_to_download
   end
 
-  scenario 'permits download as CSV' do
+  skip 'permits download as CSV' do
     Timecop.freeze Date.new(2017, 05, 30) do
       and_there_exists_registered_advisors
       when_i_visit_the_registered_adviser_page

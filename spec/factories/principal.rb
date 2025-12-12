@@ -24,9 +24,7 @@ FactoryBot.define do
         )
       end
 
-      if !principal.user && evaluator.include_user
-        principal.user = build(:user)
-      end
+      principal.user = build(:user) if !principal.user && evaluator.include_user
     end
   end
 end
