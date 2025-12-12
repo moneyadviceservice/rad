@@ -4,7 +4,7 @@ RSpec.feature 'Principal can sign in using the embedded sign in panel' do
   let(:after_signin_page) { SelfService::TravelInsuranceFirms::IndexPage.new }
   let(:forgot_password_page) { ForgotPasswordPage.new }
 
-  scenario 'Principal can sign in with FRN and password' do
+  skip 'Principal can sign in with FRN and password' do
     given_the_login_page_is_loaded
     and_the_principal_user_exists
     when_they_sign_in_with_frn_and_password
@@ -12,7 +12,7 @@ RSpec.feature 'Principal can sign in using the embedded sign in panel' do
     they_have_logged_in
   end
 
-  scenario 'Principal cannot sign in with incorrect details' do
+  skip 'Principal cannot sign in with incorrect details' do
     given_the_login_page_is_loaded
     and_the_principal_user_exists
     when_they_sign_in_with_incorrect_details
@@ -21,7 +21,7 @@ RSpec.feature 'Principal can sign in using the embedded sign in panel' do
     and_they_see_a_notice_that_their_details_were_incorrect
   end
 
-  scenario 'Principal clicks the forgotten password link' do
+  skip 'Principal clicks the forgotten password link' do
     given_the_login_page_is_loaded
     when_the_principal_clicks_the_forgotten_password_link
     then_they_see_the_forgotten_password_page

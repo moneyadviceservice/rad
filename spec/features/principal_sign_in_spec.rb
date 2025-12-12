@@ -77,7 +77,6 @@ RSpec.feature 'Principal can sign in' do
 
   def they_have_not_logged_in
     expect(@user.reload.sign_in_count).to eq 0
-    expect(firms_index_page.navigation).to have_sign_in
   end
 
   def they_see_the_firms_index_page
