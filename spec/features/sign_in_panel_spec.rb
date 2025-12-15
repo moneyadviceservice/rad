@@ -70,7 +70,7 @@ RSpec.feature 'Principal can sign in using the embedded sign in panel' do
     expect(sign_in_page.devise_form_errors).to have_text(
       I18n.t(
         'devise.failure.invalid',
-        authentication_keys: 'Firm Reference Number'
+        authentication_keys: 'Travel Insurance Firm Reference Number'
       )
     )
   end
