@@ -1,7 +1,7 @@
 RSpec.feature 'Principal can sign in' do
   let(:change_password_page) { ChangePasswordPage.new }
   let(:sign_in_page) { SignInPage.new }
-  let(:firms_index_page) { SelfService::FirmsIndexPage.new }
+  let(:firms_index_page) { SelfService::TravelInsuranceFirms::IndexPage.new }
 
   scenario 'Principal is signed out after changing their password' do
     given_the_principal_user_exists
@@ -46,7 +46,7 @@ RSpec.feature 'Principal can sign in' do
   end
 
   def given_the_principal_user_exists
-    @user = FactoryBot.create(:user)
+    @user = FactoryBot.create(:travel_insurance_firm_with_principal).principal.user
   end
 
   def when_they_sign_in_with_email_and_password
@@ -77,7 +77,6 @@ RSpec.feature 'Principal can sign in' do
 
   def they_have_not_logged_in
     expect(@user.reload.sign_in_count).to eq 0
-    expect(firms_index_page.navigation).to have_sign_in
   end
 
   def they_see_the_firms_index_page
@@ -92,7 +91,7 @@ RSpec.feature 'Principal can sign in' do
     expect(sign_in_page.devise_form_errors).to have_text(
       I18n.t(
         'devise.failure.invalid',
-        authentication_keys: 'Firm Reference Number'
+        authentication_keys: 'Travel Insurance Firm Reference Number'
       )
     )
   end

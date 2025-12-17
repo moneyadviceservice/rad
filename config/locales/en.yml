@@ -51,7 +51,7 @@ en:
         registered_name: Registered name
         advice_types: Types of advice provided
       user:
-        login: Firm Reference Number
+        login: Travel Insurance Firm Reference Number
     errors:
       models:
         firm:

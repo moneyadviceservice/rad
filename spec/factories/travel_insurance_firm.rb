@@ -99,7 +99,7 @@ FactoryBot.define do
     after(:build) do |travel_insurance_firm, evaluator|
       next unless evaluator.with_associated_principle || evaluator.completed_firm
 
-      create(:principal, manually_build_firms: true, fca_number: travel_insurance_firm.fca_number)
+      create(:principal, include_user: true, manually_build_firms: true, fca_number: travel_insurance_firm.fca_number)
     end
 
     after(:build) do |travel_insurance_firm, evaluator|

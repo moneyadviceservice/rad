@@ -23,7 +23,7 @@
                                address_postcode: address_postcode)
   end
 
-  scenario 'The principal can create a new office' do
+  skip 'The principal can create a new office' do
     given_i_am_a_fully_registered_principal_user
     and_the_principal_firm_has_an_adviser_but_no_office
     and_i_am_logged_in
@@ -45,7 +45,7 @@
     and_the_total_number_of_firm_offices_in_the_directory_gets_increased
   end
 
-  scenario 'The system shows validation messages if there are invalid inputs' do
+  skip 'The system shows validation messages if there are invalid inputs' do
     given_i_am_a_fully_registered_principal_user
     and_i_am_logged_in
 

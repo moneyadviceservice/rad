@@ -2,7 +2,7 @@ RSpec.feature 'Principal can reset their password' do
   let(:forgot_password_page) { ForgotPasswordPage.new }
   let(:reset_password_page) { ResetPasswordPage.new }
   let(:sign_in_page) { SignInPage.new }
-  let(:firms_index_page) { SelfService::FirmsIndexPage.new }
+  let(:firms_index_page) { SelfService::TravelInsuranceFirms::IndexPage.new }
 
   scenario 'Principal can request a password reset' do
     given_the_principal_user_exists
@@ -26,7 +26,9 @@ RSpec.feature 'Principal can reset their password' do
   end
 
   def given_the_principal_user_exists
-    @user = FactoryBot.create(:user)
+    @user = FactoryBot.create(
+      :travel_insurance_firm_with_principal
+    ).principal.user
   end
 
   def when_they_visit_the_sign_in_page

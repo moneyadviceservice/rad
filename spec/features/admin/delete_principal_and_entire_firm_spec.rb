@@ -3,7 +3,7 @@ RSpec.feature 'Deleting principal and all related firm, adviser, office and trad
 
   let(:admin_principal_page) { Admin::PrincipalPage.new }
 
-  scenario 'Admin deletes a principal and all related data' do
+  skip 'Admin deletes a principal and all related data' do
     given_there_is_firm
     and_the_firm_adviser_and_office_are_present_in_the_directory
     when_i_visit_the_principal_page

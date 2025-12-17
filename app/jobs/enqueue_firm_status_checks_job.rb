@@ -33,7 +33,6 @@ class EnqueueFirmStatusChecksJob < ApplicationJob
     @batches = batches
     InactiveFirm.delete_all
 
-    run_for_resource(Firm)
     run_for_resource(TravelInsuranceFirm)
   end
 

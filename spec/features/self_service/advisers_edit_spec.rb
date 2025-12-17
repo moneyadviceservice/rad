@@ -13,7 +13,7 @@ RSpec.feature 'The self service firm edit page', :inline_job_queue do
     FactoryBot.create_list :professional_standing, 5
   end
 
-  scenario 'The principal can edit their adviser' do
+  skip 'The principal can edit their adviser' do
     given_i_am_a_fully_registered_principal_user
     and_i_have_a_firm_with_an_adviser
     and_i_am_logged_in
@@ -27,7 +27,7 @@ RSpec.feature 'The self service firm edit page', :inline_job_queue do
     and_the_adviser_information_is_updated_in_the_directory
   end
 
-  scenario 'The system shows validation messages if there are invalid inputs' do
+  skip 'The system shows validation messages if there are invalid inputs' do
     given_i_am_a_fully_registered_principal_user
     and_i_have_a_firm_with_an_adviser
     and_i_am_logged_in

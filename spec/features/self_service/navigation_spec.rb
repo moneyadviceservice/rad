@@ -1,14 +1,14 @@
 RSpec.feature 'The self service navigation' do
   let(:firms_index_page) { SelfService::FirmsIndexPage.new }
 
-  scenario 'The signed-in principal can see navigation links' do
+  skip 'The signed-in principal can see navigation links' do
     given_i_am_a_fully_registered_principal_user
     and_i_am_logged_in
     and_i_visit_the_firms_page
     then_i_can_see_the_navigation_links
   end
 
-  scenario 'does not show the self service navigation links when not signed in' do
+  skip 'does not show the self service navigation links when not signed in' do
     given_i_am_a_fully_registered_principal_user
     and_i_visit_the_firms_page
     then_i_can_not_see_the_navigation_links

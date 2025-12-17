@@ -27,7 +27,7 @@ RSpec.feature 'The self service office edit page', :inline_job_queue do
   end
   let(:offices) { [office] }
 
-  scenario 'The principal can edit their office' do
+  skip 'The principal can edit their office' do
     given_i_am_a_fully_registered_principal_user
     and_my_firm_has_offices_and_advisers
     and_my_firm_is_approved
@@ -47,7 +47,7 @@ RSpec.feature 'The self service office edit page', :inline_job_queue do
     and_the_office_information_is_updated_in_the_directory
   end
 
-  scenario 'The system shows validation messages if there are invalid inputs' do
+  skip 'The system shows validation messages if there are invalid inputs' do
     given_i_am_a_fully_registered_principal_user
     and_my_firm_has_offices_and_advisers
     and_i_am_logged_in

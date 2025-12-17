@@ -27,4 +27,8 @@ class User < ApplicationRecord
         ['principals.fca_number = :fca_number', { fca_number: fca_number.to_i }]
       )
   end
+
+  def active_for_authentication?
+    principal&.travel_insurance_firm.present?
+  end
 end
