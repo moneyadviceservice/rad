@@ -78,6 +78,14 @@ RSpec.describe TravelInsuranceFirm, type: :model do
         expect(firm).not_to receive(:notify_indexer)
         firm.save
       end
+
+      context 'when the firm is hidden' do
+        it 'will notifier the indexer' do
+          expect(firm).to receive(:notify_indexer)
+
+          firm.hide!
+        end
+      end
     end
   end
 
