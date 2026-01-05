@@ -59,7 +59,7 @@ class TravelInsuranceFirm < ApplicationRecord
   scope :sorted_by_registered_name, -> { order(:registered_name) }
 
   before_update :verify_medical_questions, if: :single_medical_condition?
-  after_commit :notify_indexer, if: :reregister_approved_at?
+  after_commit :notify_indexer, if: :notify_indexer?
 
   def self.ransackable_attributes(*)
     %w[fca_number registered_name]
@@ -71,6 +71,10 @@ class TravelInsuranceFirm < ApplicationRecord
 
   def notify_indexer
     UpdateAlgoliaIndexJob.perform_later(model_name.name, id)
+  end
+
+  def notify_indexer?
+    reregister_approved_at? || hidden_at_previously_changed? || approved_at_previously_changed?
   end
 
   def verify_medical_questions
