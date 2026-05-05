@@ -169,7 +169,7 @@ GEM
       danger
       rubocop (~> 1.0)
     database_cleaner (1.6.2)
-    date (3.4.1)
+    date (3.5.1)
     debug_inspector (1.2.0)
     devise (4.9.4)
       bcrypt (~> 3.0)
@@ -283,7 +283,7 @@ GEM
     msgpack (1.7.2)
     multipart-post (2.4.0)
     nap (1.1.0)
-    net-imap (0.5.7)
+    net-imap (0.5.14)
       date
       net-protocol
     net-pop (0.1.2)
@@ -492,7 +492,7 @@ GEM
     thor (1.5.0)
     tilt (2.3.0)
     timecop (0.9.1)
-    timeout (0.4.3)
+    timeout (0.6.1)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
     tzinfo-data (1.2019.3)
