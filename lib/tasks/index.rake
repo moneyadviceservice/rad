@@ -47,7 +47,7 @@ namespace :index do
   task travel_insurance: :environment do
     Rails.logger.info 'Querying the db (this might take some time...)'
 
-    firms = TravelInsuranceFirm.approved
+    firms = TravelInsuranceFirm.approved.where.not(reregister_approved_at: nil)
                                .joins(:office, :service_detail, :medical_specialism)
                                .includes(:trip_covers, :medical_specialism, :service_detail)
 
