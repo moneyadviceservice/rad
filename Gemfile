@@ -21,7 +21,7 @@ gem 'azure-storage'
 gem 'bootsnap'
 gem 'bootstrap-sass'
 gem 'bowndler', github: 'moneyadviceservice/bowndler'
-gem 'concurrent-ruby', '1.3.4'
+gem 'concurrent-ruby', '1.3.7'
 gem 'devise'
 gem 'devise-security', '~> 0.14'
 # Dough assets are loaded from a CDN instead of from the Gem. Do make sure that
